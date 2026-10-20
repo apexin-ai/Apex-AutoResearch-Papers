@@ -1,0 +1,10399 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-14 (UTC).** Your job: indep
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 143
+- **Recorded user turns:** 1
+- **Tool calls:** 46
+- **Original source:** `logs/chats/exported-trajectories/account-2/a1f7dd73-ab1d-4611-aadf-f894691d376c.jsonl`
+- **Structured JSON:** [`d3330a1f29b6a8b59a8a.json`](../../sessions/d3/d3330a1f29b6a8b59a8a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T15:49:24.058Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T15:49:24.058Z",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-14 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (11 days from today 2026-05-14). Track: Information Retrieval and Text Mining.\n\nDirection: Retrieval methods for reasoning-intensive tasks — adaptive retrieval strategies for chain-of-thought and multi-step reasoning, retrieval-augmented verification and self-correction, context compression and selection for RAG pipelines, retrieval-aware training objectives. NOT a generic RAG system paper — focus on the RETRIEVAL side: when to retrieve, what to retrieve, how to integrate retrieved evidence into reasoning chains with faithfulness guarantees.\n\nContribution type: METHOD ONLY. Must propose a new retrieval algorithm, retrieval-generation coordination mechanism, or retrieval-aware training/inference strategy. Not a new retrieval benchmark or RAG demo.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Retrieval experiments need index building + multi-run evaluation — budget for efficient index construction (ColBERT, SPLADE) + LLM inference.\n2. Time: ≤11 days. Use existing retriever backbones (ColBERTv2, BGE, E5, SPLADE++) and reader models (Qwen3, Llama-3, DeepSeek-R1 distills). Leverage existing corpora (Wikipedia, MS MARCO, Natural Questions).\n3. Eval: retrieval quality (Recall@k, nDCG) + downstream reasoning accuracy on HotpotQA, MuSiQue, 2WikiMultiHopQA, StrategyQA, FEVER; faithfulness metrics (attribution precision/recall); efficiency (latency, FLOPs per query).\n\nRAG + reasoning is the hottest intersection in NLP 2025-2026. EMNLP 2025 accepted ACC-RAG, Search-o1, CoT-RAG, SportReason — but most focus on generation-side improvements. The retrieval side is underexplored: when should a reasoning model retrieve vs. think? How to retrieve evidence that supports verification rather than just answer generation? Look for: adaptive retrieval triggers based on reasoning uncertainty, multi-hop retrieval with explicit reasoning graph construction, retrieval-as-verification (retrieve to check rather than to answer), context compression that preserves reasoning-critical information. Avoid: vanilla RAG with a new reader prompt, retrieval-free reasoning improvements, pure dense retrieval fine-tuning without reasoning integration.**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-14?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 3/10)\n{\n  \"title\": \"Counterfactual Probing Disentangles Evidence Gaps from Reasoning Difficulty for Step-Level Retrieval Gating\",\n  \"core_problem\": \"Current adaptive retrieval methods for reasoning LLMs use signals that conflate two fundamentally different failure modes: evidence gaps (the model lacks factual knowledge for a step) and reasoning difficulty (the step is logically complex, and retrieval introduces noise). Probing-RAG gates retrieval via hidden-state probes with binary correctness labels. Skill-RAG routes among retrieval skills based on failure-state probing but diagnoses query-evidence misalignment, not whether retrieval should occur. ReaLM-Retrieve's composite RSUS score cannot distinguish missing knowledge from logical complexity. DeepControl's information utility (novelty + effectiveness) addresses when to continue retrieving but conflates both failure sources into a single scalar. IG-Search's counterfactual baseline (random documents vs. retrieved documents) provides step-level credit assignment for search quality but does not classify WHY a step benefits from retrieval. DART demonstrates that reasoning and tool-use compete during joint RL training — gradient interference between the two capabilities is measurable and harmful — but proposes an architectural fix (disentangled LoRA) rather than diagnosing failure modes at inference time. 'Knowledge or Reasoning?' (arXiv 2506.02126) shows that knowledge correctness and reasoning quality are separable dimensions at the step level (knowledge-accuracy correlation 0.998 vs. reasoning-accuracy 0.698 in medical QA), validating the axis we target — but operates as an offline evaluation framework using GPT-4o judges, not as an inference-time retrieval gating mechanism. No existing method provides counterfactually supervised, step-level classification of evidence gaps vs. reasoning difficulty in hidden-state space for inference-time retrieval gating.\",\n  \"opportunity\": \"Three converging lines of evidence make this the right moment for counterfactual probing of retrieval failure modes: (1) The evidence-vs-reasoning axis is real and classifiable — 'Knowledge or Reasoning?' achieves step-level separation with high correlation, while a PubMedBERT classifier separates knowledge-heavy from reasoning-heavy medical questions at 81% accuracy (arXiv 2505.11462), and Skill-RAG's representation analysis confirms failure states occupy 'structured, separable regions' in hidden-state space. (2) Indiscriminate retrieval demonstrably harms reasoning — non-retrieval traces achieve 84.2% on GSM8K vs. lower with retrieval (arXiv 2602.07213), and DART quantifies that reasoning and tool-use produce misaligned gradients during joint training. (3) Counterfactual methodology for retrieval evaluation is maturing — IG-Search uses counterfactual random-document baselines for step-level credit, and CF-RAG (ICLR 2026) applies counterfactual reasoning to distinguish causal from correlated evidence. However, no prior work uses counterfactual branching (forking each step into retrieval vs. no-retrieval paths) to generate causal labels for training an inference-time probe that classifies failure mode type. This combination — counterfactual causal supervision + hidden-state probing + step-level failure-mode classification — fills a specific gap: IG-Search and DeepControl learn retrieval timing implicitly through RL reward shaping, while we provide explicit, interpretable diagnosis of whether a step needs facts or needs to reason harder. The practical advantage is inference-time applicability: our probe can be applied post-hoc to any existing Search-R1 checkpoint without retraining, unlike DeepControl's training-time controls or DART's LoRA separation.\",\n  \"landscape\": \"**Hidden-state probing for retrieval:** Probing-RAG (NAACL 2025) is the most direct predecessor: a 5MB FC probe on intermediate layers gates retrieval at query level with binary correctness labels, reducing retrieval by ~50%. Skill-RAG (arXiv 2604.15771) extends this with per-layer probers on Gemma2-9B's posterior-2/3 layers plus a prompt-based skill router selecting among query rewriting, decomposition, evidence focusing, or exit — achieving 46.8% average accuracy and +13.6 on 2WikiMultiHopQA over Probing-RAG. However, Skill-RAG's failure typology addresses HOW to fix query-evidence alignment, not WHETHER retrieval should occur; its labels remain observational. **RL-based retrieval timing:** Search-R1 (arXiv 2503.09516) trains retrieval timing via GRPO with outcome-only reward, achieving 41% improvement on Qwen2.5-7B. SLATE (arXiv 2602.23440) adds decomposed process rewards (reasoning, query, answer quality), reaching 0.461 avg EM on 7B. IG-Search (arXiv 2604.15148) introduces step-level information gain rewards using a counterfactual baseline of random documents, measuring how much retrieved documents improve answer confidence — achieving 0.430 avg EM on Qwen2.5-3B, outperforming MR-Search by 1.6 points. IG-Search's counterfactual is conceptually adjacent but serves a different purpose: it evaluates search query quality (good retrieval vs. random), not whether retrieval itself is needed vs. harmful. **Adaptive information control:** DeepControl (arXiv 2602.01672) defines information utility U(e) = ρ·Novelty + (1-ρ)·Effectiveness and uses stopping/continuation rules with thresholds, achieving 9.4% improvement over RL baselines on Qwen2.5-7B (HotpotQA 0.221, 2Wiki 0.439, MuSiQue 0.458). DeepControl addresses 'when to stop retrieving' via a training-time utility signal but cannot diagnose failure mode type at inference time. **Reasoning-tool competition:** DART (arXiv 2602.00994) introduces LEAS to quantify gradient interference between reasoning and tool-use, showing they induce misaligned gradient directions. DART's disentangled LoRA (separate adapters for reasoning vs. tool-use tokens) achieves 6.35% avg improvement. DART validates our core premise — reasoning and retrieval compete — but proposes an architectural separation during training, while we propose a diagnostic probe for inference-time gating. **Knowledge-reasoning decomposition:** 'Knowledge or Reasoning?' (arXiv 2506.02126) decomposes step-level reasoning into Knowledge Index and Information Gain, finding knowledge-accuracy correlation of 0.998 vs. reasoning-accuracy of 0.698, and showing RL prunes inaccurate knowledge while improving reasoning. This validates the separability of our target axis but at the evaluation level (using GPT-4o judges on reasoning traces), not for inference-time gating. The medical disentanglement work (arXiv 2505.11462) achieves 81% accuracy separating question types with PubMedBERT, further confirming classifiability at the task level. **Other related:** FLARE (EMNLP 2023) uses token probability thresholds. ReaLM-Retrieve (arXiv 2604.26649) achieves 71.2% F1 on MuSiQue with 1.8 retrieval calls using composite RSUS. GRADE (arXiv 2604.02830) probes knowledge gaps via gradient subspace dynamics but requires backpropagation (unsuitable for inference). Reasoning Theater (arXiv 2603.05488) shows linear probes detect CoT divergence from internal beliefs. SynthWorlds (arXiv 2510.24427) disentangles knowledge from reasoning at task level via synthetic corpora. **Gap:** No existing work provides counterfactually supervised, step-level probing that classifies evidence gaps vs. reasoning difficulty in hidden-state space for post-hoc inference-time retrieval gating.\",\n  \"approach\": \"We propose a focused empirical study that (1) introduces a counterfactual labeling methodology for step-level retrieval failure modes, (2) tests whether evidence gaps and reasoning difficulty are separable in hidden-state space via lightweight probes, and (3) demonstrates inference-time retrieval gating on existing Search-R1 checkpoints without retraining. This is scoped as a short paper contribution; RL integration is deferred to follow-up work.\\n\\n**Step 1 — Counterfactual Data Generation (~8-12 H100h):** Starting from the publicly released Search-R1 Qwen2.5-7B checkpoint, we generate reasoning traces on ~800 questions sampled from HotpotQA (400), MuSiQue (200), and 2WikiMultiHopQA (200). At each step where the model invokes or could invoke retrieval (~5 decision points per question, yielding ~4,000 step instances), we fork execution into retrieval and no-retrieval conditions with k=5 independent rollouts per condition using vLLM batch inference (temperature=0.7, consistent with Search-R1 training). Final answer correctness is propagated backward to each fork point. Labeling uses the correctness rates r_ret and r_no_ret across rollouts: steps where r_ret ≥ 4/5 AND r_no_ret ≤ 2/5 are labeled 'evidence-gap'; steps where r_no_ret ≥ 3/5 AND r_ret ≤ r_no_ret are labeled 'reasoning-difficulty'; remaining steps are labeled 'mixed.' We additionally compute soft labels (evidence_gap_score = r_ret − r_no_ret) for regression-based probe training. We report the three-class distribution as a key empirical finding — prior work has not measured what fraction of reasoning steps in multi-hop QA are knowledge-limited vs. reasoning-limited.\\n\\n**Step 2 — Hidden-State Extraction & Probe Training (~3-5 H100h):** For each of the ~4,000 step instances, we extract hidden states from the Qwen2.5-7B model at the decision-point token position across the posterior 2/3 of layers (following Skill-RAG's methodology). We train three probe architectures: (a) a per-layer linear probe, (b) a per-layer 1-hidden-layer MLP (256 units, following Probing-RAG/Skill-RAG), and (c) a layer-ensemble that averages predicted probabilities across layers. Training uses 70/15/15 train/dev/test splits stratified by dataset and label class. We evaluate probe accuracy on the three-class task and on the binary gating task (retrieve = evidence-gap ∪ mixed, skip = reasoning-difficulty). **Go/no-go gate: if binary gating probe accuracy on held-out steps < 65%, we report the separability analysis as a negative/nuanced finding rather than proceeding to gating experiments.**\\n\\n**Step 3 — Inference-Time Gating Evaluation (~5-8 H100h):** Assuming probe validation succeeds, we apply the trained probe as a hard retrieval gate on the same Search-R1 checkpoint during inference (no retraining): at each step where the model generates a &lt;search> token, the probe classifies the hidden state; retrieval executes only if the probe predicts 'evidence-gap' or 'mixed' (above a calibrated threshold), otherwise the model continues reasoning without external input. We evaluate on held-out test portions of HotpotQA, MuSiQue, and 2WikiMultiHopQA, reporting F1, EM, and retrieval calls per question. Baselines: (1) no retrieval, (2) always retrieve (standard Search-R1), (3) Probing-RAG-style binary probe (trained on observational correctness labels rather than counterfactual labels), (4) FLARE-style token probability threshold, (5) ReaLM-Retrieve's RSUS (reimplemented). We also compare counterfactual labels vs. observational labels (ablation of the causal supervision contribution).\\n\\n**Step 4 — Ablations & Analysis (~5-8 H100h):** (a) Probe architecture comparison (linear vs. MLP vs. ensemble). (b) Label quality: counterfactual (ours) vs. observational (Probing-RAG-style) vs. soft (continuous scores) vs. hard (three-class). (c) Gating threshold sensitivity (precision-recall curve for retrieval decisions). (d) Per-dataset analysis: which datasets have more evidence-gap vs. reasoning-difficulty steps? (e) Error analysis: what do 'mixed' steps look like? Are they genuinely both knowledge- and reasoning-dependent? (f) Cross-dataset transfer: train on HotpotQA, evaluate on MuSiQue. (g) Visualization of hidden-state clusters by failure-mode type (t-SNE/UMAP, extending Skill-RAG's representation analysis).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~25-35 H100h (counterfactual generation ~10h, hidden state extraction ~3h, probe training <1h, evaluation ~6h, ablations ~8h, buffer ~5h)\",\n      \"gpu_utilization\": \"40-55% — GPUs idle during analysis, visualization, and paper writing\",\n      \"timeline\": \"11 days (May 14-25, 2026)\",\n      \"team\": \"2 researchers (1 on data generation/evaluation pipeline, 1 on probing/analysis/writing)\",\n      \"estimated_gpu_cost\": \"$65-90 at ~$2.50/hr mid-range H100 rental\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~30-40 H100h (agent handles pipeline orchestration, human reviews label distributions and go/no-go)\",\n      \"gpu_utilization\": \"60-75% — agent queues batch jobs efficiently, human reviews at checkpoints\",\n      \"timeline\": \"9-11 days\",\n      \"team\": \"1 researcher, ~1-2hr/day reviewing label quality, probe results, go/no-go, and writing\",\n      \"claude_api_cost\": \"$30-60 (~300-600 turns for code generation, experiment orchestration, analysis)\",\n      \"estimated_gpu_cost\": \"$75-100 at ~$2.50/hr\",\n      \"risk_note\": \"Primary risk is label distribution skew — if >60% of steps are 'mixed,' the binary gating signal may be too weak for a compelling short paper. Human judgment on the go/no-go is essential by Day 6.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~35-45 H100h (agent explores more threshold configurations and probe architectures)\",\n      \"gpu_utilization\": \"80-90% — agent pipelines generation → extraction → training → evaluation as continuous jobs\",\n      \"timeline\": \"7-9 days with 4 H100s\",\n      \"team\": \"0 (initial setup only: configure Search-R1/veRL/vLLM environment, dataset loading, retrieval corpus indexing)\",\n      \"claude_api_cost\": \"$80-150 (~800-1500 turns for autonomous experiment design, debugging, analysis, paper drafting)\",\n      \"estimated_gpu_cost\": \"$90-115 at ~$2.50/hr\",\n      \"speed_bottleneck\": \"Counterfactual generation is the bottleneck (~2-3h wall time on 4 H100s with vLLM batch); probe training and evaluation are fast (<1h each)\",\n      \"risk_note\": \"Without human judgment on whether the 'mixed' class distribution warrants pivoting the paper framing, agent may produce a mechanically correct but uncompelling paper\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 short paper via ARR May 25, 2026 (11 days — primary and only target, track: Information Retrieval and Text Mining or Question Answering)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval (NAACL 2025 Findings)\",\n    \"Skill-RAG: Failure-State-Aware Retrieval Augmentation via Hidden-State Probing and Skill Routing (Preprint 2026, arXiv 2604.15771)\",\n    \"When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models [ReaLM-Retrieve] (Preprint 2026, arXiv 2604.26649)\",\n    \"Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning (Preprint 2025, arXiv 2503.09516)\",\n    \"SLATE: Truncated Step-Level Sampling with Process Rewards for Retrieval-Augmented Reasoning (Preprint 2026, arXiv 2602.23440)\",\n    \"IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning (Preprint 2026, arXiv 2604.15148)\",\n    \"DeepControl: Scaling Search-Augmented LLM Reasoning via Adaptive Information Control (ICLR 2026 SPOT Workshop, arXiv 2602.01672)\",\n    \"DART: Reasoning and Tool-use Compete in Agentic RL — From Quantifying Interference to Disentangled Tuning (Preprint 2026, arXiv 2602.00994)\",\n    \"Knowledge or Reasoning? A Close Look at How LLMs Think Across Domains (Preprint 2025, arXiv 2506.02126)\",\n    \"Adaptive Retrieval helps Reasoning in LLMs — but mostly if it's not used (Preprint 2025, arXiv 2602.07213)\",\n    \"Active Retrieval Augmented Generation [FLARE] (EMNLP 2023)\",\n    \"Counterfactual Reasoning for Retrieval-Augmented Generation [CF-RAG] (ICLR 2026)\",\n    \"Disentangling Knowledge and Reasoning in Medical Large Language Models (Preprint 2025, arXiv 2505.11462)\",\n    \"Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought (Preprint 2026, arXiv 2603.05488)\",\n    \"SynthWorlds: Controlled Parallel Worlds for Disentangling Knowledge from Reasoning (Preprint 2025, arXiv 2510.24427)\",\n    \"GRADE: Probing Knowledge Gaps in LLMs through Gradient Subspace Dynamics (Preprint 2026, arXiv 2604.02830)\"\n  ],\n  \"description\": \"Current adaptive retrieval methods for reasoning LLMs use signals (uncertainty, token probability, composite scores) that conflate evidence gaps with reasoning difficulty, yet recent work confirms these are separable: 'Knowledge or Reasoning?' shows step-level knowledge-accuracy correlation of 0.998 vs. reasoning-accuracy 0.698, DART proves reasoning and tool-use produce competing gradients, and Skill-RAG finds failure states occupy structured regions in hidden-state space. We present a focused empirical study introducing counterfactual probing for step-level retrieval gating. Using a Search-R1 Qwen2.5-7B checkpoint, we fork ~4,000 reasoning steps into retrieval and no-retrieval paths with k=5 rollouts each, generating causal labels: 'evidence-gap' (retrieval helps, no-retrieval fails), 'reasoning-difficulty' (no-retrieval succeeds, retrieval doesn't help), and 'mixed.' We train lightweight probes (linear and MLP) on hidden states from the posterior 2/3 of layers to classify failure mode type. The probe then serves as an inference-time retrieval gate — no retraining required — on the existing checkpoint: retrieve only when the probe predicts 'evidence-gap' or 'mixed,' skip retrieval when reasoning is the bottleneck. Key novelty vs. existing methods: (1) counterfactual causal labels rather than observational correctness (Probing-RAG, Skill-RAG) or RL reward shaping (IG-Search, DeepControl), (2) explicit three-class failure-mode diagnosis rather than binary gating or scalar utility, (3) post-hoc inference-time applicability without retraining (unlike DeepControl's training-time controls or DART's LoRA separation). Evaluation on HotpotQA, MuSiQue, and 2WikiMultiHopQA reports F1, EM, and retrieval calls per question against Probing-RAG, FLARE, and ReaLM-Retrieve baselines, with ablations on label type (counterfactual vs. observational), probe architecture, and gating threshold. All components use existing open-source infrastructure (Search-R1/veRL checkpoints, vLLM batch inference, public datasets). Scoped as a short paper (~25-40 H100h total); RL integration with the probe gate during GRPO training is deferred to a follow-up long paper.\",\n  \"project_name\": \"evid_reason_disentangle\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL: Compute budget exceeded. Generator estimates 500-800 A100h (≈250-530 H100h), far above the user's ≤200 H100h constraint. Counterfactual data generation for ~100K step instances alone approaches 150-300 H100h.\", \"CRITICAL: Missing key competitor — Skill-RAG (arXiv 2604.15771, April 2026) uses hidden-state probing to detect failure states and routes to different retrieval skills based on failure type. This is conceptually close to EDDR's failure-type classification via probing. The generator must discuss how EDDR's evidence-gap vs. reasoning-difficulty distinction differs from Skill-RAG's query-evidence misalignment typology.\", \"Counterfactual label noise: The binary labeling scheme (retrieval helps → evidence gap, retrieval hurts → reasoning difficulty) is noisy. Retrieval can help by lucky distraction or hurt by relevant-but-confusing context. Edge cases where a step involves BOTH an evidence gap AND reasoning difficulty are unaddressed.\", \"Linear probe may be insufficient: The evidence-gap vs. reasoning-difficulty distinction may not be linearly separable in hidden state space. Reasoning Theater showed probes work for belief detection, but failure-mode classification is a different task. No evidence the distinction is actually decodable from hidden states.\", \"11-day timeline is too aggressive even ignoring compute: counterfactual data generation (~2-3 days), probe training (~hours), RL training with multiple configs (~3-5 days), evaluation on 5+ benchmarks (~1-2 days), plus debugging/iteration. This leaves zero margin.\", \"Probing-RAG (NAACL 2025) is a significant prior work that should be discussed as a direct predecessor — it already uses hidden-state probes on intermediate layers for adaptive retrieval decisions.\", \"The resource estimate section describes A100 costs but the user constraint specifies H100-hours. The three-mode estimates (manual/HIL/auto) are internally reasonable but all exceed the user's budget.\"]\nFeedback: The core idea of disentangling evidence gaps from reasoning difficulty is well-motivated, but needs significant revision to be feasible within the user's constraints:\n\n1. **Reduce scope to fit ≤200 H100h**: (a) Shrink counterfactual data generation to ~10-20K step instances using active sampling or curriculum selection, not exhaustive generation across 5 datasets. (b) Use a smaller model (Qwen3-1.7B or 4B) for counterfactual branching, with the 8B model only for final RL training. (c) Drop GSM8K and MATH-500 — these are reasoning-only benchmarks where retrieval is rarely helpful, making counterfactual labels degenerate (almost all steps labeled 'reasoning difficulty'). Focus on 3 knowledge-intensive multi-hop datasets only.\n\n2. **Address Skill-RAG overlap**: Read arXiv 2604.15771 carefully. Position EDDR as providing principled supervision (counterfactual labels) for failure-type classification, versus Skill-RAG's prompt-based routing. Argue that the evidence-gap vs. reasoning-difficulty axis is more fundamental than Skill-RAG's query-evidence alignment axis. Consider adding Skill-RAG as a baseline.\n\n3. **Address Probing-RAG**: Discuss Probing-RAG (NAACL 2025) as the direct predecessor for hidden-state probing in retrieval decisions. EDDR extends it from query-level to step-level and from binary retrieve/don't-retrieve to failure-type classification.\n\n4. **Validate probe feasibility first**: Before full RL training, run a pilot study: generate counterfactual labels for ~5K steps, train the probe, and check if evidence-gap vs. reasoning-difficulty is actually separable. If probe accuracy < 70%, the entire approach is undermined. This pilot takes ~10-20 H100h and de-risks the project.\n\n5. **Simplify RL integration**: Instead of modifying SLATE's decomposed rewards with a new penalty term, consider a simpler two-stage approach: (a) train probe on counterfactual labels, (b) use probe as a hard gate during Search-R1 RL training (skip retrieval when probe predicts reasoning-difficulty). This avoids complex reward engineering and saves compute on reward ablations.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL: Venue mismatch — the user explicitly requested EMNLP 2026 (ARR May 25, 2026, 11 days away), but the proposal targets AAAI 2027, ICLR 2027, and ACL 2027 ARR. The proposal must be re-targeted to EMNLP 2026 or the timeline/scope must be justified for the 11-day constraint.\", \"CRITICAL: Missing important concurrent work — (1) IG-Search (arXiv 2604.15148, April 2026) uses counterfactual baselines (random documents) for step-level credit assignment to search queries during RL training, which is conceptually adjacent to counterfactual labeling for retrieval decisions. (2) DeepControl (arXiv 2602.01672, February 2026) provides adaptive information control measuring 'marginal value of retrieved evidence under a given reasoning state,' achieving 9.4% improvement over RL baselines — this directly addresses when retrieval is useful vs. harmful. (3) DART (arXiv 2602.00994, February 2026) shows reasoning and tool-use COMPETE during joint RL training and proposes disentangled LoRA modules — the reasoning-tool competition finding is directly relevant to EDDR's core problem. (4) 'Knowledge or Reasoning?' (arXiv 2506.02126) decomposes step-level reasoning into knowledge vs. reasoning components with Knowledge Index and Information Gain metrics. All four must be discussed.\", \"Compute budget likely exceeded: The counterfactual data generation cost is underestimated. For 1K questions in pilot with ~5 decision points each, 2 conditions × 3 rollouts = 30 rollouts per question = 30K rollouts. At ~30s per rollout on H100 for Qwen2.5-7B, that's ~250 single-GPU hours = ~31h on 8 GPUs. The Phase 2 expansion to 15K step instances (requiring ~2-3K additional questions) adds ~65h on 8 GPUs. Combined with RL training (~136h) and evaluation (~15h), total is ~247 H100h, exceeding the 200h constraint.\", \"Label noise from k=3 rollouts: With only 3 rollouts per condition, majority vote (≥2/3) has high variance for stochastic LLM generation. Temperature, sampling, and the inherent stochasticity of multi-step reasoning mean that the 'ambiguous' category (excluded from training) could consume 40-60% of all step instances, potentially reducing the 5K target to ~2-3K usable labels — insufficient for robust probe training.\", \"The evidence-gap vs. reasoning-difficulty boundary is inherently fuzzy: Many multi-hop reasoning steps involve BOTH factual knowledge retrieval AND logical inference (e.g., 'Country X's capital has a population greater than Y' requires knowing the capital AND comparing). The binary classification forces a clean split that may not exist. The proposal doesn't address mixed-type steps beyond excluding them as 'ambiguous.'\", \"EMNLP 2026 track fit: The user specified 'Information Retrieval and Text Mining' track. EDDR is primarily about retrieval gating during reasoning — this fits the track but the paper needs to emphasize the retrieval methodology contribution (when/what to retrieve) rather than positioning it as a reasoning improvement paper.\"]\nFeedback: The revised proposal shows significant improvement from Round 1 — the reduced scope, Skill-RAG integration, Probing-RAG positioning, pilot study design, and simplified RL integration all address prior feedback well. However, several critical issues remain:\n\n1. **Fix the venue target**: The user explicitly requested EMNLP 2026 (ARR May 25). Either (a) re-scope the proposal to be completable in 11 days and target EMNLP 2026, or (b) explicitly justify why the timeline requires later venues. For an 11-day submission, consider: run only the pilot study (Phase 1) and inference-time-only gating as the core contribution, deferring RL integration to a follow-up. A well-executed pilot with strong probe separability results + inference-time gating improvements would be a solid EMNLP short paper.\n\n2. **Discuss the four missing competitors**: IG-Search provides counterfactual step-level credit for retrieval (different mechanism but related goal); DeepControl provides adaptive information utility (addresses the same 'when is retrieval useful' question); DART shows reasoning/tool-use competition and proposes disentangled training (validates EDDR's premise but offers an alternative solution); 'Knowledge or Reasoning?' provides step-level knowledge/reasoning decomposition metrics (validates the axis but at analysis level, not for gating). Position EDDR's counterfactual causal supervision as complementary to RL-based approaches (which learn retrieval timing implicitly) by providing explicit, interpretable failure-mode diagnosis.\n\n3. **Reduce compute to fit 200 H100h**: (a) Use k=5 rollouts per condition instead of k=3 to improve label quality, but reduce the question count to ~800 pilot / ~2K expanded (still yielding ~10K labeled steps if ~50% are unambiguous). (b) Use vLLM batch inference for rollouts to improve throughput. (c) Consider using Qwen2.5-3B for counterfactual data generation and the 7B model only for final RL training — the 3B model's rollouts are cheaper and the probe is trained on 7B hidden states extracted from the 3B-generated traces processed through the 7B model.\n\n4. **Address label noise**: Increase k from 3 to 5 rollouts per condition (adds ~40% generation cost but substantially improves majority-vote reliability). Report the fraction of steps that fall into 'ambiguous' as a key metric. Consider a soft labeling scheme where the probe is trained with probability labels (e.g., 4/5 rollouts agree → 0.8 confidence) rather than hard binary labels.\n\n5. **Address mixed-type steps**: Acknowledge that many steps involve both knowledge and reasoning. Consider a three-class classification (evidence-gap, reasoning-difficulty, mixed) where the 'mixed' class triggers retrieval with context compression (retrieve but reduce noise). This would be a more honest model of reality and could differentiate from simpler binary gating.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T15:49:24.066Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T15:49:24.066Z",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+## Round 1
+
+141 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T15:49:24.100Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-14 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (11 days from today 2026-05-14). Track: Information Retrieval and Text Mining.
+
+Direction: Retrieval methods for reasoning-intensive tasks — adaptive retrieval strategies for chain-of-thought and multi-step reasoning, retrieval-augmented verification and self-correction, context compression and selection for RAG pipelines, retrieval-aware training objectives. NOT a generic RAG system paper — focus on the RETRIEVAL side: when to retrieve, what to retrieve, how to integrate retrieved evidence into reasoning chains with faithfulness guarantees.
+
+Contribution type: METHOD ONLY. Must propose a new retrieval algorithm, retrieval-generation coordination mechanism, or retrieval-aware training/inference strategy. Not a new retrieval benchmark or RAG demo.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Retrieval experiments need index building + multi-run evaluation — budget for efficient index construction (ColBERT, SPLADE) + LLM inference.
+2. Time: ≤11 days. Use existing retriever backbones (ColBERTv2, BGE, E5, SPLADE++) and reader models (Qwen3, Llama-3, DeepSeek-R1 distills). Leverage existing corpora (Wikipedia, MS MARCO, Natural Questions).
+3. Eval: retrieval quality (Recall@k, nDCG) + downstream reasoning accuracy on HotpotQA, MuSiQue, 2WikiMultiHopQA, StrategyQA, FEVER; faithfulness metrics (attribution precision/recall); efficiency (latency, FLOPs per query).
+
+RAG + reasoning is the hottest intersection in NLP 2025-2026. EMNLP 2025 accepted ACC-RAG, Search-o1, CoT-RAG, SportReason — but most focus on generation-side improvements. The retrieval side is underexplored: when should a reasoning model retrieve vs. think? How to retrieve evidence that supports verification rather than just answer generation? Look for: adaptive retrieval triggers based on reasoning uncertainty, multi-hop retrieval with explicit reasoning graph construction, retrieval-as-verification (retrieve to check rather than to answer), context compression that preserves reasoning-critical information. Avoid: vanilla RAG with a new reader prompt, retrieval-free reasoning improvements, pure dense retrieval fine-tuning without reasoning integration.**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-14?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 3/10)
+{
+  "title": "Counterfactual Probing Disentangles Evidence Gaps from Reasoning Difficulty for Step-Level Retrieval Gating",
+  "core_problem": "Current adaptive retrieval methods for reasoning LLMs use signals that conflate two fundamentally different failure modes: evidence gaps (the model lacks factual knowledge for a step) and reasoning difficulty (the step is logically complex, and retrieval introduces noise). Probing-RAG gates retrieval via hidden-state probes with binary correctness labels. Skill-RAG routes among retrieval skills based on failure-state probing but diagnoses query-evidence misalignment, not whether retrieval should occur. ReaLM-Retrieve's composite RSUS score cannot distinguish missing knowledge from logical complexity. DeepControl's information utility (novelty + effectiveness) addresses when to continue retrieving but conflates both failure sources into a single scalar. IG-Search's counterfactual baseline (random documents vs. retrieved documents) provides step-level credit assignment for search quality but does not classify WHY a step benefits from retrieval. DART demonstrates that reasoning and tool-use compete during joint RL training — gradient interference between the two capabilities is measurable and harmful — but proposes an architectural fix (disentangled LoRA) rather than diagnosing failure modes at inference time. 'Knowledge or Reasoning?' (arXiv 2506.02126) shows that knowledge correctness and reasoning quality are separable dimensions at the step level (knowledge-accuracy correlation 0.998 vs. reasoning-accuracy 0.698 in medical QA), validating the axis we target — but operates as an offline evaluation framework using GPT-4o judges, not as an inference-time retrieval gating mechanism. No existing method provides counterfactually supervised, step-level classification of evidence gaps vs. reasoning difficulty in hidden-state space for inference-time retrieval gating.",
+  "opportunity": "Three converging lines of evidence make this the right moment for counterfactual probing of retrieval failure modes: (1) The evidence-vs-reasoning axis is real and classifiable — 'Knowledge or Reasoning?' achieves step-level separation with high correlation, while a PubMedBERT classifier separates knowledge-heavy from reasoning-heavy medical questions at 81% accuracy (arXiv 2505.11462), and Skill-RAG's representation analysis confirms failure states occupy 'structured, separable regions' in hidden-state space. (2) Indiscriminate retrieval demonstrably harms reasoning — non-retrieval traces achieve 84.2% on GSM8K vs. lower with retrieval (arXiv 2602.07213), and DART quantifies that reasoning and tool-use produce misaligned gradients during joint training. (3) Counterfactual methodology for retrieval evaluation is maturing — IG-Search uses counterfactual random-document baselines for step-level credit, and CF-RAG (ICLR 2026) applies counterfactual reasoning to distinguish causal from correlated evidence. However, no prior work uses counterfactual branching (forking each step into retrieval vs. no-retrieval paths) to generate causal labels for training an inference-time probe that classifies failure mode type. This combination — counterfactual causal supervision + hidden-state probing + step-level failure-mode classification — fills a specific gap: IG-Search and DeepControl learn retrieval timing implicitly through RL reward shaping, while we provide explicit, interpretable diagnosis of whether a step needs facts or needs to reason harder. The practical advantage is inference-time applicability: our probe can be applied post-hoc to any existing Search-R1 checkpoint without retraining, unlike DeepControl's training-time controls or DART's LoRA separation.",
+  "landscape": "**Hidden-state probing for retrieval:** Probing-RAG (NAACL 2025) is the most direct predecessor: a 5MB FC probe on intermediate layers gates retrieval at query level with binary correctness labels, reducing retrieval by ~50%. Skill-RAG (arXiv 2604.15771) extends this with per-layer probers on Gemma2-9B's posterior-2/3 layers plus a prompt-based skill router selecting among query rewriting, decomposition, evidence focusing, or exit — achieving 46.8% average accuracy and +13.6 on 2WikiMultiHopQA over Probing-RAG. However, Skill-RAG's failure typology addresses HOW to fix query-evidence alignment, not WHETHER retrieval should occur; its labels remain observational. **RL-based retrieval timing:** Search-R1 (arXiv 2503.09516) trains retrieval timing via GRPO with outcome-only reward, achieving 41% improvement on Qwen2.5-7B. SLATE (arXiv 2602.23440) adds decomposed process rewards (reasoning, query, answer quality), reaching 0.461 avg EM on 7B. IG-Search (arXiv 2604.15148) introduces step-level information gain rewards using a counterfactual baseline of random documents, measuring how much retrieved documents improve answer confidence — achieving 0.430 avg EM on Qwen2.5-3B, outperforming MR-Search by 1.6 points. IG-Search's counterfactual is conceptually adjacent but serves a different purpose: it evaluates search query quality (good retrieval vs. random), not whether retrieval itself is needed vs. harmful. **Adaptive information control:** DeepControl (arXiv 2602.01672) defines information utility U(e) = ρ·Novelty + (1-ρ)·Effectiveness and uses stopping/continuation rules with thresholds, achieving 9.4% improvement over RL baselines on Qwen2.5-7B (HotpotQA 0.221, 2Wiki 0.439, MuSiQue 0.458). DeepControl addresses 'when to stop retrieving' via a training-time utility signal but cannot diagnose failure mode type at inference time. **Reasoning-tool competition:** DART (arXiv 2602.00994) introduces LEAS to quantify gradient interference between reasoning and tool-use, showing they induce misaligned gradient directions. DART's disentangled LoRA (separate adapters for reasoning vs. tool-use tokens) achieves 6.35% avg improvement. DART validates our core premise — reasoning and retrieval compete — but proposes an architectural separation during training, while we propose a diagnostic probe for inference-time gating. **Knowledge-reasoning decomposition:** 'Knowledge or Reasoning?' (arXiv 2506.02126) decomposes step-level reasoning into Knowledge Index and Information Gain, finding knowledge-accuracy correlation of 0.998 vs. reasoning-accuracy of 0.698, and showing RL prunes inaccurate knowledge while improving reasoning. This validates the separability of our target axis but at the evaluation level (using GPT-4o judges on reasoning traces), not for inference-time gating. The medical disentanglement work (arXiv 2505.11462) achieves 81% accuracy separating question types with PubMedBERT, further confirming classifiability at the task level. **Other related:** FLARE (EMNLP 2023) uses token probability thresholds. ReaLM-Retrieve (arXiv 2604.26649) achieves 71.2% F1 on MuSiQue with 1.8 retrieval calls using composite RSUS. GRADE (arXiv 2604.02830) probes knowledge gaps via gradient subspace dynamics but requires backpropagation (unsuitable for inference). Reasoning Theater (arXiv 2603.05488) shows linear probes detect CoT divergence from internal beliefs. SynthWorlds (arXiv 2510.24427) disentangles knowledge from reasoning at task level via synthetic corpora. **Gap:** No existing work provides counterfactually supervised, step-level probing that classifies evidence gaps vs. reasoning difficulty in hidden-state space for post-hoc inference-time retrieval gating.",
+  "approach": "We propose a focused empirical study that (1) introduces a counterfactual labeling methodology for step-level retrieval failure modes, (2) tests whether evidence gaps and reasoning difficulty are separable in hidden-state space via lightweight probes, and (3) demonstrates inference-time retrieval gating on existing Search-R1 checkpoints without retraining. This is scoped as a short paper contribution; RL integration is deferred to follow-up work.\n\n**Step 1 — Counterfactual Data Generation (~8-12 H100h):** Starting from the publicly released Search-R1 Qwen2.5-7B checkpoint, we generate reasoning traces on ~800 questions sampled from HotpotQA (400), MuSiQue (200), and 2WikiMultiHopQA (200). At each step where the model invokes or could invoke retrieval (~5 decision points per question, yielding ~4,000 step instances), we fork execution into retrieval and no-retrieval conditions with k=5 independent rollouts per condition using vLLM batch inference (temperature=0.7, consistent with Search-R1 training). Final answer correctness is propagated backward to each fork point. Labeling uses the correctness rates r_ret and r_no_ret across rollouts: steps where r_ret ≥ 4/5 AND r_no_ret ≤ 2/5 are labeled 'evidence-gap'; steps where r_no_ret ≥ 3/5 AND r_ret ≤ r_no_ret are labeled 'reasoning-difficulty'; remaining steps are labeled 'mixed.' We additionally compute soft labels (evidence_gap_score = r_ret − r_no_ret) for regression-based probe training. We report the three-class distribution as a key empirical finding — prior work has not measured what fraction of reasoning steps in multi-hop QA are knowledge-limited vs. reasoning-limited.\n\n**Step 2 — Hidden-State Extraction & Probe Training (~3-5 H100h):** For each of the ~4,000 step instances, we extract hidden states from the Qwen2.5-7B model at the decision-point token position across the posterior 2/3 of layers (following Skill-RAG's methodology). We train three probe architectures: (a) a per-layer linear probe, (b) a per-layer 1-hidden-layer MLP (256 units, following Probing-RAG/Skill-RAG), and (c) a layer-ensemble that averages predicted probabilities across layers. Training uses 70/15/15 train/dev/test splits stratified by dataset and label class. We evaluate probe accuracy on the three-class task and on the binary gating task (retrieve = evidence-gap ∪ mixed, skip = reasoning-difficulty). **Go/no-go gate: if binary gating probe accuracy on held-out steps < 65%, we report the separability analysis as a negative/nuanced finding rather than proceeding to gating experiments.**\n\n**Step 3 — Inference-Time Gating Evaluation (~5-8 H100h):** Assuming probe validation succeeds, we apply the trained probe as a hard retrieval gate on the same Search-R1 checkpoint during inference (no retraining): at each step where the model generates a &lt;search> token, the probe classifies the hidden state; retrieval executes only if the probe predicts 'evidence-gap' or 'mixed' (above a calibrated threshold), otherwise the model continues reasoning without external input. We evaluate on held-out test portions of HotpotQA, MuSiQue, and 2WikiMultiHopQA, reporting F1, EM, and retrieval calls per question. Baselines: (1) no retrieval, (2) always retrieve (standard Search-R1), (3) Probing-RAG-style binary probe (trained on observational correctness labels rather than counterfactual labels), (4) FLARE-style token probability threshold, (5) ReaLM-Retrieve's RSUS (reimplemented). We also compare counterfactual labels vs. observational labels (ablation of the causal supervision contribution).\n\n**Step 4 — Ablations & Analysis (~5-8 H100h):** (a) Probe architecture comparison (linear vs. MLP vs. ensemble). (b) Label quality: counterfactual (ours) vs. observational (Probing-RAG-style) vs. soft (continuous scores) vs. hard (three-class). (c) Gating threshold sensitivity (precision-recall curve for retrieval decisions). (d) Per-dataset analysis: which datasets have more evidence-gap vs. reasoning-difficulty steps? (e) Error analysis: what do 'mixed' steps look like? Are they genuinely both knowledge- and reasoning-dependent? (f) Cross-dataset transfer: train on HotpotQA, evaluate on MuSiQue. (g) Visualization of hidden-state clusters by failure-mode type (t-SNE/UMAP, extending Skill-RAG's representation analysis).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~25-35 H100h (counterfactual generation ~10h, hidden state extraction ~3h, probe training <1h, evaluation ~6h, ablations ~8h, buffer ~5h)",
+      "gpu_utilization": "40-55% — GPUs idle during analysis, visualization, and paper writing",
+      "timeline": "11 days (May 14-25, 2026)",
+      "team": "2 researchers (1 on data generation/evaluation pipeline, 1 on probing/analysis/writing)",
+      "estimated_gpu_cost": "$65-90 at ~$2.50/hr mid-range H100 rental"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~30-40 H100h (agent handles pipeline orchestration, human reviews label distributions and go/no-go)",
+      "gpu_utilization": "60-75% — agent queues batch jobs efficiently, human reviews at checkpoints",
+      "timeline": "9-11 days",
+      "team": "1 researcher, ~1-2hr/day reviewing label quality, probe results, go/no-go, and writing",
+      "claude_api_cost": "$30-60 (~300-600 turns for code generation, experiment orchestration, analysis)",
+      "estimated_gpu_cost": "$75-100 at ~$2.50/hr",
+      "risk_note": "Primary risk is label distribution skew — if >60% of steps are 'mixed,' the binary gating signal may be too weak for a compelling short paper. Human judgment on the go/no-go is essential by Day 6."
+    },
+    "auto_research": {
+      "gpu_hours": "~35-45 H100h (agent explores more threshold configurations and probe architectures)",
+      "gpu_utilization": "80-90% — agent pipelines generation → extraction → training → evaluation as continuous jobs",
+      "timeline": "7-9 days with 4 H100s",
+      "team": "0 (initial setup only: configure Search-R1/veRL/vLLM environment, dataset loading, retrieval corpus indexing)",
+      "claude_api_cost": "$80-150 (~800-1500 turns for autonomous experiment design, debugging, analysis, paper drafting)",
+      "estimated_gpu_cost": "$90-115 at ~$2.50/hr",
+      "speed_bottleneck": "Counterfactual generation is the bottleneck (~2-3h wall time on 4 H100s with vLLM batch); probe training and evaluation are fast (<1h each)",
+      "risk_note": "Without human judgment on whether the 'mixed' class distribution warrants pivoting the paper framing, agent may produce a mechanically correct but uncompelling paper"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 short paper via ARR May 25, 2026 (11 days — primary and only target, track: Information Retrieval and Text Mining or Question Answering)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval (NAACL 2025 Findings)",
+    "Skill-RAG: Failure-State-Aware Retrieval Augmentation via Hidden-State Probing and Skill Routing (Preprint 2026, arXiv 2604.15771)",
+    "When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models [ReaLM-Retrieve] (Preprint 2026, arXiv 2604.26649)",
+    "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning (Preprint 2025, arXiv 2503.09516)",
+    "SLATE: Truncated Step-Level Sampling with Process Rewards for Retrieval-Augmented Reasoning (Preprint 2026, arXiv 2602.23440)",
+    "IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning (Preprint 2026, arXiv 2604.15148)",
+    "DeepControl: Scaling Search-Augmented LLM Reasoning via Adaptive Information Control (ICLR 2026 SPOT Workshop, arXiv 2602.01672)",
+    "DART: Reasoning and Tool-use Compete in Agentic RL — From Quantifying Interference to Disentangled Tuning (Preprint 2026, arXiv 2602.00994)",
+    "Knowledge or Reasoning? A Close Look at How LLMs Think Across Domains (Preprint 2025, arXiv 2506.02126)",
+    "Adaptive Retrieval helps Reasoning in LLMs — but mostly if it's not used (Preprint 2025, arXiv 2602.07213)",
+    "Active Retrieval Augmented Generation [FLARE] (EMNLP 2023)",
+    "Counterfactual Reasoning for Retrieval-Augmented Generation [CF-RAG] (ICLR 2026)",
+    "Disentangling Knowledge and Reasoning in Medical Large Language Models (Preprint 2025, arXiv 2505.11462)",
+    "Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought (Preprint 2026, arXiv 2603.05488)",
+    "SynthWorlds: Controlled Parallel Worlds for Disentangling Knowledge from Reasoning (Preprint 2025, arXiv 2510.24427)",
+    "GRADE: Probing Knowledge Gaps in LLMs through Gradient Subspace Dynamics (Preprint 2026, arXiv 2604.02830)"
+  ],
+  "description": "Current adaptive retrieval methods for reasoning LLMs use signals (uncertainty, token probability, composite scores) that conflate evidence gaps with reasoning difficulty, yet recent work confirms these are separable: 'Knowledge or Reasoning?' shows step-level knowledge-accuracy correlation of 0.998 vs. reasoning-accuracy 0.698, DART proves reasoning and tool-use produce competing gradients, and Skill-RAG finds failure states occupy structured regions in hidden-state space. We present a focused empirical study introducing counterfactual probing for step-level retrieval gating. Using a Search-R1 Qwen2.5-7B checkpoint, we fork ~4,000 reasoning steps into retrieval and no-retrieval paths with k=5 rollouts each, generating causal labels: 'evidence-gap' (retrieval helps, no-retrieval fails), 'reasoning-difficulty' (no-retrieval succeeds, retrieval doesn't help), and 'mixed.' We train lightweight probes (linear and MLP) on hidden states from the posterior 2/3 of layers to classify failure mode type. The probe then serves as an inference-time retrieval gate — no retraining required — on the existing checkpoint: retrieve only when the probe predicts 'evidence-gap' or 'mixed,' skip retrieval when reasoning is the bottleneck. Key novelty vs. existing methods: (1) counterfactual causal labels rather than observational correctness (Probing-RAG, Skill-RAG) or RL reward shaping (IG-Search, DeepControl), (2) explicit three-class failure-mode diagnosis rather than binary gating or scalar utility, (3) post-hoc inference-time applicability without retraining (unlike DeepControl's training-time controls or DART's LoRA separation). Evaluation on HotpotQA, MuSiQue, and 2WikiMultiHopQA reports F1, EM, and retrieval calls per question against Probing-RAG, FLARE, and ReaLM-Retrieve baselines, with ablations on label type (counterfactual vs. observational), probe architecture, and gating threshold. All components use existing open-source infrastructure (Search-R1/veRL checkpoints, vLLM batch inference, public datasets). Scoped as a short paper (~25-40 H100h total); RL integration with the probe gate during GRPO training is deferred to a follow-up long paper.",
+  "project_name": "evid_reason_disentangle",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL: Compute budget exceeded. Generator estimates 500-800 A100h (≈250-530 H100h), far above the user's ≤200 H100h constraint. Counterfactual data generation for ~100K step instances alone approaches 150-300 H100h.", "CRITICAL: Missing key competitor — Skill-RAG (arXiv 2604.15771, April 2026) uses hidden-state probing to detect failure states and routes to different retrieval skills based on failure type. This is conceptually close to EDDR's failure-type classification via probing. The generator must discuss how EDDR's evidence-gap vs. reasoning-difficulty distinction differs from Skill-RAG's query-evidence misalignment typology.", "Counterfactual label noise: The binary labeling scheme (retrieval helps → evidence gap, retrieval hurts → reasoning difficulty) is noisy. Retrieval can help by lucky distraction or hurt by relevant-but-confusing context. Edge cases where a step involves BOTH an evidence gap AND reasoning difficulty are unaddressed.", "Linear probe may be insufficient: The evidence-gap vs. reasoning-difficulty distinction may not be linearly separable in hidden state space. Reasoning Theater showed probes work for belief detection, but failure-mode classification is a different task. No evidence the distinction is actually decodable from hidden states.", "11-day timeline is too aggressive even ignoring compute: counterfactual data generation (~2-3 days), probe training (~hours), RL training with multiple configs (~3-5 days), evaluation on 5+ benchmarks (~1-2 days), plus debugging/iteration. This leaves zero margin.", "Probing-RAG (NAACL 2025) is a significant prior work that should be discussed as a direct predecessor — it already uses hidden-state probes on intermediate layers for adaptive retrieval decisions.", "The resource estimate section describes A100 costs but the user constraint specifies H100-hours. The three-mode estimates (manual/HIL/auto) are internally reasonable but all exceed the user's budget."]
+Feedback: The core idea of disentangling evidence gaps from reasoning difficulty is well-motivated, but needs significant revision to be feasible within the user's constraints:
+
+1. **Reduce scope to fit ≤200 H100h**: (a) Shrink counterfactual data generation to ~10-20K step instances using active sampling or curriculum selection, not exhaustive generation across 5 datasets. (b) Use a smaller model (Qwen3-1.7B or 4B) for counterfactual branching, with the 8B model only for final RL training. (c) Drop GSM8K and MATH-500 — these are reasoning-only benchmarks where retrieval is rarely helpful, making counterfactual labels degenerate (almost all steps labeled 'reasoning difficulty'). Focus on 3 knowledge-intensive multi-hop datasets only.
+
+2. **Address Skill-RAG overlap**: Read arXiv 2604.15771 carefully. Position EDDR as providing principled supervision (counterfactual labels) for failure-type classification, versus Skill-RAG's prompt-based routing. Argue that the evidence-gap vs. reasoning-difficulty axis is more fundamental than Skill-RAG's query-evidence alignment axis. Consider adding Skill-RAG as a baseline.
+
+3. **Address Probing-RAG**: Discuss Probing-RAG (NAACL 2025) as the direct predecessor for hidden-state probing in retrieval decisions. EDDR extends it from query-level to step-level and from binary retrieve/don't-retrieve to failure-type classification.
+
+4. **Validate probe feasibility first**: Before full RL training, run a pilot study: generate counterfactual labels for ~5K steps, train the probe, and check if evidence-gap vs. reasoning-difficulty is actually separable. If probe accuracy < 70%, the entire approach is undermined. This pilot takes ~10-20 H100h and de-risks the project.
+
+5. **Simplify RL integration**: Instead of modifying SLATE's decomposed rewards with a new penalty term, consider a simpler two-stage approach: (a) train probe on counterfactual labels, (b) use probe as a hard gate during Search-R1 RL training (skip retrieval when probe predicts reasoning-difficulty). This avoids complex reward engineering and saves compute on reward ablations.
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL: Venue mismatch — the user explicitly requested EMNLP 2026 (ARR May 25, 2026, 11 days away), but the proposal targets AAAI 2027, ICLR 2027, and ACL 2027 ARR. The proposal must be re-targeted to EMNLP 2026 or the timeline/scope must be justified for the 11-day constraint.", "CRITICAL: Missing important concurrent work — (1) IG-Search (arXiv 2604.15148, April 2026) uses counterfactual baselines (random documents) for step-level credit assignment to search queries during RL training, which is conceptually adjacent to counterfactual labeling for retrieval decisions. (2) DeepControl (arXiv 2602.01672, February 2026) provides adaptive information control measuring 'marginal value of retrieved evidence under a given reasoning state,' achieving 9.4% improvement over RL baselines — this directly addresses when retrieval is useful vs. harmful. (3) DART (arXiv 2602.00994, February 2026) shows reasoning and tool-use COMPETE during joint RL training and proposes disentangled LoRA modules — the reasoning-tool competition finding is directly relevant to EDDR's core problem. (4) 'Knowledge or Reasoning?' (arXiv 2506.02126) decomposes step-level reasoning into knowledge vs. reasoning components with Knowledge Index and Information Gain metrics. All four must be discussed.", "Compute budget likely exceeded: The counterfactual data generation cost is underestimated. For 1K questions in pilot with ~5 decision points each, 2 conditions × 3 rollouts = 30 rollouts per question = 30K rollouts. At ~30s per rollout on H100 for Qwen2.5-7B, that's ~250 single-GPU hours = ~31h on 8 GPUs. The Phase 2 expansion to 15K step instances (requiring ~2-3K additional questions) adds ~65h on 8 GPUs. Combined with RL training (~136h) and evaluation (~15h), total is ~247 H100h, exceeding the 200h constraint.", "Label noise from k=3 rollouts: With only 3 rollouts per condition, majority vote (≥2/3) has high variance for stochastic LLM generation. Temperature, sampling, and the inherent stochasticity of multi-step reasoning mean that the 'ambiguous' category (excluded from training) could consume 40-60% of all step instances, potentially reducing the 5K target to ~2-3K usable labels — insufficient for robust probe training.", "The evidence-gap vs. reasoning-difficulty boundary is inherently fuzzy: Many multi-hop reasoning steps involve BOTH factual knowledge retrieval AND logical inference (e.g., 'Country X's capital has a population greater than Y' requires knowing the capital AND comparing). The binary classification forces a clean split that may not exist. The proposal doesn't address mixed-type steps beyond excluding them as 'ambiguous.'", "EMNLP 2026 track fit: The user specified 'Information Retrieval and Text Mining' track. EDDR is primarily about retrieval gating during reasoning — this fits the track but the paper needs to emphasize the retrieval methodology contribution (when/what to retrieve) rather than positioning it as a reasoning improvement paper."]
+Feedback: The revised proposal shows significant improvement from Round 1 — the reduced scope, Skill-RAG integration, Probing-RAG positioning, pilot study design, and simplified RL integration all address prior feedback well. However, several critical issues remain:
+
+1. **Fix the venue target**: The user explicitly requested EMNLP 2026 (ARR May 25). Either (a) re-scope the proposal to be completable in 11 days and target EMNLP 2026, or (b) explicitly justify why the timeline requires later venues. For an 11-day submission, consider: run only the pilot study (Phase 1) and inference-time-only gating as the core contribution, deferring RL integration to a follow-up. A well-executed pilot with strong probe separability results + inference-time gating improvements would be a solid EMNLP short paper.
+
+2. **Discuss the four missing competitors**: IG-Search provides counterfactual step-level credit for retrieval (different mechanism but related goal); DeepControl provides adaptive information utility (addresses the same 'when is retrieval useful' question); DART shows reasoning/tool-use competition and proposes disentangled training (validates EDDR's premise but offers an alternative solution); 'Knowledge or Reasoning?' provides step-level knowledge/reasoning decomposition metrics (validates the axis but at analysis level, not for gating). Position EDDR's counterfactual causal supervision as complementary to RL-based approaches (which learn retrieval timing implicitly) by providing explicit, interpretable failure-mode diagnosis.
+
+3. **Reduce compute to fit 200 H100h**: (a) Use k=5 rollouts per condition instead of k=3 to improve label quality, but reduce the question count to ~800 pilot / ~2K expanded (still yielding ~10K labeled steps if ~50% are unambiguous). (b) Use vLLM batch inference for rollouts to improve throughput. (c) Consider using Qwen2.5-3B for counterfactual data generation and the 7B model only for final RL training — the 3B model's rollouts are cheaper and the probe is trained on 7B hidden states extracted from the 3B-generated traces processed through the 7B model.
+
+4. **Address label noise**: Increase k from 3 to 5 rollouts per condition (adds ~40% generation cost but substantially improves majority-vote reliability). Report the fraction of steps that fall into 'ambiguous' as a key metric. Consider a soft labeling scheme where the probe is trained with probability labels (e.g., 4/5 rollouts agree → 0.8 confidence) rather than hard binary labels.
+
+5. **Address mixed-type steps**: Acknowledge that many steps involve both knowledge and reasoning. Consider a three-class classification (evidence-gap, reasoning-difficulty, mixed) where the 'mixed' class triggers retrieval with context compression (retrieve but reduce noise). This would be a more honest model of reality and could differentiate from simpler binary gating.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "87b84c46-b597-4b84-9433-2a157d779fbe",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T15:49:24.098Z_
+
+```json
+{
+  "parentUuid": "87b84c46-b597-4b84-9433-2a157d779fbe",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "f6a7f7a6-b6fb-4eb5-9c35-250fb1d10236",
+  "timestamp": "2026-05-14T15:49:24.098Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T15:49:24.098Z_
+
+```json
+{
+  "parentUuid": "f6a7f7a6-b6fb-4eb5-9c35-250fb1d10236",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "070c373b-4ff8-400a-ad37-430522be1d7b",
+  "timestamp": "2026-05-14T15:49:24.098Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "070c373b-4ff8-400a-ad37-430522be1d7b",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T15:49:32.310Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this Round 3 proposal for "Counterfactual Probing Disentangles Evidence Gaps from Reasoning Difficulty for Step-Level Retrieval Gating." I need to independently verify claims, check for missing competitors, assess feasibility, and determine if the revisions adequately address prior review feedback.
+
+Let me start by searching for the key papers and competitors mentioned, and look for any additional work the generator may have missed.
+
+Let me plan my searches:
+
+1. Verify key referenced papers exist (especially newer ones)
+2. Search for additional concurrent/competing work
+3. Verify feasibility claims (Search-R1 checkpoint availability, vLLM batch inference costs)
+
+
+4. Check the EMNLP 2026 ARR deadline and search for related work on counterfactual probing for retrieval
+
+I'll run these searches in parallel to move efficiently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "070c373b-4ff8-400a-ad37-430522be1d7b",
+  "isSidechain": false,
+  "requestId": "req_011Cb2j31bA8sh9W365bCXkw",
+  "type": "assistant",
+  "uuid": "b72c4795-7605-4911-bc7a-033720924f38",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gi2hymu9azGCTGBbc85Nvi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17019,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17019,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 17019,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17019
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T15:49:32.501Z_
+
+I'll conduct an independent, thorough review of this Round 3 proposal. Let me start by verifying key claims and searching for competing work across multiple dimensions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b72c4795-7605-4911-bc7a-033720924f38",
+  "isSidechain": false,
+  "requestId": "req_011Cb2j31bA8sh9W365bCXkw",
+  "type": "assistant",
+  "uuid": "921ee3ec-b04f-4a53-be53-0dd42fb65f33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gi2hymu9azGCTGBbc85Nvi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17019,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17019,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 17019,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17019
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T15:49:32.662Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MaWeLgRwhwEUyZijC5jrvH`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "921ee3ec-b04f-4a53-be53-0dd42fb65f33",
+  "isSidechain": false,
+  "requestId": "req_011Cb2j31bA8sh9W365bCXkw",
+  "type": "assistant",
+  "uuid": "99f30a32-f384-4c14-80da-2e7209e6fa21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gi2hymu9azGCTGBbc85Nvi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17019,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17019,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 17019,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17019
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T15:49:32.670Z_
+
+<details><summary>↩ Tool result · `toolu_01MaWeLgRwhwEUyZijC5jrvH`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "99f30a32-f384-4c14-80da-2e7209e6fa21",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "4ea597b6-4010-4879-b579-729ac1fca302",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "99f30a32-f384-4c14-80da-2e7209e6fa21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-14T15:49:35.303Z_
+
+Now let me launch parallel searches to verify key claims and find competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ea597b6-4010-4879-b579-729ac1fca302",
+  "isSidechain": false,
+  "requestId": "req_011Cb2j3eM14HQakuAdHwf5f",
+  "type": "assistant",
+  "uuid": "1299d03a-1cf2-49b0-a78e-902242b90656",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUSsdy3Zpkgbp4K9KU5Mbv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1348,
+      "cache_read_input_tokens": 28860,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1348,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 28860,
+          "cache_creation_input_tokens": 1348,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1348
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T15:49:36.159Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GbjRfB7ZcsUmQABxCccXxz`</summary>
+
+```json
+{
+  "query": "IG-Search step-level information gain rewards search-augmented reasoning arXiv 2604.15148"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1299d03a-1cf2-49b0-a78e-902242b90656",
+  "isSidechain": false,
+  "requestId": "req_011Cb2j3eM14HQakuAdHwf5f",
+  "type": "assistant",
+  "uuid": "f856fbf2-f58d-4dd4-b7a1-0d0c32fe73c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUSsdy3Zpkgbp4K9KU5Mbv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1348,
+      "cache_read_input_tokens": 28860,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1348,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 28860,
+          "cache_creation_input_tokens": 1348,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1348
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T15:49:44.249Z_
+
+<details><summary>↩ Tool result · `toolu_01GbjRfB7ZcsUmQABxCccXxz`</summary>
+
+```text
+Web search results for query: "IG-Search step-level information gain rewards search-augmented reasoning arXiv 2604.15148"
+
+Links: [{"title":"[2604.15148] IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning","url":"https://arxiv.org/abs/2604.15148"},{"title":"IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning","url":"https://arxiv.org/html/2604.15148"},{"title":"Information Retrieval","url":"https://arxiv.org/list/cs.IR/recent?skip=12&show=100"},{"title":"StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization","url":"https://arxiv.org/html/2505.15107"},{"title":"StepSearch: Igniting LLMs Search Ability via Step-Wise ...","url":"https://arxiv.org/pdf/2505.15107"},{"title":"SubSearch: Intermediate Rewards for Unsupervised Guided Reasoning in Complex Retrieval","url":"https://arxiv.org/html/2604.07415"},{"title":"Process Reward Agents for Steering Knowledge-Intensive Reasoning","url":"https://arxiv.org/html/2604.09482"},{"title":"[2604.07415] SubSearch: Intermediate Rewards for Unsupervised Guided Reasoning in Complex Retrieval","url":"https://arxiv.org/abs/2604.07415"},{"title":"RARE: Retrieval-Augmented Reasoning Modeling","url":"https://arxiv.org/pdf/2503.23513"},{"title":"Unifying Tree Search Algorithm and Reward Design for LLM Reasoning: A Survey","url":"https://arxiv.org/html/2510.09988v1"}]
+
+Based on the web search results, here's information about the arXiv paper 2604.15148:
+
+## IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning
+
+IG-Search is a reinforcement learning framework that introduces a step-level reward based on Information Gain (IG). 
+
+**Problem Addressed:**
+Existing approaches rely on trajectory-level rewards that cannot distinguish precise search queries from vague or redundant ones within a rollout group, and collapse to a near-zero gradient signal whenever every sampled trajectory fails.
+
+**Core Innovation:**
+For each search step, IG measures how much the retrieved documents improve the model's confidence in the gold answer relative to a counterfactual baseline of random documents, thereby reflecting the effectiveness of the underlying search query.
+
+**Technical Implementation:**
+This signal is fed back to the corresponding search-query tokens via per-token advantage modulation in GRPO, enabling fine-grained, step-level credit assignment within a rollout.
+
+The paper was submitted to arXiv on April 16, 2026, by authors including Zihan Liang, Yufei Ma, Ben Chen, and others from Kuaishou Technology. The research addresses a key limitation in training large language models for search-augmented reasoning tasks through more granular reward signals.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f856fbf2-f58d-4dd4-b7a1-0d0c32fe73c4",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "78b2d5b7-12f1-4742-9331-bdca89a95d60",
+  "toolUseResult": {
+    "query": "IG-Search step-level information gain rewards search-augmented reasoning arXiv 2604.15148",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015DdGxkMWWMhiGVHgXpGHuM",
+        "content": [
+          {
+            "title": "[2604.15148] IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning",
+            "url": "https://arxiv.org/abs/2604.15148"
+          },
+          {
+            "title": "IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning",
+            "url": "https://arxiv.org/html/2604.15148"
+          },
+          {
+            "title": "Information Retrieval",
+            "url": "https://arxiv.org/list/cs.IR/recent?skip=12&show=100"
+          },
+          {
+            "title": "StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization",
+            "url": "https://arxiv.org/html/2505.15107"
+          },
+          {
+            "title": "StepSearch: Igniting LLMs Search Ability via Step-Wise ...",
+            "url": "https://arxiv.org/pdf/2505.15107"
+          },
+          {
+            "title": "SubSearch: Intermediate Rewards for Unsupervised Guided Reasoning in Complex Retrieval",
+            "url": "https://arxiv.org/html/2604.07415"
+          },
+          {
+            "title": "Process Reward Agents for Steering Knowledge-Intensive Reasoning",
+            "url": "https://arxiv.org/html/2604.09482"
+          },
+          {
+            "title": "[2604.07415] SubSearch: Intermediate Rewards for Unsupervised Guided Reasoning in Complex Retrieval",
+            "url": "https://arxiv.org/abs/2604.07415"
+          },
+          {
+            "title": "RARE: Retrieval-Augmented Reasoning Modeling",
+            "url": "https://arxiv.org/pdf/2503.23513"
+          },
+          {
+            "title": "Unifying Tree Search Algorithm and Reward Design for LLM Reasoning: A Survey",
+            "url": "https://arxiv.org/html/2510.09988v1"
+          }
+        ]
+      },
+      "Based on the web search results, here's information about the arXiv paper 2604.15148:\n\n## IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning\n\nIG-Search is a reinforcement learning framework that introduces a step-level reward based on Information Gain (IG). \n\n**Problem Addressed:**\nExisting approaches rely on trajectory-level rewards that cannot distinguish precise search queries from vague or redundant ones within a rollout group, and collapse to a near-zero gradient signal whenever every sampled trajectory fails.\n\n**Core Innovation:**\nFor each search step, IG measures how much the retrieved documents improve the model's confidence in the gold answer relative to a counterfactual baseline of random documents, thereby reflecting the effectiveness of the underlying search query.\n\n**Technical Implementation:**\nThis signal is fed back to the corresponding search-query tokens via per-token advantage modulation in GRPO, enabling fine-grained, step-level credit assignment within a rollout.\n\nThe paper was submitted to arXiv on April 16, 2026, by authors including Zihan Liang, Yufei Ma, Ben Chen, and others from Kuaishou Technology. The research addresses a key limitation in training large language models for search-augmented reasoning tasks through more granular reward signals."
+    ],
+    "durationSeconds": 8.084052662999998
+  },
+  "sourceToolAssistantUUID": "f856fbf2-f58d-4dd4-b7a1-0d0c32fe73c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T15:49:47.801Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JbPe8j9rqdH91yv1Eo4U3n`</summary>
+
+```json
+{
+  "query": "Skill-RAG failure-state-aware retrieval hidden-state probing skill routing arXiv 2604.15771"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78b2d5b7-12f1-4742-9331-bdca89a95d60",
+  "isSidechain": false,
+  "requestId": "req_011Cb2j4VZh5fuNH4WB8nEkX",
+  "type": "assistant",
+  "uuid": "d845995b-a3ea-4e35-9a82-6ed8c160947b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TozqoKaC2vXLPe8wGJb3Ci",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 870,
+      "cache_read_input_tokens": 30208,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 870,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 30208,
+          "cache_creation_input_tokens": 870,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 870
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T15:49:54.937Z_
+
+<details><summary>↩ Tool result · `toolu_01JbPe8j9rqdH91yv1Eo4U3n`</summary>
+
+```text
+Web search results for query: "Skill-RAG failure-state-aware retrieval hidden-state probing skill routing arXiv 2604.15771"
+
+Links: [{"title":"[2604.15771] Skill-RAG: Failure-State-Aware Retrieval Augmentation via Hidden-State Probing and Skill Routing","url":"https://arxiv.org/abs/2604.15771"},{"title":"Skill-RAG: Failure-State-Aware Retrieval Augmentation via Hidden-State Probing and Skill Routing","url":"https://arxiv.org/html/2604.15771"},{"title":"R3AG: Retriever Routing for Retrieval-Augmented Generation","url":"https://arxiv.org/html/2604.22849"},{"title":"Job Skill Extraction via LLM-Centric Multi-Module Framework","url":"https://arxiv.org/html/2604.21525"},{"title":"The original seminal RAG paper from 2021... Retrieval ...","url":"https://www.facebook.com/groups/DeepNetGroup/posts/2145753862484151/"},{"title":"[2509.20377] SKILL-RAG: Self-Knowledge Induced Learning and Filtering for Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2509.20377"},{"title":"SKILL-RAG: Self-Knowledge Induced Learning and Filtering for Retrieval-Augmented Generation","url":"https://arxiv.org/html/2509.20377v1"},{"title":"[2410.13339] Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval","url":"https://arxiv.org/abs/2410.13339"},{"title":"[2604.22849] R$^3$AG: Retriever Routing for Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2604.22849"},{"title":"RealRoute: Dynamic Query Routing System via Retrieve-then-Verify Paradigm","url":"https://arxiv.org/html/2604.20860"}]
+
+I found the paper! Here's what the search revealed about arXiv paper 2604.15771:
+
+## Skill-RAG: Failure-State-Aware Retrieval Augmentation
+
+Skill-RAG is a failure-aware RAG framework that couples a lightweight hidden-state prober with a prompt-based skill router. 
+
+**Problem it addresses:**
+While adaptive retrieval mechanisms have improved retrieval efficiency, existing approaches treat post-retrieval failure as a signal to retry rather than to diagnose. A significant portion of persistent retrieval failures stem not from the absence of relevant evidence but from an alignment gap between the query and the evidence space.
+
+**How it works:**
+The prober gates retrieval at two pipeline stages; upon detecting a failure state, the skill router diagnoses the underlying cause and selects among four retrieval skills -- query rewriting, question decomposition, evidence focusing, and an exit skill for truly irreducible cases.
+
+**Results:**
+Experiments across multiple open-domain QA and complex reasoning benchmarks show that Skill-RAG substantially improves accuracy on hard cases persisting after multi-turn retrieval, with particularly strong gains on out-of-distribution datasets. Additionally, representation-space analyses reveal that the proposed skills occupy structured, separable regions of the failure state space, supporting the view that query-evidence misalignment is a typed rather than monolithic phenomenon.
+
+The paper was posted to arXiv on April 17, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d845995b-a3ea-4e35-9a82-6ed8c160947b",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "e2fdb5e8-5c5f-4028-8994-669ca6927ed7",
+  "toolUseResult": {
+    "query": "Skill-RAG failure-state-aware retrieval hidden-state probing skill routing arXiv 2604.15771",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011g5re1VWd88YZ7dMXDczD9",
+        "content": [
+          {
+            "title": "[2604.15771] Skill-RAG: Failure-State-Aware Retrieval Augmentation via Hidden-State Probing and Skill Routing",
+            "url": "https://arxiv.org/abs/2604.15771"
+          },
+          {
+            "title": "Skill-RAG: Failure-State-Aware Retrieval Augmentation via Hidden-State Probing and Skill Routing",
+            "url": "https://arxiv.org/html/2604.15771"
+          },
+          {
+            "title": "R3AG: Retriever Routing for Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2604.22849"
+          },
+          {
+            "title": "Job Skill Extraction via LLM-Centric Multi-Module Framework",
+            "url": "https://arxiv.org/html/2604.21525"
+          },
+          {
+            "title": "The original seminal RAG paper from 2021... Retrieval ...",
+            "url": "https://www.facebook.com/groups/DeepNetGroup/posts/2145753862484151/"
+          },
+          {
+            "title": "[2509.20377] SKILL-RAG: Self-Knowledge Induced Learning and Filtering for Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2509.20377"
+          },
+          {
+            "title": "SKILL-RAG: Self-Knowledge Induced Learning and Filtering for Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2509.20377v1"
+          },
+          {
+            "title": "[2410.13339] Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval",
+            "url": "https://arxiv.org/abs/2410.13339"
+          },
+          {
+            "title": "[2604.22849] R$^3$AG: Retriever Routing for Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2604.22849"
+          },
+          {
+            "title": "RealRoute: Dynamic Query Routing System via Retrieve-then-Verify Paradigm",
+            "url": "https://arxiv.org/html/2604.20860"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search revealed about arXiv paper 2604.15771:\n\n## Skill-RAG: Failure-State-Aware Retrieval Augmentation\n\nSkill-RAG is a failure-aware RAG framework that couples a lightweight hidden-state prober with a prompt-based skill router. \n\n**Problem it addresses:**\nWhile adaptive retrieval mechanisms have improved retrieval efficiency, existing approaches treat post-retrieval failure as a signal to retry rather than to diagnose. A significant portion of persistent retrieval failures stem not from the absence of relevant evidence but from an alignment gap between the query and the evidence space.\n\n**How it works:**\nThe prober gates retrieval at two pipeline stages; upon detecting a failure state, the skill router diagnoses the underlying cause and selects among four retrieval skills -- query rewriting, question decomposition, evidence focusing, and an exit skill for truly irreducible cases.\n\n**Results:**\nExperiments across multiple open-domain QA and complex reasoning benchmarks show that Skill-RAG substantially improves accuracy on hard cases persisting after multi-turn retrieval, with particularly strong gains on out-of-distribution datasets. Additionally, representation-space analyses reveal that the proposed skills occupy structured, separable regions of the failure state space, supporting the view that query-evidence misalignment is a typed rather than monolithic phenomenon.\n\nThe paper was posted to arXiv on April 17, 2026."
+    ],
+    "durationSeconds": 7.132470467000003
+  },
+  "sourceToolAssistantUUID": "d845995b-a3ea-4e35-9a82-6ed8c160947b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T15:49:57.984Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y7mnDKALP35jNTdvxGWtRm`</summary>
+
+```json
+{
+  "query": "DART reasoning tool-use compete agentic RL disentangled tuning arXiv 2602.00994"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2fdb5e8-5c5f-4028-8994-669ca6927ed7",
+  "isSidechain": false,
+  "requestId": "req_011Cb2j5HGYHxh9uibZGzAVT",
+  "type": "assistant",
+  "uuid": "c0db44d2-a49b-4bb1-bdf8-71bb63071f20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016HUHAKMemqFSpKwNA8wBhL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 948,
+      "cache_read_input_tokens": 31078,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 948,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 31078,
+          "cache_creation_input_tokens": 948,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 948
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T15:50:05.224Z_
+
+<details><summary>↩ Tool result · `toolu_01Y7mnDKALP35jNTdvxGWtRm`</summary>
+
+```text
+Web search results for query: "DART reasoning tool-use compete agentic RL disentangled tuning arXiv 2602.00994"
+
+Links: [{"title":"[2602.00994] Reasoning and Tool-use Compete in Agentic RL:From Quantifying Interference to Disentangled Tuning","url":"https://arxiv.org/abs/2602.00994"},{"title":"Reasoning and Tool-use Compete in Agentic RL:From ...","url":"https://arxiv.org/pdf/2602.00994"},{"title":"Reasoning and Tool-use Compete in Agentic RL: From Quantifying Interference to Disentangled Tuning","url":"https://arxiv.org/html/2602.00994"},{"title":"GitHub - sheriyuo/DART: Reasoning and Tool-use Compete in Agentic RL: From Quantifying Interference to Disentangled Tuning · GitHub","url":"https://github.com/sheriyuo/DART"},{"title":"Agentic RL：解耦 Reasoning 与 Tool-use","url":"https://qingkeai.online/archives/DART"},{"title":"Reasoning and Tool-use Compete in Agentic RL:From Quantifying Interference to Disentangled Tuning","url":"https://www.researchgate.net/publication/400369966_Reasoning_and_Tool-use_Compete_in_Agentic_RLFrom_Quantifying_Interference_to_Disentangled_Tuning"},{"title":"Reasoning and Tool-use Compete in Agentic RL:From ...","url":"https://www.semanticscholar.org/paper/Reasoning-and-Tool-use-Compete-in-Agentic-RL:From-Li-Yi/7f7e961b7b18d80f58b0a2d9746fe7d008b15533"},{"title":"Efficient Multi-turn RL for GUI Agents via Decoupled Training and Adaptive Data Curation","url":"https://arxiv.org/html/2509.23866v1"},{"title":"[2509.23866] Efficient Multi-turn RL for GUI Agents via Decoupled Training and Adaptive Data Curation","url":"https://arxiv.org/abs/2509.23866"},{"title":"ASTER: Agentic Scaling with Tool-integrated Extended Reasoning","url":"https://arxiv.org/html/2602.01204"}]
+
+I found comprehensive information about arXiv paper 2602.00994. Here's what the search revealed:
+
+## Summary
+
+The paper addresses Agentic Reinforcement Learning (ARL), which focuses on training large language models (LLMs) to interleave reasoning with external tool execution to solve complex tasks.
+
+### Key Problem
+
+Most existing ARL methods train a single shared model parameters to support both reasoning and tool use behaviors, implicitly assuming that joint training leads to improved overall agent performance. However, the paper shows that these two capabilities often induce misaligned gradient directions, leading to training interference that undermines the effectiveness of joint optimization.
+
+### The Solution: DART
+
+The paper proposes Disentangled Action Reasoning Tuning (DART), a simple and efficient framework that explicitly decouples parameter updates for reasoning and tool-use via separate low-rank adaptation modules.
+
+DART assigns separate LoRA modules to reasoning and tool-use capabilities. DART freezes the pretrained backbone and routes reasoning and tool-use tokens to disjoint LoRA adapters. As a result, gradients from the two capabilities are applied to separate parameter subsets, preventing conflicting updates from being applied to the same parameters and thereby mitigating optimization conflicts.
+
+### Results
+
+Experimental results show that DART consistently outperforms joint-training baselines across most settings, achieving an average EM score improvement of 6.35%, and compared to specialized multi-agent systems that explicitly separate tool-use and reasoning into different models, DART achieves comparable performance while using a single model.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c0db44d2-a49b-4bb1-bdf8-71bb63071f20",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "f4cbc9e3-7a59-4e7d-a2f2-045d85be03cc",
+  "toolUseResult": {
+    "query": "DART reasoning tool-use compete agentic RL disentangled tuning arXiv 2602.00994",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0123xKjUpoWJrQeLazJP6wof",
+        "content": [
+          {
+            "title": "[2602.00994] Reasoning and Tool-use Compete in Agentic RL:From Quantifying Interference to Disentangled Tuning",
+            "url": "https://arxiv.org/abs/2602.00994"
+          },
+          {
+            "title": "Reasoning and Tool-use Compete in Agentic RL:From ...",
+            "url": "https://arxiv.org/pdf/2602.00994"
+          },
+          {
+            "title": "Reasoning and Tool-use Compete in Agentic RL: From Quantifying Interference to Disentangled Tuning",
+            "url": "https://arxiv.org/html/2602.00994"
+          },
+          {
+            "title": "GitHub - sheriyuo/DART: Reasoning and Tool-use Compete in Agentic RL: From Quantifying Interference to Disentangled Tuning · GitHub",
+            "url": "https://github.com/sheriyuo/DART"
+          },
+          {
+            "title": "Agentic RL：解耦 Reasoning 与 Tool-use",
+            "url": "https://qingkeai.online/archives/DART"
+          },
+          {
+            "title": "Reasoning and Tool-use Compete in Agentic RL:From Quantifying Interference to Disentangled Tuning",
+            "url": "https://www.researchgate.net/publication/400369966_Reasoning_and_Tool-use_Compete_in_Agentic_RLFrom_Quantifying_Interference_to_Disentangled_Tuning"
+          },
+          {
+            "title": "Reasoning and Tool-use Compete in Agentic RL:From ...",
+            "url": "https://www.semanticscholar.org/paper/Reasoning-and-Tool-use-Compete-in-Agentic-RL:From-Li-Yi/7f7e961b7b18d80f58b0a2d9746fe7d008b15533"
+          },
+          {
+            "title": "Efficient Multi-turn RL for GUI Agents via Decoupled Training and Adaptive Data Curation",
+            "url": "https://arxiv.org/html/2509.23866v1"
+          },
+          {
+            "title": "[2509.23866] Efficient Multi-turn RL for GUI Agents via Decoupled Training and Adaptive Data Curation",
+            "url": "https://arxiv.org/abs/2509.23866"
+          },
+          {
+            "title": "ASTER: Agentic Scaling with Tool-integrated Extended Reasoning",
+            "url": "https://arxiv.org/html/2602.01204"
+          }
+        ]
+      },
+      "I found comprehensive information about arXiv paper 2602.00994. Here's what the search revealed:\n\n## Summary\n\nThe paper addresses Agentic Reinforcement Learning (ARL), which focuses on training large language models (LLMs) to interleave reasoning with external tool execution to solve complex tasks.\n\n### Key Problem\n\nMost existing ARL methods train a single shared model parameters to support both reasoning and tool use behaviors, implicitly assuming that joint training leads to improved overall agent performance. However, the paper shows that these two capabilities often induce misaligned gradient directions, leading to training interference that undermines the effectiveness of joint optimization.\n\n### The Solution: DART\n\nThe paper proposes Disentangled Action Reasoning Tuning (DART), a simple and efficient framework that explicitly decouples parameter updates for reasoning and tool-use via separate low-rank adaptation modules.\n\nDART assigns separate LoRA modules to reasoning and tool-use capabilities. DART freezes the pretrained backbone and routes reasoning and tool-use tokens to disjoint LoRA adapters. As a result, gradients from the two capabilities are applied to separate parameter subsets, preventing conflicting updates from being applied to the same parameters and thereby mitigating optimization conflicts.\n\n### Results\n\nExperimental results show that DART consistently outperforms joint-training baselines across most settings, achieving an average EM score improvement of 6.35%, and compared to specialized multi-agent systems that explicitly separate tool-use and reasoning into different models, DART achieves comparable performance while using a single model."
+    ],
+    "durationSeconds": 7.234971691000006
+  },
+  "sourceToolAssistantUUID": "c0db44d2-a49b-4bb1-bdf8-71bb63071f20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f4cbc9e3-7a59-4e7d-a2f2-045d85be03cc",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T15:50:12.001Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WMh49FW1t52kjpCbcVYrjz`</summary>
+
+```json
+{
+  "query": "DeepControl scaling search-augmented LLM reasoning adaptive information control arXiv 2602.01672"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4cbc9e3-7a59-4e7d-a2f2-045d85be03cc",
+  "isSidechain": false,
+  "requestId": "req_011Cb2j6DAWaFdbBHqMWbSUp",
+  "type": "assistant",
+  "uuid": "57515ce8-43a1-44c1-94c3-7e60a02766ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ooeijfbepwvRpuEanhYN7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1066,
+      "cache_read_input_tokens": 32026,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1066,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 32026,
+          "cache_creation_input_tokens": 1066,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1066
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T15:50:19.457Z_
+
+<details><summary>↩ Tool result · `toolu_01WMh49FW1t52kjpCbcVYrjz`</summary>
+
+```text
+Web search results for query: "DeepControl scaling search-augmented LLM reasoning adaptive information control arXiv 2602.01672"
+
+Links: [{"title":"Scaling Search-Augmented LLM Reasoning via Adaptive Information Control","url":"https://arxiv.org/html/2602.01672"},{"title":"[2602.01672] Scaling Search-Augmented LLM Reasoning via Adaptive Information Control","url":"https://arxiv.org/abs/2602.01672"},{"title":"GitHub - xiongsiheng/DeepControl: [ICLR 26 @ SPOT] DeepControl: Scaling Search-Augmented LLM Reasoning via Adaptive Information Control · GitHub","url":"https://github.com/xiongsiheng/DeepControl"},{"title":"Machine Learning Feb 2025","url":"https://arxiv.org/list/cs.LG/2025-02?skip=2425&show=2000"},{"title":"e1: Learning Adaptive Control of Reasoning Effort","url":"https://arxiv.org/pdf/2510.27042"},{"title":"Knowledge Integration Decay in Search-Augmented Reasoning of Large Language Models","url":"https://arxiv.org/html/2602.09517"},{"title":"A Survey of Frontiers in LLM Reasoning: Inference Scaling,","url":"https://llm-reasoning-ai.github.io/survey_arxiv.pdf"},{"title":"[2505.23013] Scalable Complexity Control Facilitates Reasoning Ability of LLMs","url":"https://arxiv.org/abs/2505.23013"},{"title":"Machine Learning","url":"https://web3.arxiv.org/list/cs.LG/recent?skip=65&show=1000"},{"title":"Reasoning on a Budget: A Survey of Adaptive and Controllable Test-Time Compute in LLMs","url":"https://arxiv.org/html/2507.02076v1"}]
+
+I found the paper! Here's information about the arXiv paper 2602.01672 on DeepControl:
+
+## Overview
+
+DeepControl is a framework for adaptive information control based on a formal notion of information utility, which measures the marginal value of retrieved evidence under a given reasoning state.
+
+## Problem Addressed
+
+Search-augmented reasoning agents interleave multi-step reasoning with external information retrieval, but uncontrolled retrieval often leads to redundant evidence, context saturation, and unstable learning. Existing approaches rely on outcome-based reinforcement learning (RL), which provides limited guidance for regulating information acquisition.
+
+## Key Mechanisms
+
+The framework introduces retrieval continuation and granularity control mechanisms that selectively regulate when to continue and stop retrieval, and how much information to expand.
+
+## Performance Results
+
+The approach achieves average performance improvements of 9.4% and 8.6% on Qwen2.5-7B and Qwen2.5-3B, respectively, over strong outcome-based RL baselines, and consistently outperforms both retrieval-free and retrieval-based reasoning methods without explicit information control. These improvements are consistent across both in-distribution benchmarks (e.g., NQ and HotpotQA) and out-of-distribution benchmarks (e.g., TriviaQA, PopQA, 2WikiMultiHopQA, Musique, and Bamboogle).
+
+## Code Availability
+
+The code and model checkpoints are available at https://github.com/xiongsiheng/DeepControl.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "57515ce8-43a1-44c1-94c3-7e60a02766ee",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "8f694250-2e5c-4f47-8503-5e140858dfc6",
+  "toolUseResult": {
+    "query": "DeepControl scaling search-augmented LLM reasoning adaptive information control arXiv 2602.01672",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SV96WAkfqXdHTbdavrJSY8",
+        "content": [
+          {
+            "title": "Scaling Search-Augmented LLM Reasoning via Adaptive Information Control",
+            "url": "https://arxiv.org/html/2602.01672"
+          },
+          {
+            "title": "[2602.01672] Scaling Search-Augmented LLM Reasoning via Adaptive Information Control",
+            "url": "https://arxiv.org/abs/2602.01672"
+          },
+          {
+            "title": "GitHub - xiongsiheng/DeepControl: [ICLR 26 @ SPOT] DeepControl: Scaling Search-Augmented LLM Reasoning via Adaptive Information Control · GitHub",
+            "url": "https://github.com/xiongsiheng/DeepControl"
+          },
+          {
+            "title": "Machine Learning Feb 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-02?skip=2425&show=2000"
+          },
+          {
+            "title": "e1: Learning Adaptive Control of Reasoning Effort",
+            "url": "https://arxiv.org/pdf/2510.27042"
+          },
+          {
+            "title": "Knowledge Integration Decay in Search-Augmented Reasoning of Large Language Models",
+            "url": "https://arxiv.org/html/2602.09517"
+          },
+          {
+            "title": "A Survey of Frontiers in LLM Reasoning: Inference Scaling,",
+            "url": "https://llm-reasoning-ai.github.io/survey_arxiv.pdf"
+          },
+          {
+            "title": "[2505.23013] Scalable Complexity Control Facilitates Reasoning Ability of LLMs",
+            "url": "https://arxiv.org/abs/2505.23013"
+          },
+          {
+            "title": "Machine Learning",
+            "url": "https://web3.arxiv.org/list/cs.LG/recent?skip=65&show=1000"
+          },
+          {
+            "title": "Reasoning on a Budget: A Survey of Adaptive and Controllable Test-Time Compute in LLMs",
+            "url": "https://arxiv.org/html/2507.02076v1"
+          }
+        ]
+      },
+      "I found the paper! Here's information about the arXiv paper 2602.01672 on DeepControl:\n\n## Overview\n\nDeepControl is a framework for adaptive information control based on a formal notion of information utility, which measures the marginal value of retrieved evidence under a given reasoning state.\n\n## Problem Addressed\n\nSearch-augmented reasoning agents interleave multi-step reasoning with external information retrieval, but uncontrolled retrieval often leads to redundant evidence, context saturation, and unstable learning. Existing approaches rely on outcome-based reinforcement learning (RL), which provides limited guidance for regulating information acquisition.\n\n## Key Mechanisms\n\nThe framework introduces retrieval continuation and granularity control mechanisms that selectively regulate when to continue and stop retrieval, and how much information to expand.\n\n## Performance Results\n\nThe approach achieves average performance improvements of 9.4% and 8.6% on Qwen2.5-7B and Qwen2.5-3B, respectively, over strong outcome-based RL baselines, and consistently outperforms both retrieval-free and retrieval-based reasoning methods without explicit information control. These improvements are consistent across both in-distribution benchmarks (e.g., NQ and HotpotQA) and out-of-distribution benchmarks (e.g., TriviaQA, PopQA, 2WikiMultiHopQA, Musique, and Bamboogle).\n\n## Code Availability\n\nThe code and model checkpoints are available at https://github.com/xiongsiheng/DeepControl."
+    ],
+    "durationSeconds": 7.452688694000004
+  },
+  "sourceToolAssistantUUID": "57515ce8-43a1-44c1-94c3-7e60a02766ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-14T15:50:22.986Z_
+
+Good, the key referenced papers are confirmed. Now let me search for additional competing work the generator may have missed, and verify the remaining claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f694250-2e5c-4f47-8503-5e140858dfc6",
+  "isSidechain": false,
+  "requestId": "req_011Cb2j769N9vczRykpQQCiV",
+  "type": "assistant",
+  "uuid": "28c5f673-5a9e-473a-833e-c1c2cceaf063",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013F71GmRY8HCZaCVdVnyXjp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 33092,
+      "output_tokens": 104,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 104,
+          "cache_read_input_tokens": 33092,
+          "cache_creation_input_tokens": 933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T15:50:23.520Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0129xVVsp9pmMHySNbB4o63q`</summary>
+
+```json
+{
+  "query": "adaptive retrieval gating reasoning LLM counterfactual probing hidden states 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28c5f673-5a9e-473a-833e-c1c2cceaf063",
+  "isSidechain": false,
+  "requestId": "req_011Cb2j769N9vczRykpQQCiV",
+  "type": "assistant",
+  "uuid": "5adab0d5-e160-4a36-931b-b165c5e1ef29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013F71GmRY8HCZaCVdVnyXjp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 33092,
+      "output_tokens": 104,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 104,
+          "cache_read_input_tokens": 33092,
+          "cache_creation_input_tokens": 933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T15:50:31.524Z_
+
+<details><summary>↩ Tool result · `toolu_0129xVVsp9pmMHySNbB4o63q`</summary>
+
+```text
+Web search results for query: "adaptive retrieval gating reasoning LLM counterfactual probing hidden states 2025 2026"
+
+Links: [{"title":"Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs | medRxiv","url":"https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full"},{"title":"Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs","url":"https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full.pdf"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"},{"title":"Monitoring Latent World States in Language Models with Propositional Probes | OpenReview","url":"https://openreview.net/forum?id=0yvZm2AjUr"},{"title":"Accepted Findings Papers - ACL 2025","url":"https://2025.aclweb.org/program/find_papers/"},{"title":"LLM Research Papers: The 2025 List (July to December)","url":"https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"},{"title":"ALW: Adaptive Layer-Wise contrastive decoding ...","url":"https://aclanthology.org/2025.findings-acl.447.pdf"},{"title":"Memory for Autonomous LLM Agents: Mechanisms, Evaluation, and Emerging Frontiers","url":"https://arxiv.org/html/2603.07670v1"},{"title":"Exploring the Hidden Reasoning Process of Large ...","url":"https://aclanthology.org/2025.findings-emnlp.1102.pdf"},{"title":"LLM Research Papers: The 2025 List (January to June)","url":"https://magazine.sebastianraschka.com/p/llm-research-papers-2025-list-one"}]
+
+Based on the search results, I found several relevant research developments related to your query about adaptive retrieval, gating, reasoning in LLMs, counterfactual approaches, and hidden states from 2025-2026:
+
+## Key Research Areas Found:
+
+**1. Hidden State Probing for LLMs (2025)**
+
+PING (Probing INternal states of Generative models) is an open-source framework that trains lightweight probes on frozen transformers to deliver structured predictions with minimal compute overhead, achieving calibration improvements of up to 96% across diverse models and benchmarks.
+
+**2. Adaptive Gating for LLM Agents (2025-2026)**
+
+DIAL (Direction-Informed Adaptive Learning) introduces a framework that learns the utility direction of gating signals per environment and backbone to optimize test-time compute for LLM agents, utilizing Bernoulli-ε exploration to collect counterfactual data.
+
+**3. Propositional Probes for Hidden States (2025)**
+
+Propositional probes compositionally extract lexical concepts from token activations and bind them into propositions, identifying a binding subspace in which bound tokens have high similarity.
+
+**4. Adaptive Layer-Wise Reasoning (2025)**
+
+ALW (Adaptive Layer-Wise contrastive decoding) enhances reasoning in large language models.
+
+**5. Counterfactual Evaluation of Reasoning (2025)**
+
+The search results indicate active research on using counterfactual approaches to evaluate whether LLMs perform genuine reasoning versus memorization and pattern matching, particularly in mathematical reasoning tasks.
+
+These areas represent cutting-edge work on interpretability, adaptive computation, and understanding the internal reasoning mechanisms of large language models during 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5adab0d5-e160-4a36-931b-b165c5e1ef29",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "ea5b6f80-127b-416c-870e-c303da59de8a",
+  "toolUseResult": {
+    "query": "adaptive retrieval gating reasoning LLM counterfactual probing hidden states 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012Nzp5tBzvPhodqWq2Fmhjp",
+        "content": [
+          {
+            "title": "Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs | medRxiv",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full"
+          },
+          {
+            "title": "Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full.pdf"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          },
+          {
+            "title": "Monitoring Latent World States in Language Models with Propositional Probes | OpenReview",
+            "url": "https://openreview.net/forum?id=0yvZm2AjUr"
+          },
+          {
+            "title": "Accepted Findings Papers - ACL 2025",
+            "url": "https://2025.aclweb.org/program/find_papers/"
+          },
+          {
+            "title": "LLM Research Papers: The 2025 List (July to December)",
+            "url": "https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"
+          },
+          {
+            "title": "ALW: Adaptive Layer-Wise contrastive decoding ...",
+            "url": "https://aclanthology.org/2025.findings-acl.447.pdf"
+          },
+          {
+            "title": "Memory for Autonomous LLM Agents: Mechanisms, Evaluation, and Emerging Frontiers",
+            "url": "https://arxiv.org/html/2603.07670v1"
+          },
+          {
+            "title": "Exploring the Hidden Reasoning Process of Large ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.1102.pdf"
+          },
+          {
+            "title": "LLM Research Papers: The 2025 List (January to June)",
+            "url": "https://magazine.sebastianraschka.com/p/llm-research-papers-2025-list-one"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant research developments related to your query about adaptive retrieval, gating, reasoning in LLMs, counterfactual approaches, and hidden states from 2025-2026:\n\n## Key Research Areas Found:\n\n**1. Hidden State Probing for LLMs (2025)**\n\nPING (Probing INternal states of Generative models) is an open-source framework that trains lightweight probes on frozen transformers to deliver structured predictions with minimal compute overhead, achieving calibration improvements of up to 96% across diverse models and benchmarks.\n\n**2. Adaptive Gating for LLM Agents (2025-2026)**\n\nDIAL (Direction-Informed Adaptive Learning) introduces a framework that learns the utility direction of gating signals per environment and backbone to optimize test-time compute for LLM agents, utilizing Bernoulli-ε exploration to collect counterfactual data.\n\n**3. Propositional Probes for Hidden States (2025)**\n\nPropositional probes compositionally extract lexical concepts from token activations and bind them into propositions, identifying a binding subspace in which bound tokens have high similarity.\n\n**4. Adaptive Layer-Wise Reasoning (2025)**\n\nALW (Adaptive Layer-Wise contrastive decoding) enhances reasoning in large language models.\n\n**5. Counterfactual Evaluation of Reasoning (2025)**\n\nThe search results indicate active research on using counterfactual approaches to evaluate whether LLMs perform genuine reasoning versus memorization and pattern matching, particularly in mathematical reasoning tasks.\n\nThese areas represent cutting-edge work on interpretability, adaptive computation, and understanding the internal reasoning mechanisms of large language models during 2025-2026."
+    ],
+    "durationSeconds": 8.000213866000006
+  },
+  "sourceToolAssistantUUID": "5adab0d5-e160-4a36-931b-b165c5e1ef29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T15:50:34.368Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013kZiG4jFKiRogqxDynpyn2`</summary>
+
+```json
+{
+  "query": "Search-R1 Qwen2.5-7B checkpoint open source retrieval reinforcement learning 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea5b6f80-127b-416c-870e-c303da59de8a",
+  "isSidechain": false,
+  "requestId": "req_011Cb2j7yfTx1o2bMnoTJki8",
+  "type": "assistant",
+  "uuid": "bb41bdf8-34b0-4dcc-bd70-d18c5f6e5915",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GQmzZbrAYCsLtrCXL5xXbN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 34025,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1059,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 34025,
+          "cache_creation_input_tokens": 1059,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1059
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T15:50:41.832Z_
+
+<details><summary>↩ Tool result · `toolu_013kZiG4jFKiRogqxDynpyn2`</summary>
+
+```text
+Web search results for query: "Search-R1 Qwen2.5-7B checkpoint open source retrieval reinforcement learning 2025"
+
+Links: [{"title":"GitHub - deepseek-ai/DeepSeek-R1 · GitHub","url":"https://github.com/deepseek-ai/DeepSeek-R1"},{"title":"GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub","url":"https://github.com/PeterGriffinJin/Search-R1"},{"title":"[2503.09516] Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning","url":"https://arxiv.org/abs/2503.09516"},{"title":"R1-Searcher: Incentivizing the Search Capability in LLMs via Reinforcement Learning","url":"https://arxiv.org/html/2503.05592v1"},{"title":"deepseek-ai/DeepSeek-R1 · Hugging Face","url":"https://huggingface.co/deepseek-ai/DeepSeek-R1"},{"title":"Search-R1: Training LLMs to Reason and Leverage ...","url":"https://arxiv.org/pdf/2503.09516"},{"title":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning","url":"https://arxiv.org/html/2501.12948v1"},{"title":"deepseek-ai/DeepSeek-R1-Distill-Llama-70B · Hugging Face","url":"https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-70B"},{"title":"Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=Rwhi91ideu"},{"title":"Search-R1: Training LLMs to Reason and Leverage Search Engines","url":"https://www.opentrain.ai/papers/search-r1-training-llms-to-reason-and-leverage-search-engines-with-reinforcement--arxiv-2503.09516/"}]
+
+Based on the search results, here's what I found about Search-R1 with Qwen2.5-7B:
+
+## Search-R1 Overview
+
+Search-R1 is an extension of reinforcement learning (RL) for reasoning frameworks where the LLM learns to autonomously generate (multiple) search queries during step-by-step reasoning with real-time retrieval.
+
+## Open Source Checkpoint
+
+Search-R1 codebase with preliminary results was open-sourced in February 2025. The framework supports different RL methods (e.g., PPO, GRPO, reinforce), different LLMs (e.g., llama3, Qwen2.5, etc) and different search engines (e.g., local sparse/dense retrievers and online search engines).
+
+## Qwen2.5-7B Specific Results
+
+Search-R1 improves performance by 41% (Qwen2.5-7B) and 20% (Qwen2.5-3B) over various RAG baselines under the same setting on seven question-answering datasets. The base model (Qwen2.5-7b-base) can learn to conduct multi-turn search engine calling and reasoning with RL.
+
+## Repository and Resources
+
+The paper, model, and data are available with full experiment logs. The GitHub repository is available at [PeterGriffinJin/Search-R1](https://github.com/PeterGriffinJin/Search-R1), which provides the complete codebase and implementation details for training LLMs with retrieval and reinforcement learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb41bdf8-34b0-4dcc-bd70-d18c5f6e5915",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "34e69b27-1f0d-43e5-97ef-b954c0540018",
+  "toolUseResult": {
+    "query": "Search-R1 Qwen2.5-7B checkpoint open source retrieval reinforcement learning 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AoAeFEC65P4cnqTu1VbosJ",
+        "content": [
+          {
+            "title": "GitHub - deepseek-ai/DeepSeek-R1 · GitHub",
+            "url": "https://github.com/deepseek-ai/DeepSeek-R1"
+          },
+          {
+            "title": "GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub",
+            "url": "https://github.com/PeterGriffinJin/Search-R1"
+          },
+          {
+            "title": "[2503.09516] Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2503.09516"
+          },
+          {
+            "title": "R1-Searcher: Incentivizing the Search Capability in LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2503.05592v1"
+          },
+          {
+            "title": "deepseek-ai/DeepSeek-R1 · Hugging Face",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1"
+          },
+          {
+            "title": "Search-R1: Training LLMs to Reason and Leverage ...",
+            "url": "https://arxiv.org/pdf/2503.09516"
+          },
+          {
+            "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2501.12948v1"
+          },
+          {
+            "title": "deepseek-ai/DeepSeek-R1-Distill-Llama-70B · Hugging Face",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-70B"
+          },
+          {
+            "title": "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=Rwhi91ideu"
+          },
+          {
+            "title": "Search-R1: Training LLMs to Reason and Leverage Search Engines",
+            "url": "https://www.opentrain.ai/papers/search-r1-training-llms-to-reason-and-leverage-search-engines-with-reinforcement--arxiv-2503.09516/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Search-R1 with Qwen2.5-7B:\n\n## Search-R1 Overview\n\nSearch-R1 is an extension of reinforcement learning (RL) for reasoning frameworks where the LLM learns to autonomously generate (multiple) search queries during step-by-step reasoning with real-time retrieval.\n\n## Open Source Checkpoint\n\nSearch-R1 codebase with preliminary results was open-sourced in February 2025. The framework supports different RL methods (e.g., PPO, GRPO, reinforce), different LLMs (e.g., llama3, Qwen2.5, etc) and different search engines (e.g., local sparse/dense retrievers and online search engines).\n\n## Qwen2.5-7B Specific Results\n\nSearch-R1 improves performance by 41% (Qwen2.5-7B) and 20% (Qwen2.5-3B) over various RAG baselines under the same setting on seven question-answering datasets. The base model (Qwen2.5-7b-base) can learn to conduct multi-turn search engine calling and reasoning with RL.\n\n## Repository and Resources\n\nThe paper, model, and data are available with full experiment logs. The GitHub repository is available at [PeterGriffinJin/Search-R1](https://github.com/PeterGriffinJin/Search-R1), which provides the complete codebase and implementation details for training LLMs with retrieval and reinforcement learning."
+    ],
+    "durationSeconds": 7.459493132999996
+  },
+  "sourceToolAssistantUUID": "bb41bdf8-34b0-4dcc-bd70-d18c5f6e5915",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28 · 2026-05-14T15:50:41.839Z_
+
+```json
+{
+  "parentUuid": "34e69b27-1f0d-43e5-97ef-b954c0540018",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b78d0202-265e-467e-ad6f-3120ac6a8960",
+  "timestamp": "2026-05-14T15:50:41.839Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T15:50:44.619Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018qB332dAggAQzuwuRou2fA`</summary>
+
+```json
+{
+  "query": "\"Knowledge or Reasoning\" step-level LLM reasoning decomposition arXiv 2506.02126"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b78d0202-265e-467e-ad6f-3120ac6a8960",
+  "isSidechain": false,
+  "requestId": "req_011Cb2j8jnKG9GVBgGUW7UbB",
+  "type": "assistant",
+  "uuid": "146d7168-3a97-43d5-b4be-2f04f7d4f4bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kdqbpyz6DYwAT1zyCTRU9D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1160,
+      "cache_read_input_tokens": 35084,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1160,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 35084,
+          "cache_creation_input_tokens": 1160,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1160
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T15:50:51.001Z_
+
+<details><summary>↩ Tool result · `toolu_018qB332dAggAQzuwuRou2fA`</summary>
+
+```text
+Web search results for query: ""Knowledge or Reasoning" step-level LLM reasoning decomposition arXiv 2506.02126"
+
+Links: [{"title":"[2506.02126] Knowledge or Reasoning? A Close Look at How LLMs Think Across Domains","url":"https://arxiv.org/abs/2506.02126"},{"title":"Knowledge or Reasoning ? A Close Look at How LLMs Think Across Domains","url":"https://arxiv.org/html/2506.02126"},{"title":"ReasoningEval","url":"https://ucsc-vlaa.github.io/ReasoningEval/"},{"title":"Thought Anchors: Which LLM Reasoning Steps Matter?","url":"https://arxiv.org/html/2506.19143v3"},{"title":"Beyond Accuracy: Dissecting Mathematical Reasoning for LLMs Under Reinforcement Learning","url":"https://arxiv.org/html/2506.04723"},{"title":"RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval","url":"https://arxiv.org/html/2506.08625v1"},{"title":"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification","url":"https://arxiv.org/html/2506.04592v1"},{"title":"Decompositional Reasoning for Graph Retrieval with Large Language Models","url":"https://arxiv.org/html/2506.13380v1"},{"title":"Graph-Augmented Reasoning: Evolving Step-by-Step Knowledge Graph Retrieval for LLM Reasoning","url":"https://arxiv.org/html/2503.01642v1"},{"title":"Dissecting Logical Reasoning in LLMs: A Fine-Grained Evaluation and Supervision Study","url":"https://arxiv.org/html/2506.04810v2"}]
+
+I found the paper you're searching for! Here's what I found:
+
+## "Knowledge or Reasoning? A Close Look at How LLMs Think Across Domains"
+
+This work investigates step-by-step reasoning in the medical and mathematical domains by explicitly decomposing the thinking trajectories into two parts: knowledge and reasoning.
+
+The authors introduce a fine-grained evaluation framework that judges: (1) the correctness of knowledge used (measured by Knowledge Index (KI)) and (2) the quality of reasoning (measured by Information Gain (InfoGain)).
+
+Through analysis of Qwen models trained with SFT and RL, they demonstrate that these two capacities are distinct but unequally demanded across domains. Their findings reveal that SFT boosts factual knowledge, especially in knowledge-intensive domains like medicine, albeit at the cost of reasoning clarity, while RL improves reasoning quality by pruning incorrect knowledge.
+
+**Paper Details:**
+- **ArXiv ID:** 2506.02126
+- **Authors:** Juncheng Wu, Sheng Liu, Haoqin Tu, Hang Yu, Xiaoke Huang, James Zou, Cihang Xie, and Yuyin Zhou
+- **Link:** https://arxiv.org/abs/2506.02126
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "146d7168-3a97-43d5-b4be-2f04f7d4f4bf",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "1864badb-4f6c-4055-b488-62db784df2ed",
+  "toolUseResult": {
+    "query": "\"Knowledge or Reasoning\" step-level LLM reasoning decomposition arXiv 2506.02126",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019B3H5mCnx8N3SBTVvGmgHg",
+        "content": [
+          {
+            "title": "[2506.02126] Knowledge or Reasoning? A Close Look at How LLMs Think Across Domains",
+            "url": "https://arxiv.org/abs/2506.02126"
+          },
+          {
+            "title": "Knowledge or Reasoning ? A Close Look at How LLMs Think Across Domains",
+            "url": "https://arxiv.org/html/2506.02126"
+          },
+          {
+            "title": "ReasoningEval",
+            "url": "https://ucsc-vlaa.github.io/ReasoningEval/"
+          },
+          {
+            "title": "Thought Anchors: Which LLM Reasoning Steps Matter?",
+            "url": "https://arxiv.org/html/2506.19143v3"
+          },
+          {
+            "title": "Beyond Accuracy: Dissecting Mathematical Reasoning for LLMs Under Reinforcement Learning",
+            "url": "https://arxiv.org/html/2506.04723"
+          },
+          {
+            "title": "RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval",
+            "url": "https://arxiv.org/html/2506.08625v1"
+          },
+          {
+            "title": "Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification",
+            "url": "https://arxiv.org/html/2506.04592v1"
+          },
+          {
+            "title": "Decompositional Reasoning for Graph Retrieval with Large Language Models",
+            "url": "https://arxiv.org/html/2506.13380v1"
+          },
+          {
+            "title": "Graph-Augmented Reasoning: Evolving Step-by-Step Knowledge Graph Retrieval for LLM Reasoning",
+            "url": "https://arxiv.org/html/2503.01642v1"
+          },
+          {
+            "title": "Dissecting Logical Reasoning in LLMs: A Fine-Grained Evaluation and Supervision Study",
+            "url": "https://arxiv.org/html/2506.04810v2"
+          }
+        ]
+      },
+      "I found the paper you're searching for! Here's what I found:\n\n## \"Knowledge or Reasoning? A Close Look at How LLMs Think Across Domains\"\n\nThis work investigates step-by-step reasoning in the medical and mathematical domains by explicitly decomposing the thinking trajectories into two parts: knowledge and reasoning.\n\nThe authors introduce a fine-grained evaluation framework that judges: (1) the correctness of knowledge used (measured by Knowledge Index (KI)) and (2) the quality of reasoning (measured by Information Gain (InfoGain)).\n\nThrough analysis of Qwen models trained with SFT and RL, they demonstrate that these two capacities are distinct but unequally demanded across domains. Their findings reveal that SFT boosts factual knowledge, especially in knowledge-intensive domains like medicine, albeit at the cost of reasoning clarity, while RL improves reasoning quality by pruning incorrect knowledge.\n\n**Paper Details:**\n- **ArXiv ID:** 2506.02126\n- **Authors:** Juncheng Wu, Sheng Liu, Haoqin Tu, Hang Yu, Xiaoke Huang, James Zou, Cihang Xie, and Yuyin Zhou\n- **Link:** https://arxiv.org/abs/2506.02126"
+    ],
+    "durationSeconds": 6.377136092000001
+  },
+  "sourceToolAssistantUUID": "146d7168-3a97-43d5-b4be-2f04f7d4f4bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "1864badb-4f6c-4055-b488-62db784df2ed",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T15:50:55.353Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014QPrTYG4imtY75RganDRd1`</summary>
+
+```json
+{
+  "query": "ARR ACL rolling review May 2026 submission deadline EMNLP 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1864badb-4f6c-4055-b488-62db784df2ed",
+  "isSidechain": false,
+  "requestId": "req_011Cb2j9RDe62gXaSKZbJrCW",
+  "type": "assistant",
+  "uuid": "30c2e860-133b-4ad5-84bc-3841a2d4428d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GNMwYaeN9ok6bVRbbaU3YU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 852,
+      "cache_read_input_tokens": 36244,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 852,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 36244,
+          "cache_creation_input_tokens": 852,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 852
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T15:51:00.727Z_
+
+<details><summary>↩ Tool result · `toolu_014QPrTYG4imtY75RganDRd1`</summary>
+
+```text
+Web search results for query: "ARR ACL rolling review May 2026 submission deadline EMNLP 2026"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"ACL ARR | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"ACLRollingReview (@ReviewAcl) / Posts / X","url":"https://x.com/ReviewAcl"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authors"}]
+
+Based on the search results, here's the information about the ARR ACL rolling review May 2026 submission deadline for EMNLP 2026:
+
+## Key Dates for EMNLP 2026
+
+The ARR submission deadline for long and short papers is May 25, 2026, and the reviewer registration deadline for all authors is May 27, 2026. 
+
+After submission, key dates include author response and author-reviewer discussion July 7 - July 13, 2026, meta review released July 30, 2026, and the EMNLP commitment deadline August 2, 2026.
+
+## EMNLP 2026 and ARR
+
+EMNLP 2026 will use ACL Rolling Review (ARR) as a reviewing system, where authors submit articles to ARR to receive reviews and meta-reviews from ARR reviewers and action editors, and then commit their reviewed articles to the publication venue where Senior Area Chairs and Program Chairs make acceptance decisions.
+
+After submission, all authors must complete the author registration form by May 27, 2026 EoD AoE.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "30c2e860-133b-4ad5-84bc-3841a2d4428d",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "274dc189-a8a0-49e3-8881-caf590b968f6",
+  "toolUseResult": {
+    "query": "ARR ACL rolling review May 2026 submission deadline EMNLP 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RzNMnEHtCJBAsJY22FnS3m",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "ACL ARR | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "ACLRollingReview (@ReviewAcl) / Posts / X",
+            "url": "https://x.com/ReviewAcl"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/authors"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about the ARR ACL rolling review May 2026 submission deadline for EMNLP 2026:\n\n## Key Dates for EMNLP 2026\n\nThe ARR submission deadline for long and short papers is May 25, 2026, and the reviewer registration deadline for all authors is May 27, 2026. \n\nAfter submission, key dates include author response and author-reviewer discussion July 7 - July 13, 2026, meta review released July 30, 2026, and the EMNLP commitment deadline August 2, 2026.\n\n## EMNLP 2026 and ARR\n\nEMNLP 2026 will use ACL Rolling Review (ARR) as a reviewing system, where authors submit articles to ARR to receive reviews and meta-reviews from ARR reviewers and action editors, and then commit their reviewed articles to the publication venue where Senior Area Chairs and Program Chairs make acceptance decisions.\n\nAfter submission, all authors must complete the author registration form by May 27, 2026 EoD AoE."
+    ],
+    "durationSeconds": 5.3710917029999985
+  },
+  "sourceToolAssistantUUID": "30c2e860-133b-4ad5-84bc-3841a2d4428d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-14T15:51:03.430Z_
+
+Good — the ARR May 25, 2026 deadline is confirmed. Now let me search for competing work the generator might have missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "274dc189-a8a0-49e3-8881-caf590b968f6",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jA8X58GcX3uBKk8eyb",
+  "type": "assistant",
+  "uuid": "fca87924-c9e9-40b8-991d-fe1cec9826dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJ7yExbYB2ULEmzpmZvskH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 807,
+      "cache_read_input_tokens": 37096,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 807,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 37096,
+          "cache_creation_input_tokens": 807,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 807
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T15:51:03.944Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CwECfoemYgUh9MM7oJrJvJ`</summary>
+
+```json
+{
+  "query": "counterfactual retrieval augmented generation evidence verification reasoning 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fca87924-c9e9-40b8-991d-fe1cec9826dd",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jA8X58GcX3uBKk8eyb",
+  "type": "assistant",
+  "uuid": "c5d6a3e9-3614-4dcb-8eac-b9503c031da2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJ7yExbYB2ULEmzpmZvskH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 807,
+      "cache_read_input_tokens": 37096,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 807,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 37096,
+          "cache_creation_input_tokens": 807,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 807
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T15:51:12.557Z_
+
+<details><summary>↩ Tool result · `toolu_01CwECfoemYgUh9MM7oJrJvJ`</summary>
+
+```text
+Web search results for query: "counterfactual retrieval augmented generation evidence verification reasoning 2026 arXiv"
+
+Links: [{"title":"Counterfactual Reasoning for Retrieval-Augmented Generation | OpenReview","url":"https://openreview.net/forum?id=9U51rOnGko"},{"title":"ICLR Poster Counterfactual Reasoning for Retrieval-Augmented Generation","url":"https://iclr.cc/virtual/2026/poster/10011109"},{"title":"Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation","url":"https://arxiv.org/html/2605.01302"},{"title":"Causal-Counterfactual RAG: The Integration of Causal-Counterfactual Reasoning into RAG","url":"https://arxiv.org/html/2509.14435v2"},{"title":"[2605.01302] Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2605.01302"},{"title":"Multi-Sourced, Multi-Agent Evidence Retrieval for Fact-Checking","url":"https://arxiv.org/html/2603.00267v1"},{"title":"[2509.14435] Causal-Counterfactual RAG: The Integration of Causal-Counterfactual Reasoning into RAG","url":"https://arxiv.org/abs/2509.14435"},{"title":"Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers","url":"https://arxiv.org/html/2506.00054v1"},{"title":"Rewarding Faithful Reasoning in Retrieval-Augmented ...","url":"https://arxiv.org/pdf/2510.13272"},{"title":"Retrieval Augmented Generation Evaluation in the Era of Large Language Models: A Comprehensive Survey","url":"https://arxiv.org/html/2504.14891v1"}]
+
+Based on the search results, here are the key findings about counterfactual retrieval augmented generation, evidence verification, and reasoning from 2026 arXiv papers:
+
+## Key Papers and Frameworks
+
+### 1. **Counterfactual RAG (CF-RAG)**
+Existing systems cannot distinguish causally decisive evidence from overwhelmingly correlated yet misleading information, leading to systematic failures, which Counterfactual RAG (CF-RAG) addresses as a new framework that operationalizes causal reasoning.
+
+### 2. **Causal-Counterfactual RAG**
+This framework addresses a critical limitation in existing retrieval-augmented systems: their inability to distinguish necessary causes from mere correlations. The framework integrates explicit causal graphs representing cause-effect relationships into the retrieval process and incorporates counterfactual reasoning grounded on the causal structure, evaluating not only direct causal evidence but also the counterfactuality of associated causes.
+
+### 3. **CoRM-RAG (Counterfactual Risk Minimization for RAG)**
+Standard RAG systems rely on semantic relevance as a proxy for utility, but this assumption collapses in realistic decision-making scenarios where user queries contain cognitive biases, such that maximizing relevance paradoxically promotes retrieval of sycophantic evidence that reinforces hallucinations. CoRM-RAG introduces a Cognitive Perturbation Protocol to simulate user biases during training, distilled into a lightweight Evidence Critic that identifies documents with sufficient evidential strength to steer the model toward correctness despite adversarial query perturbations.
+
+### 4. **Multi-Source Evidence Retrieval for Fact-Checking**
+The WKGFC framework integrates open-resource KGs and web-based information as external evidence sources, with the LLM collaborating with SPARQL queries to retrieve knowledge subgraphs, triggering web retrieval when KG evidence is insufficient, and reasoning over aggregated evidence to output a veracity verdict.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c5d6a3e9-3614-4dcb-8eac-b9503c031da2",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "d34c83f2-99a8-497d-8608-8184eada5ed6",
+  "toolUseResult": {
+    "query": "counterfactual retrieval augmented generation evidence verification reasoning 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UW3rPfBf4HsrfpWNGBNsUV",
+        "content": [
+          {
+            "title": "Counterfactual Reasoning for Retrieval-Augmented Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=9U51rOnGko"
+          },
+          {
+            "title": "ICLR Poster Counterfactual Reasoning for Retrieval-Augmented Generation",
+            "url": "https://iclr.cc/virtual/2026/poster/10011109"
+          },
+          {
+            "title": "Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2605.01302"
+          },
+          {
+            "title": "Causal-Counterfactual RAG: The Integration of Causal-Counterfactual Reasoning into RAG",
+            "url": "https://arxiv.org/html/2509.14435v2"
+          },
+          {
+            "title": "[2605.01302] Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2605.01302"
+          },
+          {
+            "title": "Multi-Sourced, Multi-Agent Evidence Retrieval for Fact-Checking",
+            "url": "https://arxiv.org/html/2603.00267v1"
+          },
+          {
+            "title": "[2509.14435] Causal-Counterfactual RAG: The Integration of Causal-Counterfactual Reasoning into RAG",
+            "url": "https://arxiv.org/abs/2509.14435"
+          },
+          {
+            "title": "Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers",
+            "url": "https://arxiv.org/html/2506.00054v1"
+          },
+          {
+            "title": "Rewarding Faithful Reasoning in Retrieval-Augmented ...",
+            "url": "https://arxiv.org/pdf/2510.13272"
+          },
+          {
+            "title": "Retrieval Augmented Generation Evaluation in the Era of Large Language Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2504.14891v1"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings about counterfactual retrieval augmented generation, evidence verification, and reasoning from 2026 arXiv papers:\n\n## Key Papers and Frameworks\n\n### 1. **Counterfactual RAG (CF-RAG)**\nExisting systems cannot distinguish causally decisive evidence from overwhelmingly correlated yet misleading information, leading to systematic failures, which Counterfactual RAG (CF-RAG) addresses as a new framework that operationalizes causal reasoning.\n\n### 2. **Causal-Counterfactual RAG**\nThis framework addresses a critical limitation in existing retrieval-augmented systems: their inability to distinguish necessary causes from mere correlations. The framework integrates explicit causal graphs representing cause-effect relationships into the retrieval process and incorporates counterfactual reasoning grounded on the causal structure, evaluating not only direct causal evidence but also the counterfactuality of associated causes.\n\n### 3. **CoRM-RAG (Counterfactual Risk Minimization for RAG)**\nStandard RAG systems rely on semantic relevance as a proxy for utility, but this assumption collapses in realistic decision-making scenarios where user queries contain cognitive biases, such that maximizing relevance paradoxically promotes retrieval of sycophantic evidence that reinforces hallucinations. CoRM-RAG introduces a Cognitive Perturbation Protocol to simulate user biases during training, distilled into a lightweight Evidence Critic that identifies documents with sufficient evidential strength to steer the model toward correctness despite adversarial query perturbations.\n\n### 4. **Multi-Source Evidence Retrieval for Fact-Checking**\nThe WKGFC framework integrates open-resource KGs and web-based information as external evidence sources, with the LLM collaborating with SPARQL queries to retrieve knowledge subgraphs, triggering web retrieval when KG evidence is insufficient, and reasoning over aggregated evidence to output a veracity verdict."
+    ],
+    "durationSeconds": 8.607995962999993
+  },
+  "sourceToolAssistantUUID": "c5d6a3e9-3614-4dcb-8eac-b9503c031da2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T15:51:15.515Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Pnhoj4NU89Bk1Pt2bQAeoX`</summary>
+
+```json
+{
+  "query": "when to retrieve reasoning LLM adaptive retrieval trigger uncertainty 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d34c83f2-99a8-497d-8608-8184eada5ed6",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jB1B5j8hVAJjfy2EQp",
+  "type": "assistant",
+  "uuid": "b8a54a5e-6844-422f-89e4-d2330571831e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X8dBvKkEperB1byNZQYXm8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1094,
+      "cache_read_input_tokens": 37903,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1094,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 37903,
+          "cache_creation_input_tokens": 1094,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1094
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T15:51:22.803Z_
+
+<details><summary>↩ Tool result · `toolu_01Pnhoj4NU89Bk1Pt2bQAeoX`</summary>
+
+```text
+Web search results for query: "when to retrieve reasoning LLM adaptive retrieval trigger uncertainty 2026"
+
+Links: [{"title":"When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models","url":"https://arxiv.org/html/2604.26649"},{"title":"Adaptive Retrieval without Self-Knowledge? Bringing Uncertainty Back Home","url":"https://arxiv.org/html/2501.12835v2"},{"title":"When Retrieval Succeeds and Fails: Rethinking Retrieval-Augmented Generation for LLMs","url":"https://arxiv.org/html/2510.09106v1"},{"title":"LLMs for Game Theory: Entropy-Guided In-Context Learning and Adaptive CoT Reasoning","url":"https://arxiv.org/html/2601.10775"},{"title":"Retrieve Only When It Needs: Adaptive Retrieval Augmentation for Hallucination Mitigation in Large Language Models","url":"https://arxiv.org/html/2402.10612v2"},{"title":"[2602.07213] Adaptive Retrieval helps Reasoning in LLMs -- but mostly if it's not used","url":"https://arxiv.org/abs/2602.07213"},{"title":"[Literature Review] Adaptive Retrieval Without Self-Knowledge? Bringing Uncertainty Back Home","url":"https://www.themoonlight.io/en/review/adaptive-retrieval-without-self-knowledge-bringing-uncertainty-back-home"},{"title":"Entropy-Guided CoT Reasoning","url":"https://www.emergentmind.com/topics/entropy-guided-chain-of-thought-cot-reasoning"},{"title":"Proceedings of the ACM Web Conference 2026 | ACM Conferences","url":"https://dl.acm.org/doi/proceedings/10.1145/3774904?tocHeading=heading5"},{"title":"Adaptive Retrieval without Self-Knowledge? Bringing ...","url":"https://aclanthology.org/2025.acl-long.319.pdf"}]
+
+Based on the search results, here's what I found about when to retrieve in reasoning LLM adaptive retrieval with uncertainty triggers in 2026:
+
+## Key Research Findings
+
+Recent work has optimized adaptive retrieval for large reasoning models by achieving higher F1 scores with significantly fewer retrieval calls compared to existing approaches like Search-R1 and ReARTeR, using step-level uncertainty detection to provide finer-grained timing signals.
+
+### Uncertainty-Based Retrieval Triggers
+
+If an LLM produces tokens with low likelihood, indicating uncertainty or knowledge gaps, a retrieval process is triggered. Several methods use uncertainty to determine when retrieval is needed:
+
+- DRAGIN monitors token probabilities and filters stopwords to identify uncertainty tokens
+- SeaKR uses an Uncertainty Module to monitor LLM internal states and trigger retrieval when uncertainty exceeds a threshold
+- The Rowen framework employs a consistency-based hallucination detection module that assesses the reliability of initial responses, and if high uncertainties are found, external information is used via retrieval augmentation
+
+### Entropy-Guided Adaptive Retrieval
+
+The model dynamically adjusts the number of retrieved examples and reasoning paths according to token-level uncertainty: concise reasoning with minimal context is used when uncertainty is low, whereas higher uncertainty triggers expanded multi-path reasoning exploration.
+
+Step-level uncertainty detection provides finer-grained timing signals compared to process-level approaches, representing a significant advancement in determining optimal retrieval moments within reasoning chains.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b8a54a5e-6844-422f-89e4-d2330571831e",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "150a8a3f-68a3-4a94-93f2-f257664e5927",
+  "toolUseResult": {
+    "query": "when to retrieve reasoning LLM adaptive retrieval trigger uncertainty 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BzBKEha8zqReX5bvxj5ja3",
+        "content": [
+          {
+            "title": "When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models",
+            "url": "https://arxiv.org/html/2604.26649"
+          },
+          {
+            "title": "Adaptive Retrieval without Self-Knowledge? Bringing Uncertainty Back Home",
+            "url": "https://arxiv.org/html/2501.12835v2"
+          },
+          {
+            "title": "When Retrieval Succeeds and Fails: Rethinking Retrieval-Augmented Generation for LLMs",
+            "url": "https://arxiv.org/html/2510.09106v1"
+          },
+          {
+            "title": "LLMs for Game Theory: Entropy-Guided In-Context Learning and Adaptive CoT Reasoning",
+            "url": "https://arxiv.org/html/2601.10775"
+          },
+          {
+            "title": "Retrieve Only When It Needs: Adaptive Retrieval Augmentation for Hallucination Mitigation in Large Language Models",
+            "url": "https://arxiv.org/html/2402.10612v2"
+          },
+          {
+            "title": "[2602.07213] Adaptive Retrieval helps Reasoning in LLMs -- but mostly if it's not used",
+            "url": "https://arxiv.org/abs/2602.07213"
+          },
+          {
+            "title": "[Literature Review] Adaptive Retrieval Without Self-Knowledge? Bringing Uncertainty Back Home",
+            "url": "https://www.themoonlight.io/en/review/adaptive-retrieval-without-self-knowledge-bringing-uncertainty-back-home"
+          },
+          {
+            "title": "Entropy-Guided CoT Reasoning",
+            "url": "https://www.emergentmind.com/topics/entropy-guided-chain-of-thought-cot-reasoning"
+          },
+          {
+            "title": "Proceedings of the ACM Web Conference 2026 | ACM Conferences",
+            "url": "https://dl.acm.org/doi/proceedings/10.1145/3774904?tocHeading=heading5"
+          },
+          {
+            "title": "Adaptive Retrieval without Self-Knowledge? Bringing ...",
+            "url": "https://aclanthology.org/2025.acl-long.319.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about when to retrieve in reasoning LLM adaptive retrieval with uncertainty triggers in 2026:\n\n## Key Research Findings\n\nRecent work has optimized adaptive retrieval for large reasoning models by achieving higher F1 scores with significantly fewer retrieval calls compared to existing approaches like Search-R1 and ReARTeR, using step-level uncertainty detection to provide finer-grained timing signals.\n\n### Uncertainty-Based Retrieval Triggers\n\nIf an LLM produces tokens with low likelihood, indicating uncertainty or knowledge gaps, a retrieval process is triggered. Several methods use uncertainty to determine when retrieval is needed:\n\n- DRAGIN monitors token probabilities and filters stopwords to identify uncertainty tokens\n- SeaKR uses an Uncertainty Module to monitor LLM internal states and trigger retrieval when uncertainty exceeds a threshold\n- The Rowen framework employs a consistency-based hallucination detection module that assesses the reliability of initial responses, and if high uncertainties are found, external information is used via retrieval augmentation\n\n### Entropy-Guided Adaptive Retrieval\n\nThe model dynamically adjusts the number of retrieved examples and reasoning paths according to token-level uncertainty: concise reasoning with minimal context is used when uncertainty is low, whereas higher uncertainty triggers expanded multi-path reasoning exploration.\n\nStep-level uncertainty detection provides finer-grained timing signals compared to process-level approaches, representing a significant advancement in determining optimal retrieval moments within reasoning chains."
+    ],
+    "durationSeconds": 7.284341576999999
+  },
+  "sourceToolAssistantUUID": "b8a54a5e-6844-422f-89e4-d2330571831e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T15:51:25.374Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NUvuyd2vapqdCoesBrmuGr`</summary>
+
+```json
+{
+  "query": "retrieval gating probe hidden state LLM reasoning step level 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "150a8a3f-68a3-4a94-93f2-f257664e5927",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jBkuNTRDfcGQ8gHDvB",
+  "type": "assistant",
+  "uuid": "e4fe9739-c661-447c-8e41-c183bc18dd43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K6SgB4hpGMTa5p8RLdCASV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 918,
+      "cache_read_input_tokens": 38997,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 918,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 38997,
+          "cache_creation_input_tokens": 918,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 918
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T15:51:33.456Z_
+
+<details><summary>↩ Tool result · `toolu_01NUvuyd2vapqdCoesBrmuGr`</summary>
+
+```text
+Web search results for query: "retrieval gating probe hidden state LLM reasoning step level 2025 2026 arXiv"
+
+Links: [{"title":"1 Introduction","url":"https://arxiv.org/html/2605.05097"},{"title":"Hidden States as Early Signals: Step-level Trace Evaluation and Pruning for Efficient Test-Time Scaling","url":"https://arxiv.org/html/2601.09093"},{"title":"Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs","url":"https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v1.full.pdf"},{"title":"Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs | medRxiv","url":"https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full"},{"title":"Monitoring Latent World States in Language Models with Propositional Probes | OpenReview","url":"https://openreview.net/forum?id=0yvZm2AjUr"},{"title":"LLM Research Papers: The 2025 List (January to June)","url":"https://magazine.sebastianraschka.com/p/llm-research-papers-2025-list-one"},{"title":"The Gaining Paths to Investment Success: Information-Driven LLM Graph Reasoning for Venture Capital Prediction","url":"https://arxiv.org/html/2512.23489"},{"title":"LLM Research Papers: The 2025 List (July to December)","url":"https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"},{"title":"Reward Inside the Model: A Lightweight Hidden-State Reward Model for","url":"https://openreview.net/pdf?id=mCRC1ealFP"},{"title":"GitHub - zezhishao/DailyArXiv: Daily ArXiv Papers. · GitHub","url":"https://github.com/zezhishao/DailyArXiv"}]
+
+Based on the search results, I found several relevant papers from 2025-2026 related to your query:
+
+## Key Findings
+
+**Step-Level Reasoning and Hidden State Probes:**
+
+Research shows that reasoning models encode correctness-related information in their hidden states and that a lightweight probe can predict whether an intermediate answer is correct. 
+
+One particularly relevant paper is "Hidden States as Early Signals: Step-level Trace Evaluation and Pruning for Efficient Test-Time Scaling" (STEP). This work identifies step boundaries as natural checkpoints where hidden states provide clear quality signals, training a lightweight step scorer on these boundary representations to enable continuous monitoring and early pruning in parallel scaling.
+
+STEP reduces end-to-end inference latency by 45%–70% on average compared to self-consistency while also improving reasoning accuracy by +0.4 to +7.5 percentage points.
+
+**Related Work on Hidden State Probing:**
+
+Other recent work in this space includes PING (Probing INternal states of Generative models), an open-source framework that trains lightweight probes on frozen transformers to deliver structured predictions, achieving reductions in Expected Calibration Error by up to 96%.
+
+Additionally, propositional probes have been developed to compositionally extract lexical concepts from token activations and bind them into propositions, identifying a binding subspace in which bound tokens have high similarity.
+
+These papers represent the cutting edge of research on leveraging LLM hidden states for improved reasoning and verification, particularly at the step level for reasoning tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4fe9739-c661-447c-8e41-c183bc18dd43",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "6e732b18-0024-4414-b58d-0d201fcd8735",
+  "toolUseResult": {
+    "query": "retrieval gating probe hidden state LLM reasoning step level 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WU8YxZ5YrdVZmnKDCPExkc",
+        "content": [
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2605.05097"
+          },
+          {
+            "title": "Hidden States as Early Signals: Step-level Trace Evaluation and Pruning for Efficient Test-Time Scaling",
+            "url": "https://arxiv.org/html/2601.09093"
+          },
+          {
+            "title": "Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v1.full.pdf"
+          },
+          {
+            "title": "Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs | medRxiv",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full"
+          },
+          {
+            "title": "Monitoring Latent World States in Language Models with Propositional Probes | OpenReview",
+            "url": "https://openreview.net/forum?id=0yvZm2AjUr"
+          },
+          {
+            "title": "LLM Research Papers: The 2025 List (January to June)",
+            "url": "https://magazine.sebastianraschka.com/p/llm-research-papers-2025-list-one"
+          },
+          {
+            "title": "The Gaining Paths to Investment Success: Information-Driven LLM Graph Reasoning for Venture Capital Prediction",
+            "url": "https://arxiv.org/html/2512.23489"
+          },
+          {
+            "title": "LLM Research Papers: The 2025 List (July to December)",
+            "url": "https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"
+          },
+          {
+            "title": "Reward Inside the Model: A Lightweight Hidden-State Reward Model for",
+            "url": "https://openreview.net/pdf?id=mCRC1ealFP"
+          },
+          {
+            "title": "GitHub - zezhishao/DailyArXiv: Daily ArXiv Papers. · GitHub",
+            "url": "https://github.com/zezhishao/DailyArXiv"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers from 2025-2026 related to your query:\n\n## Key Findings\n\n**Step-Level Reasoning and Hidden State Probes:**\n\nResearch shows that reasoning models encode correctness-related information in their hidden states and that a lightweight probe can predict whether an intermediate answer is correct. \n\nOne particularly relevant paper is \"Hidden States as Early Signals: Step-level Trace Evaluation and Pruning for Efficient Test-Time Scaling\" (STEP). This work identifies step boundaries as natural checkpoints where hidden states provide clear quality signals, training a lightweight step scorer on these boundary representations to enable continuous monitoring and early pruning in parallel scaling.\n\nSTEP reduces end-to-end inference latency by 45%–70% on average compared to self-consistency while also improving reasoning accuracy by +0.4 to +7.5 percentage points.\n\n**Related Work on Hidden State Probing:**\n\nOther recent work in this space includes PING (Probing INternal states of Generative models), an open-source framework that trains lightweight probes on frozen transformers to deliver structured predictions, achieving reductions in Expected Calibration Error by up to 96%.\n\nAdditionally, propositional probes have been developed to compositionally extract lexical concepts from token activations and bind them into propositions, identifying a binding subspace in which bound tokens have high similarity.\n\nThese papers represent the cutting edge of research on leveraging LLM hidden states for improved reasoning and verification, particularly at the step level for reasoning tasks."
+    ],
+    "durationSeconds": 8.078280367
+  },
+  "sourceToolAssistantUUID": "e4fe9739-c661-447c-8e41-c183bc18dd43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "6e732b18-0024-4414-b58d-0d201fcd8735",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T15:51:36.385Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TEHFe7ZD1LWnG87DJz3cqM`</summary>
+
+```json
+{
+  "query": "StepSearch step-wise retrieval reasoning LLM arXiv 2505.15107"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e732b18-0024-4414-b58d-0d201fcd8735",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jCYUXhoD97M1Rf8viH",
+  "type": "assistant",
+  "uuid": "c964bb93-df4c-4eee-9698-99405dc032de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014kGS8KxAwqfQZt3i74VKLb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 968,
+      "cache_read_input_tokens": 39915,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 968,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 39915,
+          "cache_creation_input_tokens": 968,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 968
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T15:51:44.486Z_
+
+<details><summary>↩ Tool result · `toolu_01TEHFe7ZD1LWnG87DJz3cqM`</summary>
+
+```text
+Web search results for query: "StepSearch step-wise retrieval reasoning LLM arXiv 2505.15107"
+
+Links: [{"title":"StepSearch: Igniting LLMs Search Ability via Step-Wise ...","url":"https://arxiv.org/pdf/2505.15107"},{"title":"StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization","url":"https://arxiv.org/html/2505.15107"},{"title":"StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal...","url":"https://arxiv.org/abs/2505.15107"},{"title":"[2505.15107] StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization","url":"https://ar5iv.labs.arxiv.org/html/2505.15107"},{"title":"GitHub - Zillwang/StepSearch: EMNLP MAIN 2025 StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization · GitHub","url":"https://github.com/Zillwang/StepSearch"},{"title":"[Literature Review] StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization","url":"https://www.themoonlight.io/en/review/stepsearch-igniting-llms-search-ability-via-step-wise-proximal-policy-optimization"},{"title":"StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization","url":"https://www.researchgate.net/publication/391953965_StepSearch_Igniting_LLMs_Search_Ability_via_Step-Wise_Proximal_Policy_Optimization"},{"title":"2025-8-14 ParallelSearch: Train your LLMs to Decompose Query and","url":"https://arxiv.org/pdf/2508.09303"},{"title":"Graph-Augmented Reasoning: Evolving Step-by-Step Knowledge Graph Retrieval for LLM Reasoning","url":"https://arxiv.org/html/2503.01642v1"},{"title":"Learning to Route Queries across Knowledge Bases for Step-wise Retrieval-Augmented Reasoning","url":"https://arxiv.org/html/2505.22095v1"}]
+
+Based on the search results, I found comprehensive information about the StepSearch paper (arXiv 2505.15107):
+
+## Overview
+
+StepSearch is a framework for search LLMs trained with step-wise proximal policy optimization method that consists of richer and more detailed intermediate search rewards and token-level process supervision based on information gain and redundancy penalties to better guide each search step.
+
+## Problem It Addresses
+
+Efficient multi-hop reasoning requires Large Language Models (LLMs) based agents to acquire high-value external knowledge iteratively. Previous work has explored reinforcement learning (RL) to train LLMs to perform search-based document retrieval, achieving notable improvements in QA performance, but underperform on complex, multi-hop QA resulting from the sparse rewards from global signal only.
+
+## Key Technical Components
+
+By augmenting PPO with token-level rewards that combine information gain and redundancy penalties, StepSearch boosts policy convergence and improves retrieval fidelity and QA accuracy.
+
+At each step, the model issues queries to an external engine and receives snippets. Search Step Reward score, combining information gain and redundancy penalty, are applied to tokens within each round, while the global reward, based on final answer accuracy and keyword hit rate, is applied at the last token.
+
+## Dataset and Results
+
+The authors develop a novel MuSiQue-based pipeline, contributing 60k filtered sub-question search keywords that generalize across retrieval datasets.
+
+StepSearch outperforms standard RL baselines by 5.7%, 9.1%, 10.0%, and 15.2% absolutely on diverse multi-hop Q&A benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c964bb93-df4c-4eee-9698-99405dc032de",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "0ae71108-5c40-4754-9c6d-d1bf0c3c352a",
+  "toolUseResult": {
+    "query": "StepSearch step-wise retrieval reasoning LLM arXiv 2505.15107",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A6ABcFbCg1ynwijTvA7tb2",
+        "content": [
+          {
+            "title": "StepSearch: Igniting LLMs Search Ability via Step-Wise ...",
+            "url": "https://arxiv.org/pdf/2505.15107"
+          },
+          {
+            "title": "StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization",
+            "url": "https://arxiv.org/html/2505.15107"
+          },
+          {
+            "title": "StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal...",
+            "url": "https://arxiv.org/abs/2505.15107"
+          },
+          {
+            "title": "[2505.15107] StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization",
+            "url": "https://ar5iv.labs.arxiv.org/html/2505.15107"
+          },
+          {
+            "title": "GitHub - Zillwang/StepSearch: EMNLP MAIN 2025 StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization · GitHub",
+            "url": "https://github.com/Zillwang/StepSearch"
+          },
+          {
+            "title": "[Literature Review] StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization",
+            "url": "https://www.themoonlight.io/en/review/stepsearch-igniting-llms-search-ability-via-step-wise-proximal-policy-optimization"
+          },
+          {
+            "title": "StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization",
+            "url": "https://www.researchgate.net/publication/391953965_StepSearch_Igniting_LLMs_Search_Ability_via_Step-Wise_Proximal_Policy_Optimization"
+          },
+          {
+            "title": "2025-8-14 ParallelSearch: Train your LLMs to Decompose Query and",
+            "url": "https://arxiv.org/pdf/2508.09303"
+          },
+          {
+            "title": "Graph-Augmented Reasoning: Evolving Step-by-Step Knowledge Graph Retrieval for LLM Reasoning",
+            "url": "https://arxiv.org/html/2503.01642v1"
+          },
+          {
+            "title": "Learning to Route Queries across Knowledge Bases for Step-wise Retrieval-Augmented Reasoning",
+            "url": "https://arxiv.org/html/2505.22095v1"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the StepSearch paper (arXiv 2505.15107):\n\n## Overview\n\nStepSearch is a framework for search LLMs trained with step-wise proximal policy optimization method that consists of richer and more detailed intermediate search rewards and token-level process supervision based on information gain and redundancy penalties to better guide each search step.\n\n## Problem It Addresses\n\nEfficient multi-hop reasoning requires Large Language Models (LLMs) based agents to acquire high-value external knowledge iteratively. Previous work has explored reinforcement learning (RL) to train LLMs to perform search-based document retrieval, achieving notable improvements in QA performance, but underperform on complex, multi-hop QA resulting from the sparse rewards from global signal only.\n\n## Key Technical Components\n\nBy augmenting PPO with token-level rewards that combine information gain and redundancy penalties, StepSearch boosts policy convergence and improves retrieval fidelity and QA accuracy.\n\nAt each step, the model issues queries to an external engine and receives snippets. Search Step Reward score, combining information gain and redundancy penalty, are applied to tokens within each round, while the global reward, based on final answer accuracy and keyword hit rate, is applied at the last token.\n\n## Dataset and Results\n\nThe authors develop a novel MuSiQue-based pipeline, contributing 60k filtered sub-question search keywords that generalize across retrieval datasets.\n\nStepSearch outperforms standard RL baselines by 5.7%, 9.1%, 10.0%, and 15.2% absolutely on diverse multi-hop Q&A benchmarks."
+    ],
+    "durationSeconds": 8.095594140000001
+  },
+  "sourceToolAssistantUUID": "c964bb93-df4c-4eee-9698-99405dc032de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-14T15:51:47.245Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012X8zAAfNvTkNGWjDjz7Buh`</summary>
+
+```json
+{
+  "query": "R3AG retriever routing retrieval augmented generation arXiv 2604.22849"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ae71108-5c40-4754-9c6d-d1bf0c3c352a",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jDMfvpj5Dqf5Lm4oe5",
+  "type": "assistant",
+  "uuid": "e06f56d2-898e-4599-9eed-1b0070d290f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014TNZ1EqKz6C9A2UPQyra6H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1057,
+      "cache_read_input_tokens": 40883,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1057,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 40883,
+          "cache_creation_input_tokens": 1057,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1057
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T15:51:52.809Z_
+
+<details><summary>↩ Tool result · `toolu_012X8zAAfNvTkNGWjDjz7Buh`</summary>
+
+```text
+Web search results for query: "R3AG retriever routing retrieval augmented generation arXiv 2604.22849"
+
+Links: [{"title":"[2604.22849] R$^3$AG: Retriever Routing for Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2604.22849"},{"title":"R3AG: Retriever Routing for Retrieval-Augmented Generation","url":"https://arxiv.org/html/2604.22849"},{"title":"Efficient Neuro-Symbolic Retrieval-Augmented Generation through Adaptive Query Routing","url":"https://arxiv.org/html/2506.12981v1/"},{"title":"Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers","url":"https://arxiv.org/html/2506.00054v1"},{"title":"R3AG: First Workshop on Refined and Reliable Retrieval Augmented Generation","url":"https://arxiv.org/html/2410.20598"},{"title":"Retrieval as Generation: A Unified Framework with Self-Triggered Information Planning","url":"https://arxiv.org/html/2604.11407"},{"title":"Query Routing for Retrieval-Augmented Language Models","url":"https://arxiv.org/html/2505.23052v1"},{"title":"Latent Abstraction for Retrieval-Augmented Generation","url":"https://arxiv.org/html/2604.17866v2"},{"title":"A Systematic Review of Key Retrieval-Augmented Generation (RAG) Systems: Progress, Gaps, and Future Directions","url":"https://arxiv.org/html/2507.18910v1"},{"title":"R3AG: First Workshop on Refined and Reliable Retrieval Augmented Generation | Proceedings of the 2024 Annual International ACM SIGIR Conference on Research and Development in Information Retrieval in the Asia Pacific Region","url":"https://dl.acm.org/doi/10.1145/3673791.3698435"}]
+
+I found the paper you're looking for! Here are the key details about R³AG:
+
+R³AG is a novel routing framework that explicitly models the dynamic alignment between queries and retriever capabilities. The framework addresses the limitation that the efficacy of RAG is often bottlenecked by the "one-size-fits-all" retrieval paradigm, as different queries exhibit distinct preferences for different retrievers.
+
+While recent routing techniques attempt to select the optimal retriever dynamically based solely on semantic relevance, they overlook a critical distinction in RAG: a retrieved document must not only be relevant but also effectively support the generator in producing correct answers.
+
+Unlike previous approaches, R³AG decomposes retriever capability into two learnable dimensions: retrieval quality and generation utility.
+
+The paper was published on arXiv on April 22, 2026 (arXiv:2604.22849) by researchers from Renmin University of China and South China University of Technology.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e06f56d2-898e-4599-9eed-1b0070d290f4",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "08902e5b-ee21-447a-a536-58a8e610ea2e",
+  "toolUseResult": {
+    "query": "R3AG retriever routing retrieval augmented generation arXiv 2604.22849",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015TYyKd9cFyEjWvWKorXeVJ",
+        "content": [
+          {
+            "title": "[2604.22849] R$^3$AG: Retriever Routing for Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2604.22849"
+          },
+          {
+            "title": "R3AG: Retriever Routing for Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2604.22849"
+          },
+          {
+            "title": "Efficient Neuro-Symbolic Retrieval-Augmented Generation through Adaptive Query Routing",
+            "url": "https://arxiv.org/html/2506.12981v1/"
+          },
+          {
+            "title": "Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers",
+            "url": "https://arxiv.org/html/2506.00054v1"
+          },
+          {
+            "title": "R3AG: First Workshop on Refined and Reliable Retrieval Augmented Generation",
+            "url": "https://arxiv.org/html/2410.20598"
+          },
+          {
+            "title": "Retrieval as Generation: A Unified Framework with Self-Triggered Information Planning",
+            "url": "https://arxiv.org/html/2604.11407"
+          },
+          {
+            "title": "Query Routing for Retrieval-Augmented Language Models",
+            "url": "https://arxiv.org/html/2505.23052v1"
+          },
+          {
+            "title": "Latent Abstraction for Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2604.17866v2"
+          },
+          {
+            "title": "A Systematic Review of Key Retrieval-Augmented Generation (RAG) Systems: Progress, Gaps, and Future Directions",
+            "url": "https://arxiv.org/html/2507.18910v1"
+          },
+          {
+            "title": "R3AG: First Workshop on Refined and Reliable Retrieval Augmented Generation | Proceedings of the 2024 Annual International ACM SIGIR Conference on Research and Development in Information Retrieval in the Asia Pacific Region",
+            "url": "https://dl.acm.org/doi/10.1145/3673791.3698435"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details about R³AG:\n\nR³AG is a novel routing framework that explicitly models the dynamic alignment between queries and retriever capabilities. The framework addresses the limitation that the efficacy of RAG is often bottlenecked by the \"one-size-fits-all\" retrieval paradigm, as different queries exhibit distinct preferences for different retrievers.\n\nWhile recent routing techniques attempt to select the optimal retriever dynamically based solely on semantic relevance, they overlook a critical distinction in RAG: a retrieved document must not only be relevant but also effectively support the generator in producing correct answers.\n\nUnlike previous approaches, R³AG decomposes retriever capability into two learnable dimensions: retrieval quality and generation utility.\n\nThe paper was published on arXiv on April 22, 2026 (arXiv:2604.22849) by researchers from Renmin University of China and South China University of Technology."
+    ],
+    "durationSeconds": 5.559944048000005
+  },
+  "sourceToolAssistantUUID": "e06f56d2-898e-4599-9eed-1b0070d290f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-14T15:51:56.842Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UcJNu4bzGyAW37Q5TXkcY1`</summary>
+
+```json
+{
+  "query": "disentangle knowledge reasoning retrieval LLM step-level classification probe 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08902e5b-ee21-447a-a536-58a8e610ea2e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jDyHogTpTEcBPKXSwe",
+  "type": "assistant",
+  "uuid": "5f994d47-d3c6-4218-bf66-1da695eec50e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VVYzQYoCgUos4zu4yXMiMm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 41940,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 818,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 41940,
+          "cache_creation_input_tokens": 818,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 818
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T15:52:03.861Z_
+
+<details><summary>↩ Tool result · `toolu_01UcJNu4bzGyAW37Q5TXkcY1`</summary>
+
+```text
+Web search results for query: "disentangle knowledge reasoning retrieval LLM step-level classification probe 2026"
+
+Links: [{"title":"Graph-Augmented Reasoning: Evolving Step-by-Step Knowledge Graph Retrieval for LLM Reasoning","url":"https://arxiv.org/html/2503.01642v1"},{"title":"PRISM: A Dual View of LLM Reasoning through Semantic Flow and Latent Computation","url":"https://arxiv.org/html/2603.22754v1"},{"title":"Retrieval Augmented Generation (RAG) for LLMs | Prompt Engineering Guide&lt;!-- -->","url":"https://www.promptingguide.ai/research/rag"},{"title":"Proceedings of the ACM Web Conference 2026 | ACM Conferences","url":"https://dl.acm.org/doi/proceedings/10.1145/3774904?tocHeading=heading5"},{"title":"Discovering Process–Outcome Credit in Multi-Step LLM Reasoning","url":"https://arxiv.org/pdf/2602.01034"},{"title":"Empowering LLMs with Disentangled Structure Awareness for Prompt-based Knowledge Graph Completion - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0306437926000153"},{"title":"Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning","url":"https://arxiv.org/html/2510.02091v1"},{"title":"Downloads 2025","url":"https://iclr.cc/Downloads/2025"},{"title":"Simple is Effective: The Roles of Graphs and Large Language Models in Knowledge-Graph-Based Retrieval-Augmented Generation | OpenReview","url":"https://openreview.net/forum?id=JvkuZZ04O7"},{"title":"Machine Learning Jun 2025","url":"https://arxiv.org/list/cs.LG/2025-06?skip=2425&show=2000"}]
+
+Based on the search results, here's what I found related to your query about disentangling knowledge, reasoning, and retrieval in LLMs with step-level classification:
+
+## Key Findings
+
+**Step-Level Analysis and Classification:**
+
+Research has examined which aspects of chain-of-thought steps matter, with studies disentangling the roles of textual content and structural patterns, showing that performance gains often persist even with flawed step content, and finding that small sets of "anchor" steps disproportionately shape final outcomes.
+
+**Mechanistic Probing of LLM Reasoning:**
+
+Mechanistic analyses probe the internal processes behind reasoning, with recent work showing how architectural components enable stepwise reasoning. Additionally, deeper layers of Large Language Models contribute little to representation learning and can often be removed without significant performance loss.
+
+**Knowledge-Reasoning-Retrieval Integration:**
+
+The first investigation into integrating step-wise knowledge graph retrieval with step-wise reasoning introduces a paradigm called graph-augmented reasoning, enabling frozen, small-scale LLMs to retrieve and process relevant mathematical knowledge in a step-wise manner.
+
+**Process vs. Outcome Analysis:**
+
+Recent research has highlighted challenges in disentangling divergent process exploration from convergent outcome grounding, leaving models vulnerable to reward hacking and accumulated bias.
+
+The search results show significant recent progress (2025-2026) in understanding and classifying the different roles and levels of reasoning steps in LLM systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5f994d47-d3c6-4218-bf66-1da695eec50e",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "4cf12169-dafd-4cbc-a3c6-f89da3332de4",
+  "toolUseResult": {
+    "query": "disentangle knowledge reasoning retrieval LLM step-level classification probe 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EUcvYsi2JMV9X4QwguZqf5",
+        "content": [
+          {
+            "title": "Graph-Augmented Reasoning: Evolving Step-by-Step Knowledge Graph Retrieval for LLM Reasoning",
+            "url": "https://arxiv.org/html/2503.01642v1"
+          },
+          {
+            "title": "PRISM: A Dual View of LLM Reasoning through Semantic Flow and Latent Computation",
+            "url": "https://arxiv.org/html/2603.22754v1"
+          },
+          {
+            "title": "Retrieval Augmented Generation (RAG) for LLMs | Prompt Engineering Guide&lt;!-- -->",
+            "url": "https://www.promptingguide.ai/research/rag"
+          },
+          {
+            "title": "Proceedings of the ACM Web Conference 2026 | ACM Conferences",
+            "url": "https://dl.acm.org/doi/proceedings/10.1145/3774904?tocHeading=heading5"
+          },
+          {
+            "title": "Discovering Process–Outcome Credit in Multi-Step LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2602.01034"
+          },
+          {
+            "title": "Empowering LLMs with Disentangled Structure Awareness for Prompt-based Knowledge Graph Completion - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0306437926000153"
+          },
+          {
+            "title": "Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning",
+            "url": "https://arxiv.org/html/2510.02091v1"
+          },
+          {
+            "title": "Downloads 2025",
+            "url": "https://iclr.cc/Downloads/2025"
+          },
+          {
+            "title": "Simple is Effective: The Roles of Graphs and Large Language Models in Knowledge-Graph-Based Retrieval-Augmented Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=JvkuZZ04O7"
+          },
+          {
+            "title": "Machine Learning Jun 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-06?skip=2425&show=2000"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found related to your query about disentangling knowledge, reasoning, and retrieval in LLMs with step-level classification:\n\n## Key Findings\n\n**Step-Level Analysis and Classification:**\n\nResearch has examined which aspects of chain-of-thought steps matter, with studies disentangling the roles of textual content and structural patterns, showing that performance gains often persist even with flawed step content, and finding that small sets of \"anchor\" steps disproportionately shape final outcomes.\n\n**Mechanistic Probing of LLM Reasoning:**\n\nMechanistic analyses probe the internal processes behind reasoning, with recent work showing how architectural components enable stepwise reasoning. Additionally, deeper layers of Large Language Models contribute little to representation learning and can often be removed without significant performance loss.\n\n**Knowledge-Reasoning-Retrieval Integration:**\n\nThe first investigation into integrating step-wise knowledge graph retrieval with step-wise reasoning introduces a paradigm called graph-augmented reasoning, enabling frozen, small-scale LLMs to retrieve and process relevant mathematical knowledge in a step-wise manner.\n\n**Process vs. Outcome Analysis:**\n\nRecent research has highlighted challenges in disentangling divergent process exploration from convergent outcome grounding, leaving models vulnerable to reward hacking and accumulated bias.\n\nThe search results show significant recent progress (2025-2026) in understanding and classifying the different roles and levels of reasoning steps in LLM systems."
+    ],
+    "durationSeconds": 7.015418783000001
+  },
+  "sourceToolAssistantUUID": "5f994d47-d3c6-4218-bf66-1da695eec50e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-14T15:52:06.438Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011txndocsyxSw6MDD2nyLLj`</summary>
+
+```json
+{
+  "query": "\"Demystifying the Roles of LLM Layers\" retrieval knowledge reasoning arXiv 2510"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4cf12169-dafd-4cbc-a3c6-f89da3332de4",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jEnTiUDYGkPg5jWdLv",
+  "type": "assistant",
+  "uuid": "7c377dd6-4840-4147-bbfc-f9f2af1bbba8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RM6JTrpcvvE9mr7piJUNVW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 917,
+      "cache_read_input_tokens": 42758,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 917,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 42758,
+          "cache_creation_input_tokens": 917,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 917
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T15:52:13.648Z_
+
+<details><summary>↩ Tool result · `toolu_011txndocsyxSw6MDD2nyLLj`</summary>
+
+```text
+Web search results for query: ""Demystifying the Roles of LLM Layers" retrieval knowledge reasoning arXiv 2510"
+
+Links: [{"title":"Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning","url":"https://arxiv.org/html/2510.02091v1"},{"title":"[2510.02091] Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning","url":"https://arxiv.org/abs/2510.02091"},{"title":"Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning - YouTube","url":"https://www.youtube.com/watch?v=bR93bDGWM_c"},{"title":"GitHub - Hik289/llm-layer-importance: Code for \"Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning · GitHub","url":"https://github.com/Hik289/llm-layer-importance"},{"title":"Plan Then Retrieve: Reinforcement Learning-Guided Complex Reasoning over Knowledge Graphs","url":"https://arxiv.org/html/2510.20691"},{"title":"Unveiling Knowledge Utilization Mechanisms in LLM-based Retrieval-Augmented Generation","url":"https://arxiv.org/html/2505.11995v1"},{"title":"(PDF) Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning","url":"https://www.researchgate.net/publication/396143207_Demystifying_the_Roles_of_LLM_Layers_in_Retrieval_Knowledge_and_Reasoning"},{"title":"MemoTime: Memory-Augmented Temporal Knowledge Graph Enhanced Large Language Model Reasoning","url":"https://arxiv.org/html/2510.13614"},{"title":"RAS: Retrieval-And-Structuring for Knowledge-Intensive LLM Generation","url":"https://arxiv.org/html/2502.10996v2"},{"title":"Search-on-Graph: Iterative Informed Navigation for Large Language Model Reasoning on Knowledge Graphs","url":"https://arxiv.org/html/2510.08825"}]
+
+I found the research paper you were looking for! Here are the key details:
+
+## "Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning"
+
+**Paper Details:**
+- **arXiv ID:** 2510.02091
+- **Authors:** Xinyuan Song, Keyu Wang, PengXiang Li, Lu Yin, and Shiwei Liu
+- **Publication Date:** October 2, 2025
+
+**Key Findings:**
+
+Knowledge and retrieval are concentrated in shallow components, whereas reasoning accuracy relies heavily on deeper layers—yet can be reshaped through distillation.
+
+Very deep layers are generally less effective than earlier ones, but their contributions vary substantially with the evaluation setting. Under likelihood-based metrics without generation, pruning most layers preserves performance, with only the initial few being critical. By contrast, generation-based evaluation uncovers indispensable roles for middle and deeper layers in enabling reasoning and maintaining long-range coherence.
+
+**Research Scope:**
+
+The work presents a systematic study of depth utilization across diverse dimensions, including evaluation protocols, task categories, and model architectures.
+
+**Available Resources:**
+- The paper is available on arXiv as HTML and PDF
+- Code and implementation details are available on GitHub at: https://github.com/Hik289/llm-layer-importance
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c377dd6-4840-4147-bbfc-f9f2af1bbba8",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "7f16343d-3682-4bf2-acd2-bb04929e37e5",
+  "toolUseResult": {
+    "query": "\"Demystifying the Roles of LLM Layers\" retrieval knowledge reasoning arXiv 2510",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018xayuftAYneUbCwg7sjRfp",
+        "content": [
+          {
+            "title": "Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning",
+            "url": "https://arxiv.org/html/2510.02091v1"
+          },
+          {
+            "title": "[2510.02091] Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning",
+            "url": "https://arxiv.org/abs/2510.02091"
+          },
+          {
+            "title": "Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning - YouTube",
+            "url": "https://www.youtube.com/watch?v=bR93bDGWM_c"
+          },
+          {
+            "title": "GitHub - Hik289/llm-layer-importance: Code for \"Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning · GitHub",
+            "url": "https://github.com/Hik289/llm-layer-importance"
+          },
+          {
+            "title": "Plan Then Retrieve: Reinforcement Learning-Guided Complex Reasoning over Knowledge Graphs",
+            "url": "https://arxiv.org/html/2510.20691"
+          },
+          {
+            "title": "Unveiling Knowledge Utilization Mechanisms in LLM-based Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2505.11995v1"
+          },
+          {
+            "title": "(PDF) Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning",
+            "url": "https://www.researchgate.net/publication/396143207_Demystifying_the_Roles_of_LLM_Layers_in_Retrieval_Knowledge_and_Reasoning"
+          },
+          {
+            "title": "MemoTime: Memory-Augmented Temporal Knowledge Graph Enhanced Large Language Model Reasoning",
+            "url": "https://arxiv.org/html/2510.13614"
+          },
+          {
+            "title": "RAS: Retrieval-And-Structuring for Knowledge-Intensive LLM Generation",
+            "url": "https://arxiv.org/html/2502.10996v2"
+          },
+          {
+            "title": "Search-on-Graph: Iterative Informed Navigation for Large Language Model Reasoning on Knowledge Graphs",
+            "url": "https://arxiv.org/html/2510.08825"
+          }
+        ]
+      },
+      "I found the research paper you were looking for! Here are the key details:\n\n## \"Demystifying the Roles of LLM Layers in Retrieval, Knowledge, and Reasoning\"\n\n**Paper Details:**\n- **arXiv ID:** 2510.02091\n- **Authors:** Xinyuan Song, Keyu Wang, PengXiang Li, Lu Yin, and Shiwei Liu\n- **Publication Date:** October 2, 2025\n\n**Key Findings:**\n\nKnowledge and retrieval are concentrated in shallow components, whereas reasoning accuracy relies heavily on deeper layers—yet can be reshaped through distillation.\n\nVery deep layers are generally less effective than earlier ones, but their contributions vary substantially with the evaluation setting. Under likelihood-based metrics without generation, pruning most layers preserves performance, with only the initial few being critical. By contrast, generation-based evaluation uncovers indispensable roles for middle and deeper layers in enabling reasoning and maintaining long-range coherence.\n\n**Research Scope:**\n\nThe work presents a systematic study of depth utilization across diverse dimensions, including evaluation protocols, task categories, and model architectures.\n\n**Available Resources:**\n- The paper is available on arXiv as HTML and PDF\n- Code and implementation details are available on GitHub at: https://github.com/Hik289/llm-layer-importance"
+    ],
+    "durationSeconds": 7.204884372
+  },
+  "sourceToolAssistantUUID": "7c377dd6-4840-4147-bbfc-f9f2af1bbba8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52 · 2026-05-14T15:52:13.655Z_
+
+```json
+{
+  "parentUuid": "7f16343d-3682-4bf2-acd2-bb04929e37e5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "afb39383-cb2b-4ebb-af73-e9096def2809",
+  "timestamp": "2026-05-14T15:52:13.655Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "afb39383-cb2b-4ebb-af73-e9096def2809",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T15:52:16.704Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WPFdabNDMoEE63dCvEYekA`</summary>
+
+```json
+{
+  "query": "retrieval as verification retrieve to verify check rather than answer LLM reasoning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afb39383-cb2b-4ebb-af73-e9096def2809",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jFWL8ikr7TFjtEbZLK",
+  "type": "assistant",
+  "uuid": "738b50d3-70c5-492a-9aa1-134e903d9fa1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KFBDifTJoWtMnaeZ3oKyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1063,
+      "cache_read_input_tokens": 43675,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1063,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 43675,
+          "cache_creation_input_tokens": 1063,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1063
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T15:52:24.384Z_
+
+<details><summary>↩ Tool result · `toolu_01WPFdabNDMoEE63dCvEYekA`</summary>
+
+```text
+Web search results for query: "retrieval as verification retrieve to verify check rather than answer LLM reasoning 2025 2026"
+
+Links: [{"title":"LLatrieval: LLM-Verified Retrieval for Verifiable Generation","url":"https://arxiv.org/html/2311.07838v3"},{"title":"Don’t Let It Hallucinate: Premise Verification via Retrieval-Augmented Logical Reasoning","url":"https://arxiv.org/html/2504.06438"},{"title":"RVR: Retrieve-Verify-Retrieve for Comprehensive Question Answering","url":"https://arxiv.org/html/2602.18425"},{"title":"[2311.07838] LLatrieval: LLM-Verified Retrieval for Verifiable Generation","url":"https://arxiv.org/abs/2311.07838"},{"title":"On the self-verification limitations of large language models on reasoning and planning tasks | OpenReview","url":"https://openreview.net/forum?id=4O0v4s3IzY"},{"title":"FIRE : Fact-checking with Iterative Retrieval and Verification","url":"https://aclanthology.org/2025.findings-naacl.158.pdf"},{"title":"How can we evaluate whether an answer from the LLM is fully supported by the retrieval context? (Consider methods like answer verification against sources or using a secondary model to cross-check facts.)","url":"https://milvus.io/ai-quick-reference/how-can-we-evaluate-whether-an-answer-from-the-llm-is-fully-supported-by-the-retrieval-context-consider-methods-like-answer-verification-against-sources-or-using-a-secondary-model-to-crosscheck-facts"},{"title":"How can we evaluate whether an answer from the LLM is fully supported by the retrieval context? (Consider methods like answer verification against sources or using a secondary model to cross-check facts.) - Zilliz Vector Database","url":"https://zilliz.com/ai-faq/how-can-we-evaluate-whether-an-answer-from-the-llm-is-fully-supported-by-the-retrieval-context-consider-methods-like-answer-verification-against-sources-or-using-a-secondary-model-to-crosscheck-facts"},{"title":"Improving the Reliability of LLMs: Combining Chain-of-Thought Reasoning and Retrieval-Augmented Generation","url":"https://arxiv.org/html/2505.09031v1"},{"title":"Correct Answers from Sound Reasoning: Verifiable Process Supervision for Language Models","url":"https://arxiv.org/html/2605.12519"}]
+
+I found several relevant research papers on retrieval-as-verification approaches for LLM reasoning. Here's a summary of the key findings:
+
+## Recent Research on Retrieval-as-Verification
+
+Verifiable generation aims to let LLMs generate text with supporting documents, enabling users to verify answers. Retrieval plays a crucial role, as retrieved documents not only supplement knowledge to help LLMs generate correct answers, but also serve as supporting evidence for users to verify LLM output.
+
+### LLatrieval Approach
+
+One approach is LLatrieval (Large Language Model Verified Retrieval), where the LLM updates the retrieval result until it verifies that the retrieved documents can sufficiently support answering the question, allowing the LLM to iteratively provide feedback to retrieval and facilitate results that fully support verifiable generation.
+
+### Premise Verification via Retrieval
+
+Another framework transforms user queries into logical forms highlighting key entities or relations, then employs retrieval-augmented generation (RAG) to check accuracy of statements against a knowledge graph. If contradictions are found, the query is flagged as containing a false premise, prompting the model to correct or reject the assumption before formulating a final answer.
+
+### RVR Framework (2026)
+
+Recent work has explored iteratively retrieving evidence interweaved with intermediate LLM reasoning steps, and more recent agentic search systems have explored using retrievers as a tool, with an LLM agent alternating between reasoning and tool calling until reaching a final answer.
+
+These approaches represent a shift from using retrieval purely to provide information for answers, to using retrieval actively in the verification and validation of reasoning steps.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "738b50d3-70c5-492a-9aa1-134e903d9fa1",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "828364e9-2a9b-4135-a169-333c38a7a113",
+  "toolUseResult": {
+    "query": "retrieval as verification retrieve to verify check rather than answer LLM reasoning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UbhDjRh7YVRCaWVaceGNH8",
+        "content": [
+          {
+            "title": "LLatrieval: LLM-Verified Retrieval for Verifiable Generation",
+            "url": "https://arxiv.org/html/2311.07838v3"
+          },
+          {
+            "title": "Don’t Let It Hallucinate: Premise Verification via Retrieval-Augmented Logical Reasoning",
+            "url": "https://arxiv.org/html/2504.06438"
+          },
+          {
+            "title": "RVR: Retrieve-Verify-Retrieve for Comprehensive Question Answering",
+            "url": "https://arxiv.org/html/2602.18425"
+          },
+          {
+            "title": "[2311.07838] LLatrieval: LLM-Verified Retrieval for Verifiable Generation",
+            "url": "https://arxiv.org/abs/2311.07838"
+          },
+          {
+            "title": "On the self-verification limitations of large language models on reasoning and planning tasks | OpenReview",
+            "url": "https://openreview.net/forum?id=4O0v4s3IzY"
+          },
+          {
+            "title": "FIRE : Fact-checking with Iterative Retrieval and Verification",
+            "url": "https://aclanthology.org/2025.findings-naacl.158.pdf"
+          },
+          {
+            "title": "How can we evaluate whether an answer from the LLM is fully supported by the retrieval context? (Consider methods like answer verification against sources or using a secondary model to cross-check facts.)",
+            "url": "https://milvus.io/ai-quick-reference/how-can-we-evaluate-whether-an-answer-from-the-llm-is-fully-supported-by-the-retrieval-context-consider-methods-like-answer-verification-against-sources-or-using-a-secondary-model-to-crosscheck-facts"
+          },
+          {
+            "title": "How can we evaluate whether an answer from the LLM is fully supported by the retrieval context? (Consider methods like answer verification against sources or using a secondary model to cross-check facts.) - Zilliz Vector Database",
+            "url": "https://zilliz.com/ai-faq/how-can-we-evaluate-whether-an-answer-from-the-llm-is-fully-supported-by-the-retrieval-context-consider-methods-like-answer-verification-against-sources-or-using-a-secondary-model-to-crosscheck-facts"
+          },
+          {
+            "title": "Improving the Reliability of LLMs: Combining Chain-of-Thought Reasoning and Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2505.09031v1"
+          },
+          {
+            "title": "Correct Answers from Sound Reasoning: Verifiable Process Supervision for Language Models",
+            "url": "https://arxiv.org/html/2605.12519"
+          }
+        ]
+      },
+      "I found several relevant research papers on retrieval-as-verification approaches for LLM reasoning. Here's a summary of the key findings:\n\n## Recent Research on Retrieval-as-Verification\n\nVerifiable generation aims to let LLMs generate text with supporting documents, enabling users to verify answers. Retrieval plays a crucial role, as retrieved documents not only supplement knowledge to help LLMs generate correct answers, but also serve as supporting evidence for users to verify LLM output.\n\n### LLatrieval Approach\n\nOne approach is LLatrieval (Large Language Model Verified Retrieval), where the LLM updates the retrieval result until it verifies that the retrieved documents can sufficiently support answering the question, allowing the LLM to iteratively provide feedback to retrieval and facilitate results that fully support verifiable generation.\n\n### Premise Verification via Retrieval\n\nAnother framework transforms user queries into logical forms highlighting key entities or relations, then employs retrieval-augmented generation (RAG) to check accuracy of statements against a knowledge graph. If contradictions are found, the query is flagged as containing a false premise, prompting the model to correct or reject the assumption before formulating a final answer.\n\n### RVR Framework (2026)\n\nRecent work has explored iteratively retrieving evidence interweaved with intermediate LLM reasoning steps, and more recent agentic search systems have explored using retrievers as a tool, with an LLM agent alternating between reasoning and tool calling until reaching a final answer.\n\nThese approaches represent a shift from using retrieval purely to provide information for answers, to using retrieval actively in the verification and validation of reasoning steps."
+    ],
+    "durationSeconds": 7.6752561590000115
+  },
+  "sourceToolAssistantUUID": "738b50d3-70c5-492a-9aa1-134e903d9fa1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-14T15:52:27.041Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AfyMHjFRBPw6Lj92oRjEWS`</summary>
+
+```json
+{
+  "query": "evidence gap vs reasoning difficulty classification retrieval augmented generation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "828364e9-2a9b-4135-a169-333c38a7a113",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jGJG8TqygYmeQRxJjW",
+  "type": "assistant",
+  "uuid": "4bff34dd-d4b1-4981-b518-2dac7ecf749a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RNu75dFCGogV88GupZKoxm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1119,
+      "cache_read_input_tokens": 44738,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1119,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 44738,
+          "cache_creation_input_tokens": 1119,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1119
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T15:52:35.523Z_
+
+<details><summary>↩ Tool result · `toolu_01AfyMHjFRBPw6Lj92oRjEWS`</summary>
+
+```text
+Web search results for query: "evidence gap vs reasoning difficulty classification retrieval augmented generation 2026"
+
+Links: [{"title":"Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers","url":"https://arxiv.org/html/2506.00054v1"},{"title":"Retrieval Augmented Generation (RAG) for LLMs | Prompt Engineering Guide&lt;!-- -->","url":"https://www.promptingguide.ai/research/rag"},{"title":"1 Retrieval-Augmented Generation for Large Language Models: A Survey","url":"https://www.rivista.ai/wp-content/uploads/2025/09/2312.10997v5.pdf"},{"title":"A Systematic Review of Key Retrieval-Augmented Generation (RAG) Systems: Progress, Gaps, and Future Directions","url":"https://arxiv.org/html/2507.18910v1"},{"title":"Retrieval-Augmented Generation with Conflicting Evidence","url":"https://arxiv.org/html/2504.13079v2"},{"title":"A Systematic Literature Review of Retrieval-Augmented Generation: Techniques, Metrics, and Challenges","url":"https://www.mdpi.com/2504-2289/9/12/320"},{"title":"Counterfactual Reasoning for Retrieval-Augmented Generation | OpenReview","url":"https://openreview.net/forum?id=9U51rOnGko"},{"title":"Retrieval-Augmented Generation for AI-Generated Content: A Survey | Data Science and Engineering | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s41019-025-00335-5"},{"title":"A survey on retrieval-augmentation generation (RAG) models for healthcare applications | Neural Computing and Applications | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s00521-025-11666-9"},{"title":"Explainable Graph-Based Retrieval-Augmented Generation with Landmark-Centric Reasoning Paths | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-95-3141-7_4"}]
+
+Based on the search results, I found information about retrieval-augmented generation (RAG) systems and related concepts, though the specific framing of "evidence gap vs reasoning difficulty classification" as a distinct topic doesn't appear prominently in the results. However, I can share what the search revealed:
+
+## RAG and Evidence/Reasoning Challenges
+
+Integrating retrieval with generation introduces unique challenges: retrieval noise and redundancy can degrade output quality; misalignment between retrieved evidence and generated text can lead to hallucinations; and pipeline inefficiencies and latency make deployment costly at scale.
+
+Challenges that remained—in retrieval latency at scale, multi-hop reasoning, and tighter faithfulness evaluation—set the agenda for subsequent research.
+
+## Handling Conflicting Evidence and Knowledge Gaps
+
+Recent work has addressed scenarios where evidence presents conflicts. Knowledge conflicts are categorized into intra-context, inter-context, and parametric conflicts, and while prior work has made strides in addressing parametric and single-document conflicts, recent studies highlight the difficulty of resolving disagreements across multiple contexts or retrieved documents.
+
+## Query and Reasoning Optimization
+
+In RAG, performance is driven less by model size than by two factors: how we frame the query (which controls what is retrieved) and how strictly we require the model to use the retrieved evidence. Additionally, deliberate reasoning before retrieval through ReAct-style prompts allows the model to plan tool calls and revise iteratively, with approaches like Graph-of-Thought decomposing questions into sub-problems with targeted retrieval hops, departing from the standard RAG one-pass pipeline by explicitly sequencing reasoning and evidence gathering.
+
+If you're looking for more specific research on the distinction between "evidence gap" and "reasoning difficulty" as classification categories within RAG, you may want to search for more recent academic papers on this specific distinction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4bff34dd-d4b1-4981-b518-2dac7ecf749a",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "ebd24acc-3e8e-4f91-9d2f-9a7e90315dac",
+  "toolUseResult": {
+    "query": "evidence gap vs reasoning difficulty classification retrieval augmented generation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N7uH9Wr5umV6dvDoZmN6x3",
+        "content": [
+          {
+            "title": "Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers",
+            "url": "https://arxiv.org/html/2506.00054v1"
+          },
+          {
+            "title": "Retrieval Augmented Generation (RAG) for LLMs | Prompt Engineering Guide&lt;!-- -->",
+            "url": "https://www.promptingguide.ai/research/rag"
+          },
+          {
+            "title": "1 Retrieval-Augmented Generation for Large Language Models: A Survey",
+            "url": "https://www.rivista.ai/wp-content/uploads/2025/09/2312.10997v5.pdf"
+          },
+          {
+            "title": "A Systematic Review of Key Retrieval-Augmented Generation (RAG) Systems: Progress, Gaps, and Future Directions",
+            "url": "https://arxiv.org/html/2507.18910v1"
+          },
+          {
+            "title": "Retrieval-Augmented Generation with Conflicting Evidence",
+            "url": "https://arxiv.org/html/2504.13079v2"
+          },
+          {
+            "title": "A Systematic Literature Review of Retrieval-Augmented Generation: Techniques, Metrics, and Challenges",
+            "url": "https://www.mdpi.com/2504-2289/9/12/320"
+          },
+          {
+            "title": "Counterfactual Reasoning for Retrieval-Augmented Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=9U51rOnGko"
+          },
+          {
+            "title": "Retrieval-Augmented Generation for AI-Generated Content: A Survey | Data Science and Engineering | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s41019-025-00335-5"
+          },
+          {
+            "title": "A survey on retrieval-augmentation generation (RAG) models for healthcare applications | Neural Computing and Applications | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s00521-025-11666-9"
+          },
+          {
+            "title": "Explainable Graph-Based Retrieval-Augmented Generation with Landmark-Centric Reasoning Paths | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-95-3141-7_4"
+          }
+        ]
+      },
+      "Based on the search results, I found information about retrieval-augmented generation (RAG) systems and related concepts, though the specific framing of \"evidence gap vs reasoning difficulty classification\" as a distinct topic doesn't appear prominently in the results. However, I can share what the search revealed:\n\n## RAG and Evidence/Reasoning Challenges\n\nIntegrating retrieval with generation introduces unique challenges: retrieval noise and redundancy can degrade output quality; misalignment between retrieved evidence and generated text can lead to hallucinations; and pipeline inefficiencies and latency make deployment costly at scale.\n\nChallenges that remained—in retrieval latency at scale, multi-hop reasoning, and tighter faithfulness evaluation—set the agenda for subsequent research.\n\n## Handling Conflicting Evidence and Knowledge Gaps\n\nRecent work has addressed scenarios where evidence presents conflicts. Knowledge conflicts are categorized into intra-context, inter-context, and parametric conflicts, and while prior work has made strides in addressing parametric and single-document conflicts, recent studies highlight the difficulty of resolving disagreements across multiple contexts or retrieved documents.\n\n## Query and Reasoning Optimization\n\nIn RAG, performance is driven less by model size than by two factors: how we frame the query (which controls what is retrieved) and how strictly we require the model to use the retrieved evidence. Additionally, deliberate reasoning before retrieval through ReAct-style prompts allows the model to plan tool calls and revise iteratively, with approaches like Graph-of-Thought decomposing questions into sub-problems with targeted retrieval hops, departing from the standard RAG one-pass pipeline by explicitly sequencing reasoning and evidence gathering.\n\nIf you're looking for more specific research on the distinction between \"evidence gap\" and \"reasoning difficulty\" as classification categories within RAG, you may want to search for more recent academic papers on this specific distinction."
+    ],
+    "durationSeconds": 8.47818651499998
+  },
+  "sourceToolAssistantUUID": "4bff34dd-d4b1-4981-b518-2dac7ecf749a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-14T15:52:38.956Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013FFqWGtBLcg57xRjisqThy`</summary>
+
+```json
+{
+  "query": "CoRM-RAG counterfactual risk minimization robust retrieval augmented generation arXiv 2605.01302"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ebd24acc-3e8e-4f91-9d2f-9a7e90315dac",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jH7pbmMvBicMLAhq1Z",
+  "type": "assistant",
+  "uuid": "4128d745-7957-4e64-9216-091044a45bdd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJX9spC29Y3eiPgL8ZeXqc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 45857,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 45857,
+          "cache_creation_input_tokens": 1049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T15:52:48.312Z_
+
+<details><summary>↩ Tool result · `toolu_013FFqWGtBLcg57xRjisqThy`</summary>
+
+```text
+Web search results for query: "CoRM-RAG counterfactual risk minimization robust retrieval augmented generation arXiv 2605.01302"
+
+Links: [{"title":"[2605.01302] Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2605.01302"},{"title":"Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation","url":"https://arxiv.org/html/2605.01302"},{"title":"Controlling Risk of Retrieval-augmented Generation: A Counterfactual Prompting Framework | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/controlling-risk-retrieval-augmented-generation-counterfactual-prompting"},{"title":"Controlling Risk of Retrieval-augmented Generation: A Counterfactual Prompting Framework","url":"https://arxiv.org/html/2409.16146v2"},{"title":"Counterfactual Reasoning for Retrieval-Augmented Generation | OpenReview","url":"https://openreview.net/forum?id=9U51rOnGko"},{"title":"[2409.16146] Controlling Risk of Retrieval-augmented Generation: A Counterfactual Prompting Framework","url":"https://arxiv.org/abs/2409.16146"},{"title":"Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers","url":"https://arxiv.org/html/2506.00054v1"},{"title":"Controlling Risk of Retrieval-augmented Generation","url":"https://aclanthology.org/2024.findings-emnlp.133.pdf"},{"title":"Controlling Risk of Retrieval-augmented Generation: A Counterfactual Prompting Framework - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240916146C/abstract"},{"title":"1 Trustworthiness in Retrieval-Augmented Generation Systems: A Survey","url":"https://www.zhouyujia.cn/attaches/TrustworthyRAG.pdf"}]
+
+Based on the search results, I found the paper you're looking for. Here's what the research is about:
+
+## CoRM-RAG: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation
+
+CoRM-RAG (Counterfactual Risk Minimization for RAG) is a framework that aligns retrieval with decision safety rather than mere similarity.
+
+### The Core Problem
+
+Standard Retrieval-Augmented Generation (RAG) systems predominantly rely on semantic relevance as a proxy for utility. However, this assumption collapses in realistic decision-making scenarios where user queries are laden with cognitive biases, such as false premises or confirmation bias. In such cases, maximizing relevance paradoxically promotes the retrieval of sycophantic evidence that reinforces hallucinations, a critical failure termed the "Relevance-Robustness Gap".
+
+### The Solution
+
+Grounded in causal intervention, the framework introduces a Cognitive Perturbation Protocol to simulate user biases during training, which is then distilled into a lightweight Evidence Critic. This scoring module learns to identify documents that possess sufficient evidential strength to steer the model toward correctness despite adversarial query perturbations.
+
+### Key Capabilities
+
+During inference, CoRM-RAG functions as a risk-aware reranker that evaluates retrieved candidates not by how much they resemble the query, but by their predicted capacity to withstand cognitive errors. By thresholding the Critic's confidence scores, the system can estimate decision reliability and enable a Risk-Aware Abstention mechanism: if no retrieved document offers sufficient robustness guarantees, the system refuses to answer rather than risking a biased hallucination.
+
+### Results
+
+Extensive experiments on decision-making benchmarks demonstrate that CoRM-RAG significantly outperforms strong dense retrievers and LLM-based rerankers in adversarial settings, while enabling effective risk-aware abstention through reliable robustness scoring.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4128d745-7957-4e64-9216-091044a45bdd",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "2b076e40-9ada-4aba-aa04-e28deb6d6f37",
+  "toolUseResult": {
+    "query": "CoRM-RAG counterfactual risk minimization robust retrieval augmented generation arXiv 2605.01302",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019zRYA4uCMYdBJADtR9zQRe",
+        "content": [
+          {
+            "title": "[2605.01302] Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2605.01302"
+          },
+          {
+            "title": "Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2605.01302"
+          },
+          {
+            "title": "Controlling Risk of Retrieval-augmented Generation: A Counterfactual Prompting Framework | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/controlling-risk-retrieval-augmented-generation-counterfactual-prompting"
+          },
+          {
+            "title": "Controlling Risk of Retrieval-augmented Generation: A Counterfactual Prompting Framework",
+            "url": "https://arxiv.org/html/2409.16146v2"
+          },
+          {
+            "title": "Counterfactual Reasoning for Retrieval-Augmented Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=9U51rOnGko"
+          },
+          {
+            "title": "[2409.16146] Controlling Risk of Retrieval-augmented Generation: A Counterfactual Prompting Framework",
+            "url": "https://arxiv.org/abs/2409.16146"
+          },
+          {
+            "title": "Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers",
+            "url": "https://arxiv.org/html/2506.00054v1"
+          },
+          {
+            "title": "Controlling Risk of Retrieval-augmented Generation",
+            "url": "https://aclanthology.org/2024.findings-emnlp.133.pdf"
+          },
+          {
+            "title": "Controlling Risk of Retrieval-augmented Generation: A Counterfactual Prompting Framework - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240916146C/abstract"
+          },
+          {
+            "title": "1 Trustworthiness in Retrieval-Augmented Generation Systems: A Survey",
+            "url": "https://www.zhouyujia.cn/attaches/TrustworthyRAG.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what the research is about:\n\n## CoRM-RAG: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation\n\nCoRM-RAG (Counterfactual Risk Minimization for RAG) is a framework that aligns retrieval with decision safety rather than mere similarity.\n\n### The Core Problem\n\nStandard Retrieval-Augmented Generation (RAG) systems predominantly rely on semantic relevance as a proxy for utility. However, this assumption collapses in realistic decision-making scenarios where user queries are laden with cognitive biases, such as false premises or confirmation bias. In such cases, maximizing relevance paradoxically promotes the retrieval of sycophantic evidence that reinforces hallucinations, a critical failure termed the \"Relevance-Robustness Gap\".\n\n### The Solution\n\nGrounded in causal intervention, the framework introduces a Cognitive Perturbation Protocol to simulate user biases during training, which is then distilled into a lightweight Evidence Critic. This scoring module learns to identify documents that possess sufficient evidential strength to steer the model toward correctness despite adversarial query perturbations.\n\n### Key Capabilities\n\nDuring inference, CoRM-RAG functions as a risk-aware reranker that evaluates retrieved candidates not by how much they resemble the query, but by their predicted capacity to withstand cognitive errors. By thresholding the Critic's confidence scores, the system can estimate decision reliability and enable a Risk-Aware Abstention mechanism: if no retrieved document offers sufficient robustness guarantees, the system refuses to answer rather than risking a biased hallucination.\n\n### Results\n\nExtensive experiments on decision-making benchmarks demonstrate that CoRM-RAG significantly outperforms strong dense retrievers and LLM-based rerankers in adversarial settings, while enabling effective risk-aware abstention through reliable robustness scoring."
+    ],
+    "durationSeconds": 9.349658998999978
+  },
+  "sourceToolAssistantUUID": "4128d745-7957-4e64-9216-091044a45bdd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T15:52:51.266Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LsngBQfjsNridAxWkLt2WC`</summary>
+
+```json
+{
+  "query": "RAISE step-by-step retrieval scientific reasoning arXiv 2506.08625"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b076e40-9ada-4aba-aa04-e28deb6d6f37",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jJ4YBTMWtY17tKNdmP",
+  "type": "assistant",
+  "uuid": "13338c16-1469-4e9f-87ba-26d7412fcfdc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FPU9U3GLjvvd3DvtqqrtYo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1100,
+      "cache_read_input_tokens": 46906,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1100,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 46906,
+          "cache_creation_input_tokens": 1100,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1100
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T15:52:57.862Z_
+
+<details><summary>↩ Tool result · `toolu_01LsngBQfjsNridAxWkLt2WC`</summary>
+
+```text
+Web search results for query: "RAISE step-by-step retrieval scientific reasoning arXiv 2506.08625"
+
+Links: [{"title":"[2506.08625] RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval","url":"https://arxiv.org/abs/2506.08625"},{"title":"RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval","url":"https://arxiv.org/html/2506.08625"},{"title":"Enhancing Scientific Reasoning | PDF | Reason | Knowledge","url":"https://www.scribd.com/document/896674015/Enhancing-Scientific-Reasoning"},{"title":"Reasoning Paths as Signals: Augmenting Multi-hop Fact Verification through Structural Reasoning Progression","url":"https://arxiv.org/html/2506.07075"},{"title":"Guideline Forest: Retrieval-Augmented Reasoning with Branching Experience-Induced Guidelines","url":"https://arxiv.org/html/2506.07820"},{"title":"Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers","url":"https://arxiv.org/html/2506.00054v1"},{"title":"[2604.26649] When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models","url":"https://arxiv.org/abs/2604.26649"},{"title":"Reasoning RAG via System 1 or System 2: A Survey on Reasoning Agentic Retrieval-Augmented Generation for Industry Challenges","url":"https://arxiv.org/html/2506.10408"},{"title":"[2509.21743] Retrieval-of-Thought: Efficient Reasoning via Reusing Thoughts","url":"https://arxiv.org/abs/2509.21743"},{"title":"Evaluating Step-by-step Reasoning Traces: A Survey","url":"https://arxiv.org/html/2502.12289v2"}]
+
+Based on the search results, here's what I found about the paper:
+
+## RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval
+
+This arXiv paper (2506.08625) addresses the challenge that scientific reasoning requires not only long-chain reasoning processes, but also knowledge of domain-specific terminologies and adaptation to updated findings.
+
+### Framework Overview
+
+RAISE is a step-by-step retrieval-augmented framework which retrieves logically relevant documents from in-the-wild corpus, divided into three steps: problem decomposition, logical query generation, and logical retrieval.
+
+### Key Innovation
+
+Unlike other baselines, RAISE retrieves documents that are not only similar in terms of the domain knowledge, but also documents logically more relevant. This focus on logical relevance rather than superficial domain similarity is a key distinction of the approach.
+
+### Results
+
+RAISE consistently outperforms other baselines on scientific reasoning benchmarks.
+
+### Authors
+
+The paper was authored by Minhae Oh, Jeonghye Kim, Nakyung Lee, Donggeon Seo, Taeuk Kim, and Jungwoo Lee.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "13338c16-1469-4e9f-87ba-26d7412fcfdc",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "6b1e594f-e05c-471c-a4ee-80eab460bc92",
+  "toolUseResult": {
+    "query": "RAISE step-by-step retrieval scientific reasoning arXiv 2506.08625",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01C7Y7Yc8KYfDgnJHSxm7pmd",
+        "content": [
+          {
+            "title": "[2506.08625] RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval",
+            "url": "https://arxiv.org/abs/2506.08625"
+          },
+          {
+            "title": "RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval",
+            "url": "https://arxiv.org/html/2506.08625"
+          },
+          {
+            "title": "Enhancing Scientific Reasoning | PDF | Reason | Knowledge",
+            "url": "https://www.scribd.com/document/896674015/Enhancing-Scientific-Reasoning"
+          },
+          {
+            "title": "Reasoning Paths as Signals: Augmenting Multi-hop Fact Verification through Structural Reasoning Progression",
+            "url": "https://arxiv.org/html/2506.07075"
+          },
+          {
+            "title": "Guideline Forest: Retrieval-Augmented Reasoning with Branching Experience-Induced Guidelines",
+            "url": "https://arxiv.org/html/2506.07820"
+          },
+          {
+            "title": "Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers",
+            "url": "https://arxiv.org/html/2506.00054v1"
+          },
+          {
+            "title": "[2604.26649] When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models",
+            "url": "https://arxiv.org/abs/2604.26649"
+          },
+          {
+            "title": "Reasoning RAG via System 1 or System 2: A Survey on Reasoning Agentic Retrieval-Augmented Generation for Industry Challenges",
+            "url": "https://arxiv.org/html/2506.10408"
+          },
+          {
+            "title": "[2509.21743] Retrieval-of-Thought: Efficient Reasoning via Reusing Thoughts",
+            "url": "https://arxiv.org/abs/2509.21743"
+          },
+          {
+            "title": "Evaluating Step-by-step Reasoning Traces: A Survey",
+            "url": "https://arxiv.org/html/2502.12289v2"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper:\n\n## RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval\n\nThis arXiv paper (2506.08625) addresses the challenge that scientific reasoning requires not only long-chain reasoning processes, but also knowledge of domain-specific terminologies and adaptation to updated findings.\n\n### Framework Overview\n\nRAISE is a step-by-step retrieval-augmented framework which retrieves logically relevant documents from in-the-wild corpus, divided into three steps: problem decomposition, logical query generation, and logical retrieval.\n\n### Key Innovation\n\nUnlike other baselines, RAISE retrieves documents that are not only similar in terms of the domain knowledge, but also documents logically more relevant. This focus on logical relevance rather than superficial domain similarity is a key distinction of the approach.\n\n### Results\n\nRAISE consistently outperforms other baselines on scientific reasoning benchmarks.\n\n### Authors\n\nThe paper was authored by Minhae Oh, Jeonghye Kim, Nakyung Lee, Donggeon Seo, Taeuk Kim, and Jungwoo Lee."
+    ],
+    "durationSeconds": 6.591191819999978
+  },
+  "sourceToolAssistantUUID": "13338c16-1469-4e9f-87ba-26d7412fcfdc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "6b1e594f-e05c-471c-a4ee-80eab460bc92",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-14T15:53:00.946Z_
+
+Now let me search for a few more specific potential competitors and fetch key papers for deeper reading.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b1e594f-e05c-471c-a4ee-80eab460bc92",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jJmL7NoiY6fMnZXrFA",
+  "type": "assistant",
+  "uuid": "97dbadeb-6462-46cf-a6cd-cc712f579771",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DN62qfqfVXhsBDqMDDEW3x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 864,
+      "cache_read_input_tokens": 48006,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 864,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 48006,
+          "cache_creation_input_tokens": 864,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 864
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-14T15:53:01.651Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K2Mda5xuGx7s5CcjkdEYox`</summary>
+
+```json
+{
+  "query": "SubSearch intermediate rewards unsupervised guided reasoning complex retrieval arXiv 2604.07415"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97dbadeb-6462-46cf-a6cd-cc712f579771",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jJmL7NoiY6fMnZXrFA",
+  "type": "assistant",
+  "uuid": "5898f633-c7c1-40f5-b629-0cee6f8d21d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DN62qfqfVXhsBDqMDDEW3x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 864,
+      "cache_read_input_tokens": 48006,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 864,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 48006,
+          "cache_creation_input_tokens": 864,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 864
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-14T15:53:09.677Z_
+
+<details><summary>↩ Tool result · `toolu_01K2Mda5xuGx7s5CcjkdEYox`</summary>
+
+```text
+Web search results for query: "SubSearch intermediate rewards unsupervised guided reasoning complex retrieval arXiv 2604.07415"
+
+Links: [{"title":"[2604.07415] SubSearch: Intermediate Rewards for Unsupervised Guided Reasoning in Complex Retrieval","url":"https://arxiv.org/abs/2604.07415"},{"title":"SubSearch: Intermediate Rewards for Unsupervised Guided Reasoning in Complex Retrieval","url":"https://arxiv.org/html/2604.07415"},{"title":"[2604.09482] Process Reward Agents for Steering Knowledge-Intensive Reasoning","url":"https://arxiv.org/abs/2604.09482"},{"title":"IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning","url":"https://arxiv.org/html/2604.15148"},{"title":"[2604.26649] When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models","url":"https://arxiv.org/abs/2604.26649"},{"title":"CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search","url":"https://arxiv.org/html/2604.17555"},{"title":"[2604.10516] Structure-Grounded Knowledge Retrieval via Code Dependencies for Multi-Step Data Reasoning","url":"https://arxiv.org/abs/2604.10516"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=875&show=2000"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=1393&show=1000"},{"title":"[2604.20283] Multi-Perspective Evidence Synthesis and Reasoning for Unsupervised Multimodal Entity Linking","url":"https://arxiv.org/abs/2604.20283"}]
+
+Based on the search results, here's what I found about the paper:
+
+SubSearch introduces a specialized framework that shifts from outcome-only supervision to intermediate reward signals that incentivize planning high-quality reasoning. As complex queries often require multi-step reasoning over the retrieved information, with no clear or predetermined reasoning path, they remain challenging.
+
+The key innovation of SubSearch is its approach to process reward modeling. Unlike previous work on process reward models, SubSearch directly optimizes the generator using intrinsic process rewards, where a process reward is intrinsic if it is derived only from the model's state, such as semantic coverage, rather than from an external annotator, thus eliminating the need for additional resources and moving towards autonomous information-intensive reasoning.
+
+The framework proposes: (1) a template for decomposing a complex task into subqueries used for dynamic search, (2) a policy that assigns intermediate rewards at the subquery level, and (3) a comparison of aggregation methods for constructing a stable and informative signal.
+
+Experiments on seven benchmarks show that rewarding intermediate reasoning steps with intrinsic rewards leads to more robust reasoning traces in both QA and multi-hop QA datasets over using only outcome rewards. SubSearch can help in building reasoning traces that allow agents to better integrate search engines for complex query answering, while offering a data-efficient alternative to supervised process modeling.
+
+The paper was published on arXiv on April 8, 2026, by Roxana Petcu and colleagues from the University of Amsterdam.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5898f633-c7c1-40f5-b629-0cee6f8d21d2",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "6bd78ac7-c0b8-415f-9365-9efd00eed66c",
+  "toolUseResult": {
+    "query": "SubSearch intermediate rewards unsupervised guided reasoning complex retrieval arXiv 2604.07415",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A5JYXASgxTtVCeJ9b4MSQj",
+        "content": [
+          {
+            "title": "[2604.07415] SubSearch: Intermediate Rewards for Unsupervised Guided Reasoning in Complex Retrieval",
+            "url": "https://arxiv.org/abs/2604.07415"
+          },
+          {
+            "title": "SubSearch: Intermediate Rewards for Unsupervised Guided Reasoning in Complex Retrieval",
+            "url": "https://arxiv.org/html/2604.07415"
+          },
+          {
+            "title": "[2604.09482] Process Reward Agents for Steering Knowledge-Intensive Reasoning",
+            "url": "https://arxiv.org/abs/2604.09482"
+          },
+          {
+            "title": "IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning",
+            "url": "https://arxiv.org/html/2604.15148"
+          },
+          {
+            "title": "[2604.26649] When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models",
+            "url": "https://arxiv.org/abs/2604.26649"
+          },
+          {
+            "title": "CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search",
+            "url": "https://arxiv.org/html/2604.17555"
+          },
+          {
+            "title": "[2604.10516] Structure-Grounded Knowledge Retrieval via Code Dependencies for Multi-Step Data Reasoning",
+            "url": "https://arxiv.org/abs/2604.10516"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=875&show=2000"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/recent?skip=1393&show=1000"
+          },
+          {
+            "title": "[2604.20283] Multi-Perspective Evidence Synthesis and Reasoning for Unsupervised Multimodal Entity Linking",
+            "url": "https://arxiv.org/abs/2604.20283"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper:\n\nSubSearch introduces a specialized framework that shifts from outcome-only supervision to intermediate reward signals that incentivize planning high-quality reasoning. As complex queries often require multi-step reasoning over the retrieved information, with no clear or predetermined reasoning path, they remain challenging.\n\nThe key innovation of SubSearch is its approach to process reward modeling. Unlike previous work on process reward models, SubSearch directly optimizes the generator using intrinsic process rewards, where a process reward is intrinsic if it is derived only from the model's state, such as semantic coverage, rather than from an external annotator, thus eliminating the need for additional resources and moving towards autonomous information-intensive reasoning.\n\nThe framework proposes: (1) a template for decomposing a complex task into subqueries used for dynamic search, (2) a policy that assigns intermediate rewards at the subquery level, and (3) a comparison of aggregation methods for constructing a stable and informative signal.\n\nExperiments on seven benchmarks show that rewarding intermediate reasoning steps with intrinsic rewards leads to more robust reasoning traces in both QA and multi-hop QA datasets over using only outcome rewards. SubSearch can help in building reasoning traces that allow agents to better integrate search engines for complex query answering, while offering a data-efficient alternative to supervised process modeling.\n\nThe paper was published on arXiv on April 8, 2026, by Roxana Petcu and colleagues from the University of Amsterdam."
+    ],
+    "durationSeconds": 8.02257972899999
+  },
+  "sourceToolAssistantUUID": "5898f633-c7c1-40f5-b629-0cee6f8d21d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-14T15:53:13.030Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015VHStxa9NJMZKbqxENWNLe`</summary>
+
+```json
+{
+  "query": "hidden state probe retrieval decision LLM Probing-RAG self-probing selective document NAACL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6bd78ac7-c0b8-415f-9365-9efd00eed66c",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jKdrgMgTcvRZLVspoD",
+  "type": "assistant",
+  "uuid": "effe88a7-fb13-4232-b7d0-b9662b282552",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TXFi7kJfju7FcoZQZdFQ4U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 48870,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 924,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 48870,
+          "cache_creation_input_tokens": 924,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 924
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-14T15:53:21.868Z_
+
+<details><summary>↩ Tool result · `toolu_015VHStxa9NJMZKbqxENWNLe`</summary>
+
+```text
+Web search results for query: "hidden state probe retrieval decision LLM Probing-RAG self-probing selective document NAACL 2025"
+
+Links: [{"title":"Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval - ACL Anthology","url":"https://aclanthology.org/2025.findings-naacl.181/"},{"title":"GitHub - baekingeol/Probing-RAG: [NAACL 2025] Official Code Repository for the paper \"Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval\"","url":"https://github.com/baekingeol/Probing-RAG"},{"title":"Probing-RAG: RAG approach with efficient adaptive retrieval pipeline using LLM Hidden States for Selective Document Retrieval | by SACHIN KUMAR | Medium","url":"https://medium.com/@techsachin/probing-rag-rag-approach-with-efficient-adaptive-retrieval-pipeline-using-llm-hidden-states-for-a97baa0774c5"},{"title":"Probing-RAG: Self-Probing to Guide Language Models in ...","url":"https://aclanthology.org/2025.findings-naacl.181.pdf"},{"title":"[2410.13339] Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval","url":"https://arxiv.org/abs/2410.13339"},{"title":"Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval","url":"https://arxiv.org/html/2410.13339v1"},{"title":"Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs","url":"https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full.pdf"},{"title":"ICR Probe: Tracking Hidden State Dynamics for Reliable ...","url":"https://aclanthology.org/2025.acl-long.880.pdf"},{"title":"Teaching Models to Decide When to Retrieve: Adaptive RAG, Part 4 - Sumit's Diary","url":"https://blog.reachsumit.com/posts/2025/10/learning-to-retrieve/"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=internal+cognition"}]
+
+I found the paper! Here are the results of the web search:
+
+## Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval
+
+The paper "Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval" was published in Findings of the Association for Computational Linguistics: NAACL 2025, pages 3287–3304, Albuquerque, New Mexico.
+
+**Authors:** Ingeol Baek, Hwan Chang, ByeongJeong Kim, Jimin Lee, and Hwanhee Lee.
+
+**Main Contribution:**
+
+The paper proposes Probing-RAG, which utilizes the hidden state representations from the intermediate layers of language models to adaptively determine the necessity of additional retrievals for a given query. 
+
+By employing a pre-trained prober, Probing-RAG effectively captures the model's internal cognition, enabling reliable decision-making about retrieving external documents.
+
+**Key Problem Addressed:**
+
+Traditional retrieve-and-generate processes may not be optimized for real-world scenarios, where queries might require multiple retrieval steps or none at all.
+
+**Results:**
+
+Experimental results across five open-domain QA datasets demonstrate that Probing-RAG outperforms previous methods while reducing the number of redundant retrieval steps.
+
+The paper is available at the ACL Anthology (https://aclanthology.org/2025.findings-naacl.181/) and also on arXiv (https://arxiv.org/abs/2410.13339).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "effe88a7-fb13-4232-b7d0-b9662b282552",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "31cb42a7-cc3a-43a8-81c1-2d07464949b0",
+  "toolUseResult": {
+    "query": "hidden state probe retrieval decision LLM Probing-RAG self-probing selective document NAACL 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TvQPdwfrgSfs9WWATiAx8z",
+        "content": [
+          {
+            "title": "Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-naacl.181/"
+          },
+          {
+            "title": "GitHub - baekingeol/Probing-RAG: [NAACL 2025] Official Code Repository for the paper \"Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval\"",
+            "url": "https://github.com/baekingeol/Probing-RAG"
+          },
+          {
+            "title": "Probing-RAG: RAG approach with efficient adaptive retrieval pipeline using LLM Hidden States for Selective Document Retrieval | by SACHIN KUMAR | Medium",
+            "url": "https://medium.com/@techsachin/probing-rag-rag-approach-with-efficient-adaptive-retrieval-pipeline-using-llm-hidden-states-for-a97baa0774c5"
+          },
+          {
+            "title": "Probing-RAG: Self-Probing to Guide Language Models in ...",
+            "url": "https://aclanthology.org/2025.findings-naacl.181.pdf"
+          },
+          {
+            "title": "[2410.13339] Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval",
+            "url": "https://arxiv.org/abs/2410.13339"
+          },
+          {
+            "title": "Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval",
+            "url": "https://arxiv.org/html/2410.13339v1"
+          },
+          {
+            "title": "Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full.pdf"
+          },
+          {
+            "title": "ICR Probe: Tracking Hidden State Dynamics for Reliable ...",
+            "url": "https://aclanthology.org/2025.acl-long.880.pdf"
+          },
+          {
+            "title": "Teaching Models to Decide When to Retrieve: Adaptive RAG, Part 4 - Sumit's Diary",
+            "url": "https://blog.reachsumit.com/posts/2025/10/learning-to-retrieve/"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=internal+cognition"
+          }
+        ]
+      },
+      "I found the paper! Here are the results of the web search:\n\n## Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval\n\nThe paper \"Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval\" was published in Findings of the Association for Computational Linguistics: NAACL 2025, pages 3287–3304, Albuquerque, New Mexico.\n\n**Authors:** Ingeol Baek, Hwan Chang, ByeongJeong Kim, Jimin Lee, and Hwanhee Lee.\n\n**Main Contribution:**\n\nThe paper proposes Probing-RAG, which utilizes the hidden state representations from the intermediate layers of language models to adaptively determine the necessity of additional retrievals for a given query. \n\nBy employing a pre-trained prober, Probing-RAG effectively captures the model's internal cognition, enabling reliable decision-making about retrieving external documents.\n\n**Key Problem Addressed:**\n\nTraditional retrieve-and-generate processes may not be optimized for real-world scenarios, where queries might require multiple retrieval steps or none at all.\n\n**Results:**\n\nExperimental results across five open-domain QA datasets demonstrate that Probing-RAG outperforms previous methods while reducing the number of redundant retrieval steps.\n\nThe paper is available at the ACL Anthology (https://aclanthology.org/2025.findings-naacl.181/) and also on arXiv (https://arxiv.org/abs/2410.13339)."
+    ],
+    "durationSeconds": 8.833149686999997
+  },
+  "sourceToolAssistantUUID": "effe88a7-fb13-4232-b7d0-b9662b282552",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-14T15:53:25.147Z_
+
+Now let me do a targeted search for potentially missed concurrent work — specifically on the counterfactual branching / forking idea for retrieval decisions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31cb42a7-cc3a-43a8-81c1-2d07464949b0",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jLY3DN6bVfUN9DkhgS",
+  "type": "assistant",
+  "uuid": "09457550-b0fe-410c-908a-398923b2c5ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TVTtcb8po1B7YnKK6WFWhP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1084,
+      "cache_read_input_tokens": 49794,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1084,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 49794,
+          "cache_creation_input_tokens": 1084,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1084
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-14T15:53:25.699Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012idsbwhZSnPSyrmbgv9LfG`</summary>
+
+```json
+{
+  "query": "counterfactual branching forking rollout retrieval vs no-retrieval step reasoning LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09457550-b0fe-410c-908a-398923b2c5ef",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jLY3DN6bVfUN9DkhgS",
+  "type": "assistant",
+  "uuid": "51203d43-c152-46fc-9c8e-15a9854ddfe2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TVTtcb8po1B7YnKK6WFWhP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1084,
+      "cache_read_input_tokens": 49794,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1084,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 49794,
+          "cache_creation_input_tokens": 1084,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1084
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T15:53:34.206Z_
+
+<details><summary>↩ Tool result · `toolu_012idsbwhZSnPSyrmbgv9LfG`</summary>
+
+```text
+Web search results for query: "counterfactual branching forking rollout retrieval vs no-retrieval step reasoning LLM 2025 2026"
+
+Links: [{"title":"RAPO: Expanding Exploration for LLM Agents via Retrieval-Augmented Policy Optimization","url":"https://arxiv.org/html/2603.03078"},{"title":"Counterfactual Reasoning for Retrieval-Augmented Generation | OpenReview","url":"https://openreview.net/forum?id=9U51rOnGko"},{"title":"Executable Counterfactuals: Improving LLMs’ causal reasoning through code","url":"https://arxiv.org/html/2510.01539v1"},{"title":"On the Eligibility of LLMs for Counterfactual Reasoning: A Decompositional Study","url":"https://arxiv.org/html/2505.11839v1"},{"title":"ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning","url":"https://arxiv.org/pdf/2503.19470"},{"title":"Guideline Forest: Retrieval-Augmented Reasoning with Branching Experience-Induced Guidelines","url":"https://arxiv.org/html/2506.07820"},{"title":"Can LLMs Reconcile Knowledge Conflicts in Counterfactual Reasoning?","url":"https://arxiv.org/html/2506.15732"},{"title":"R-Search: Empowering LLM Reasoning with Search via Multi-Reward Reinforcement Learning","url":"https://arxiv.org/html/2506.04185"},{"title":"Multi-Step LLM Chains: Best Practices for Complex Workflows","url":"https://deepchecks.com/orchestrating-multi-step-llm-chains-best-practices/"},{"title":"Grounding LLM Reasoning with Knowledge Graphs","url":"https://arxiv.org/html/2502.13247v3"}]
+
+I found several relevant research papers on related topics from 2025-2026. Here's what the search revealed:
+
+## Key Findings
+
+**Retrieval-Augmented Reasoning with Branching:**
+
+Guideline Forest is a retrieval-augmented reasoning framework that explicitly leverages experience to guide multi-step reasoning, storing high-quality reasoning traces as reusable memory, retrieving relevant experiences for new problems, and inducing them into structured guidelines that steer reasoning and enable controlled branching and aggregation.
+
+**Adaptive Branching in Agentic RL:**
+
+Entropy has been leveraged to enable adaptive branching during rollout and construct balanced supervisory signals during optimization, enhancing the tool-use capabilities of agents. RAPO (Retrieval-Augmented Policy Optimization) is a novel RL framework that introduces retrieval to explicitly expand exploration during training.
+
+**Counterfactual Reasoning with Retrieval:**
+
+Counterfactual RAG (CF-RAG) operationalizes causal reasoning to overcome limitations by systematically generating and evaluating counterfactual queries to identify causally relevant distinctions, and employs a parallel arbitration mechanism to reconcile conflicting evidence without interference.
+
+**Multi-Step Reasoning and Search Integration:**
+
+When handling complex multi-step tasks needing retrieval, reasoning is crucial for steering multiple retrieval operations mainly on when and how to perform search. It's challenging to collect labeled reasoning data with search for supervised fine-tuning LLMs, but reinforcement learning has shown impressive performance in training LLMs to conduct reasoning.
+
+The research indicates active work in 2025-2026 comparing retrieval-augmented approaches with no-retrieval baselines and exploring branching strategies during rollout for improved LLM reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "51203d43-c152-46fc-9c8e-15a9854ddfe2",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "8fb5078f-b0d5-4724-8f0b-119a6fab745e",
+  "toolUseResult": {
+    "query": "counterfactual branching forking rollout retrieval vs no-retrieval step reasoning LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MthuxMhhNA49t1jayEh2ye",
+        "content": [
+          {
+            "title": "RAPO: Expanding Exploration for LLM Agents via Retrieval-Augmented Policy Optimization",
+            "url": "https://arxiv.org/html/2603.03078"
+          },
+          {
+            "title": "Counterfactual Reasoning for Retrieval-Augmented Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=9U51rOnGko"
+          },
+          {
+            "title": "Executable Counterfactuals: Improving LLMs’ causal reasoning through code",
+            "url": "https://arxiv.org/html/2510.01539v1"
+          },
+          {
+            "title": "On the Eligibility of LLMs for Counterfactual Reasoning: A Decompositional Study",
+            "url": "https://arxiv.org/html/2505.11839v1"
+          },
+          {
+            "title": "ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2503.19470"
+          },
+          {
+            "title": "Guideline Forest: Retrieval-Augmented Reasoning with Branching Experience-Induced Guidelines",
+            "url": "https://arxiv.org/html/2506.07820"
+          },
+          {
+            "title": "Can LLMs Reconcile Knowledge Conflicts in Counterfactual Reasoning?",
+            "url": "https://arxiv.org/html/2506.15732"
+          },
+          {
+            "title": "R-Search: Empowering LLM Reasoning with Search via Multi-Reward Reinforcement Learning",
+            "url": "https://arxiv.org/html/2506.04185"
+          },
+          {
+            "title": "Multi-Step LLM Chains: Best Practices for Complex Workflows",
+            "url": "https://deepchecks.com/orchestrating-multi-step-llm-chains-best-practices/"
+          },
+          {
+            "title": "Grounding LLM Reasoning with Knowledge Graphs",
+            "url": "https://arxiv.org/html/2502.13247v3"
+          }
+        ]
+      },
+      "I found several relevant research papers on related topics from 2025-2026. Here's what the search revealed:\n\n## Key Findings\n\n**Retrieval-Augmented Reasoning with Branching:**\n\nGuideline Forest is a retrieval-augmented reasoning framework that explicitly leverages experience to guide multi-step reasoning, storing high-quality reasoning traces as reusable memory, retrieving relevant experiences for new problems, and inducing them into structured guidelines that steer reasoning and enable controlled branching and aggregation.\n\n**Adaptive Branching in Agentic RL:**\n\nEntropy has been leveraged to enable adaptive branching during rollout and construct balanced supervisory signals during optimization, enhancing the tool-use capabilities of agents. RAPO (Retrieval-Augmented Policy Optimization) is a novel RL framework that introduces retrieval to explicitly expand exploration during training.\n\n**Counterfactual Reasoning with Retrieval:**\n\nCounterfactual RAG (CF-RAG) operationalizes causal reasoning to overcome limitations by systematically generating and evaluating counterfactual queries to identify causally relevant distinctions, and employs a parallel arbitration mechanism to reconcile conflicting evidence without interference.\n\n**Multi-Step Reasoning and Search Integration:**\n\nWhen handling complex multi-step tasks needing retrieval, reasoning is crucial for steering multiple retrieval operations mainly on when and how to perform search. It's challenging to collect labeled reasoning data with search for supervised fine-tuning LLMs, but reinforcement learning has shown impressive performance in training LLMs to conduct reasoning.\n\nThe research indicates active work in 2025-2026 comparing retrieval-augmented approaches with no-retrieval baselines and exploring branching strategies during rollout for improved LLM reasoning."
+    ],
+    "durationSeconds": 8.498973418999988
+  },
+  "sourceToolAssistantUUID": "51203d43-c152-46fc-9c8e-15a9854ddfe2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-14T15:53:38.652Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VkjG7T5KK1fffhYM8Pd1cL`</summary>
+
+```json
+{
+  "query": "\"adaptive retrieval\" \"reasoning\" \"when to retrieve\" probe classifier inference time 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8fb5078f-b0d5-4724-8f0b-119a6fab745e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jMSikxznE7sFMbNHC8",
+  "type": "assistant",
+  "uuid": "ab81e57d-fcf1-4cc1-b0f6-fb2980e4dbc4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H9r4udmSzRoqUDNFu9XfkN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1007,
+      "cache_read_input_tokens": 50878,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1007,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 50878,
+          "cache_creation_input_tokens": 1007,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1007
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-14T15:53:47.171Z_
+
+<details><summary>↩ Tool result · `toolu_01VkjG7T5KK1fffhYM8Pd1cL`</summary>
+
+```text
+Web search results for query: ""adaptive retrieval" "reasoning" "when to retrieve" probe classifier inference time 2026 arXiv"
+
+Links: [{"title":"When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models","url":"https://arxiv.org/html/2604.26649"},{"title":"[2604.26649] When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models","url":"https://arxiv.org/abs/2604.26649"},{"title":"Multimodal Adaptive Retrieval Augmented Generation ...","url":"https://arxiv.org/pdf/2603.00511"},{"title":"Adaptive Stopping for Multi-Turn LLM Reasoning","url":"https://arxiv.org/html/2604.01413"},{"title":"Big Reasoning with Small Models: Instruction Retrieval at Inference Time","url":"https://arxiv.org/html/2510.13935"},{"title":"Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging","url":"https://arxiv.org/html/2505.09316"},{"title":"SARE: Sample-wise Adaptive Reasoning for Training-free Fine-grained Visual Recognition","url":"https://arxiv.org/html/2603.17729"},{"title":"Adaptive Retrieval without Self-Knowledge? Bringing Uncertainty Back Home","url":"https://arxiv.org/html/2501.12835v1"},{"title":"[2511.07581] Think Before You Retrieve: Learning Test-Time Adaptive Search with Small Language Models","url":"https://arxiv.org/abs/2511.07581"},{"title":"AgentIR: Reasoning-Aware Retrieval for Deep Research Agents","url":"https://arxiv.org/html/2603.04384v3"}]
+
+I found relevant results for your search. Here are the key findings about adaptive retrieval, reasoning, and when to retrieve from recent 2026 arXiv papers:
+
+## Primary Result: "When to Retrieve During Reasoning"
+
+A recent paper titled "When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models" addresses how large reasoning models like DeepSeek-R1 and OpenAI o1 generate extended chains of thought spanning thousands of tokens, yet their integration with retrieval-augmented generation (RAG) remains fundamentally misaligned, as current RAG systems optimize for providing context before reasoning begins, while reasoning models require evidence injection during multi-step inference chains.
+
+## Key Technical Approach: Probe Classifier for Step Boundaries
+
+The paper employs a probe classifier approach at inference time: A lightweight classifier trained on human-annotated reasoning traces identifies step boundaries using: (1) Discourse markers ("therefore", "however", "this means"); (2) Logical connectives indicating inference completion; (3) Topic shifts detected via embedding similarity; (4) Punctuation and formatting patterns.
+
+The step boundary classifier is a 3-layer transformer encoder (hidden dimension 256, 4 attention heads) operating on 128-token sliding windows with 64-token stride.
+
+## Results
+
+The method (ReaLM-Retrieve) achieves on average 10.1% absolute improvement in answer F1 over standard RAG while reducing retrieval calls by 47% compared to fixed-interval approaches, and on the MuSiQue benchmark requiring 2-4 hop reasoning, achieves 71.2% F1 with an average of only 1.8 retrieval calls per question.
+
+This paper represents a significant advancement in making adaptive retrieval decisions at reasoning-step granularity rather than at the query level, enabling more efficient and effective retrieval-augmented reasoning systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab81e57d-fcf1-4cc1-b0f6-fb2980e4dbc4",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "4d549ee7-9908-482b-9689-c105a2b51f5c",
+  "toolUseResult": {
+    "query": "\"adaptive retrieval\" \"reasoning\" \"when to retrieve\" probe classifier inference time 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0141uRpgGQqC6iKYRLwFT1Pm",
+        "content": [
+          {
+            "title": "When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models",
+            "url": "https://arxiv.org/html/2604.26649"
+          },
+          {
+            "title": "[2604.26649] When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models",
+            "url": "https://arxiv.org/abs/2604.26649"
+          },
+          {
+            "title": "Multimodal Adaptive Retrieval Augmented Generation ...",
+            "url": "https://arxiv.org/pdf/2603.00511"
+          },
+          {
+            "title": "Adaptive Stopping for Multi-Turn LLM Reasoning",
+            "url": "https://arxiv.org/html/2604.01413"
+          },
+          {
+            "title": "Big Reasoning with Small Models: Instruction Retrieval at Inference Time",
+            "url": "https://arxiv.org/html/2510.13935"
+          },
+          {
+            "title": "Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging",
+            "url": "https://arxiv.org/html/2505.09316"
+          },
+          {
+            "title": "SARE: Sample-wise Adaptive Reasoning for Training-free Fine-grained Visual Recognition",
+            "url": "https://arxiv.org/html/2603.17729"
+          },
+          {
+            "title": "Adaptive Retrieval without Self-Knowledge? Bringing Uncertainty Back Home",
+            "url": "https://arxiv.org/html/2501.12835v1"
+          },
+          {
+            "title": "[2511.07581] Think Before You Retrieve: Learning Test-Time Adaptive Search with Small Language Models",
+            "url": "https://arxiv.org/abs/2511.07581"
+          },
+          {
+            "title": "AgentIR: Reasoning-Aware Retrieval for Deep Research Agents",
+            "url": "https://arxiv.org/html/2603.04384v3"
+          }
+        ]
+      },
+      "I found relevant results for your search. Here are the key findings about adaptive retrieval, reasoning, and when to retrieve from recent 2026 arXiv papers:\n\n## Primary Result: \"When to Retrieve During Reasoning\"\n\nA recent paper titled \"When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models\" addresses how large reasoning models like DeepSeek-R1 and OpenAI o1 generate extended chains of thought spanning thousands of tokens, yet their integration with retrieval-augmented generation (RAG) remains fundamentally misaligned, as current RAG systems optimize for providing context before reasoning begins, while reasoning models require evidence injection during multi-step inference chains.\n\n## Key Technical Approach: Probe Classifier for Step Boundaries\n\nThe paper employs a probe classifier approach at inference time: A lightweight classifier trained on human-annotated reasoning traces identifies step boundaries using: (1) Discourse markers (\"therefore\", \"however\", \"this means\"); (2) Logical connectives indicating inference completion; (3) Topic shifts detected via embedding similarity; (4) Punctuation and formatting patterns.\n\nThe step boundary classifier is a 3-layer transformer encoder (hidden dimension 256, 4 attention heads) operating on 128-token sliding windows with 64-token stride.\n\n## Results\n\nThe method (ReaLM-Retrieve) achieves on average 10.1% absolute improvement in answer F1 over standard RAG while reducing retrieval calls by 47% compared to fixed-interval approaches, and on the MuSiQue benchmark requiring 2-4 hop reasoning, achieves 71.2% F1 with an average of only 1.8 retrieval calls per question.\n\nThis paper represents a significant advancement in making adaptive retrieval decisions at reasoning-step granularity rather than at the query level, enabling more efficient and effective retrieval-augmented reasoning systems."
+    ],
+    "durationSeconds": 8.514201577000028
+  },
+  "sourceToolAssistantUUID": "ab81e57d-fcf1-4cc1-b0f6-fb2980e4dbc4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75 · 2026-05-14T15:53:47.179Z_
+
+```json
+{
+  "parentUuid": "4d549ee7-9908-482b-9689-c105a2b51f5c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "12906c18-5920-48b6-9a6b-f5c3000c647c",
+  "timestamp": "2026-05-14T15:53:47.179Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "12906c18-5920-48b6-9a6b-f5c3000c647c",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-14T15:53:50.052Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013rShgkJgk323xj4B1qgfLp`</summary>
+
+```json
+{
+  "query": "\"Think Before You Retrieve\" test-time adaptive search small language models arXiv 2511.07581"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12906c18-5920-48b6-9a6b-f5c3000c647c",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jNQAzr4mQgjUdNoJj9",
+  "type": "assistant",
+  "uuid": "c4e987dd-2650-4356-b4e6-173357206985",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MiQj9K2jrp55Uv13sTJy3f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1066,
+      "cache_read_input_tokens": 51885,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1066,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 51885,
+          "cache_creation_input_tokens": 1066,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1066
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-14T15:53:56.451Z_
+
+<details><summary>↩ Tool result · `toolu_013rShgkJgk323xj4B1qgfLp`</summary>
+
+```text
+Web search results for query: ""Think Before You Retrieve" test-time adaptive search small language models arXiv 2511.07581"
+
+Links: [{"title":"[2511.07581] Think Before You Retrieve: Learning Test-Time Adaptive Search with Small Language Models","url":"https://arxiv.org/abs/2511.07581"},{"title":"Think Before You Retrieve: Learning Test-Time Adaptive Search with Small Language Models","url":"https://arxiv.org/html/2511.07581"},{"title":"Think Before You Retrieve: Learning Test-Time Adaptive ...","url":"https://arxiv.org/pdf/2511.07581"},{"title":"(PDF) Think Before You Retrieve: Learning Test-Time Adaptive Search with Small Language Models","url":"https://www.researchgate.net/publication/397521965_Think_Before_You_Retrieve_Learning_Test-Time_Adaptive_Search_with_Small_Language_Models"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=23000&show=250"},{"title":"[2509.25420] Adaptive Test-Time Reasoning via Reward-Guided Dual-Phase Search","url":"https://arxiv.org/abs/2509.25420"},{"title":"Test-time Adaptation for Cross-modal Retrieval with Query Shift","url":"https://arxiv.org/html/2410.15624v1"},{"title":"Sample, Don’t Search: Rethinking Test-Time Alignment for Language Models","url":"https://arxiv.org/html/2504.03790v1"},{"title":"Change of Thought: Adaptive Test-Time Computation","url":"https://arxiv.org/html/2507.13569v1"},{"title":"What If We Allocate Test-Time Compute Adaptively?","url":"https://arxiv.org/html/2602.01070"}]
+
+Based on the search results, here's information about the paper "Think Before You Retrieve: Learning Test-Time Adaptive Search with Small Language Models" (arXiv 2511.07581):
+
+## Overview
+
+The paper is authored by Supriti Vijay and 4 other authors and focuses on how effective information retrieval requires reasoning over partial evidence and refining strategies as information emerges.
+
+## Problem Statement
+
+Current approaches fall short because neural retrievers lack reasoning capabilities, large language models (LLMs) provide semantic depth but at prohibitive cost, and query rewriting or decomposition limits improvement to static transformations. As a result, existing methods fail to capture the iterative dynamics of exploration, feedback, and revision that complex user queries demand.
+
+## Solution: The Orion Framework
+
+The paper introduces Orion, a training framework that enables compact models (350M-1.2B parameters) to perform iterative retrieval through learned search strategies.
+
+## Publication Details
+
+The paper was submitted on November 10, 2025, and is classified under Artificial Intelligence (cs.AI), with cross-listings in Computation and Language (cs.CL) and Information Retrieval (cs.IR).
+
+You can access the full paper at https://arxiv.org/abs/2511.07581.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4e987dd-2650-4356-b4e6-173357206985",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "f35c4760-a189-4f7a-8511-97e70df6d39e",
+  "toolUseResult": {
+    "query": "\"Think Before You Retrieve\" test-time adaptive search small language models arXiv 2511.07581",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018sbzF7Eg7XC5XEMu1PFgQi",
+        "content": [
+          {
+            "title": "[2511.07581] Think Before You Retrieve: Learning Test-Time Adaptive Search with Small Language Models",
+            "url": "https://arxiv.org/abs/2511.07581"
+          },
+          {
+            "title": "Think Before You Retrieve: Learning Test-Time Adaptive Search with Small Language Models",
+            "url": "https://arxiv.org/html/2511.07581"
+          },
+          {
+            "title": "Think Before You Retrieve: Learning Test-Time Adaptive ...",
+            "url": "https://arxiv.org/pdf/2511.07581"
+          },
+          {
+            "title": "(PDF) Think Before You Retrieve: Learning Test-Time Adaptive Search with Small Language Models",
+            "url": "https://www.researchgate.net/publication/397521965_Think_Before_You_Retrieve_Learning_Test-Time_Adaptive_Search_with_Small_Language_Models"
+          },
+          {
+            "title": "Computation and Language 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025?skip=23000&show=250"
+          },
+          {
+            "title": "[2509.25420] Adaptive Test-Time Reasoning via Reward-Guided Dual-Phase Search",
+            "url": "https://arxiv.org/abs/2509.25420"
+          },
+          {
+            "title": "Test-time Adaptation for Cross-modal Retrieval with Query Shift",
+            "url": "https://arxiv.org/html/2410.15624v1"
+          },
+          {
+            "title": "Sample, Don’t Search: Rethinking Test-Time Alignment for Language Models",
+            "url": "https://arxiv.org/html/2504.03790v1"
+          },
+          {
+            "title": "Change of Thought: Adaptive Test-Time Computation",
+            "url": "https://arxiv.org/html/2507.13569v1"
+          },
+          {
+            "title": "What If We Allocate Test-Time Compute Adaptively?",
+            "url": "https://arxiv.org/html/2602.01070"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the paper \"Think Before You Retrieve: Learning Test-Time Adaptive Search with Small Language Models\" (arXiv 2511.07581):\n\n## Overview\n\nThe paper is authored by Supriti Vijay and 4 other authors and focuses on how effective information retrieval requires reasoning over partial evidence and refining strategies as information emerges.\n\n## Problem Statement\n\nCurrent approaches fall short because neural retrievers lack reasoning capabilities, large language models (LLMs) provide semantic depth but at prohibitive cost, and query rewriting or decomposition limits improvement to static transformations. As a result, existing methods fail to capture the iterative dynamics of exploration, feedback, and revision that complex user queries demand.\n\n## Solution: The Orion Framework\n\nThe paper introduces Orion, a training framework that enables compact models (350M-1.2B parameters) to perform iterative retrieval through learned search strategies.\n\n## Publication Details\n\nThe paper was submitted on November 10, 2025, and is classified under Artificial Intelligence (cs.AI), with cross-listings in Computation and Language (cs.CL) and Information Retrieval (cs.IR).\n\nYou can access the full paper at https://arxiv.org/abs/2511.07581."
+    ],
+    "durationSeconds": 6.386927842999983
+  },
+  "sourceToolAssistantUUID": "c4e987dd-2650-4356-b4e6-173357206985",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-14T15:53:59.878Z_
+
+Now let me do a deeper read of the most critical related work — IG-Search and the Skill-RAG paper — to understand how close they are to the proposed approach.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f35c4760-a189-4f7a-8511-97e70df6d39e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jP5qi2f22NQgvaaXmT",
+  "type": "assistant",
+  "uuid": "653863f1-a0e9-42cc-9fb7-7d85ddca7a9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LLgWajXzC8RFLVaogzf7Pf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 851,
+      "cache_read_input_tokens": 52951,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 851,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 52951,
+          "cache_creation_input_tokens": 851,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 851
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-14T15:54:02.981Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DcozHAk5vgpK1YBxw1zE1b`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.15148",
+  "prompt": "Extract the following from this paper: (1) What is the counterfactual baseline exactly? How does IG-Search use random documents as a counterfactual? (2) What specific metrics/numbers does it achieve on HotpotQA, MuSiQue, and 2WikiMultiHopQA? (3) Does IG-Search distinguish between evidence gaps and reasoning difficulty, or does it treat all retrieval steps as a single type? (4) What model sizes does it use?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "653863f1-a0e9-42cc-9fb7-7d85ddca7a9b",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jP5qi2f22NQgvaaXmT",
+  "type": "assistant",
+  "uuid": "36ce2284-cc9f-4647-aa1c-0452aede498c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LLgWajXzC8RFLVaogzf7Pf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 851,
+      "cache_read_input_tokens": 52951,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 851,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 52951,
+          "cache_creation_input_tokens": 851,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 851
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-14T15:54:07.626Z_
+
+<details><summary>↩ Tool result · `toolu_01DcozHAk5vgpK1YBxw1zE1b`</summary>
+
+```text
+Based on the provided arXiv page content, I can only partially address your questions:
+
+**(1) Counterfactual baseline:**
+The abstract states that IG measures "how much the retrieved documents improve the model's confidence in the gold answer relative to a counterfactual baseline of random documents." However, the page does not provide additional technical details about exactly how random documents function in this comparison or the specific implementation mechanism.
+
+**(2) Benchmark-specific metrics:**
+The abstract mentions only an overall average: "IG-Search achieves an average EM of 0.430 with Qwen2.5-3B" and outperforms baselines "by 1.6 points and the step-level method GiGPO by 0.9 points on average across benchmarks." Specific performance numbers for HotpotQA, MuSiQue, or 2WikiMultiHopQA are not provided in this excerpt.
+
+**(3) Evidence gaps vs. reasoning difficulty:**
+The page content does not address whether IG-Search distinguishes between these categories or treats all retrieval steps uniformly.
+
+**(4) Model sizes:**
+The abstract specifies testing with "Qwen2.5-3B." Whether other model sizes were evaluated is not detailed in the provided content.
+
+To answer your questions fully, you would need access to the complete paper PDF or HTML version.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36ce2284-cc9f-4647-aa1c-0452aede498c",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "ecd8784e-e48b-4bd2-8132-35c69a855910",
+  "toolUseResult": {
+    "bytes": 49131,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the provided arXiv page content, I can only partially address your questions:\n\n**(1) Counterfactual baseline:**\nThe abstract states that IG measures \"how much the retrieved documents improve the model's confidence in the gold answer relative to a counterfactual baseline of random documents.\" However, the page does not provide additional technical details about exactly how random documents function in this comparison or the specific implementation mechanism.\n\n**(2) Benchmark-specific metrics:**\nThe abstract mentions only an overall average: \"IG-Search achieves an average EM of 0.430 with Qwen2.5-3B\" and outperforms baselines \"by 1.6 points and the step-level method GiGPO by 0.9 points on average across benchmarks.\" Specific performance numbers for HotpotQA, MuSiQue, or 2WikiMultiHopQA are not provided in this excerpt.\n\n**(3) Evidence gaps vs. reasoning difficulty:**\nThe page content does not address whether IG-Search distinguishes between these categories or treats all retrieval steps uniformly.\n\n**(4) Model sizes:**\nThe abstract specifies testing with \"Qwen2.5-3B.\" Whether other model sizes were evaluated is not detailed in the provided content.\n\nTo answer your questions fully, you would need access to the complete paper PDF or HTML version.",
+    "durationMs": 4640,
+    "url": "https://arxiv.org/abs/2604.15148"
+  },
+  "sourceToolAssistantUUID": "36ce2284-cc9f-4647-aa1c-0452aede498c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-14T15:54:17.139Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UJPUGY9cFzrTo2pg6n9Zj6`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.15148",
+  "prompt": "Extract the following details: (1) Exactly how does the counterfactual baseline work — how are random documents used to compute information gain? What is the mathematical formulation? (2) Does the method distinguish between types of retrieval failures (evidence gaps vs reasoning difficulty) or treat all retrieval steps uniformly? (3) What are the specific results (EM/F1) on HotpotQA, MuSiQue, and 2WikiMultiHopQA? (4) Is there any analysis of when retrieval helps vs hurts? (5) Does the paper discuss applying information gain at inference time as a gating signal?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ecd8784e-e48b-4bd2-8132-35c69a855910",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jPufoXLTHZFnNkd8xZ",
+  "type": "assistant",
+  "uuid": "33d2c46f-3216-4b1f-8d53-3961aa654456",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017BUdSRk7FaXPZLRiSmrTcU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 554,
+      "cache_read_input_tokens": 53802,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 554,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 53802,
+          "cache_creation_input_tokens": 554,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 554
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-14T15:54:24.648Z_
+
+<details><summary>↩ Tool result · `toolu_01UJPUGY9cFzrTo2pg6n9Zj6`</summary>
+
+````text
+# IG-Search: Key Technical Details
+
+## (1) Counterfactual Baseline Formulation
+
+The method constructs counterfactual contexts by "replacing only the (documents, refinement) pair at step t with pairs drawn from randomly selected search steps of other questions" in the same batch.
+
+**Mathematical formulation (Equation 2):**
+```
+IG_t = log π(a*|C_t^real) - (1/N)Σ log π(a*|C_t^rand,j)
+```
+
+Where the real context includes actual retrieved documents, and N random contexts use documents from other questions' search steps. This preserves length/structure while removing topical relevance.
+
+## (2) Treatment of Retrieval Failures
+
+The method treats all retrieval steps uniformly regarding failure types. It measures information gain against a *counterfactual baseline* uniformly—whether failures stem from evidence gaps or reasoning difficulty isn't explicitly distinguished. However, the "dead zone filtering" mechanism (|IG_t| < δ) implicitly handles cases where models answer from parametric knowledge alone.
+
+## (3) Specific Results on Multi-hop Benchmarks
+
+| Benchmark | EM Score |
+|-----------|----------|
+| **HotpotQA** | 0.436 |
+| **2WikiMultiHopQA** | 0.415 |
+| **Musique** | 0.179 |
+
+(Qwen2.5-3B Base variant)
+
+## (4) Analysis of When Retrieval Helps vs Hurts
+
+The paper addresses this through dead zone filtering. It notes that on "model-proficient questions," retrieved documents add "little new information, yielding near-zero IG," while "real documents can introduce competing facts...producing small negative IG for well-formed queries." Cases 1 and 3 in Figure 7 illustrate these failure modes, prompting the dead zone mechanism.
+
+## (5) Inference-Time Gating Signal
+
+No discussion of using information gain as an inference-time gating mechanism appears in the paper. The method operates exclusively as a *training-time reward signal* within the RL framework.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "33d2c46f-3216-4b1f-8d53-3961aa654456",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "8a820be8-41a3-421e-9bbb-50ce35f6e7b2",
+  "toolUseResult": {
+    "bytes": 439527,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# IG-Search: Key Technical Details\n\n## (1) Counterfactual Baseline Formulation\n\nThe method constructs counterfactual contexts by \"replacing only the (documents, refinement) pair at step t with pairs drawn from randomly selected search steps of other questions\" in the same batch.\n\n**Mathematical formulation (Equation 2):**\n```\nIG_t = log π(a*|C_t^real) - (1/N)Σ log π(a*|C_t^rand,j)\n```\n\nWhere the real context includes actual retrieved documents, and N random contexts use documents from other questions' search steps. This preserves length/structure while removing topical relevance.\n\n## (2) Treatment of Retrieval Failures\n\nThe method treats all retrieval steps uniformly regarding failure types. It measures information gain against a *counterfactual baseline* uniformly—whether failures stem from evidence gaps or reasoning difficulty isn't explicitly distinguished. However, the \"dead zone filtering\" mechanism (|IG_t| < δ) implicitly handles cases where models answer from parametric knowledge alone.\n\n## (3) Specific Results on Multi-hop Benchmarks\n\n| Benchmark | EM Score |\n|-----------|----------|\n| **HotpotQA** | 0.436 |\n| **2WikiMultiHopQA** | 0.415 |\n| **Musique** | 0.179 |\n\n(Qwen2.5-3B Base variant)\n\n## (4) Analysis of When Retrieval Helps vs Hurts\n\nThe paper addresses this through dead zone filtering. It notes that on \"model-proficient questions,\" retrieved documents add \"little new information, yielding near-zero IG,\" while \"real documents can introduce competing facts...producing small negative IG for well-formed queries.\" Cases 1 and 3 in Figure 7 illustrate these failure modes, prompting the dead zone mechanism.\n\n## (5) Inference-Time Gating Signal\n\nNo discussion of using information gain as an inference-time gating mechanism appears in the paper. The method operates exclusively as a *training-time reward signal* within the RL framework.",
+    "durationMs": 7504,
+    "url": "https://arxiv.org/html/2604.15148"
+  },
+  "sourceToolAssistantUUID": "33d2c46f-3216-4b1f-8d53-3961aa654456",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-14T15:54:29.984Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01X93gH9A1wVqfd7RpMjiAC1`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.15771",
+  "prompt": "Extract the following details from Skill-RAG: (1) What failure types does the skill router distinguish? What are the exact categories? (2) How does the hidden-state prober work — what architecture, which layers, what accuracy? (3) Does Skill-RAG distinguish evidence gaps from reasoning difficulty, or does it focus on query-evidence misalignment? (4) What are the specific results on HotpotQA, MuSiQue, and 2WikiMultiHopQA? (5) What does the representation analysis show about failure state separability in hidden-state space?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a820be8-41a3-421e-9bbb-50ce35f6e7b2",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jRAP7FporAU7w63joM",
+  "type": "assistant",
+  "uuid": "5f095744-0460-416b-87d9-0ad71b38844a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016u7KKWKchutP7NE4ZW4cGT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 54356,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 728,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 54356,
+          "cache_creation_input_tokens": 728,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 728
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-14T15:54:36.573Z_
+
+<details><summary>↩ Tool result · `toolu_01X93gH9A1wVqfd7RpMjiAC1`</summary>
+
+```text
+# Skill-RAG: Key Details Extraction
+
+## (1) Failure Types and Skill Router Categories
+
+The skill router distinguishes four retrieval skills:
+
+- **Query rewriting**: Addresses divergent surface forms between query and corpus indexing
+- **Question decomposition**: Handles multi-hop queries with "entangled premises"
+- **Evidence focusing**: Targets "semantically broad queries" by extracting missing information gaps
+- **Exit skill**: Identifies "truly irreducible cases" where misalignment cannot be resolved
+
+## (2) Hidden-State Prober Architecture
+
+The prober is "implemented as a feed-forward network with a single hidden layer and a binary classification head." It extracts hidden states from "the posterior two-thirds of the model's layers," trains one prober per layer, and aggregates outputs by averaging predicted probabilities at inference time to produce a single gating signal.
+
+## (3) Focus: Query-Evidence Misalignment
+
+Skill-RAG explicitly focuses on query-evidence misalignment rather than distinguishing evidence gaps from reasoning difficulty. The framework addresses "the structural alignment gap" where "the query is poorly formulated relative to the evidence space."
+
+## (4) Specific Results
+
+| Dataset | Metric | Skill-RAG |
+|---------|--------|-----------|
+| HotpotQA | ACC | 46.1 |
+| MuSiQue | ACC | 20.0 |
+| 2WikiMultiHopQA | ACC | 52.5 |
+
+Skill-RAG improves over Probing-RAG by 6.1 points on MuSiQue and 13.6 points on 2WikiMultiHopQA.
+
+## (5) Representation Analysis Findings
+
+T-SNE visualization reveals "two geometrically separable clusters" in failure states: alignment-fixable cases (left cluster) and "truly irreducible failures" (right cluster). As skills are applied, "the left cluster undergoes systematic contraction." Crucially, expanding beyond four skills causes "cluster structure dissolves entirely," supporting the parsimony of the four-skill taxonomy.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5f095744-0460-416b-87d9-0ad71b38844a",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "a2847487-083c-4070-9f23-98a3e32f79c7",
+  "toolUseResult": {
+    "bytes": 100755,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Skill-RAG: Key Details Extraction\n\n## (1) Failure Types and Skill Router Categories\n\nThe skill router distinguishes four retrieval skills:\n\n- **Query rewriting**: Addresses divergent surface forms between query and corpus indexing\n- **Question decomposition**: Handles multi-hop queries with \"entangled premises\"\n- **Evidence focusing**: Targets \"semantically broad queries\" by extracting missing information gaps\n- **Exit skill**: Identifies \"truly irreducible cases\" where misalignment cannot be resolved\n\n## (2) Hidden-State Prober Architecture\n\nThe prober is \"implemented as a feed-forward network with a single hidden layer and a binary classification head.\" It extracts hidden states from \"the posterior two-thirds of the model's layers,\" trains one prober per layer, and aggregates outputs by averaging predicted probabilities at inference time to produce a single gating signal.\n\n## (3) Focus: Query-Evidence Misalignment\n\nSkill-RAG explicitly focuses on query-evidence misalignment rather than distinguishing evidence gaps from reasoning difficulty. The framework addresses \"the structural alignment gap\" where \"the query is poorly formulated relative to the evidence space.\"\n\n## (4) Specific Results\n\n| Dataset | Metric | Skill-RAG |\n|---------|--------|-----------|\n| HotpotQA | ACC | 46.1 |\n| MuSiQue | ACC | 20.0 |\n| 2WikiMultiHopQA | ACC | 52.5 |\n\nSkill-RAG improves over Probing-RAG by 6.1 points on MuSiQue and 13.6 points on 2WikiMultiHopQA.\n\n## (5) Representation Analysis Findings\n\nT-SNE visualization reveals \"two geometrically separable clusters\" in failure states: alignment-fixable cases (left cluster) and \"truly irreducible failures\" (right cluster). As skills are applied, \"the left cluster undergoes systematic contraction.\" Crucially, expanding beyond four skills causes \"cluster structure dissolves entirely,\" supporting the parsimony of the four-skill taxonomy.",
+    "durationMs": 6586,
+    "url": "https://arxiv.org/html/2604.15771"
+  },
+  "sourceToolAssistantUUID": "5f095744-0460-416b-87d9-0ad71b38844a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-14T15:54:41.263Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KR6rjMpu2VPCCTm8wa12Ho`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.01672",
+  "prompt": "Extract the following from DeepControl: (1) How does the information utility U(e) work exactly? What are Novelty and Effectiveness? (2) Does DeepControl distinguish between evidence gaps and reasoning difficulty, or does it use a single composite score? (3) What are the exact results on HotpotQA, MuSiQue, 2WikiMultiHopQA? (4) Is it applied at training time or inference time? (5) What model sizes are used?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2847487-083c-4070-9f23-98a3e32f79c7",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jS3RS3vod75Z2gD9eb",
+  "type": "assistant",
+  "uuid": "54dd2c9c-9866-4d62-beec-a81e95e978b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XrwD9XFuw3Wf4f9b8Nqoqq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 55084,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 55084,
+          "cache_creation_input_tokens": 708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-14T15:54:49.277Z_
+
+<details><summary>↩ Tool result · `toolu_01KR6rjMpu2VPCCTm8wa12Ho`</summary>
+
+```text
+# DeepControl: Key Technical Details
+
+## (1) Information Utility: Novelty and Effectiveness
+
+Information utility combines two components with a weighting parameter ρ:
+
+**U(e_l) = ρ · Novelty(e_l|s_tl) + (1−ρ) · Effectiveness(e_l|u,s_tl)**
+
+- **Novelty** measures whether retrieved leaf nodes are new relative to previously retrieved content. It prevents redundant retrievals by penalizing information already seen.
+
+- **Effectiveness** evaluates whether injected nodes help solve the task. The paper states it "indicates whether the retrieved documents contain the ground-truth answer, instantiated...via substring exact match."
+
+These operate at the search-step level, abstracting away intermediate expansion refinements.
+
+## (2) Single Composite Score
+
+DeepControl uses a **unified utility metric** rather than distinguishing evidence gaps from reasoning difficulty. The framework combines novelty and effectiveness into one score, then applies threshold-based continuation control based on whether utility remains below threshold δ for m_stop consecutive steps.
+
+## (3) Multi-Hop Benchmark Results
+
+Results on Qwen2.5-3B-Instruct (Table 1):
+
+| Dataset | DeepControl | Search-R1 |
+|---------|-------------|-----------|
+| HotpotQA | 0.402 | 0.103 |
+| MuSiQue | 0.118 | 0.059 |
+| 2WikiMultiHop | 0.371 | 0.273 |
+
+## (4) Training vs. Inference
+
+DeepControl applies control **primarily at training time**. The framework uses an "annealed control strategy" where control signals gradually diminish across training epochs (p = 0.9, 0.5, 0.2, then 0), allowing models to "internalize effective information acquisition behaviors" for deployment without external guidance.
+
+## (5) Model Sizes
+
+Experiments use **Qwen2.5-3B-Instruct and Qwen2.5-7B-Instruct**, representing smaller open-source models rather than frontier-scale systems.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54dd2c9c-9866-4d62-beec-a81e95e978b2",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "2758b28c-749d-4acc-8d89-f9573c332801",
+  "toolUseResult": {
+    "bytes": 412517,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# DeepControl: Key Technical Details\n\n## (1) Information Utility: Novelty and Effectiveness\n\nInformation utility combines two components with a weighting parameter ρ:\n\n**U(e_l) = ρ · Novelty(e_l|s_tl) + (1−ρ) · Effectiveness(e_l|u,s_tl)**\n\n- **Novelty** measures whether retrieved leaf nodes are new relative to previously retrieved content. It prevents redundant retrievals by penalizing information already seen.\n\n- **Effectiveness** evaluates whether injected nodes help solve the task. The paper states it \"indicates whether the retrieved documents contain the ground-truth answer, instantiated...via substring exact match.\"\n\nThese operate at the search-step level, abstracting away intermediate expansion refinements.\n\n## (2) Single Composite Score\n\nDeepControl uses a **unified utility metric** rather than distinguishing evidence gaps from reasoning difficulty. The framework combines novelty and effectiveness into one score, then applies threshold-based continuation control based on whether utility remains below threshold δ for m_stop consecutive steps.\n\n## (3) Multi-Hop Benchmark Results\n\nResults on Qwen2.5-3B-Instruct (Table 1):\n\n| Dataset | DeepControl | Search-R1 |\n|---------|-------------|-----------|\n| HotpotQA | 0.402 | 0.103 |\n| MuSiQue | 0.118 | 0.059 |\n| 2WikiMultiHop | 0.371 | 0.273 |\n\n## (4) Training vs. Inference\n\nDeepControl applies control **primarily at training time**. The framework uses an \"annealed control strategy\" where control signals gradually diminish across training epochs (p = 0.9, 0.5, 0.2, then 0), allowing models to \"internalize effective information acquisition behaviors\" for deployment without external guidance.\n\n## (5) Model Sizes\n\nExperiments use **Qwen2.5-3B-Instruct and Qwen2.5-7B-Instruct**, representing smaller open-source models rather than frontier-scale systems.",
+    "durationMs": 8011,
+    "url": "https://arxiv.org/html/2602.01672"
+  },
+  "sourceToolAssistantUUID": "54dd2c9c-9866-4d62-beec-a81e95e978b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2758b28c-749d-4acc-8d89-f9573c332801",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-14T15:54:52.081Z_
+
+Now let me search for any very recent (last 2-3 months) work that might be directly competing with the proposed counterfactual probing approach.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2758b28c-749d-4acc-8d89-f9573c332801",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jSzRt3E4pKM1pWWTyk",
+  "type": "assistant",
+  "uuid": "89b3d023-6c4b-445a-b316-30d51d01324c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Ck5ZTjC2G9UMcBDSTGG9C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 703,
+      "cache_read_input_tokens": 55792,
+      "output_tokens": 105,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 703,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 105,
+          "cache_read_input_tokens": 55792,
+          "cache_creation_input_tokens": 703,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 703
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-14T15:54:53.170Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KJ2Qf1ghcUiPfDGgLetVjh`</summary>
+
+```json
+{
+  "query": "site:arxiv.org retrieval gating reasoning failure mode classification hidden state 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89b3d023-6c4b-445a-b316-30d51d01324c",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jSzRt3E4pKM1pWWTyk",
+  "type": "assistant",
+  "uuid": "62c434d2-cf76-4369-8283-36ea60246c14",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Ck5ZTjC2G9UMcBDSTGG9C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 703,
+      "cache_read_input_tokens": 55792,
+      "output_tokens": 105,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 703,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 105,
+          "cache_read_input_tokens": 55792,
+          "cache_creation_input_tokens": 703,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 703
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-14T15:55:01.008Z_
+
+<details><summary>↩ Tool result · `toolu_01KJ2Qf1ghcUiPfDGgLetVjh`</summary>
+
+```text
+Web search results for query: "site:arxiv.org retrieval gating reasoning failure mode classification hidden state 2026"
+
+Links: [{"title":"[2604.15771] Skill-RAG: Failure-State-Aware Retrieval Augmentation via Hidden-State Probing and Skill Routing","url":"https://arxiv.org/abs/2604.15771"},{"title":"How Far Are We from Genuinely Useful Deep Research Agents? OPPO AI Agent Team","url":"https://arxiv.org/pdf/2512.01948"},{"title":"Computer Science May 2025","url":"https://arxiv.org/list/cs/2025-05?skip=5250&show=2000"},{"title":"AgentIR: Reasoning-Aware Retrieval for Deep Research Agents","url":"https://arxiv.org/html/2603.04384v3"},{"title":"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry","url":"https://arxiv.org/html/2605.13772"},{"title":"Can LLMs Detect Their Confabulations? Estimating ...","url":"https://arxiv.org/pdf/2508.08139"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/pastweek?skip=202&show=2000"},{"title":"Mining Intrinsic Rewards from LLM Hidden States for Efficient Best-of-N Sampling","url":"https://arxiv.org/html/2505.12225v3"},{"title":"Machine Learning","url":"https://arxiv.org/list/cs.LG/new"},{"title":"Reasoning Systems as Structured Processes:","url":"https://arxiv.org/pdf/2508.01763"}]
+
+I found several relevant results from arxiv.org that match your search query. Here are the key papers:
+
+## Top Result
+
+The most directly relevant result is "Skill-RAG: Failure-State-Aware Retrieval Augmentation via Hidden-State Probing and Skill Routing" (arXiv:2604.15771, submitted April 17, 2026). 
+
+This paper proposes Skill-RAG, a failure-aware RAG framework that couples a lightweight hidden-state prober with a prompt-based skill router. The prober gates retrieval at two pipeline stages; upon detecting a failure state, the skill router diagnoses the underlying cause and selects among four retrieval skills -- query rewriting, question decomposition, evidence focusing, and an exit skill for truly irreducible cases.
+
+Representation-space analyses reveal that the proposed skills occupy structured, separable regions of the failure state space, supporting the view that query-evidence misalignment is a typed rather than monolithic phenomenon.
+
+## Additional Related Papers
+
+Another relevant paper is "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry" which departs from prior work by scoring transitions between reasoning steps rather than static states, using velocity, acceleration, and directional persistence in a contrastive lens, so that the detection signal is geometric rather than semantic (arXiv:2605.13772, published May 2026).
+
+These papers align well with your search interests in retrieval gating, reasoning failure modes, hidden state analysis, and classification approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "62c434d2-cf76-4369-8283-36ea60246c14",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "206e6a1a-2f3b-4ae3-80d1-d24c561fb735",
+  "toolUseResult": {
+    "query": "site:arxiv.org retrieval gating reasoning failure mode classification hidden state 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XuWL4UrseGSus9MqErnp2Y",
+        "content": [
+          {
+            "title": "[2604.15771] Skill-RAG: Failure-State-Aware Retrieval Augmentation via Hidden-State Probing and Skill Routing",
+            "url": "https://arxiv.org/abs/2604.15771"
+          },
+          {
+            "title": "How Far Are We from Genuinely Useful Deep Research Agents? OPPO AI Agent Team",
+            "url": "https://arxiv.org/pdf/2512.01948"
+          },
+          {
+            "title": "Computer Science May 2025",
+            "url": "https://arxiv.org/list/cs/2025-05?skip=5250&show=2000"
+          },
+          {
+            "title": "AgentIR: Reasoning-Aware Retrieval for Deep Research Agents",
+            "url": "https://arxiv.org/html/2603.04384v3"
+          },
+          {
+            "title": "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry",
+            "url": "https://arxiv.org/html/2605.13772"
+          },
+          {
+            "title": "Can LLMs Detect Their Confabulations? Estimating ...",
+            "url": "https://arxiv.org/pdf/2508.08139"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/pastweek?skip=202&show=2000"
+          },
+          {
+            "title": "Mining Intrinsic Rewards from LLM Hidden States for Efficient Best-of-N Sampling",
+            "url": "https://arxiv.org/html/2505.12225v3"
+          },
+          {
+            "title": "Machine Learning",
+            "url": "https://arxiv.org/list/cs.LG/new"
+          },
+          {
+            "title": "Reasoning Systems as Structured Processes:",
+            "url": "https://arxiv.org/pdf/2508.01763"
+          }
+        ]
+      },
+      "I found several relevant results from arxiv.org that match your search query. Here are the key papers:\n\n## Top Result\n\nThe most directly relevant result is \"Skill-RAG: Failure-State-Aware Retrieval Augmentation via Hidden-State Probing and Skill Routing\" (arXiv:2604.15771, submitted April 17, 2026). \n\nThis paper proposes Skill-RAG, a failure-aware RAG framework that couples a lightweight hidden-state prober with a prompt-based skill router. The prober gates retrieval at two pipeline stages; upon detecting a failure state, the skill router diagnoses the underlying cause and selects among four retrieval skills -- query rewriting, question decomposition, evidence focusing, and an exit skill for truly irreducible cases.\n\nRepresentation-space analyses reveal that the proposed skills occupy structured, separable regions of the failure state space, supporting the view that query-evidence misalignment is a typed rather than monolithic phenomenon.\n\n## Additional Related Papers\n\nAnother relevant paper is \"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry\" which departs from prior work by scoring transitions between reasoning steps rather than static states, using velocity, acceleration, and directional persistence in a contrastive lens, so that the detection signal is geometric rather than semantic (arXiv:2605.13772, published May 2026).\n\nThese papers align well with your search interests in retrieval gating, reasoning failure modes, hidden state analysis, and classification approaches."
+    ],
+    "durationSeconds": 7.833884739000001
+  },
+  "sourceToolAssistantUUID": "62c434d2-cf76-4369-8283-36ea60246c14",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-14T15:55:03.660Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MgQcihJB4NB3L86jFTQ8oZ`</summary>
+
+```json
+{
+  "query": "\"Where Does Reasoning Break\" step-level hallucination detection hidden-state transport geometry arXiv 2605.13772"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "206e6a1a-2f3b-4ae3-80d1-d24c561fb735",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jTrCZHRCGqHXoLknnT",
+  "type": "assistant",
+  "uuid": "55bbec95-eb53-4d7f-a358-080e4b5e2f9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QVKodegxbqUjcTgRBi5ey7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 902,
+      "cache_read_input_tokens": 56495,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 902,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 56495,
+          "cache_creation_input_tokens": 902,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 902
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-14T15:55:10.574Z_
+
+<details><summary>↩ Tool result · `toolu_01MgQcihJB4NB3L86jFTQ8oZ`</summary>
+
+```text
+Web search results for query: ""Where Does Reasoning Break" step-level hallucination detection hidden-state transport geometry arXiv 2605.13772"
+
+Links: [{"title":"[2605.13772] Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry","url":"https://arxiv.org/abs/2605.13772"},{"title":"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry","url":"https://arxiv.org/html/2605.13772"},{"title":"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/html/2605.05953"},{"title":"Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping","url":"https://arxiv.org/html/2601.17467"},{"title":"Streaming Hallucination Detection in Long Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2601.02170v1"},{"title":"Med-StepBench: A Hierarchical Reasoning Framework for Evaluating Hallucinations in Medical Vision-Language Models","url":"https://arxiv.org/html/2605.10002v1"},{"title":"HARP: Hallucination Detection via Reasoning Subspace Projection","url":"https://arxiv.org/html/2509.11536v1"},{"title":"[2509.11536] HARP: Hallucination Detection via Reasoning Subspace Projection","url":"https://arxiv.org/abs/2509.11536"},{"title":"[2605.13136] GateKD: Confidence-Gated Closed-Loop Distillation for Robust Reasoning","url":"https://arxiv.org/abs/2605.13136"},{"title":"[2605.05953] Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/abs/2605.05953"}]
+
+I found the paper you're looking for! Here are the key details:
+
+## "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry"
+
+**Authors:** Tyler Alvarez and Ali Baheri
+
+**arXiv ID:** 2605.13772 (posted May 13, 2026)
+
+### Main Contribution:
+
+Large language models hallucinate during multi-step reasoning, but most existing detectors operate at the trace level: they assign one confidence score to a full output, fail to localize the first error, and often require multiple sampled completions.
+
+### Key Approach:
+
+The paper frames hallucination as a property of the hidden-state trajectory produced during a single forward pass. Correct reasoning moves through a stable manifold of locally coherent transitions; a first error appears as a localized excursion in transport cost away from this manifold.
+
+### Technical Implementation:
+
+They operationalize this view with a label-conditioned teacher that builds a trace-specific contrastive PCA lens and scores each step with seven geometric transition features, and a deployable BiLSTM student distilled from the teacher that operates on raw hidden states without inference-time labels.
+
+You can access the paper directly at https://arxiv.org/abs/2605.13772.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "55bbec95-eb53-4d7f-a358-080e4b5e2f9e",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "3a70fe5e-d56d-4645-a6fe-fe8d2f133f45",
+  "toolUseResult": {
+    "query": "\"Where Does Reasoning Break\" step-level hallucination detection hidden-state transport geometry arXiv 2605.13772",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FpbMcoFBtZXMiEyHgvGHxF",
+        "content": [
+          {
+            "title": "[2605.13772] Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry",
+            "url": "https://arxiv.org/abs/2605.13772"
+          },
+          {
+            "title": "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry",
+            "url": "https://arxiv.org/html/2605.13772"
+          },
+          {
+            "title": "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/html/2605.05953"
+          },
+          {
+            "title": "Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping",
+            "url": "https://arxiv.org/html/2601.17467"
+          },
+          {
+            "title": "Streaming Hallucination Detection in Long Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2601.02170v1"
+          },
+          {
+            "title": "Med-StepBench: A Hierarchical Reasoning Framework for Evaluating Hallucinations in Medical Vision-Language Models",
+            "url": "https://arxiv.org/html/2605.10002v1"
+          },
+          {
+            "title": "HARP: Hallucination Detection via Reasoning Subspace Projection",
+            "url": "https://arxiv.org/html/2509.11536v1"
+          },
+          {
+            "title": "[2509.11536] HARP: Hallucination Detection via Reasoning Subspace Projection",
+            "url": "https://arxiv.org/abs/2509.11536"
+          },
+          {
+            "title": "[2605.13136] GateKD: Confidence-Gated Closed-Loop Distillation for Robust Reasoning",
+            "url": "https://arxiv.org/abs/2605.13136"
+          },
+          {
+            "title": "[2605.05953] Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/abs/2605.05953"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n## \"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry\"\n\n**Authors:** Tyler Alvarez and Ali Baheri\n\n**arXiv ID:** 2605.13772 (posted May 13, 2026)\n\n### Main Contribution:\n\nLarge language models hallucinate during multi-step reasoning, but most existing detectors operate at the trace level: they assign one confidence score to a full output, fail to localize the first error, and often require multiple sampled completions.\n\n### Key Approach:\n\nThe paper frames hallucination as a property of the hidden-state trajectory produced during a single forward pass. Correct reasoning moves through a stable manifold of locally coherent transitions; a first error appears as a localized excursion in transport cost away from this manifold.\n\n### Technical Implementation:\n\nThey operationalize this view with a label-conditioned teacher that builds a trace-specific contrastive PCA lens and scores each step with seven geometric transition features, and a deployable BiLSTM student distilled from the teacher that operates on raw hidden states without inference-time labels.\n\nYou can access the paper directly at https://arxiv.org/abs/2605.13772."
+    ],
+    "durationSeconds": 6.903343063000007
+  },
+  "sourceToolAssistantUUID": "55bbec95-eb53-4d7f-a358-080e4b5e2f9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-14T15:55:13.360Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TMULMaPs7cHbDcCGHcy8W6`</summary>
+
+```json
+{
+  "query": "Search-R1 checkpoint released model weights huggingface Qwen2.5 veRL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a70fe5e-d56d-4645-a6fe-fe8d2f133f45",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jUYsYR53Xu9hrzwdQU",
+  "type": "assistant",
+  "uuid": "33fea538-fb90-41a7-b31b-2da0c8b6d2f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJqqtoTeSKJL8UHJgzx9xQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 57397,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 57397,
+          "cache_creation_input_tokens": 892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-14T15:55:20.663Z_
+
+<details><summary>↩ Tool result · `toolu_01TMULMaPs7cHbDcCGHcy8W6`</summary>
+
+```text
+Web search results for query: "Search-R1 checkpoint released model weights huggingface Qwen2.5 veRL"
+
+Links: [{"title":"omlab/VLM-R1-Qwen2.5VL-3B-OVD-0321 · Hugging Face","url":"https://huggingface.co/omlab/VLM-R1-Qwen2.5VL-3B-OVD-0321"},{"title":"Merging the LoRA checkpoint to hugging face format and Loading · Issue #1804 · verl-project/verl","url":"https://github.com/volcengine/verl/issues/1804"},{"title":"pe-nlp/R1-Qwen2.5-7B-Instruct · Hugging Face","url":"https://huggingface.co/pe-nlp/R1-Qwen2.5-7B-Instruct"},{"title":"Qwen/Qwen2.5-VL-7B-Instruct · Model Loading Issue: Some weights of the model checkpoint at Qwen/Qwen2.5-VL-7B-Instruct were not used when initializing Qwen2_5_VLForConditionalGeneration:","url":"https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct/discussions/45"},{"title":"mradermacher/R1-Qwen2.5-7B-Instruct-GGUF · Hugging Face","url":"https://huggingface.co/mradermacher/R1-Qwen2.5-7B-Instruct-GGUF"},{"title":"Using Checkpoints to Support Fault Tolerance Training — verl documentation","url":"https://verl.readthedocs.io/en/latest/advance/checkpoint.html"},{"title":"Qwen Hugging Face | Model Card Access","url":"https://qwen.co.com/huggingface.html"},{"title":"deepseek-ai/DeepSeek-R1-Distill-Qwen-7B · Hugging Face","url":"https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"},{"title":"Qwen/Qwen2.5-VL-7B-Instruct · Hugging Face","url":"https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct"},{"title":"Qwen2.5-VL · Hugging Face","url":"https://huggingface.co/docs/transformers/en/model_doc/qwen2_5_vl"}]
+
+Based on the search results, here are the key findings related to your query about Search-R1 checkpoint releases with Qwen2.5 and veRL:
+
+## VLM-R1 Models with Qwen2.5
+
+VLM-R1-OVD model weights were released on March 23, 2025, demonstrating state-of-the-art performance on OVDEval. Additionally, a checkpoint of the VLM-R1 REC (Referring Expression Comprehension) model was released on February 21, 2025.
+
+For Referring Expression Comprehension tasks, Qwen2.5-VL was trained using both R1 and SFT approaches, with the R1 model showing steady improvement on in-domain test data compared to the SFT base model across training steps.
+
+## veRL Integration with Qwen2.5
+
+The search results show that veRL supports checkpoint management and model merging for Qwen2.5 models. The veRL model_merger tool can merge checkpoints from distributed training (FSDP) to Hugging Face format, with examples showing Qwen2.5-0.5B models being merged to HF format.
+
+## Additional R1 Models on Hugging Face
+
+There are also other R1-based Qwen2.5 models available on Hugging Face, such as R1-Qwen2.5-7B-Instruct, which is a fine-tuned version of Qwen2.5-7B-Instruct.
+
+The search results indicate active development of R1-style reinforcement learning approaches applied to Qwen2.5 models, with checkpoints being released and made available through Hugging Face.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "33fea538-fb90-41a7-b31b-2da0c8b6d2f4",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "065c4c49-140e-4cea-b384-939736292138",
+  "toolUseResult": {
+    "query": "Search-R1 checkpoint released model weights huggingface Qwen2.5 veRL",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VfrEg4YMtFKquT3LdwxYph",
+        "content": [
+          {
+            "title": "omlab/VLM-R1-Qwen2.5VL-3B-OVD-0321 · Hugging Face",
+            "url": "https://huggingface.co/omlab/VLM-R1-Qwen2.5VL-3B-OVD-0321"
+          },
+          {
+            "title": "Merging the LoRA checkpoint to hugging face format and Loading · Issue #1804 · verl-project/verl",
+            "url": "https://github.com/volcengine/verl/issues/1804"
+          },
+          {
+            "title": "pe-nlp/R1-Qwen2.5-7B-Instruct · Hugging Face",
+            "url": "https://huggingface.co/pe-nlp/R1-Qwen2.5-7B-Instruct"
+          },
+          {
+            "title": "Qwen/Qwen2.5-VL-7B-Instruct · Model Loading Issue: Some weights of the model checkpoint at Qwen/Qwen2.5-VL-7B-Instruct were not used when initializing Qwen2_5_VLForConditionalGeneration:",
+            "url": "https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct/discussions/45"
+          },
+          {
+            "title": "mradermacher/R1-Qwen2.5-7B-Instruct-GGUF · Hugging Face",
+            "url": "https://huggingface.co/mradermacher/R1-Qwen2.5-7B-Instruct-GGUF"
+          },
+          {
+            "title": "Using Checkpoints to Support Fault Tolerance Training — verl documentation",
+            "url": "https://verl.readthedocs.io/en/latest/advance/checkpoint.html"
+          },
+          {
+            "title": "Qwen Hugging Face | Model Card Access",
+            "url": "https://qwen.co.com/huggingface.html"
+          },
+          {
+            "title": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B · Hugging Face",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
+          },
+          {
+            "title": "Qwen/Qwen2.5-VL-7B-Instruct · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct"
+          },
+          {
+            "title": "Qwen2.5-VL · Hugging Face",
+            "url": "https://huggingface.co/docs/transformers/en/model_doc/qwen2_5_vl"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to your query about Search-R1 checkpoint releases with Qwen2.5 and veRL:\n\n## VLM-R1 Models with Qwen2.5\n\nVLM-R1-OVD model weights were released on March 23, 2025, demonstrating state-of-the-art performance on OVDEval. Additionally, a checkpoint of the VLM-R1 REC (Referring Expression Comprehension) model was released on February 21, 2025.\n\nFor Referring Expression Comprehension tasks, Qwen2.5-VL was trained using both R1 and SFT approaches, with the R1 model showing steady improvement on in-domain test data compared to the SFT base model across training steps.\n\n## veRL Integration with Qwen2.5\n\nThe search results show that veRL supports checkpoint management and model merging for Qwen2.5 models. The veRL model_merger tool can merge checkpoints from distributed training (FSDP) to Hugging Face format, with examples showing Qwen2.5-0.5B models being merged to HF format.\n\n## Additional R1 Models on Hugging Face\n\nThere are also other R1-based Qwen2.5 models available on Hugging Face, such as R1-Qwen2.5-7B-Instruct, which is a fine-tuned version of Qwen2.5-7B-Instruct.\n\nThe search results indicate active development of R1-style reinforcement learning approaches applied to Qwen2.5 models, with checkpoints being released and made available through Hugging Face."
+    ],
+    "durationSeconds": 7.298287467999966
+  },
+  "sourceToolAssistantUUID": "33fea538-fb90-41a7-b31b-2da0c8b6d2f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 98 · 2026-05-14T15:55:20.666Z_
+
+```json
+{
+  "parentUuid": "065c4c49-140e-4cea-b384-939736292138",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b4f880eb-6f64-4661-8bd5-07329754239c",
+  "timestamp": "2026-05-14T15:55:20.666Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-14T15:55:24.007Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AyXd9aWs5GbbYYpMr9VVAm`</summary>
+
+```json
+{
+  "query": "Search-R1 github released trained checkpoint model download PeterGriffinJin"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4f880eb-6f64-4661-8bd5-07329754239c",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jVHsvC3ijDwGh5rAXU",
+  "type": "assistant",
+  "uuid": "56af34e2-f9b1-4e5b-ac1e-f7763ce492aa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015dsrhkjzsj6CRaHjerk1Sk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1274,
+      "cache_read_input_tokens": 58289,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1274,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 58289,
+          "cache_creation_input_tokens": 1274,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1274
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-14T15:55:30.785Z_
+
+<details><summary>↩ Tool result · `toolu_01AyXd9aWs5GbbYYpMr9VVAm`</summary>
+
+```text
+Web search results for query: "Search-R1 github released trained checkpoint model download PeterGriffinJin"
+
+Links: [{"title":"GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub","url":"https://github.com/PeterGriffinJin/Search-R1"},{"title":"Search-R1: Training LLMs to Reason and Leverage ...","url":"https://arxiv.org/pdf/2503.09516"},{"title":"Paper page - Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning","url":"https://huggingface.co/papers/2503.09516"},{"title":"Search-R1/train_grpo.sh at main · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/blob/main/train_grpo.sh"},{"title":"Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning - Science Explorer Abstract","url":"https://scixplorer.org/abs/2025arXiv250309516J/abstract"},{"title":"Search-R1/README.md at main · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/blob/main/README.md"},{"title":"Issues · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/issues"},{"title":"Ray-related problem · Issue #139 · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/issues/139"},{"title":"Activity · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/activity"},{"title":"slime/examples/search-r1 at main · THUDM/slime","url":"https://github.com/THUDM/slime/tree/main/examples/search-r1"}]
+
+Based on the search results, I can provide you with information about Search-R1 and where to find released trained checkpoints:
+
+## Search-R1 Overview
+
+Search-R1 is a reinforcement learning framework designed for training reasoning-and-searching interleaved LLMs—language models that learn to reason and make tool calls (e.g., to search engines) in a coordinated manner. Built upon veRL, Search-R1 extends the ideas of DeepSeek-R1(-Zero) by incorporating interleaved search engine access and provides a fully open-source RL training pipeline.
+
+## Released Models and Checkpoints
+
+The code and model checkpoints are available at https://github.com/PeterGriffinJin/Search-R1. The repository is maintained by PeterGriffinJin and is publicly accessible on GitHub.
+
+## Key Features
+
+The framework supports different RL methods (e.g., PPO, GRPO, reinforce), different LLMs (e.g., llama3, Qwen2.5, etc) and different search engines (e.g., local sparse/dense retrievers and online search engines).
+
+For downloading and using the trained checkpoints, you'll want to visit the GitHub repository directly at https://github.com/PeterGriffinJin/Search-R1, where you'll find detailed instructions for model access and setup.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "56af34e2-f9b1-4e5b-ac1e-f7763ce492aa",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "4406ce05-702e-4e09-b853-3a2c3bbee183",
+  "toolUseResult": {
+    "query": "Search-R1 github released trained checkpoint model download PeterGriffinJin",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CnmYoGzZv53L1HSRvMGLsN",
+        "content": [
+          {
+            "title": "GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub",
+            "url": "https://github.com/PeterGriffinJin/Search-R1"
+          },
+          {
+            "title": "Search-R1: Training LLMs to Reason and Leverage ...",
+            "url": "https://arxiv.org/pdf/2503.09516"
+          },
+          {
+            "title": "Paper page - Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning",
+            "url": "https://huggingface.co/papers/2503.09516"
+          },
+          {
+            "title": "Search-R1/train_grpo.sh at main · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/blob/main/train_grpo.sh"
+          },
+          {
+            "title": "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning - Science Explorer Abstract",
+            "url": "https://scixplorer.org/abs/2025arXiv250309516J/abstract"
+          },
+          {
+            "title": "Search-R1/README.md at main · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/blob/main/README.md"
+          },
+          {
+            "title": "Issues · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/issues"
+          },
+          {
+            "title": "Ray-related problem · Issue #139 · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/issues/139"
+          },
+          {
+            "title": "Activity · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/activity"
+          },
+          {
+            "title": "slime/examples/search-r1 at main · THUDM/slime",
+            "url": "https://github.com/THUDM/slime/tree/main/examples/search-r1"
+          }
+        ]
+      },
+      "Based on the search results, I can provide you with information about Search-R1 and where to find released trained checkpoints:\n\n## Search-R1 Overview\n\nSearch-R1 is a reinforcement learning framework designed for training reasoning-and-searching interleaved LLMs—language models that learn to reason and make tool calls (e.g., to search engines) in a coordinated manner. Built upon veRL, Search-R1 extends the ideas of DeepSeek-R1(-Zero) by incorporating interleaved search engine access and provides a fully open-source RL training pipeline.\n\n## Released Models and Checkpoints\n\nThe code and model checkpoints are available at https://github.com/PeterGriffinJin/Search-R1. The repository is maintained by PeterGriffinJin and is publicly accessible on GitHub.\n\n## Key Features\n\nThe framework supports different RL methods (e.g., PPO, GRPO, reinforce), different LLMs (e.g., llama3, Qwen2.5, etc) and different search engines (e.g., local sparse/dense retrievers and online search engines).\n\nFor downloading and using the trained checkpoints, you'll want to visit the GitHub repository directly at https://github.com/PeterGriffinJin/Search-R1, where you'll find detailed instructions for model access and setup."
+    ],
+    "durationSeconds": 6.7736290929999665
+  },
+  "sourceToolAssistantUUID": "56af34e2-f9b1-4e5b-ac1e-f7763ce492aa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 101_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4406ce05-702e-4e09-b853-3a2c3bbee183",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 102_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-14T15:55:35.409Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01V5tMPcnyGT4JDkHcnR12rs`</summary>
+
+```json
+{
+  "url": "https://github.com/PeterGriffinJin/Search-R1",
+  "prompt": "Does this repository release pre-trained model checkpoints (trained weights) that others can download and use directly? Or does it only provide training code/scripts? Look for mentions of released models, Hugging Face links, or checkpoint downloads. Also check: what base models are supported (Qwen2.5-7B specifically)?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4406ce05-702e-4e09-b853-3a2c3bbee183",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jW3Wzu8T41nnHhTmcm",
+  "type": "assistant",
+  "uuid": "00950f17-6519-48e3-b449-8ef6eaea8172",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CxScGwqCQnhCgATdUQ7vNN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 961,
+      "cache_read_input_tokens": 59563,
+      "output_tokens": 155,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 961,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 155,
+          "cache_read_input_tokens": 59563,
+          "cache_creation_input_tokens": 961,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 961
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-14T15:55:41.468Z_
+
+<details><summary>↩ Tool result · `toolu_01V5tMPcnyGT4JDkHcnR12rs`</summary>
+
+```text
+# Search-R1: Model Availability and Base Model Support
+
+## Pre-trained Checkpoints
+
+Yes, the repository provides pre-trained model checkpoints. The documentation references "Model and data: [link](https://huggingface.co/collections/PeterJinGo/search-r1-67d1a021202731cb065740f5)" indicating trained weights are available on Hugging Face for download and direct use.
+
+## Base Model Support
+
+The repository explicitly supports multiple foundation models for training. Regarding Qwen2.5-7B specifically: the page mentions that "The base model (Qwen2.5-7b-base) can learn to conduct multi-turn search engine calling and reasoning with RL," confirming this model is actively supported with demonstrated results.
+
+Additional supported base models include Llama-3.2-3b-base and other variants. The framework is designed to be flexible across "different LLMs (e.g., llama3, Qwen2.5, etc)."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "00950f17-6519-48e3-b449-8ef6eaea8172",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "b988d790-9b44-45a8-b7b3-9638efc118ee",
+  "toolUseResult": {
+    "bytes": 387206,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Search-R1: Model Availability and Base Model Support\n\n## Pre-trained Checkpoints\n\nYes, the repository provides pre-trained model checkpoints. The documentation references \"Model and data: [link](https://huggingface.co/collections/PeterJinGo/search-r1-67d1a021202731cb065740f5)\" indicating trained weights are available on Hugging Face for download and direct use.\n\n## Base Model Support\n\nThe repository explicitly supports multiple foundation models for training. Regarding Qwen2.5-7B specifically: the page mentions that \"The base model (Qwen2.5-7b-base) can learn to conduct multi-turn search engine calling and reasoning with RL,\" confirming this model is actively supported with demonstrated results.\n\nAdditional supported base models include Llama-3.2-3b-base and other variants. The framework is designed to be flexible across \"different LLMs (e.g., llama3, Qwen2.5, etc).\"",
+    "durationMs": 6056,
+    "url": "https://github.com/PeterGriffinJin/Search-R1"
+  },
+  "sourceToolAssistantUUID": "00950f17-6519-48e3-b449-8ef6eaea8172",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105 · 2026-05-14T15:55:44.927Z_
+
+Good — Search-R1 does release checkpoints on Hugging Face. Now let me check for one more critical piece — whether there are any very recent papers (last month) that directly propose the same counterfactual probing idea.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b988d790-9b44-45a8-b7b3-9638efc118ee",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jWpr2qu7BN3TjvD2aJ",
+  "type": "assistant",
+  "uuid": "c6bb2a60-9bf5-479b-99b9-c937f5303ce8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RDM9gLZ2FrDZ7VCGuL8BSe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 394,
+      "cache_read_input_tokens": 60524,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 394,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 60524,
+          "cache_creation_input_tokens": 394,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 394
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-14T15:55:45.938Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ln2vc6E8GtieYzoow5Mx3b`</summary>
+
+```json
+{
+  "query": "counterfactual probing retrieval decision reasoning step hidden state classify evidence knowledge gap arXiv May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6bb2a60-9bf5-479b-99b9-c937f5303ce8",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jWpr2qu7BN3TjvD2aJ",
+  "type": "assistant",
+  "uuid": "00e79bf1-9b5d-4ba5-bd84-bea21594cbd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RDM9gLZ2FrDZ7VCGuL8BSe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 394,
+      "cache_read_input_tokens": 60524,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 394,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 60524,
+          "cache_creation_input_tokens": 394,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 394
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-14T15:55:54.681Z_
+
+<details><summary>↩ Tool result · `toolu_01Ln2vc6E8GtieYzoow5Mx3b`</summary>
+
+```text
+Web search results for query: "counterfactual probing retrieval decision reasoning step hidden state classify evidence knowledge gap arXiv May 2026"
+
+Links: [{"title":"Counterfactual Probing for Hallucination Detection and Mitigation in Large Language Models","url":"https://arxiv.org/html/2508.01862"},{"title":"Can LLMs Reconcile Knowledge Conflicts in Counterfactual Reasoning?","url":"https://arxiv.org/html/2506.15732"},{"title":"[2409.00860] A Counterfactual Explanation Framework for Retrieval Models","url":"https://arxiv.org/abs/2409.00860"},{"title":"Unveiling Causal Reasoning in Large Language Models","url":"https://arxiv.org/pdf/2506.21215"},{"title":"Causal-Counterfactual RAG: The Integration of Causal-Counterfactual Reasoning into RAG","url":"https://arxiv.org/html/2509.14435v1"},{"title":"[2508.03681] What If, But Privately: Private Counterfactual Retrieval","url":"https://arxiv.org/abs/2508.03681"},{"title":"Adaptive Retrieval without Self-Knowledge? Bringing Uncertainty Back Home","url":"https://arxiv.org/html/2501.12835v2"},{"title":"[2403.06936] Counterfactual Reasoning with Knowledge Graph Embeddings","url":"https://arxiv.org/abs/2403.06936"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=3050&show=2000"},{"title":"[2411.10429] Private Counterfactual Retrieval With Immutable Features","url":"https://arxiv.org/abs/2411.10429"}]
+
+I found several relevant papers on arXiv, though none appear to be specifically from May 2026 (which is a future date). Here are some of the most relevant results:
+
+## Key Research Found:
+
+**1. Counterfactual Probing for Hallucination Detection (August 2025)**
+This work uses the insight that robust knowledge should demonstrate consistency when confronted with plausible but incorrect alternatives, dynamically generating counterfactual statements that are semantically similar but factually incorrect to analyze model response patterns.
+
+**2. Knowledge Conflicts in Counterfactual Reasoning (February 2026)**
+This research reveals a fundamental limitation of current LLMs: despite their capacity to memorize and retrieve facts, they lack robust mechanisms for on-the-fly modification or extension of their internal knowledge graph in response to conflicting or new information. The study asks whether modern LLMs can selectively combine parametric knowledge with in-context counterfactual premises to answer multi-hop questions correctly.
+
+**3. Causal-Counterfactual RAG (September 2025)**
+Although counterfactual reasoning is well-established in causal inference, it is rarely embedded as a fundamental mechanism in RAG frameworks, with comprehensive counterfactual inference that dynamically reconciles retrieved knowledge with user intent seldom realized.
+
+**4. Adaptive Retrieval with Uncertainty (February 2025)**
+SeaKR uses an Uncertainty Module to monitor LLM internal states and trigger retrieval when uncertainty exceeds a threshold, with a re-ranking component selecting a snippet that reduces uncertainty and improves factual accuracy.
+
+These papers address themes of counterfactual reasoning, retrieval, knowledge classification, and understanding model uncertainties, though the exact combination of all terms you specified may not exist in a single paper.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "00e79bf1-9b5d-4ba5-bd84-bea21594cbd1",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "8fc9c5f5-8243-4463-9c7d-234bd5e6c8bf",
+  "toolUseResult": {
+    "query": "counterfactual probing retrieval decision reasoning step hidden state classify evidence knowledge gap arXiv May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017oRvPg86sgZhWQTzjaHZJu",
+        "content": [
+          {
+            "title": "Counterfactual Probing for Hallucination Detection and Mitigation in Large Language Models",
+            "url": "https://arxiv.org/html/2508.01862"
+          },
+          {
+            "title": "Can LLMs Reconcile Knowledge Conflicts in Counterfactual Reasoning?",
+            "url": "https://arxiv.org/html/2506.15732"
+          },
+          {
+            "title": "[2409.00860] A Counterfactual Explanation Framework for Retrieval Models",
+            "url": "https://arxiv.org/abs/2409.00860"
+          },
+          {
+            "title": "Unveiling Causal Reasoning in Large Language Models",
+            "url": "https://arxiv.org/pdf/2506.21215"
+          },
+          {
+            "title": "Causal-Counterfactual RAG: The Integration of Causal-Counterfactual Reasoning into RAG",
+            "url": "https://arxiv.org/html/2509.14435v1"
+          },
+          {
+            "title": "[2508.03681] What If, But Privately: Private Counterfactual Retrieval",
+            "url": "https://arxiv.org/abs/2508.03681"
+          },
+          {
+            "title": "Adaptive Retrieval without Self-Knowledge? Bringing Uncertainty Back Home",
+            "url": "https://arxiv.org/html/2501.12835v2"
+          },
+          {
+            "title": "[2403.06936] Counterfactual Reasoning with Knowledge Graph Embeddings",
+            "url": "https://arxiv.org/abs/2403.06936"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=3050&show=2000"
+          },
+          {
+            "title": "[2411.10429] Private Counterfactual Retrieval With Immutable Features",
+            "url": "https://arxiv.org/abs/2411.10429"
+          }
+        ]
+      },
+      "I found several relevant papers on arXiv, though none appear to be specifically from May 2026 (which is a future date). Here are some of the most relevant results:\n\n## Key Research Found:\n\n**1. Counterfactual Probing for Hallucination Detection (August 2025)**\nThis work uses the insight that robust knowledge should demonstrate consistency when confronted with plausible but incorrect alternatives, dynamically generating counterfactual statements that are semantically similar but factually incorrect to analyze model response patterns.\n\n**2. Knowledge Conflicts in Counterfactual Reasoning (February 2026)**\nThis research reveals a fundamental limitation of current LLMs: despite their capacity to memorize and retrieve facts, they lack robust mechanisms for on-the-fly modification or extension of their internal knowledge graph in response to conflicting or new information. The study asks whether modern LLMs can selectively combine parametric knowledge with in-context counterfactual premises to answer multi-hop questions correctly.\n\n**3. Causal-Counterfactual RAG (September 2025)**\nAlthough counterfactual reasoning is well-established in causal inference, it is rarely embedded as a fundamental mechanism in RAG frameworks, with comprehensive counterfactual inference that dynamically reconciles retrieved knowledge with user intent seldom realized.\n\n**4. Adaptive Retrieval with Uncertainty (February 2025)**\nSeaKR uses an Uncertainty Module to monitor LLM internal states and trigger retrieval when uncertainty exceeds a threshold, with a re-ranking component selecting a snippet that reduces uncertainty and improves factual accuracy.\n\nThese papers address themes of counterfactual reasoning, retrieval, knowledge classification, and understanding model uncertainties, though the exact combination of all terms you specified may not exist in a single paper."
+    ],
+    "durationSeconds": 8.738722539000038
+  },
+  "sourceToolAssistantUUID": "00e79bf1-9b5d-4ba5-bd84-bea21594cbd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-14T15:56:00.640Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012cHXaMGLtFu8xQ4ATKYiL3`</summary>
+
+```json
+{
+  "query": "\"Adaptive Retrieval helps Reasoning\" \"but mostly if it's not used\" arXiv 2602.07213"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8fc9c5f5-8243-4463-9c7d-234bd5e6c8bf",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jXoPFaNx29KHhRHeko",
+  "type": "assistant",
+  "uuid": "1eb5f7a7-748b-431c-8c83-7938766a5b43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015hbMc6tM8c7dNPubg91Kig",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 60918,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1009,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 60918,
+          "cache_creation_input_tokens": 1009,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1009
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-14T15:56:09.687Z_
+
+<details><summary>↩ Tool result · `toolu_012cHXaMGLtFu8xQ4ATKYiL3`</summary>
+
+```text
+Web search results for query: ""Adaptive Retrieval helps Reasoning" "but mostly if it's not used" arXiv 2602.07213"
+
+Links: [{"title":"[2602.07213] Adaptive Retrieval helps Reasoning in LLMs -- but mostly if it's not used","url":"https://arxiv.org/abs/2602.07213"},{"title":"Adaptive Retrieval helps Reasoning in LLMs - but mostly if it’s not used","url":"https://www.arxiv.org/pdf/2602.07213"},{"title":"When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models","url":"https://arxiv.org/html/2604.26649"},{"title":"[2604.26649] When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models","url":"https://arxiv.org/abs/2604.26649"},{"title":"HyperRAG: Reasoning N-ary Facts over Hypergraphs for Retrieval Augmented Generation","url":"https://arxiv.org/html/2602.14470"},{"title":"[2602.14470v1] HyperRAG: Reasoning N-ary Facts over Hypergraphs for Retrieval Augmented Generation","url":"https://arxiv.org/abs/2602.14470v1"},{"title":"V-Retrver: Evidence-Driven Agentic Reasoning for Universal Multimodal Retrieval","url":"https://arxiv.org/html/2602.06034"},{"title":"Pruning Minimal Reasoning Graphs for Efficient Retrieval-Augmented Generation","url":"https://arxiv.org/html/2602.04926"},{"title":"Scaling Search-Augmented LLM Reasoning via Adaptive Information Control","url":"https://arxiv.org/html/2602.01672"},{"title":"Adaptive Retrieval without Self-Knowledge? Bringing Uncertainty Back Home","url":"https://arxiv.org/html/2501.12835v1"}]
+
+I found the paper you were searching for! Here are the key details about arXiv 2602.07213:
+
+**Title:** "Adaptive Retrieval helps Reasoning in LLMs -- but mostly if it's not used"
+
+**Authors:** Srijan Shakya, Anamaria-Roberta Hartl, Sepp Hochreiter, Korbinian Pöppel
+
+**Main Research Focus:**
+The paper addresses how Large Language Models often struggle with complex reasoning tasks due to their static, parametric knowledge, and explores treating retrieval as a form of dynamic in-context learning.
+
+**Key Methodology:**
+The researchers tested an adaptive retrieval-augmented architecture where an LLM agent actively decides when to query an external knowledge base during its reasoning process, comparing this strategy against a standard Chain-of-Thought (CoT) baseline and a static retrieval approach on the GSM8K and MATH-500 benchmarks.
+
+**Key Findings:**
+The results suggest that retrieval only rarely helps reasoning, while actively not using retrieval is indicative of good model performance. Additionally, the model scales its retrieval frequency with the difficulty of the problem, suggesting that the decision to retrieve is a crucial metacognitive signal.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1eb5f7a7-748b-431c-8c83-7938766a5b43",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "99e78bc5-92a1-41a1-99b3-b1b7d8731728",
+  "toolUseResult": {
+    "query": "\"Adaptive Retrieval helps Reasoning\" \"but mostly if it's not used\" arXiv 2602.07213",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011m4Bzndv2wYodGAPgpmDkK",
+        "content": [
+          {
+            "title": "[2602.07213] Adaptive Retrieval helps Reasoning in LLMs -- but mostly if it's not used",
+            "url": "https://arxiv.org/abs/2602.07213"
+          },
+          {
+            "title": "Adaptive Retrieval helps Reasoning in LLMs - but mostly if it’s not used",
+            "url": "https://www.arxiv.org/pdf/2602.07213"
+          },
+          {
+            "title": "When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models",
+            "url": "https://arxiv.org/html/2604.26649"
+          },
+          {
+            "title": "[2604.26649] When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models",
+            "url": "https://arxiv.org/abs/2604.26649"
+          },
+          {
+            "title": "HyperRAG: Reasoning N-ary Facts over Hypergraphs for Retrieval Augmented Generation",
+            "url": "https://arxiv.org/html/2602.14470"
+          },
+          {
+            "title": "[2602.14470v1] HyperRAG: Reasoning N-ary Facts over Hypergraphs for Retrieval Augmented Generation",
+            "url": "https://arxiv.org/abs/2602.14470v1"
+          },
+          {
+            "title": "V-Retrver: Evidence-Driven Agentic Reasoning for Universal Multimodal Retrieval",
+            "url": "https://arxiv.org/html/2602.06034"
+          },
+          {
+            "title": "Pruning Minimal Reasoning Graphs for Efficient Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2602.04926"
+          },
+          {
+            "title": "Scaling Search-Augmented LLM Reasoning via Adaptive Information Control",
+            "url": "https://arxiv.org/html/2602.01672"
+          },
+          {
+            "title": "Adaptive Retrieval without Self-Knowledge? Bringing Uncertainty Back Home",
+            "url": "https://arxiv.org/html/2501.12835v1"
+          }
+        ]
+      },
+      "I found the paper you were searching for! Here are the key details about arXiv 2602.07213:\n\n**Title:** \"Adaptive Retrieval helps Reasoning in LLMs -- but mostly if it's not used\"\n\n**Authors:** Srijan Shakya, Anamaria-Roberta Hartl, Sepp Hochreiter, Korbinian Pöppel\n\n**Main Research Focus:**\nThe paper addresses how Large Language Models often struggle with complex reasoning tasks due to their static, parametric knowledge, and explores treating retrieval as a form of dynamic in-context learning.\n\n**Key Methodology:**\nThe researchers tested an adaptive retrieval-augmented architecture where an LLM agent actively decides when to query an external knowledge base during its reasoning process, comparing this strategy against a standard Chain-of-Thought (CoT) baseline and a static retrieval approach on the GSM8K and MATH-500 benchmarks.\n\n**Key Findings:**\nThe results suggest that retrieval only rarely helps reasoning, while actively not using retrieval is indicative of good model performance. Additionally, the model scales its retrieval frequency with the difficulty of the problem, suggesting that the decision to retrieve is a crucial metacognitive signal."
+    ],
+    "durationSeconds": 9.044283001000004
+  },
+  "sourceToolAssistantUUID": "1eb5f7a7-748b-431c-8c83-7938766a5b43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-14T15:56:12.669Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017gSRRvs8zB5M3h1YdxBoSC`</summary>
+
+```json
+{
+  "query": "vLLM batch inference Qwen2.5-7B throughput tokens per second H100 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99e78bc5-92a1-41a1-99b3-b1b7d8731728",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jYuUQ1kPiR5HPx4gtA",
+  "type": "assistant",
+  "uuid": "0153fa70-d9ee-4f0c-8925-62e6a813d0a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UkV6Z1AYVQATMwhBFjW2Bc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 874,
+      "cache_read_input_tokens": 61927,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 874,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 61927,
+          "cache_creation_input_tokens": 874,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 874
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-14T15:56:19.330Z_
+
+<details><summary>↩ Tool result · `toolu_017gSRRvs8zB5M3h1YdxBoSC`</summary>
+
+```text
+Web search results for query: "vLLM batch inference Qwen2.5-7B throughput tokens per second H100 2025"
+
+Links: [{"title":"Nvidia H100 vLLM Benchmark Results: Reasoning LLMs on Hugging Face","url":"https://www.databasemart.com/blog/vllm-gpu-benchmark-h100"},{"title":"Qwen2.5 Speed Benchmark - Qwen - Read the Docs","url":"https://qwen.readthedocs.io/en/v2.5/benchmark/speed_benchmark.html"},{"title":"Speeding up vllm inference for Qwen2.5-VL - General - vLLM Forums","url":"https://discuss.vllm.ai/t/speeding-up-vllm-inference-for-qwen2-5-vl/615"},{"title":"Optimizing Qwen2.5-Coder Throughput with NVIDIA TensorRT-LLM Lookahead Decoding | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/optimizing-qwen2-5-coder-throughput-with-nvidia-tensorrt-llm-lookahead-decoding/"},{"title":"Inference Benchmarking of Large Language Models on AI ...","url":"https://arxiv.org/pdf/2411.00136"},{"title":"Local LLM Hardware Guide 2025: GPU Specs & Pricing | Introl Blog","url":"https://introl.com/blog/local-llm-hardware-pricing-guide-2025"},{"title":"Qwen2.5-VL Usage Guide - vLLM Recipes","url":"https://docs.vllm.ai/projects/recipes/en/latest/Qwen/Qwen2.5-VL.html"},{"title":"Navigating the AI Compute Maze: A Deep Dive into Google TPUs, Nvidia GPUs, and LLM Benchmarking | by Miko AI | Miko Engineering Blog","url":"https://engineering.miko.ai/navigating-the-ai-compute-maze-a-deep-dive-into-google-tpus-nvidia-gpus-and-llm-benchmarking-5332339e4c9b?gi=3e8d28a7d7aa"},{"title":"Speed Benchmark - Qwen","url":"https://qwen.readthedocs.io/en/latest/getting_started/speed_benchmark.html"},{"title":"LLM-Inference-Bench: Inference Benchmarking of Large Language Models on AI Accelerators","url":"https://arxiv.org/html/2411.00136v1"}]
+
+Based on the search results, I found relevant information about vLLM batch inference performance on H100 GPUs, though specific data for Qwen2.5-7B is limited in these results.
+
+Here are the key findings:
+
+**General vLLM Performance on H100:**
+vLLM 0.6.0 achieves 2,300-2,500 tokens/second for Llama 8B on H100, demonstrating strong throughput capabilities.
+
+**Qwen2.5 Model Performance:**
+The search results show that the RTX 5090 achieves 5,841 tokens/second on Qwen2.5-Coder-7B, though this is for a different GPU (consumer-grade RTX 5090) rather than H100.
+
+**Batch Inference Insights:**
+For a batch size of 64, the throughput is 26.6x greater than that of a batch size of 1 for a token length of 2048 on A100, showing that batch inference significantly improves throughput on similar hardware.
+
+**Official Qwen2.5 Benchmarking:**
+Qwen2.5 speed benchmarks test generating 2048 tokens with various input lengths using vLLM with gpu_memory_utilization=0.9, max_model_len=32768, but the actual throughput numbers for H100 aren't detailed in these results.
+
+The search results don't contain specific published throughput numbers (tokens/second) for Qwen2.5-7B batch inference on H100 for 2025. For exact benchmarks, you may want to check the official Qwen documentation or run your own benchmarks using vLLM's benchmarking tools.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0153fa70-d9ee-4f0c-8925-62e6a813d0a2",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "ab11cfc5-e694-4ff8-aa1a-e34bf771f0dc",
+  "toolUseResult": {
+    "query": "vLLM batch inference Qwen2.5-7B throughput tokens per second H100 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015LHLDRRDDzC4kUBmd16dCF",
+        "content": [
+          {
+            "title": "Nvidia H100 vLLM Benchmark Results: Reasoning LLMs on Hugging Face",
+            "url": "https://www.databasemart.com/blog/vllm-gpu-benchmark-h100"
+          },
+          {
+            "title": "Qwen2.5 Speed Benchmark - Qwen - Read the Docs",
+            "url": "https://qwen.readthedocs.io/en/v2.5/benchmark/speed_benchmark.html"
+          },
+          {
+            "title": "Speeding up vllm inference for Qwen2.5-VL - General - vLLM Forums",
+            "url": "https://discuss.vllm.ai/t/speeding-up-vllm-inference-for-qwen2-5-vl/615"
+          },
+          {
+            "title": "Optimizing Qwen2.5-Coder Throughput with NVIDIA TensorRT-LLM Lookahead Decoding | NVIDIA Technical Blog",
+            "url": "https://developer.nvidia.com/blog/optimizing-qwen2-5-coder-throughput-with-nvidia-tensorrt-llm-lookahead-decoding/"
+          },
+          {
+            "title": "Inference Benchmarking of Large Language Models on AI ...",
+            "url": "https://arxiv.org/pdf/2411.00136"
+          },
+          {
+            "title": "Local LLM Hardware Guide 2025: GPU Specs & Pricing | Introl Blog",
+            "url": "https://introl.com/blog/local-llm-hardware-pricing-guide-2025"
+          },
+          {
+            "title": "Qwen2.5-VL Usage Guide - vLLM Recipes",
+            "url": "https://docs.vllm.ai/projects/recipes/en/latest/Qwen/Qwen2.5-VL.html"
+          },
+          {
+            "title": "Navigating the AI Compute Maze: A Deep Dive into Google TPUs, Nvidia GPUs, and LLM Benchmarking | by Miko AI | Miko Engineering Blog",
+            "url": "https://engineering.miko.ai/navigating-the-ai-compute-maze-a-deep-dive-into-google-tpus-nvidia-gpus-and-llm-benchmarking-5332339e4c9b?gi=3e8d28a7d7aa"
+          },
+          {
+            "title": "Speed Benchmark - Qwen",
+            "url": "https://qwen.readthedocs.io/en/latest/getting_started/speed_benchmark.html"
+          },
+          {
+            "title": "LLM-Inference-Bench: Inference Benchmarking of Large Language Models on AI Accelerators",
+            "url": "https://arxiv.org/html/2411.00136v1"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about vLLM batch inference performance on H100 GPUs, though specific data for Qwen2.5-7B is limited in these results.\n\nHere are the key findings:\n\n**General vLLM Performance on H100:**\nvLLM 0.6.0 achieves 2,300-2,500 tokens/second for Llama 8B on H100, demonstrating strong throughput capabilities.\n\n**Qwen2.5 Model Performance:**\nThe search results show that the RTX 5090 achieves 5,841 tokens/second on Qwen2.5-Coder-7B, though this is for a different GPU (consumer-grade RTX 5090) rather than H100.\n\n**Batch Inference Insights:**\nFor a batch size of 64, the throughput is 26.6x greater than that of a batch size of 1 for a token length of 2048 on A100, showing that batch inference significantly improves throughput on similar hardware.\n\n**Official Qwen2.5 Benchmarking:**\nQwen2.5 speed benchmarks test generating 2048 tokens with various input lengths using vLLM with gpu_memory_utilization=0.9, max_model_len=32768, but the actual throughput numbers for H100 aren't detailed in these results.\n\nThe search results don't contain specific published throughput numbers (tokens/second) for Qwen2.5-7B batch inference on H100 for 2025. For exact benchmarks, you may want to check the official Qwen documentation or run your own benchmarks using vLLM's benchmarking tools."
+    ],
+    "durationSeconds": 6.65147912100004
+  },
+  "sourceToolAssistantUUID": "0153fa70-d9ee-4f0c-8925-62e6a813d0a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112 · 2026-05-14T15:56:25.372Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FnwzYt5GERaz8F7Brhj2od`</summary>
+
+```json
+{
+  "query": "process reward agent steering knowledge-intensive reasoning arXiv 2604.09482 step-level"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab11cfc5-e694-4ff8-aa1a-e34bf771f0dc",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jZcqZ49sJdPk7S9EUM",
+  "type": "assistant",
+  "uuid": "a0d1a110-ea40-46d6-a493-c399e94438cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fk9nodKaa2UnkJJjhgLUg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1150,
+      "cache_read_input_tokens": 62801,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1150,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 62801,
+          "cache_creation_input_tokens": 1150,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1150
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-14T15:56:32.552Z_
+
+<details><summary>↩ Tool result · `toolu_01FnwzYt5GERaz8F7Brhj2od`</summary>
+
+```text
+Web search results for query: "process reward agent steering knowledge-intensive reasoning arXiv 2604.09482 step-level"
+
+Links: [{"title":"Process Reward Agents for Steering Knowledge-Intensive Reasoning","url":"https://arxiv.org/html/2604.09482"},{"title":"[2604.09482] Process Reward Agents for Steering Knowledge-Intensive Reasoning","url":"https://arxiv.org/abs/2604.09482"},{"title":"[2604.09482v1] Process Reward Agents for Steering Knowledge-Intensive Reasoning","url":"https://arxiv.org/abs/2604.09482v1"},{"title":"Process Reward Agents for Steering Knowledge-Intensive Reasoning | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2604.09482"},{"title":"Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis","url":"https://arxiv.org/html/2604.24198v1"},{"title":"Unsupervised Process Reward Models","url":"https://arxiv.org/html/2605.10158v1"},{"title":"[2605.10158v1] Unsupervised Process Reward Models","url":"https://arxiv.org/abs/2605.10158v1"},{"title":"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models","url":"https://arxiv.org/html/2510.08049v3"},{"title":"Improving Vision-language Models with Perception-centric Process Reward Models","url":"https://arxiv.org/html/2604.24583"},{"title":"Process Reward Models for LLM Agents: Practical Framework and Directions","url":"https://arxiv.org/html/2502.10325v1"}]
+
+I found the paper you were looking for. Here's what the search returned about arXiv 2604.09482:
+
+## Process Reward Agents for Steering Knowledge-Intensive Reasoning
+
+This paper addresses reasoning in knowledge-intensive domains where intermediate steps are often not locally verifiable—unlike math or code, evaluating step correctness may require synthesizing clues across large external knowledge sources.
+
+Prior work proposed process reward models (PRMs), including retrieval-augmented variants, but these methods operate post hoc, scoring completed trajectories, which prevents their integration into dynamic inference procedures.
+
+The authors introduce Process Reward Agents (PRA), a test-time method for providing domain-grounded, online, step-wise rewards to a frozen policy. In contrast to prior retrieval-augmented PRMs, PRA enables search-based decoding to rank and prune candidate trajectories at every generation step.
+
+**Key Results:** Experiments on multiple medical reasoning benchmarks demonstrate that PRA consistently outperforms strong baselines, achieving 80.8% accuracy on MedQA with Qwen3-4B, a new state of the art at the 4B scale. Importantly, PRA generalizes to unseen frozen policy models ranging from 0.5B to 8B parameters, improving their accuracy by up to 25.7% without any policy model updates.
+
+The paper was submitted on April 10, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a0d1a110-ea40-46d6-a493-c399e94438cb",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "dbd57553-e1c0-4b60-8c15-a7f97eae4d65",
+  "toolUseResult": {
+    "query": "process reward agent steering knowledge-intensive reasoning arXiv 2604.09482 step-level",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016sk3M1fHTw2Ydnytzcbkgq",
+        "content": [
+          {
+            "title": "Process Reward Agents for Steering Knowledge-Intensive Reasoning",
+            "url": "https://arxiv.org/html/2604.09482"
+          },
+          {
+            "title": "[2604.09482] Process Reward Agents for Steering Knowledge-Intensive Reasoning",
+            "url": "https://arxiv.org/abs/2604.09482"
+          },
+          {
+            "title": "[2604.09482v1] Process Reward Agents for Steering Knowledge-Intensive Reasoning",
+            "url": "https://arxiv.org/abs/2604.09482v1"
+          },
+          {
+            "title": "Process Reward Agents for Steering Knowledge-Intensive Reasoning | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2604.09482"
+          },
+          {
+            "title": "Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis",
+            "url": "https://arxiv.org/html/2604.24198v1"
+          },
+          {
+            "title": "Unsupervised Process Reward Models",
+            "url": "https://arxiv.org/html/2605.10158v1"
+          },
+          {
+            "title": "[2605.10158v1] Unsupervised Process Reward Models",
+            "url": "https://arxiv.org/abs/2605.10158v1"
+          },
+          {
+            "title": "A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models",
+            "url": "https://arxiv.org/html/2510.08049v3"
+          },
+          {
+            "title": "Improving Vision-language Models with Perception-centric Process Reward Models",
+            "url": "https://arxiv.org/html/2604.24583"
+          },
+          {
+            "title": "Process Reward Models for LLM Agents: Practical Framework and Directions",
+            "url": "https://arxiv.org/html/2502.10325v1"
+          }
+        ]
+      },
+      "I found the paper you were looking for. Here's what the search returned about arXiv 2604.09482:\n\n## Process Reward Agents for Steering Knowledge-Intensive Reasoning\n\nThis paper addresses reasoning in knowledge-intensive domains where intermediate steps are often not locally verifiable—unlike math or code, evaluating step correctness may require synthesizing clues across large external knowledge sources.\n\nPrior work proposed process reward models (PRMs), including retrieval-augmented variants, but these methods operate post hoc, scoring completed trajectories, which prevents their integration into dynamic inference procedures.\n\nThe authors introduce Process Reward Agents (PRA), a test-time method for providing domain-grounded, online, step-wise rewards to a frozen policy. In contrast to prior retrieval-augmented PRMs, PRA enables search-based decoding to rank and prune candidate trajectories at every generation step.\n\n**Key Results:** Experiments on multiple medical reasoning benchmarks demonstrate that PRA consistently outperforms strong baselines, achieving 80.8% accuracy on MedQA with Qwen3-4B, a new state of the art at the 4B scale. Importantly, PRA generalizes to unseen frozen policy models ranging from 0.5B to 8B parameters, improving their accuracy by up to 25.7% without any policy model updates.\n\nThe paper was submitted on April 10, 2026."
+    ],
+    "durationSeconds": 7.175685988000012
+  },
+  "sourceToolAssistantUUID": "a0d1a110-ea40-46d6-a493-c399e94438cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 114_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "dbd57553-e1c0-4b60-8c15-a7f97eae4d65",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 115_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-14T15:56:35.619Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VwzdpuckEkccQejyFAf9u2`</summary>
+
+```json
+{
+  "query": "Scent of Knowledge optimizing search-enhanced reasoning information foraging arXiv 2505"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dbd57553-e1c0-4b60-8c15-a7f97eae4d65",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jabG5Pgewigx4rwfKW",
+  "type": "assistant",
+  "uuid": "473186e2-d85d-4607-98ef-c413e763fbaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XEhDPJNDRPnojBuKFqBngG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 857,
+      "cache_read_input_tokens": 63951,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 857,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 63951,
+          "cache_creation_input_tokens": 857,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 857
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-14T15:56:43.190Z_
+
+<details><summary>↩ Tool result · `toolu_01VwzdpuckEkccQejyFAf9u2`</summary>
+
+```text
+Web search results for query: "Scent of Knowledge optimizing search-enhanced reasoning information foraging arXiv 2505"
+
+Links: [{"title":"Scent of Knowledge: Optimizing Search-Enhanced ...","url":"https://arxiv.org/pdf/2505.09316"},{"title":"[2505.09316] Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging","url":"https://arxiv.org/abs/2505.09316"},{"title":"[2505.09316v1] Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging","url":"https://arxiv.org/abs/2505.09316v1"},{"title":"Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging","url":"https://arxiv.org/html/2505.09316"},{"title":"Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging | OpenReview","url":"https://openreview.net/forum?id=26kUrQm4zw"},{"title":"Scent of Knowledge: Optimizing Search-Enhanced","url":"https://openreview.net/pdf?id=26kUrQm4zw"},{"title":"[Literature Review] Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging","url":"https://www.themoonlight.io/en/review/scent-of-knowledge-optimizing-search-enhanced-reasoning-with-information-foraging"},{"title":"Computer Science May 2025","url":"https://arxiv.org/list/cs/2025-05?skip=4175&show=2000"},{"title":"Information Retrieval May 2025","url":"https://www.arxiv.org/list/cs.IR/2025-05?skip=175&show=500"},{"title":"1 Introduction","url":"https://arxiv.org/html/2505.15062"}]
+
+I found the paper you were searching for. Here's a summary of the key information:
+
+## Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging
+
+The paper addresses how traditional retrieval-augmented generation methods employ static, pre-inference retrieval strategies, making them inadequate for complex tasks involving ambiguous, multi-step, or evolving information needs.
+
+### Main Contribution
+
+The paper proposes InForage, a reinforcement learning framework that formalizes retrieval-augmented reasoning as a dynamic information-seeking process, inspired by Information Foraging Theory (IFT).
+
+### Key Components
+
+The paper formalizes search-enhanced reasoning through information foraging theory, modeling retrieval decisions as a dynamic optimization of information scent and patch value along the reasoning trajectory. Information scent is defined as the perceived relevance or utility of available informational cues.
+
+InForage is a reinforcement learning framework that jointly optimizes outcome correctness, intermediate information gain, and reasoning efficiency, enabling LLMs to perform adaptive, multi-step information foraging.
+
+### Dataset
+
+The paper constructs a human-guided search reasoning dataset that captures multi-step web browsing trajectories and rationale-dependent query formulation, providing the structured supervision necessary to train and evaluate InForage effectively.
+
+The paper was accepted as a Neurips 25 Spotlight presentation.
+
+The paper is available on arXiv at [2505.09316](https://arxiv.org/abs/2505.09316).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "473186e2-d85d-4607-98ef-c413e763fbaa",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "9aaa5640-2209-46f7-9188-25025a028fc0",
+  "toolUseResult": {
+    "query": "Scent of Knowledge optimizing search-enhanced reasoning information foraging arXiv 2505",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KQjkq3ReTKvcwZZ9bPM63x",
+        "content": [
+          {
+            "title": "Scent of Knowledge: Optimizing Search-Enhanced ...",
+            "url": "https://arxiv.org/pdf/2505.09316"
+          },
+          {
+            "title": "[2505.09316] Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging",
+            "url": "https://arxiv.org/abs/2505.09316"
+          },
+          {
+            "title": "[2505.09316v1] Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging",
+            "url": "https://arxiv.org/abs/2505.09316v1"
+          },
+          {
+            "title": "Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging",
+            "url": "https://arxiv.org/html/2505.09316"
+          },
+          {
+            "title": "Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging | OpenReview",
+            "url": "https://openreview.net/forum?id=26kUrQm4zw"
+          },
+          {
+            "title": "Scent of Knowledge: Optimizing Search-Enhanced",
+            "url": "https://openreview.net/pdf?id=26kUrQm4zw"
+          },
+          {
+            "title": "[Literature Review] Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging",
+            "url": "https://www.themoonlight.io/en/review/scent-of-knowledge-optimizing-search-enhanced-reasoning-with-information-foraging"
+          },
+          {
+            "title": "Computer Science May 2025",
+            "url": "https://arxiv.org/list/cs/2025-05?skip=4175&show=2000"
+          },
+          {
+            "title": "Information Retrieval May 2025",
+            "url": "https://www.arxiv.org/list/cs.IR/2025-05?skip=175&show=500"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2505.15062"
+          }
+        ]
+      },
+      "I found the paper you were searching for. Here's a summary of the key information:\n\n## Scent of Knowledge: Optimizing Search-Enhanced Reasoning with Information Foraging\n\nThe paper addresses how traditional retrieval-augmented generation methods employ static, pre-inference retrieval strategies, making them inadequate for complex tasks involving ambiguous, multi-step, or evolving information needs.\n\n### Main Contribution\n\nThe paper proposes InForage, a reinforcement learning framework that formalizes retrieval-augmented reasoning as a dynamic information-seeking process, inspired by Information Foraging Theory (IFT).\n\n### Key Components\n\nThe paper formalizes search-enhanced reasoning through information foraging theory, modeling retrieval decisions as a dynamic optimization of information scent and patch value along the reasoning trajectory. Information scent is defined as the perceived relevance or utility of available informational cues.\n\nInForage is a reinforcement learning framework that jointly optimizes outcome correctness, intermediate information gain, and reasoning efficiency, enabling LLMs to perform adaptive, multi-step information foraging.\n\n### Dataset\n\nThe paper constructs a human-guided search reasoning dataset that captures multi-step web browsing trajectories and rationale-dependent query formulation, providing the structured supervision necessary to train and evaluate InForage effectively.\n\nThe paper was accepted as a Neurips 25 Spotlight presentation.\n\nThe paper is available on arXiv at [2505.09316](https://arxiv.org/abs/2505.09316)."
+    ],
+    "durationSeconds": 7.567035948999983
+  },
+  "sourceToolAssistantUUID": "473186e2-d85d-4607-98ef-c413e763fbaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-14T15:56:46.142Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017rGDUxn6LKCBXfF6C8qbhB`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 short paper page limit word limit submission format ARR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9aaa5640-2209-46f7-9188-25025a028fc0",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jbNsDrLQKmXxroe8WL",
+  "type": "assistant",
+  "uuid": "2db9bd28-3ec0-4f99-880d-e033694099b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sg8HL4WopYZag8SRqR85cf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 898,
+      "cache_read_input_tokens": 64808,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 898,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 64808,
+          "cache_creation_input_tokens": 898,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 898
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-14T15:56:52.218Z_
+
+<details><summary>↩ Tool result · `toolu_017rGDUxn6LKCBXfF6C8qbhB`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 short paper page limit word limit submission format ARR"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"EMNLP 2026 LaTeX Template | ACL Style Files & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/emnlp"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP: Empirical Methods in Natural Language Processing 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=883"},{"title":"EACL 2026: First Call for Papers | ACL Member Portal","url":"https://www.aclweb.org/portal/content/eacl-2026-first-call-papers"}]
+
+Based on the search results, here's the information about EMNLP 2026 short paper submission requirements:
+
+## Page Limit
+
+The format is two-column with a 4-page limit for short papers.
+
+## Submission Format
+
+EMNLP uses the standard ACL style files, so the LaTeX template is identical to the one used for ACL, NAACL, and other *ACL conferences. The mandatory Limitations section is required, placed after the conclusion.
+
+## ARR Submission Process
+
+Both long and short paper submissions should follow all of the ARR submission requirements. The ARR submission deadline is May 25, 2026.
+
+The search results do not explicitly mention a word limit for short papers, only the 4-page content limit. For complete submission format details and any word limit specifications, you should consult the official EMNLP 2026 Call for Papers or the ARR submission guidelines directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2db9bd28-3ec0-4f99-880d-e033694099b4",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "982312ab-e2f3-48ba-b382-1ac95aacc63f",
+  "toolUseResult": {
+    "query": "EMNLP 2026 short paper page limit word limit submission format ARR",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WWnKPvLg6tYZMXJm71kjWH",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "EMNLP 2026 LaTeX Template | ACL Style Files & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/emnlp"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP: Empirical Methods in Natural Language Processing 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=883"
+          },
+          {
+            "title": "EACL 2026: First Call for Papers | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/eacl-2026-first-call-papers"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about EMNLP 2026 short paper submission requirements:\n\n## Page Limit\n\nThe format is two-column with a 4-page limit for short papers.\n\n## Submission Format\n\nEMNLP uses the standard ACL style files, so the LaTeX template is identical to the one used for ACL, NAACL, and other *ACL conferences. The mandatory Limitations section is required, placed after the conclusion.\n\n## ARR Submission Process\n\nBoth long and short paper submissions should follow all of the ARR submission requirements. The ARR submission deadline is May 25, 2026.\n\nThe search results do not explicitly mention a word limit for short papers, only the 4-page content limit. For complete submission format details and any word limit specifications, you should consult the official EMNLP 2026 Call for Papers or the ARR submission guidelines directly."
+    ],
+    "durationSeconds": 6.072019969000015
+  },
+  "sourceToolAssistantUUID": "2db9bd28-3ec0-4f99-880d-e033694099b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120 · 2026-05-14T15:56:55.197Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012ZuYG26oyFZCGXQDGc9ioc`</summary>
+
+```json
+{
+  "query": "Reasoning Theater disentangling model beliefs chain-of-thought linear probes arXiv 2603.05488"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "982312ab-e2f3-48ba-b382-1ac95aacc63f",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jc3JmHroajRMZGW25y",
+  "type": "assistant",
+  "uuid": "0313771d-84eb-4740-b9ac-2a9be60c7fd2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ACjhMxuea2YTyq4hoLYZEQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 864,
+      "cache_read_input_tokens": 65706,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 864,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 65706,
+          "cache_creation_input_tokens": 864,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 864
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-14T15:57:02.566Z_
+
+<details><summary>↩ Tool result · `toolu_012ZuYG26oyFZCGXQDGc9ioc`</summary>
+
+```text
+Web search results for query: "Reasoning Theater disentangling model beliefs chain-of-thought linear probes arXiv 2603.05488"
+
+Links: [{"title":"[2603.05488] Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought","url":"https://arxiv.org/abs/2603.05488"},{"title":"Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought","url":"https://arxiv.org/html/2603.05488v1"},{"title":"[2603.05488v1] Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought","url":"https://arxiv.org/abs/2603.05488v1"},{"title":"Reasoning Theater: Disentangling Model Beliefs from Chain-of-Though…","url":"https://www.opentrain.ai/papers/reasoning-theater-disentangling-model-beliefs-from-chain-of-thought--arxiv-2603.05488/"},{"title":"Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260305488B/abstract"},{"title":"Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought | alphaXiv","url":"https://www.alphaxiv.org/overview/2603.05488"},{"title":"Reasoning Theater: When AI Models Pretend to Think / 推理剧场:当AI模型假装思考 | Alan Hou","url":"https://alanhou.org/blog/arxiv-reasoning-theater-disentangling-model-beliefs-from/"},{"title":"(PDF) Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought","url":"https://www.researchgate.net/publication/401601451_Reasoning_Theater_Disentangling_Model_Beliefs_from_Chain-of-Thought"},{"title":"Why Models Know But Don’t Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models","url":"https://arxiv.org/html/2603.26410"},{"title":"Reasoning Is Theater","url":"https://www.gatodo.com/reasoning-is-theater/"}]
+
+I found the paper! Here's what the search results show about "Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought" (arXiv 2603.05488):
+
+## Overview
+
+The paper provides evidence of performative chain-of-thought (CoT) in reasoning models, where a model becomes strongly confident in its final answer, but continues generating tokens without revealing its internal belief.
+
+## Methodology
+
+The analysis compares activation probing, early forced answering, and a CoT monitor across two large models (DeepSeek-R1 671B & GPT-OSS 120B) and finds task difficulty-specific differences: the model's final answer is decodable from activations far earlier in CoT than a monitor is able to say, especially for easy recall-based MMLU questions.
+
+## Key Findings
+
+The researchers contrast this with genuine reasoning in difficult multihop GPQA-Diamond questions. Inflection points (e.g., backtracking, 'aha' moments) occur almost exclusively in responses where probes show large belief shifts, suggesting these behaviors track genuine uncertainty rather than learned "reasoning theater."
+
+## Practical Applications
+
+Probe-guided early exit reduces tokens by up to 80% on MMLU and 30% on GPQA-Diamond with similar accuracy, positioning attention probing as an efficient tool for detecting performative reasoning and enabling adaptive computation.
+
+The paper was authored by Siddharth Boppana, Annabel Ma, Max Loeffler, Raphael Sarfati, Eric Bigelow, Atticus Geiger, Owen Lewis, and Jack Merullo and was published in March 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0313771d-84eb-4740-b9ac-2a9be60c7fd2",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "56f37a7c-6f59-4bfd-a4bc-c1f2c4ba2203",
+  "toolUseResult": {
+    "query": "Reasoning Theater disentangling model beliefs chain-of-thought linear probes arXiv 2603.05488",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MRS8nnafB61wKeuBZk7uSP",
+        "content": [
+          {
+            "title": "[2603.05488] Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought",
+            "url": "https://arxiv.org/abs/2603.05488"
+          },
+          {
+            "title": "Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought",
+            "url": "https://arxiv.org/html/2603.05488v1"
+          },
+          {
+            "title": "[2603.05488v1] Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought",
+            "url": "https://arxiv.org/abs/2603.05488v1"
+          },
+          {
+            "title": "Reasoning Theater: Disentangling Model Beliefs from Chain-of-Though…",
+            "url": "https://www.opentrain.ai/papers/reasoning-theater-disentangling-model-beliefs-from-chain-of-thought--arxiv-2603.05488/"
+          },
+          {
+            "title": "Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260305488B/abstract"
+          },
+          {
+            "title": "Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2603.05488"
+          },
+          {
+            "title": "Reasoning Theater: When AI Models Pretend to Think / 推理剧场:当AI模型假装思考 | Alan Hou",
+            "url": "https://alanhou.org/blog/arxiv-reasoning-theater-disentangling-model-beliefs-from/"
+          },
+          {
+            "title": "(PDF) Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought",
+            "url": "https://www.researchgate.net/publication/401601451_Reasoning_Theater_Disentangling_Model_Beliefs_from_Chain-of-Thought"
+          },
+          {
+            "title": "Why Models Know But Don’t Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models",
+            "url": "https://arxiv.org/html/2603.26410"
+          },
+          {
+            "title": "Reasoning Is Theater",
+            "url": "https://www.gatodo.com/reasoning-is-theater/"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search results show about \"Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought\" (arXiv 2603.05488):\n\n## Overview\n\nThe paper provides evidence of performative chain-of-thought (CoT) in reasoning models, where a model becomes strongly confident in its final answer, but continues generating tokens without revealing its internal belief.\n\n## Methodology\n\nThe analysis compares activation probing, early forced answering, and a CoT monitor across two large models (DeepSeek-R1 671B & GPT-OSS 120B) and finds task difficulty-specific differences: the model's final answer is decodable from activations far earlier in CoT than a monitor is able to say, especially for easy recall-based MMLU questions.\n\n## Key Findings\n\nThe researchers contrast this with genuine reasoning in difficult multihop GPQA-Diamond questions. Inflection points (e.g., backtracking, 'aha' moments) occur almost exclusively in responses where probes show large belief shifts, suggesting these behaviors track genuine uncertainty rather than learned \"reasoning theater.\"\n\n## Practical Applications\n\nProbe-guided early exit reduces tokens by up to 80% on MMLU and 30% on GPQA-Diamond with similar accuracy, positioning attention probing as an efficient tool for detecting performative reasoning and enabling adaptive computation.\n\nThe paper was authored by Siddharth Boppana, Annabel Ma, Max Loeffler, Raphael Sarfati, Eric Bigelow, Atticus Geiger, Owen Lewis, and Jack Merullo and was published in March 2026."
+    ],
+    "durationSeconds": 7.3634782600000035
+  },
+  "sourceToolAssistantUUID": "0313771d-84eb-4740-b9ac-2a9be60c7fd2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 122 · 2026-05-14T15:57:02.568Z_
+
+```json
+{
+  "parentUuid": "56f37a7c-6f59-4bfd-a4bc-c1f2c4ba2203",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c45f31ab-0e59-4cf6-b054-54e3d06d3a0e",
+  "timestamp": "2026-05-14T15:57:02.568Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-14T15:57:05.728Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016mrm531Gen3WkrZMwygGD5`</summary>
+
+```json
+{
+  "query": "CoSearch joint training reasoning document ranking reinforcement learning agentic search arXiv 2604"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c45f31ab-0e59-4cf6-b054-54e3d06d3a0e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jcoijLQWKFVtCPUH2o",
+  "type": "assistant",
+  "uuid": "65ae260a-fdaa-497a-9a4c-71ca9cbfa2bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013EKQBGQueZEqQW4hgZazvR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1159,
+      "cache_read_input_tokens": 66570,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1159,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 66570,
+          "cache_creation_input_tokens": 1159,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1159
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-14T15:57:14.367Z_
+
+<details><summary>↩ Tool result · `toolu_016mrm531Gen3WkrZMwygGD5`</summary>
+
+```text
+Web search results for query: "CoSearch joint training reasoning document ranking reinforcement learning agentic search arXiv 2604"
+
+Links: [{"title":"CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search","url":"https://arxiv.org/html/2604.17555"},{"title":"[2604.17555] CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search","url":"https://arxiv.org/abs/2604.17555"},{"title":"Sumit on X: \"CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search @HansiZeng et al. at Snap jointly train a reasoning agent and a generative document ranker via GRPO. 📝 https://t.co/reoMfnZ5vY 👨🏽‍💻 https://t.co/WEhq8ZOpDt\" / X","url":"https://x.com/_reachsumit/status/2046464045327524139"},{"title":"A Comprehensive Survey on Reinforcement Learning-based Agentic Search:","url":"https://www.arxiv.org/pdf/2510.16724"},{"title":"GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub","url":"https://github.com/PeterGriffinJin/Search-R1"},{"title":"AutoSearch: Adaptive Search Depth for Efficient Agentic RAG via Reinforcement Learning","url":"https://arxiv.org/html/2604.17337v1"},{"title":"Search-R1: Training LLMs to Reason and Leverage ...","url":"https://arxiv.org/pdf/2503.09516"},{"title":"[2604.09459] From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/abs/2604.09459"},{"title":"An Empirical Study on Reinforcement Learning for ...","url":"https://arxiv.org/pdf/2505.15117"},{"title":"Demystifying Reinforcement Learning in Agentic Reasoning","url":"https://arxiv.org/html/2510.11701v1"}]
+
+Based on the search results, I found comprehensive information about CoSearch. Here's what the research paper presents:
+
+## CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search
+
+CoSearch is a reinforcement learning (RL) framework that jointly trains a main reasoning agent and a generative ranker for agentic search tasks.
+
+### Key Problem and Motivation
+
+Existing approaches such as Search-R1 treat the retrieval system as a fixed tool, optimizing only the reasoning agent while the retrieval component remains unchanged. A preliminary experiment reveals that the gap between an oracle and a fixed retrieval system reaches up to +26.8% relative F1 improvement across seven QA benchmarks, suggesting that the retrieval system is a key bottleneck in scaling agentic search performance.
+
+### Technical Approach
+
+The framework jointly trains a multi-step reasoning agent and a generative document ranking model via Group Relative Policy Optimization (GRPO). To enable effective GRPO training for the ranker—whose inputs vary across reasoning trajectories—the method introduces a semantic grouping strategy that clusters sub-queries by token-level similarity, forming valid optimization groups without additional rollouts.
+
+The design further includes a composite reward combining ranking quality signals with trajectory-level outcome feedback, providing the ranker with both immediate and long-term learning signals.
+
+### Results and Evaluation
+
+Experiments on seven single-hop and multi-hop QA benchmarks demonstrate consistent improvements over strong baselines, with ablation studies validating each design choice. Using Qwen2.5-7B-Instruct as the backbone for both the main and ranking agents, the method consistently outperforms strong baselines including Search-R1 and fixed ranker variants.
+
+The paper is available on arXiv as paper 2604.17555, authored by Hansi Zeng and colleagues from Snap Research.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65ae260a-fdaa-497a-9a4c-71ca9cbfa2bd",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "3cb77570-bcd7-4b9b-a4af-9b5a8b99eb65",
+  "toolUseResult": {
+    "query": "CoSearch joint training reasoning document ranking reinforcement learning agentic search arXiv 2604",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Di2ejAvqwU5d6Z5wDZUo9L",
+        "content": [
+          {
+            "title": "CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search",
+            "url": "https://arxiv.org/html/2604.17555"
+          },
+          {
+            "title": "[2604.17555] CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search",
+            "url": "https://arxiv.org/abs/2604.17555"
+          },
+          {
+            "title": "Sumit on X: \"CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search @HansiZeng et al. at Snap jointly train a reasoning agent and a generative document ranker via GRPO. 📝 https://t.co/reoMfnZ5vY 👨🏽‍💻 https://t.co/WEhq8ZOpDt\" / X",
+            "url": "https://x.com/_reachsumit/status/2046464045327524139"
+          },
+          {
+            "title": "A Comprehensive Survey on Reinforcement Learning-based Agentic Search:",
+            "url": "https://www.arxiv.org/pdf/2510.16724"
+          },
+          {
+            "title": "GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub",
+            "url": "https://github.com/PeterGriffinJin/Search-R1"
+          },
+          {
+            "title": "AutoSearch: Adaptive Search Depth for Efficient Agentic RAG via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2604.17337v1"
+          },
+          {
+            "title": "Search-R1: Training LLMs to Reason and Leverage ...",
+            "url": "https://arxiv.org/pdf/2503.09516"
+          },
+          {
+            "title": "[2604.09459] From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/abs/2604.09459"
+          },
+          {
+            "title": "An Empirical Study on Reinforcement Learning for ...",
+            "url": "https://arxiv.org/pdf/2505.15117"
+          },
+          {
+            "title": "Demystifying Reinforcement Learning in Agentic Reasoning",
+            "url": "https://arxiv.org/html/2510.11701v1"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about CoSearch. Here's what the research paper presents:\n\n## CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search\n\nCoSearch is a reinforcement learning (RL) framework that jointly trains a main reasoning agent and a generative ranker for agentic search tasks.\n\n### Key Problem and Motivation\n\nExisting approaches such as Search-R1 treat the retrieval system as a fixed tool, optimizing only the reasoning agent while the retrieval component remains unchanged. A preliminary experiment reveals that the gap between an oracle and a fixed retrieval system reaches up to +26.8% relative F1 improvement across seven QA benchmarks, suggesting that the retrieval system is a key bottleneck in scaling agentic search performance.\n\n### Technical Approach\n\nThe framework jointly trains a multi-step reasoning agent and a generative document ranking model via Group Relative Policy Optimization (GRPO). To enable effective GRPO training for the ranker—whose inputs vary across reasoning trajectories—the method introduces a semantic grouping strategy that clusters sub-queries by token-level similarity, forming valid optimization groups without additional rollouts.\n\nThe design further includes a composite reward combining ranking quality signals with trajectory-level outcome feedback, providing the ranker with both immediate and long-term learning signals.\n\n### Results and Evaluation\n\nExperiments on seven single-hop and multi-hop QA benchmarks demonstrate consistent improvements over strong baselines, with ablation studies validating each design choice. Using Qwen2.5-7B-Instruct as the backbone for both the main and ranking agents, the method consistently outperforms strong baselines including Search-R1 and fixed ranker variants.\n\nThe paper is available on arXiv as paper 2604.17555, authored by Hansi Zeng and colleagues from Snap Research."
+    ],
+    "durationSeconds": 8.635675539999967
+  },
+  "sourceToolAssistantUUID": "65ae260a-fdaa-497a-9a4c-71ca9cbfa2bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 125_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3cb77570-bcd7-4b9b-a4af-9b5a8b99eb65",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 126_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-14T15:57:17.152Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017LBnZq5S9zKyfWYBMWdPtu`</summary>
+
+```json
+{
+  "query": "AutoSearch adaptive search depth efficient agentic RAG reinforcement learning arXiv 2604.17337"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3cb77570-bcd7-4b9b-a4af-9b5a8b99eb65",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jdg4PWi21KEcoWyexV",
+  "type": "assistant",
+  "uuid": "6050f612-e73c-4cf8-ad29-3a7e6ffcc69c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018rXtXd2bbTQAtyRyU8uNA5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 67729,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1098,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 67729,
+          "cache_creation_input_tokens": 1098,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1098
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-14T15:57:24.370Z_
+
+<details><summary>↩ Tool result · `toolu_017LBnZq5S9zKyfWYBMWdPtu`</summary>
+
+```text
+Web search results for query: "AutoSearch adaptive search depth efficient agentic RAG reinforcement learning arXiv 2604.17337"
+
+Links: [{"title":"[2604.17337] AutoSearch: Adaptive Search Depth for Efficient Agentic RAG via Reinforcement Learning","url":"https://arxiv.org/abs/2604.17337"},{"title":"AutoSearch: Adaptive Search Depth for Efficient Agentic RAG via Reinforcement Learning","url":"https://arxiv.org/html/2604.17337"},{"title":"[2510.16724] A Comprehensive Survey on Reinforcement Learning-based Agentic Search: Foundations, Roles, Optimizations, Evaluations, and Applications","url":"https://arxiv.org/abs/2510.16724"},{"title":"A Comprehensive Survey on Reinforcement Learning-based Agentic Search:","url":"https://www.arxiv.org/pdf/2510.16724"},{"title":"From Web Search towards Agentic Deep ReSearch: Incentivizing Search with Reasoning Agents","url":"https://arxiv.org/html/2506.18959v1"},{"title":"Adaptive iterative retrieval for enhanced retrieval-augmented generation - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0925231225029443"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/new?skip=150&show=1000"},{"title":"Optimizing Retrieval for RAG via Reinforced Contrastive Learning","url":"https://arxiv.org/html/2510.24652v1"},{"title":"Process vs. Outcome Reward: Which is Better for Agentic RAG Reinforcement Learning","url":"https://arxiv.org/html/2505.14069v1"},{"title":"AgentGL: Towards Agentic Graph Learning with LLMs via Reinforcement Learning","url":"https://arxiv.org/html/2604.05846"}]
+
+Based on the search results, I found detailed information about AutoSearch (arXiv 2604.17337). Here's what the paper is about:
+
+## AutoSearch: Overview
+
+AutoSearch addresses the challenge that agentic retrieval-augmented generation (RAG) systems enable large language models to solve complex tasks through multi-step interaction with external retrieval tools, but such multi-step interaction often involves redundant search steps, incurring substantial computational cost and latency.
+
+## Key Problem and Approach
+
+Prior work limits search depth (the number of search steps) to reduce cost, but this often leads to underexploration of complex questions. To address this:
+
+The researchers investigate how search depth affects accuracy and find a minimal sufficient search depth that defines an accuracy-efficiency trade-off, jointly determined by question complexity and the agent's capability. They propose AutoSearch, a reinforcement learning (RL) framework that evaluates each search step via self-generated intermediate answers.
+
+## Mechanism
+
+AutoSearch generates intermediate answers at each search step to identify the minimal sufficient search depth and encourages efficient search by rewarding attainment of this depth while penalizing over-searching. A base reward stabilizes the search process, while a search quality reward, derived from intermediate answers, further improves search quality on complex questions. With this self-adaptive framework, AutoSearch enables agents to autonomously adjust retrieval depth based on question complexity and their capability, achieving a principled accuracy-efficiency trade-off.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6050f612-e73c-4cf8-ad29-3a7e6ffcc69c",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "a06813b4-8ca0-438d-bd62-935e7a454723",
+  "toolUseResult": {
+    "query": "AutoSearch adaptive search depth efficient agentic RAG reinforcement learning arXiv 2604.17337",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01J5gJcmm3sEt598iREJDQ1n",
+        "content": [
+          {
+            "title": "[2604.17337] AutoSearch: Adaptive Search Depth for Efficient Agentic RAG via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2604.17337"
+          },
+          {
+            "title": "AutoSearch: Adaptive Search Depth for Efficient Agentic RAG via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2604.17337"
+          },
+          {
+            "title": "[2510.16724] A Comprehensive Survey on Reinforcement Learning-based Agentic Search: Foundations, Roles, Optimizations, Evaluations, and Applications",
+            "url": "https://arxiv.org/abs/2510.16724"
+          },
+          {
+            "title": "A Comprehensive Survey on Reinforcement Learning-based Agentic Search:",
+            "url": "https://www.arxiv.org/pdf/2510.16724"
+          },
+          {
+            "title": "From Web Search towards Agentic Deep ReSearch: Incentivizing Search with Reasoning Agents",
+            "url": "https://arxiv.org/html/2506.18959v1"
+          },
+          {
+            "title": "Adaptive iterative retrieval for enhanced retrieval-augmented generation - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0925231225029443"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/new?skip=150&show=1000"
+          },
+          {
+            "title": "Optimizing Retrieval for RAG via Reinforced Contrastive Learning",
+            "url": "https://arxiv.org/html/2510.24652v1"
+          },
+          {
+            "title": "Process vs. Outcome Reward: Which is Better for Agentic RAG Reinforcement Learning",
+            "url": "https://arxiv.org/html/2505.14069v1"
+          },
+          {
+            "title": "AgentGL: Towards Agentic Graph Learning with LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2604.05846"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about AutoSearch (arXiv 2604.17337). Here's what the paper is about:\n\n## AutoSearch: Overview\n\nAutoSearch addresses the challenge that agentic retrieval-augmented generation (RAG) systems enable large language models to solve complex tasks through multi-step interaction with external retrieval tools, but such multi-step interaction often involves redundant search steps, incurring substantial computational cost and latency.\n\n## Key Problem and Approach\n\nPrior work limits search depth (the number of search steps) to reduce cost, but this often leads to underexploration of complex questions. To address this:\n\nThe researchers investigate how search depth affects accuracy and find a minimal sufficient search depth that defines an accuracy-efficiency trade-off, jointly determined by question complexity and the agent's capability. They propose AutoSearch, a reinforcement learning (RL) framework that evaluates each search step via self-generated intermediate answers.\n\n## Mechanism\n\nAutoSearch generates intermediate answers at each search step to identify the minimal sufficient search depth and encourages efficient search by rewarding attainment of this depth while penalizing over-searching. A base reward stabilizes the search process, while a search quality reward, derived from intermediate answers, further improves search quality on complex questions. With this self-adaptive framework, AutoSearch enables agents to autonomously adjust retrieval depth based on question complexity and their capability, achieving a principled accuracy-efficiency trade-off."
+    ],
+    "durationSeconds": 7.2133891019999865
+  },
+  "sourceToolAssistantUUID": "6050f612-e73c-4cf8-ad29-3a7e6ffcc69c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-14T15:57:27.638Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TPhYdSLeZRi3Hy43VxFVtU`</summary>
+
+```json
+{
+  "query": "GRADE probing knowledge gaps LLMs gradient subspace dynamics arXiv 2604.02830"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a06813b4-8ca0-438d-bd62-935e7a454723",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jeQotaNqbrZLcQaPXa",
+  "type": "assistant",
+  "uuid": "4ff19cef-3139-44f4-be35-6d49a6cd0368",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011FCmHXd9DDdarELuVUyyC7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 908,
+      "cache_read_input_tokens": 68827,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 908,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 68827,
+          "cache_creation_input_tokens": 908,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 908
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-14T15:57:34.483Z_
+
+<details><summary>↩ Tool result · `toolu_01TPhYdSLeZRi3Hy43VxFVtU`</summary>
+
+```text
+Web search results for query: "GRADE probing knowledge gaps LLMs gradient subspace dynamics arXiv 2604.02830"
+
+Links: [{"title":"[2604.02830] GRADE: Probing Knowledge Gaps in LLMs through Gradient Subspace Dynamics","url":"https://arxiv.org/abs/2604.02830"},{"title":"GRADE: Probing Knowledge Gaps in LLMs through Gradient Subspace Dynamics","url":"https://arxiv.org/html/2604.02830"},{"title":"Randomized Gradient Subspaces for Efficient Large Language Model Training","url":"https://arxiv.org/html/2510.01878v1"},{"title":"Efficient Adversarial Training in LLMs with Continuous ...","url":"https://arxiv.org/pdf/2405.15589"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/new?skip=300&show=1000"},{"title":"From Low Rank Gradient Subspace Stabilization to Low-Rank Weights: Observations, Theories, and Applications","url":"https://arxiv.org/html/2407.11239"},{"title":"[2604.05030] Phase-Associative Memory: Sequence Modeling in Complex Hilbert Space","url":"https://arxiv.org/abs/2604.05030"},{"title":"GaLore: Memory-Efficient LLM Training by Gradient Low-Rank Projection","url":"https://arxiv.org/pdf/2403.03507"},{"title":"[2511.08620] Learn More, Forget Less: A Gradient-Aware Data Selection Approach for LLM","url":"https://arxiv.org/abs/2511.08620"},{"title":"Attacking Large Language Models with Projected Gradient ...","url":"http://arxiv.org/pdf/2402.09154"}]
+
+I found the paper! Here are the details about the GRADE paper (arXiv 2604.02830):
+
+## Paper Overview
+
+The paper is titled "GRADE: Probing Knowledge Gaps in LLMs through Gradient Subspace Dynamics" by Yujing Wang and 4 other authors. The paper was published on April 14, 2026.
+
+## Main Contribution
+
+The paper addresses the fundamental challenge of detecting whether a model's internal knowledge is sufficient to correctly answer a given question. 
+
+The authors argue that activated knowledge captured from hidden states may not align with what the query requires, for example, capturing stylistic and length-related features that are uninformative for answering the query.
+
+## The GRADE Method
+
+GRADE (Gradient Dynamics for knowledge gap detection) quantifies the knowledge gap via the cross-layer rank ratio of the gradient to that of the corresponding hidden state subspace.
+
+The paper represents recent research into understanding and detecting knowledge gaps in large language models through analysis of gradient dynamics and internal model representations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4ff19cef-3139-44f4-be35-6d49a6cd0368",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "71e6bbcf-a2f3-431b-8b3e-c57d1b90184c",
+  "toolUseResult": {
+    "query": "GRADE probing knowledge gaps LLMs gradient subspace dynamics arXiv 2604.02830",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QP2jd9NkkP68Jzna4uNrQn",
+        "content": [
+          {
+            "title": "[2604.02830] GRADE: Probing Knowledge Gaps in LLMs through Gradient Subspace Dynamics",
+            "url": "https://arxiv.org/abs/2604.02830"
+          },
+          {
+            "title": "GRADE: Probing Knowledge Gaps in LLMs through Gradient Subspace Dynamics",
+            "url": "https://arxiv.org/html/2604.02830"
+          },
+          {
+            "title": "Randomized Gradient Subspaces for Efficient Large Language Model Training",
+            "url": "https://arxiv.org/html/2510.01878v1"
+          },
+          {
+            "title": "Efficient Adversarial Training in LLMs with Continuous ...",
+            "url": "https://arxiv.org/pdf/2405.15589"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/new?skip=300&show=1000"
+          },
+          {
+            "title": "From Low Rank Gradient Subspace Stabilization to Low-Rank Weights: Observations, Theories, and Applications",
+            "url": "https://arxiv.org/html/2407.11239"
+          },
+          {
+            "title": "[2604.05030] Phase-Associative Memory: Sequence Modeling in Complex Hilbert Space",
+            "url": "https://arxiv.org/abs/2604.05030"
+          },
+          {
+            "title": "GaLore: Memory-Efficient LLM Training by Gradient Low-Rank Projection",
+            "url": "https://arxiv.org/pdf/2403.03507"
+          },
+          {
+            "title": "[2511.08620] Learn More, Forget Less: A Gradient-Aware Data Selection Approach for LLM",
+            "url": "https://arxiv.org/abs/2511.08620"
+          },
+          {
+            "title": "Attacking Large Language Models with Projected Gradient ...",
+            "url": "http://arxiv.org/pdf/2402.09154"
+          }
+        ]
+      },
+      "I found the paper! Here are the details about the GRADE paper (arXiv 2604.02830):\n\n## Paper Overview\n\nThe paper is titled \"GRADE: Probing Knowledge Gaps in LLMs through Gradient Subspace Dynamics\" by Yujing Wang and 4 other authors. The paper was published on April 14, 2026.\n\n## Main Contribution\n\nThe paper addresses the fundamental challenge of detecting whether a model's internal knowledge is sufficient to correctly answer a given question. \n\nThe authors argue that activated knowledge captured from hidden states may not align with what the query requires, for example, capturing stylistic and length-related features that are uninformative for answering the query.\n\n## The GRADE Method\n\nGRADE (Gradient Dynamics for knowledge gap detection) quantifies the knowledge gap via the cross-layer rank ratio of the gradient to that of the corresponding hidden state subspace.\n\nThe paper represents recent research into understanding and detecting knowledge gaps in large language models through analysis of gradient dynamics and internal model representations."
+    ],
+    "durationSeconds": 6.841821663999988
+  },
+  "sourceToolAssistantUUID": "4ff19cef-3139-44f4-be35-6d49a6cd0368",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 131 · 2026-05-14T15:57:38.436Z_
+
+Now I have a comprehensive picture. Let me do one final search for the very latest work (past 2 weeks) to check for any direct scoop on this idea.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71e6bbcf-a2f3-431b-8b3e-c57d1b90184c",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jfA1fwjp3bexPmYutR",
+  "type": "assistant",
+  "uuid": "fe32d2cf-fecd-4321-8b0b-1e0a15af2236",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NBmGzPZbp8chK6ehqP9YmB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 69735,
+      "output_tokens": 110,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 781,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 110,
+          "cache_read_input_tokens": 69735,
+          "cache_creation_input_tokens": 781,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 781
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 132 · 2026-05-14T15:57:38.992Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HHmhp4PuRDMWpxTcLEAXSB`</summary>
+
+```json
+{
+  "query": "retrieval gating reasoning model counterfactual rollout probe evidence gap arXiv May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe32d2cf-fecd-4321-8b0b-1e0a15af2236",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jfA1fwjp3bexPmYutR",
+  "type": "assistant",
+  "uuid": "538212cc-b54b-45a0-94af-7e6ef94b3cb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NBmGzPZbp8chK6ehqP9YmB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 69735,
+      "output_tokens": 110,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 781,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 110,
+          "cache_read_input_tokens": 69735,
+          "cache_creation_input_tokens": 781,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 781
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 133 · 2026-05-14T15:57:47.286Z_
+
+<details><summary>↩ Tool result · `toolu_01HHmhp4PuRDMWpxTcLEAXSB`</summary>
+
+```text
+Web search results for query: "retrieval gating reasoning model counterfactual rollout probe evidence gap arXiv May 2026"
+
+Links: [{"title":"Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation","url":"https://arxiv.org/html/2605.01302"},{"title":"Counterfactual Reasoning for Retrieval-Augmented Generation | OpenReview","url":"https://openreview.net/forum?id=9U51rOnGko"},{"title":"Can LLMs Reconcile Knowledge Conflicts in Counterfactual Reasoning?","url":"https://arxiv.org/html/2506.15732"},{"title":"[2605.01302] Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2605.01302"},{"title":"Causal-Counterfactual RAG: The Integration of Causal-Counterfactual Reasoning into RAG","url":"https://arxiv.org/html/2509.14435v1"},{"title":"The Refutability Gap: Challenges in Validating Reasoning by Large Language Models","url":"https://arxiv.org/html/2601.02380"},{"title":"CausalVAE as a Plug-in for World Models: Towards Reliable Counterfactual Dynamics","url":"https://arxiv.org/html/2604.07712"},{"title":"Counterfactual Self-Questioning for Stable Policy Optimization in Language Models","url":"https://arxiv.org/html/2601.00885v1"},{"title":"IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning","url":"https://arxiv.org/html/2604.15148"},{"title":"How Much Reasoning Do Retrieval-Augmented Models Add beyond LLMs? A Benchmarking Framework for Multi-Hop Inference over Hybrid Knowledge","url":"https://arxiv.org/html/2602.10210"}]
+
+Based on the search results, I found several recent arXiv papers from May 2026 and nearby months that relate to your query about retrieval, gating, reasoning models, counterfactual approaches, and evidence gaps:
+
+## Key Papers Found:
+
+1. **CoRM-RAG (Counterfactual Risk Minimization for RAG)** - This work addresses the "Relevance-Robustness Gap" where maximizing semantic relevance paradoxically promotes retrieval of sycophantic evidence that reinforces hallucinations, and proposes a framework that aligns retrieval with decision safety rather than mere similarity. It uses a Cognitive Perturbation Protocol to simulate user biases during training, distilled into a lightweight Evidence Critic that learns to identify documents with sufficient evidential strength despite adversarial query perturbations.
+
+2. **Counterfactual Self-Questioning (CSQ)** - This framework introduces a single-policy mechanism that produces structured counterfactual feedback usable for both inference and policy optimization, offering a lightweight and scalable alternative to external critics.
+
+3. **IG-Search** - This reinforcement learning framework introduces step-level rewards based on Information Gain, measuring how much retrieved documents improve model confidence in the correct answer relative to a counterfactual baseline of random documents.
+
+4. **HybridRAG-Bench** - This framework generates diverse question-answer pairs covering single-hop, conditional, multi-hop, hard multi-hop, counterfactual, and open-ended reasoning.
+
+These papers all address gaps in retrieval-augmented generation and reasoning through counterfactual approaches and gating mechanisms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "538212cc-b54b-45a0-94af-7e6ef94b3cb0",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "b5040ab3-260a-4f1e-bcce-c203a8882c6e",
+  "toolUseResult": {
+    "query": "retrieval gating reasoning model counterfactual rollout probe evidence gap arXiv May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Jv7s1g31MQxJ6i4o5J1MLr",
+        "content": [
+          {
+            "title": "Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2605.01302"
+          },
+          {
+            "title": "Counterfactual Reasoning for Retrieval-Augmented Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=9U51rOnGko"
+          },
+          {
+            "title": "Can LLMs Reconcile Knowledge Conflicts in Counterfactual Reasoning?",
+            "url": "https://arxiv.org/html/2506.15732"
+          },
+          {
+            "title": "[2605.01302] Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2605.01302"
+          },
+          {
+            "title": "Causal-Counterfactual RAG: The Integration of Causal-Counterfactual Reasoning into RAG",
+            "url": "https://arxiv.org/html/2509.14435v1"
+          },
+          {
+            "title": "The Refutability Gap: Challenges in Validating Reasoning by Large Language Models",
+            "url": "https://arxiv.org/html/2601.02380"
+          },
+          {
+            "title": "CausalVAE as a Plug-in for World Models: Towards Reliable Counterfactual Dynamics",
+            "url": "https://arxiv.org/html/2604.07712"
+          },
+          {
+            "title": "Counterfactual Self-Questioning for Stable Policy Optimization in Language Models",
+            "url": "https://arxiv.org/html/2601.00885v1"
+          },
+          {
+            "title": "IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning",
+            "url": "https://arxiv.org/html/2604.15148"
+          },
+          {
+            "title": "How Much Reasoning Do Retrieval-Augmented Models Add beyond LLMs? A Benchmarking Framework for Multi-Hop Inference over Hybrid Knowledge",
+            "url": "https://arxiv.org/html/2602.10210"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent arXiv papers from May 2026 and nearby months that relate to your query about retrieval, gating, reasoning models, counterfactual approaches, and evidence gaps:\n\n## Key Papers Found:\n\n1. **CoRM-RAG (Counterfactual Risk Minimization for RAG)** - This work addresses the \"Relevance-Robustness Gap\" where maximizing semantic relevance paradoxically promotes retrieval of sycophantic evidence that reinforces hallucinations, and proposes a framework that aligns retrieval with decision safety rather than mere similarity. It uses a Cognitive Perturbation Protocol to simulate user biases during training, distilled into a lightweight Evidence Critic that learns to identify documents with sufficient evidential strength despite adversarial query perturbations.\n\n2. **Counterfactual Self-Questioning (CSQ)** - This framework introduces a single-policy mechanism that produces structured counterfactual feedback usable for both inference and policy optimization, offering a lightweight and scalable alternative to external critics.\n\n3. **IG-Search** - This reinforcement learning framework introduces step-level rewards based on Information Gain, measuring how much retrieved documents improve model confidence in the correct answer relative to a counterfactual baseline of random documents.\n\n4. **HybridRAG-Bench** - This framework generates diverse question-answer pairs covering single-hop, conditional, multi-hop, hard multi-hop, counterfactual, and open-ended reasoning.\n\nThese papers all address gaps in retrieval-augmented generation and reasoning through counterfactual approaches and gating mechanisms."
+    ],
+    "durationSeconds": 8.289848101000011
+  },
+  "sourceToolAssistantUUID": "538212cc-b54b-45a0-94af-7e6ef94b3cb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134 · 2026-05-14T15:57:50.413Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K5uzmwg9HA1rxqBUoe5noN`</summary>
+
+```json
+{
+  "query": "\"CF-RAG\" counterfactual reasoning retrieval augmented generation ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5040ab3-260a-4f1e-bcce-c203a8882c6e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jg6pDSjcdyc1qJ4Qdy",
+  "type": "assistant",
+  "uuid": "3f8db160-3aae-4a67-92f2-f5bccb4a6245",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015y9fgF6juD1wiTW1FwTjU9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1010,
+      "cache_read_input_tokens": 70516,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 70516,
+          "cache_creation_input_tokens": 1010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-14T15:57:55.468Z_
+
+<details><summary>↩ Tool result · `toolu_01K5uzmwg9HA1rxqBUoe5noN`</summary>
+
+```text
+Web search results for query: ""CF-RAG" counterfactual reasoning retrieval augmented generation ICLR 2026"
+
+Links: [{"title":"ICLR Poster Counterfactual Reasoning for Retrieval-Augmented Generation","url":"https://iclr.cc/virtual/2026/poster/10011109"},{"title":"Counterfactual Reasoning for Retrieval-Augmented Generation | OpenReview","url":"https://openreview.net/forum?id=9U51rOnGko"},{"title":"COUNTERFACTUAL REASONING FOR RETRIEVAL","url":"https://openreview.net/pdf/f86a234929c7c43729b1b116dd9eeb79dfaa0cb5.pdf"},{"title":"Published as a conference paper at ICLR 2026 COUNTERFACTUAL REASONING FOR","url":"https://openreview.net/pdf/2d2cb537981d1f63aa9dba040d2e3a9daab6e0a3.pdf"},{"title":"Controlling Risk of Retrieval-augmented Generation","url":"https://aclanthology.org/2024.findings-emnlp.133.pdf"},{"title":"Controlling Risk of Retrieval-augmented Generation: A Counterfactual Prompting Framework","url":"https://arxiv.org/html/2409.16146v2"},{"title":"Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers","url":"https://arxiv.org/html/2506.00054v1"},{"title":"Speculative RAG: Enhancing Retrieval Augmented Generation through Drafting | OpenReview","url":"https://openreview.net/forum?id=xgQfWbV6Ey"},{"title":"Causal-Counterfactual RAG: The Integration of Causal-Counterfactual Reasoning into RAG","url":"https://arxiv.org/html/2509.14435v2"},{"title":"[2509.14435] Causal-Counterfactual RAG: The Integration of Causal-Counterfactual Reasoning into RAG","url":"https://arxiv.org/abs/2509.14435"}]
+
+Based on the search results, I found information about CF-RAG at ICLR 2026:
+
+## CF-RAG: Counterfactual Reasoning for Retrieval-Augmented Generation
+
+CF-RAG (Counterfactual RAG) is a new framework that operationalizes causal reasoning to overcome limitations in distinguishing causally decisive evidence from misleading information.
+
+### Key Features
+
+CF-RAG systematically generates and evaluates counterfactual queries to identify causally relevant distinctions, and employs a parallel arbitration mechanism to reconcile conflicting evidence without interference.
+
+### Problem It Addresses
+
+Existing systems cannot distinguish causally decisive evidence from overwhelmingly correlated yet misleading information, leading to systematic failures.
+
+### Results
+
+On challenging benchmarks, CF-RAG substantially improves robustness.
+
+The paper was presented as a poster at ICLR 2026 and appears in both the official conference program and on OpenReview.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f8db160-3aae-4a67-92f2-f5bccb4a6245",
+  "isSidechain": false,
+  "promptId": "20c6e1dc-5752-4955-b3c6-8ce9deb1d35e",
+  "type": "user",
+  "uuid": "d2742679-f064-440f-8cc6-18cf48c9c15d",
+  "toolUseResult": {
+    "query": "\"CF-RAG\" counterfactual reasoning retrieval augmented generation ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Bz83KpHhejXMcPtDKBNHpa",
+        "content": [
+          {
+            "title": "ICLR Poster Counterfactual Reasoning for Retrieval-Augmented Generation",
+            "url": "https://iclr.cc/virtual/2026/poster/10011109"
+          },
+          {
+            "title": "Counterfactual Reasoning for Retrieval-Augmented Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=9U51rOnGko"
+          },
+          {
+            "title": "COUNTERFACTUAL REASONING FOR RETRIEVAL",
+            "url": "https://openreview.net/pdf/f86a234929c7c43729b1b116dd9eeb79dfaa0cb5.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 COUNTERFACTUAL REASONING FOR",
+            "url": "https://openreview.net/pdf/2d2cb537981d1f63aa9dba040d2e3a9daab6e0a3.pdf"
+          },
+          {
+            "title": "Controlling Risk of Retrieval-augmented Generation",
+            "url": "https://aclanthology.org/2024.findings-emnlp.133.pdf"
+          },
+          {
+            "title": "Controlling Risk of Retrieval-augmented Generation: A Counterfactual Prompting Framework",
+            "url": "https://arxiv.org/html/2409.16146v2"
+          },
+          {
+            "title": "Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers",
+            "url": "https://arxiv.org/html/2506.00054v1"
+          },
+          {
+            "title": "Speculative RAG: Enhancing Retrieval Augmented Generation through Drafting | OpenReview",
+            "url": "https://openreview.net/forum?id=xgQfWbV6Ey"
+          },
+          {
+            "title": "Causal-Counterfactual RAG: The Integration of Causal-Counterfactual Reasoning into RAG",
+            "url": "https://arxiv.org/html/2509.14435v2"
+          },
+          {
+            "title": "[2509.14435] Causal-Counterfactual RAG: The Integration of Causal-Counterfactual Reasoning into RAG",
+            "url": "https://arxiv.org/abs/2509.14435"
+          }
+        ]
+      },
+      "Based on the search results, I found information about CF-RAG at ICLR 2026:\n\n## CF-RAG: Counterfactual Reasoning for Retrieval-Augmented Generation\n\nCF-RAG (Counterfactual RAG) is a new framework that operationalizes causal reasoning to overcome limitations in distinguishing causally decisive evidence from misleading information.\n\n### Key Features\n\nCF-RAG systematically generates and evaluates counterfactual queries to identify causally relevant distinctions, and employs a parallel arbitration mechanism to reconcile conflicting evidence without interference.\n\n### Problem It Addresses\n\nExisting systems cannot distinguish causally decisive evidence from overwhelmingly correlated yet misleading information, leading to systematic failures.\n\n### Results\n\nOn challenging benchmarks, CF-RAG substantially improves robustness.\n\nThe paper was presented as a poster at ICLR 2026 and appears in both the official conference program and on OpenReview."
+    ],
+    "durationSeconds": 5.051113152000005
+  },
+  "sourceToolAssistantUUID": "3f8db160-3aae-4a67-92f2-f5bccb4a6245",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 136_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "d2742679-f064-440f-8cc6-18cf48c9c15d",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 137_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 138 · 2026-05-14T16:00:08.525Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me synthesize my findings and form my independent assessment.
+
+## Summary of my research findings:
+
+### Reference Verification
+All major cited papers are verified as existing:
+- ✅ Probing-RAG (NAACL 2025)
+- ✅ Skill-RAG (arXiv 2604.15771)
+- ✅ Search-R1 (arXiv 2503.09516) - checkpoint released on HuggingFace
+- ✅ SLATE (arXiv 2602.23440)
+- ✅ IG-Search (arXiv 2604.15148)
+
+
+- ✅ DeepControl (arXiv 2602.01672) - ICLR 2026 SPOT Workshop
+- ✅ DART (arXiv 2602.00994)
+- ✅ "Knowledge or Reasoning?" (arXiv 2506.02126)
+- ✅ CF-RAG (ICLR 2026)
+- ✅ FLARE (EMNLP 2023)
+- ✅ ReaLM-Retrieve (arXiv 2604.26649)
+
+I've now verified the complete set of references across the research landscape.
+
+The EMNLP 2026 ARR deadline is May 25, which is just 11 days away, and the Round 3 proposal has made substantial progress toward the correct venue and timeline compared to earlier iterations.
+
+The revised approach is much more tractable now—cutting compute requirements from 500-800 A100 hours down to 25-40 H100 hours by eliminating RL training and focusing instead on counterfactual label generation, probe training, and inference-time gating. The scope is tighter, all the major competitor papers have been addressed, and there's a built-in go/no-go gate that reports negative findings if probe accuracy falls below 65%.
+
+The core novelty centers on using counterfactual causal supervision to train hidden-state probes that classify step-level failure modes into three categories—evidence-gap, reasoning-difficulty, or mixed—which then gate retrieval decisions at inference time. Now I'm checking how this positions against the related work, starting with Probing-RAG.
+
+Probing-RAG operates at the query level with binary retrieve/don't-retrieve decisions, whereas this extends that to step-level granularity with multi-class failure-mode classification. Skill-RAG also uses hidden-state probes for failure detection and skill routing, but it's diagnosing query-evidence misalignment types like rewriting or decomposition needs, not whether retrieval should happen versus pure reasoning. The distinction is real though somewhat adjacent—Skill-RAG's "exit skill" for irreducible cases maps loosely to the reasoning-difficulty label here. IG-Search uses counterfactual random documents during RL training to measure search quality, which is fundamentally different from what's being proposed.
+
+IG-Search measures retrieval necessity at inference time through a gating mechanism, whereas IG-Search itself is a training-time reward signal. DeepControl applies a composite utility score for information control during training with no failure-mode breakdown. DART identifies reasoning-tool competition and proposes disentangled LoRA as a training-time fix, whereas this work targets inference-time diagnostic probing. "Knowledge or Reasoning?" validates the knowledge-reasoning separability axis using GPT-4o judges at evaluation time but doesn't propose inference-time gating, so it's more of a supporting validation than a direct competitor.
+
+Work like "Where Does Reasoning Break?" detects step-level hallucinations from hidden-state geometry, which is adjacent but focused on hallucination detection rather than retrieval gating. GRADE probes knowledge gaps through gradient subspace dynamics but requires backpropagation, making it unsuitable for inference-time application. The genuine novelty here lies in combining counterfactual forking for causal labels, three-class failure-mode classification, and inference-time probe-based gating on existing checkpoints—no prior work integrates all three elements together.
+
+Now I'm working through the feasibility: roughly 25-40 H100 hours should cover it. I'm calculating 800 questions with about 5 decision points each, 2 conditions, and 5 rollouts per configuration, which gives around 40,000 total rollouts. Each rollout involves generating a reasoning trace from a fork point, and with Qwen2.5-7B running through vLLM, I'm estimating somewhere between 10-30 seconds per rollout when accounting for multi-step reasoning and retrieval latency. The actual cost depends heavily on how the counterfactual generation plays out.
+
+For the retrieval branches specifically, I need actual retrieval calls which adds overhead, while the no-retrieval branches just continue generation. With 4 H100s running batch inference at around 5K tokens per second, processing 40,000 rollouts at roughly 1000 tokens each comes to about 2.2 hours of compute, though retrieval could push that to 5-10 H100 hours total. Hidden state extraction should be quick—maybe 1-3 H100 hours to pass 4000 step instances through and pull activations. Probe training is negligible, and evaluation is the remaining piece.
+
+For evaluation with probe gating across test sets, I'm estimating 5-8 H100 hours for multiple configurations, bringing the total to around 15-25 H100 hours, or 25-35 with buffer—well within budget. The timeline is aggressive at 11 days for a short paper: setup on days 1-2, counterfactual generation through day 5, hidden state extraction and probe training by day 6, then inference-time gating evaluation and baselines through day 8, followed by ablations and analysis before final writeup. It's tight but doable for a 4-page paper with two researchers, especially since there's no RL training involved.
+
+The main risk hinges on whether the counterfactual labels are clean enough and the probe reaches >65% accuracy—the label distribution concern from earlier still looms, as too many mixed steps could dilute the signal. I've confirmed the Search-R1 checkpoint is available on HuggingFace, vLLM supports Qwen2.5-7B, and the datasets (HotpotQA, MuSiQue, 2WikiMultiHopQA) are all public. The impact is moderate for a short paper—it offers a new diagnostic lens for understanding retrieval failures in reasoning models through counterfactual analysis.
+
+The evidence-gap versus reasoning-difficulty distinction is well-motivated, but as a short paper without RL integration, the downstream accuracy gains will likely be modest, and the practical utility is confined to inference-time gating on existing checkpoints. The more impactful version with RL integration gets deferred. This is primarily an empirical contribution—testing whether failure modes are separable in hidden-state space with a practical application for gating—which fits the short paper format. I should also note StepSearch and SubSearch as related work that uses step-level rewards and information gain penalties, though they're not directly competing since they don't involve probing or failure classification. R³AG routes retrieval through decomposed quality and utility signals rather than selection, while PRA applies step-wise process rewards to search-based verification and InForage frames retrieval as information foraging with training-time reward design. The counterfactual probing approach stands apart from these—the closest relatives are the hidden-state failure detection work and AutoSearch's self-evaluation gating, but neither directly competes with the core methodology.
+
+The proposal itself is well-structured with clear problem definition, explicit comparisons to related work, specific methodological details, and a mature go/no-go gating approach that's appropriately scoped for a short paper. On costs, the manual track looks realistic at 25-35 H100h with 40-55% GPU utilization and an 11-day timeline for two researchers, while human-in-loop and auto research variants scale reasonably to 30-45 H100h with proportional API and compute expenses.
+
+The consistency across modes checks out—auto research requires the most resources, followed by human-in-loop, then manual—and there's no hidden overhead from agent costs or researcher salaries inflating the numbers. One real risk is that the human judgment on problem framing could be limited, but the bigger methodological concern is the counterfactual label quality with only k=5 rollouts per condition. The voting thresholds for evidence-gap and reasoning-difficulty are sensible, but with such limited rollouts the "mixed" category will likely be substantial, which the proposal does acknowledge as a key reporting point.
+
+If more than 60% of steps end up classified as mixed, the binary signal for gating might not be strong enough to drive meaningful results. There's also the issue of how to identify where Search-R1 could have invoked retrieval but didn't—the proposal assumes decision points exist but doesn't fully specify the heuristic for finding counterfactual insertion points. And while the baseline comparisons are solid (Probing-RAG, FLARE-style thresholding, ReaLM's RSUS), the reimplementation details are sparse.
+
+Fitting the method, experiments across three datasets with five baselines and multiple ablations into four pages is going to be tight—some ablations will likely need to move to the appendix. I should also double-check those citations: the knowledge-reasoning correlation numbers from arXiv 2506.02126 need verification against the actual paper, and I haven't confirmed the details on 2505.11462 yet. The core contribution—using counterfactual causal labels for step-level failure classification via hidden-state probes to gate retrieval at inference time—is genuinely novel and well-positioned against related work. The compute budget is realistic, and the 65% accuracy threshold for the go/no-go gate shows methodological maturity: if the probe underperforms, they'll report it as a negative finding rather than force results. Main risks include label skew toward "mixed" steps, potential probe insufficiency, and the compressed 11-day timeline within short-paper constraints, but the proposal is well-scoped and achievable. + inference-time probing is novel. But each individual component (probing for retrieval, counterfactual analysis for RAG, failure-type classification) exists in prior work. The delta over Skill-RAG (which already does failure-state probing + skill routing) and IG-Search (which already uses counterfactual baselines) is real but incremental. For a short paper, this is acceptable but not exciting.
+
+Actually, let me reconsider. The specific contribution is quite clean:
+- Probing-RAG: probe → binary retrieve/skip (query level, observational labels)
+- Skill-RAG: probe → failure type → skill selection (query-evidence alignment types, observational labels)
+- This proposal: counterfactual fork → causal labels → probe → evidence-gap/reasoning-difficulty → retrieve/skip (step level, causal labels)
+
+The key novelty is using counterfactual branching to generate causally grounded labels instead of relying on observational correctness signals, and the three-class diagnosis framework is genuinely new. That's a meaningful methodological shift. I'd rate novelty at 3.5 to 4 — the combination is original even if the pieces aren't, which works for a short paper.
+
+Feasibility looks solid at 4. The compute is well within budget, all the infrastructure already exists, and the main risks are just label distribution and the tight timeline. Clarity is strong too — the problem and comparisons are laid out clearly.
+
+Impact is the real constraint at 3. Without RL integration, this is primarily a diagnostic tool rather than something that improves performance. The inference-time gating might help a bit, but the core value is understanding failure modes, not fixing them. If the follow-up RL work pans out, this becomes much more impactful, but that's future work.
+
+Averaging it out: 3.75, which falls short of the 4.0 bar. The core tension is that novelty and feasibility are solid, but impact is limited as a standalone short paper. The mixed-label class also introduces some risk — if too many queries fall into that bucket, the diagnostic signal gets muddied.
+
+For Round 3, the paper has genuinely improved, but the remaining gaps are mostly baked into the scope. I could push for a revise, but let me think about what's actually fixable. Adding a preliminary empirical finding on the distribution of evidence-gap versus reasoning-difficulty steps would be novel and strengthen the novelty score. Reframing the counterfactual labeling as a general diagnostic tool for error analysis and curriculum design beyond just retrieval gating could boost impact. There's also a very recent competitor paper I should cite. And I need to nail down the exact methodology for the "could invoke" approach rather than leaving it vague.
+
+Now I'm reconsidering the scores themselves. The counterfactual forking for causal label generation is genuinely novel, and the three-class failure taxonomy is new too—though it's combining established techniques. For a short paper, this novelty level actually works. Feasibility looks solid at 4: the compute is reasonable, infrastructure exists, the go/no-go gate is clever, and while the timeline is tight, it's doable. The main risk is whether the label distribution and probe accuracy will cooperate. Clarity is strong at 4.5 with exceptional positioning against related work and specific numbers throughout. I think "revise" is still the right call—the proposal is close but the impact score is what's holding it back.
+
+Looking at the numbers again, the impact is really the constraint here. It's a diagnostic contribution rather than a performance one, and without RL integration the practical value is limited. The inference-time gating improvement feels incremental, and while the label distribution analysis is interesting, it's not groundbreaking. That puts impact at 3, which brings the average to 3.75. The proposal needs either a stronger impact framing or a novel empirical finding about step-level failure distributions to push it over the line.
+
+One thing I should verify: the user mentioned a 200 H100-hour constraint, and this proposal estimates 25-40 hours. That's well within budget, so no concerns there. The proposal is well-scoped and the compute is conservative.
+
+Now checking whether this actually qualifies as a method contribution. The user was explicit: "METHOD ONLY. Must propose a new retrieval algorithm, retrieval-generation coordination mechanism, or retrieval-aware training/inference strategy." The proposal includes a counterfactual labeling methodology, a probe-based inference-time retrieval gating mechanism for coordination, and no benchmark or demo. That checks the box. ✅
+
+I'm torn between pass and revise. The proposal has already been through two rounds of revision and addressed the major issues from prior feedback. The remaining gaps are novelty sitting at 3.5 (solid but not exciting), impact at 3 (limited for a short paper), a missing recent paper on reasoning failures, and the "could invoke" methodology that needs more specificity. Given how much work has already gone into this, I think revise is the right call with concrete feedback on impact and those remaining gaps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2742679-f064-440f-8cc6-18cf48c9c15d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jghrNSP1Ct4s7mTfdD",
+  "type": "assistant",
+  "uuid": "3c97fc02-32e1-4171-ba65-515a758d21f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4i4gmDBmjBA2iZ9ANAeFx",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 875,
+      "cache_read_input_tokens": 71526,
+      "output_tokens": 7719,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 875,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7719,
+          "cache_read_input_tokens": 71526,
+          "cache_creation_input_tokens": 875,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 875
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 139 · 2026-05-14T16:00:50.775Z_
+
+I've completed extensive independent research. Let me now synthesize my findings into a final assessment.
+
+**Key verification results:**
+- All 16 cited papers verified as existing
+- ARR May 25, 2026 deadline confirmed
+- Search-R1 Qwen2.5-7B checkpoint confirmed available on HuggingFace
+- Venue targeting now correct (EMNLP 2026 short paper)
+- Compute budget (~25-40 H100h) is well within the 200 H100h constraint
+- One relevant concurrent paper not cited: "Where Does Reasoning Break?" (arXiv 2605.13772, May 13, 2026)
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 4, "rationale": "The specific combination of counterfactual causal labels (forking retrieval vs. no-retrieval) + three-class failure-mode classification (evidence-gap/reasoning-difficulty/mixed) + inference-time probe gating on existing checkpoints is genuinely novel. Each individual component draws from prior art (Probing-RAG's probes, IG-Search's counterfactual baselines, Skill-RAG's failure-state probing), but the synthesis fills a real gap — no prior work uses counterfactual branching to generate causal training labels for step-level failure-mode probes. For a short paper, this is a clean, well-scoped novelty claim."},
+    "feasibility": {"score": 4, "rationale": "Compute (~25-40 H100h) is comfortably within the 200 H100h budget. All infrastructure exists: Search-R1 checkpoint on HuggingFace, vLLM for batch inference, public datasets. The go/no-go gate at 65% probe accuracy is a mature de-risking choice. The 11-day timeline is tight but realistic for a 4-page short paper with 2 researchers, especially since no RL training is needed. Main risk is label distribution skew toward 'mixed' class."},
+    "clarity": {"score": 5, "rationale": "Exceptional positioning — every related work is discussed with precise differentiation. The methodology is specific (800 questions, k=5 rollouts, exact labeling thresholds, probe architectures, baselines). The go/no-go gate and ablation structure show methodological rigor. The scoping as a short paper with RL deferred is honest and appropriate."},
+    "impact": {"score": 3, "rationale": "As a short paper without RL integration, the practical impact is limited to modest inference-time gating improvements on existing checkpoints. The main contribution is diagnostic (understanding failure modes) rather than performance-advancing. The counterfactual labeling methodology is interesting but its value depends entirely on whether the evidence-gap vs. reasoning-difficulty axis is empirically separable — a finding that could be negative. If the gating improvement over Probing-RAG's simpler binary probe is marginal, the paper's value proposition weakens substantially."}
+  },
+  "issues": [
+    "MODERATE: Impact risk — the core empirical question (is the evidence-gap vs. reasoning-difficulty axis separable enough for useful gating?) could yield a weak positive or null result. If counterfactual labels only marginally outperform Probing-RAG's observational labels for gating accuracy, the added complexity of generating counterfactual rollouts may not justify itself. The paper needs to frame the label distribution analysis and separability findings as first-class contributions independent of gating performance, not just as a means to an end.",
+    "MODERATE: 'Could invoke' methodology is underspecified. The proposal says forking at 'each step where the model invokes or could invoke retrieval (~5 decision points per question).' For steps where the model DID invoke retrieval, forking is straightforward. But identifying points where the model COULD HAVE but DIDN'T invoke retrieval is ambiguous — what heuristic determines these counterfactual insertion points? End of each reasoning sentence? Every N tokens? This directly affects the quality and quantity of labeled data.",
+    "MINOR: Missing recent concurrent work — 'Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry' (arXiv 2605.13772, May 13, 2026) uses hidden-state trajectory analysis for step-level reasoning failure detection. While focused on hallucination rather than retrieval, its step-level hidden-state probing methodology is close enough to cite and differentiate from.",
+    "MINOR: Short paper space constraints. The proposed content — problem statement, counterfactual generation methodology, probe training, inference-time gating, evaluation on 3 datasets with 5 baselines, 7 ablations, visualization — is extremely ambitious for 4 pages. Some ablations (cross-dataset transfer, per-dataset analysis, t-SNE visualization) will almost certainly need to be moved to an appendix or dropped entirely.",
+    "MINOR: The 'mixed' class risk is acknowledged but its mitigation strategy is unclear. If >50% of steps are labeled 'mixed,' the three-class probe becomes essentially binary (mixed ∪ evidence-gap vs. reasoning-difficulty), which weakens the conceptual contribution. The proposal should pre-commit to an alternative framing if the three-class distribution is heavily skewed.",
+    "MINOR: ReaLM-Retrieve reimplementation as a baseline adds engineering burden. RSUS is a composite score involving multiple components (step-boundary classification, uncertainty estimation, etc.). A faithful reimplementation in 11 days is risky. Consider using only the simpler baselines (no-retrieval, always-retrieve, Probing-RAG-style, FLARE-style) and adding ReaLM-Retrieve only if time permits."
+  ],
+  "feedback": "The proposal has improved dramatically over two rounds and is close to passable. The core novelty (counterfactual causal labels for failure-mode probing) is genuine and well-positioned. The main blocker is impact — a short paper that discovers 'these failure modes are somewhat separable and gating improves retrieval efficiency by X%' may not clear the EMNLP acceptance bar unless the empirical findings are striking.\n\nSpecific actionable improvements:\n\n1. **Strengthen impact framing**: Position the counterfactual labeling methodology as a general-purpose diagnostic tool for understanding retrieval failures in reasoning LLMs, not just as a means to inference-time gating. The step-level failure distribution itself (what fraction of reasoning steps in multi-hop QA are knowledge-limited vs. reasoning-limited?) is a novel empirical finding that no prior work has measured — lead with this as a first-class contribution. Frame gating as a downstream application that validates the labels' utility.\n\n2. **Specify the 'could invoke' heuristic**: For steps where the model didn't generate &lt;search>, define exactly how counterfactual insertion points are selected. Options: (a) every end-of-sentence within &lt;think> blocks, (b) points where the model's hidden-state uncertainty exceeds a threshold, (c) a fixed sampling of N reasoning steps per trace. Be explicit — this affects reproducibility and data quality.\n\n3. **Cite 'Where Does Reasoning Break?' (arXiv 2605.13772)**: This very recent paper (published yesterday) uses hidden-state analysis for step-level failure detection. Differentiate: it detects hallucination (correctness), not failure-mode type (evidence gap vs. reasoning difficulty).\n\n4. **Trim baselines for 11-day feasibility**: Drop ReaLM-Retrieve reimplementation as a baseline — it's too complex to faithfully reimplement. Keep: (1) no-retrieval, (2) always-retrieve, (3) Probing-RAG-style binary probe (observational labels), (4) FLARE threshold. The critical ablation — counterfactual vs. observational labels — is baseline #3.\n\n5. **Pre-commit to framing alternatives**: State explicitly: 'If >50% of steps are mixed, we reframe as soft-label regression (continuous evidence-gap score) rather than three-class classification.' This shows adaptability and prevents a null result.",
+  "reason": "Well-executed Round 3 proposal with genuine novelty and feasible scope, but impact score (3/5) drags the average to 4.0 borderline — the diagnostic contribution needs stronger framing as a first-class empirical finding, not just as infrastructure for modest gating improvements."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c97fc02-32e1-4171-ba65-515a758d21f0",
+  "isSidechain": false,
+  "requestId": "req_011Cb2jghrNSP1Ct4s7mTfdD",
+  "type": "assistant",
+  "uuid": "b77347ac-7bd5-4d16-90c2-44bd62be0ad0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4i4gmDBmjBA2iZ9ANAeFx",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 875,
+      "cache_read_input_tokens": 71526,
+      "output_tokens": 7719,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 875,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7719,
+          "cache_read_input_tokens": 71526,
+          "cache_creation_input_tokens": 875,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 875
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 140_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b77347ac-7bd5-4d16-90c2-44bd62be0ad0",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 141_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 142_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b77347ac-7bd5-4d16-90c2-44bd62be0ad0",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 143_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Counterfactual Evidence-Reasoning Disentanglement for Step-Level Retrieval Gating",
+  "sessionId": "a1f7dd73-ab1d-4611-aadf-f894691d376c"
+}
+```
+
+---

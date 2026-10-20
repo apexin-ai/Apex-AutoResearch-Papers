@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "1af922e94e4af191e689",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I'm auditing a research paper's numbers against a registry.yaml file. I need you to extract metrics for specific experim",
+  "task_key": "agent-ae059e33a44b9891a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ae059e33a44b9891a.jsonl",
+    "occurrence": 1,
+    "bytes": 525108,
+    "sha256": "fb630fa503730eb4dd66d539a9a42a0d66b41cbfeb9644d20ebcdc5ecb72fc49"
+  },
+  "statistics": {
+    "messages": 250,
+    "user_turns": 1,
+    "tool_calls": 117,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 117,
+      "tool_result": 117
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 250,
+      "chunks": [
+        {
+          "path": "1af922e94e4af191e689-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1af922e94e4af191e689-part-0002.json",
+          "message_count": 70
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-m-auditing-a-research-paper-s-numbers-against-a-registry-yaml-file-i-need-yo-copy-3.md"
+}

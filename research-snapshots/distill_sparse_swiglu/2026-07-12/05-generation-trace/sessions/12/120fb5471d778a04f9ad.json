@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "120fb5471d778a04f9ad",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: distill_sparse_swiglu ## 运行环境 - 服务器名: westd-34887 - SSH 账户: root（调用 ssh_execute / submit_trainin",
+  "task_key": "5499fca0-69f0-4523-9b2b-ea25032a281e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/5499fca0-69f0-4523-9b2b-ea25032a281e.jsonl",
+    "occurrence": 1,
+    "bytes": 1445900,
+    "sha256": "c2160e5d2224c520398368c249972df571c09454fcdfdb5fb0409cab45d3b34c"
+  },
+  "statistics": {
+    "messages": 951,
+    "user_turns": 1,
+    "tool_calls": 370,
+    "roles": {
+      "record": 133,
+      "user": 1,
+      "assistant": 77,
+      "tool_call": 370,
+      "tool_result": 370
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "120fb5471d778a04f9ad-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 949,
+      "chunks": [
+        {
+          "path": "120fb5471d778a04f9ad-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "120fb5471d778a04f9ad-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "120fb5471d778a04f9ad-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "120fb5471d778a04f9ad-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "120fb5471d778a04f9ad-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "120fb5471d778a04f9ad-part-0006.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-distill-sparse-swiglu-westd-34887-ssh-root-ssh-execute-submit-copy-424.md"
+}

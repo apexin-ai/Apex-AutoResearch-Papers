@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0",
+  "id": "030cf257aa07b2d670dc",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目：distill_sparse_swiglu — 研究 KL distillation for contextual sparsity prediction in SwiGLU LLMs。当前对比实验目标",
+  "task_key": "feb0e586-adff-46de-86af-dd0b7834c818",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/feb0e586-adff-46de-86af-dd0b7834c818.jsonl",
+    "occurrence": 1,
+    "bytes": 1556543,
+    "sha256": "1347bc8ef7e691bf140655c9b9f262d0d502fb1dd642ed3af972ad1fa69e79c8"
+  },
+  "statistics": {
+    "messages": 849,
+    "user_turns": 4,
+    "tool_calls": 298,
+    "roles": {
+      "record": 134,
+      "user": 4,
+      "assistant": 114,
+      "tool_call": 298,
+      "tool_result": 298,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "030cf257aa07b2d670dc-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 180,
+      "chunks": [
+        {
+          "path": "030cf257aa07b2d670dc-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "030cf257aa07b2d670dc-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 592,
+      "chunks": [
+        {
+          "path": "030cf257aa07b2d670dc-part-0002.json",
+          "message_count": 178
+        },
+        {
+          "path": "030cf257aa07b2d670dc-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "030cf257aa07b2d670dc-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "030cf257aa07b2d670dc-part-0005.json",
+          "message_count": 54
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 74,
+      "chunks": [
+        {
+          "path": "030cf257aa07b2d670dc-part-0005.json",
+          "message_count": 74
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "030cf257aa07b2d670dc-part-0005.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-distill-sparse-swiglu-kl-distillation-for-contextual-sparsity-pr.md"
+}

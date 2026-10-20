@@ -1,0 +1,7338 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-14 (UTC).** ## Original idea { "tit
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 103
+- **Recorded user turns:** 1
+- **Tool calls:** 33
+- **Original source:** `logs/chats/exported-trajectories/account-2/b73ac01f-4ea0-4f7e-86cb-ab70f99c4882.jsonl`
+- **Structured JSON:** [`f0695a1f19151a4a6538.json`](../../sessions/f0/f0695a1f19151a4a6538.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T16:47:40.997Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T16:47:40.997Z",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-14 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Step-Type-Conditioned Retrieval for Multi-Hop Reasoning: Grounding Retriever Routing in Reasoning Taxonomies\",\n  \"core_problem\": \"Multi-hop reasoning chains involve heterogeneous step types — bridge lookups connecting entities via shared relations, comparisons extracting parallel attributes, intersections satisfying conjunctive constraints, and deductions requiring no external evidence — each demanding different retrieval strategies. Current retrieval-augmented multi-hop QA methods fall into two camps: those applying a single uniform retrieval strategy across all steps (Search-R1, R3-RAG, HopRAG, ReaLM-Retrieve), and those learning implicit per-step routing via RL without semantic awareness of what each step requires (R1-Router/MoRE). Neither camp explicitly connects the well-established reasoning step-type taxonomies from question decomposition research (DecompRC, 2WikiMultiHopQA) to step-level retrieval strategy — that is, neither classifies the semantic type of each intermediate reasoning step and conditions both query formulation and retriever selection on that classification.\",\n  \"opportunity\": \"Three independently validated building blocks exist but remain unconnected: (1) Question-level reasoning taxonomies — DecompRC (Min et al., ACL 2019) empirically identified bridge (47%), intersection (23%), and comparison (22%) types in HotpotQA; 2WikiMultiHopQA (Ho et al., COLING 2020) encodes four question types (bridge, comparison, inference, compositional) as dataset metadata — but these operate at the question level, not at sub-step granularity within multi-hop chains. (2) Per-step retriever routing — R1-Router/MoRE (SIGIR 2026) demonstrates that implicit per-step routing to heterogeneous retrievers via Step-GRPO improves over uniform retrieval, but routing decisions emerge from opaque RL policies without interpretable step-type semantics, hindering error analysis and transfer across datasets. (3) Diverse retriever backbones — BGE-M3, SPLADE++, ColBERTv2 offer complementary strengths (dense semantic matching vs. sparse lexical precision), and step-level RL frameworks (ProRAG, TreePS-RAG, IG-Search) provide mechanisms for fine-grained training signals. The opportunity is to bridge these: extend question-level type taxonomies to sub-step-level retrieval conditioning, providing explicit, interpretable, and taxonomy-grounded step-type classification that determines both how queries are formulated and which retriever is invoked at each hop.\",\n  \"landscape\": \"Search-R1 (arxiv 2503.09516, COLM 2025) trains LLMs to learn retrieval timing via RL, achieving 41% improvement on 7B models, but uses uniform BM25/dense retrieval across all steps. R3-RAG (arxiv 2505.23794, EMNLP 2025 Findings) learns step-by-step reasoning and retrieval via RL but with a single retrieval strategy. ReaLM-Retrieve (SIGIR 2026) optimizes when to retrieve but not how to retrieve differently per step type. HopRAG (arxiv 2502.12442, ACL Findings 2025) achieves 76.78% higher answer metrics than conventional RAG via graph-based multi-hop retrieval, but applies graph traversal uniformly across all steps. R1-Router/MoRE (arxiv 2505.22095, SIGIR 2026) is the closest prior work: it routes to heterogeneous retrieval experts (text/image/table) at each step via Step-GRPO, but routing is implicit (emerging from RL policy without explicit type classification) and query formulation is uniform (contextual but not type-conditioned). R3AG (arxiv 2604.22849, April 2026) decomposes retriever capability into retrieval quality and generation utility dimensions for query-level routing — operates at the whole-query level, not step-level within multi-hop chains. MoR (arxiv 2506.15862, EMNLP 2025) demonstrates zero-shot weighted ensemble over sparse, dense, and human retrievers, showing complementary value of heterogeneous retriever mixtures, but without step-level adaptation. Router-R1 (arxiv 2506.09033, NeurIPS 2025) trains multi-round routing across LLMs (not retrievers) via RL, sharing the RL routing paradigm but targeting model selection rather than retrieval strategy. SEARCH-R proposes sub-question decomposition with dependency-tree-based document utility scoring for multi-hop retrieval, but does not classify step types or vary retrieval strategy per type. StepChain GraphRAG (arxiv 2510.02827) uses BFS reasoning flow for multi-hop evidence uniformly. IndexRAG (arxiv 2603.16415) improves F1 by 4.6 points via single-pass retrieval with a single strategy. IG-Search (arxiv 2604.15148) introduces step-level information gain rewards for search-augmented reasoning but focuses on retrieval timing, not strategy differentiation. ProRAG (arxiv 2601.21912) and TreePS-RAG (arxiv 2601.06922) advance step-level RL reward design for retrieval-augmented reasoning but do not connect rewards to step-type classification. DecompRC (Min et al., ACL 2019) provides the foundational taxonomy — bridge, intersection, comparison — validated on HotpotQA, but applies it to question decomposition, not retrieval strategy conditioning. No published work explicitly classifies reasoning step types within multi-hop chains and conditions both query formulation strategy and retriever selection on those types.\",\n  \"approach\": \"We propose StepRetriever, a framework that introduces explicit, taxonomy-grounded reasoning step-type classification into retrieval-augmented multi-hop QA, conditioning both query formulation and retriever selection on the classified step type. Our design has five components:\\n\\n(1) **Taxonomy**: We adopt a four-type taxonomy of reasoning sub-steps grounded in prior empirical work — bridge (entity-connecting, 47% of HotpotQA per DecompRC), comparison (attribute-extracting, 22%), intersection (multi-constraint satisfying, 23%), and deduction (inference from existing evidence, no retrieval needed). We validate this taxonomy at the sub-step level (not just question level) by analyzing step-type distributions across decomposed reasoning chains in HotpotQA, MuSiQue, and 2WikiMultiHopQA, using 2WikiMultiHopQA's built-in question-type metadata as anchoring supervision.\\n\\n(2) **Step-Type Classifier**: A lightweight classification head on a Qwen3-8B backbone predicts the step type at each intermediate reasoning step. It is warm-started using silver step-type labels generated by GPT-4o on DecompRC-style question decompositions across ~5K examples from all three datasets, with a human-validated calibration set of ~200 examples to measure silver label quality.\\n\\n(3) **Type-Conditioned Query Formulation**: Unlike R1-Router's uniform contextual query generation, StepRetriever uses type-specific query strategies: bridge steps generate entity-centric queries targeting relation completion (e.g., 'What is [bridge entity]'s [target relation]?'); comparison steps generate parallel attribute-extraction queries (e.g., '[entity] [comparison dimension]'); intersection steps generate conjunctive constraint queries; deduction steps skip retrieval entirely and reason from accumulated context.\\n\\n(4) **Dual Retriever Backend**: We use two complementary retrievers — BGE-M3 (dense, for bridge and intersection steps requiring semantic matching) and SPLADE++ (sparse, for comparison steps requiring precise lexical matching of attributes and numerical values) — plus a skip pathway for deduction steps. This simplifies the original design by dropping the graph-based passage retriever, which was a hidden engineering dependency, while preserving the key insight that different step types benefit from different retrieval modalities.\\n\\n(5) **Training**: Two-phase optimization extending the Search-R1 framework: Phase A warm-starts the step-type classifier on silver labels (supervised cross-entropy). Phase B fine-tunes the full pipeline (step-type prediction + query formulation + retriever routing) end-to-end via GRPO reinforcement learning, with a composite reward of answer F1 (outcome signal) and a soft type-consistency bonus (process signal, comparing predictions against silver labels). This avoids the need for manually annotated step-type ground truth while maintaining taxonomy grounding.\\n\\nEvaluated on HotpotQA (distractor and fullwiki), MuSiQue, and 2WikiMultiHopQA. Key ablations: (a) explicit type classification vs. no classification (implicit routing baseline, replicating R1-Router's approach in text-only setting), (b) type-conditioned query formulation vs. uniform query generation with type-based routing only, (c) dual retriever vs. single dense retriever, (d) taxonomy variants (3-type vs. 4-type vs. learned clustering).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200-250h A100\",\n      \"gpu_utilization\": \"Low (~25-30%). GPU idles during taxonomy validation, retriever integration, RL debugging. Simplified dual-retriever setup reduces index-building overhead vs. original 3+ retriever design.\",\n      \"timeline\": \"2.5-4 months\",\n      \"team\": \"1-2 researchers with NLP and RL experience\",\n      \"estimated_gpu_cost\": \"$300-400 (at ~$1.50/hr A100 spot pricing)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~250-300h A100\",\n      \"gpu_utilization\": \"Moderate (~55-65%). Agent handles index building, silver label generation, GRPO training. Human reviews taxonomy validation, calibration set quality, ablation priorities.\",\n      \"timeline\": \"3-5 weeks\",\n      \"team\": \"1 researcher, ~1h/day reviewing taxonomy decisions, silver label quality, and experiment results\",\n      \"claude_api_cost\": \"$120-350 (1200-3500 agent turns at ~$0.10/turn)\",\n      \"estimated_gpu_cost\": \"$375-450\",\n      \"risk_note\": \"Silver label quality from GPT-4o is the key risk — noisy labels can collapse type distinctions. Human validation of the 200-example calibration set is critical.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~400h A100 (explores taxonomy variants, retriever combinations, RL hyperparameters, and ablation configs more broadly than manual)\",\n      \"gpu_utilization\": \"High (~85-90%). Agent pipelines silver label generation → classifier warm-start → GRPO training → evaluation continuously.\",\n      \"timeline\": \"10-16 days with 2 concurrent A100s\",\n      \"team\": \"0 (initial setup: dataset download, BGE-M3 and SPLADE++ index pre-building, Search-R1 fork)\",\n      \"claude_api_cost\": \"$250-600 (2500-6000 agent turns)\",\n      \"estimated_gpu_cost\": \"$550-650\",\n      \"speed_bottleneck\": \"GRPO training on Qwen3-8B: ~40-60h per run on single A100 (reduced from original estimate due to simpler routing). With 2 A100s, 4-5 full runs require ~8-12 days.\",\n      \"risk_note\": \"Auto-generated taxonomy variants may optimize benchmark metrics without interpretable type semantics. Post-hoc human validation of learned type boundaries is necessary.\"\n    }\n  },\n  \"target_venues\": [\n    \"EACL 2027 (ARR submission deadline: August 3, 2026; commitment deadline: October 11, 2026; Athens, March 9-14, 2027)\",\n    \"AAAI 2027 (submission deadline: expected July-August 2026 TBD; Montréal, February 16-23, 2027)\",\n    \"NAACL 2027 (ARR submission deadline: October 2026; commitment deadline: expected December 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning (COLM 2025)\",\n    \"R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning (EMNLP 2025 Findings)\",\n    \"Mixture-of-Retrieval Experts (MoRE/R1-Router) for Reasoning-Guided Multimodal Knowledge Exploitation (SIGIR 2026)\",\n    \"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation (ACL Findings 2025)\",\n    \"When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models (ReaLM-Retrieve, SIGIR 2026)\",\n    \"R3AG: Retriever Routing for Retrieval-Augmented Generation (arXiv 2604.22849, April 2026)\",\n    \"MoR: Better Handling Diverse Queries with a Mixture of Sparse, Dense, and Human Retrievers (EMNLP 2025)\",\n    \"DecompRC: Multi-hop Reading Comprehension through Decomposed Questions and Answers (ACL 2019)\",\n    \"Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps (2WikiMultiHopQA, COLING 2020)\",\n    \"IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning (arXiv 2604.15148)\",\n    \"ProRAG: Agentic RAG via Process-Level Rewarding (arXiv 2601.21912)\"\n  ],\n  \"description\": \"StepRetriever addresses a specific gap at the intersection of three validated research threads: reasoning step-type taxonomies exist at the question level (DecompRC's bridge/intersection/comparison, 2WikiMultiHopQA's built-in types) but have not been extended to condition retrieval strategy at the sub-step level; per-step retriever routing improves multi-hop QA (R1-Router/MoRE, SIGIR 2026) but uses implicit RL-driven routing without interpretable step-type semantics; and diverse retriever backbones offer complementary strengths (dense for semantic matching, sparse for lexical precision) that align with different reasoning needs. StepRetriever connects these threads: at each intermediate reasoning step, a classifier predicts the step type (bridge, comparison, intersection, or deduction) and generates a type-conditioned retrieval query — bridge steps produce entity-centric queries routed to BGE-M3 (dense), comparison steps produce attribute-extraction queries routed to SPLADE++ (sparse), intersection steps produce conjunctive queries routed to BGE-M3, and deduction steps skip retrieval entirely. Unlike R1-Router's implicit routing, StepRetriever's explicit type classification is interpretable (enabling per-type error analysis), taxonomy-grounded (anchored in DecompRC and 2WikiMultiHopQA empirical findings), and conditions query formulation strategy per type (not just retriever selection). Unlike R3AG's query-level routing, StepRetriever operates at sub-step granularity within multi-hop chains. Built on Qwen3-8B with a two-phase training pipeline — supervised warm-start on GPT-4o silver step-type labels followed by end-to-end GRPO RL with answer-quality and type-consistency rewards, extending Search-R1 — StepRetriever is evaluated on HotpotQA, MuSiQue, and 2WikiMultiHopQA with ablations isolating the contributions of explicit type classification, type-conditioned query formulation, and dual-retriever routing.\",\n  \"project_name\": \"step_type_cond_retrieval\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 2)\nIssues: [\"CRITICAL: Venue mismatch — user explicitly requested EMNLP 2026 (ARR deadline May 25, 2026, 11 days from today), but the idea targets EACL 2027, AAAI 2027, and NAACL 2027. This fundamentally violates the user's requirements.\", \"CRITICAL: 2WikiMultiHopQA's actual four question types are comparison (~48%), inference (~12%), compositional (~22%), and bridge-comparison (~18%) — NOT 'bridge, comparison, inference, compositional' as stated. The claim that 2WikiMultiHopQA 'encodes four question types (bridge, comparison, inference, compositional)' is factually wrong. This undermines the claimed 'anchoring supervision' from 2WikiMultiHopQA metadata, since there is no standalone 'bridge' type in the dataset.\", \"CRITICAL: BELLE (ACL 2025, arxiv 2505.11811) is a highly relevant uncited competing work. BELLE classifies multi-hop questions into four types (Inference, Comparison, Temporal, Null) and assigns different retrieval/reasoning operator combinations per type, evaluating on HotpotQA, MuSiQue, and 2WikiMultiHopQA — the exact same datasets. While BELLE operates at question level with reasoning operators rather than sub-step level with retrievers, the conceptual framework of 'classify type → select strategy' is very similar and must be discussed.\", \"MAJOR: BridgeRAG (arxiv 2604.03384, April 2026) conditions second-hop retrieval on bridge passage evidence via a tripartite scorer, achieving SOTA training-free retrieval on HotpotQA (R@5=0.9875), MuSiQue (R@5=0.8146), and 2WikiMultiHopQA (R@5=0.9527). It empirically demonstrates that bridge conditioning helps bridge-type queries (+2.55pp) but not comparison/inference/compositional queries — directly validating the need for type-aware retrieval but implementing it for one type specifically. This is uncited.\", \"MAJOR: Adaptive-RAG (NAACL 2024, arxiv 2403.14403) trains a T5-Large classifier to predict query complexity and routes to three retrieval strategies (no retrieval, single-step, iterative multi-step). While it classifies by complexity rather than reasoning type, the mechanism of 'classifier → retrieval strategy routing' is closely related and must be discussed.\", \"MAJOR: Additional uncited relevant works include StratRAG (arxiv 2604.22757, March 2026) which benchmarks BM25/dense/hybrid retrieval across bridge, comparison, and yes-no types; Adaptive Query Routing (arxiv 2604.14222, April 2026) which classifies queries into four complexity tiers and routes to different strategies; LTRR (SIGIR 2025) which frames retriever routing as learning-to-rank; and CoSearch (arxiv 2604.17555, April 2026) which jointly trains reasoning + document ranker via GRPO.\", \"MAJOR: Timeline is incompatible with user constraints. Manual estimate: 2.5-4 months. HIL estimate: 3-5 weeks. Auto estimate: 10-16 days. All exceed the 11-day EMNLP 2026 constraint. The idea must either target EMNLP 2026 with a drastically simplified design or justify why a later venue is appropriate.\", \"MODERATE: Search-R1 uses E5 dense retrieval, not 'uniform BM25/dense retrieval across all steps' as stated. The Search-R1 GitHub framework supports BM25 as a pluggable component, but the paper's experiments use only E5.\", \"MODERATE: The 200-example human-validated calibration set may be insufficient to measure silver label quality across all four types on three datasets (12 type-dataset combinations with only ~17 examples per cell on average).\"]\nFeedback: The idea has made meaningful progress from round 1 (fixing R3-RAG venue, acknowledging R1-Router more directly, dropping graph retriever, adding silver labels), but several critical issues remain:\n\n1. **Fix venue targeting**: The user explicitly asked for EMNLP 2026 (ARR May 25). Either target EMNLP 2026 with a simplified design that fits in 11 days and 200 H100-hours, or explain clearly why this is impossible and propose the closest feasible venue. For EMNLP 2026, consider: (a) reduce to 2 types (retrieve vs. skip) + type-conditioned query formulation with a single retriever, (b) use existing silver labels from DecompRC decompositions rather than generating new ones, (c) evaluate on 2 datasets instead of 3.\n\n2. **Fix 2WikiMultiHopQA taxonomy**: The actual types are comparison, inference, compositional, bridge-comparison — not bridge/comparison/inference/compositional. Either correct the taxonomy mapping or use 2WikiMultiHopQA's actual types. Note this also affects the claimed alignment between DecompRC's bridge/intersection/comparison and 2WikiMultiHopQA's types.\n\n3. **Cite and position against BELLE (ACL 2025)**: BELLE classifies question types and selects operators per type on the same benchmarks. Your key differentiator is sub-step-level classification + retriever selection (not just reasoning operator selection) + type-conditioned query formulation. Make this explicit.\n\n4. **Cite BridgeRAG, Adaptive-RAG, and StratRAG**: BridgeRAG provides the strongest empirical motivation (bridge conditioning helps bridge-type queries). Adaptive-RAG provides the closest methodological precedent (classifier → strategy routing). StratRAG provides the empirical basis (different strategies perform differently per type). Position StepRetriever as unifying and extending these partial solutions.\n\n5. **Strengthen novelty claim**: Given BELLE (question-level type → operator), Adaptive-RAG (complexity → strategy), BridgeRAG (bridge-specific conditioning), and R1-Router (implicit per-step routing), the unique contribution of StepRetriever must be articulated as: the first system to combine (a) sub-step-level reasoning type classification (not question-level), (b) taxonomy-grounded type-conditioned query formulation (not just retriever selection), and (c) heterogeneous retriever routing, all within an end-to-end RL framework. But acknowledge this is an integration contribution, not a fundamentally new paradigm.\n\n6. **Correct Search-R1 characterization**: It uses E5 dense retrieval, not BM25/dense.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T16:47:41.002Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T16:47:41.002Z",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+## Round 1
+
+101 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T16:47:41.030Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-14 (UTC).**
+
+## Original idea
+{
+  "title": "Step-Type-Conditioned Retrieval for Multi-Hop Reasoning: Grounding Retriever Routing in Reasoning Taxonomies",
+  "core_problem": "Multi-hop reasoning chains involve heterogeneous step types — bridge lookups connecting entities via shared relations, comparisons extracting parallel attributes, intersections satisfying conjunctive constraints, and deductions requiring no external evidence — each demanding different retrieval strategies. Current retrieval-augmented multi-hop QA methods fall into two camps: those applying a single uniform retrieval strategy across all steps (Search-R1, R3-RAG, HopRAG, ReaLM-Retrieve), and those learning implicit per-step routing via RL without semantic awareness of what each step requires (R1-Router/MoRE). Neither camp explicitly connects the well-established reasoning step-type taxonomies from question decomposition research (DecompRC, 2WikiMultiHopQA) to step-level retrieval strategy — that is, neither classifies the semantic type of each intermediate reasoning step and conditions both query formulation and retriever selection on that classification.",
+  "opportunity": "Three independently validated building blocks exist but remain unconnected: (1) Question-level reasoning taxonomies — DecompRC (Min et al., ACL 2019) empirically identified bridge (47%), intersection (23%), and comparison (22%) types in HotpotQA; 2WikiMultiHopQA (Ho et al., COLING 2020) encodes four question types (bridge, comparison, inference, compositional) as dataset metadata — but these operate at the question level, not at sub-step granularity within multi-hop chains. (2) Per-step retriever routing — R1-Router/MoRE (SIGIR 2026) demonstrates that implicit per-step routing to heterogeneous retrievers via Step-GRPO improves over uniform retrieval, but routing decisions emerge from opaque RL policies without interpretable step-type semantics, hindering error analysis and transfer across datasets. (3) Diverse retriever backbones — BGE-M3, SPLADE++, ColBERTv2 offer complementary strengths (dense semantic matching vs. sparse lexical precision), and step-level RL frameworks (ProRAG, TreePS-RAG, IG-Search) provide mechanisms for fine-grained training signals. The opportunity is to bridge these: extend question-level type taxonomies to sub-step-level retrieval conditioning, providing explicit, interpretable, and taxonomy-grounded step-type classification that determines both how queries are formulated and which retriever is invoked at each hop.",
+  "landscape": "Search-R1 (arxiv 2503.09516, COLM 2025) trains LLMs to learn retrieval timing via RL, achieving 41% improvement on 7B models, but uses uniform BM25/dense retrieval across all steps. R3-RAG (arxiv 2505.23794, EMNLP 2025 Findings) learns step-by-step reasoning and retrieval via RL but with a single retrieval strategy. ReaLM-Retrieve (SIGIR 2026) optimizes when to retrieve but not how to retrieve differently per step type. HopRAG (arxiv 2502.12442, ACL Findings 2025) achieves 76.78% higher answer metrics than conventional RAG via graph-based multi-hop retrieval, but applies graph traversal uniformly across all steps. R1-Router/MoRE (arxiv 2505.22095, SIGIR 2026) is the closest prior work: it routes to heterogeneous retrieval experts (text/image/table) at each step via Step-GRPO, but routing is implicit (emerging from RL policy without explicit type classification) and query formulation is uniform (contextual but not type-conditioned). R3AG (arxiv 2604.22849, April 2026) decomposes retriever capability into retrieval quality and generation utility dimensions for query-level routing — operates at the whole-query level, not step-level within multi-hop chains. MoR (arxiv 2506.15862, EMNLP 2025) demonstrates zero-shot weighted ensemble over sparse, dense, and human retrievers, showing complementary value of heterogeneous retriever mixtures, but without step-level adaptation. Router-R1 (arxiv 2506.09033, NeurIPS 2025) trains multi-round routing across LLMs (not retrievers) via RL, sharing the RL routing paradigm but targeting model selection rather than retrieval strategy. SEARCH-R proposes sub-question decomposition with dependency-tree-based document utility scoring for multi-hop retrieval, but does not classify step types or vary retrieval strategy per type. StepChain GraphRAG (arxiv 2510.02827) uses BFS reasoning flow for multi-hop evidence uniformly. IndexRAG (arxiv 2603.16415) improves F1 by 4.6 points via single-pass retrieval with a single strategy. IG-Search (arxiv 2604.15148) introduces step-level information gain rewards for search-augmented reasoning but focuses on retrieval timing, not strategy differentiation. ProRAG (arxiv 2601.21912) and TreePS-RAG (arxiv 2601.06922) advance step-level RL reward design for retrieval-augmented reasoning but do not connect rewards to step-type classification. DecompRC (Min et al., ACL 2019) provides the foundational taxonomy — bridge, intersection, comparison — validated on HotpotQA, but applies it to question decomposition, not retrieval strategy conditioning. No published work explicitly classifies reasoning step types within multi-hop chains and conditions both query formulation strategy and retriever selection on those types.",
+  "approach": "We propose StepRetriever, a framework that introduces explicit, taxonomy-grounded reasoning step-type classification into retrieval-augmented multi-hop QA, conditioning both query formulation and retriever selection on the classified step type. Our design has five components:\n\n(1) **Taxonomy**: We adopt a four-type taxonomy of reasoning sub-steps grounded in prior empirical work — bridge (entity-connecting, 47% of HotpotQA per DecompRC), comparison (attribute-extracting, 22%), intersection (multi-constraint satisfying, 23%), and deduction (inference from existing evidence, no retrieval needed). We validate this taxonomy at the sub-step level (not just question level) by analyzing step-type distributions across decomposed reasoning chains in HotpotQA, MuSiQue, and 2WikiMultiHopQA, using 2WikiMultiHopQA's built-in question-type metadata as anchoring supervision.\n\n(2) **Step-Type Classifier**: A lightweight classification head on a Qwen3-8B backbone predicts the step type at each intermediate reasoning step. It is warm-started using silver step-type labels generated by GPT-4o on DecompRC-style question decompositions across ~5K examples from all three datasets, with a human-validated calibration set of ~200 examples to measure silver label quality.\n\n(3) **Type-Conditioned Query Formulation**: Unlike R1-Router's uniform contextual query generation, StepRetriever uses type-specific query strategies: bridge steps generate entity-centric queries targeting relation completion (e.g., 'What is [bridge entity]'s [target relation]?'); comparison steps generate parallel attribute-extraction queries (e.g., '[entity] [comparison dimension]'); intersection steps generate conjunctive constraint queries; deduction steps skip retrieval entirely and reason from accumulated context.\n\n(4) **Dual Retriever Backend**: We use two complementary retrievers — BGE-M3 (dense, for bridge and intersection steps requiring semantic matching) and SPLADE++ (sparse, for comparison steps requiring precise lexical matching of attributes and numerical values) — plus a skip pathway for deduction steps. This simplifies the original design by dropping the graph-based passage retriever, which was a hidden engineering dependency, while preserving the key insight that different step types benefit from different retrieval modalities.\n\n(5) **Training**: Two-phase optimization extending the Search-R1 framework: Phase A warm-starts the step-type classifier on silver labels (supervised cross-entropy). Phase B fine-tunes the full pipeline (step-type prediction + query formulation + retriever routing) end-to-end via GRPO reinforcement learning, with a composite reward of answer F1 (outcome signal) and a soft type-consistency bonus (process signal, comparing predictions against silver labels). This avoids the need for manually annotated step-type ground truth while maintaining taxonomy grounding.\n\nEvaluated on HotpotQA (distractor and fullwiki), MuSiQue, and 2WikiMultiHopQA. Key ablations: (a) explicit type classification vs. no classification (implicit routing baseline, replicating R1-Router's approach in text-only setting), (b) type-conditioned query formulation vs. uniform query generation with type-based routing only, (c) dual retriever vs. single dense retriever, (d) taxonomy variants (3-type vs. 4-type vs. learned clustering).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200-250h A100",
+      "gpu_utilization": "Low (~25-30%). GPU idles during taxonomy validation, retriever integration, RL debugging. Simplified dual-retriever setup reduces index-building overhead vs. original 3+ retriever design.",
+      "timeline": "2.5-4 months",
+      "team": "1-2 researchers with NLP and RL experience",
+      "estimated_gpu_cost": "$300-400 (at ~$1.50/hr A100 spot pricing)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~250-300h A100",
+      "gpu_utilization": "Moderate (~55-65%). Agent handles index building, silver label generation, GRPO training. Human reviews taxonomy validation, calibration set quality, ablation priorities.",
+      "timeline": "3-5 weeks",
+      "team": "1 researcher, ~1h/day reviewing taxonomy decisions, silver label quality, and experiment results",
+      "claude_api_cost": "$120-350 (1200-3500 agent turns at ~$0.10/turn)",
+      "estimated_gpu_cost": "$375-450",
+      "risk_note": "Silver label quality from GPT-4o is the key risk — noisy labels can collapse type distinctions. Human validation of the 200-example calibration set is critical."
+    },
+    "auto_research": {
+      "gpu_hours": "~400h A100 (explores taxonomy variants, retriever combinations, RL hyperparameters, and ablation configs more broadly than manual)",
+      "gpu_utilization": "High (~85-90%). Agent pipelines silver label generation → classifier warm-start → GRPO training → evaluation continuously.",
+      "timeline": "10-16 days with 2 concurrent A100s",
+      "team": "0 (initial setup: dataset download, BGE-M3 and SPLADE++ index pre-building, Search-R1 fork)",
+      "claude_api_cost": "$250-600 (2500-6000 agent turns)",
+      "estimated_gpu_cost": "$550-650",
+      "speed_bottleneck": "GRPO training on Qwen3-8B: ~40-60h per run on single A100 (reduced from original estimate due to simpler routing). With 2 A100s, 4-5 full runs require ~8-12 days.",
+      "risk_note": "Auto-generated taxonomy variants may optimize benchmark metrics without interpretable type semantics. Post-hoc human validation of learned type boundaries is necessary."
+    }
+  },
+  "target_venues": [
+    "EACL 2027 (ARR submission deadline: August 3, 2026; commitment deadline: October 11, 2026; Athens, March 9-14, 2027)",
+    "AAAI 2027 (submission deadline: expected July-August 2026 TBD; Montréal, February 16-23, 2027)",
+    "NAACL 2027 (ARR submission deadline: October 2026; commitment deadline: expected December 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning (COLM 2025)",
+    "R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning (EMNLP 2025 Findings)",
+    "Mixture-of-Retrieval Experts (MoRE/R1-Router) for Reasoning-Guided Multimodal Knowledge Exploitation (SIGIR 2026)",
+    "HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation (ACL Findings 2025)",
+    "When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models (ReaLM-Retrieve, SIGIR 2026)",
+    "R3AG: Retriever Routing for Retrieval-Augmented Generation (arXiv 2604.22849, April 2026)",
+    "MoR: Better Handling Diverse Queries with a Mixture of Sparse, Dense, and Human Retrievers (EMNLP 2025)",
+    "DecompRC: Multi-hop Reading Comprehension through Decomposed Questions and Answers (ACL 2019)",
+    "Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps (2WikiMultiHopQA, COLING 2020)",
+    "IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning (arXiv 2604.15148)",
+    "ProRAG: Agentic RAG via Process-Level Rewarding (arXiv 2601.21912)"
+  ],
+  "description": "StepRetriever addresses a specific gap at the intersection of three validated research threads: reasoning step-type taxonomies exist at the question level (DecompRC's bridge/intersection/comparison, 2WikiMultiHopQA's built-in types) but have not been extended to condition retrieval strategy at the sub-step level; per-step retriever routing improves multi-hop QA (R1-Router/MoRE, SIGIR 2026) but uses implicit RL-driven routing without interpretable step-type semantics; and diverse retriever backbones offer complementary strengths (dense for semantic matching, sparse for lexical precision) that align with different reasoning needs. StepRetriever connects these threads: at each intermediate reasoning step, a classifier predicts the step type (bridge, comparison, intersection, or deduction) and generates a type-conditioned retrieval query — bridge steps produce entity-centric queries routed to BGE-M3 (dense), comparison steps produce attribute-extraction queries routed to SPLADE++ (sparse), intersection steps produce conjunctive queries routed to BGE-M3, and deduction steps skip retrieval entirely. Unlike R1-Router's implicit routing, StepRetriever's explicit type classification is interpretable (enabling per-type error analysis), taxonomy-grounded (anchored in DecompRC and 2WikiMultiHopQA empirical findings), and conditions query formulation strategy per type (not just retriever selection). Unlike R3AG's query-level routing, StepRetriever operates at sub-step granularity within multi-hop chains. Built on Qwen3-8B with a two-phase training pipeline — supervised warm-start on GPT-4o silver step-type labels followed by end-to-end GRPO RL with answer-quality and type-consistency rewards, extending Search-R1 — StepRetriever is evaluated on HotpotQA, MuSiQue, and 2WikiMultiHopQA with ablations isolating the contributions of explicit type classification, type-conditioned query formulation, and dual-retriever routing.",
+  "project_name": "step_type_cond_retrieval",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 2)
+Issues: ["CRITICAL: Venue mismatch — user explicitly requested EMNLP 2026 (ARR deadline May 25, 2026, 11 days from today), but the idea targets EACL 2027, AAAI 2027, and NAACL 2027. This fundamentally violates the user's requirements.", "CRITICAL: 2WikiMultiHopQA's actual four question types are comparison (~48%), inference (~12%), compositional (~22%), and bridge-comparison (~18%) — NOT 'bridge, comparison, inference, compositional' as stated. The claim that 2WikiMultiHopQA 'encodes four question types (bridge, comparison, inference, compositional)' is factually wrong. This undermines the claimed 'anchoring supervision' from 2WikiMultiHopQA metadata, since there is no standalone 'bridge' type in the dataset.", "CRITICAL: BELLE (ACL 2025, arxiv 2505.11811) is a highly relevant uncited competing work. BELLE classifies multi-hop questions into four types (Inference, Comparison, Temporal, Null) and assigns different retrieval/reasoning operator combinations per type, evaluating on HotpotQA, MuSiQue, and 2WikiMultiHopQA — the exact same datasets. While BELLE operates at question level with reasoning operators rather than sub-step level with retrievers, the conceptual framework of 'classify type → select strategy' is very similar and must be discussed.", "MAJOR: BridgeRAG (arxiv 2604.03384, April 2026) conditions second-hop retrieval on bridge passage evidence via a tripartite scorer, achieving SOTA training-free retrieval on HotpotQA (R@5=0.9875), MuSiQue (R@5=0.8146), and 2WikiMultiHopQA (R@5=0.9527). It empirically demonstrates that bridge conditioning helps bridge-type queries (+2.55pp) but not comparison/inference/compositional queries — directly validating the need for type-aware retrieval but implementing it for one type specifically. This is uncited.", "MAJOR: Adaptive-RAG (NAACL 2024, arxiv 2403.14403) trains a T5-Large classifier to predict query complexity and routes to three retrieval strategies (no retrieval, single-step, iterative multi-step). While it classifies by complexity rather than reasoning type, the mechanism of 'classifier → retrieval strategy routing' is closely related and must be discussed.", "MAJOR: Additional uncited relevant works include StratRAG (arxiv 2604.22757, March 2026) which benchmarks BM25/dense/hybrid retrieval across bridge, comparison, and yes-no types; Adaptive Query Routing (arxiv 2604.14222, April 2026) which classifies queries into four complexity tiers and routes to different strategies; LTRR (SIGIR 2025) which frames retriever routing as learning-to-rank; and CoSearch (arxiv 2604.17555, April 2026) which jointly trains reasoning + document ranker via GRPO.", "MAJOR: Timeline is incompatible with user constraints. Manual estimate: 2.5-4 months. HIL estimate: 3-5 weeks. Auto estimate: 10-16 days. All exceed the 11-day EMNLP 2026 constraint. The idea must either target EMNLP 2026 with a drastically simplified design or justify why a later venue is appropriate.", "MODERATE: Search-R1 uses E5 dense retrieval, not 'uniform BM25/dense retrieval across all steps' as stated. The Search-R1 GitHub framework supports BM25 as a pluggable component, but the paper's experiments use only E5.", "MODERATE: The 200-example human-validated calibration set may be insufficient to measure silver label quality across all four types on three datasets (12 type-dataset combinations with only ~17 examples per cell on average)."]
+Feedback: The idea has made meaningful progress from round 1 (fixing R3-RAG venue, acknowledging R1-Router more directly, dropping graph retriever, adding silver labels), but several critical issues remain:
+
+1. **Fix venue targeting**: The user explicitly asked for EMNLP 2026 (ARR May 25). Either target EMNLP 2026 with a simplified design that fits in 11 days and 200 H100-hours, or explain clearly why this is impossible and propose the closest feasible venue. For EMNLP 2026, consider: (a) reduce to 2 types (retrieve vs. skip) + type-conditioned query formulation with a single retriever, (b) use existing silver labels from DecompRC decompositions rather than generating new ones, (c) evaluate on 2 datasets instead of 3.
+
+2. **Fix 2WikiMultiHopQA taxonomy**: The actual types are comparison, inference, compositional, bridge-comparison — not bridge/comparison/inference/compositional. Either correct the taxonomy mapping or use 2WikiMultiHopQA's actual types. Note this also affects the claimed alignment between DecompRC's bridge/intersection/comparison and 2WikiMultiHopQA's types.
+
+3. **Cite and position against BELLE (ACL 2025)**: BELLE classifies question types and selects operators per type on the same benchmarks. Your key differentiator is sub-step-level classification + retriever selection (not just reasoning operator selection) + type-conditioned query formulation. Make this explicit.
+
+4. **Cite BridgeRAG, Adaptive-RAG, and StratRAG**: BridgeRAG provides the strongest empirical motivation (bridge conditioning helps bridge-type queries). Adaptive-RAG provides the closest methodological precedent (classifier → strategy routing). StratRAG provides the empirical basis (different strategies perform differently per type). Position StepRetriever as unifying and extending these partial solutions.
+
+5. **Strengthen novelty claim**: Given BELLE (question-level type → operator), Adaptive-RAG (complexity → strategy), BridgeRAG (bridge-specific conditioning), and R1-Router (implicit per-step routing), the unique contribution of StepRetriever must be articulated as: the first system to combine (a) sub-step-level reasoning type classification (not question-level), (b) taxonomy-grounded type-conditioned query formulation (not just retriever selection), and (c) heterogeneous retriever routing, all within an end-to-end RL framework. But acknowledge this is an integration contribution, not a fundamentally new paradigm.
+
+6. **Correct Search-R1 characterization**: It uses E5 dense retrieval, not BM25/dense.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "32388a1e-a9cc-48ad-a2f5-29565444ff83",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T16:47:41.028Z_
+
+```json
+{
+  "parentUuid": "32388a1e-a9cc-48ad-a2f5-29565444ff83",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "74ed7cd9-48f7-47d1-babb-f1eb4e358338",
+  "timestamp": "2026-05-14T16:47:41.028Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T16:47:41.028Z_
+
+```json
+{
+  "parentUuid": "74ed7cd9-48f7-47d1-babb-f1eb4e358338",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "7c6f2154-81c7-451f-ba32-b19f5dba68f9",
+  "timestamp": "2026-05-14T16:47:41.028Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Step-Type-Conditioned Retrieval for Multi-Hop Reasoning: Grounding Ret…",
+  "leafUuid": "7c6f2154-81c7-451f-ba32-b19f5dba68f9",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sub-step type-aware retriever routing for multi-hop QA",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T16:47:50.704Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully before diving into research. The key issues are:
+
+1. **CRITICAL: Venue mismatch** - User wants EMNLP 2026 (ARR deadline May 25, 2026 - 11 days away), but idea targets EACL/AAAI/NAACL 2027
+2. **CRITICAL: 2WikiMultiHopQA taxonomy is wrong** - Actual types are comparison, inference, compositional, bridge-comparison (not bridge, comparison, inference, compositional)
+
+
+3. **CRITICAL: BELLE (ACL 2025) uncited** - Classifies multi-hop question types and assigns different retrieval/reasoning operators
+4. **MAJOR: BridgeRAG uncited** - Bridge-specific conditioning for retrieval
+5. **MAJOR: Adaptive-RAG uncited** - Classifier → retrieval strategy routing
+6. **MAJOR: Additional uncited works** - StratRAG, Adaptive Query Routing, LTRR, CoSearch
+7. **MAJOR: Timeline incompatible** - All estimates exceed 11-day constraint
+8. **MODERATE: Search-R1 uses E5, not BM25/dense**
+9. **MODERATE: 200-example calibration set may be insufficient**
+
+I need to pivot the venue to EMNLP 2026 and strip down the approach significantly to actually fit the timeline. There are several critical related works I'm missing that directly address adaptive retrieval and question-type routing, so I need to understand how my contribution positions against those. Let me investigate each of these gaps systematically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c6f2154-81c7-451f-ba32-b19f5dba68f9",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oUnkgYthP3jQtAUUds",
+  "type": "assistant",
+  "uuid": "06609fdd-ad8e-49e4-bfba-4d95cb04e4c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013k1kcaMs8GmgtdtvKXRaKN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11739,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 501,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 501,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T16:47:50.707Z_
+
+I'll conduct deep research on each reviewer issue before revising. Let me start by investigating the critical items in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06609fdd-ad8e-49e4-bfba-4d95cb04e4c6",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oUnkgYthP3jQtAUUds",
+  "type": "assistant",
+  "uuid": "1e2da4a2-d3f7-461d-90e7-a7623a661918",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013k1kcaMs8GmgtdtvKXRaKN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11739,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 501,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 501,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T16:47:50.716Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016LjUaWDU6S6inJenUVVoib`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e2da4a2-d3f7-461d-90e7-a7623a661918",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oUnkgYthP3jQtAUUds",
+  "type": "assistant",
+  "uuid": "4723bb72-091d-4824-bb9a-45d410b195bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013k1kcaMs8GmgtdtvKXRaKN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11739,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 501,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 501,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T16:47:50.722Z_
+
+<details><summary>↩ Tool result · `toolu_016LjUaWDU6S6inJenUVVoib`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4723bb72-091d-4824-bb9a-45d410b195bc",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "a5b0e876-3c2c-4802-a46a-d9a41dfe9da3",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "4723bb72-091d-4824-bb9a-45d410b195bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-14T16:47:57.364Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now do deep research on all the critical issues in parallel. I need to:
+
+1. Research BELLE (ACL 2025) - read the actual paper
+2. Research BridgeRAG - read the actual paper
+3. Research Adaptive-RAG - read the actual paper
+4. Verify 2WikiMultiHopQA actual taxonomy types
+5. Research StratRAG, Adaptive Query Routing, LTRR, CoSearch
+6. Check EMNLP 2026 ARR deadline
+7. Research Search-R1's actual retrieval method (E5 vs BM25)
+
+
+8. Check the current state-of-the-art performance across HotpotQA, MuSiQue, and 2WikiMultiHopQA benchmarks
+
+Let me start launching these searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5b0e876-3c2c-4802-a46a-d9a41dfe9da3",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oVW1dzeRDNGV3HKra3",
+  "type": "assistant",
+  "uuid": "123d7f83-7d40-49ff-9654-05649ab103e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WzjV1SGHbf1pTMByHWDzd6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1520,
+      "cache_read_input_tokens": 23580,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1520,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 23580,
+          "cache_creation_input_tokens": 1520,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1520
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-14T16:47:57.365Z_
+
+Starting deep research on all critical reviewer issues. Let me search for the key papers and verify claims in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "123d7f83-7d40-49ff-9654-05649ab103e5",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oVW1dzeRDNGV3HKra3",
+  "type": "assistant",
+  "uuid": "4e84d58c-9f2d-4fe5-a889-498c35a7facf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WzjV1SGHbf1pTMByHWDzd6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1520,
+      "cache_read_input_tokens": 23580,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1520,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 23580,
+          "cache_creation_input_tokens": 1520,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1520
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T16:47:57.380Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CSxEJXBJiawZczzEFGQVLy`</summary>
+
+```json
+{
+  "query": "BELLE ACL 2025 arxiv 2505.11811 multi-hop question type classification retrieval"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4e84d58c-9f2d-4fe5-a889-498c35a7facf",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oVW1dzeRDNGV3HKra3",
+  "type": "assistant",
+  "uuid": "94c3aaf3-c270-47a9-a370-c99e464223ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WzjV1SGHbf1pTMByHWDzd6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1520,
+      "cache_read_input_tokens": 23580,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1520,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 23580,
+          "cache_creation_input_tokens": 1520,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1520
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T16:48:04.105Z_
+
+<details><summary>↩ Tool result · `toolu_01CSxEJXBJiawZczzEFGQVLy`</summary>
+
+```text
+Web search results for query: "BELLE ACL 2025 arxiv 2505.11811 multi-hop question type classification retrieval"
+
+Links: [{"title":"[2505.11811] BELLE: A Bi-Level Multi-Agent Reasoning Framework for Multi-Hop Question Answering","url":"https://arxiv.org/abs/2505.11811"},{"title":"BELLE: A Bi-Level Multi-Agent Reasoning Framework for Multi-Hop Question Answering","url":"https://arxiv.org/html/2505.11811"},{"title":"[PDF] BELLE: A Bi-Level Multi-Agent Reasoning Framework for Multi-Hop Question Answering | Semantic Scholar","url":"https://www.semanticscholar.org/paper/BELLE:-A-Bi-Level-Multi-Agent-Reasoning-Framework-Zhang-Li/4e826915ce02cb2f523dc0b08e5badac6f48ed84"},{"title":"Computation and Language May 2025","url":"https://www.arxiv.org/list/cs.CL/2025-05?skip=525&show=50"},{"title":"BELLE: A Bi-Level Multi-Agent Reasoning Framework for Multi-Hop Question Answering - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.211/"},{"title":"Computer Science May 2025","url":"https://www.arxiv.org/list/cs/2025-05?skip=10475&show=2000"},{"title":"Retrieval–Reasoning Processes for Multi-hop Question Answering: A","url":"https://arxiv.org/pdf/2601.00536"},{"title":"Advancing Multi-Hop Question Answering via Alternating ...","url":"https://www.computer.org/csdl/proceedings-article/icme/2025/11209576/2beBVbyA6as"},{"title":"Multi-hop Question Answering","url":"https://arxiv.org/html/2204.09140v2"},{"title":"[2505.11754] Masking in Multi-hop QA: An Analysis of How Language Models Perform with Context Permutation","url":"https://arxiv.org/abs/2505.11754"}]
+
+Based on the search results, here's information about the BELLE paper (arxiv 2505.11811):
+
+## Overview
+
+BELLE is a Bi-levEL muLti-agEnt reasoning framework that addresses multi-hop QA by specifically focusing on the correspondence between question types and methods, where each type of method is regarded as an "operator" by prompting LLMs differently.
+
+## Research Contribution
+
+The paper conducts an in-depth analysis of public multi-hop QA benchmarks, dividing the questions into four types and evaluating five types of cutting-edge methods for multi-hop QA: Chain-of-Thought (CoT), Single-step, Iterative-step, Sub-step, and Adaptive-step. The researchers find that different types of multi-hop questions have varying degrees of sensitivity to different types of methods.
+
+## Framework Architecture
+
+The first level of BELLE includes multiple agents that debate to obtain an executive plan of combined "operators" to address the multi-hop QA task comprehensively. During the debate, in addition to the basic roles of affirmative debater, negative debater, and judge, at the second level, the framework further leverages fast and slow debaters to monitor whether changes in viewpoints are reasonable.
+
+## Publication Status
+
+The paper has been accepted by the ACL 2025 main track.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94c3aaf3-c270-47a9-a370-c99e464223ff",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "5f4435cf-aed1-4848-98f0-0e44e2a365d5",
+  "toolUseResult": {
+    "query": "BELLE ACL 2025 arxiv 2505.11811 multi-hop question type classification retrieval",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019bvNdyriWSV9G2CV2cYpmk",
+        "content": [
+          {
+            "title": "[2505.11811] BELLE: A Bi-Level Multi-Agent Reasoning Framework for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/abs/2505.11811"
+          },
+          {
+            "title": "BELLE: A Bi-Level Multi-Agent Reasoning Framework for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2505.11811"
+          },
+          {
+            "title": "[PDF] BELLE: A Bi-Level Multi-Agent Reasoning Framework for Multi-Hop Question Answering | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/BELLE:-A-Bi-Level-Multi-Agent-Reasoning-Framework-Zhang-Li/4e826915ce02cb2f523dc0b08e5badac6f48ed84"
+          },
+          {
+            "title": "Computation and Language May 2025",
+            "url": "https://www.arxiv.org/list/cs.CL/2025-05?skip=525&show=50"
+          },
+          {
+            "title": "BELLE: A Bi-Level Multi-Agent Reasoning Framework for Multi-Hop Question Answering - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.211/"
+          },
+          {
+            "title": "Computer Science May 2025",
+            "url": "https://www.arxiv.org/list/cs/2025-05?skip=10475&show=2000"
+          },
+          {
+            "title": "Retrieval–Reasoning Processes for Multi-hop Question Answering: A",
+            "url": "https://arxiv.org/pdf/2601.00536"
+          },
+          {
+            "title": "Advancing Multi-Hop Question Answering via Alternating ...",
+            "url": "https://www.computer.org/csdl/proceedings-article/icme/2025/11209576/2beBVbyA6as"
+          },
+          {
+            "title": "Multi-hop Question Answering",
+            "url": "https://arxiv.org/html/2204.09140v2"
+          },
+          {
+            "title": "[2505.11754] Masking in Multi-hop QA: An Analysis of How Language Models Perform with Context Permutation",
+            "url": "https://arxiv.org/abs/2505.11754"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the BELLE paper (arxiv 2505.11811):\n\n## Overview\n\nBELLE is a Bi-levEL muLti-agEnt reasoning framework that addresses multi-hop QA by specifically focusing on the correspondence between question types and methods, where each type of method is regarded as an \"operator\" by prompting LLMs differently.\n\n## Research Contribution\n\nThe paper conducts an in-depth analysis of public multi-hop QA benchmarks, dividing the questions into four types and evaluating five types of cutting-edge methods for multi-hop QA: Chain-of-Thought (CoT), Single-step, Iterative-step, Sub-step, and Adaptive-step. The researchers find that different types of multi-hop questions have varying degrees of sensitivity to different types of methods.\n\n## Framework Architecture\n\nThe first level of BELLE includes multiple agents that debate to obtain an executive plan of combined \"operators\" to address the multi-hop QA task comprehensively. During the debate, in addition to the basic roles of affirmative debater, negative debater, and judge, at the second level, the framework further leverages fast and slow debaters to monitor whether changes in viewpoints are reasonable.\n\n## Publication Status\n\nThe paper has been accepted by the ACL 2025 main track."
+    ],
+    "durationSeconds": 6.720624085000003
+  },
+  "sourceToolAssistantUUID": "94c3aaf3-c270-47a9-a370-c99e464223ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T16:48:07.003Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011gy2XRtjL6iaKujcmw9uq4`</summary>
+
+```json
+{
+  "query": "BridgeRAG arxiv 2604.03384 bridge passage retrieval multi-hop QA HotpotQA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f4435cf-aed1-4848-98f0-0e44e2a365d5",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oWV7qgfJDd7xTmeCi9",
+  "type": "assistant",
+  "uuid": "49c25d3d-f351-4114-9911-97dd3fca4981",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0146jG7CMtHTS7W5wNuqZX4R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1167,
+      "cache_read_input_tokens": 25100,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1167,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 25100,
+          "cache_creation_input_tokens": 1167,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1167
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T16:48:14.032Z_
+
+<details><summary>↩ Tool result · `toolu_011gy2XRtjL6iaKujcmw9uq4`</summary>
+
+```text
+Web search results for query: "BridgeRAG arxiv 2604.03384 bridge passage retrieval multi-hop QA HotpotQA"
+
+Links: [{"title":"BridgeRAG: Training-Free Bridge-Conditioned Retrieval for Multi-Hop Question Answering","url":"https://arxiv.org/html/2604.03384v1"},{"title":"Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA","url":"https://arxiv.org/html/2604.09019"},{"title":"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation","url":"https://arxiv.org/html/2502.12442v1"},{"title":"BRIDGE: Multimodal-to-Text Retrieval via Reinforcement-Learned Query Alignment","url":"https://arxiv.org/html/2604.07201"},{"title":"BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence","url":"https://arxiv.org/html/2603.07931"},{"title":"NuggetIndex: Governed Atomic Retrieval for Maintainable RAG","url":"https://arxiv.org/html/2604.27306"},{"title":"StratRAG: A Multi-Hop Retrieval Evaluation Dataset ...","url":"https://arxiv.org/html/2604.22757v1"},{"title":"[2604.07816v1] Tool Retrieval Bridge: Aligning Vague Instructions with Retriever Preferences via Bridge Model","url":"https://arxiv.org/abs/2604.07816v1"},{"title":"Evaluating Multi-Hop Reasoning in RAG Systems: A Comparison of LLM-Based Retriever Evaluation Strategies Accepted for publication at the SynIRgy Workshop, ECIR 2026 (48th European Conference on Information Retrieval).","url":"https://arxiv.org/html/2604.18234v1"},{"title":"[2604.22757] StratRAG: A Multi-Hop Retrieval Evaluation Dataset for Retrieval-Augmented Generation Systems","url":"https://arxiv.org/abs/2604.22757"}]
+
+Based on the search results, I found detailed information about BridgeRAG:
+
+## BridgeRAG Overview
+
+BridgeRAG is a training-free, graph-free retrieval method for retrieval-augmented generation (RAG) over multi-hop questions that operationalizes a tripartite scorer over (question, bridge, candidate).
+
+## Key Approach
+
+Multi-hop retrieval is not a single-step relevance problem: later-hop evidence should be ranked by its utility conditioned on retrieved bridge evidence, not by similarity to the original query alone. BridgeRAG separates coverage from scoring: dual-entity ANN expansion broadens the second-hop candidate pool, while a bridge-conditioned LLM judge identifies the active reasoning chain among competing candidates without any offline graph or proposition index.
+
+## Advantages
+
+BridgeRAG requires no training; all reasoning is performed by an off-the-shelf LLM. BridgeRAG achieves competitive or superior R@5 without either offline graph construction or graph traversal, unlike methods like HippoRAG and RAPTOR.
+
+## Experimental Results
+
+The method shows that this conditioning signal is selective: +2.55pp on parallel-chain queries while approximately 0 on single-chain subtypes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49c25d3d-f351-4114-9911-97dd3fca4981",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "dea8b73c-5146-429f-bffa-bc48d13edd7e",
+  "toolUseResult": {
+    "query": "BridgeRAG arxiv 2604.03384 bridge passage retrieval multi-hop QA HotpotQA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014zyaWXJYgzxWzWe2pGg1KM",
+        "content": [
+          {
+            "title": "BridgeRAG: Training-Free Bridge-Conditioned Retrieval for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2604.03384v1"
+          },
+          {
+            "title": "Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA",
+            "url": "https://arxiv.org/html/2604.09019"
+          },
+          {
+            "title": "HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2502.12442v1"
+          },
+          {
+            "title": "BRIDGE: Multimodal-to-Text Retrieval via Reinforcement-Learned Query Alignment",
+            "url": "https://arxiv.org/html/2604.07201"
+          },
+          {
+            "title": "BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence",
+            "url": "https://arxiv.org/html/2603.07931"
+          },
+          {
+            "title": "NuggetIndex: Governed Atomic Retrieval for Maintainable RAG",
+            "url": "https://arxiv.org/html/2604.27306"
+          },
+          {
+            "title": "StratRAG: A Multi-Hop Retrieval Evaluation Dataset ...",
+            "url": "https://arxiv.org/html/2604.22757v1"
+          },
+          {
+            "title": "[2604.07816v1] Tool Retrieval Bridge: Aligning Vague Instructions with Retriever Preferences via Bridge Model",
+            "url": "https://arxiv.org/abs/2604.07816v1"
+          },
+          {
+            "title": "Evaluating Multi-Hop Reasoning in RAG Systems: A Comparison of LLM-Based Retriever Evaluation Strategies Accepted for publication at the SynIRgy Workshop, ECIR 2026 (48th European Conference on Information Retrieval).",
+            "url": "https://arxiv.org/html/2604.18234v1"
+          },
+          {
+            "title": "[2604.22757] StratRAG: A Multi-Hop Retrieval Evaluation Dataset for Retrieval-Augmented Generation Systems",
+            "url": "https://arxiv.org/abs/2604.22757"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about BridgeRAG:\n\n## BridgeRAG Overview\n\nBridgeRAG is a training-free, graph-free retrieval method for retrieval-augmented generation (RAG) over multi-hop questions that operationalizes a tripartite scorer over (question, bridge, candidate).\n\n## Key Approach\n\nMulti-hop retrieval is not a single-step relevance problem: later-hop evidence should be ranked by its utility conditioned on retrieved bridge evidence, not by similarity to the original query alone. BridgeRAG separates coverage from scoring: dual-entity ANN expansion broadens the second-hop candidate pool, while a bridge-conditioned LLM judge identifies the active reasoning chain among competing candidates without any offline graph or proposition index.\n\n## Advantages\n\nBridgeRAG requires no training; all reasoning is performed by an off-the-shelf LLM. BridgeRAG achieves competitive or superior R@5 without either offline graph construction or graph traversal, unlike methods like HippoRAG and RAPTOR.\n\n## Experimental Results\n\nThe method shows that this conditioning signal is selective: +2.55pp on parallel-chain queries while approximately 0 on single-chain subtypes."
+    ],
+    "durationSeconds": 7.022318343999999
+  },
+  "sourceToolAssistantUUID": "49c25d3d-f351-4114-9911-97dd3fca4981",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T16:48:18.122Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BHLfUw1D58ixemJmAoT86q`</summary>
+
+```json
+{
+  "query": "Adaptive-RAG NAACL 2024 arxiv 2403.14403 query complexity classifier retrieval routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dea8b73c-5146-429f-bffa-bc48d13edd7e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oXEAhY5q5RbMcr1Awa",
+  "type": "assistant",
+  "uuid": "abe849db-c03f-45c9-a34f-45c8f2b3e052",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MLL2mbM1dSey3rKz7hnf2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 935,
+      "cache_read_input_tokens": 26267,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 935,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 26267,
+          "cache_creation_input_tokens": 935,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 935
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T16:48:24.360Z_
+
+<details><summary>↩ Tool result · `toolu_01BHLfUw1D58ixemJmAoT86q`</summary>
+
+```text
+Web search results for query: "Adaptive-RAG NAACL 2024 arxiv 2403.14403 query complexity classifier retrieval routing"
+
+Links: [{"title":"[2403.14403] Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity","url":"https://arxiv.org/abs/2403.14403"},{"title":"GitHub - AsH1605/Adaptive-RAG: Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity · GitHub","url":"https://github.com/AsH1605/Adaptive-RAG"},{"title":"GitHub - starsuzi/Adaptive-RAG","url":"https://github.com/starsuzi/adaptive-rag"},{"title":"Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity","url":"https://arxiv.org/html/2403.14403v1"},{"title":"arXiv:2403.14403v2 [cs.CL] 28 Mar 2024","url":"https://arxiv.org/pdf/2403.14403"},{"title":"Adaptive-RAG/README.md at main · starsuzi/Adaptive-RAG","url":"https://github.com/starsuzi/Adaptive-RAG/blob/main/README.md"},{"title":"Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity - ACL Anthology","url":"https://aclanthology.org/2024.naacl-long.389/"},{"title":"[PDF] Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Adaptive-RAG:-Learning-to-Adapt-Retrieval-Augmented-Jeong-Baek/e5e8c6ac537e0f5b5db14170bc232d6f9e641bbc"},{"title":"Adaptive-RAG: Learning to Adapt Retrieval-Augmented ...","url":"https://www.emergentmind.com/papers/2403.14403"},{"title":"[2403.14403v1] Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity","url":"https://arxiv.org/abs/2403.14403v1"}]
+
+Based on the search results, here's what I found about Adaptive-RAG (arXiv 2403.14403) at NAACL 2024:
+
+## Paper Overview
+
+Adaptive-RAG is an official paper published at NAACL 2024, authored by Soyeong Jeong and 4 other authors (Jinheon Baek, Sukmin Cho, Sung Ju Hwang, and Jong C. Park).
+
+## Main Contribution
+
+The paper proposes a novel adaptive QA framework that can dynamically select the most suitable strategy for (retrieval-augmented) LLMs from the simplest to the most sophisticated ones based on the query complexity.
+
+## Query Complexity Classifier
+
+The key technical approach involves using a classifier—a smaller language model trained to predict the complexity level of incoming queries with automatically collected labels, obtained from actual predicted outcomes of models and inherent inductive biases in datasets.
+
+## Retrieval Routing Strategy
+
+This approach offers a balanced strategy, seamlessly adapting between the iterative and single-step retrieval-augmented LLMs, as well as the no-retrieval methods, in response to a range of query complexities.
+
+## Validation and Results
+
+The model was validated on a set of open-domain QA datasets, covering multiple query complexities, and showed enhanced overall efficiency and accuracy of QA systems, compared to relevant baselines including the adaptive retrieval approaches.
+
+Code is available at: https://github.com/starsuzi/Adaptive-RAG.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "abe849db-c03f-45c9-a34f-45c8f2b3e052",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "262b265e-35d0-4a8c-9ed9-81f88cd9b6ae",
+  "toolUseResult": {
+    "query": "Adaptive-RAG NAACL 2024 arxiv 2403.14403 query complexity classifier retrieval routing",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QzL2wVioto5VxArvprGDbq",
+        "content": [
+          {
+            "title": "[2403.14403] Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity",
+            "url": "https://arxiv.org/abs/2403.14403"
+          },
+          {
+            "title": "GitHub - AsH1605/Adaptive-RAG: Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity · GitHub",
+            "url": "https://github.com/AsH1605/Adaptive-RAG"
+          },
+          {
+            "title": "GitHub - starsuzi/Adaptive-RAG",
+            "url": "https://github.com/starsuzi/adaptive-rag"
+          },
+          {
+            "title": "Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity",
+            "url": "https://arxiv.org/html/2403.14403v1"
+          },
+          {
+            "title": "arXiv:2403.14403v2 [cs.CL] 28 Mar 2024",
+            "url": "https://arxiv.org/pdf/2403.14403"
+          },
+          {
+            "title": "Adaptive-RAG/README.md at main · starsuzi/Adaptive-RAG",
+            "url": "https://github.com/starsuzi/Adaptive-RAG/blob/main/README.md"
+          },
+          {
+            "title": "Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity - ACL Anthology",
+            "url": "https://aclanthology.org/2024.naacl-long.389/"
+          },
+          {
+            "title": "[PDF] Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Adaptive-RAG:-Learning-to-Adapt-Retrieval-Augmented-Jeong-Baek/e5e8c6ac537e0f5b5db14170bc232d6f9e641bbc"
+          },
+          {
+            "title": "Adaptive-RAG: Learning to Adapt Retrieval-Augmented ...",
+            "url": "https://www.emergentmind.com/papers/2403.14403"
+          },
+          {
+            "title": "[2403.14403v1] Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity",
+            "url": "https://arxiv.org/abs/2403.14403v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Adaptive-RAG (arXiv 2403.14403) at NAACL 2024:\n\n## Paper Overview\n\nAdaptive-RAG is an official paper published at NAACL 2024, authored by Soyeong Jeong and 4 other authors (Jinheon Baek, Sukmin Cho, Sung Ju Hwang, and Jong C. Park).\n\n## Main Contribution\n\nThe paper proposes a novel adaptive QA framework that can dynamically select the most suitable strategy for (retrieval-augmented) LLMs from the simplest to the most sophisticated ones based on the query complexity.\n\n## Query Complexity Classifier\n\nThe key technical approach involves using a classifier—a smaller language model trained to predict the complexity level of incoming queries with automatically collected labels, obtained from actual predicted outcomes of models and inherent inductive biases in datasets.\n\n## Retrieval Routing Strategy\n\nThis approach offers a balanced strategy, seamlessly adapting between the iterative and single-step retrieval-augmented LLMs, as well as the no-retrieval methods, in response to a range of query complexities.\n\n## Validation and Results\n\nThe model was validated on a set of open-domain QA datasets, covering multiple query complexities, and showed enhanced overall efficiency and accuracy of QA systems, compared to relevant baselines including the adaptive retrieval approaches.\n\nCode is available at: https://github.com/starsuzi/Adaptive-RAG."
+    ],
+    "durationSeconds": 6.235087756
+  },
+  "sourceToolAssistantUUID": "abe849db-c03f-45c9-a34f-45c8f2b3e052",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Step-Type-Conditioned Retrieval for Multi-Hop Reasoning: Grounding Ret…",
+  "leafUuid": "262b265e-35d0-4a8c-9ed9-81f88cd9b6ae",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sub-step type-aware retriever routing for multi-hop QA",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T16:48:26.981Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FY45dws5aLx9ic329kE3pf`</summary>
+
+```json
+{
+  "query": "2WikiMultiHopQA dataset question types comparison inference compositional bridge-comparison taxonomy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "262b265e-35d0-4a8c-9ed9-81f88cd9b6ae",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oXybP4NhcvAHQpsY5f",
+  "type": "assistant",
+  "uuid": "41e9c6f0-a738-4a4b-a3aa-1c10a58a0e85",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TC1LatZCfqYoJE45iAhzGL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1046,
+      "cache_read_input_tokens": 27202,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1046,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 27202,
+          "cache_creation_input_tokens": 1046,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1046
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T16:48:34.071Z_
+
+<details><summary>↩ Tool result · `toolu_01FY45dws5aLx9ic329kE3pf`</summary>
+
+```text
+Web search results for query: "2WikiMultiHopQA dataset question types comparison inference compositional bridge-comparison taxonomy"
+
+Links: [{"title":"Constructing A Multi-hop QA Dataset for Comprehensive ...","url":"https://aclanthology.org/2020.coling-main.580.pdf"},{"title":"Multi-hop QA Datasets Overview","url":"https://www.emergentmind.com/topics/multi-hop-qa-datasets"},{"title":"Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of","url":"https://arxiv.org/pdf/2011.01060"},{"title":"GitHub - Alab-NII/2wikimultihop · GitHub","url":"https://github.com/Alab-NII/2wikimultihop"},{"title":"Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps - ACL Anthology","url":"https://aclanthology.org/2020.coling-main.580/"},{"title":"xanhho/2WikiMultihopQA · Datasets at Hugging Face","url":"https://huggingface.co/datasets/xanhho/2WikiMultihopQA"},{"title":"2wikimultihopqa","url":"https://www.catalyzex.com/s/2wikimultihopqa"},{"title":"[2011.01060] Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps","url":"https://arxiv.org/abs/2011.01060"},{"title":"Generating multi-hop QA and fine-gRAined Difficulty matrix ...","url":"https://aclanthology.org/2025.findings-emnlp.236.pdf"},{"title":"MoreHopQA: More Than Multi-hop Reasoning","url":"https://arxiv.org/html/2406.13397v1"}]
+
+Based on the search results, I found comprehensive information about the 2WikiMultiHopQA dataset and its question type taxonomy.
+
+## 2WikiMultiHopQA Dataset Question Types
+
+The 2WikiMultiHopQA dataset contains four types of questions: (1) comparison, (2) inference, (3) compositional, and (4) bridge comparison.
+
+### Question Type Taxonomy:
+
+1. **Comparison Questions**: A comparison question is a type of question that compares two or more entities from the same group in some aspects of the entity, such as comparing two or more people with the date of birth or date of death (e.g., "Who was born first, Albert Einstein or Abraham Lincoln?").
+
+2. **Inference Questions**: Inference questions are created from two triples (e, r1, e1) and (e1, r2, e2) in the knowledge base, utilizing logical rules to acquire a new triple (e, r, e2).
+
+3. **Compositional Questions**: These represent hierarchical aggregation in the question structure.
+
+4. **Bridge Comparison Questions**: The inference and compositional questions are the two subtypes of the bridge question which comprises a bridge entity that connects the two paragraphs.
+
+### Dataset Construction:
+
+The 2WikiMultiHopQA is a multi-hop QA dataset that uses structured and unstructured data, introducing evidence information containing a reasoning path for multi-hop questions. The dataset uses NER-driven question templates and logical rules mined from Wikidata triples, coupled with text–KB alignment heuristics, to synthesize guaranteed two-hop questions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "41e9c6f0-a738-4a4b-a3aa-1c10a58a0e85",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "e8193175-f673-4430-931a-f662c76dda24",
+  "toolUseResult": {
+    "query": "2WikiMultiHopQA dataset question types comparison inference compositional bridge-comparison taxonomy",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0199C1PWY7qw5SA4M9pW4dqL",
+        "content": [
+          {
+            "title": "Constructing A Multi-hop QA Dataset for Comprehensive ...",
+            "url": "https://aclanthology.org/2020.coling-main.580.pdf"
+          },
+          {
+            "title": "Multi-hop QA Datasets Overview",
+            "url": "https://www.emergentmind.com/topics/multi-hop-qa-datasets"
+          },
+          {
+            "title": "Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of",
+            "url": "https://arxiv.org/pdf/2011.01060"
+          },
+          {
+            "title": "GitHub - Alab-NII/2wikimultihop · GitHub",
+            "url": "https://github.com/Alab-NII/2wikimultihop"
+          },
+          {
+            "title": "Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps - ACL Anthology",
+            "url": "https://aclanthology.org/2020.coling-main.580/"
+          },
+          {
+            "title": "xanhho/2WikiMultihopQA · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/xanhho/2WikiMultihopQA"
+          },
+          {
+            "title": "2wikimultihopqa",
+            "url": "https://www.catalyzex.com/s/2wikimultihopqa"
+          },
+          {
+            "title": "[2011.01060] Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps",
+            "url": "https://arxiv.org/abs/2011.01060"
+          },
+          {
+            "title": "Generating multi-hop QA and fine-gRAined Difficulty matrix ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.236.pdf"
+          },
+          {
+            "title": "MoreHopQA: More Than Multi-hop Reasoning",
+            "url": "https://arxiv.org/html/2406.13397v1"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the 2WikiMultiHopQA dataset and its question type taxonomy.\n\n## 2WikiMultiHopQA Dataset Question Types\n\nThe 2WikiMultiHopQA dataset contains four types of questions: (1) comparison, (2) inference, (3) compositional, and (4) bridge comparison.\n\n### Question Type Taxonomy:\n\n1. **Comparison Questions**: A comparison question is a type of question that compares two or more entities from the same group in some aspects of the entity, such as comparing two or more people with the date of birth or date of death (e.g., \"Who was born first, Albert Einstein or Abraham Lincoln?\").\n\n2. **Inference Questions**: Inference questions are created from two triples (e, r1, e1) and (e1, r2, e2) in the knowledge base, utilizing logical rules to acquire a new triple (e, r, e2).\n\n3. **Compositional Questions**: These represent hierarchical aggregation in the question structure.\n\n4. **Bridge Comparison Questions**: The inference and compositional questions are the two subtypes of the bridge question which comprises a bridge entity that connects the two paragraphs.\n\n### Dataset Construction:\n\nThe 2WikiMultiHopQA is a multi-hop QA dataset that uses structured and unstructured data, introducing evidence information containing a reasoning path for multi-hop questions. The dataset uses NER-driven question templates and logical rules mined from Wikidata triples, coupled with text–KB alignment heuristics, to synthesize guaranteed two-hop questions."
+    ],
+    "durationSeconds": 7.0850571429999984
+  },
+  "sourceToolAssistantUUID": "41e9c6f0-a738-4a4b-a3aa-1c10a58a0e85",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T16:48:36.973Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019bQyFA15wM2UDJcNpT24qr`</summary>
+
+```json
+{
+  "query": "StratRAG arxiv 2604.22757 multi-hop retrieval evaluation BM25 dense hybrid bridge comparison"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8193175-f673-4430-931a-f662c76dda24",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oYhig9resBGz8HmH7Y",
+  "type": "assistant",
+  "uuid": "4b225e07-1d8e-4469-85c6-ce5398fce80a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ND1onRjmPtNmFXnT5KMFWF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 913,
+      "cache_read_input_tokens": 28248,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 913,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 28248,
+          "cache_creation_input_tokens": 913,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 913
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T16:48:43.434Z_
+
+<details><summary>↩ Tool result · `toolu_019bQyFA15wM2UDJcNpT24qr`</summary>
+
+```text
+Web search results for query: "StratRAG arxiv 2604.22757 multi-hop retrieval evaluation BM25 dense hybrid bridge comparison"
+
+Links: [{"title":"[2604.22757] StratRAG: A Multi-Hop Retrieval Evaluation Dataset for Retrieval-Augmented Generation Systems","url":"https://arxiv.org/abs/2604.22757"},{"title":"1 Introduction","url":"https://arxiv.org/html/2604.22757"},{"title":"StratRAG: A Multi-Hop Retrieval Evaluation Dataset ...","url":"https://arxiv.org/html/2604.22757v1"},{"title":"Audio for 2604.22757v1","url":"https://arxiv.org/audio/2604.22757"},{"title":"MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries | OpenReview","url":"https://openreview.net/forum?id=t4eB3zYWBK"},{"title":"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation","url":"https://arxiv.org/html/2502.12442v1"},{"title":"STEM: Structure-Tracing Evidence Mining for Knowledge Graphs-Driven Retrieval-Augmented Generation","url":"https://arxiv.org/html/2604.22282v1"},{"title":"[2401.15391] MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries","url":"https://arxiv.org/abs/2401.15391"},{"title":"PRISM: Agentic Retrieval with LLMs for Multi-Hop Question Answering","url":"https://arxiv.org/html/2510.14278v1"},{"title":"From Local to Global: A GraphRAG Approach to Query-Focused Summarization","url":"https://arxiv.org/html/2404.16130v2"}]
+
+Based on the search results, I found comprehensive information about the StratRAG paper (arxiv 2604.22757):
+
+## StratRAG: A Multi-Hop Retrieval Evaluation Dataset
+
+StratRAG is an open-source retrieval evaluation dataset for benchmarking Retrieval-Augmented Generation (RAG) systems on multi-hop reasoning tasks under realistic, noisy document-pool conditions.
+
+### Dataset Composition
+
+StratRAG comprises 2,200 examples across three question types -- bridge, comparison, and yes-no -- each paired with a pool of 15 candidate documents containing exactly 2 gold documents and 13 topically related distractors. The dataset is derived from HotpotQA.
+
+### Retrieval Strategies Evaluated
+
+The paper benchmarks three retrieval strategies -- BM25, dense retrieval (all-MiniLM-L6-v2), and hybrid fusion -- reporting Recall@k, MRR, and NDCG@5 on the validation set.
+
+### Key Findings
+
+Hybrid retrieval achieves the best overall performance (Recall@2 = 0.70, MRR = 0.93), yet bridge questions remain substantially harder (Recall@2 = 0.67), motivating future work on reinforcement-learning–based retrieval policies.
+
+### Availability
+
+StratRAG is publicly available at https://huggingface.co/datasets/Aryanp088/StratRAG.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4b225e07-1d8e-4469-85c6-ce5398fce80a",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "5c8c1f90-f10b-4cd1-ae24-529882f46ef3",
+  "toolUseResult": {
+    "query": "StratRAG arxiv 2604.22757 multi-hop retrieval evaluation BM25 dense hybrid bridge comparison",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A2U9SwuDYBV39UxBWWfy9D",
+        "content": [
+          {
+            "title": "[2604.22757] StratRAG: A Multi-Hop Retrieval Evaluation Dataset for Retrieval-Augmented Generation Systems",
+            "url": "https://arxiv.org/abs/2604.22757"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2604.22757"
+          },
+          {
+            "title": "StratRAG: A Multi-Hop Retrieval Evaluation Dataset ...",
+            "url": "https://arxiv.org/html/2604.22757v1"
+          },
+          {
+            "title": "Audio for 2604.22757v1",
+            "url": "https://arxiv.org/audio/2604.22757"
+          },
+          {
+            "title": "MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries | OpenReview",
+            "url": "https://openreview.net/forum?id=t4eB3zYWBK"
+          },
+          {
+            "title": "HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2502.12442v1"
+          },
+          {
+            "title": "STEM: Structure-Tracing Evidence Mining for Knowledge Graphs-Driven Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2604.22282v1"
+          },
+          {
+            "title": "[2401.15391] MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries",
+            "url": "https://arxiv.org/abs/2401.15391"
+          },
+          {
+            "title": "PRISM: Agentic Retrieval with LLMs for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2510.14278v1"
+          },
+          {
+            "title": "From Local to Global: A GraphRAG Approach to Query-Focused Summarization",
+            "url": "https://arxiv.org/html/2404.16130v2"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the StratRAG paper (arxiv 2604.22757):\n\n## StratRAG: A Multi-Hop Retrieval Evaluation Dataset\n\nStratRAG is an open-source retrieval evaluation dataset for benchmarking Retrieval-Augmented Generation (RAG) systems on multi-hop reasoning tasks under realistic, noisy document-pool conditions.\n\n### Dataset Composition\n\nStratRAG comprises 2,200 examples across three question types -- bridge, comparison, and yes-no -- each paired with a pool of 15 candidate documents containing exactly 2 gold documents and 13 topically related distractors. The dataset is derived from HotpotQA.\n\n### Retrieval Strategies Evaluated\n\nThe paper benchmarks three retrieval strategies -- BM25, dense retrieval (all-MiniLM-L6-v2), and hybrid fusion -- reporting Recall@k, MRR, and NDCG@5 on the validation set.\n\n### Key Findings\n\nHybrid retrieval achieves the best overall performance (Recall@2 = 0.70, MRR = 0.93), yet bridge questions remain substantially harder (Recall@2 = 0.67), motivating future work on reinforcement-learning–based retrieval policies.\n\n### Availability\n\nStratRAG is publicly available at https://huggingface.co/datasets/Aryanp088/StratRAG."
+    ],
+    "durationSeconds": 6.458575997000008
+  },
+  "sourceToolAssistantUUID": "4b225e07-1d8e-4469-85c6-ce5398fce80a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T16:48:46.403Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EQsfTRMTLZCv594MTCFwZK`</summary>
+
+```json
+{
+  "query": "CoSearch arxiv 2604.17555 joint reasoning document ranker GRPO 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c8c1f90-f10b-4cd1-ae24-529882f46ef3",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oZPBV8WHNThQVH5mxn",
+  "type": "assistant",
+  "uuid": "0c32e5aa-f9e3-4fc7-ac4d-f438a0a0b292",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KLkvpJeAhim1dqqjeXSvCf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 29161,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 934,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 29161,
+          "cache_creation_input_tokens": 934,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 934
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T16:48:53.249Z_
+
+<details><summary>↩ Tool result · `toolu_01EQsfTRMTLZCv594MTCFwZK`</summary>
+
+```text
+Web search results for query: "CoSearch arxiv 2604.17555 joint reasoning document ranker GRPO 2026"
+
+Links: [{"title":"[2604.17555] CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search","url":"https://arxiv.org/abs/2604.17555"},{"title":"CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search","url":"https://arxiv.org/html/2604.17555"},{"title":"Sumit on X: \"CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search @HansiZeng et al. at Snap jointly train a reasoning agent and a generative document ranker via GRPO. 📝 https://t.co/reoMfnZ5vY 👨🏽‍💻 https://t.co/WEhq8ZOpDt\" / X","url":"https://x.com/_reachsumit/status/2046464045327524139"},{"title":"Latent-GRPO: Group Relative Policy Optimization for Latent Reasoning","url":"https://arxiv.org/html/2604.27998"},{"title":"TFRank: Think-Free Reasoning Enables Practical Pointwise LLM Ranking","url":"https://arxiv.org/html/2508.09539"},{"title":"OThink-SRR1: Search, Refine and Reasoning with Reinforced Learning for Large Language Models","url":"https://arxiv.org/html/2604.19766"},{"title":"GraphThinker: Reinforcing Video Reasoning with Event Graph Thinking","url":"https://arxiv.org/html/2602.17555"},{"title":"GRPO-VPS: Enhancing Group Relative Policy Optimization with Verifiable Process Supervision for Effective Reasoning","url":"https://arxiv.org/html/2604.20659"},{"title":"ThinkTwice: Jointly Optimizing Large Language Models for Reasoning and Self-Refinement","url":"https://arxiv.org/html/2604.01591"},{"title":"[2604.27998] Latent-GRPO: Group Relative Policy Optimization for Latent Reasoning","url":"https://arxiv.org/abs/2604.27998"}]
+
+Based on the search results, here's what I found about CoSearch (arxiv 2604.17555):
+
+## Overview
+
+CoSearch is a framework that jointly trains a multi-step reasoning agent and a generative document ranking model via Group Relative Policy Optimization (GRPO).
+
+## Key Problem
+
+Existing approaches such as Search-R1 treat the retrieval system as a fixed tool, with a preliminary experiment revealing that the gap between an oracle and a fixed retrieval system reaches up to +26.8% relative F1 improvement across seven QA benchmarks, suggesting that the retrieval system is a key bottleneck in scaling agentic search performance.
+
+## Technical Approach
+
+To enable effective GRPO training for the ranker—whose inputs vary across reasoning trajectories—CoSearch introduces a semantic grouping strategy that clusters sub-queries by token-level similarity, forming valid optimization groups without additional rollouts.
+
+The framework designs a composite reward combining ranking quality signals with trajectory-level outcome feedback, providing the ranker with both immediate and long-term learning signals.
+
+## Results
+
+Experiments on seven single-hop and multi-hop QA benchmarks demonstrate consistent improvements over strong baselines, with ablation studies validating each design choice, and results show that joint training of the reasoning agent and retrieval system is both feasible and strongly performant.
+
+The code is available at https://github.com/snap-research/CoSearch
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0c32e5aa-f9e3-4fc7-ac4d-f438a0a0b292",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "bdc15fe1-c16f-4baf-bb04-50848dee5e3a",
+  "toolUseResult": {
+    "query": "CoSearch arxiv 2604.17555 joint reasoning document ranker GRPO 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MTteFnNRP23Pkwu4FqSGoc",
+        "content": [
+          {
+            "title": "[2604.17555] CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search",
+            "url": "https://arxiv.org/abs/2604.17555"
+          },
+          {
+            "title": "CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search",
+            "url": "https://arxiv.org/html/2604.17555"
+          },
+          {
+            "title": "Sumit on X: \"CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search @HansiZeng et al. at Snap jointly train a reasoning agent and a generative document ranker via GRPO. 📝 https://t.co/reoMfnZ5vY 👨🏽‍💻 https://t.co/WEhq8ZOpDt\" / X",
+            "url": "https://x.com/_reachsumit/status/2046464045327524139"
+          },
+          {
+            "title": "Latent-GRPO: Group Relative Policy Optimization for Latent Reasoning",
+            "url": "https://arxiv.org/html/2604.27998"
+          },
+          {
+            "title": "TFRank: Think-Free Reasoning Enables Practical Pointwise LLM Ranking",
+            "url": "https://arxiv.org/html/2508.09539"
+          },
+          {
+            "title": "OThink-SRR1: Search, Refine and Reasoning with Reinforced Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.19766"
+          },
+          {
+            "title": "GraphThinker: Reinforcing Video Reasoning with Event Graph Thinking",
+            "url": "https://arxiv.org/html/2602.17555"
+          },
+          {
+            "title": "GRPO-VPS: Enhancing Group Relative Policy Optimization with Verifiable Process Supervision for Effective Reasoning",
+            "url": "https://arxiv.org/html/2604.20659"
+          },
+          {
+            "title": "ThinkTwice: Jointly Optimizing Large Language Models for Reasoning and Self-Refinement",
+            "url": "https://arxiv.org/html/2604.01591"
+          },
+          {
+            "title": "[2604.27998] Latent-GRPO: Group Relative Policy Optimization for Latent Reasoning",
+            "url": "https://arxiv.org/abs/2604.27998"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CoSearch (arxiv 2604.17555):\n\n## Overview\n\nCoSearch is a framework that jointly trains a multi-step reasoning agent and a generative document ranking model via Group Relative Policy Optimization (GRPO).\n\n## Key Problem\n\nExisting approaches such as Search-R1 treat the retrieval system as a fixed tool, with a preliminary experiment revealing that the gap between an oracle and a fixed retrieval system reaches up to +26.8% relative F1 improvement across seven QA benchmarks, suggesting that the retrieval system is a key bottleneck in scaling agentic search performance.\n\n## Technical Approach\n\nTo enable effective GRPO training for the ranker—whose inputs vary across reasoning trajectories—CoSearch introduces a semantic grouping strategy that clusters sub-queries by token-level similarity, forming valid optimization groups without additional rollouts.\n\nThe framework designs a composite reward combining ranking quality signals with trajectory-level outcome feedback, providing the ranker with both immediate and long-term learning signals.\n\n## Results\n\nExperiments on seven single-hop and multi-hop QA benchmarks demonstrate consistent improvements over strong baselines, with ablation studies validating each design choice, and results show that joint training of the reasoning agent and retrieval system is both feasible and strongly performant.\n\nThe code is available at https://github.com/snap-research/CoSearch"
+    ],
+    "durationSeconds": 6.84133842900001
+  },
+  "sourceToolAssistantUUID": "0c32e5aa-f9e3-4fc7-ac4d-f438a0a0b292",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T16:48:56.354Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DMUHYHuB4aRjkXqFMc5TWA`</summary>
+
+```json
+{
+  "query": "LTRR SIGIR 2025 learning to rank retriever routing selection"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bdc15fe1-c16f-4baf-bb04-50848dee5e3a",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oa749wxtuVsLKhSo24",
+  "type": "assistant",
+  "uuid": "a7902257-90da-4191-90c3-b78c50236741",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S5HUyNCQEWv4sTwA3C7tCn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 988,
+      "cache_read_input_tokens": 30095,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 988,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 30095,
+          "cache_creation_input_tokens": 988,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 988
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T16:49:04.880Z_
+
+<details><summary>↩ Tool result · `toolu_01DMUHYHuB4aRjkXqFMc5TWA`</summary>
+
+```text
+Web search results for query: "LTRR SIGIR 2025 learning to rank retriever routing selection"
+
+Links: [{"title":"GitHub - kimdanny/Starlight-LiveRAG: SIGIR 2025 LiveRAG Spotlight; LTRR: Learning To Rank Retrievers for LLMs","url":"https://github.com/kimdanny/Starlight-LiveRAG"},{"title":"LTRR: Learning To Rank Retrievers for LLMs","url":"https://arxiv.org/html/2506.13743v1"},{"title":"[2506.13743] LTRR: Learning To Rank Retrievers for LLMs","url":"https://arxiv.org/abs/2506.13743"},{"title":"LTRR: Learning To Rank Retrievers for LLMs - Fernando Diaz","url":"https://841.io/doc/ltrr.pdf"},{"title":"[Literature Review] LTRR: Learning To Rank Retrievers for LLMs","url":"https://www.themoonlight.io/en/review/ltrr-learning-to-rank-retrievers-for-llms"},{"title":"Leveraging LLMs for Unsupervised Dense Retriever Ranking | Request PDF","url":"https://www.researchgate.net/publication/382190252_Leveraging_LLMs_for_Unsupervised_Dense_Retriever_Ranking"},{"title":"Learning to rank — Grokipedia","url":"https://grokipedia.com/page/Learning_to_rank"},{"title":"SIGIR-AP 2025","url":"https://www.sigir-ap.org/sigir-ap-2025/accepted-papers/index.html"},{"title":"(SIGIR 2025 Tutorial) Retrieval-Enhanced Machine Learning: Synthesis and Opportunities","url":"https://retrieval-enhanced-ml.github.io/sigir-2025.html"},{"title":"Learning to Route Queries to Heads for Attention-based Re-ranking with Large Language Models","url":"https://arxiv.org/html/2604.24608"}]
+
+Based on the search results, here's what I found about LTRR and its connection to SIGIR 2025:
+
+## LTRR: Learning To Rank Retrievers for LLMs
+
+LTRR frames routing as a learning-to-rank (LTR) problem and introduces a framework that learns to rank retrievers by their expected utility gain to downstream LLM performance.
+
+### Problem and Approach
+
+The research explores a query routing approach that dynamically selects from a pool of retrievers based on the query, using both train-free heuristics and learned routing models. The ranking of retrievers is based directly on the relative improvement in the LLM's generation quality compared to a no-retrieval baseline, which inherently addresses both retriever-selection ("where to query") and retrieval-necessity ("when to query").
+
+### Key Results
+
+Experiments on synthetic QA data show that routing-based RAG systems can outperform the best single-retriever-based systems, with performance gains especially pronounced in models trained with the Answer Correctness (AC) metric and with pairwise learning approaches, particularly with XGBoost. The approach also shows improvements in generalization to out-of-distribution queries.
+
+### SIGIR 2025 LiveRAG Challenge
+
+As part of the SIGIR 2025 LiveRAG challenge, the submitted system demonstrated the practical viability of the approach, achieving competitive performance in both answer correctness and faithfulness. The work was selected for a spotlight talk at the SIGIR 2025 LiveRAG Workshop.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a7902257-90da-4191-90c3-b78c50236741",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "9e902886-08d6-41f0-a33f-7b12b9e2e34c",
+  "toolUseResult": {
+    "query": "LTRR SIGIR 2025 learning to rank retriever routing selection",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019zh7QU57SJSPfjPodJAvLJ",
+        "content": [
+          {
+            "title": "GitHub - kimdanny/Starlight-LiveRAG: SIGIR 2025 LiveRAG Spotlight; LTRR: Learning To Rank Retrievers for LLMs",
+            "url": "https://github.com/kimdanny/Starlight-LiveRAG"
+          },
+          {
+            "title": "LTRR: Learning To Rank Retrievers for LLMs",
+            "url": "https://arxiv.org/html/2506.13743v1"
+          },
+          {
+            "title": "[2506.13743] LTRR: Learning To Rank Retrievers for LLMs",
+            "url": "https://arxiv.org/abs/2506.13743"
+          },
+          {
+            "title": "LTRR: Learning To Rank Retrievers for LLMs - Fernando Diaz",
+            "url": "https://841.io/doc/ltrr.pdf"
+          },
+          {
+            "title": "[Literature Review] LTRR: Learning To Rank Retrievers for LLMs",
+            "url": "https://www.themoonlight.io/en/review/ltrr-learning-to-rank-retrievers-for-llms"
+          },
+          {
+            "title": "Leveraging LLMs for Unsupervised Dense Retriever Ranking | Request PDF",
+            "url": "https://www.researchgate.net/publication/382190252_Leveraging_LLMs_for_Unsupervised_Dense_Retriever_Ranking"
+          },
+          {
+            "title": "Learning to rank — Grokipedia",
+            "url": "https://grokipedia.com/page/Learning_to_rank"
+          },
+          {
+            "title": "SIGIR-AP 2025",
+            "url": "https://www.sigir-ap.org/sigir-ap-2025/accepted-papers/index.html"
+          },
+          {
+            "title": "(SIGIR 2025 Tutorial) Retrieval-Enhanced Machine Learning: Synthesis and Opportunities",
+            "url": "https://retrieval-enhanced-ml.github.io/sigir-2025.html"
+          },
+          {
+            "title": "Learning to Route Queries to Heads for Attention-based Re-ranking with Large Language Models",
+            "url": "https://arxiv.org/html/2604.24608"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LTRR and its connection to SIGIR 2025:\n\n## LTRR: Learning To Rank Retrievers for LLMs\n\nLTRR frames routing as a learning-to-rank (LTR) problem and introduces a framework that learns to rank retrievers by their expected utility gain to downstream LLM performance.\n\n### Problem and Approach\n\nThe research explores a query routing approach that dynamically selects from a pool of retrievers based on the query, using both train-free heuristics and learned routing models. The ranking of retrievers is based directly on the relative improvement in the LLM's generation quality compared to a no-retrieval baseline, which inherently addresses both retriever-selection (\"where to query\") and retrieval-necessity (\"when to query\").\n\n### Key Results\n\nExperiments on synthetic QA data show that routing-based RAG systems can outperform the best single-retriever-based systems, with performance gains especially pronounced in models trained with the Answer Correctness (AC) metric and with pairwise learning approaches, particularly with XGBoost. The approach also shows improvements in generalization to out-of-distribution queries.\n\n### SIGIR 2025 LiveRAG Challenge\n\nAs part of the SIGIR 2025 LiveRAG challenge, the submitted system demonstrated the practical viability of the approach, achieving competitive performance in both answer correctness and faithfulness. The work was selected for a spotlight talk at the SIGIR 2025 LiveRAG Workshop."
+    ],
+    "durationSeconds": 8.523277319
+  },
+  "sourceToolAssistantUUID": "a7902257-90da-4191-90c3-b78c50236741",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-14T16:49:04.888Z_
+
+```json
+{
+  "parentUuid": "9e902886-08d6-41f0-a33f-7b12b9e2e34c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "19bb62a5-832f-4b29-9187-78ac992a7f57",
+  "timestamp": "2026-05-14T16:49:04.888Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T16:49:08.043Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NUEokxuUzqubCgbmLHc7Gb`</summary>
+
+```json
+{
+  "query": "Adaptive Query Routing arxiv 2604.14222 query complexity tiers retrieval strategy 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19bb62a5-832f-4b29-9187-78ac992a7f57",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oaxp5oMBG2QHsCPJ1A",
+  "type": "assistant",
+  "uuid": "68c85ff5-9bbe-4f84-a5bd-5b72b04d3425",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017JtZSyvKjxCJeh6pUQqd73",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 31083,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 31083,
+          "cache_creation_input_tokens": 1061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Step-Type-Conditioned Retrieval for Multi-Hop Reasoning: Grounding Ret…",
+  "leafUuid": "68c85ff5-9bbe-4f84-a5bd-5b72b04d3425",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sub-step type-aware retriever routing for multi-hop QA",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T16:49:14.886Z_
+
+<details><summary>↩ Tool result · `toolu_01NUEokxuUzqubCgbmLHc7Gb`</summary>
+
+```text
+Web search results for query: "Adaptive Query Routing arxiv 2604.14222 query complexity tiers retrieval strategy 2026"
+
+Links: [{"title":"[2604.14222] Adaptive Query Routing: A Tier-Based Framework for Hybrid Retrieval Across Financial, Legal, and Medical Documents","url":"https://arxiv.org/abs/2604.14222"},{"title":"Adaptive Query Routing: A Tier-Based Framework for Hybrid Retrieval Across Financial, Legal, and Medical Documents","url":"https://arxiv.org/html/2604.14222"},{"title":"(PDF) Adaptive Query Routing: A Tier-Based Framework for Hybrid Retrieval Across Financial, Legal, and Medical Documents","url":"https://www.researchgate.net/publication/403904777_Adaptive_Query_Routing_A_Tier-Based_Framework_for_Hybrid_Retrieval_Across_Financial_Legal_and_Medical_Documents"},{"title":"RealRoute: Dynamic Query Routing System via Retrieve-then-Verify Paradigm","url":"https://arxiv.org/html/2604.20860"},{"title":"Lightweight Query Routing for Adaptive RAG: A Baseline Study on RAGRouter-Bench","url":"https://arxiv.org/html/2604.03455"},{"title":"BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute","url":"https://arxiv.org/html/2506.22716v1"},{"title":"[2604.14531] TRACER: Trace-Based Adaptive Cost-Efficient Routing for LLM Classification","url":"https://arxiv.org/abs/2604.14531"},{"title":"[2604.03455] Lightweight Query Routing for Adaptive RAG: A Baseline Study on RAGRouter-Bench","url":"https://arxiv.org/abs/2604.03455"},{"title":"[2604.06845v1] HingeMem: Boundary Guided Long-Term Memory with Query Adaptive Retrieval for Scalable Dialogues","url":"https://arxiv.org/abs/2604.06845v1"},{"title":"Query Routing for Retrieval-Augmented Language Models","url":"https://arxiv.org/html/2505.23052v1"}]
+
+I found the research paper you're looking for! Here's the key information about arxiv 2604.14222:
+
+## Adaptive Query Routing: A Tier-Based Framework for Hybrid Retrieval
+
+The paper (arXiv:2604.14222) was submitted on April 14, 2026 by Afshan Hashmi.
+
+### Main Contributions
+
+The paper implements and evaluates three retrieval architectures: Vector RAG, Tree Reasoning, and the proposed Adaptive Hybrid Retrieval (AHR) across financial, legal, and medical domains, while introducing a four-tier query complexity benchmark and employing GPT-4-powered LLM-as-judge evaluation.
+
+### Query Complexity Tiers
+
+The research includes a four-tier query complexity benchmark testing simple lookups through cross-reference following, with GPT-4 LLM-as-judge evaluation.
+
+### Key Findings
+
+Tree Reasoning achieves the highest overall score (0.900), but no single paradigm dominates across all tiers, with Vector RAG winning on certain tiers. More specifically, no single paradigm dominates all query types, with the AHR framework achieving the best performance on the most challenging query tiers.
+
+The research addresses important gaps by providing the first cross-domain implementation comparing Vector RAG, Tree Reasoning RAG, and a proposed Adaptive Hybrid Retrieval (AHR) framework across financial, legal, and medical documents.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68c85ff5-9bbe-4f84-a5bd-5b72b04d3425",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "b0319805-ebed-45bd-960e-2f04dbf5dee3",
+  "toolUseResult": {
+    "query": "Adaptive Query Routing arxiv 2604.14222 query complexity tiers retrieval strategy 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013fHXatYEQqxo7kgegWPU7j",
+        "content": [
+          {
+            "title": "[2604.14222] Adaptive Query Routing: A Tier-Based Framework for Hybrid Retrieval Across Financial, Legal, and Medical Documents",
+            "url": "https://arxiv.org/abs/2604.14222"
+          },
+          {
+            "title": "Adaptive Query Routing: A Tier-Based Framework for Hybrid Retrieval Across Financial, Legal, and Medical Documents",
+            "url": "https://arxiv.org/html/2604.14222"
+          },
+          {
+            "title": "(PDF) Adaptive Query Routing: A Tier-Based Framework for Hybrid Retrieval Across Financial, Legal, and Medical Documents",
+            "url": "https://www.researchgate.net/publication/403904777_Adaptive_Query_Routing_A_Tier-Based_Framework_for_Hybrid_Retrieval_Across_Financial_Legal_and_Medical_Documents"
+          },
+          {
+            "title": "RealRoute: Dynamic Query Routing System via Retrieve-then-Verify Paradigm",
+            "url": "https://arxiv.org/html/2604.20860"
+          },
+          {
+            "title": "Lightweight Query Routing for Adaptive RAG: A Baseline Study on RAGRouter-Bench",
+            "url": "https://arxiv.org/html/2604.03455"
+          },
+          {
+            "title": "BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute",
+            "url": "https://arxiv.org/html/2506.22716v1"
+          },
+          {
+            "title": "[2604.14531] TRACER: Trace-Based Adaptive Cost-Efficient Routing for LLM Classification",
+            "url": "https://arxiv.org/abs/2604.14531"
+          },
+          {
+            "title": "[2604.03455] Lightweight Query Routing for Adaptive RAG: A Baseline Study on RAGRouter-Bench",
+            "url": "https://arxiv.org/abs/2604.03455"
+          },
+          {
+            "title": "[2604.06845v1] HingeMem: Boundary Guided Long-Term Memory with Query Adaptive Retrieval for Scalable Dialogues",
+            "url": "https://arxiv.org/abs/2604.06845v1"
+          },
+          {
+            "title": "Query Routing for Retrieval-Augmented Language Models",
+            "url": "https://arxiv.org/html/2505.23052v1"
+          }
+        ]
+      },
+      "I found the research paper you're looking for! Here's the key information about arxiv 2604.14222:\n\n## Adaptive Query Routing: A Tier-Based Framework for Hybrid Retrieval\n\nThe paper (arXiv:2604.14222) was submitted on April 14, 2026 by Afshan Hashmi.\n\n### Main Contributions\n\nThe paper implements and evaluates three retrieval architectures: Vector RAG, Tree Reasoning, and the proposed Adaptive Hybrid Retrieval (AHR) across financial, legal, and medical domains, while introducing a four-tier query complexity benchmark and employing GPT-4-powered LLM-as-judge evaluation.\n\n### Query Complexity Tiers\n\nThe research includes a four-tier query complexity benchmark testing simple lookups through cross-reference following, with GPT-4 LLM-as-judge evaluation.\n\n### Key Findings\n\nTree Reasoning achieves the highest overall score (0.900), but no single paradigm dominates across all tiers, with Vector RAG winning on certain tiers. More specifically, no single paradigm dominates all query types, with the AHR framework achieving the best performance on the most challenging query tiers.\n\nThe research addresses important gaps by providing the first cross-domain implementation comparing Vector RAG, Tree Reasoning RAG, and a proposed Adaptive Hybrid Retrieval (AHR) framework across financial, legal, and medical documents."
+    ],
+    "durationSeconds": 6.839535231999995
+  },
+  "sourceToolAssistantUUID": "68c85ff5-9bbe-4f84-a5bd-5b72b04d3425",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T16:49:17.810Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Sh4fvFH5htueQcEqXRGCGs`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR submission deadline May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0319805-ebed-45bd-960e-2f04dbf5dee3",
+  "isSidechain": false,
+  "requestId": "req_011Cb2obha5rUjFTBVYmqEtK",
+  "type": "assistant",
+  "uuid": "6b861970-3f13-4cea-83d6-ccd58fb14c42",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VvTvoBr3KUpEPibcorJHMN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 983,
+      "cache_read_input_tokens": 32144,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 983,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 32144,
+          "cache_creation_input_tokens": 983,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 983
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T16:49:23.090Z_
+
+<details><summary>↩ Tool result · `toolu_01Sh4fvFH5htueQcEqXRGCGs`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR submission deadline May 2026"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"}]
+
+Based on the search results, I found the key information about the EMNLP 2026 ARR submission deadline:
+
+The ARR Submission Deadline for EMNLP 2026 is May 25, 2026.
+
+Additionally, here are some other important related dates for EMNLP 2026:
+
+- Reviewer registration deadline for ALL authors: May 27, 2026
+- Author response and author-reviewer discussion: July 7 - July 13, 2026
+- EMNLP commitment deadline: August 2, 2026
+- Notification of acceptance: August 20, 2026
+
+It's also worth noting that since the ARR 2026 May cycle is aligned with both EMNLP and AACL, authors will need to explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b861970-3f13-4cea-83d6-ccd58fb14c42",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "5e7f441d-0399-4534-b04d-0f0f41a25073",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR submission deadline May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ddg9zW7fTLGxVhEU1sjeQA",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          }
+        ]
+      },
+      "Based on the search results, I found the key information about the EMNLP 2026 ARR submission deadline:\n\nThe ARR Submission Deadline for EMNLP 2026 is May 25, 2026.\n\nAdditionally, here are some other important related dates for EMNLP 2026:\n\n- Reviewer registration deadline for ALL authors: May 27, 2026\n- Author response and author-reviewer discussion: July 7 - July 13, 2026\n- EMNLP commitment deadline: August 2, 2026\n- Notification of acceptance: August 20, 2026\n\nIt's also worth noting that since the ARR 2026 May cycle is aligned with both EMNLP and AACL, authors will need to explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026."
+    ],
+    "durationSeconds": 5.276063512000008
+  },
+  "sourceToolAssistantUUID": "6b861970-3f13-4cea-83d6-ccd58fb14c42",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-14T16:49:26.298Z_
+
+Now let me read the actual BELLE and BridgeRAG papers in detail, and verify the Search-R1 retrieval method.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e7f441d-0399-4534-b04d-0f0f41a25073",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ocJeUFE6MZwSkREAge",
+  "type": "assistant",
+  "uuid": "f4c68556-c3a6-4434-989e-e5eaa93fd642",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017z1RjhPpqDvrU5WmSMV2yu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 921,
+      "cache_read_input_tokens": 33127,
+      "output_tokens": 197,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 921,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 197,
+          "cache_read_input_tokens": 33127,
+          "cache_creation_input_tokens": 921,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 921
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T16:49:28.643Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VVJKR54DkqQbshLFCnu1gA`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.11811",
+  "prompt": "Extract the following details from the BELLE paper: 1) What are the exact four question types they classify? 2) What retrieval/reasoning operators do they assign per type? 3) What datasets do they evaluate on? 4) What are their main results? 5) Do they operate at question level or sub-step level? 6) How do they select operators per question type?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4c68556-c3a6-4434-989e-e5eaa93fd642",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ocJeUFE6MZwSkREAge",
+  "type": "assistant",
+  "uuid": "8249a2cc-43e7-43d2-aae2-3f05b902d879",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017z1RjhPpqDvrU5WmSMV2yu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 921,
+      "cache_read_input_tokens": 33127,
+      "output_tokens": 197,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 921,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 197,
+          "cache_read_input_tokens": 33127,
+          "cache_creation_input_tokens": 921,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 921
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T16:49:34.047Z_
+
+<details><summary>↩ Tool result · `toolu_01VVJKR54DkqQbshLFCnu1gA`</summary>
+
+```text
+# BELLE Paper Details
+
+Based on the provided webpage content, I can only offer limited information, as the abstract doesn't fully detail all requested specifics:
+
+**1) Four Question Types:**
+The abstract mentions they divide questions into four types but doesn't enumerate them explicitly in this excerpt.
+
+**2) Operators per Type:**
+Not specified in the available content. The abstract notes they evaluate "five types of cutting-edge methods: Chain-of-Thought (CoT), Single-step, Iterative-step, Sub-step, and Adaptive-step" but doesn't assign these to specific question categories.
+
+**3) Datasets:**
+The abstract only states evaluation occurs on "various datasets" without naming them specifically.
+
+**4) Main Results:**
+The framework "significantly outperforms strong baselines in various datasets" and demonstrates "higher cost-effectiveness than that of single models in more complex multi-hop QA scenarios."
+
+**5) Operation Level:**
+The abstract indicates a two-level system where agents "debate to obtain an executive plan of combined operators" but doesn't clearly specify whether selection occurs at question or sub-step level.
+
+**6) Operator Selection:**
+Selection occurs through multi-agent debate involving "affirmative debater, negative debater, and judge" roles, plus "fast and slow debaters to monitor whether changes in viewpoints are reasonable."
+
+**Note:** The full paper PDF would contain detailed answers to your complete list of questions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8249a2cc-43e7-43d2-aae2-3f05b902d879",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "99609be3-06c8-41a9-a539-cd24aee48038",
+  "toolUseResult": {
+    "bytes": 47652,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# BELLE Paper Details\n\nBased on the provided webpage content, I can only offer limited information, as the abstract doesn't fully detail all requested specifics:\n\n**1) Four Question Types:**\nThe abstract mentions they divide questions into four types but doesn't enumerate them explicitly in this excerpt.\n\n**2) Operators per Type:**\nNot specified in the available content. The abstract notes they evaluate \"five types of cutting-edge methods: Chain-of-Thought (CoT), Single-step, Iterative-step, Sub-step, and Adaptive-step\" but doesn't assign these to specific question categories.\n\n**3) Datasets:**\nThe abstract only states evaluation occurs on \"various datasets\" without naming them specifically.\n\n**4) Main Results:**\nThe framework \"significantly outperforms strong baselines in various datasets\" and demonstrates \"higher cost-effectiveness than that of single models in more complex multi-hop QA scenarios.\"\n\n**5) Operation Level:**\nThe abstract indicates a two-level system where agents \"debate to obtain an executive plan of combined operators\" but doesn't clearly specify whether selection occurs at question or sub-step level.\n\n**6) Operator Selection:**\nSelection occurs through multi-agent debate involving \"affirmative debater, negative debater, and judge\" roles, plus \"fast and slow debaters to monitor whether changes in viewpoints are reasonable.\"\n\n**Note:** The full paper PDF would contain detailed answers to your complete list of questions.",
+    "durationMs": 5398,
+    "url": "https://arxiv.org/abs/2505.11811"
+  },
+  "sourceToolAssistantUUID": "8249a2cc-43e7-43d2-aae2-3f05b902d879",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T16:49:38.483Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QjWYDYsENLdWdJzPKFeNJq`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.11811",
+  "prompt": "Extract the following key details: 1) What are the exact four question types BELLE classifies? 2) What operators/strategies are assigned to each question type? 3) What specific datasets are used for evaluation? 4) Does BELLE operate at the question level or at each reasoning sub-step? 5) What are the main quantitative results (F1/EM scores on HotpotQA, MuSiQue, 2WikiMultiHopQA)?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99609be3-06c8-41a9-a539-cd24aee48038",
+  "isSidechain": false,
+  "requestId": "req_011Cb2od7Xm52TLUeEkqAMU2",
+  "type": "assistant",
+  "uuid": "bf05069c-058c-490b-a415-908fa57f6703",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RjeAQWBxsaDK67qW92dFvM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 520,
+      "cache_read_input_tokens": 34048,
+      "output_tokens": 189,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 520,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 189,
+          "cache_read_input_tokens": 34048,
+          "cache_creation_input_tokens": 520,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 520
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T16:49:45.249Z_
+
+<details><summary>↩ Tool result · `toolu_01QjWYDYsENLdWdJzPKFeNJq`</summary>
+
+```text
+# BELLE Framework: Key Details
+
+## 1) Four Question Types
+BELLE classifies multi-hop questions into: **Inference, Comparison, Temporal, and Null**.
+
+- **Inference**: "requires identifying the internal logical semantics of multi-hop questions and connecting them through intermediate entities"
+- **Comparison**: "usually achieved by comparing the similarities and differences related to the entities or topics"
+- **Temporal**: "mainly answered based on the sequence of events occurring at different time points"
+- **Null**: "questions whose answer cannot be obtained from the retrieved documents or are other free-form questions"
+
+## 2) Operator Assignment by Question Type
+
+The framework employs these operators: CoT, Single-step retrieval, Iterative-step retrieval, Sub-step decomposition, and Adaptive-step methods.
+
+**Assignment pattern**:
+- **Temporal & Comparison**: Sub-step + single-step retrieval (simpler questions)
+- **Inference**: Sub-step + iterative-step retrieval (more complex, requiring multiple retrieval rounds)
+- **Null**: Adaptive combination of operators
+
+## 3) Evaluation Datasets
+- MultiHop-RAG
+- HotpotQA
+- 2WikiMultiHopQA
+- MuSiQue
+
+## 4) Operational Scope
+BELLE operates **at the question level**, not sub-step level. The multi-agent debate determines an overall execution plan for combined operators before answering begins.
+
+## 5) Main Quantitative Results (F1/EM)
+
+| Dataset | EM | F1 |
+|---------|----|----|
+| MultiHop-RAG | 64.7 | 70.4 |
+| HotpotQA | 59.2 | 66.5 |
+| 2WikiQA | 69.7 | 75.7 |
+| MuSiQue (2-4 hops) | 50.5 | 42.1-29.2 |
+
+Improvements over BeamAggR baseline: +3.2% to +7.6% F1.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf05069c-058c-490b-a415-908fa57f6703",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "b8b515d0-5ba4-4cb0-a027-ad0f4050daa1",
+  "toolUseResult": {
+    "bytes": 471090,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# BELLE Framework: Key Details\n\n## 1) Four Question Types\nBELLE classifies multi-hop questions into: **Inference, Comparison, Temporal, and Null**.\n\n- **Inference**: \"requires identifying the internal logical semantics of multi-hop questions and connecting them through intermediate entities\"\n- **Comparison**: \"usually achieved by comparing the similarities and differences related to the entities or topics\"\n- **Temporal**: \"mainly answered based on the sequence of events occurring at different time points\"\n- **Null**: \"questions whose answer cannot be obtained from the retrieved documents or are other free-form questions\"\n\n## 2) Operator Assignment by Question Type\n\nThe framework employs these operators: CoT, Single-step retrieval, Iterative-step retrieval, Sub-step decomposition, and Adaptive-step methods.\n\n**Assignment pattern**:\n- **Temporal & Comparison**: Sub-step + single-step retrieval (simpler questions)\n- **Inference**: Sub-step + iterative-step retrieval (more complex, requiring multiple retrieval rounds)\n- **Null**: Adaptive combination of operators\n\n## 3) Evaluation Datasets\n- MultiHop-RAG\n- HotpotQA\n- 2WikiMultiHopQA\n- MuSiQue\n\n## 4) Operational Scope\nBELLE operates **at the question level**, not sub-step level. The multi-agent debate determines an overall execution plan for combined operators before answering begins.\n\n## 5) Main Quantitative Results (F1/EM)\n\n| Dataset | EM | F1 |\n|---------|----|----|\n| MultiHop-RAG | 64.7 | 70.4 |\n| HotpotQA | 59.2 | 66.5 |\n| 2WikiQA | 69.7 | 75.7 |\n| MuSiQue (2-4 hops) | 50.5 | 42.1-29.2 |\n\nImprovements over BeamAggR baseline: +3.2% to +7.6% F1.",
+    "durationMs": 6764,
+    "url": "https://arxiv.org/html/2505.11811"
+  },
+  "sourceToolAssistantUUID": "bf05069c-058c-490b-a415-908fa57f6703",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-14T16:49:52.032Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PLofwSV5Bqx3MYbUkAabUJ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.03384v1",
+  "prompt": "Extract key details from BridgeRAG: 1) What is the exact method (tripartite scorer)? 2) What are the specific R@5 results on HotpotQA, MuSiQue, 2WikiMultiHopQA? 3) How does bridge conditioning help bridge-type queries but not comparison/inference queries (the +2.55pp finding)? 4) Does BridgeRAG use any type classification? 5) What retrievers does it use?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8b515d0-5ba4-4cb0-a027-ad0f4050daa1",
+  "isSidechain": false,
+  "requestId": "req_011Cb2odwRaFKkPZxF4nQWbs",
+  "type": "assistant",
+  "uuid": "4efdfcae-c3ea-4d8c-8653-dacb8cab7b8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0124RKQTn8GgEoukKSPJdekS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 690,
+      "cache_read_input_tokens": 34568,
+      "output_tokens": 198,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 690,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 198,
+          "cache_read_input_tokens": 34568,
+          "cache_creation_input_tokens": 690,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 690
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T16:49:59.372Z_
+
+<details><summary>↩ Tool result · `toolu_01PLofwSV5Bqx3MYbUkAabUJ`</summary>
+
+```text
+# BridgeRAG: Key Details
+
+## 1. Tripartite Scoring Method
+
+BridgeRAG replaces standard single-query scoring s(q,c) with a bridge-conditioned tripartite scorer: **s(q,b,c)**. As stated, the method scores candidates "jointly against the query and the bridge, with no offline graph or proposition index required." The bridge passage (b) is the top-1 hop-1 retrieval result that provides entity and relational context absent from the original query alone.
+
+## 2. R@5 Results
+
+- **MuSiQue**: 0.8146 (+3.1pp vs. PropRAG baseline)
+- **2WikiMultiHopQA**: 0.9527 (+1.2pp vs. PropRAG)
+- **HotpotQA**: 0.9875 (+1.35pp vs. PropRAG)
+
+## 3. Selective Benefit: Bridge-Comparison vs. Other Query Types
+
+Bridge conditioning shows "selective benefit: +2.55pp on parallel-chain queries...vs. ≈0 on single-chain subtypes." On 2WikiMultiHopQA's subtype analysis, bridge-comparison improved by +2.55pp (p<0.001), while compositional, comparison, and inference queries showed "≈0" or near-zero gains. This occurs because bridge-comparison queries have high ambiguity—multiple passages align equally with the original query, but only one connects to the intermediate entity the bridge establishes.
+
+## 4. Type Classification
+
+BridgeRAG does not perform explicit query-type classification. Instead, it consistently applies bridge conditioning to all queries. The selective benefit naturally emerges because conditioning only helps when needed (high H(R|q) scenarios).
+
+## 5. Retrievers Used
+
+- **Embedding model**: NV-Embed-v2 (7B parameters, 4096-dimensional)
+- **LLM**: Llama 3.3 70B for SVO generation, entity extraction, and judging
+- **Search method**: Approximate nearest-neighbor (ANN) via pgvector index
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4efdfcae-c3ea-4d8c-8653-dacb8cab7b8c",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "48762d18-1921-42af-97bd-03e1d3a9e51d",
+  "toolUseResult": {
+    "bytes": 257358,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# BridgeRAG: Key Details\n\n## 1. Tripartite Scoring Method\n\nBridgeRAG replaces standard single-query scoring s(q,c) with a bridge-conditioned tripartite scorer: **s(q,b,c)**. As stated, the method scores candidates \"jointly against the query and the bridge, with no offline graph or proposition index required.\" The bridge passage (b) is the top-1 hop-1 retrieval result that provides entity and relational context absent from the original query alone.\n\n## 2. R@5 Results\n\n- **MuSiQue**: 0.8146 (+3.1pp vs. PropRAG baseline)\n- **2WikiMultiHopQA**: 0.9527 (+1.2pp vs. PropRAG)\n- **HotpotQA**: 0.9875 (+1.35pp vs. PropRAG)\n\n## 3. Selective Benefit: Bridge-Comparison vs. Other Query Types\n\nBridge conditioning shows \"selective benefit: +2.55pp on parallel-chain queries...vs. ≈0 on single-chain subtypes.\" On 2WikiMultiHopQA's subtype analysis, bridge-comparison improved by +2.55pp (p<0.001), while compositional, comparison, and inference queries showed \"≈0\" or near-zero gains. This occurs because bridge-comparison queries have high ambiguity—multiple passages align equally with the original query, but only one connects to the intermediate entity the bridge establishes.\n\n## 4. Type Classification\n\nBridgeRAG does not perform explicit query-type classification. Instead, it consistently applies bridge conditioning to all queries. The selective benefit naturally emerges because conditioning only helps when needed (high H(R|q) scenarios).\n\n## 5. Retrievers Used\n\n- **Embedding model**: NV-Embed-v2 (7B parameters, 4096-dimensional)\n- **LLM**: Llama 3.3 70B for SVO generation, entity extraction, and judging\n- **Search method**: Approximate nearest-neighbor (ANN) via pgvector index",
+    "durationMs": 7335,
+    "url": "https://arxiv.org/html/2604.03384v1"
+  },
+  "sourceToolAssistantUUID": "4efdfcae-c3ea-4d8c-8653-dacb8cab7b8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T16:50:02.727Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019jJwzcxmQNRHU8kw6YLorB`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2503.09516",
+  "prompt": "What retrieval method does Search-R1 use? Is it E5 dense retrieval, BM25, or something else? Extract the specific retriever backbone mentioned in the paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48762d18-1921-42af-97bd-03e1d3a9e51d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oeymk5zMghPngdJSQx",
+  "type": "assistant",
+  "uuid": "416483c7-3113-4427-adbf-21eb765017a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mFbuJTMeJ1JRuonDJQSKc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 35258,
+      "output_tokens": 121,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 701,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 121,
+          "cache_read_input_tokens": 35258,
+          "cache_creation_input_tokens": 701,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 701
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Step-Type-Conditioned Retrieval for Multi-Hop Reasoning: Grounding Ret…",
+  "leafUuid": "416483c7-3113-4427-adbf-21eb765017a6",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sub-step type-aware retriever routing for multi-hop QA",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T16:50:04.999Z_
+
+<details><summary>↩ Tool result · `toolu_019jJwzcxmQNRHU8kw6YLorB`</summary>
+
+```text
+Based on the content provided, I cannot identify the specific retrieval method that Search-R1 uses. The abstract mentions that the system "learns to autonomously generate (multiple) search queries during step-by-step reasoning with real-time retrieval" and discusses "retrieved token masking for stable RL training," but it does not specify whether the retriever backbone is E5 dense retrieval, BM25, or another method.
+
+To find this technical detail, you would need to consult the full paper, which is available via the PDF link or HTML version provided on the arXiv page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "416483c7-3113-4427-adbf-21eb765017a6",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "cb2d88e4-d168-44dc-80bb-3c0c42f55a54",
+  "toolUseResult": {
+    "bytes": 47778,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the content provided, I cannot identify the specific retrieval method that Search-R1 uses. The abstract mentions that the system \"learns to autonomously generate (multiple) search queries during step-by-step reasoning with real-time retrieval\" and discusses \"retrieved token masking for stable RL training,\" but it does not specify whether the retriever backbone is E5 dense retrieval, BM25, or another method.\n\nTo find this technical detail, you would need to consult the full paper, which is available via the PDF link or HTML version provided on the arXiv page.",
+    "durationMs": 2267,
+    "url": "https://arxiv.org/abs/2503.09516"
+  },
+  "sourceToolAssistantUUID": "416483c7-3113-4427-adbf-21eb765017a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-14T16:50:08.147Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UQfq7pQQm6KEDA4X5aQBtM`</summary>
+
+```json
+{
+  "query": "Search-R1 retrieval method E5 dense retriever BM25 arxiv 2503.09516 implementation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb2d88e4-d168-44dc-80bb-3c0c42f55a54",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ofPo7gpJDbrvsji5dJ",
+  "type": "assistant",
+  "uuid": "62df3f7d-56b4-4dcd-bf1e-15e684002574",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LUS52PsmC68WgzjQ8aRCmB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 259,
+      "cache_read_input_tokens": 35959,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 259,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 35959,
+          "cache_creation_input_tokens": 259,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 259
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T16:50:15.301Z_
+
+<details><summary>↩ Tool result · `toolu_01UQfq7pQQm6KEDA4X5aQBtM`</summary>
+
+```text
+Web search results for query: "Search-R1 retrieval method E5 dense retriever BM25 arxiv 2503.09516 implementation"
+
+Links: [{"title":"GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub","url":"https://github.com/PeterGriffinJin/Search-R1"},{"title":"[2503.09516] Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning","url":"https://arxiv.org/abs/2503.09516"},{"title":"Search-R1: Training LLMs to Reason and Leverage ...","url":"https://arxiv.org/pdf/2503.09516"},{"title":"Search-R1: A Novel approach to reasoning and retrieval | by Rahul | Medium","url":"https://rahul-tawar.medium.com/search-r1-a-novel-approach-to-reasoning-and-retrieval-bcfcc2400351"},{"title":"Semantic Search for Information Retrieval","url":"https://arxiv.org/html/2508.17694v1"},{"title":"DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation","url":"https://arxiv.org/html/2503.23013v1"},{"title":"Deep Retrieval at CheckThat! 2025: Identifying Scientific Papers from Implicit Social Media Mentions via Hybrid Retrieval and Re-Ranking","url":"https://arxiv.org/html/2505.23250v1"},{"title":"From Retrieval to Generation: Comparing Different Approaches","url":"https://arxiv.org/html/2502.20245v1"},{"title":"GitHub - RUCAIBox/DenseRetrieval · GitHub","url":"https://github.com/RUCAIBox/DenseRetrieval"},{"title":"Predicting Efficiency/Effectiveness Trade-offs for Dense vs. ...","url":"https://arxiv.org/pdf/2109.10739"}]
+
+Based on the search results, I found comprehensive information about the Search-R1 retrieval method and its implementation details:
+
+## Search-R1 Overview
+
+Search-R1 is an extension of reinforcement learning (RL) for reasoning frameworks where the LLM learns to autonomously generate (multiple) search queries during step-by-step reasoning with real-time retrieval.
+
+## Retrieval Components
+
+The implementation uses multiple retrieval approaches:
+
+- **Dense Retriever**: The research uses the 2018 Wikipedia dump as the knowledge source and E5 as the retriever.
+
+- **Sparse Retriever**: The codebase supports local sparse retriever (e.g., BM25), local dense retriever (both flat indexing with GPUs and ANN indexing with CPUs) and online search engine.
+
+## Implementation Architecture
+
+The main philosophy is to launch a local or remote search engine server separately from the main RL training pipeline. The LLM can call the search engine by calling the search API (e.g., "http://127.0.0.1:8000/retrieve").
+
+## Training and Evaluation Details
+
+For training, the merged training sets of NQ and HotpotQA form a unified dataset for Search-R1 and other fine-tuning based baselines. Evaluation is conducted on the test or validation sets of seven datasets to assess both in-domain and out-of-domain performance.
+
+## Availability
+
+The code and model checkpoints are available in the paper citation for arXiv:2503.09516. You can also access the implementation on the [GitHub repository](https://github.com/PeterGriffinJin/Search-R1).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "62df3f7d-56b4-4dcd-bf1e-15e684002574",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "3187a2b2-d029-46c8-9301-8631a73cb08b",
+  "toolUseResult": {
+    "query": "Search-R1 retrieval method E5 dense retriever BM25 arxiv 2503.09516 implementation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E3HZpdUWY1Fc9UqsivMnES",
+        "content": [
+          {
+            "title": "GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub",
+            "url": "https://github.com/PeterGriffinJin/Search-R1"
+          },
+          {
+            "title": "[2503.09516] Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2503.09516"
+          },
+          {
+            "title": "Search-R1: Training LLMs to Reason and Leverage ...",
+            "url": "https://arxiv.org/pdf/2503.09516"
+          },
+          {
+            "title": "Search-R1: A Novel approach to reasoning and retrieval | by Rahul | Medium",
+            "url": "https://rahul-tawar.medium.com/search-r1-a-novel-approach-to-reasoning-and-retrieval-bcfcc2400351"
+          },
+          {
+            "title": "Semantic Search for Information Retrieval",
+            "url": "https://arxiv.org/html/2508.17694v1"
+          },
+          {
+            "title": "DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2503.23013v1"
+          },
+          {
+            "title": "Deep Retrieval at CheckThat! 2025: Identifying Scientific Papers from Implicit Social Media Mentions via Hybrid Retrieval and Re-Ranking",
+            "url": "https://arxiv.org/html/2505.23250v1"
+          },
+          {
+            "title": "From Retrieval to Generation: Comparing Different Approaches",
+            "url": "https://arxiv.org/html/2502.20245v1"
+          },
+          {
+            "title": "GitHub - RUCAIBox/DenseRetrieval · GitHub",
+            "url": "https://github.com/RUCAIBox/DenseRetrieval"
+          },
+          {
+            "title": "Predicting Efficiency/Effectiveness Trade-offs for Dense vs. ...",
+            "url": "https://arxiv.org/pdf/2109.10739"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the Search-R1 retrieval method and its implementation details:\n\n## Search-R1 Overview\n\nSearch-R1 is an extension of reinforcement learning (RL) for reasoning frameworks where the LLM learns to autonomously generate (multiple) search queries during step-by-step reasoning with real-time retrieval.\n\n## Retrieval Components\n\nThe implementation uses multiple retrieval approaches:\n\n- **Dense Retriever**: The research uses the 2018 Wikipedia dump as the knowledge source and E5 as the retriever.\n\n- **Sparse Retriever**: The codebase supports local sparse retriever (e.g., BM25), local dense retriever (both flat indexing with GPUs and ANN indexing with CPUs) and online search engine.\n\n## Implementation Architecture\n\nThe main philosophy is to launch a local or remote search engine server separately from the main RL training pipeline. The LLM can call the search engine by calling the search API (e.g., \"http://127.0.0.1:8000/retrieve\").\n\n## Training and Evaluation Details\n\nFor training, the merged training sets of NQ and HotpotQA form a unified dataset for Search-R1 and other fine-tuning based baselines. Evaluation is conducted on the test or validation sets of seven datasets to assess both in-domain and out-of-domain performance.\n\n## Availability\n\nThe code and model checkpoints are available in the paper citation for arXiv:2503.09516. You can also access the implementation on the [GitHub repository](https://github.com/PeterGriffinJin/Search-R1)."
+    ],
+    "durationSeconds": 7.151283366000018
+  },
+  "sourceToolAssistantUUID": "62df3f7d-56b4-4dcd-bf1e-15e684002574",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-14T16:50:19.297Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W9GJyksygE32paGeYQVZtR`</summary>
+
+```json
+{
+  "query": "2WikiMultiHopQA question type distribution percentage comparison inference compositional bridge-comparison statistics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3187a2b2-d029-46c8-9301-8631a73cb08b",
+  "isSidechain": false,
+  "requestId": "req_011Cb2og9ySGXnxXcQ7Fh4yY",
+  "type": "assistant",
+  "uuid": "a726d269-1752-4f2d-9cbf-0a2f64b66410",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BJNTxmjmGpz9M1MgmD2RUn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1003,
+      "cache_read_input_tokens": 36218,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1003,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 36218,
+          "cache_creation_input_tokens": 1003,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1003
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T16:50:25.026Z_
+
+<details><summary>↩ Tool result · `toolu_01W9GJyksygE32paGeYQVZtR`</summary>
+
+```text
+Web search results for query: "2WikiMultiHopQA question type distribution percentage comparison inference compositional bridge-comparison statistics"
+
+Links: [{"title":"Constructing A Multi-hop QA Dataset for Comprehensive ...","url":"https://aclanthology.org/2020.coling-main.580.pdf"},{"title":"Multi-hop QA Datasets Overview","url":"https://www.emergentmind.com/topics/multi-hop-qa-datasets"},{"title":"GitHub - Alab-NII/multi-hop-analysis · GitHub","url":"https://github.com/Alab-NII/multi-hop-analysis"},{"title":"Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps - ACL Anthology","url":"https://aclanthology.org/2020.coling-main.580/"},{"title":"README.md · framolfese/2WikiMultihopQA at main","url":"https://huggingface.co/datasets/framolfese/2WikiMultihopQA/blob/main/README.md"},{"title":"Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of","url":"https://arxiv.org/pdf/2011.01060"},{"title":"MoreHopQA: More Than Multi-hop Reasoning","url":"https://arxiv.org/html/2406.13397v1"},{"title":"MEQA: A Benchmark for Multi-hop Event-centric Question ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/e560a0b22e4432003d0dba63ff8dc457-Paper-Datasets_and_Benchmarks_Track.pdf"},{"title":"2wikimultihopqa","url":"https://www.catalyzex.com/s/2wikimultihopqa"},{"title":"[2011.01060] Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps","url":"https://arxiv.org/abs/2011.01060"}]
+
+Based on the search results, I found information about the 2WikiMultiHopQA dataset and its question types. The dataset has four types of questions: comparison, inference, compositional, and bridge comparison.
+
+The search results describe these question types:
+
+- Comparison questions compare two or more entities from the same group in some aspects, such as comparing people with their dates of birth or death
+
+- Inference questions are created from two triples in the knowledge base
+
+- Compositional questions require the system to answer several primitive questions and combine them, such as answering "Why did the founder of Versus die?" by first identifying who the founder is and then why they died
+
+- Bridge-comparison questions combine bridge questions with comparison questions, requiring both finding bridge entities and doing comparisons to obtain the answer
+
+However, the search results I found do not contain specific percentage distributions for these question types in the 2WikiMultiHopQA dataset. To get those exact statistics, you would need to consult the original paper's detailed tables or the dataset documentation directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a726d269-1752-4f2d-9cbf-0a2f64b66410",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "b1679ab9-045d-484a-86f1-8c1831cdcd60",
+  "toolUseResult": {
+    "query": "2WikiMultiHopQA question type distribution percentage comparison inference compositional bridge-comparison statistics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MBbdn6moRgXN1Jy75E1VKr",
+        "content": [
+          {
+            "title": "Constructing A Multi-hop QA Dataset for Comprehensive ...",
+            "url": "https://aclanthology.org/2020.coling-main.580.pdf"
+          },
+          {
+            "title": "Multi-hop QA Datasets Overview",
+            "url": "https://www.emergentmind.com/topics/multi-hop-qa-datasets"
+          },
+          {
+            "title": "GitHub - Alab-NII/multi-hop-analysis · GitHub",
+            "url": "https://github.com/Alab-NII/multi-hop-analysis"
+          },
+          {
+            "title": "Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps - ACL Anthology",
+            "url": "https://aclanthology.org/2020.coling-main.580/"
+          },
+          {
+            "title": "README.md · framolfese/2WikiMultihopQA at main",
+            "url": "https://huggingface.co/datasets/framolfese/2WikiMultihopQA/blob/main/README.md"
+          },
+          {
+            "title": "Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of",
+            "url": "https://arxiv.org/pdf/2011.01060"
+          },
+          {
+            "title": "MoreHopQA: More Than Multi-hop Reasoning",
+            "url": "https://arxiv.org/html/2406.13397v1"
+          },
+          {
+            "title": "MEQA: A Benchmark for Multi-hop Event-centric Question ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/e560a0b22e4432003d0dba63ff8dc457-Paper-Datasets_and_Benchmarks_Track.pdf"
+          },
+          {
+            "title": "2wikimultihopqa",
+            "url": "https://www.catalyzex.com/s/2wikimultihopqa"
+          },
+          {
+            "title": "[2011.01060] Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps",
+            "url": "https://arxiv.org/abs/2011.01060"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the 2WikiMultiHopQA dataset and its question types. The dataset has four types of questions: comparison, inference, compositional, and bridge comparison.\n\nThe search results describe these question types:\n\n- Comparison questions compare two or more entities from the same group in some aspects, such as comparing people with their dates of birth or death\n\n- Inference questions are created from two triples in the knowledge base\n\n- Compositional questions require the system to answer several primitive questions and combine them, such as answering \"Why did the founder of Versus die?\" by first identifying who the founder is and then why they died\n\n- Bridge-comparison questions combine bridge questions with comparison questions, requiring both finding bridge entities and doing comparisons to obtain the answer\n\nHowever, the search results I found do not contain specific percentage distributions for these question types in the 2WikiMultiHopQA dataset. To get those exact statistics, you would need to consult the original paper's detailed tables or the dataset documentation directly."
+    ],
+    "durationSeconds": 5.724762851999985
+  },
+  "sourceToolAssistantUUID": "a726d269-1752-4f2d-9cbf-0a2f64b66410",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-14T16:50:29.983Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TtZnPGVf8UYauezWKTwNDH`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2020.coling-main.580.pdf",
+  "prompt": "Extract the exact question type distribution in 2WikiMultiHopQA. What percentage or count of questions fall into each type (comparison, inference, compositional, bridge-comparison)? Also, how does the paper define each type precisely? Are there any standalone 'bridge' type questions, or only bridge-comparison?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b1679ab9-045d-484a-86f1-8c1831cdcd60",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ogsQp2TmnFRAZrazX3",
+  "type": "assistant",
+  "uuid": "be06fdb9-4bfd-4f86-a1c7-a406ff42786d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcCF4fNJJLsbjdxne7HxDp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 814,
+      "cache_read_input_tokens": 37221,
+      "output_tokens": 156,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 814,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 156,
+          "cache_read_input_tokens": 37221,
+          "cache_creation_input_tokens": 814,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 814
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T16:50:38.968Z_
+
+<details><summary>↩ Tool result · `toolu_01TtZnPGVf8UYauezWKTwNDH`</summary>
+
+```text
+I apologize, but the content provided appears to be raw PDF binary data rather than readable text. The document shows PDF metadata and encoded font/content streams that cannot be properly parsed in this format.
+
+To accurately extract the question type distribution and definitions from the paper about 2WikiMultiHopQA, I would need:
+
+1. A properly rendered text version of the paper, or
+2. The specific pages discussing question type classifications
+
+From what's visible in the metadata, this appears to be a research paper authored by Xanah Ho, Anh-Khoa Duong Nguyen, Saku Sugawara, and Akiko Aizawa about "Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps" (COLING 2020).
+
+**Could you provide:**
+- The paper in readable text format (PDF converted to text), or
+- A direct quote from the section defining question types, or
+- The specific page numbers where this information appears?
+
+This will allow me to accurately identify the percentage distribution and precise definitions of comparison, inference, compositional, bridge-comparison, and any standalone bridge-type questions.
+
+[Binary content (application/pdf, 624.3KB) also saved to /home/ubuntu/.claude-account-2/projects/-/b73ac01f-4ea0-4f7e-86cb-ab70f99c4882/tool-results/webfetch-1778777431844-0hr1j7.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be06fdb9-4bfd-4f86-a1c7-a406ff42786d",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "96943667-24c9-4b8a-9167-1c5079d01aca",
+  "toolUseResult": {
+    "bytes": 639331,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I apologize, but the content provided appears to be raw PDF binary data rather than readable text. The document shows PDF metadata and encoded font/content streams that cannot be properly parsed in this format.\n\nTo accurately extract the question type distribution and definitions from the paper about 2WikiMultiHopQA, I would need:\n\n1. A properly rendered text version of the paper, or\n2. The specific pages discussing question type classifications\n\nFrom what's visible in the metadata, this appears to be a research paper authored by Xanah Ho, Anh-Khoa Duong Nguyen, Saku Sugawara, and Akiko Aizawa about \"Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps\" (COLING 2020).\n\n**Could you provide:**\n- The paper in readable text format (PDF converted to text), or\n- A direct quote from the section defining question types, or\n- The specific page numbers where this information appears?\n\nThis will allow me to accurately identify the percentage distribution and precise definitions of comparison, inference, compositional, bridge-comparison, and any standalone bridge-type questions.\n\n[Binary content (application/pdf, 624.3KB) also saved to /home/ubuntu/.claude-account-2/projects/-/b73ac01f-4ea0-4f7e-86cb-ab70f99c4882/tool-results/webfetch-1778777431844-0hr1j7.pdf]",
+    "durationMs": 8979,
+    "url": "https://aclanthology.org/2020.coling-main.580.pdf"
+  },
+  "sourceToolAssistantUUID": "be06fdb9-4bfd-4f86-a1c7-a406ff42786d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54 · 2026-05-14T16:50:38.973Z_
+
+```json
+{
+  "parentUuid": "96943667-24c9-4b8a-9167-1c5079d01aca",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "31b54d94-961f-4be6-ba4e-421c4272bf63",
+  "timestamp": "2026-05-14T16:50:38.973Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T16:50:43.672Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CiEjBoGFwtupwKjYweHvdF`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.11811",
+  "prompt": "I need to understand BELLE's key contribution more precisely. Extract: 1) How exactly does BELLE assign operators to question types? Is it a fixed mapping or learned? 2) Does BELLE use any retriever selection or just reasoning operator selection? 3) What is the specific multi-agent debate process? 4) Does BELLE condition query formulation on question type?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31b54d94-961f-4be6-ba4e-421c4272bf63",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ohu6YCNQav7H1TrRGE",
+  "type": "assistant",
+  "uuid": "bc6078ee-0e8e-4a56-a706-ee0d837ed1e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SEvWnmVp32jx2G8SXKd7X9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 605,
+      "cache_read_input_tokens": 38035,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 605,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 38035,
+          "cache_creation_input_tokens": 605,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 605
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T16:50:50.967Z_
+
+<details><summary>↩ Tool result · `toolu_01CiEjBoGFwtupwKjYweHvdF`</summary>
+
+```text
+# BELLE: Operator Assignment and Debate Mechanism
+
+## 1. Operator-to-Question-Type Assignment
+
+BELLE uses a **dynamic, debate-driven assignment** rather than fixed mapping. The framework determines operator combinations through its bi-level multi-agent debate system, not a pre-set lookup table. As the paper states: "through careful debate for choosing combined operators, our model achieves the greatest improvement."
+
+The assignment emerges from agent discussion rather than being learned beforehand. However, the analysis in Section 3 provides guidance: Inference types benefit from "sub-step + iterative-step," while Comparison and Temporal types work better with "sub-step + single-step."
+
+## 2. Retriever Selection
+
+BELLE focuses **exclusively on reasoning operator selection**, not retriever selection. It uses BM25 consistently across all experiments. The framework's novelty involves "dynamically combine various operators based on question types" to select *how* to reason (CoT, iterative retrieval, etc.), not *which retriever* to deploy.
+
+## 3. Multi-Agent Debate Process
+
+The debate involves two levels:
+
+**First Level:** Affirmative and negative debaters propose operator combinations, incorporating feedback from second-level agents using the formula: "fa⁢dt = ℳ(Ha⁢dt−1, ff⁢a⁢s⁢tt−1, fs⁢l⁢o⁢wt−1)"
+
+**Second Level:** 
+- **Fast debater:** Evaluates whether current-round operator choices are reasonable
+- **Slow debater:** Reviews historical discussion to prevent viewpoint oscillation
+
+A judge then synthesizes recommendations into an executable plan.
+
+## 4. Query Formulation Conditioning
+
+The paper does **not describe conditioning query formulation on question type**. Instead, BELLE conditions the *reasoning strategy* on question type through the debate mechanism, then executes the decided operator plan using the original question.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc6078ee-0e8e-4a56-a706-ee0d837ed1e8",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "62bb074e-0060-4a74-bf35-22be33fb630f",
+  "toolUseResult": {
+    "bytes": 471090,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# BELLE: Operator Assignment and Debate Mechanism\n\n## 1. Operator-to-Question-Type Assignment\n\nBELLE uses a **dynamic, debate-driven assignment** rather than fixed mapping. The framework determines operator combinations through its bi-level multi-agent debate system, not a pre-set lookup table. As the paper states: \"through careful debate for choosing combined operators, our model achieves the greatest improvement.\"\n\nThe assignment emerges from agent discussion rather than being learned beforehand. However, the analysis in Section 3 provides guidance: Inference types benefit from \"sub-step + iterative-step,\" while Comparison and Temporal types work better with \"sub-step + single-step.\"\n\n## 2. Retriever Selection\n\nBELLE focuses **exclusively on reasoning operator selection**, not retriever selection. It uses BM25 consistently across all experiments. The framework's novelty involves \"dynamically combine various operators based on question types\" to select *how* to reason (CoT, iterative retrieval, etc.), not *which retriever* to deploy.\n\n## 3. Multi-Agent Debate Process\n\nThe debate involves two levels:\n\n**First Level:** Affirmative and negative debaters propose operator combinations, incorporating feedback from second-level agents using the formula: \"fa⁢dt = ℳ(Ha⁢dt−1, ff⁢a⁢s⁢tt−1, fs⁢l⁢o⁢wt−1)\"\n\n**Second Level:** \n- **Fast debater:** Evaluates whether current-round operator choices are reasonable\n- **Slow debater:** Reviews historical discussion to prevent viewpoint oscillation\n\nA judge then synthesizes recommendations into an executable plan.\n\n## 4. Query Formulation Conditioning\n\nThe paper does **not describe conditioning query formulation on question type**. Instead, BELLE conditions the *reasoning strategy* on question type through the debate mechanism, then executes the decided operator plan using the original question.",
+    "durationMs": 7291,
+    "url": "https://arxiv.org/html/2505.11811"
+  },
+  "sourceToolAssistantUUID": "bc6078ee-0e8e-4a56-a706-ee0d837ed1e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-14T16:50:54.059Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DAHJuk6PbTmm7z5X11aBWQ`</summary>
+
+```json
+{
+  "query": "Search-R1 E5 retriever \"e5-base\" OR \"intfloat/e5\" implementation details paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62bb074e-0060-4a74-bf35-22be33fb630f",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oinKnA6sU5nTTraNEu",
+  "type": "assistant",
+  "uuid": "ca2ff04a-7155-4002-a67d-8403221c138e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PmgJkjpm6YUGK9VRJ7SHn4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 612,
+      "cache_read_input_tokens": 38640,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 612,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 38640,
+          "cache_creation_input_tokens": 612,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 612
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T16:51:00.234Z_
+
+<details><summary>↩ Tool result · `toolu_01DAHJuk6PbTmm7z5X11aBWQ`</summary>
+
+```text
+Web search results for query: "Search-R1 E5 retriever "e5-base" OR "intfloat/e5" implementation details paper"
+
+Links: [{"title":"intfloat/multilingual-e5-large · Hugging Face","url":"https://huggingface.co/intfloat/multilingual-e5-large"},{"title":"intfloat/e5-large-unsupervised · Hugging Face","url":"https://huggingface.co/intfloat/e5-large-unsupervised"},{"title":"intfloat/e5-base-v2 · Hugging Face","url":"https://huggingface.co/intfloat/e5-base-v2"},{"title":"intfloat/e5-large-v2 · Hugging Face","url":"https://huggingface.co/intfloat/e5-large-v2"},{"title":"intfloat/e5-small · Hugging Face","url":"https://huggingface.co/intfloat/e5-small"},{"title":"intfloat/e5-large · Hugging Face","url":"https://huggingface.co/intfloat/e5-large"},{"title":"intfloat/multilingual-e5-large-instruct · Hugging Face","url":"https://huggingface.co/intfloat/multilingual-e5-large-instruct"},{"title":"Paper Explained 3: E5. How a simple architecture is… | by Shirley Li | Medium","url":"https://medium.com/@lixue421/paper-explained-3-e5-cd75d2b8a2ed"},{"title":"intfloat/e5-mistral-7b-instruct · Hugging Face","url":"https://huggingface.co/intfloat/e5-mistral-7b-instruct"},{"title":"e5-small-v2 | AI Model Details","url":"https://www.aimodels.fyi/models/huggingFace/e5-small-v2-intfloat"}]
+
+Based on the search results, here's information about the E5 retriever models and their implementation details:
+
+## Key Papers and Training Approaches
+
+The E5 models are described in the paper "Text Embeddings by Weakly-Supervised Contrastive Pre-training", published in arXiv as paper 2212.03533 in 2022.
+
+For the multilingual variants, there is a "Multilingual E5 Text Embeddings: A Technical Report" published by Wang, Liang et al. on arXiv in 2024.
+
+## Model Architecture Details
+
+The E5 models are text embedding models designed for tasks like passage retrieval, semantic similarity, and paraphrase detection. Different variants have different architectures:
+
+- The multilingual-e5-large variant has 24 layers and an embedding size of 1024
+- The e5-small-v2 has 12 layers and a 384-dimensional embedding size
+
+## Implementation Details
+
+The success of E5 comes from two major ingredients: a large scale high-quality dataset, plus carefully designed training strategies. 
+
+The model processes text input with specific prefixes to distinguish between queries and passages, and generates dense vector representations that capture semantic meaning.
+
+You can find the complete implementation details and papers at the official Hugging Face model repositories for the intfloat E5 models, including code examples for encoding queries and passages.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca2ff04a-7155-4002-a67d-8403221c138e",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "53afa03d-7df8-43c4-91d9-00f6a06c3f68",
+  "toolUseResult": {
+    "query": "Search-R1 E5 retriever \"e5-base\" OR \"intfloat/e5\" implementation details paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LXzpSxKLYpSTwq4LGdM3NS",
+        "content": [
+          {
+            "title": "intfloat/multilingual-e5-large · Hugging Face",
+            "url": "https://huggingface.co/intfloat/multilingual-e5-large"
+          },
+          {
+            "title": "intfloat/e5-large-unsupervised · Hugging Face",
+            "url": "https://huggingface.co/intfloat/e5-large-unsupervised"
+          },
+          {
+            "title": "intfloat/e5-base-v2 · Hugging Face",
+            "url": "https://huggingface.co/intfloat/e5-base-v2"
+          },
+          {
+            "title": "intfloat/e5-large-v2 · Hugging Face",
+            "url": "https://huggingface.co/intfloat/e5-large-v2"
+          },
+          {
+            "title": "intfloat/e5-small · Hugging Face",
+            "url": "https://huggingface.co/intfloat/e5-small"
+          },
+          {
+            "title": "intfloat/e5-large · Hugging Face",
+            "url": "https://huggingface.co/intfloat/e5-large"
+          },
+          {
+            "title": "intfloat/multilingual-e5-large-instruct · Hugging Face",
+            "url": "https://huggingface.co/intfloat/multilingual-e5-large-instruct"
+          },
+          {
+            "title": "Paper Explained 3: E5. How a simple architecture is… | by Shirley Li | Medium",
+            "url": "https://medium.com/@lixue421/paper-explained-3-e5-cd75d2b8a2ed"
+          },
+          {
+            "title": "intfloat/e5-mistral-7b-instruct · Hugging Face",
+            "url": "https://huggingface.co/intfloat/e5-mistral-7b-instruct"
+          },
+          {
+            "title": "e5-small-v2 | AI Model Details",
+            "url": "https://www.aimodels.fyi/models/huggingFace/e5-small-v2-intfloat"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the E5 retriever models and their implementation details:\n\n## Key Papers and Training Approaches\n\nThe E5 models are described in the paper \"Text Embeddings by Weakly-Supervised Contrastive Pre-training\", published in arXiv as paper 2212.03533 in 2022.\n\nFor the multilingual variants, there is a \"Multilingual E5 Text Embeddings: A Technical Report\" published by Wang, Liang et al. on arXiv in 2024.\n\n## Model Architecture Details\n\nThe E5 models are text embedding models designed for tasks like passage retrieval, semantic similarity, and paraphrase detection. Different variants have different architectures:\n\n- The multilingual-e5-large variant has 24 layers and an embedding size of 1024\n- The e5-small-v2 has 12 layers and a 384-dimensional embedding size\n\n## Implementation Details\n\nThe success of E5 comes from two major ingredients: a large scale high-quality dataset, plus carefully designed training strategies. \n\nThe model processes text input with specific prefixes to distinguish between queries and passages, and generates dense vector representations that capture semantic meaning.\n\nYou can find the complete implementation details and papers at the official Hugging Face model repositories for the intfloat E5 models, including code examples for encoding queries and passages."
+    ],
+    "durationSeconds": 6.168903097000002
+  },
+  "sourceToolAssistantUUID": "ca2ff04a-7155-4002-a67d-8403221c138e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Step-Type-Conditioned Retrieval for Multi-Hop Reasoning: Grounding Ret…",
+  "leafUuid": "53afa03d-7df8-43c4-91d9-00f6a06c3f68",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sub-step type-aware retriever routing for multi-hop QA",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T16:51:03.296Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T9RKt4o6yPWYRzmQuN4qgt`</summary>
+
+```json
+{
+  "query": "multi-hop QA SOTA 2026 HotpotQA MuSiQue leaderboard current best results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53afa03d-7df8-43c4-91d9-00f6a06c3f68",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ojTzjhJVyXdDuLZdMw",
+  "type": "assistant",
+  "uuid": "c60dc64f-a633-44c8-9bf9-94e013c7e114",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDyURNujsj2q5ud59YK6jh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 39252,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 39252,
+          "cache_creation_input_tokens": 943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T16:51:11.323Z_
+
+<details><summary>↩ Tool result · `toolu_01T9RKt4o6yPWYRzmQuN4qgt`</summary>
+
+```text
+Web search results for query: "multi-hop QA SOTA 2026 HotpotQA MuSiQue leaderboard current best results"
+
+Links: [{"title":"HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering","url":"https://hotpotqa.github.io/"},{"title":"MuSiQue: Multihop QA Benchmark","url":"https://www.emergentmind.com/topics/musique"},{"title":"[1809.09600] HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering","url":"https://arxiv.org/abs/1809.09600"},{"title":"[2301.11792] Graph Attention with Hierarchies for Multi-hop Question Answering","url":"https://arxiv.org/abs/2301.11792"},{"title":"♫ MuSiQue: Multihop Questions via Single-hop Question Composition | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00475/110996/MuSiQue-Multihop-Questions-via-Single-hop-Question"},{"title":"HotpotQA: Multi-Hop QA Benchmark","url":"https://www.emergentmind.com/topics/hotpotqa"},{"title":"MuSiQue Condition in Multihop QA","url":"https://www.emergentmind.com/topics/musique-condition"},{"title":"HotpotQA Benchmark (Question Answering)","url":"https://paperswithcode.com/sota/question-answering-on-hotpotqa"},{"title":"HotpotQA Question Answering Dataset 🦄 🤗 🔥 | Kaggle","url":"https://www.kaggle.com/datasets/jeromeblanchet/hotpotqa-question-answering-dataset"},{"title":"GitHub - hotpotqa/hotpot · GitHub","url":"https://github.com/hotpotqa/hotpot"}]
+
+Based on the search results, here's what I found about multi-hop QA state-of-the-art results for 2026:
+
+## HotpotQA Current SOTA (2026)
+
+StepChain GraphRAG (Ni et al., 3 Oct 2025) reaches 66.70 EM/79.50 F1, setting new SOTA on HotpotQA. SOTA models now achieve 66–72 EM, 79–84 F1 on answers in distractor settings, though there remains a gap to human-level performance.
+
+Other recent approaches include:
+- Vendi-RAG (Rezaei et al., 16 Feb 2025) achieves +4.5 F1 over adaptive RAG on HotpotQA
+- Consensus-based Evolutionary prompt optimization (C-Evolve) achieves 70.67% F1 on Qwen3-8B, +4.95% over single-prompt evolution
+
+## MuSiQue Results
+
+Beam Retrieval (Zhang et al., 2023) showed a +44.6% EM gain (53.5→79.3) and +20.2 Answer F1 points (49.0→69.2) over prior art.
+
+FSM-based prompting (Wang et al., 2024) models the multi-hop process as a finite state machine and doubles standard zero-shot F1 (to 38.4 on GPT-3.5, 41.2 on Qwen-72B).
+
+The search results indicate that MuSiQue is considered more challenging than HotpotQA as a benchmark for true multi-hop reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c60dc64f-a633-44c8-9bf9-94e013c7e114",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "d540909b-b25d-47fa-b1d3-e2bda5ae2c63",
+  "toolUseResult": {
+    "query": "multi-hop QA SOTA 2026 HotpotQA MuSiQue leaderboard current best results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V7wijiofEj41FYPXyPM29p",
+        "content": [
+          {
+            "title": "HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering",
+            "url": "https://hotpotqa.github.io/"
+          },
+          {
+            "title": "MuSiQue: Multihop QA Benchmark",
+            "url": "https://www.emergentmind.com/topics/musique"
+          },
+          {
+            "title": "[1809.09600] HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering",
+            "url": "https://arxiv.org/abs/1809.09600"
+          },
+          {
+            "title": "[2301.11792] Graph Attention with Hierarchies for Multi-hop Question Answering",
+            "url": "https://arxiv.org/abs/2301.11792"
+          },
+          {
+            "title": "♫ MuSiQue: Multihop Questions via Single-hop Question Composition | Transactions of the Association for Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00475/110996/MuSiQue-Multihop-Questions-via-Single-hop-Question"
+          },
+          {
+            "title": "HotpotQA: Multi-Hop QA Benchmark",
+            "url": "https://www.emergentmind.com/topics/hotpotqa"
+          },
+          {
+            "title": "MuSiQue Condition in Multihop QA",
+            "url": "https://www.emergentmind.com/topics/musique-condition"
+          },
+          {
+            "title": "HotpotQA Benchmark (Question Answering)",
+            "url": "https://paperswithcode.com/sota/question-answering-on-hotpotqa"
+          },
+          {
+            "title": "HotpotQA Question Answering Dataset 🦄 🤗 🔥 | Kaggle",
+            "url": "https://www.kaggle.com/datasets/jeromeblanchet/hotpotqa-question-answering-dataset"
+          },
+          {
+            "title": "GitHub - hotpotqa/hotpot · GitHub",
+            "url": "https://github.com/hotpotqa/hotpot"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about multi-hop QA state-of-the-art results for 2026:\n\n## HotpotQA Current SOTA (2026)\n\nStepChain GraphRAG (Ni et al., 3 Oct 2025) reaches 66.70 EM/79.50 F1, setting new SOTA on HotpotQA. SOTA models now achieve 66–72 EM, 79–84 F1 on answers in distractor settings, though there remains a gap to human-level performance.\n\nOther recent approaches include:\n- Vendi-RAG (Rezaei et al., 16 Feb 2025) achieves +4.5 F1 over adaptive RAG on HotpotQA\n- Consensus-based Evolutionary prompt optimization (C-Evolve) achieves 70.67% F1 on Qwen3-8B, +4.95% over single-prompt evolution\n\n## MuSiQue Results\n\nBeam Retrieval (Zhang et al., 2023) showed a +44.6% EM gain (53.5→79.3) and +20.2 Answer F1 points (49.0→69.2) over prior art.\n\nFSM-based prompting (Wang et al., 2024) models the multi-hop process as a finite state machine and doubles standard zero-shot F1 (to 38.4 on GPT-3.5, 41.2 on Qwen-72B).\n\nThe search results indicate that MuSiQue is considered more challenging than HotpotQA as a benchmark for true multi-hop reasoning."
+    ],
+    "durationSeconds": 8.020724554000015
+  },
+  "sourceToolAssistantUUID": "c60dc64f-a633-44c8-9bf9-94e013c7e114",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T16:51:16.036Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VACrj5BWJ3qv7mjmfeof7o`</summary>
+
+```json
+{
+  "query": "2WikiMultiHopQA dataset question type counts train dev test comparison inference compositional bridge_comparison"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d540909b-b25d-47fa-b1d3-e2bda5ae2c63",
+  "isSidechain": false,
+  "requestId": "req_011Cb2okHNJFnFGPC3o897Pb",
+  "type": "assistant",
+  "uuid": "429f3ad8-ff7b-451e-8fb6-d51c8534f3d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FipUbeN9t5gzgwFNjMeeNd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1037,
+      "cache_read_input_tokens": 40195,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1037,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 40195,
+          "cache_creation_input_tokens": 1037,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1037
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T16:51:22.848Z_
+
+<details><summary>↩ Tool result · `toolu_01VACrj5BWJ3qv7mjmfeof7o`</summary>
+
+```text
+Web search results for query: "2WikiMultiHopQA dataset question type counts train dev test comparison inference compositional bridge_comparison"
+
+Links: [{"title":"Constructing A Multi-hop QA Dataset for Comprehensive ...","url":"https://aclanthology.org/2020.coling-main.580.pdf"},{"title":"GitHub - Alab-NII/2wikimultihop · GitHub","url":"https://github.com/Alab-NII/2wikimultihop"},{"title":"Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps - ACL Anthology","url":"https://aclanthology.org/2020.coling-main.580/"},{"title":"Multi-hop QA Datasets Overview","url":"https://www.emergentmind.com/topics/multi-hop-qa-datasets"},{"title":"GitHub - Alab-NII/multi-hop-analysis · GitHub","url":"https://github.com/Alab-NII/multi-hop-analysis"},{"title":"Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of","url":"https://arxiv.org/pdf/2011.01060"},{"title":"README.md · framolfese/2WikiMultihopQA at main","url":"https://huggingface.co/datasets/framolfese/2WikiMultihopQA/blob/main/README.md"},{"title":"[2011.01060] Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps","url":"https://arxiv.org/abs/2011.01060"},{"title":"HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering","url":"https://hotpotqa.github.io/"},{"title":"2wikimultihopqa","url":"https://www.catalyzex.com/s/2wikimultihopqa"}]
+
+Based on the search results, I found information about the 2WikiMultiHopQA dataset. The documents reference that specific statistics about question type counts across train, dev, and test sets are presented in the paper. Let me provide you with what I found:
+
+The 2WikiMultiHopQA dataset contains four types of questions: comparison, inference, compositional, and bridge-comparison.
+
+The compositional question has the greatest number of examples, and the inference question has the least examples in the dataset.
+
+The data was split into train-hard, dev, and test sets by balancing the number of different types of questions in each subset, with statistics of the data split found in Table 1.
+
+The dataset contains 167,454 training examples, 12,576 validation examples, and 12,576 test examples.
+
+The search results indicate that detailed question type counts for each set are presented in Table 1 and Table 2 of the original paper (Ho et al., 2020), but the specific numerical counts for each question type across the train, dev, and test splits are not explicitly shown in the search results I retrieved. To access the exact counts for inference, compositional, comparison, and bridge_comparison questions across all three splits, you would need to consult Table 1 and Table 2 in the original paper "Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps" published at COLING 2020.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "429f3ad8-ff7b-451e-8fb6-d51c8534f3d2",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "108032d6-999f-48b1-a6fa-e3b21adf3704",
+  "toolUseResult": {
+    "query": "2WikiMultiHopQA dataset question type counts train dev test comparison inference compositional bridge_comparison",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01P5qjouhRsh7GyYKmcKJP9u",
+        "content": [
+          {
+            "title": "Constructing A Multi-hop QA Dataset for Comprehensive ...",
+            "url": "https://aclanthology.org/2020.coling-main.580.pdf"
+          },
+          {
+            "title": "GitHub - Alab-NII/2wikimultihop · GitHub",
+            "url": "https://github.com/Alab-NII/2wikimultihop"
+          },
+          {
+            "title": "Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps - ACL Anthology",
+            "url": "https://aclanthology.org/2020.coling-main.580/"
+          },
+          {
+            "title": "Multi-hop QA Datasets Overview",
+            "url": "https://www.emergentmind.com/topics/multi-hop-qa-datasets"
+          },
+          {
+            "title": "GitHub - Alab-NII/multi-hop-analysis · GitHub",
+            "url": "https://github.com/Alab-NII/multi-hop-analysis"
+          },
+          {
+            "title": "Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of",
+            "url": "https://arxiv.org/pdf/2011.01060"
+          },
+          {
+            "title": "README.md · framolfese/2WikiMultihopQA at main",
+            "url": "https://huggingface.co/datasets/framolfese/2WikiMultihopQA/blob/main/README.md"
+          },
+          {
+            "title": "[2011.01060] Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps",
+            "url": "https://arxiv.org/abs/2011.01060"
+          },
+          {
+            "title": "HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering",
+            "url": "https://hotpotqa.github.io/"
+          },
+          {
+            "title": "2wikimultihopqa",
+            "url": "https://www.catalyzex.com/s/2wikimultihopqa"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the 2WikiMultiHopQA dataset. The documents reference that specific statistics about question type counts across train, dev, and test sets are presented in the paper. Let me provide you with what I found:\n\nThe 2WikiMultiHopQA dataset contains four types of questions: comparison, inference, compositional, and bridge-comparison.\n\nThe compositional question has the greatest number of examples, and the inference question has the least examples in the dataset.\n\nThe data was split into train-hard, dev, and test sets by balancing the number of different types of questions in each subset, with statistics of the data split found in Table 1.\n\nThe dataset contains 167,454 training examples, 12,576 validation examples, and 12,576 test examples.\n\nThe search results indicate that detailed question type counts for each set are presented in Table 1 and Table 2 of the original paper (Ho et al., 2020), but the specific numerical counts for each question type across the train, dev, and test splits are not explicitly shown in the search results I retrieved. To access the exact counts for inference, compositional, comparison, and bridge_comparison questions across all three splits, you would need to consult Table 1 and Table 2 in the original paper \"Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps\" published at COLING 2020."
+    ],
+    "durationSeconds": 6.808977985000005
+  },
+  "sourceToolAssistantUUID": "429f3ad8-ff7b-451e-8fb6-d51c8534f3d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-14T16:51:26.289Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018N1DY5du2FUM1pXNQ4QK6w`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/datasets/framolfese/2WikiMultihopQA/blob/main/README.md",
+  "prompt": "Extract the question type distribution statistics. How many questions of each type (comparison, inference, compositional, bridge_comparison) are in the dataset? What percentage does each type represent?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "108032d6-999f-48b1-a6fa-e3b21adf3704",
+  "isSidechain": false,
+  "requestId": "req_011Cb2om8ehkpdP3HrEXuDjG",
+  "type": "assistant",
+  "uuid": "e32084cd-ea89-4a5f-ae0f-f073ca6c5502",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MrBcExpS4ffFgWZmZxrEDT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 883,
+      "cache_read_input_tokens": 41232,
+      "output_tokens": 135,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 883,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 135,
+          "cache_read_input_tokens": 41232,
+          "cache_creation_input_tokens": 883,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 883
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T16:51:30.539Z_
+
+<details><summary>↩ Tool result · `toolu_018N1DY5du2FUM1pXNQ4QK6w`</summary>
+
+````text
+# Question Type Distribution Statistics
+
+Unfortunately, **the provided web page content does not contain question type distribution statistics**. 
+
+The README only mentions that the dataset includes a `type` field with "Original 2Wiki question types (e.g. `bridge_comparison`, `comparison`)" but does not provide:
+
+- The count of questions for each type
+- Percentage breakdowns by type
+- A complete list of all question types in the dataset
+
+## What We Know
+
+From the dataset structure shown:
+- **Total examples across all splits**: ~192,855 questions
+  - Train: 113,284
+  - Validation: 12,981
+  - Test: 12,995
+
+- **Mentioned question types**: `bridge_comparison`, `comparison` (and implicitly others like `inference`, `compositional`)
+
+## To Find This Information
+
+To get the type distribution statistics, you would need to:
+
+1. **Load the dataset and analyze it**:
+```python
+from datasets import load_dataset
+
+ds = load_dataset("framolfese/2WikiMultihopQA")
+type_counts = ds["train"]["type"].value_counts()
+print(type_counts)
+```
+
+2. **Check the original repository**: [https://github.com/Alab-NII/2wikimultihop](https://github.com/Alab-NII/2wikimultihop) - which may contain more detailed dataset statistics and analysis.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "e32084cd-ea89-4a5f-ae0f-f073ca6c5502",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "b68e349b-fb7b-4e97-91a6-7020aab0f8d6",
+  "toolUseResult": {
+    "bytes": 107000,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Question Type Distribution Statistics\n\nUnfortunately, **the provided web page content does not contain question type distribution statistics**. \n\nThe README only mentions that the dataset includes a `type` field with \"Original 2Wiki question types (e.g. `bridge_comparison`, `comparison`)\" but does not provide:\n\n- The count of questions for each type\n- Percentage breakdowns by type\n- A complete list of all question types in the dataset\n\n## What We Know\n\nFrom the dataset structure shown:\n- **Total examples across all splits**: ~192,855 questions\n  - Train: 113,284\n  - Validation: 12,981\n  - Test: 12,995\n\n- **Mentioned question types**: `bridge_comparison`, `comparison` (and implicitly others like `inference`, `compositional`)\n\n## To Find This Information\n\nTo get the type distribution statistics, you would need to:\n\n1. **Load the dataset and analyze it**:\n```python\nfrom datasets import load_dataset\n\nds = load_dataset(\"framolfese/2WikiMultihopQA\")\ntype_counts = ds[\"train\"][\"type\"].value_counts()\nprint(type_counts)\n```\n\n2. **Check the original repository**: [https://github.com/Alab-NII/2wikimultihop](https://github.com/Alab-NII/2wikimultihop) - which may contain more detailed dataset statistics and analysis.",
+    "durationMs": 4248,
+    "url": "https://huggingface.co/datasets/framolfese/2WikiMultihopQA/blob/main/README.md"
+  },
+  "sourceToolAssistantUUID": "e32084cd-ea89-4a5f-ae0f-f073ca6c5502",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-14T16:51:34.303Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01LbVDi2XWYEepLmKP39CQSq`</summary>
+
+```json
+{
+  "url": "https://github.com/Alab-NII/2wikimultihop",
+  "prompt": "Extract the question type distribution statistics from the README or dataset description. How many questions of each type (comparison, inference, compositional, bridge_comparison) are in train, dev, and test sets? What are the percentages?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b68e349b-fb7b-4e97-91a6-7020aab0f8d6",
+  "isSidechain": false,
+  "requestId": "req_011Cb2omhhoFwVz6UfdSommr",
+  "type": "assistant",
+  "uuid": "aaefa626-6ef8-49a2-bbb8-6600c8abc301",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015hy1r4iL6HLWWqpYL5wwqj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 468,
+      "cache_read_input_tokens": 42115,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 468,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 42115,
+          "cache_creation_input_tokens": 468,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 468
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T16:51:37.856Z_
+
+<details><summary>↩ Tool result · `toolu_01LbVDi2XWYEepLmKP39CQSq`</summary>
+
+```text
+# Question Type Distribution Statistics
+
+The provided webpage content does not include specific statistics about the distribution of question types across train, dev, and test sets.
+
+The README mentions that "there are four types of questions in our dataset: comparison, inference, compositional, and bridge-comparison," but it does not provide counts or percentages for each type in the different dataset splits.
+
+To obtain this information, you would need to:
+- Access the full dataset files (available via Dropbox link mentioned in the README)
+- Consult the original COLING 2020 paper referenced in the repository
+- Contact the dataset creators directly
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aaefa626-6ef8-49a2-bbb8-6600c8abc301",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "56fc22ec-8e4b-48cd-9860-a07e6a5fffb7",
+  "toolUseResult": {
+    "bytes": 302128,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Question Type Distribution Statistics\n\nThe provided webpage content does not include specific statistics about the distribution of question types across train, dev, and test sets.\n\nThe README mentions that \"there are four types of questions in our dataset: comparison, inference, compositional, and bridge-comparison,\" but it does not provide counts or percentages for each type in the different dataset splits.\n\nTo obtain this information, you would need to:\n- Access the full dataset files (available via Dropbox link mentioned in the README)\n- Consult the original COLING 2020 paper referenced in the repository\n- Contact the dataset creators directly",
+    "durationMs": 3549,
+    "url": "https://github.com/Alab-NII/2wikimultihop"
+  },
+  "sourceToolAssistantUUID": "aaefa626-6ef8-49a2-bbb8-6600c8abc301",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T16:51:42.944Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01P2ryQzvy5Pwe62j61h6LS3`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.03384v1",
+  "prompt": "Extract the specific 2WikiMultiHopQA question type distribution used in BridgeRAG's analysis. The paper apparently breaks down results by question subtype (comparison, inference, compositional, bridge-comparison). What percentages or counts does BridgeRAG report for each type? Also extract the specific results showing +2.55pp for bridge-comparison but ~0 for other types."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56fc22ec-8e4b-48cd-9860-a07e6a5fffb7",
+  "isSidechain": false,
+  "requestId": "req_011Cb2onEuGgB9chBJuPzcYH",
+  "type": "assistant",
+  "uuid": "653f5647-ce33-4e94-b302-7393b3f59e4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017mXb2GurT31fcsqdjRASw3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 277,
+      "cache_read_input_tokens": 42583,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 277,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 42583,
+          "cache_creation_input_tokens": 277,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 277
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T16:51:47.235Z_
+
+<details><summary>↩ Tool result · `toolu_01P2ryQzvy5Pwe62j61h6LS3`</summary>
+
+```text
+# 2WikiMultiHopQA Question Type Distribution in BridgeRAG
+
+Based on the paper's analysis, here's the breakdown:
+
+## Question Type Counts
+The study evaluated 1,000 questions distributed as follows:
+- **Bridge comparison**: 235 questions
+- **Compositional**: 413 questions
+- **Comparison**: 244 questions
+- **Inference**: 108 questions
+
+## Performance by Subtype (B→C Bridge Conditioning)
+
+The paper demonstrates selective effectiveness across question types:
+
+**Bridge comparison showed the strongest gain:**
+- Result: "+2.55pp" with statistical significance "p<0.001" (Bonferroni-corrected)
+
+**Other subtypes showed negligible improvements:**
+- Compositional: "≈0ns" (not significant)
+- Comparison: "0.00ppns" (not significant)
+- Inference: "≈0ns" (not significant)
+
+## Key Finding
+
+The authors note that bridge conditioning improved "exclusively bridge_comparison," confirming their theoretical prediction. The paper states that this pattern is "consistent with the chain-disambiguation prediction," where only parallel-chain queries benefit from conditioning on the intermediate entity established by the first hop.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "653f5647-ce33-4e94-b302-7393b3f59e4c",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "93c733a2-5fc1-4555-829a-5c15a3a28817",
+  "toolUseResult": {
+    "bytes": 257358,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# 2WikiMultiHopQA Question Type Distribution in BridgeRAG\n\nBased on the paper's analysis, here's the breakdown:\n\n## Question Type Counts\nThe study evaluated 1,000 questions distributed as follows:\n- **Bridge comparison**: 235 questions\n- **Compositional**: 413 questions\n- **Comparison**: 244 questions\n- **Inference**: 108 questions\n\n## Performance by Subtype (B→C Bridge Conditioning)\n\nThe paper demonstrates selective effectiveness across question types:\n\n**Bridge comparison showed the strongest gain:**\n- Result: \"+2.55pp\" with statistical significance \"p<0.001\" (Bonferroni-corrected)\n\n**Other subtypes showed negligible improvements:**\n- Compositional: \"≈0ns\" (not significant)\n- Comparison: \"0.00ppns\" (not significant)\n- Inference: \"≈0ns\" (not significant)\n\n## Key Finding\n\nThe authors note that bridge conditioning improved \"exclusively bridge_comparison,\" confirming their theoretical prediction. The paper states that this pattern is \"consistent with the chain-disambiguation prediction,\" where only parallel-chain queries benefit from conditioning on the intermediate entity established by the first hop.",
+    "durationMs": 4289,
+    "url": "https://arxiv.org/html/2604.03384v1"
+  },
+  "sourceToolAssistantUUID": "653f5647-ce33-4e94-b302-7393b3f59e4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-14T16:52:43.938Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have good data on the 2WikiMultiHopQA distribution from BridgeRAG's paper:
+- Bridge comparison: 235/1000 = ~23.5%
+- Compositional: 413/1000 = ~41.3%
+- Comparison: 244/1000 = ~24.4%
+- Inference: 108/1000 = ~10.8%
+
+The reviewer said the actual distribution is "comparison (~48%), inference (~12%), compositional (~22%), and bridge-comparison (~18%)". Let me check this more carefully. 
+
+The BridgeRAG sample might be from the dev set while the reviewer's percentages come from the full training set. Looking back at the original idea, I realize it incorrectly listed the types as "bridge, comparison, inference, compositional" when the dataset actually only has four types: comparison, inference, compositional, and bridge_comparison—there's no standalone bridge category.
+
+Now I need to figure out the submission strategy. EMNLP 2026's ARR deadline is May 25, which is only 11 days away—realistically too tight to complete a full paper from scratch with implementation and experiments. I should either drastically simplify the scope or plan for the October ARR cycle targeting NAACL 2027 instead.
+
+For the 2WikiMultiHopQA taxonomy, I need to correct the types to comparison, inference, compositional, and bridge_comparison. I also need to make sure I'm citing BELLE properly—their approach uses multi-agent debate for reasoning operator selection at the question level with fixed BM25 retrieval, whereas this work would operate at the sub-step level with both retriever and query formulation selection. BridgeRAG needs to be cited as well.
+
+BridgeRAG actually provides the strongest empirical motivation here—the data shows bridge conditioning helps bridge-comparison queries by 2.55 percentage points but doesn't help others, which directly validates why type-aware retrieval matters. Adaptive-RAG is the closest methodological precedent for using a classifier to route to different strategies, though they classify by complexity rather than reasoning type. I also need to include StratRAG, Adaptive Query Routing, LTRR, and CoSearch in the citations.
+
+One thing I noticed: Search-R1 uses E5 dense retrieval, not uniform BM25/dense as I initially thought. Given that BELLE, Adaptive-RAG, BridgeRAG, and R1-Router all exist, the novelty here needs to be framed carefully as an integration contribution rather than claiming something entirely new.
+
+With the 11-day EMNLP deadline, I should pursue a significantly simplified version of the approach.
+
+For EMNLP 2026, I'd reduce the taxonomy to just three types that align with what actually works: bridge queries use dense retrieval, comparison queries use sparse retrieval, and skip queries need no retrieval. I can leverage the existing Search-R1 infrastructure, focus on HotpotQA as the main dataset with 2WikiMultiHopQA for validation, and keep training straightforward—just a supervised classifier plugged into Search-R1 without custom GRPO. This is actually feasible in 11 days if the Search-R1 codebase is reasonably organized.
+
+The alternative would be to keep the full StepRetriever design for NAACL 2027 or EACL 2027, but since the user explicitly wants EMNLP 2026, I should commit to Option A—a drastically simplified but still novel version that's actually achievable.
+
+The real novelty here is the type-conditioned query formulation, which no prior work has done. I'd use Search-R1 as the base, add a lightweight step-type classifier, and adapt how queries are formulated based on the step type, all while keeping the same retriever that Search-R1 already uses. with type-conditioned queries, using 2WikiMultiHopQA's built-in type labels for supervision. I'll implement dual retrievers—E5 for dense retrieval on bridge and compositional steps, BM25 for sparse retrieval on comparison steps—and train the whole system with Search-R1's GRPO framework after warming up the classifier. The evaluation will cover both HotpotQA and 2WikiMultiHopQA with ablations.
+
+For the timeline, I'm looking at roughly two weeks: setting up the BM25 index alongside E5 in the first couple days, implementing the step-type classifier with the existing labels, then the type-conditioned query formulation, GRPO training, and finally evaluation and paper writing. It's tight but doable if the Search-R1 codebase is solid.
+
+Actually, stepping back—eleven days for a quality paper is pretty unrealistic. I should propose two tracks: a simplified version targeting EMNLP 2026's May deadline, and a fallback to ARR in October for NAACL 2027 if needed. But since the user specifically asked for EMNLP 2026, that's the primary target.
+
+I'm also reconsidering the taxonomy. The original approach used bridge, comparison, intersection, and deduction categories from DecompRC, but I should check what 2WikiMultiHopQA actually provides for type labels to make sure I'm leveraging the right supervision signal.
+
+Looking at the actual type distributions in 2WikiMultiHopQA, I'm seeing comparison, inference, compositional, and bridge_comparison—which don't map cleanly onto DecompRC's categories. The compositional type seems closest to DecompRC's bridge concept, comparison aligns across both, but intersection has no direct match, and 2WikiMultiHopQA's bridge_comparison is a hybrid that combines elements from multiple DecompRC types. The inference category is its own thing that doesn't fit neatly into the original taxonomy.
+
+Rather than forcing these to align, I'm thinking a retrieval-focused taxonomy would be cleaner for the EMNLP version: entity-bridging questions that need semantic entity-relation matching, attribute-comparison questions requiring precise value matching, and questions answerable from accumulated context without additional retrieval. This grounds the types in actual retrieval strategy rather than question structure, which feels more principled.
+
+Now I need to draft the full revised approach—this is going to be a substantial rethinking of the whole framework. I should also check if there's any very recent work I've overlooked.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93c733a2-5fc1-4555-829a-5c15a3a28817",
+  "isSidechain": false,
+  "requestId": "req_011Cb2onvwoYnkApkaYZo548",
+  "type": "assistant",
+  "uuid": "df7a8fbe-367f-4a9a-b30e-a2f16a873b88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014wFb8t29VZg4EERj9aYPy4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 452,
+      "cache_read_input_tokens": 42860,
+      "output_tokens": 2486,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 452,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2486,
+          "cache_read_input_tokens": 42860,
+          "cache_creation_input_tokens": 452,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 452
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72 · 2026-05-14T16:52:43.940Z_
+
+Let me search for a few more recent works and verify the timeline feasibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df7a8fbe-367f-4a9a-b30e-a2f16a873b88",
+  "isSidechain": false,
+  "requestId": "req_011Cb2onvwoYnkApkaYZo548",
+  "type": "assistant",
+  "uuid": "c434c987-55f3-40f2-a562-1e49bb179dea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014wFb8t29VZg4EERj9aYPy4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 452,
+      "cache_read_input_tokens": 42860,
+      "output_tokens": 2486,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 452,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2486,
+          "cache_read_input_tokens": 42860,
+          "cache_creation_input_tokens": 452,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 452
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-14T16:52:44.095Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01L3Nq1GCLkV58FMWy76NM37`</summary>
+
+```json
+{
+  "query": "step-level retrieval strategy selection multi-hop QA reasoning type 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c434c987-55f3-40f2-a562-1e49bb179dea",
+  "isSidechain": false,
+  "requestId": "req_011Cb2onvwoYnkApkaYZo548",
+  "type": "assistant",
+  "uuid": "7a1870f6-6392-4955-8b82-eed6763bef8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014wFb8t29VZg4EERj9aYPy4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 452,
+      "cache_read_input_tokens": 42860,
+      "output_tokens": 2486,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 452,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2486,
+          "cache_read_input_tokens": 42860,
+          "cache_creation_input_tokens": 452,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 452
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Step-Type-Conditioned Retrieval for Multi-Hop Reasoning: Grounding Ret…",
+  "leafUuid": "7a1870f6-6392-4955-8b82-eed6763bef8e",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sub-step type-aware retriever routing for multi-hop QA",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-14T16:52:52.642Z_
+
+<details><summary>↩ Tool result · `toolu_01L3Nq1GCLkV58FMWy76NM37`</summary>
+
+```text
+Web search results for query: "step-level retrieval strategy selection multi-hop QA reasoning type 2025 2026 arxiv"
+
+Links: [{"title":"Reasoning Processes for Multi-hop Question Answering","url":"https://arxiv.org/pdf/2601.00536"},{"title":"Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends","url":"https://arxiv.org/html/2601.00536v1"},{"title":"Improving Retrieval-Augmented Generation for Multi-Hop ...","url":"https://arxiv.org/pdf/2601.11255"},{"title":"StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering","url":"https://arxiv.org/html/2510.02827v1"},{"title":"Evaluating Multi-Hop Reasoning in RAG Systems: A Comparison of LLM-Based Retriever Evaluation Strategies Accepted for publication at the SynIRgy Workshop, ECIR 2026 (48th European Conference on Information Retrieval).","url":"https://arxiv.org/html/2604.18234v1"},{"title":"Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering","url":"https://arxiv.org/html/2601.11255v1"},{"title":"PAR2-RAG: Planned Active Retrieval and Reasoning for Multi-Hop Question Answering","url":"https://arxiv.org/html/2603.29085"},{"title":"When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models","url":"https://arxiv.org/html/2604.26649"},{"title":"RELOOP: Recursive Retrieval with Multi-Hop Reasoner and Planners for Heterogeneous QA","url":"https://arxiv.org/html/2510.20505"},{"title":"[2601.00536] Retrieval--Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends","url":"https://arxiv.org/abs/2601.00536"}]
+
+I found several highly relevant papers from arXiv that match your search query about step-level retrieval strategy selection for multi-hop QA. Here are the key findings:
+
+## Main Results:
+
+**1. Retrieval–Reasoning Processes Framework (2601.00536)**
+This survey introduces a four-axis framework covering (A) overall execution plan, (B) index structure, (C) next-step control (strategies and triggers), and (D) stop/continue criteria. The framework describes retrieval–reasoning processes in multi-hop QA through four design axes: overall execution plan, index structure, next step execution plan, and stop/continue criteria.
+
+**2. Step-Level Uncertainty Detection (2604.26649)**
+Compared to ReARTeR (Sun et al., 2025) (SIGIR 2025), which introduces process-level rewards, step-level uncertainty detection provides finer-grained timing signals, yielding 4.6% higher F1 with 28% fewer calls. Operating at reasoning-step level rather than sentence level (IRCoT), query level (Adaptive-RAG), or search-decision level (Search-R1) enables more precise knowledge gap identification.
+
+**3. Other Notable Recent Papers:**
+- StepChain GraphRAG, a framework that unites question decomposition with a Breadth-First Search (BFS) Reasoning Flow for enhanced multi-hop QA.
+- RT-RAG, a novel hierarchical RAG framework for complex multi-hop QA, leveraging explicit tree decomposition and bottom-up synthesis.
+- PAR2-RAG, a two-stage framework that separates coverage from commitment, performing breadth-first anchoring to build a high-recall evidence frontier, then applies depth-first refinement with evidence sufficiency control.
+
+All of these papers are from 2025-2026 on arXiv and directly address retrieval strategy selection and step-level reasoning for multi-hop question answering.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7a1870f6-6392-4955-8b82-eed6763bef8e",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "6830858f-630d-440d-8203-fccbc47cb599",
+  "toolUseResult": {
+    "query": "step-level retrieval strategy selection multi-hop QA reasoning type 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wybi2649gwBH6S2GZ8s67H",
+        "content": [
+          {
+            "title": "Reasoning Processes for Multi-hop Question Answering",
+            "url": "https://arxiv.org/pdf/2601.00536"
+          },
+          {
+            "title": "Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends",
+            "url": "https://arxiv.org/html/2601.00536v1"
+          },
+          {
+            "title": "Improving Retrieval-Augmented Generation for Multi-Hop ...",
+            "url": "https://arxiv.org/pdf/2601.11255"
+          },
+          {
+            "title": "StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2510.02827v1"
+          },
+          {
+            "title": "Evaluating Multi-Hop Reasoning in RAG Systems: A Comparison of LLM-Based Retriever Evaluation Strategies Accepted for publication at the SynIRgy Workshop, ECIR 2026 (48th European Conference on Information Retrieval).",
+            "url": "https://arxiv.org/html/2604.18234v1"
+          },
+          {
+            "title": "Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2601.11255v1"
+          },
+          {
+            "title": "PAR2-RAG: Planned Active Retrieval and Reasoning for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2603.29085"
+          },
+          {
+            "title": "When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models",
+            "url": "https://arxiv.org/html/2604.26649"
+          },
+          {
+            "title": "RELOOP: Recursive Retrieval with Multi-Hop Reasoner and Planners for Heterogeneous QA",
+            "url": "https://arxiv.org/html/2510.20505"
+          },
+          {
+            "title": "[2601.00536] Retrieval--Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends",
+            "url": "https://arxiv.org/abs/2601.00536"
+          }
+        ]
+      },
+      "I found several highly relevant papers from arXiv that match your search query about step-level retrieval strategy selection for multi-hop QA. Here are the key findings:\n\n## Main Results:\n\n**1. Retrieval–Reasoning Processes Framework (2601.00536)**\nThis survey introduces a four-axis framework covering (A) overall execution plan, (B) index structure, (C) next-step control (strategies and triggers), and (D) stop/continue criteria. The framework describes retrieval–reasoning processes in multi-hop QA through four design axes: overall execution plan, index structure, next step execution plan, and stop/continue criteria.\n\n**2. Step-Level Uncertainty Detection (2604.26649)**\nCompared to ReARTeR (Sun et al., 2025) (SIGIR 2025), which introduces process-level rewards, step-level uncertainty detection provides finer-grained timing signals, yielding 4.6% higher F1 with 28% fewer calls. Operating at reasoning-step level rather than sentence level (IRCoT), query level (Adaptive-RAG), or search-decision level (Search-R1) enables more precise knowledge gap identification.\n\n**3. Other Notable Recent Papers:**\n- StepChain GraphRAG, a framework that unites question decomposition with a Breadth-First Search (BFS) Reasoning Flow for enhanced multi-hop QA.\n- RT-RAG, a novel hierarchical RAG framework for complex multi-hop QA, leveraging explicit tree decomposition and bottom-up synthesis.\n- PAR2-RAG, a two-stage framework that separates coverage from commitment, performing breadth-first anchoring to build a high-recall evidence frontier, then applies depth-first refinement with evidence sufficiency control.\n\nAll of these papers are from 2025-2026 on arXiv and directly address retrieval strategy selection and step-level reasoning for multi-hop question answering."
+    ],
+    "durationSeconds": 8.54090466900001
+  },
+  "sourceToolAssistantUUID": "7a1870f6-6392-4955-8b82-eed6763bef8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-14T16:52:55.360Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MoqcAz8oBuyTC9YMPe8upG`</summary>
+
+```json
+{
+  "query": "query formulation type-conditioned retrieval augmented generation different query strategies per reasoning type"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6830858f-630d-440d-8203-fccbc47cb599",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oskZ7VnbfwtaBCURCm",
+  "type": "assistant",
+  "uuid": "61c14168-e60e-417e-9028-a68e342c0c33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qepaQQ9XyGGztbzwEeT21",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3476,
+      "cache_read_input_tokens": 43312,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3476,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 43312,
+          "cache_creation_input_tokens": 3476,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3476
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-14T16:53:03.473Z_
+
+<details><summary>↩ Tool result · `toolu_01MoqcAz8oBuyTC9YMPe8upG`</summary>
+
+```text
+Web search results for query: "query formulation type-conditioned retrieval augmented generation different query strategies per reasoning type"
+
+Links: [{"title":"Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers","url":"https://arxiv.org/html/2506.00054v1"},{"title":"Retrieval Augmented Generation (RAG) for LLMs | Prompt Engineering Guide&lt;!-- -->","url":"https://www.promptingguide.ai/research/rag"},{"title":"TableRAG: A Retrieval Augmented Generation Framework for Heterogeneous Document Reasoning","url":"https://arxiv.org/html/2506.10380v1"},{"title":"Query Suggestion for Retrieval-Augmented Generation via ...","url":"https://arxiv.org/pdf/2601.08105"},{"title":"Retrieval Augmented Generation (RAG) in Azure AI Search","url":"https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview"},{"title":"RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval","url":"https://arxiv.org/html/2506.08625"},{"title":"Retrieval-Augmented Generation in Biomedicine","url":"https://arxiv.org/pdf/2505.01146"},{"title":"1 Retrieval-Augmented Generation for Large Language Models: A Survey","url":"https://arxiv.org/pdf/2312.10997"},{"title":"Retrieval-augmented generation - Wikipedia","url":"https://en.wikipedia.org/wiki/Retrieval-augmented_generation"},{"title":"Plan∗RAG: Efficient Test-Time Planning for Retrieval Augmented Generation","url":"https://arxiv.org/html/2410.20753"}]
+
+I found comprehensive information about query formulation in retrieval-augmented generation systems. Here's what the search revealed:
+
+## Query Formulation and Type-Conditioned Retrieval
+
+Query-driven retrieval focuses on refining and structuring user intent before retrieval to maximize alignment with relevant corpus segments, including decomposition, rewriting, generative reformulation, and the incorporation of structured priors to guide retrieval.
+
+## Different Query Strategies for Different Reasoning Types
+
+The research shows several approaches that tailor query formulation to specific reasoning needs:
+
+**For Multi-hop Reasoning:**
+RQ-RAG (Refine Query for RAG) decomposes multi-hop queries into latent sub-questions, and GMR (Generative Multi-hop Retrieval) uses a generative LLM to autoregressively formulate complex multi-hop queries.
+
+**For Complex Decomposed Reasoning:**
+There are different query strategies such as tree queries or sequential querying of chunks that can be used for different scenarios. RAISE (Step-by-Step Retrieval-Augmented Inference for Scientific rEasoning) is a retrieval-augmented generation framework designed to support multi-step reasoning through fine-grained, step-aware retrieval, divided into three steps: problem decomposition, logical query generation, and logical retrieval.
+
+**For Dynamic Planning:**
+Plan∗RAG decomposes the main query into interrelated atomic and dynamic sub-queries, where nodes represent atomic reasoning steps and edges capture the conditional dependencies between them.
+
+**For Heterogeneous Document Reasoning:**
+TableRAG performs context-sensitive query decomposition, where query decomposition is performed conditioned on retrieved table schema.
+
+These approaches demonstrate that effective RAG systems adapt their query formulation strategies based on the type of reasoning required—whether multi-hop, compositional, scientific, or structured data-based.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "61c14168-e60e-417e-9028-a68e342c0c33",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "0e938b8c-af2c-4a61-a1c6-c01a9b5f247f",
+  "toolUseResult": {
+    "query": "query formulation type-conditioned retrieval augmented generation different query strategies per reasoning type",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ACJWQz9diVMpM5XAb5DXzf",
+        "content": [
+          {
+            "title": "Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers",
+            "url": "https://arxiv.org/html/2506.00054v1"
+          },
+          {
+            "title": "Retrieval Augmented Generation (RAG) for LLMs | Prompt Engineering Guide&lt;!-- -->",
+            "url": "https://www.promptingguide.ai/research/rag"
+          },
+          {
+            "title": "TableRAG: A Retrieval Augmented Generation Framework for Heterogeneous Document Reasoning",
+            "url": "https://arxiv.org/html/2506.10380v1"
+          },
+          {
+            "title": "Query Suggestion for Retrieval-Augmented Generation via ...",
+            "url": "https://arxiv.org/pdf/2601.08105"
+          },
+          {
+            "title": "Retrieval Augmented Generation (RAG) in Azure AI Search",
+            "url": "https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview"
+          },
+          {
+            "title": "RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval",
+            "url": "https://arxiv.org/html/2506.08625"
+          },
+          {
+            "title": "Retrieval-Augmented Generation in Biomedicine",
+            "url": "https://arxiv.org/pdf/2505.01146"
+          },
+          {
+            "title": "1 Retrieval-Augmented Generation for Large Language Models: A Survey",
+            "url": "https://arxiv.org/pdf/2312.10997"
+          },
+          {
+            "title": "Retrieval-augmented generation - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation"
+          },
+          {
+            "title": "Plan∗RAG: Efficient Test-Time Planning for Retrieval Augmented Generation",
+            "url": "https://arxiv.org/html/2410.20753"
+          }
+        ]
+      },
+      "I found comprehensive information about query formulation in retrieval-augmented generation systems. Here's what the search revealed:\n\n## Query Formulation and Type-Conditioned Retrieval\n\nQuery-driven retrieval focuses on refining and structuring user intent before retrieval to maximize alignment with relevant corpus segments, including decomposition, rewriting, generative reformulation, and the incorporation of structured priors to guide retrieval.\n\n## Different Query Strategies for Different Reasoning Types\n\nThe research shows several approaches that tailor query formulation to specific reasoning needs:\n\n**For Multi-hop Reasoning:**\nRQ-RAG (Refine Query for RAG) decomposes multi-hop queries into latent sub-questions, and GMR (Generative Multi-hop Retrieval) uses a generative LLM to autoregressively formulate complex multi-hop queries.\n\n**For Complex Decomposed Reasoning:**\nThere are different query strategies such as tree queries or sequential querying of chunks that can be used for different scenarios. RAISE (Step-by-Step Retrieval-Augmented Inference for Scientific rEasoning) is a retrieval-augmented generation framework designed to support multi-step reasoning through fine-grained, step-aware retrieval, divided into three steps: problem decomposition, logical query generation, and logical retrieval.\n\n**For Dynamic Planning:**\nPlan∗RAG decomposes the main query into interrelated atomic and dynamic sub-queries, where nodes represent atomic reasoning steps and edges capture the conditional dependencies between them.\n\n**For Heterogeneous Document Reasoning:**\nTableRAG performs context-sensitive query decomposition, where query decomposition is performed conditioned on retrieved table schema.\n\nThese approaches demonstrate that effective RAG systems adapt their query formulation strategies based on the type of reasoning required—whether multi-hop, compositional, scientific, or structured data-based."
+    ],
+    "durationSeconds": 8.10812377300003
+  },
+  "sourceToolAssistantUUID": "61c14168-e60e-417e-9028-a68e342c0c33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79 · 2026-05-14T16:53:03.480Z_
+
+```json
+{
+  "parentUuid": "0e938b8c-af2c-4a61-a1c6-c01a9b5f247f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "03b49fb9-fc48-4355-9584-7d3f96be01d1",
+  "timestamp": "2026-05-14T16:53:03.480Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-14T16:53:06.578Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LWozw6yA9ZXGVdK1ujbKCw`</summary>
+
+```json
+{
+  "query": "Search-R1 github \"e5\" OR \"intfloat\" retriever config implementation 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03b49fb9-fc48-4355-9584-7d3f96be01d1",
+  "isSidechain": false,
+  "requestId": "req_011Cb2otYtAeqVBMmY7Uk6Bx",
+  "type": "assistant",
+  "uuid": "7aa36fed-7902-4df9-b016-911910c446f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A2kyazHVDBALv1SNHWNyv5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1062,
+      "cache_read_input_tokens": 46788,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 46788,
+          "cache_creation_input_tokens": 1062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-14T16:53:13.472Z_
+
+<details><summary>↩ Tool result · `toolu_01LWozw6yA9ZXGVdK1ujbKCw`</summary>
+
+```text
+Web search results for query: "Search-R1 github "e5" OR "intfloat" retriever config implementation 2025"
+
+Links: [{"title":"GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub","url":"https://github.com/PeterGriffinJin/Search-R1"},{"title":"Search-R1/docs/retriever.md at main · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/blob/main/docs/retriever.md"},{"title":"GitHub - aiwangfeng/search-r1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL","url":"https://github.com/aiwangfeng/search-r1"},{"title":"GitHub - mianzhang/Search-R1: Search Wisely: Mitigating Sub-optimal Agentic Searches By Reducing Uncertainty · GitHub","url":"https://github.com/mianzhang/Search-R1"},{"title":"Search-R1/README.md at main · PeterGriffinJin/Search-R1","url":"https://github.com/PeterGriffinJin/Search-R1/blob/main/README.md"},{"title":"GitHub - RUCAIBox/R1-Searcher: R1-searcher: Incentivizing the Search Capability in LLMs via Reinforcement Learning · GitHub","url":"https://github.com/RUCAIBox/R1-Searcher"},{"title":"GitHub - williamx854/finetuning-source-bias: Official code for our ECIR 2025 paper re-evaluating source bias in dense retrievers. We find the pro-LLM bias is not an inherent property and supervised fine-tuning can change the bias. This repository contains all scripts to reproduce our experiments and analysis. · GitHub","url":"https://github.com/williamx854/finetuning-source-bias"},{"title":"GitHub - QingFei1/R-Search","url":"https://github.com/QingFei1/R-Search"},{"title":"pyterrier_rag/examples/search-r1.ipynb at main · terrierteam/pyterrier_rag","url":"https://github.com/terrierteam/pyterrier_rag/blob/main/examples/search-r1.ipynb"},{"title":"GitHub - lmeirosu/Search-O1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub","url":"https://github.com/lmeirosu/Search-O1"}]
+
+Based on the search results, I found information about Search-R1's retriever configuration implementation for 2025. Here are the key findings:
+
+## E5 Retriever Configuration in Search-R1
+
+Search-R1 supports the e5 retriever with the model path `intfloat/e5-base-v2`, which can be configured with an index file, corpus file, and parameters like topk for retrieval.
+
+### Key Configuration Details:
+
+Search-R1 supports different retrievers including local sparse retrievers (e.g., BM25) and local dense retrievers (e.g., e5), with corpus indexing available for both.
+
+### Setup Instructions:
+
+To launch a local e5 retriever server, you specify the index path, corpus path, topk value, retriever name as "e5", and the retriever model as "intfloat/e5-base-v2".
+
+### Indexing Options:
+
+Search-R1 recommends flat indexing for exact embedding matching if you have sufficient GPU resources, and suggests enabling GPU usage with the --faiss_gpu flag to make it efficient enough for online reinforcement learning.
+
+The framework also supports different search engines including sparse local retriever, dense local retriever with ANN indexing and online search engines, allowing flexibility in choosing between exact matching (flat indexing) and approximate nearest neighbor (ANN) indexing based on computational resources.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7aa36fed-7902-4df9-b016-911910c446f1",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "59a4c097-e094-45e0-9920-4af024ce9396",
+  "toolUseResult": {
+    "query": "Search-R1 github \"e5\" OR \"intfloat\" retriever config implementation 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UsNNEqbSjThjh33cuvAbnG",
+        "content": [
+          {
+            "title": "GitHub - PeterGriffinJin/Search-R1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub",
+            "url": "https://github.com/PeterGriffinJin/Search-R1"
+          },
+          {
+            "title": "Search-R1/docs/retriever.md at main · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/blob/main/docs/retriever.md"
+          },
+          {
+            "title": "GitHub - aiwangfeng/search-r1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL",
+            "url": "https://github.com/aiwangfeng/search-r1"
+          },
+          {
+            "title": "GitHub - mianzhang/Search-R1: Search Wisely: Mitigating Sub-optimal Agentic Searches By Reducing Uncertainty · GitHub",
+            "url": "https://github.com/mianzhang/Search-R1"
+          },
+          {
+            "title": "Search-R1/README.md at main · PeterGriffinJin/Search-R1",
+            "url": "https://github.com/PeterGriffinJin/Search-R1/blob/main/README.md"
+          },
+          {
+            "title": "GitHub - RUCAIBox/R1-Searcher: R1-searcher: Incentivizing the Search Capability in LLMs via Reinforcement Learning · GitHub",
+            "url": "https://github.com/RUCAIBox/R1-Searcher"
+          },
+          {
+            "title": "GitHub - williamx854/finetuning-source-bias: Official code for our ECIR 2025 paper re-evaluating source bias in dense retrievers. We find the pro-LLM bias is not an inherent property and supervised fine-tuning can change the bias. This repository contains all scripts to reproduce our experiments and analysis. · GitHub",
+            "url": "https://github.com/williamx854/finetuning-source-bias"
+          },
+          {
+            "title": "GitHub - QingFei1/R-Search",
+            "url": "https://github.com/QingFei1/R-Search"
+          },
+          {
+            "title": "pyterrier_rag/examples/search-r1.ipynb at main · terrierteam/pyterrier_rag",
+            "url": "https://github.com/terrierteam/pyterrier_rag/blob/main/examples/search-r1.ipynb"
+          },
+          {
+            "title": "GitHub - lmeirosu/Search-O1: Search-R1: An Efficient, Scalable RL Training Framework for Reasoning & Search Engine Calling interleaved LLM based on veRL · GitHub",
+            "url": "https://github.com/lmeirosu/Search-O1"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Search-R1's retriever configuration implementation for 2025. Here are the key findings:\n\n## E5 Retriever Configuration in Search-R1\n\nSearch-R1 supports the e5 retriever with the model path `intfloat/e5-base-v2`, which can be configured with an index file, corpus file, and parameters like topk for retrieval.\n\n### Key Configuration Details:\n\nSearch-R1 supports different retrievers including local sparse retrievers (e.g., BM25) and local dense retrievers (e.g., e5), with corpus indexing available for both.\n\n### Setup Instructions:\n\nTo launch a local e5 retriever server, you specify the index path, corpus path, topk value, retriever name as \"e5\", and the retriever model as \"intfloat/e5-base-v2\".\n\n### Indexing Options:\n\nSearch-R1 recommends flat indexing for exact embedding matching if you have sufficient GPU resources, and suggests enabling GPU usage with the --faiss_gpu flag to make it efficient enough for online reinforcement learning.\n\nThe framework also supports different search engines including sparse local retriever, dense local retriever with ANN indexing and online search engines, allowing flexibility in choosing between exact matching (flat indexing) and approximate nearest neighbor (ANN) indexing based on computational resources."
+    ],
+    "durationSeconds": 6.889380229000002
+  },
+  "sourceToolAssistantUUID": "7aa36fed-7902-4df9-b016-911910c446f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-14T16:53:16.785Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MmcYif6bvmUApBvC1DFguZ`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 commitment deadline ARR May cycle review timeline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59a4c097-e094-45e0-9920-4af024ce9396",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ouHbgiahGnjB5BnquQ",
+  "type": "assistant",
+  "uuid": "99ed0a05-76fd-4474-bbb6-3141ef821355",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011G8jPqF2bCnUDFA2HYyjwE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1121,
+      "cache_read_input_tokens": 47850,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1121,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 47850,
+          "cache_creation_input_tokens": 1121,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1121
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-14T16:53:23.609Z_
+
+<details><summary>↩ Tool result · `toolu_01MmcYif6bvmUApBvC1DFguZ`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 commitment deadline ARR May cycle review timeline"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"Jan. 2025 ACL Standing Committee on Peer Review (COPR) Report 1","url":"https://www.aclweb.org/adminwiki/images/9/9e/COPR-5-cycle-report-to-publish.pdf"}]
+
+Based on the search results, here's the information about EMNLP 2026 commitment deadline and the ARR May cycle review timeline:
+
+## Key Deadlines for EMNLP 2026:
+
+The ARR submission deadline for the May 2026 cycle is May 25, 2026, with a reviewer registration deadline for all authors on May 27, 2026. Author response and author-reviewer discussion runs from July 7-13, 2026, meta-review is released July 30, 2026, and the EMNLP commitment deadline is August 2, 2026, with acceptance notifications on August 20, 2026.
+
+## Review Process Timeline:
+
+If you receive review assignments, your reviews must be completed by July 6, or your meta-reviews by July 29.
+
+## Submission and Commitment Process:
+
+Authors commit their reviewed articles to a publication venue (e.g., EMNLP 2026), where Senior Area Chairs and Program Chairs make acceptance decisions from the ARR reviews and meta-reviews. Authors who selected EMNLP 2026 as a preferred venue when submitting to ARR may choose not to commit to EMNLP 2026 after receiving their reviews, and authors who selected a preferred venue other than EMNLP 2026 when submitting to ARR are still welcome to commit to EMNLP 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "99ed0a05-76fd-4474-bbb6-3141ef821355",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "a76095d2-e39e-4fc3-afca-9d7f2d79ffa2",
+  "toolUseResult": {
+    "query": "EMNLP 2026 commitment deadline ARR May cycle review timeline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014aTY1qoJMxAbwp4mCMq5Ef",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          },
+          {
+            "title": "Jan. 2025 ACL Standing Committee on Peer Review (COPR) Report 1",
+            "url": "https://www.aclweb.org/adminwiki/images/9/9e/COPR-5-cycle-report-to-publish.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about EMNLP 2026 commitment deadline and the ARR May cycle review timeline:\n\n## Key Deadlines for EMNLP 2026:\n\nThe ARR submission deadline for the May 2026 cycle is May 25, 2026, with a reviewer registration deadline for all authors on May 27, 2026. Author response and author-reviewer discussion runs from July 7-13, 2026, meta-review is released July 30, 2026, and the EMNLP commitment deadline is August 2, 2026, with acceptance notifications on August 20, 2026.\n\n## Review Process Timeline:\n\nIf you receive review assignments, your reviews must be completed by July 6, or your meta-reviews by July 29.\n\n## Submission and Commitment Process:\n\nAuthors commit their reviewed articles to a publication venue (e.g., EMNLP 2026), where Senior Area Chairs and Program Chairs make acceptance decisions from the ARR reviews and meta-reviews. Authors who selected EMNLP 2026 as a preferred venue when submitting to ARR may choose not to commit to EMNLP 2026 after receiving their reviews, and authors who selected a preferred venue other than EMNLP 2026 when submitting to ARR are still welcome to commit to EMNLP 2026."
+    ],
+    "durationSeconds": 6.819141841000004
+  },
+  "sourceToolAssistantUUID": "99ed0a05-76fd-4474-bbb6-3141ef821355",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Step-Type-Conditioned Retrieval for Multi-Hop Reasoning: Grounding Ret…",
+  "leafUuid": "a76095d2-e39e-4fc3-afca-9d7f2d79ffa2",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sub-step type-aware retriever routing for multi-hop QA",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-14T16:53:26.721Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XTWKgcLb7B3YnfeScSbTYr`</summary>
+
+```json
+{
+  "query": "Regime-Conditional Retrieval two-hop QA arxiv 2604.09019 transferable router"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a76095d2-e39e-4fc3-afca-9d7f2d79ffa2",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ov2x9vxefDM24QKGvp",
+  "type": "assistant",
+  "uuid": "f9b04106-4716-4372-9cc5-d8746a2f65bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GtVCTeKsZDQREdv3iB8t78",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 986,
+      "cache_read_input_tokens": 48971,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 48971,
+          "cache_creation_input_tokens": 986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-14T16:53:32.565Z_
+
+<details><summary>↩ Tool result · `toolu_01XTWKgcLb7B3YnfeScSbTYr`</summary>
+
+```text
+Web search results for query: "Regime-Conditional Retrieval two-hop QA arxiv 2604.09019 transferable router"
+
+Links: [{"title":"[2604.09019] Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA","url":"https://arxiv.org/abs/2604.09019"},{"title":"Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA","url":"https://arxiv.org/html/2604.09019"},{"title":"[2601.00536] Retrieval--Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends","url":"https://arxiv.org/abs/2601.00536"},{"title":"DualRAG: A Dual-Process Approach to Integrate Reasoning and Retrieval for Multi-Hop Question Answering","url":"https://arxiv.org/html/2504.18243v1"},{"title":"Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends","url":"https://arxiv.org/html/2601.00536v1"},{"title":"[2408.04259] EfficientRAG: Efficient Retriever for Multi-Hop Question Answering","url":"https://arxiv.org/abs/2408.04259"},{"title":"Mixture-of-Retrieval Experts for Reasoning-Guided ...","url":"https://arxiv.org/pdf/2505.22095"},{"title":"OThink-SRR1: Search, Refine and Reasoning with Reinforced Learning for Large Language Models","url":"https://arxiv.org/html/2604.19766"},{"title":"Multi-hop Reasoning via Early Knowledge Alignment","url":"https://arxiv.org/pdf/2512.20144"},{"title":"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation","url":"https://arxiv.org/html/2502.12442v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+The paper "Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA" by Andre Bacellar splits two-hop QA retrieval queries into two regimes determined by whether the hop-2 entity is explicitly named in the question (Q-dominant) or only in the bridge passage (B-dominant).
+
+The paper formalizes this split with three theorems: regime is characterized by two surface-text predicates, with P1 decisive for routing and P2 qualifying the B-dominant case, holding across three encoders and three datasets; and bridge advantage requires the relation-bearing sentence, not entity name alone, with removal causing an 8.6-14.1 percentage point performance drop.
+
+The paper was submitted on April 10, 2026, and is available on arXiv at https://arxiv.org/abs/2604.09019.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9b04106-4716-4372-9cc5-d8746a2f65bf",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "23c951d7-b57a-45c9-b730-4e70942f22aa",
+  "toolUseResult": {
+    "query": "Regime-Conditional Retrieval two-hop QA arxiv 2604.09019 transferable router",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SHdzRSmadDhmDofjji5AYF",
+        "content": [
+          {
+            "title": "[2604.09019] Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA",
+            "url": "https://arxiv.org/abs/2604.09019"
+          },
+          {
+            "title": "Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA",
+            "url": "https://arxiv.org/html/2604.09019"
+          },
+          {
+            "title": "[2601.00536] Retrieval--Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends",
+            "url": "https://arxiv.org/abs/2601.00536"
+          },
+          {
+            "title": "DualRAG: A Dual-Process Approach to Integrate Reasoning and Retrieval for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2504.18243v1"
+          },
+          {
+            "title": "Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends",
+            "url": "https://arxiv.org/html/2601.00536v1"
+          },
+          {
+            "title": "[2408.04259] EfficientRAG: Efficient Retriever for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/abs/2408.04259"
+          },
+          {
+            "title": "Mixture-of-Retrieval Experts for Reasoning-Guided ...",
+            "url": "https://arxiv.org/pdf/2505.22095"
+          },
+          {
+            "title": "OThink-SRR1: Search, Refine and Reasoning with Reinforced Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.19766"
+          },
+          {
+            "title": "Multi-hop Reasoning via Early Knowledge Alignment",
+            "url": "https://arxiv.org/pdf/2512.20144"
+          },
+          {
+            "title": "HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2502.12442v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nThe paper \"Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA\" by Andre Bacellar splits two-hop QA retrieval queries into two regimes determined by whether the hop-2 entity is explicitly named in the question (Q-dominant) or only in the bridge passage (B-dominant).\n\nThe paper formalizes this split with three theorems: regime is characterized by two surface-text predicates, with P1 decisive for routing and P2 qualifying the B-dominant case, holding across three encoders and three datasets; and bridge advantage requires the relation-bearing sentence, not entity name alone, with removal causing an 8.6-14.1 percentage point performance drop.\n\nThe paper was submitted on April 10, 2026, and is available on arXiv at https://arxiv.org/abs/2604.09019."
+    ],
+    "durationSeconds": 5.841412844999985
+  },
+  "sourceToolAssistantUUID": "f9b04106-4716-4372-9cc5-d8746a2f65bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-14T16:53:36.671Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KecRxGXKCgz6oKJiETk2ZW`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.09019",
+  "prompt": "Extract key details: 1) What are the two regimes (Q-dominant vs B-dominant)? 2) How does the router work? 3) What datasets and results? 4) How does this relate to type-conditioned retrieval? This is highly relevant - it essentially classifies hop types and routes retrieval differently."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23c951d7-b57a-45c9-b730-4e70942f22aa",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ovhFmDcRHHZZjyo8mb",
+  "type": "assistant",
+  "uuid": "1059eefe-9c1f-4a1a-b0d3-8d34739b4ac2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FpedE2XGVvjzD45an7ky9J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 832,
+      "cache_read_input_tokens": 49957,
+      "output_tokens": 153,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 832,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 153,
+          "cache_read_input_tokens": 49957,
+          "cache_creation_input_tokens": 832,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 832
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-14T16:53:41.778Z_
+
+<details><summary>↩ Tool result · `toolu_01KecRxGXKCgz6oKJiETk2ZW`</summary>
+
+```text
+# Regime-Conditional Retrieval for Two-Hop QA
+
+## Two Regimes Explained
+
+The paper identifies two distinct query types:
+
+- **Q-dominant**: The hop-2 entity is explicitly mentioned in the question itself
+- **B-dominant**: The hop-2 entity appears only in the bridge passage, not in the original question
+
+## How RegimeRouter Works
+
+RegimeRouter is "a lightweight binary router that selects between question-only and" retrieval that includes "relation-sentence retrieval using five text features." The router employs surface-text predicates to classify queries and route them appropriately—P1 determines the regime while P2 qualifies B-dominant cases.
+
+## Datasets and Performance
+
+The system was trained on 2WikiMultiHopQA (881 samples, 5-fold cross-validation) and tested zero-shot on MuSiQue and HotpotQA, achieving:
+- +5.6 pp improvement (significant, p < 0.001)
+- +5.3 pp improvement (significant, p = 0.002)  
+- +1.1 pp improvement (non-significant)
+
+## Connection to Type-Conditioned Retrieval
+
+While the abstract doesn't explicitly discuss "type-conditioned retrieval," the work fundamentally operates on this principle by classifying query regimes and conditionally applying different retrieval strategies based on whether the answer-bearing entity is explicit or implicit in the question.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1059eefe-9c1f-4a1a-b0d3-8d34739b4ac2",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "5a93948d-2c71-432a-8a39-8ad251b5ef89",
+  "toolUseResult": {
+    "bytes": 46989,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Regime-Conditional Retrieval for Two-Hop QA\n\n## Two Regimes Explained\n\nThe paper identifies two distinct query types:\n\n- **Q-dominant**: The hop-2 entity is explicitly mentioned in the question itself\n- **B-dominant**: The hop-2 entity appears only in the bridge passage, not in the original question\n\n## How RegimeRouter Works\n\nRegimeRouter is \"a lightweight binary router that selects between question-only and\" retrieval that includes \"relation-sentence retrieval using five text features.\" The router employs surface-text predicates to classify queries and route them appropriately—P1 determines the regime while P2 qualifies B-dominant cases.\n\n## Datasets and Performance\n\nThe system was trained on 2WikiMultiHopQA (881 samples, 5-fold cross-validation) and tested zero-shot on MuSiQue and HotpotQA, achieving:\n- +5.6 pp improvement (significant, p < 0.001)\n- +5.3 pp improvement (significant, p = 0.002)  \n- +1.1 pp improvement (non-significant)\n\n## Connection to Type-Conditioned Retrieval\n\nWhile the abstract doesn't explicitly discuss \"type-conditioned retrieval,\" the work fundamentally operates on this principle by classifying query regimes and conditionally applying different retrieval strategies based on whether the answer-bearing entity is explicit or implicit in the question.",
+    "durationMs": 5101,
+    "url": "https://arxiv.org/abs/2604.09019"
+  },
+  "sourceToolAssistantUUID": "1059eefe-9c1f-4a1a-b0d3-8d34739b4ac2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90 · 2026-05-14T16:53:46.864Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a very important paper - Regime-Conditional Retrieval (arxiv 2604.09019) is essentially doing a binary version of what StepRetriever proposes: classifying retrieval regimes and routing to different strategies. This needs to be cited and positioned against.
+
+Now let me also check for any other very recent competing work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a93948d-2c71-432a-8a39-8ad251b5ef89",
+  "isSidechain": false,
+  "requestId": "req_011Cb2owNgqEbzBZ4GuchzVx",
+  "type": "assistant",
+  "uuid": "596da1fe-6b19-4ead-8f67-f140907999e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KjpENb4zPL38bYXJSSs2as",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 50789,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 492,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 50789,
+          "cache_creation_input_tokens": 492,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 492
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-14T16:53:47.574Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JkaZGoEhkSSR84ozXExocX`</summary>
+
+```json
+{
+  "query": "RealRoute RAGRouter-Bench query routing adaptive RAG 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "596da1fe-6b19-4ead-8f67-f140907999e3",
+  "isSidechain": false,
+  "requestId": "req_011Cb2owNgqEbzBZ4GuchzVx",
+  "type": "assistant",
+  "uuid": "b5b248af-cfaa-4086-8fe6-04d5ba8a78ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KjpENb4zPL38bYXJSSs2as",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 50789,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 492,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 50789,
+          "cache_creation_input_tokens": 492,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 492
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-14T16:53:54.256Z_
+
+<details><summary>↩ Tool result · `toolu_01JkaZGoEhkSSR84ozXExocX`</summary>
+
+```text
+Web search results for query: "RealRoute RAGRouter-Bench query routing adaptive RAG 2026 arxiv"
+
+Links: [{"title":"[2602.00296] RAGRouter-Bench: A Dataset and Benchmark for Adaptive RAG Routing","url":"https://arxiv.org/abs/2602.00296"},{"title":"RAGRouter-Bench: A Dataset and Benchmark for Adaptive RAG Routing - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260200296W/abstract"},{"title":"Lightweight Query Routing for Adaptive RAG: A Baseline Study on RAGRouter-Bench","url":"https://arxiv.org/html/2604.03455"},{"title":"RAGRouter-Bench: A Dataset and Benchmark for Adaptive RAG Routing","url":"https://arxiv.org/html/2602.00296"},{"title":"[2604.03455] Lightweight Query Routing for Adaptive RAG: A Baseline Study on RAGRouter-Bench","url":"https://arxiv.org/abs/2604.03455"},{"title":"GitHub - ziqiwang0908/RAGRouter-Bench: A Comprehensive Benchmark Framework for Retrieval-Augmented Generation (RAG) Routing and Query-Corpus Compatibility. · GitHub","url":"https://github.com/ziqiwang0908/RAGRouter-Bench"},{"title":"RAGRouter: Learning to Route Queries to Multiple Retrieval-Augmented Language Models","url":"https://arxiv.org/html/2505.23052v2"},{"title":"RealRoute: Dynamic Query Routing System via Retrieve-then-Verify Paradigm","url":"https://arxiv.org/html/2604.20860"},{"title":"Query Routing for Retrieval-Augmented Language Models","url":"https://arxiv.org/abs/2505.23052"},{"title":"[2604.20860] RealRoute: Dynamic Query Routing System via Retrieve-then-Verify Paradigm","url":"https://arxiv.org/abs/2604.20860"}]
+
+Based on the search results, here's what I found about your query:
+
+## RAGRouter-Bench: A Dataset and Benchmark for Adaptive RAG Routing
+
+RAGRouter-Bench is the first dataset and benchmark for adaptive RAG routing. Grounded in query-corpus compatibility, the benchmark integrates three canonical query types, fine-grained corpus indicators capturing structural and semantic properties, and a unified protocol for evaluating both generation quality and resource consumption.
+
+### Key Features
+
+The benchmark integrates datasets spanning four domains: encyclopedic knowledge from Wikipedia, literature, legal documentation, and medical textbooks, totaling 21,460 documents. The benchmark incorporates three canonical query types: factual queries for single-segment entity retrieval, reasoning queries for multi-hop inference, and summary queries for multi-source information aggregation.
+
+### Main Findings
+
+Extensive experiments demonstrate that no one-size-fits-all paradigm exists across query-corpus pairs, and that adaptive routing yields more favorable effectiveness-efficiency trade-offs than fixed paradigm selection.
+
+## RealRoute: Dynamic Query Routing System
+
+Your search also returned results for RealRoute, a related system. RealRoute is a framework that shifts the paradigm from predictive routing to a robust Retrieve-then-Verify mechanism, ensuring evidence completeness through parallel, source-agnostic retrieval, followed by a dynamic verifier that cross-checks the results and synthesizes a factually grounded answer.
+
+The arXiv paper for RAGRouter-Bench was submitted on January 30, 2026 (arxiv:2602.00296).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5b248af-cfaa-4086-8fe6-04d5ba8a78ac",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "079ea5d7-1384-46e4-b0ed-6674fa02994e",
+  "toolUseResult": {
+    "query": "RealRoute RAGRouter-Bench query routing adaptive RAG 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018H9uMM8nnXfKMxa7fuTxaJ",
+        "content": [
+          {
+            "title": "[2602.00296] RAGRouter-Bench: A Dataset and Benchmark for Adaptive RAG Routing",
+            "url": "https://arxiv.org/abs/2602.00296"
+          },
+          {
+            "title": "RAGRouter-Bench: A Dataset and Benchmark for Adaptive RAG Routing - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260200296W/abstract"
+          },
+          {
+            "title": "Lightweight Query Routing for Adaptive RAG: A Baseline Study on RAGRouter-Bench",
+            "url": "https://arxiv.org/html/2604.03455"
+          },
+          {
+            "title": "RAGRouter-Bench: A Dataset and Benchmark for Adaptive RAG Routing",
+            "url": "https://arxiv.org/html/2602.00296"
+          },
+          {
+            "title": "[2604.03455] Lightweight Query Routing for Adaptive RAG: A Baseline Study on RAGRouter-Bench",
+            "url": "https://arxiv.org/abs/2604.03455"
+          },
+          {
+            "title": "GitHub - ziqiwang0908/RAGRouter-Bench: A Comprehensive Benchmark Framework for Retrieval-Augmented Generation (RAG) Routing and Query-Corpus Compatibility. · GitHub",
+            "url": "https://github.com/ziqiwang0908/RAGRouter-Bench"
+          },
+          {
+            "title": "RAGRouter: Learning to Route Queries to Multiple Retrieval-Augmented Language Models",
+            "url": "https://arxiv.org/html/2505.23052v2"
+          },
+          {
+            "title": "RealRoute: Dynamic Query Routing System via Retrieve-then-Verify Paradigm",
+            "url": "https://arxiv.org/html/2604.20860"
+          },
+          {
+            "title": "Query Routing for Retrieval-Augmented Language Models",
+            "url": "https://arxiv.org/abs/2505.23052"
+          },
+          {
+            "title": "[2604.20860] RealRoute: Dynamic Query Routing System via Retrieve-then-Verify Paradigm",
+            "url": "https://arxiv.org/abs/2604.20860"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about your query:\n\n## RAGRouter-Bench: A Dataset and Benchmark for Adaptive RAG Routing\n\nRAGRouter-Bench is the first dataset and benchmark for adaptive RAG routing. Grounded in query-corpus compatibility, the benchmark integrates three canonical query types, fine-grained corpus indicators capturing structural and semantic properties, and a unified protocol for evaluating both generation quality and resource consumption.\n\n### Key Features\n\nThe benchmark integrates datasets spanning four domains: encyclopedic knowledge from Wikipedia, literature, legal documentation, and medical textbooks, totaling 21,460 documents. The benchmark incorporates three canonical query types: factual queries for single-segment entity retrieval, reasoning queries for multi-hop inference, and summary queries for multi-source information aggregation.\n\n### Main Findings\n\nExtensive experiments demonstrate that no one-size-fits-all paradigm exists across query-corpus pairs, and that adaptive routing yields more favorable effectiveness-efficiency trade-offs than fixed paradigm selection.\n\n## RealRoute: Dynamic Query Routing System\n\nYour search also returned results for RealRoute, a related system. RealRoute is a framework that shifts the paradigm from predictive routing to a robust Retrieve-then-Verify mechanism, ensuring evidence completeness through parallel, source-agnostic retrieval, followed by a dynamic verifier that cross-checks the results and synthesizes a factually grounded answer.\n\nThe arXiv paper for RAGRouter-Bench was submitted on January 30, 2026 (arxiv:2602.00296)."
+    ],
+    "durationSeconds": 6.678245358999993
+  },
+  "sourceToolAssistantUUID": "b5b248af-cfaa-4086-8fe6-04d5ba8a78ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-14T16:53:57.103Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0142wRFr5GqP8H9H1dwf95EG`</summary>
+
+```json
+{
+  "query": "DecompRC question types HotpotQA bridge intersection comparison distribution percentage statistics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "079ea5d7-1384-46e4-b0ed-6674fa02994e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oxHyM7f5aT7XcJTEtw",
+  "type": "assistant",
+  "uuid": "4a4e9141-5099-4274-a664-5658c2905b0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XXpYWMkU8qaFvcdBPtK1pR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1051,
+      "cache_read_input_tokens": 51281,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1051,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 51281,
+          "cache_creation_input_tokens": 1051,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1051
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-14T16:54:03.467Z_
+
+<details><summary>↩ Tool result · `toolu_0142wRFr5GqP8H9H1dwf95EG`</summary>
+
+```text
+Web search results for query: "DecompRC question types HotpotQA bridge intersection comparison distribution percentage statistics"
+
+Links: [{"title":"GitHub - shmsw25/DecompRC: An original implementation of ACL 2019, \"Multi-hop Reading Comprehension through Question Decomposition and Rescoring\"","url":"https://github.com/shmsw25/DecompRC"},{"title":"DecompRC/README.md at main · shmsw25/DecompRC","url":"https://github.com/shmsw25/DecompRC/blob/main/README.md"},{"title":"HotpotQA: Multi-Hop QA Benchmark","url":"https://www.emergentmind.com/topics/hotpotqa-benchmark"},{"title":"HOTPOTQA: A Dataset for Diverse, Explainable Multi-hop Question Answering","url":"https://nlp.stanford.edu/pubs/yang2018hotpotqa.pdf"},{"title":"HOTPOTQA: A Dataset for Diverse, Explainable Multi-hop ...","url":"https://aclanthology.org/D18-1259.pdf"},{"title":"Examples of PROJECT and COMPARISON questions in HOTPOTQA (high-level QDMR). | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Examples-of-PROJECT-and-COMPARISON-questions-in-HOTPOTQA-high-level-QDMR_fig5_340724233"},{"title":"HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering","url":"https://hotpotqa.github.io/"},{"title":"A multi-hop reasoning example from HotpotQA. To solve the problem,... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/A-multi-hop-reasoning-example-from-HotpotQA-To-solve-the-problem-DecompRC-Min-et-al_fig1_362858600"},{"title":"Scoring Multi-hop Question Decomposition Using Masked Language Models | ACM Transactions on Asian and Low-Resource Language Information Processing","url":"https://dl.acm.org/doi/10.1145/3665140"},{"title":"Multi-task Learning for Multi-hop QA with Evidence Extraction","url":"https://openreview.net/pdf?id=rJgvxY2UvS"}]
+
+Based on the web search results, I found relevant information about DecompRC and its question types on HotpotQA. Here's what I found:
+
+## DecompRC Question Types
+
+DecompRC decomposes questions into a set of sub-questions according to the reasoning type (bridging, intersection, comparison and one hop), answers each sub-question through single-hop reading comprehension model, and uses a decomposition scorer to determine the most suitable decomposition & final answer.
+
+## HotpotQA Distribution and Statistics
+
+The search results provide information about question type distributions in HotpotQA:
+
+The remaining 8% are single-hop (6%) or unanswerable questions (2%), which means that approximately 92% of questions in HotpotQA are multi-hop reasoning questions.
+
+"Intersection" questions ask to locate the answer entity that satisfies multiple properties. "Comparison" questions involve comparing two entities to find the answer.
+
+The search results indicate that the majority of questions in HotpotQA combine SELECT operations with either PROJECT (also called ''bridge'' questions), COMPARISON, or FILTER.
+
+However, the web search results do not contain specific percentage breakdowns for the distribution of bridge, intersection, and comparison question types within HotpotQA. For more detailed statistics on the exact distribution percentages of these question types, you would need to consult the original HotpotQA paper or dataset documentation directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a4e9141-5099-4274-a664-5658c2905b0f",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "22183051-02c9-433c-a955-ceb157033210",
+  "toolUseResult": {
+    "query": "DecompRC question types HotpotQA bridge intersection comparison distribution percentage statistics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Mv7uEDbp96pJDjTiDJg1mA",
+        "content": [
+          {
+            "title": "GitHub - shmsw25/DecompRC: An original implementation of ACL 2019, \"Multi-hop Reading Comprehension through Question Decomposition and Rescoring\"",
+            "url": "https://github.com/shmsw25/DecompRC"
+          },
+          {
+            "title": "DecompRC/README.md at main · shmsw25/DecompRC",
+            "url": "https://github.com/shmsw25/DecompRC/blob/main/README.md"
+          },
+          {
+            "title": "HotpotQA: Multi-Hop QA Benchmark",
+            "url": "https://www.emergentmind.com/topics/hotpotqa-benchmark"
+          },
+          {
+            "title": "HOTPOTQA: A Dataset for Diverse, Explainable Multi-hop Question Answering",
+            "url": "https://nlp.stanford.edu/pubs/yang2018hotpotqa.pdf"
+          },
+          {
+            "title": "HOTPOTQA: A Dataset for Diverse, Explainable Multi-hop ...",
+            "url": "https://aclanthology.org/D18-1259.pdf"
+          },
+          {
+            "title": "Examples of PROJECT and COMPARISON questions in HOTPOTQA (high-level QDMR). | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Examples-of-PROJECT-and-COMPARISON-questions-in-HOTPOTQA-high-level-QDMR_fig5_340724233"
+          },
+          {
+            "title": "HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering",
+            "url": "https://hotpotqa.github.io/"
+          },
+          {
+            "title": "A multi-hop reasoning example from HotpotQA. To solve the problem,... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/A-multi-hop-reasoning-example-from-HotpotQA-To-solve-the-problem-DecompRC-Min-et-al_fig1_362858600"
+          },
+          {
+            "title": "Scoring Multi-hop Question Decomposition Using Masked Language Models | ACM Transactions on Asian and Low-Resource Language Information Processing",
+            "url": "https://dl.acm.org/doi/10.1145/3665140"
+          },
+          {
+            "title": "Multi-task Learning for Multi-hop QA with Evidence Extraction",
+            "url": "https://openreview.net/pdf?id=rJgvxY2UvS"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about DecompRC and its question types on HotpotQA. Here's what I found:\n\n## DecompRC Question Types\n\nDecompRC decomposes questions into a set of sub-questions according to the reasoning type (bridging, intersection, comparison and one hop), answers each sub-question through single-hop reading comprehension model, and uses a decomposition scorer to determine the most suitable decomposition & final answer.\n\n## HotpotQA Distribution and Statistics\n\nThe search results provide information about question type distributions in HotpotQA:\n\nThe remaining 8% are single-hop (6%) or unanswerable questions (2%), which means that approximately 92% of questions in HotpotQA are multi-hop reasoning questions.\n\n\"Intersection\" questions ask to locate the answer entity that satisfies multiple properties. \"Comparison\" questions involve comparing two entities to find the answer.\n\nThe search results indicate that the majority of questions in HotpotQA combine SELECT operations with either PROJECT (also called ''bridge'' questions), COMPARISON, or FILTER.\n\nHowever, the web search results do not contain specific percentage breakdowns for the distribution of bridge, intersection, and comparison question types within HotpotQA. For more detailed statistics on the exact distribution percentages of these question types, you would need to consult the original HotpotQA paper or dataset documentation directly."
+    ],
+    "durationSeconds": 6.3599836679999715
+  },
+  "sourceToolAssistantUUID": "4a4e9141-5099-4274-a664-5658c2905b0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95 · 2026-05-14T16:55:47.581Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, I now have enough information to do the revision. Let me synthesize what I've learned:
+
+**Key findings from research:**
+
+1. **BELLE (ACL 2025)**: Classifies multi-hop questions into 4 types (Inference, Comparison, Temporal, Null), selects reasoning operators per type via multi-agent debate, uses fixed BM25 retrieval, operates at question level, evaluates on HotpotQA/MuSiQue/2WikiMultiHopQA/MultiHop-RAG.
+
+
+2. **BridgeRAG (April 2026)**: A training-free approach using bridge-conditioned retrieval with a tripartite scorer that achieves strong results across benchmarks—0.9875 R@5 on HotpotQA, 0.8146 on MuSiQue, and 0.9527 on 2WikiMultiHopQA—though the bridge conditioning mainly benefits bridge-comparison queries while showing minimal gains for other query types, leveraging NV-Embed-v2 and Llama 3.3 70B.
+3. **Adaptive-RAG (NAACL 2024)**: Uses a T5-Large classifier to predict query type and adapt retrieval strategy accordingly.
+4. **2WikiMultiHopQA query distribution**: The actual query types are comparison, inference, compositional, and bridge_comparison, with bridge_comparison making up about 23.5% of queries, compositional around 41.3%, comparison 24.4%, and inference 10.8%.
+5. **Regime-Conditional Retrieval (April 2026)**: A binary router that distinguishes between question-dominant and bridge-dominant regimes for two-hop QA, selecting the appropriate retrieval strategy, and shows promising zero-shot transfer results—gaining 5.6pp on MuSiQue and 1.1pp on HotpotQA when trained on 2WikiMultiHopQA.
+6. **Recent related work**: StratRAG benchmarks different retrieval approaches across question types, CoSearch jointly trains reasoning with document ranking via reinforcement learning, LTRR frames routing as a learning-to-rank problem, and RAGRouter-Bench provides a benchmark for evaluating adaptive routing strategies across diverse queries.
+
+7. **Domain-specific routing**: There's work on adaptive query routing for financial, legal, and medical domains with complexity-based classification, though this is less directly applicable to multi-hop question answering.
+
+Given the EMNLP 2026 deadline in 11 days, I need to drastically simplify my approach rather than attempt something ambitious. I'll target this venue with a streamlined design while being realistic about the timeline constraints.
+
+Looking at the question type taxonomies across datasets, I'm seeing some variation: 2WikiMultiHopQA uses comparison, inference, compositional, and bridge_comparison; HotpotQA decompositions show bridge questions dominating at around 47%, with intersection, comparison, and one-hop making up the rest; and BELLE uses inference, comparison, temporal, and null categories.
+
+The key insight for building a unified taxonomy is thinking about what retrieval strategy each question type actually needs. Bridge questions require entity-based retrieval with dense representations, comparison questions work better with lexical or sparse retrieval methods, and some inference steps can skip retrieval entirely if the answer's already in context. This gives me a cleaner framework than trying to merge all the different taxonomies directly.
+
+For the EMNLP submission, I'm going to fork the existing Search-R1 codebase and add BM25 as a pluggable second retriever option alongside the E5 dense retriever. Then I'll build a lightweight step-type classifier using just three categories—bridge questions route to dense retrieval, comparison questions route to sparse retrieval, and answerable questions skip retrieval altogether.
+
+The real novelty is in type-conditioned query formulation, where the retrieval strategy adapts based on the question type. I can warm-start the classifier using the built-in labels from 2WikiMultiHopQA and the decompositions from DecompRC, then train it with a supervised warmup phase followed by standard GRPO with a type-consistency bonus. I'll evaluate on HotpotQA and 2WikiMultiHopQA to keep things manageable within the timeline, dropping MuSiQue to save time.
+
+The resource requirements are roughly 120-150 H100-hours spread across 11 days with 2 GPUs, with GRPO training being the main bottleneck at 30-40 hours per run. Compared to BELLE, my approach operates at the sub-step level rather than the question level, includes explicit retriever selection beyond just operator selection, and grounds everything in this type-based framework.
+
+What sets this apart from the other recent work is the combination of sub-step reasoning type classification, type-conditioned query formulation, and heterogeneous retriever routing all integrated into a single end-to-end RL framework—this unified approach across all reasoning types and hops is what makes it distinct.
+
+Now I need to write out the full revised JSON for the contribution. But actually, let me think through whether this is realistically doable in the next 11 days. I'm mapping out the timeline: forking Search-R1 and setting up the retrieval infrastructure takes a couple days, then implementing the step-type classifier with silver labels from existing datasets, followed by the type-conditioned query templates and dual retriever routing. The GRPO training is the bottleneck—it needs roughly 30 hours per run on a single GPU, which means I can squeeze in maybe one full training run in two days. That leaves a couple days for evaluation and ablations, then the final day for writing. This is extremely tight, and realistically I'm looking at some constraints around how many ablations I can run and whether I'll have time for multiple training iterations.
+
+For a short 4-page paper this might be feasible, but a longer submission would require writing in parallel with experiments. The reviewer mentioned a 200 H100-hour budget, so I should work within that constraint. I'm also reconsidering whether I should simplify the approach further—maybe just two types (retrieve versus skip) with type-conditioned query formulation using a single retriever, leveraging existing silver labels from DecompRC, and evaluating on just two datasets. That would reduce complexity significantly and make the timeline more realistic.
+
+But wait—if I only distinguish between retrieve and skip, that's essentially just learning when to retrieve, which ReaLM-Retrieve already does. That's not novel enough. The real novelty needs to come from type classification that influences both query formulation and retriever selection. So I need at least three types: bridge questions that use entity-centric queries with dense retrieval, comparison questions that use attribute-extraction queries with sparse retrieval, and skip questions that don't retrieve at all. This gives me the novelty I need while staying simple enough to execute in the timeframe.
+
+For the taxonomy itself, I'll ground it in retrieval patterns and map it to existing decompositions: bridge questions handle entity-bridging and semantic retrieval, comparison questions handle attribute extraction and lexical retrieval, and skip questions handle pure deduction without retrieval.
+
+Now I'm realizing the Regime-Conditional Retrieval paper is highly relevant here—it's essentially a binary version of what I'm proposing but limited to two-hop retrieval. I should cite that. Let me revise the full proposal with an updated title and problem statement that acknowledges the related work like BELLE, Adaptive-RAG, BridgeRAG, and Regime-Conditional Retrieval.
+
+For the approach, I'm settling on a simplified 3-type taxonomy with dual retrievers (E5 and BM25 on Search-R1), type-conditioned query formulation, and supervised warmup followed by GRPO training. I'm leaning toward EMNLP 2026 as the target venue, though I'm still deciding between a short paper (4 pages, more feasible) or long paper (8 pages, tighter timeline). Given the 11-day constraint, I think a long paper is more impactful if I keep the experiment scope focused—just 2 datasets, the 3-type taxonomy, and dual retriever with focused ablations. I should probably propose EMNLP 2026 ARR May but prepare for the possibility of needing to commit to a different timeline.
+
+The ARR rolling cycle works in my favor: if I submit by May 25, reviews come back around July 6-7, and I can commit to EMNLP 2026 by August 2. If the reviews suggest revisions, I have the flexibility to revise and commit to NAACL 2027 or another venue instead. This gives me a reasonable fallback strategy.
+
+Now I'm constructing the revised approach with the 3-type taxonomy: Bridge handles entity-connecting reasoning through dense E5 retrieval with entity-centric queries, Comparison handles attribute-extracting reasoning through BM25 retrieval with attribute-extraction queries, and Skip handles inference from accumulated context without retrieval.
+
+For grounding this taxonomy, DecompRC's bridge and comparison types map directly to my categories, while 2Wiki's compositional questions map to bridge or comparison depending on the sub-step. I'll train a lightweight classification head on Qwen3-8B (or Qwen2.5-7B for speed) using 2WikiMultiHopQA's built-in type labels and DecompRC-style decompositions of HotpotQA questions—around 500 examples total without needing expensive GPT-4o silver labeling. Then for query formulation, each type gets its own strategy: Bridge uses entity-centric queries, Comparison uses attribute-extraction queries, and Skip skips retrieval entirely.
+
+I'm pairing E5 for dense retrieval with BM25 for sparse retrieval, both already supported in Search-R1. Training happens in two phases—first a supervised warmup of the classifier in about 2 hours, then GRPO on the full pipeline taking roughly 40 hours per run across 2 runs with 2 GPUs. For evaluation, I'll test on HotpotQA and 2WikiMultiHopQA with ablations comparing type classification versus implicit routing, type-conditioned queries versus uniform queries, and dual versus single retriever. The whole thing needs around 120-150 GPU hours on A100/H100 and should take about 11 days with 2 GPUs, with GRPO training being the critical bottleneck.
+
+Now I'm refining the resource breakdown more carefully—BM25 indexing takes 2-4 hours, silver label generation from 2Wiki metadata and DecompRC is about 2 hours without needing GPT-4o, classifier warmup is 2 hours, and GRPO training on Qwen3-8B runs 30-40 hours per run. With 2 A100s I can do the main run plus one ablation in roughly 40 wall-clock hours, but I need 3-4 ablation runs total which means 60-80 hours across 2 GPUs translating to 30-40 wall-clock hours. Evaluation takes about 5 hours per dataset.
+
+The total comes to roughly 150-200 A100 hours and 8-9 days wall-clock time, which fits within the 11-day window. Now I need to address the taxonomy issue the reviewer raised—2WikiMultiHopQA actually has comparison, inference, and compositional types, not a separate bridge type, which affects how I'm claiming alignment with DecompRC's categories.
+
+Looking at the actual type distributions, I can map DecompRC's bridge and intersection questions to 2Wiki's compositional and inference types since they all involve entity bridging, while comparison questions align directly. My retrieval-grounded taxonomy consolidates this into three categories: bridge questions that need dense retrieval, comparison questions handled by sparse retrieval, and reasoning steps that work from accumulated context alone.
+
+For bridge_comparison questions in 2Wiki that blend both aspects, I'll classify each sub-step individually—marking the bridging hops as bridge type and comparison hops as comparison type, which gives us finer-grained control than question-level classification alone.
+
+Now I'm drafting the full JSON and reconsidering the title to better highlight the sub-step classification approach. I think a variant of the original framing works best here.
+
+The reviewer feedback indicates this needs major revisions: three critical issues, four major ones, and two moderate ones. Given the scope—changing the venue to EMNLP 2026, fixing the 2WikiMultiHopQA taxonomy, adding missing citations like BELLE and BridgeRAG, simplifying the approach for an 11-day timeline, and reframing the novelty as an integration contribution—I'm looking at a substantial rewrite. I'll need to correct how Search-R1 is characterized, provide realistic resource estimates, and make sure all the recent related work is properly cited.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22183051-02c9-433c-a955-ceb157033210",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oyApGQCHjYGW7GYFnB",
+  "type": "assistant",
+  "uuid": "583280ae-0743-49e9-8467-dcb5ee5fb849",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WGFJbE4SLYiD948rBSxKyD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 999,
+      "cache_read_input_tokens": 52332,
+      "output_tokens": 4390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 999,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4390,
+          "cache_read_input_tokens": 52332,
+          "cache_creation_input_tokens": 999,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 999
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96 · 2026-05-14T16:55:47.583Z_
+
+Now I have comprehensive research findings. Let me do one final search for the most recent concurrent work before writing the revision.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "583280ae-0743-49e9-8467-dcb5ee5fb849",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oyApGQCHjYGW7GYFnB",
+  "type": "assistant",
+  "uuid": "98e0ff1d-014d-49c7-95d7-aee719a81790",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WGFJbE4SLYiD948rBSxKyD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 999,
+      "cache_read_input_tokens": 52332,
+      "output_tokens": 4390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 999,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4390,
+          "cache_read_input_tokens": 52332,
+          "cache_creation_input_tokens": 999,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 999
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-14T16:55:47.586Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Mb2mQCegkCFp7cMiee7krd`</summary>
+
+```json
+{
+  "query": "\"sub-step\" OR \"step-level\" retriever routing selection classification multi-hop QA 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98e0ff1d-014d-49c7-95d7-aee719a81790",
+  "isSidechain": false,
+  "requestId": "req_011Cb2oyApGQCHjYGW7GYFnB",
+  "type": "assistant",
+  "uuid": "0bc7873f-3d9d-4cf2-9e12-7c04354cc4f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WGFJbE4SLYiD948rBSxKyD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 999,
+      "cache_read_input_tokens": 52332,
+      "output_tokens": 4390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 999,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4390,
+          "cache_read_input_tokens": 52332,
+          "cache_creation_input_tokens": 999,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 999
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Step-Type-Conditioned Retrieval for Multi-Hop Reasoning: Grounding Ret…",
+  "leafUuid": "0bc7873f-3d9d-4cf2-9e12-7c04354cc4f1",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sub-step type-aware retriever routing for multi-hop QA",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-14T16:55:55.744Z_
+
+<details><summary>↩ Tool result · `toolu_01Mb2mQCegkCFp7cMiee7krd`</summary>
+
+```text
+Web search results for query: ""sub-step" OR "step-level" retriever routing selection classification multi-hop QA 2026"
+
+Links: [{"title":"Multi-hop Question Answering","url":"https://arxiv.org/pdf/2204.09140"},{"title":"Retrieval–Reasoning Processes for Multi-hop Question Answering: A","url":"https://arxiv.org/pdf/2601.00536"},{"title":"Multi-hop QA Benchmarks","url":"https://www.emergentmind.com/topics/multi-hop-question-answering-qa-benchmarks"},{"title":"Improving Retrieval-Augmented Generation for Multi-Hop ...","url":"https://arxiv.org/pdf/2601.11255"},{"title":"Different paths to the same destination: Diversifying LLMs generation for multi-hop open-domain question answering - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0950705124014230"},{"title":"Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering","url":"https://arxiv.org/html/2601.11255v1"},{"title":"Deep Retriever: Information Retrieval for Multi-hop Question Answering","url":"https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/reports/custom/15744425.pdf"},{"title":"Towards Multi-Hop Open-Domain Question Answering by ...","url":"https://pub.tik.ee.ethz.ch/students/2022-HS/BA-2022-35.pdf"},{"title":"Multi-Hop Question Answering (QA)","url":"https://www.emergentmind.com/topics/multi-hop-question-answering-qa-b6eff081-7dca-499a-807a-67dd4c3aa5b6"},{"title":"Evaluating Multi-Hop Reasoning in RAG Systems: A Comparison of LLM-Based Retriever Evaluation Strategies Accepted for publication at the SynIRgy Workshop, ECIR 2026 (48th European Conference on Information Retrieval).","url":"https://arxiv.org/html/2604.18234v1"}]
+
+I've found several relevant research papers and resources on multi-hop question answering with focus on retriever routing, step-level/sub-step approaches, and selection/classification mechanisms. Here are the key findings:
+
+## Recent Developments (2025-2026)
+
+BELLE dynamically allocates reasoning "operators" (sub-step, single/iterative-step retrieval, CoT) via bi-level agentic debate, exploiting question-type sensitivity for cost-effective gains (up to +7 F1 over best fixed baselines), with research published in May 2025.
+
+RT-RAG systematically decomposes multi-hop questions into explicit reasoning trees, minimizing inaccurate decomposition through structured entity analysis and consensus-based tree selection that clearly separates core queries, known entities, and unknown entities. This framework published in January 2026 achieves significant improvements.
+
+## Multi-Hop QA Architecture Evolution
+
+Framework axes describe retrieval–reasoning processes in multi-hop QA: (A) overall execution plan, (B) index structure, (C) next step execution plan, and (D) stop/continue criteria.
+
+Recent frameworks leverage LLMs as agents to decompose complex questions into sub-questions, iteratively retrieve and validate evidence, and synthesize compact, complete supporting sets.
+
+## Retriever Evaluation for Multi-Hop Tasks
+
+Most existing work focuses on single-context retrieval rather than multi-hop queries, where individual contexts may appear irrelevant in isolation but are essential when combined.
+
+The search results include papers from ArXiv, Stanford research, and recent 2026 conference publications on retrieval-augmented generation and multi-hop reasoning architectures.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0bc7873f-3d9d-4cf2-9e12-7c04354cc4f1",
+  "isSidechain": false,
+  "promptId": "4d1be80d-e5ce-4430-9450-69f0dc6733d2",
+  "type": "user",
+  "uuid": "d44ce5cc-9bec-4f17-aea2-dbf5987b0490",
+  "toolUseResult": {
+    "query": "\"sub-step\" OR \"step-level\" retriever routing selection classification multi-hop QA 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014jNXyeidFRMB3XgebdmpJm",
+        "content": [
+          {
+            "title": "Multi-hop Question Answering",
+            "url": "https://arxiv.org/pdf/2204.09140"
+          },
+          {
+            "title": "Retrieval–Reasoning Processes for Multi-hop Question Answering: A",
+            "url": "https://arxiv.org/pdf/2601.00536"
+          },
+          {
+            "title": "Multi-hop QA Benchmarks",
+            "url": "https://www.emergentmind.com/topics/multi-hop-question-answering-qa-benchmarks"
+          },
+          {
+            "title": "Improving Retrieval-Augmented Generation for Multi-Hop ...",
+            "url": "https://arxiv.org/pdf/2601.11255"
+          },
+          {
+            "title": "Different paths to the same destination: Diversifying LLMs generation for multi-hop open-domain question answering - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0950705124014230"
+          },
+          {
+            "title": "Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2601.11255v1"
+          },
+          {
+            "title": "Deep Retriever: Information Retrieval for Multi-hop Question Answering",
+            "url": "https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/reports/custom/15744425.pdf"
+          },
+          {
+            "title": "Towards Multi-Hop Open-Domain Question Answering by ...",
+            "url": "https://pub.tik.ee.ethz.ch/students/2022-HS/BA-2022-35.pdf"
+          },
+          {
+            "title": "Multi-Hop Question Answering (QA)",
+            "url": "https://www.emergentmind.com/topics/multi-hop-question-answering-qa-b6eff081-7dca-499a-807a-67dd4c3aa5b6"
+          },
+          {
+            "title": "Evaluating Multi-Hop Reasoning in RAG Systems: A Comparison of LLM-Based Retriever Evaluation Strategies Accepted for publication at the SynIRgy Workshop, ECIR 2026 (48th European Conference on Information Retrieval).",
+            "url": "https://arxiv.org/html/2604.18234v1"
+          }
+        ]
+      },
+      "I've found several relevant research papers and resources on multi-hop question answering with focus on retriever routing, step-level/sub-step approaches, and selection/classification mechanisms. Here are the key findings:\n\n## Recent Developments (2025-2026)\n\nBELLE dynamically allocates reasoning \"operators\" (sub-step, single/iterative-step retrieval, CoT) via bi-level agentic debate, exploiting question-type sensitivity for cost-effective gains (up to +7 F1 over best fixed baselines), with research published in May 2025.\n\nRT-RAG systematically decomposes multi-hop questions into explicit reasoning trees, minimizing inaccurate decomposition through structured entity analysis and consensus-based tree selection that clearly separates core queries, known entities, and unknown entities. This framework published in January 2026 achieves significant improvements.\n\n## Multi-Hop QA Architecture Evolution\n\nFramework axes describe retrieval–reasoning processes in multi-hop QA: (A) overall execution plan, (B) index structure, (C) next step execution plan, and (D) stop/continue criteria.\n\nRecent frameworks leverage LLMs as agents to decompose complex questions into sub-questions, iteratively retrieve and validate evidence, and synthesize compact, complete supporting sets.\n\n## Retriever Evaluation for Multi-Hop Tasks\n\nMost existing work focuses on single-context retrieval rather than multi-hop queries, where individual contexts may appear irrelevant in isolation but are essential when combined.\n\nThe search results include papers from ArXiv, Stanford research, and recent 2026 conference publications on retrieval-augmented generation and multi-hop reasoning architectures."
+    ],
+    "durationSeconds": 8.151761453000013
+  },
+  "sourceToolAssistantUUID": "0bc7873f-3d9d-4cf2-9e12-7c04354cc4f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101 · 2026-05-14T16:58:11.422Z_
+
+I now have comprehensive research findings. Let me synthesize everything and produce the revised idea.
+
+**Key findings from deep research:**
+- **BELLE** (ACL 2025): question-level type → operator selection, fixed BM25, no query conditioning
+- **BridgeRAG** (April 2026): bridge-conditioning helps bridge_comparison +2.55pp, ~0 for other types — directly validates type-aware retrieval
+- **Regime-Conditional Retrieval** (April 2026): binary Q-dominant/B-dominant router for hop-2, very close to our idea but binary and hop-2 only
+- **Adaptive-RAG** (NAACL 2024): complexity classifier → strategy routing, query-level
+- **StratRAG**: BM25/dense/hybrid benchmarked per type, bridge questions hardest
+- **2WikiMultiHopQA**: actual types are comparison/inference/compositional/bridge_comparison (NO standalone "bridge")
+- **Search-R1**: uses E5 (intfloat/e5-base-v2), not BM25/dense
+- **EMNLP 2026**: ARR May 25 deadline confirmed, commitment August 2
+
+The landscape is significantly more crowded than the original idea acknowledged. The unique contribution must be precisely articulated as the first system combining sub-step-level type classification + type-conditioned query formulation + heterogeneous retriever routing in an end-to-end RL framework. This is an integration contribution that needs a simplified, executable design for the 11-day EMNLP window.
+
+Here is the revised idea:
+
+```json
+{
+  "title": "StepRetriever: Retrieval-Grounded Step-Type Classification for Multi-Hop Reasoning with Type-Conditioned Query Formulation and Retriever Routing",
+  "change_type": "major",
+  "core_problem": "Multi-hop reasoning chains involve heterogeneous step types — entity-bridging steps connecting entities via shared relations, attribute-comparison steps extracting parallel properties, and deductive steps requiring no external evidence — each demanding different retrieval strategies and query formulations. The field has converged on this insight from multiple angles but no single system integrates all three necessary components: (1) Explicit step-type classification at sub-step granularity (not just question level), (2) Type-conditioned query formulation (different query strategies for different step types), and (3) Heterogeneous retriever routing (matching step types to retrieval modalities). Existing systems implement at most two of these three. BELLE (ACL 2025) classifies question types and selects reasoning operators, but operates at question level with fixed BM25 retrieval and no query conditioning. Adaptive-RAG (NAACL 2024) routes by query complexity to different retrieval depths, but does not classify reasoning type or condition query formulation. BridgeRAG (arXiv 2604.03384) demonstrates that bridge conditioning selectively helps bridge-comparison queries (+2.55pp) while showing ~0 gain on other subtypes — directly validating the need for type-aware retrieval — but applies one strategy uniformly without type classification. Regime-Conditional Retrieval (arXiv 2604.09019) builds a binary router for Q-dominant vs. B-dominant regimes in two-hop QA, but is limited to a binary classification on hop-2 only. R1-Router/MoRE (SIGIR 2026) routes to heterogeneous retrieval experts at each step via Step-GRPO, but routing is implicit (emerging from RL without interpretable type semantics) and query formulation is uniform. The gap is a system that performs interpretable, taxonomy-grounded step-type classification at each intermediate reasoning step and uses that classification to condition both how queries are formulated and which retriever is invoked.",
+  "opportunity": "Three independently validated building blocks exist but remain partially connected: (1) Reasoning taxonomies — DecompRC (Min et al., ACL 2019) identified bridge (~47%), intersection (~23%), and comparison (~22%) types in HotpotQA; 2WikiMultiHopQA (Ho et al., COLING 2020) encodes four question types (comparison, inference, compositional, bridge_comparison) as dataset metadata — but these operate at question level, not at sub-step granularity within reasoning chains. (2) Type-sensitive retrieval evidence — BridgeRAG empirically demonstrates selective benefit of bridge conditioning (+2.55pp on bridge_comparison, ~0 on comparison/inference/compositional in 2WikiMultiHopQA), StratRAG benchmarks BM25/dense/hybrid across bridge, comparison, and yes-no types showing hybrid best overall but bridge questions substantially harder (Recall@2=0.67 vs. 0.70 overall), and Regime-Conditional Retrieval shows +5.6pp from binary regime routing on MuSiQue — collectively establishing that different reasoning types benefit from different retrieval strategies. (3) Per-step routing infrastructure — R1-Router/MoRE demonstrates implicit per-step routing via Step-GRPO, Search-R1 provides a modular RL training framework supporting pluggable retrievers (E5 dense + BM25 sparse), and CoSearch (arXiv 2604.17555) shows joint training of reasoning agents with retrieval components via GRPO is feasible with +26.8% relative F1 gap between oracle and fixed retrieval. The opportunity is to unify these: extend question-level type taxonomies to sub-step-level classification, use that classification to condition query formulation (not just retriever selection), and route to heterogeneous retrievers — all within an end-to-end RL framework built on existing Search-R1 infrastructure.",
+  "landscape": "Search-R1 (arXiv 2503.09516, COLM 2025) trains LLMs to learn retrieval timing via RL with E5 dense retrieval, achieving 41% improvement on 7B models, but uses a single retriever with uniform query generation across all steps. R3-RAG (arXiv 2505.23794, EMNLP 2025 Findings) learns step-by-step reasoning and retrieval via RL but with a single retrieval strategy. ReaLM-Retrieve (SIGIR 2026) optimizes when to retrieve but not how to retrieve differently per step type. BELLE (arXiv 2505.11811, ACL 2025) classifies multi-hop questions into four types (Inference, Comparison, Temporal, Null) and assigns reasoning operator combinations per type via multi-agent debate, evaluating on HotpotQA, MuSiQue, 2WikiMultiHopQA, and MultiHop-RAG — achieving +3.2–7.6% F1 over baselines. However, BELLE operates at question level (not sub-step), uses fixed BM25 retrieval (no retriever routing), and does not condition query formulation on type. Adaptive-RAG (arXiv 2403.14403, NAACL 2024) trains a T5-Large classifier to predict query complexity and routes to three strategies (no retrieval, single-step, iterative multi-step), but classifies by complexity rather than reasoning type and operates at query level. BridgeRAG (arXiv 2604.03384, April 2026) uses a tripartite scorer s(q,b,c) for bridge-conditioned retrieval, achieving training-free SOTA R@5 on HotpotQA (0.9875), MuSiQue (0.8146), and 2WikiMultiHopQA (0.9527), and demonstrating that bridge conditioning selectively helps bridge_comparison queries (+2.55pp, p<0.001) while showing ~0 gain on other subtypes — the strongest empirical evidence for type-aware retrieval. However, BridgeRAG applies bridge conditioning uniformly without explicit type classification. Regime-Conditional Retrieval (arXiv 2604.09019, April 2026) formalizes two retrieval regimes (Q-dominant vs. B-dominant) for two-hop QA and trains a lightweight binary router, achieving +5.6pp on MuSiQue and +5.3pp on HotpotQA via zero-shot transfer from 2WikiMultiHopQA — the closest prior work to per-step type-conditioned routing, but limited to a binary classification for hop-2 only. R1-Router/MoRE (arXiv 2505.22095, SIGIR 2026) routes to heterogeneous retrieval experts (text/image/table) at each step via Step-GRPO, but routing is implicit (no interpretable type semantics) and query formulation is uniform. R3AG (arXiv 2604.22849, April 2026) decomposes retriever capability into retrieval quality and generation utility for query-level routing. StratRAG (arXiv 2604.22757, April 2026) benchmarks BM25, dense (MiniLM), and hybrid retrieval across bridge, comparison, and yes-no types, finding hybrid best overall (Recall@2=0.70) but bridge questions substantially harder (Recall@2=0.67). LTRR (SIGIR 2025) frames retriever routing as learning-to-rank, showing routing-based RAG outperforms best single-retriever systems. CoSearch (arXiv 2604.17555, April 2026) jointly trains reasoning agent and document ranker via GRPO, demonstrating +26.8% relative F1 gap between oracle and fixed retrieval. MoR (EMNLP 2025) demonstrates zero-shot weighted ensemble over heterogeneous retrievers. HopRAG (arXiv 2502.12442, ACL Findings 2025) achieves 76.78% higher answer metrics via graph-based retrieval but applies graph traversal uniformly. No published work combines all three of: (a) explicit sub-step-level reasoning type classification, (b) type-conditioned query formulation strategies, and (c) heterogeneous retriever routing within an end-to-end RL framework.",
+  "approach": "We propose StepRetriever, a framework that introduces explicit, retrieval-grounded step-type classification into multi-hop QA, conditioning both query formulation and retriever selection on the classified step type at each intermediate reasoning step. To meet the EMNLP 2026 ARR deadline (May 25, 2026), we adopt a focused design with four components built on the Search-R1 codebase:\n\n(1) **Retrieval-Grounded 3-Type Taxonomy**: Rather than directly inheriting question-level taxonomies (which mix reasoning structure with retrieval needs), we define three step types grounded in their retrieval requirements: **Bridge** (entity-connecting steps requiring semantic entity-relation matching → dense retrieval), **Comparison** (attribute-extracting steps requiring precise lexical matching of attributes and values → sparse retrieval), and **Skip** (deductive steps answerable from accumulated context → no retrieval). This taxonomy is grounded in but not identical to prior question-level classifications: DecompRC's bridge and intersection map to our Bridge type; DecompRC's comparison maps to our Comparison type. For 2WikiMultiHopQA (whose actual types are comparison, inference, compositional, and bridge_comparison — notably without a standalone 'bridge' type), compositional and inference questions primarily decompose into Bridge sub-steps, comparison questions into Comparison sub-steps, and bridge_comparison questions into a Bridge sub-step followed by a Comparison sub-step — this sub-step decomposition of bridge_comparison is precisely where our sub-step-level classification provides value over question-level approaches like BELLE.\n\n(2) **Step-Type Classifier**: A lightweight classification head on Qwen2.5-7B predicts the step type at each intermediate reasoning step. Warm-started using 2WikiMultiHopQA's built-in question-type metadata (mapped to our 3-type taxonomy at the sub-step level: each hop of a bridge_comparison question receives its own type label) combined with DecompRC's question decompositions on HotpotQA, yielding ~2K training examples without expensive GPT-4o silver labeling. We validate mapping quality on a 300-example human-annotated calibration set stratified across all type-dataset combinations (~50 per cell for 2 datasets × 3 types).\n\n(3) **Type-Conditioned Query Formulation**: The key novelty distinguishing StepRetriever from all prior routing approaches (R1-Router, Adaptive-RAG, Regime-Conditional, BridgeRAG) which use uniform or context-only query generation. Bridge steps generate entity-centric queries targeting relation completion (e.g., 'What is [bridge entity]'s [target relation]?'); Comparison steps generate parallel attribute-extraction queries (e.g., '[entity A] [comparison dimension]' and '[entity B] [comparison dimension]'); Skip steps bypass retrieval entirely. This directly addresses the empirical finding from StratRAG that bridge questions are harder for standard retrieval (Recall@2=0.67 vs. 0.70 overall) — entity-centric query reformulation should improve recall on bridge steps specifically.\n\n(4) **Dual Retriever Backend + Training**: E5 dense retriever (intfloat/e5-base-v2, Search-R1's default) for Bridge steps and BM25 sparse retriever (already supported as a pluggable component in Search-R1) for Comparison steps, plus a skip pathway. Training extends Search-R1's GRPO framework in two phases: Phase A warm-starts the step-type classifier on mapped labels (supervised cross-entropy, ~2h). Phase B fine-tunes the full pipeline (type prediction + query formulation + routing) via GRPO with answer F1 reward plus a soft type-consistency bonus comparing predictions against mapped labels. This avoids the need for manually annotated step-type ground truth while maintaining taxonomy grounding.\n\nEvaluated on HotpotQA (distractor setting) and 2WikiMultiHopQA. Key ablations: (a) explicit type classification vs. implicit routing (replicating R1-Router's approach in text-only setting), (b) type-conditioned query formulation vs. uniform query generation with type-based routing only (isolating query formulation contribution), (c) dual retriever vs. single E5 retriever (isolating retriever heterogeneity contribution). Per-type error analysis enabled by explicit classification — a key interpretability advantage over implicit routing approaches.\n\nWe acknowledge this is an integration contribution that unifies and extends partial solutions from BELLE (question-level type → operator), Adaptive-RAG (complexity → strategy depth), BridgeRAG (bridge-specific conditioning), Regime-Conditional (binary regime routing), and R1-Router (implicit per-step routing). The unique value is the combination of sub-step-level type classification, type-conditioned query formulation, and heterogeneous retriever routing in a single end-to-end RL framework, with interpretable per-type diagnostics.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~120-150h A100",
+      "gpu_utilization": "Moderate (~40-50%). GPU idles during classifier label mapping, integration testing, and paper writing. Search-R1 fork eliminates infrastructure setup.",
+      "timeline": "11 days (EMNLP 2026 ARR deadline May 25)",
+      "team": "1 researcher experienced with Search-R1 codebase and GRPO training",
+      "estimated_gpu_cost": "$180-225 (at ~$1.50/hr A100 spot pricing)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~130-170h A100",
+      "gpu_utilization": "Moderate-High (~60-70%). Agent handles BM25 index building, label mapping, GRPO training orchestration. Human reviews taxonomy mapping, calibration set, ablation priorities.",
+      "timeline": "9-11 days with 2 concurrent A100s",
+      "team": "1 researcher, ~2h/day reviewing taxonomy decisions, calibration set, and experiment results",
+      "claude_api_cost": "$80-200 (800-2000 agent turns at ~$0.10/turn)",
+      "estimated_gpu_cost": "$195-255",
+      "risk_note": "Primary risk is GRPO training convergence within the timeline. If type-consistency bonus destabilizes training, fall back to supervised-only classifier with GRPO for query formulation only. Secondary risk: 300-example calibration set may be insufficient if inter-annotator agreement is low on boundary cases."
+    },
+    "auto_research": {
+      "gpu_hours": "~200h A100 (explores taxonomy variants, retriever combinations, and ablation configs)",
+      "gpu_utilization": "High (~80-85%). Agent pipelines label mapping → classifier warmup → GRPO training → evaluation continuously.",
+      "timeline": "8-10 days with 2 concurrent A100s",
+      "team": "0 (initial setup: dataset download, E5 index verification, BM25 index building on Search-R1 fork)",
+      "claude_api_cost": "$150-350 (1500-3500 agent turns)",
+      "estimated_gpu_cost": "$275-325",
+      "speed_bottleneck": "GRPO training on Qwen2.5-7B: ~25-35h per run on single A100. With 2 A100s, main run + 3 ablations require ~7-8 days wall-clock.",
+      "risk_note": "Tight timeline — auto mode is recommended to parallelize ablation runs. If GRPO training does not converge within 2 runs, fall back to supervised classifier + Search-R1 base GRPO (no joint training), which still demonstrates type-conditioned query formulation benefit."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline: May 25, 2026; EMNLP commitment deadline: August 2, 2026; notification: August 20, 2026; Budapest, October 2026)",
+    "NAACL 2027 (fallback: if ARR May reviews suggest major revisions, revise and commit to NAACL 2027 via ARR October 2026 cycle)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning (COLM 2025, arXiv 2503.09516)",
+    "BELLE: A Bi-Level Multi-Agent Reasoning Framework for Multi-Hop Question Answering (ACL 2025, arXiv 2505.11811)",
+    "BridgeRAG: Training-Free Bridge-Conditioned Retrieval for Multi-Hop Question Answering (arXiv 2604.03384, April 2026)",
+    "Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA (arXiv 2604.09019, April 2026)",
+    "Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity (NAACL 2024, arXiv 2403.14403)",
+    "Mixture-of-Retrieval Experts (MoRE/R1-Router) for Reasoning-Guided Multimodal Knowledge Exploitation (SIGIR 2026, arXiv 2505.22095)",
+    "R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning (EMNLP 2025 Findings, arXiv 2505.23794)",
+    "StratRAG: A Multi-Hop Retrieval Evaluation Dataset for Retrieval-Augmented Generation Systems (arXiv 2604.22757, April 2026)",
+    "CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search (arXiv 2604.17555, April 2026)",
+    "LTRR: Learning To Rank Retrievers for LLMs (SIGIR 2025, arXiv 2506.13743)",
+    "HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation (ACL Findings 2025, arXiv 2502.12442)",
+    "DecompRC: Multi-hop Reading Comprehension through Decomposed Questions and Answers (ACL 2019)",
+    "Constructing A Multi-hop QA Dataset for Comprehensive Evaluation of Reasoning Steps (2WikiMultiHopQA, COLING 2020)",
+    "R3AG: Retriever Routing for Retrieval-Augmented Generation (arXiv 2604.22849, April 2026)",
+    "MoR: Better Handling Diverse Queries with a Mixture of Sparse, Dense, and Human Retrievers (EMNLP 2025)",
+    "ReaLM-Retrieve: When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models (SIGIR 2026)"
+  ],
+  "description": "StepRetriever addresses a specific integration gap at the intersection of five validated research threads that each implement partial solutions: BELLE classifies question types and selects reasoning operators but operates at question level with fixed BM25; Adaptive-RAG routes by query complexity to different retrieval depths but not by reasoning type; BridgeRAG demonstrates bridge conditioning selectively helps bridge_comparison queries (+2.55pp) but applies conditioning uniformly; Regime-Conditional Retrieval builds a binary hop-2 router but is limited to two regimes; and R1-Router routes to heterogeneous retrievers via implicit RL without interpretable type semantics or query conditioning. StepRetriever unifies and extends these: at each intermediate reasoning step, a lightweight classifier predicts one of three retrieval-grounded types (Bridge, Comparison, or Skip) and generates a type-conditioned retrieval query — Bridge steps produce entity-centric queries routed to E5 dense retrieval, Comparison steps produce attribute-extraction queries routed to BM25 sparse retrieval, and Skip steps bypass retrieval. The 3-type taxonomy is grounded in DecompRC's empirical findings and 2WikiMultiHopQA's built-in type metadata (comparison, inference, compositional, bridge_comparison), with sub-step-level mapping that decomposes bridge_comparison questions into a Bridge hop followed by a Comparison hop — precisely where sub-step classification adds value over question-level approaches. Built on Search-R1's modular infrastructure with Qwen2.5-7B, the system uses two-phase training: supervised classifier warmup on mapped labels from 2WikiMultiHopQA metadata and DecompRC decompositions, followed by end-to-end GRPO with answer F1 and type-consistency rewards. The key novel component is type-conditioned query formulation — no prior work conditions query generation strategy on classified reasoning type at the sub-step level. StepRetriever is an integration contribution: it does not introduce a fundamentally new paradigm but is the first system to combine sub-step-level type classification, type-conditioned query formulation, and heterogeneous retriever routing in an end-to-end RL framework, with interpretable per-type error diagnostics as a direct benefit of explicit classification. Evaluated on HotpotQA and 2WikiMultiHopQA with ablations isolating the contributions of type classification, type-conditioned query formulation, and dual-retriever routing. Designed for the EMNLP 2026 ARR May cycle (deadline May 25, 2026) with a focused scope leveraging Search-R1's existing infrastructure.",
+  "project_name": "step_type_cond_retrieval",
+  "source": "web_research"
+}
+```
+
+**Summary of changes (major revision):**
+
+1. **Venue fixed** → EMNLP 2026 (ARR May 25), with NAACL 2027 as fallback. Design simplified to fit 11-day timeline with ~150-200 A100-hours.
+
+2. **2WikiMultiHopQA taxonomy corrected** → Actual types (comparison, inference, compositional, bridge_comparison) used throughout. No false claim of standalone "bridge" type. Sub-step decomposition of bridge_comparison is now highlighted as a key advantage.
+
+3. **BELLE cited and positioned** → Key differentiator: sub-step level (not question level), retriever selection (not just operator selection), type-conditioned query formulation (BELLE uses fixed BM25).
+
+4. **BridgeRAG, Adaptive-RAG, Regime-Conditional, StratRAG, LTRR, CoSearch all cited** → BridgeRAG provides empirical motivation (+2.55pp selective benefit). Regime-Conditional is the closest prior work (binary router for hop-2). StratRAG provides retrieval-per-type benchmarking evidence.
+
+5. **Novelty reframed as integration contribution** → Explicitly acknowledged. Unique value: first system combining all three of sub-step type classification + type-conditioned query formulation + heterogeneous retriever routing in end-to-end RL.
+
+6. **Search-R1 corrected** → E5 dense retrieval (intfloat/e5-base-v2), not "BM25/dense."
+
+7. **Design simplified** → 3-type taxonomy (Bridge/Comparison/Skip), dual retriever (E5 + BM25 via Search-R1), Qwen2.5-7B (faster than Qwen3-8B), 2 datasets (dropped MuSiQue), no GPT-4o silver labeling (use 2WikiMultiHopQA metadata + DecompRC directly), 300-example calibration set (up from 200, stratified ~50/cell).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d44ce5cc-9bec-4f17-aea2-dbf5987b0490",
+  "isSidechain": false,
+  "requestId": "req_011Cb2p7FQorY3YiY9iCuxkg",
+  "type": "assistant",
+  "uuid": "1aaa2a5a-ac88-47cc-b757-b43629e14b64",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TvHiPofjrLcfJ3AAn6jqJG",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5341,
+      "cache_read_input_tokens": 53331,
+      "output_tokens": 6191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5341,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6191,
+          "cache_read_input_tokens": 53331,
+          "cache_creation_input_tokens": 5341,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5341
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 102_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Step-Type-Conditioned Retrieval for Multi-Hop Reasoning: Grounding Ret…",
+  "leafUuid": "1aaa2a5a-ac88-47cc-b757-b43629e14b64",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 103_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sub-step type-aware retriever routing for multi-hop QA",
+  "sessionId": "b73ac01f-4ea0-4f7e-86cb-ab70f99c4882"
+}
+```
+
+---

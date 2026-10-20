@@ -1,0 +1,9529 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-13 (UTC).** Your job: indep
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 132
+- **Recorded user turns:** 1
+- **Tool calls:** 41
+- **Original source:** `logs/chats/exported-trajectories/account-2/84793084-1f79-472a-b57e-3d60d8446cc2.jsonl`
+- **Structured JSON:** [`cda4d7c758965f562465.json`](../../sessions/cd/cda4d7c758965f562465.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-13T11:41:10.644Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T11:41:10.644Z",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-13 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).\nDirection：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 7/10)\n{\n  \"title\": \"PhaseOT: Mode-Aware Phase-Level Demonstration Quality Diagnosis via Structured Optimal Transport\",\n  \"core_problem\": \"How to diagnose demonstration quality at the task-phase granularity — identifying not just which demonstrations are noisy, but which specific phases (approach, grasp, transport, placement) are anomalous — in a mode-aware, unsupervised manner that uses distributional distances, preserves valid strategy diversity across multiple solution modes, and provides interpretable diagnostic profiles rather than opaque scalar scores or unstructured per-transition flags?\",\n  \"opportunity\": \"The demonstration curation field has matured rapidly (2024–2026), with methods now spanning dataset-level (Re-Mix), trajectory-level (DemInf, CUPID, QoQ, RINSE, Demo-SCORE), and transition-level (SCIZOR, CIQL) granularities. SARM (ICLR 2026) introduces stage-aware reward modeling with natural-language subtask annotations, achieving 83% success on T-shirt folding via Reward-Aligned BC. SCIZOR (ICRA 2026) represents the current transition-level frontier, achieving 54%/31% full/partial recovery behavior maintenance with 6-category diagnostic profiles.\\n\\nHowever, a critical capability gap remains: **no existing curation method discovers or accounts for multiple valid demonstration strategies.** This is the primary gap PhaseOT addresses, with phase-level OT as the enabling mechanism:\\n\\n(1) **Mode-aware scoring that preserves strategy diversity (primary contribution)**: Every existing curation method — DemInf, SCIZOR, RINSE, S2I, SARM, CUPID — treats demonstrations uniformly without discovering valid strategy modes. DemInf's global mutual information conflates minority strategies with noise. SCIZOR treats all demonstrations uniformly via progress prediction. SARM uses a single reward model without mode conditioning. RINSE assumes smoothness universally correlates with quality. Shi et al. (arXiv 2507.06219, Jul 2025) showed that 'spatial multimodality' (different trajectory paths) benefits policy learning while 'velocity multimodality' (same path at different speeds) is harmful, yielding 15% improvement from velocity debiasing alone — but no curation method exploits this distinction. In genuinely multimodal tasks (Push-T with left/right approaches, Kitchen with different subtask orderings), non-mode-aware methods systematically penalize minority strategies as outliers, effectively collapsing beneficial diversity. PhaseOT's mode discovery via phase-structured distances naturally separates beneficial strategic diversity from harmful execution noise.\\n\\n(2) **Semantic phase-level diagnosis vs. raw transition scores or global scalars**: Existing methods produce either trajectory-level scalars (DemInf, RINSE, CUPID) or per-transition flags with post-hoc categorical labeling (SCIZOR's 6 categories). SARM provides stage-aware reward scores but requires natural-language subtask annotations and a trained video-based reward model. PhaseOT produces structured diagnostic profiles at the semantic task-phase level unsupervised — each phase receives a distributional quality score, enabling targeted feedback ('demo #47's grasp phase is 3.2σ anomalous within its strategy mode'). This phase-level granularity maps directly to interpretable task stages and enables phase-level importance weighting that preserves good phases of otherwise-flagged demos.\\n\\n(3) **Distributional distances with known statistical properties**: SCIZOR's self-supervised progress predictor is a learned model with demonstrated effectiveness (52% detection rate on human-annotated failures). PhaseOT offers a complementary paradigm using Wasserstein distances within aligned phase segments, providing concentration inequalities for anomaly detection that formalize when phase decomposition improves detection power. The tradeoff: learned signals (SCIZOR) can be more task-adaptive; distributional distances (PhaseOT) provide policy-agnostic guarantees transferable across tasks without retraining. Both paradigms have strengths — PhaseOT's advantage is not that distributional distances are categorically 'better,' but that they naturally enable the mode-aware phase-level decomposition that learned predictors do not.\\n\\nThe phase-localized noise model underlying PhaseOT is well-supported empirically. SCIZOR's failure taxonomy documents phase-localized failure types: 'Manipulation Failure' during contact phases, 'Laggy Motion' during transport, 'Pause' during transitions, 'Stuck at Collision' during approach. RoboMimic's Tool Hang failure analysis documents: Insertion Miss, Failed Insertion, Failed Tool Grasp, Tool Drop — each mapping to a specific manipulation phase. To move beyond post-hoc interpretation, experiment E0 directly measures per-phase contamination distribution in RoboMimic MH datasets across operator proficiency tiers.\\n\\nRecent advances in temporal sub-task segmentation (RoboSubtaskNet, arXiv 2602.10015, achieving 91% task success with over-segmentation handling via transition-aware loss) validate that phase/sub-task decomposition is a maturing paradigm for manipulation, providing practical techniques for segmentation robustness that PhaseOT can leverage.\",\n  \"landscape\": \"The demonstration curation field has consolidated around methods at multiple granularity levels:\\n\\n**Trajectory-level, policy-dependent methods** (require training or evaluating a policy):\\n- CUPID (CoRL 2025): Influence functions on expected return from closed-loop rollouts. SOTA with <33% curated data on RoboMimic. +38% on real Franka tasks. Limitation: requires evaluation rollouts, architecture-specific.\\n- QoQ (ICRA 2026): Maximum influence scoring with trajectory-wise aggregation. 99.2% on RoboMimic Can. Limitation: requires validation set of known-good demos.\\n- DataMIL (May 2025): Datamodels for end-to-end policy-driven selection. 10% on MetaWorld 50 tasks. Limitation: requires multiple policy retrainings.\\n- Demo-SCORE (RSS 2025): Self-curation via online rollout classifiers. 15-35% on real-world ALOHA tasks. Limitation: policy-dependent, requires rollouts.\\n\\n**Trajectory-level, policy-agnostic methods** (no policy training needed):\\n- DemInf (RSS 2025): k-NN mutual information estimators on VAE embeddings. 5-10% on RoboMimic. Key limitation: global MI conflates valid strategy diversity with noise — in bimodal tasks (Push-T), demos from the minority strategy may receive low MI scores despite being high-quality executions of an alternative approach.\\n- RINSE (ICML 2025): Spectral Arc Length + Trajectory-Envelope Distance smoothness metrics. 16-20% on RoboMimic. Limitation: assumes smoothness universally correlates with quality.\\n- FAKTUAL (arXiv 2026): Signature-kernel entropy for diversity-aware curation. Shows RoboMimic Transport exhibits non-saturating entropy, indicating persistent per-demonstration diversity contribution.\\n\\n**Transition/segment-level methods** (finer than trajectory):\\n- SCIZOR (ICRA 2026): Self-supervised progress prediction + visual-action deduplication for transition-level filtering. +32.9% on Sirius-Fleet, +5.4% on RoboMimic, outperforms DemInf by 19.2% on Sirius-Fleet. Achieves partial trajectory recovery: 54% fully maintained, 31% partially maintained. Produces categorical diagnostic profiles with 6 categories (Laggy Motion, Manipulation Failure, Pause, Stuck at Collision, Move Back and Forth, False Positive). Self-supervised progress predictor achieves 52% detection rate on human-annotated failures. **Strongest practical baseline and primary comparison point for PhaseOT.** Limitations: (a) no mode discovery — treats all demonstrations uniformly, penalizing valid minority strategies, (b) per-transition binary flags with post-hoc categorical labels lack semantic phase-level interpretability, (c) learned progress signal is task-specific and requires retraining per domain.\\n- SARM (ICLR 2026): Stage-aware video-based reward modeling with natural-language subtask annotations for Reward-Aligned BC. 83% success on T-shirt folding (vs. 8% vanilla BC). **Key stage-aware comparison point.** Limitations: (a) requires manual natural-language subtask annotations (not unsupervised), (b) requires training a video-based reward model (not policy-agnostic in the same sense — uses a different model), (c) no mode awareness — single reward model without mode conditioning, (d) demonstrated primarily on deformable object tasks.\\n- S2I (ICRA 2025): Heuristic keyframe segmentation → supervised contrastive learning → kNN distance-weighted voting. +22.2% on Square with Diffusion Policy. Requires 3 expert reference demos per task (supervised).\\n- CIQL (Bu et al., IEEE RA-L 2024): Confidence-based Inverse soft-Q Learning for per-transition confidence scoring via dynamics evaluation.\\n- SDIL (KDD 2023): Skill disentanglement via latent variables + PU learning for per-skill optimality estimation.\\n- FLOAT within ARMADA (Wenye Yu et al., arXiv 2510.02298, Oct 2025): OT-based online failure detection during deployment via trajectory matching against expert demonstrations. ~95% failure detection accuracy. Distinct from PhaseOT: operates online during deployment (not offline curation), uses trajectory-level OT matching (not phase-structured), requires expert reference demonstrations (not unsupervised mode discovery). Complementary systems.\\n\\n**Demonstration diversity analysis**:\\n- Shi et al. (arXiv 2507.06219, Jul 2025): Critical distinction between spatial multimodality (different trajectory paths — beneficial, should be preserved) and velocity multimodality (different speeds on same path — harmful, should be filtered). Velocity debiasing yields 15% improvement = 2.5x more data equivalent. Directly motivates mode-aware quality assessment.\\n\\n**Trajectory repair** (constructive rather than eliminative, complementary):\\n- TBT trajectory repair (arXiv 2604.04225, Apr 2026): Temporal Behavior Tree-guided repair of imperfect demonstration segments. Repairs trajectory portions violating formal specifications rather than discarding them. Complementary to PhaseOT: repair modifies data, PhaseOT diagnoses and weights/filters.\\n\\n**Temporal sub-task segmentation** (relevant infrastructure):\\n- RoboSubtaskNet (arXiv 2602.10015, Feb 2026): Attention-enhanced temporal sub-task segmentation with transition-aware loss for over-segmentation suppression. F1@50=94.2% on RoboSubtask benchmark, ~91% task success on physical Kinova. Validates phase/sub-task segmentation maturity for manipulation; techniques applicable to PhaseOT's segmentation stage.\\n\\n**Data mixture optimization** (domain-level, complementary):\\n- Re-Mix (CoRL 2025): DRO-based mixture weight optimization. 38% over uniform on Open X-Embodiment.\\n\\n**Importance-weighted imitation learning** (how to USE quality scores):\\n- DWBC (ICML 2022): Discriminator-weighted offline IL — quality scores as per-sample BC weights.\\n- VACO (ICLR 2025): Value-aligned BC via bi-level optimization meta-scoring.\\n- RINSE exponential weighting: w(τ) = exp(-λ·q(τ)) shows Spearman ρ ≥ 0.89 with learned Re-Mix allocations.\\n\\n**OT in imitation learning** (applied to combination/reward/imitation, never phase-level quality diagnosis):\\n- Xu & Gould (CVPR 2024): Temporally Consistent Unbalanced OT for unsupervised action segmentation — validates temporal-OT principle.\\n- OTR (ICLR 2023), TemporalOT (NeurIPS 2024): OT for reward labeling.\\n- GWIL (ICLR 2022): Gromov-Wasserstein for cross-domain imitation.\\n- Pallage 2025 (arXiv 2504.12918): Sliced-Wasserstein for point-level outlier detection — static point clouds, no temporal structure.\\n\\n**Adapted Wasserstein distances** (theoretical inspiration — unexplored in robotics):\\n- Backhoff-Veraguas et al. (2017, 2020): Causal/bicausal OT for stochastic processes. PhaseOT's PW₂ is inspired by but distinct from this framework.\\n- Cheridito & Eckstein (Bernoulli 2025): Adapted distances for causal models.\\n- Moulos (IEEE CDC 2021): Bicausal OT for Markov chains via value iteration.\\n\\n**Gap**: No method provides (1) unsupervised mode-aware scoring that preserves strategy diversity (the primary gap), (2) semantic phase-level quality profiles without manual annotations, (3) distributional distances with known statistical properties for phase-localized anomaly detection. SARM addresses stage-awareness but requires annotations and reward model training, and lacks mode discovery. PhaseOT fills this gap by combining mode-aware scoring (primary contribution), phase-level OT (enabling mechanism), and distributional guarantees (theoretical foundation).\",\n  \"approach\": \"**Overview**: PhaseOT is a four-stage pipeline: (1) segment trajectories into semantically meaningful task phases, (2) compute a Phase-Structured Wasserstein Distance (PW₂) that restricts transport to respect phase alignment, (3) discover strategy modes and score quality within each mode using phase-level distributional profiles, (4) produce structured diagnostic profiles for downstream filtering, weighting, or re-demonstration guidance.\\n\\n**Stage 1 — Phase Segmentation**: Each demonstration τ of length T is segmented into K phases {P₁, ..., P_K} using one of three methods (compared as an ablation):\\n- *Heuristic keyframes*: Phase boundaries at gripper state changes (open↔close) and velocity near-zero events, following S2I's approach. Simple, interpretable, works for manipulation tasks with clear grasp/release events.\\n- *Bayesian Online Changepoint Detection (BOCPD)*: Statistical changepoint detection on the joint state-action stream, automatically discovering phase boundaries without gripper-state assumptions. More general, applicable to contact-rich tasks without discrete gripper events.\\n- *Uniform time windows*: Equal-duration segmentation into K windows. Simplest baseline — captures some phase-decomposition benefit without relying on any segmentation method, serving as a degraded but informative lower bound.\\nPhase boundaries are aligned across all demonstrations in a dataset using dynamic time warping on phase-discriminative features, ensuring comparable phases across demos. The number of phases K is validated against task semantics (typical manipulation: K=3–5 for approach/grasp/transport/place/retreat).\\n\\n**Segmentation Robustness Analysis (addresses reviewer concern)**: The entire PhaseOT pipeline depends on segmentation quality, so we include an explicit robustness characterization:\\n- *Over-segmentation (K too large)*: When BOCPD produces more phases than semantically warranted, PW₂ still functions correctly at finer granularity. Each sub-phase contains fewer timesteps, increasing per-phase W₂ variance but preserving the phase-alignment property. In the limit K→T, PW₂ reduces to per-timestep matching, recovering the structure of standard sequence comparison. The theoretical lower bound on global W₂ holds for any K.\\n- *Under-segmentation (K too small)*: When phases are too coarse, the phase-level advantage diminishes because anomaly signal is diluted within oversized phases. In the limit K=1, PW₂ reduces to global W₂ — no decomposition benefit, but no harm. This is the graceful degradation baseline.\\n- *K sensitivity*: We test K ∈ {2, 3, 4, 5, 6, 8} for each task and report downstream policy performance vs. K. Based on manipulation task structure, we expect a broad plateau at K=3–5 with degradation at extremes.\\n- *Phase alignment errors*: DTW alignment tolerance is bounded — we measure alignment quality as the fraction of phase boundaries that agree within ±10% of phase duration across demonstrations, and report performance conditional on alignment quality. For tasks where alignment fails (e.g., highly variable-length demonstrations), we fall back to uniform time windows.\\n- *Techniques from temporal segmentation literature*: RoboSubtaskNet (2026) demonstrates that transition-aware losses and Fibonacci dilation schedules effectively suppress over-segmentation in manipulation. We evaluate whether incorporating these techniques into BOCPD improves PhaseOT's segmentation quality.\\n\\n**Stage 2 — Phase-Structured Wasserstein Distance (PW₂)**: Each phase P_k of a demonstration τ is represented as a discrete probability measure μ_{τ,k} = (1/|P_k|) Σ_{t∈P_k} δ_{(s_t, a_t)} over state-action tuples within that phase. The Phase-Structured Wasserstein-2 distance between two demonstrations τ₁, τ₂ is:\\n\\n  PW²₂(τ₁, τ₂) = Σ_{k=1}^{K} w_k · W²₂(μ_{τ₁,k}, μ_{τ₂,k})\\n\\nwhere W²₂ is the standard Wasserstein-2 distance computed within each phase, and w_k are phase importance weights (uniform by default, with learned variants as ablation).\\n\\n**Clarification on relationship to adapted OT**: PW₂ is NOT the adapted/bicausal Wasserstein distance of Backhoff-Veraguas et al. (2017, 2020) or Moulos (2021). The adapted distance involves nested conditional optimization via dynamic programming. PW₂ is a simpler construction: it restricts admissible transport plans so that mass within phase k of one trajectory can only be transported to phase k of another, then sums the within-phase costs. This is inspired by the adapted OT literature's emphasis on respecting temporal causality but avoids the computational complexity of nested conditional optimization. The practical advantage: when noise is phase-localized (the common case in manipulation), PW₂ concentrates the anomaly signal in the affected phase rather than diluting it across the full trajectory.\\n\\nThe within-phase ground cost is:\\n  c((s₁,a₁), (s₂,a₂)) = w_pos·‖ψ(pos₁)-ψ(pos₂)‖² + w_rot·d_rot(rot₁,rot₂)² + w_grip·(g₁-g₂)² + w_act·‖ψ(a₁)-ψ(a₂)‖²\\nwhere ψ denotes z-score normalization per dimension, d_rot is geodesic distance for orientations, and weights {w_*} are set equal after normalization (with sensitivity analysis as ablation). For high-dimensional observation spaces, PCA reduces to 16-32D before cost computation.\\n\\n**Theoretical property**: PW₂ lower-bounds the global W₂ distance because the phase-alignment constraint restricts the set of admissible transport plans. When contamination is localized to a subset S ⊆ {1,...,K} of phases with |S| << K, the within-phase scores concentrate the anomaly signal in those phases. **Graceful degradation**: When contamination is uniformly distributed across all K phases (worst case for phase decomposition), PW₂ recovers the same detection power as global W₂.\\n\\n**Stage 3 — Mode Discovery and Phase-Level Scoring**:\\n- Compute pairwise PW₂ distance matrix over all demonstrations.\\n- Perform spectral clustering on the PW₂ affinity matrix (k selected via eigengap heuristic or silhouette analysis) to discover valid strategy modes. Mode discovery is a preprocessing step, not a claimed contribution — we use standard clustering. The key claim is that PW₂ distances provide better mode separation than trajectory-level distances because phase alignment respects the compositional structure of manipulation strategies.\\n- Within each mode m, compute the phase-level reference distribution b_{m,k} for each phase k as the Wasserstein barycenter of that phase across mode members, using the free-support IBP variant with fixed-point iteration of Cheng & Liu (arXiv 2603.07563, Mar 2026) for robustness to remaining outliers.\\n- Score each demonstration τ in mode m with a phase-level quality profile:\\n  q(τ) = (q₁(τ), ..., q_K(τ))  where  q_k(τ) = W₂(μ_{τ,k}, b_{m,k})\\n- Phase-level z-scores: z_k(τ) = (q_k(τ) - μ_{m,k}) / σ_{m,k} where μ_{m,k} and σ_{m,k} are the mean and std of q_k within mode m.\\n- The trajectory-level score is the weighted sum: Q(τ) = Σ_k w_k · q_k(τ).\\n\\n**Stage 4 — Diagnostic Profile and Downstream Use** (three usage modes compared experimentally):\\n- *Hard filtering*: Remove demos with Q(τ) exceeding an adaptive threshold (median + 2·MAD of intra-mode scores).\\n- *Soft importance weighting*: Use PW₂-derived scores as sample weights in behavioral cloning: L = Σ_τ Σ_{(s,a)∈τ} w(τ) · ℓ(π(s), a) where w(τ) = exp(-λ · Q(τ)).\\n- *Phase-level importance weighting (key differentiator)*: L = Σ_τ Σ_k Σ_{(s,a)∈P_k(τ)} w_k(τ) · ℓ(π(s), a) where w_k(τ) = exp(-λ · q_k(τ)). This preserves good phases of otherwise-flagged demos — if a demo's grasp phase is anomalous but its approach is clean, the approach segments still contribute with full weight. Unlike SCIZOR's transition-level filtering which removes individual state-action pairs based on progress prediction, PhaseOT's phase-level weighting operates at semantic granularity, maintaining temporal coherence within phases. Unlike SARM's reward-based weighting, PhaseOT's weights are distributional (no reward model or annotations required) and mode-conditioned.\\n- *Diagnostic report*: For each flagged demonstration, output a structured profile: mode assignment, per-phase z-scores, phase-level anomaly classification, and recommended action (re-demonstrate phase k, discard entirely, or retain with reduced weight).\\n\\n**Scalable computation (two-tier)**:\\n- Tier 1 — Exact Sinkhorn (datasets ≤500 demos): For each phase pair, entropy-regularized OT via POT/geomloss. RoboMimic 300 demos × K≈4 phases: 300²/2 × 4 = 180K Sinkhorn solves × ~2ms each ≈ 6 minutes on GPU.\\n- Tier 2 — Sliced Wasserstein (datasets >500 demos): O(N²·K·L·T_k log T_k) with L random projection directions per phase. No training required.\\n\\n**Theoretical analysis**: Two contributions:\\n(1) *Phase-specific concentration inequality (novel)*: Under a phase-specific contamination model where phase k has contamination rate ε_k ≤ ε, PW₂-based phase scoring achieves false-positive rate O(exp(-n·Δ²_k/K)) per phase, where Δ_k is the Wasserstein separation between clean and contaminated distributions in phase k. When noise is phase-localized (ε_k > 0 for few phases), the overall FPR is O(K_bad · exp(-n·Δ²_min)) which is strictly lower than the global FPR of O(exp(-n·δ²)) where δ < Δ_min due to cross-phase dilution. **Graceful degradation**: When contamination is uniform across all K phases, PW₂ recovers global W₂ detection power — the decomposition does not hurt.\\n(2) *Inherited guarantees*: Robust Wasserstein barycenter consistency (Cheng & Liu 2026), cost-invariant breakdown point (Gonzalez-Sanz & Avella Medina 2026), instantiated for per-phase barycenters.\\n\\n**Evaluation**: Fine-tune Diffusion Policy (primary) and ACT (secondary) on filtered/weighted subsets.\\n\\n*Benchmarks (chosen for documented natural multimodality and phase-localized failure modes)*:\\n- RoboMimic MH (Lift, Can, Square, Transport): 300 demos from 6 operators in 3 quality tiers.\\n- Push-T (Diffusion Policy benchmark): 206 human demos. Explicitly bimodal — left vs. right approach strategies.\\n- Franka Kitchen (D4RL): ~600 demos with combinatorial multimodality (different subtask orderings).\\n- LIBERO-10: 50 demos/task.\\n\\n*Main paper experiments (4 focused experiments + key ablations — designed for 8-page format)*:\\n\\n- **(E0) Phase-localized contamination validation**: Segment RoboMimic MH 'worse' and 'okay' operator data into phases. Measure per-phase Wasserstein deviation from 'better' operator data. Report phase-concentration ratio (fraction of total deviation in top-2 phases). This directly validates the phase-localized contamination assumption. If contamination proves uniformly distributed, the graceful degradation analysis applies but the phase-decomposition advantage argument weakens — we report this honestly.\\n\\n- **(E1) Push-T bimodal preservation — FLAGSHIP EXPERIMENT**: This is the decisive test for PhaseOT's primary contribution (mode-awareness). Three noise injection patterns with distinct predicted outcomes:\\n  (a) *Random noise* (20% random demos corrupted): All methods should improve over unfiltered. PhaseOT should match or slightly exceed baselines. Tests basic curation capability.\\n  (b) *Mode-correlated noise* (20% noise injected preferentially into the minority mode — e.g., 30% of right-approach demos corrupted, 10% of left-approach): Non-mode-aware methods (SCIZOR, DemInf, RINSE) should disproportionately remove clean minority-mode demos along with noisy ones, collapsing mode diversity. PhaseOT should discover both modes and selectively remove only noisy demos within each mode. **This is the paper-making comparison.**\\n  (c) *Phase-localized noise* (20% demos with corruption only in grasp phase): Tests the combined value of mode-awareness + phase-level diagnosis.\\n  For each pattern, report: (i) overall task success rate, (ii) mode preservation rate (fraction of valid left/right strategies retained), (iii) per-mode success rate, (iv) Wasserstein distance between policy action distributions and ground-truth bimodal distribution.\\n  **Statistical power**: With 206 demos and 20% noise injection, ~41 demos are corrupted. We use 5 random seeds per configuration, bootstrap resampling for confidence intervals, and paired significance tests (Wilcoxon signed-rank) between methods. The mode-correlated pattern (b) is designed to maximize the observable difference between mode-aware and non-mode-aware methods.\\n  **Expected effect size**: Shi et al. showed 15% improvement from velocity debiasing alone on multimodal tasks. Mode-aware quality scoring should yield comparable or larger gains on Push-T's explicitly bimodal distribution, because mode-correlated noise directly attacks the weakness of non-mode-aware methods.\\n\\n- **(E2) Phase-diagnosis accuracy**: On RoboMimic MH, inject controlled phase-localized noise (perturbations only to grasp phases in 20% of demos). Measure precision/recall of phase-level anomaly detection: can PhaseOT correctly identify WHICH phase is corrupted? Compare against SCIZOR's transition-level flags (which detect corrupted transitions without phase-level semantic labeling), SARM's stage-aware rewards (which require annotations), and DemInf (which cannot localize at all).\\n\\n- **(E3) Phase-level vs. transition-level recovery**: Compare PhaseOT's phase-level importance weighting against SCIZOR's transition-level filtering. Measure downstream policy performance under: (a) PhaseOT phase-level weighting, (b) SCIZOR transition filtering, (c) trajectory-level hard filtering, (d) no filtering. PhaseOT's advantage should come from semantic coherence (preserving temporally coherent phases rather than scattered transitions) and mode awareness, not from the existence of sub-trajectory capability.\\n\\n- **Key ablations (in main paper)**: (a) PW₂ vs. global W₂ (the critical ablation isolating phase decomposition value), (b) K sensitivity (K ∈ {2,3,4,5,6,8}), (c) with vs. without mode discovery.\\n\\n*Appendix experiments (full results, not required for main argument)*:\\n- (E4) Franka Kitchen ordering diversity retention\\n- (E5) PhaseOT → CUPID pipeline combination\\n- (E6) Graceful degradation with uniformly distributed noise\\n- Extended ablations: segmentation method comparison, ground cost sensitivity, Sinkhorn regularization, PCA dimensionality, mode count selection, phase importance weight learning, phase alignment quality analysis\\n\\n*Baselines (8 methods, with SCIZOR as primary)*: SCIZOR (primary — transition-level with 6-category diagnostics and partial recovery), SARM (stage-aware with annotations, where applicable), DemInf, S2I, RINSE, CUPID (policy-dependent upper bound) + unfiltered + random-subset + GlobalOT (PhaseOT without phase decomposition, key ablation).\\n\\n*Metrics*: Task success rate (primary), mode preservation rate (fraction of valid strategies retained — critical for E1), phase-level diagnosis precision/recall, phase-concentration ratio (E0), data utilization rate, sample efficiency curves, diagnostic profile interpretability (qualitative).\\n\\n**Differentiation from SCIZOR (ICRA 2026)**: SCIZOR's self-supervised progress predictor is a learned model that achieves 52% detection rate on human-annotated failures with 54%/31% full/partial recovery maintenance and 6-category diagnostic profiles. PhaseOT advances beyond SCIZOR in three specific dimensions: (a) mode-aware scoring that preserves strategy diversity vs. uniform treatment of all demonstrations — the decisive advantage on multimodal tasks, (b) semantic phase-level diagnostic profiles vs. per-transition flags with post-hoc categorical labels, (c) distributional distances with known statistical properties vs. learned task-specific signals. The tradeoff is that SCIZOR's learned signals can be more adaptive to task-specific progress patterns, while PhaseOT's distributional distances are more transferable across tasks and naturally enable mode decomposition. On non-multimodal tasks, we expect both methods to perform comparably; PhaseOT's advantage concentrates on tasks with genuine strategy diversity.\\n\\n**Differentiation from SARM (ICLR 2026)**: SARM is the closest stage-aware comparison point. Key distinctions: (a) SARM requires natural-language subtask annotations; PhaseOT is fully unsupervised, (b) SARM trains a video-based reward model; PhaseOT uses distributional distances requiring no model training, (c) SARM uses a single reward model without mode conditioning; PhaseOT discovers and scores within strategy modes, (d) SARM demonstrated on deformable object manipulation; PhaseOT targets rigid-object manipulation benchmarks. The methods represent complementary paradigms: SARM trades annotation effort for stronger reward signal; PhaseOT trades reward model expressiveness for unsupervised mode-aware operation.\\n\\n**Differentiation from FLOAT/ARMADA (arXiv 2510.02298)**: FLOAT uses OT for online deployment-time failure detection (~95% accuracy). PhaseOT is offline curation with phase-structured Wasserstein distances and unsupervised mode discovery. Complementary: PhaseOT curates training data, FLOAT monitors deployment.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~1400h A100 (PW₂ pipeline + phase segmentation: ~120h; E0 contamination validation: ~20h; Diffusion Policy training for main experiments — 8 baselines+ours+unfiltered × 4 benchmarks × 3 seeds: ~500h; ACT training for Kitchen: ~80h; evaluation rollouts: ~100h; flagship E1 with 3 noise patterns × 5 seeds: ~80h; E2-E3 experiments: ~100h; ablations including K sensitivity: ~180h; appendix experiments E4-E6: ~120h)\",\n      \"gpu_utilization\": \"~55% — realistic development overhead\",\n      \"timeline\": \"2.5-3.5 months (targeting AAAI 2027 abstract ~July 26, paper ~August 2)\",\n      \"team\": \"1-2 researchers (1 lead with OT/robotics background; 1 optional for parallel benchmark setup)\",\n      \"estimated_gpu_cost\": \"$2,100 (1400h × $1.50/h A100)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~1200h A100 (agent handles PW₂ pipeline, hyperparameter sweeps, Diffusion Policy training orchestration; reduced idle time)\",\n      \"gpu_utilization\": \"~80%\",\n      \"timeline\": \"5-8 weeks (comfortable for AAAI 2027)\",\n      \"team\": \"1 researcher, ~30-40min/day for reviewing phase segmentation quality, validating diagnostic profile interpretability, verifying mode discovery coherence, reviewing E0 contamination results, and approving experiment plans\",\n      \"claude_api_cost\": \"$200-400\",\n      \"estimated_gpu_cost\": \"$1,800 (1200h × $1.50/h)\",\n      \"risk_note\": \"Phase-specific concentration inequality proof requires careful mathematical reasoning; agent can draft proofs but human must verify.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~2200h A100 (3x ablation sweep: full grid over segmentation methods × cost weights × K values × regularization × PCA dims × phase-constrained/global × soft/hard/phase-level; additional seeds for statistical significance)\",\n      \"gpu_utilization\": \"~90%\",\n      \"timeline\": \"3-5 weeks with 4+ concurrent A100 GPUs\",\n      \"team\": \"0 researchers (initial setup: dataset paths, GPU access, simulation environments)\",\n      \"claude_api_cost\": \"$400-800\",\n      \"estimated_gpu_cost\": \"$3,300 (2200h × $1.50/h)\",\n      \"speed_bottleneck\": \"GPU count — Diffusion Policy runs parallelize; Kitchen/LIBERO rollouts are CPU-bound\",\n      \"risk_note\": \"Theoretical derivations require human verification; agent may over-explore segmentation configurations\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (abstract deadline ~July 26, paper deadline ~August 2, 2026 — estimated based on historical patterns; conference Feb 16-23, 2027 in Montréal — primary target with ~2.5 months development time)\",\n    \"ICLR 2027 (abstract deadline ~Sep 19, paper deadline ~Sep 24, 2026 — estimated; comfortable timeline allowing additional experiments or real-robot validation if AAAI timing is too tight)\",\n    \"CoRL 2026 workshop paper: Call for workshops posted April 29, 2026, but workshop-specific paper deadlines have NOT been announced. If a relevant workshop (data quality, demonstration curation, OT for robotics) is accepted with a deadline after July 2026, a focused 4-page submission is feasible covering Push-T bimodal results (E1) + RoboMimic phase diagnosis (E2) without full theoretical analysis. This cannot be guaranteed until workshop deadlines are announced.\",\n    \"CoRL 2027 (~May 2027 deadline — fallback with real-robot validation and expanded benchmarks)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)\",\n    \"Robot Data Curation with Mutual Information Estimators — DemInf (RSS 2025)\",\n    \"SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026) — primary comparison: transition-level filtering with 54%/31% recovery behavior maintenance, 6-category diagnostic profiles, self-supervised progress predictor with 52% detection rate, +32.9% on Sirius-Fleet\",\n    \"SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation (ICLR 2026) — stage-aware reward modeling with natural-language subtask annotations, Reward-Aligned BC, 83% success on T-shirt folding; key stage-aware comparison requiring annotations and reward model training\",\n    \"Quality over Quantity: Demonstration Curation via Influence Functions — QoQ (ICRA 2026)\",\n    \"Learning from the Best: Smoothness-Driven Metrics for Data Quality — RINSE (ICML 2025)\",\n    \"Select Segments to Imitate — S2I: Segment-Level Selection and Optimization (ICRA 2025, Chen et al.)\",\n    \"Aligning Human Intent from Imperfect Demonstrations with Confidence-based Inverse soft-Q Learning — CIQL (Bu et al., IEEE RA-L 2024)\",\n    \"Skill Disentanglement for Imitation Learning — SDIL (KDD 2023)\",\n    \"FLOAT within ARMADA (Wenye Yu et al., arXiv 2510.02298, Oct 2025) — OT-based online failure detection, complementary to PhaseOT's offline curation\",\n    \"Demo-SCORE: Curating Demonstrations using Online Experience (RSS 2025)\",\n    \"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (arXiv 2025)\",\n    \"Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning (CoRL 2025)\",\n    \"Is Diversity All You Need for Scalable Robotic Manipulation? (Shi et al., arXiv 2507.06219, Jul 2025) — spatial vs. velocity multimodality distinction, 15% from velocity debiasing\",\n    \"Diversity You Can Actually Measure — FAKTUAL (arXiv 2026) — signature-kernel entropy for demonstration diversity\",\n    \"Learning from Imperfect Demonstrations via Temporal Behavior Tree-Guided Trajectory Repair (arXiv 2604.04225, Apr 2026) — constructive segment-level repair, complementary to PhaseOT's diagnostic approach\",\n    \"RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer (arXiv 2602.10015, Feb 2026) — transition-aware over-segmentation suppression, F1@50=94.2%, validates phase segmentation maturity\",\n    \"Temporally Consistent Unbalanced Optimal Transport for Unsupervised Action Segmentation (Xu & Gould, CVPR 2024)\",\n    \"On Combining Expert Demonstrations in Imitation Learning via Optimal Transport (Sebag et al., NeurIPS OT Workshop 2021 / arXiv 2023)\",\n    \"Optimal Transport for Offline Imitation Learning — OTR (ICLR 2023)\",\n    \"Robot Policy Learning with Temporal Optimal Transport Reward (NeurIPS 2024)\",\n    \"Cross-Domain Imitation Learning via Optimal Transport — GWIL (ICLR 2022)\",\n    \"Sliced-Wasserstein Distance-based Data Selection — SWAD (Pallage & Lesage-Landry, arXiv 2025)\",\n    \"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion (Chi et al., RSS 2023 / IJRR 2025) — Push-T benchmark\",\n    \"Relay Policy Learning: Solving Long-Horizon Tasks via Imitation and RL (Gupta et al., CoRL 2019) — Franka Kitchen\",\n    \"Discriminator-Weighted Offline Imitation Learning — DWBC (Xu et al., ICML 2022)\",\n    \"Value-Aligned Behavior Cloning via Bi-level Optimization — VACO (ICLR 2025)\",\n    \"Causal Transport in Discrete Time and Applications (Backhoff-Veraguas et al., SIAM J. Optim. 2017)\",\n    \"Adapted Wasserstein Distances and Stability in Mathematical Finance (Backhoff-Veraguas et al., Finance & Stochastics 2020)\",\n    \"Optimal Transport and Wasserstein Distances for Causal Models (Cheridito & Eckstein, Bernoulli 2025)\",\n    \"Bicausal Optimal Transport for Markov Chains via Dynamic Programming (Moulos, IEEE CDC 2021)\",\n    \"Dynamical Wasserstein Barycenters for Time-series Modeling (Cheng et al., NeurIPS 2021)\",\n    \"Robust Wasserstein Barycenter (Cheng & Liu, arXiv 2603.07563, Mar 2026)\",\n    \"Outlier-Robust Optimal Transport (Nietert et al., AISTATS 2022)\",\n    \"Breakdown Properties of Optimal Transport Maps (Gonzalez-Sanz & Avella Medina, arXiv 2026)\",\n    \"Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024)\",\n    \"Consistency Matters: Defining Demonstration Data Quality Metrics (Sakr et al., ACM THRI 2024)\",\n    \"Robomimic: A Framework for Robot Learning from Demonstration (Mandlekar et al., CoRL 2021)\"\n  ],\n  \"description\": \"We propose PhaseOT, a policy-agnostic method for diagnosing demonstration quality at the task-phase granularity using a Phase-Structured Wasserstein Distance (PW₂) combined with mode-aware scoring. The primary contribution is mode-aware quality assessment: PhaseOT is the first demonstration curation method that discovers valid strategy modes and scores quality within each mode, preventing minority strategies from being penalized as outliers. Phase-structured optimal transport is the enabling mechanism that makes mode-aware decomposition natural.\\n\\n**Key methodological contributions:**\\n(1) *Mode-aware phase-level scoring (primary contribution)*: Spectral clustering on the pairwise PW₂ distance matrix discovers valid strategy modes (e.g., left vs. right approach in Push-T, different subtask orderings in Kitchen). Quality scoring is performed within each mode using robust Wasserstein barycenters per phase. This is a capability no existing curation method provides — SCIZOR, SARM, DemInf, RINSE, and S2I all treat demonstrations uniformly without mode awareness. The expected impact: on genuinely multimodal tasks, non-mode-aware methods systematically penalize minority strategies, effectively collapsing beneficial diversity that Shi et al. (2025) showed yields 15% improvement when properly preserved.\\n\\n(2) *Phase-Structured Wasserstein Distance (PW₂)*: PW₂(τ₁,τ₂) = Σ_k w_k · W₂²(μ_{τ₁,k}, μ_{τ₂,k}) restricts optimal transport couplings to respect phase alignment. This is NOT the adapted/bicausal Wasserstein distance of Backhoff-Veraguas et al. — PW₂ is a simpler phase-constrained transport inspired by the adapted OT literature's emphasis on temporal causality but practically motivated. The advantage: when noise is phase-localized (documented by SCIZOR's 6-category failure taxonomy, RoboMimic's Tool Hang analysis, and directly validated in experiment E0), PW₂ concentrates the anomaly signal in the affected phase.\\n\\n(3) *Phase-level importance weighting*: w_k(τ) = exp(-λ·q_k(τ)) preserves good phases of otherwise-flagged demos while downweighting anomalous phases coherently at semantic phase granularity. Unlike SCIZOR's transition-level filtering (per-state-action removal) and SARM's reward-based weighting (requires annotations and model training), PhaseOT's phase-level weighting is unsupervised and maintains temporal coherence within phases.\\n\\n(4) *Phase-specific concentration inequality*: Under a phase-specific ε-contamination model, PW₂ achieves lower false-positive rates than global W₂ when contamination is phase-localized, with graceful degradation when contamination is uniform.\\n\\n**Segmentation robustness**: The pipeline includes explicit robustness characterization with K sensitivity analysis (K ∈ {2,3,4,5,6,8}), over/under-segmentation behavior analysis, DTW alignment quality metrics, and fallback to uniform time windows. Over-segmentation preserves correctness at finer granularity; under-segmentation gracefully degrades to global W₂.\\n\\n**Differentiation from SCIZOR (ICRA 2026)**: SCIZOR's self-supervised progress predictor achieves 52% detection rate with 54%/31% full/partial recovery and 6 diagnostic categories. PhaseOT advances in three dimensions: (a) mode-aware scoring (decisive on multimodal tasks), (b) semantic phase-level profiles, (c) distributional distances with known statistical properties. The tradeoff: SCIZOR's learned signals can be more task-adaptive; PhaseOT's distributional distances are more transferable and naturally enable mode decomposition. On non-multimodal tasks, both methods should perform comparably; PhaseOT's advantage concentrates on tasks with genuine strategy diversity.\\n\\n**Differentiation from SARM (ICLR 2026)**: SARM validates stage-aware quality assessment (83% success on T-shirt folding via RA-BC) but requires natural-language subtask annotations and a trained video-based reward model, and lacks mode awareness. PhaseOT is fully unsupervised with mode-conditioned scoring. Complementary paradigms.\\n\\n**Evaluation**: Focused 8-page design with 4 main experiments: (E0) phase-localized contamination validation, (E1) Push-T bimodal preservation as FLAGSHIP — 3 noise injection patterns (random, mode-correlated, phase-localized) with mode preservation rate as the decisive metric, (E2) phase-diagnosis accuracy with injected phase noise, (E3) phase-level vs. transition-level recovery comparison. Appendix: E4 Kitchen ordering, E5 PhaseOT→CUPID pipeline, E6 graceful degradation. 8 baselines including SCIZOR (primary) and SARM (stage-aware comparison). Key ablations: PW₂ vs. global W₂, K sensitivity, with/without mode discovery.\\n\\nEstimated compute: ~1400 A100-hours. Primary target: AAAI 2027 (abstract ~July 26, paper ~August 2, 2026). Secondary: ICLR 2027 (~Sep 2026). CoRL 2026 workshop paper possible if workshop deadlines permit.\",\n  \"project_name\": \"phase_ot_diag\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL: Generator missed 3 major competing works that must be cited and compared against: (1) CUPID (CoRL 2025) — influence functions for robot data curation with strong empirical results, (2) DataMIL (May 2025, UT Austin) — policy-driven data selection validated on 60+ tasks including Open X-Embodiment, (3) DemInf (RSS 2025) — mutual information estimators for demo quality, 5-10% improvement on RoboMimic. All three are published at top robotics venues and directly compete with the proposed approach.\", \"Computational scalability is not adequately addressed: pairwise W2 distances require O(N²) Sinkhorn solves, each O(T² log T) per trajectory pair; Wasserstein barycenters are NP-hard in general and suffer a curse of dimensionality (exponential in state-action-time dimensionality). For datasets with thousands of demonstrations and high-dimensional robot states, this could be prohibitively expensive.\", \"GPU cost estimates are significantly underestimated: OpenVLA-OFT fine-tuning alone requires 8 A100s for 1-2 days (~192-384 A100h per run). With 4+ baselines (SCIZOR, QoQ, RINSE, unfiltered) × 2 models (OpenVLA-OFT, SmolVLA) × 2 benchmarks (RoboMimic, LIBERO) × multiple ablations, realistic compute is likely 1500-2500 A100h, not 400h.\", \"The claim 'naturally distinguishes noise from valid strategic diversity without separate mode identification steps' is misleading — k-Wasserstein-barycenter clustering IS a mode identification/discovery step. The approach does require choosing k (number of strategy modes) and running a clustering algorithm, which is precisely 'separate mode identification.'\", \"The theoretical contribution (provable outlier detection bounds under epsilon-contamination) assembles existing results from Robust Wasserstein Barycenter theory (arXiv Mar 2026) and Outlier-Robust OT (Mukherjee et al. 2021, Nietert et al. 2022) rather than deriving fundamentally new theory. This should be positioned as a novel application of existing theory, not as a theoretical contribution per se.\", \"CoRL 2026 timeline (17 days to abstract, 20 days to paper) is unrealistic for a from-scratch project. The user's requirement specifically targets CoRL 2026, but the proposal's own venue list relegates it to a stretch goal. AAAI 2027 and ICLR 2027 are more realistic but the user explicitly asked for CoRL 2026.\", \"No discussion of how the ground cost metric in state-action-time space should be designed — this is a critical design choice that significantly affects OT distances and is non-trivial for heterogeneous robot observation/action spaces (joint angles, gripper states, visual features have very different scales and semantics).\"]\nFeedback: To bring this to CoRL-acceptable quality, the Generator should: (1) **Add all missing baselines**: CUPID, DataMIL, and DemInf must be included in the landscape and experimental comparisons — these are published at CoRL 2025 and RSS 2025 and will be known to reviewers. (2) **Address computational scaling**: Propose concrete solutions — e.g., approximate OT via Wasserstein Wormhole embeddings for O(N) amortized distance computation, sliced Wasserstein distances instead of full W2, or subsampling strategies. Provide explicit complexity analysis for realistic dataset sizes (e.g., RoboMimic has ~200-300 demos per task, LIBERO has ~50 demos per task — compute actual wall-clock estimates). (3) **Fix the cost estimate**: Recalculate GPU hours accounting for VLA fine-tuning across all baseline conditions. Realistic estimates should be 1500-2500h A100 for manual mode, not 400h. (4) **Reframe theoretical contribution honestly**: Position as 'novel application of robust OT theory to trajectory quality scoring' rather than implying new theory. (5) **Design the ground cost metric explicitly**: Propose how to handle heterogeneous state-action-time dimensions (normalization, learned embeddings, or task-specific cost functions). (6) **Drop the misleading 'no mode identification' claim**: The k-barycenter clustering IS mode identification; instead, emphasize the advantage is that mode identification and quality scoring are unified in one principled OT framework. (7) **For CoRL 2026 feasibility**: The user should assess whether they already have partial implementation/results; if starting from scratch, target AAAI 2027 instead and be upfront about this.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL — CoRL 2026 venue mismatch: The user explicitly targets CoRL 2026 (abstract deadline May 26, 17 days away). The proposal honestly pivots to AAAI 2027 (~August 2026 deadline), but this directly contradicts the user's stated requirement. The user should be explicitly informed that CoRL 2026 is infeasible from scratch.\", \"Missing competing work — Demo-SCORE (RSS 2025, Chen et al.): Self-curation method using online rollout classifiers to filter heterogeneous demos, achieving 15-35% improvement. Policy-dependent but directly in the demo curation space and published at a top robotics venue. Must be cited and positioned against.\", \"Missing related work — Sebag et al. (arXiv 2307.10810, 2023): 'On Combining Expert Demonstrations via Optimal Transport' uses multi-marginal OT specifically to handle multimodal demonstration distributions. While it targets combination not quality scoring, it directly precedents OT-Consensus's use of OT for multimodal demo handling, reducing the novelty claim.\", \"Novelty pressure in extremely crowded field: With 8+ demo curation methods published in 2024-2026, reviewers at AAAI/ICLR will scrutinize what OT-Consensus adds beyond DemInf (also policy-agnostic, also uses information-theoretic scoring, 5-10% on RoboMimic). The multimodal handling advantage needs concrete empirical evidence, not just theoretical argument.\", \"Wasserstein Wormhole adaptation unvalidated: The Wormhole model (ICML 2024) was designed for point cloud distributions (single-cell biology), not state-action-time trajectory distributions with heterogeneous components (positions, rotations, gripper states). Training Wormhole on this novel domain may require significant adaptation and there's no guarantee the learned embeddings will preserve W2 structure for trajectory data.\", \"Theoretical contribution remains thin for top venues: Instantiating existing robust barycenter results (Le Gouic et al. 2026; Nietert et al. 2022) for trajectory noise models is honest but reviewers may view this as 'plugging in known results' rather than a theoretical contribution. Consider whether deriving tighter, trajectory-specific bounds (e.g., exploiting temporal structure) could strengthen this.\", \"Partial mismatch with user's RL-inspired direction: The user specifically mentioned borrowing RL ideas (experience replay buffer, using data itself to score actions). OT-Consensus uses distributional geometry rather than RL-inspired scoring. While the user acknowledged theoretical approaches are acceptable, the connection to the RL scoring intuition could be made more explicit.\", \"Missing Re-Mix (CoRL 2025) from landscape: Re-Mix optimizes data mixtures for large-scale IL via DRO, outperforming uniform weights by 38%. It operates at domain-level not trajectory-level, but is highly relevant as a data-centric approach to IL quality and should be cited.\"]\nFeedback: The proposal has improved substantially from Round 1 — cost estimates are realistic, the landscape is comprehensive, the theoretical contribution is honestly framed, and the ground cost metric is explicit. However, several issues prevent a pass:\n\n**Priority fixes:**\n\n1. **Address the CoRL 2026 impossibility directly**: State upfront that CoRL 2026 is infeasible from scratch. If the user has partial implementation or prior codebase, assess what can realistically be done in 17 days. Otherwise, confirm AAAI 2027 as the target and explain why.\n\n2. **Add Demo-SCORE, Sebag et al. 2023, and Re-Mix to the landscape**: Demo-SCORE (RSS 2025) is a direct competitor. Sebag et al. (2023) precedents OT for multimodal demos. Re-Mix (CoRL 2025) is a key data-centric IL work. All must be cited.\n\n3. **Strengthen the empirical differentiation story**: The biggest risk is 'why OT-Consensus over DemInf?' — both are policy-agnostic and evaluate on RoboMimic. Propose specific multimodal evaluation scenarios (e.g., tasks where demonstrations contain 2+ valid strategies like left-hand vs. right-hand grasps) where DemInf's global MI scoring would conflate valid diversity with noise, while OT-Consensus's mode-specific scoring would preserve it. This is the paper's strongest selling point and needs concrete experimental design.\n\n4. **Validate or scope Wasserstein Wormhole adaptation**: Acknowledge that applying Wormhole to trajectory distributions (heterogeneous state-action-time spaces) is a novel adaptation that may require architecture modifications. Consider sliced Wasserstein as a simpler, more reliable Tier 2 fallback and position Wormhole as optional.\n\n5. **Consider strengthening the theoretical contribution**: Instead of purely instantiating existing results, consider whether temporal structure in trajectories enables tighter outlier detection bounds (e.g., exploiting the Markov structure of sequential state-action pairs). Even a modest trajectory-specific result would elevate the theory from 'application' to 'contribution.'\n\n6. **Make the RL connection explicit**: Frame OT-based scoring as a principled formalization of the intuition behind experience replay prioritization — trajectories that are distributionally close to the consensus (barycenter) can be viewed as 'high-priority' experiences, while outliers are 'low-priority' ones to be downweighted. This connects to the user's original RL direction.\n\n**What's working well:** Comprehensive baseline comparison (6 methods), two-tier scaling, honest theoretical framing, explicit ground cost design, realistic cost estimates. The pre-filter pipeline idea (OT-Consensus → CUPID) is a compelling practical contribution that should be emphasized.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"CRITICAL — User requirement mismatch (CoRL 2026): The user explicitly targets CoRL 2026 (abstract deadline May 25-26, paper deadline May 28, i.e., 12-15 days from now). The proposal honestly acknowledges CoRL is infeasible and pivots to AAAI 2027. While this is intellectually honest, it directly violates the user's stated requirement. The user must be informed clearly that this idea cannot target CoRL 2026 from scratch.\", \"Novelty under pressure from crowded field: With 8+ demo curation methods published at top venues in 2024-2026, the bar for novelty is extremely high. The core contribution — Wasserstein barycenter clustering for mode-aware quality scoring — is a competent application of existing OT theory, but reviewers will ask: (1) Why is OT better than DemInf's simpler MI-based scoring? (2) Sebag et al. 2023 already combined OT with multimodal demonstrations. (3) Pallage 2025 (arXiv 2504.12918) independently proposes sliced-Wasserstein for data selection/filtering, showing the OT-for-filtering idea is not uniquely novel. The temporally-adapted distance is the most differentiating element, but it's an application of Backhoff-Veraguas et al. 2020 theory, not new theory.\", \"Empirical differentiation vs. DemInf is the make-or-break: Both OT-Consensus and DemInf are policy-agnostic and target similar benchmarks (RoboMimic, LIBERO). DemInf achieves 5-10% on RoboMimic. If OT-Consensus achieves similar or marginal improvements, the OT machinery will be viewed as unnecessary complexity. The synthetic multimodal experiments (E1-E3) are well-designed but risk being dismissed as constructed to favor the method. Real-world tasks where multimodality naturally arises and DemInf fails would be far more convincing, but finding such tasks is itself a research challenge.\", \"RL-PER connection is superficial: The claimed connection between OT-consensus scoring and prioritized experience replay (Schaul et al. 2016) is a stretch. PER prioritizes by TD error (a model-dependent signal reflecting learning progress), while OT-Consensus scores by distributional distance to barycenter (a model-free geometric signal). These are fundamentally different: one measures what the model needs to learn, the other measures statistical typicality. Calling barycenter distance 'analogous to TD error' is misleading. This weakens the paper's connection to the user's RL-inspired direction.\", \"Theoretical contribution remains incremental: The 'inherited guarantees' (applying Cheng & Liu 2026, Nietert et al. 2022, Gonzalez-Sanz & Avella Medina 2026) are honest applications of existing results. The novel phase-specific contamination model is a genuine contribution but is narrow — it assumes a particular contamination structure (phase-localized noise) that may not hold in practice. Reviewers may ask: when does phase-localized noise actually occur in real robot datasets?\", \"Missing comparison against SCIZOR on Sirius-Fleet: SCIZOR achieves 15.4% average improvement and outperforms DemInf by 19.2% on Sirius-Fleet — this is the strongest baseline in the field. The proposal lists SCIZOR as a baseline but doesn't discuss whether OT-Consensus's theoretical advantages translate to beating SCIZOR's practical results on large-scale datasets.\", \"Lightspeed Geometric Dataset Distance (ICML 2025) miscited: The proposal cites this as 'ICLR 2025' but it was published at ICML 2025. Minor but damages credibility if not corrected.\", \"Cost estimate tension: The proposal budgets OpenVLA-OFT full fine-tuning at '4 runs × 250h = 1000h' but each run requires 8 A100s for 1-2 days = 192-384h per run. 4 runs × ~300h = ~1200h just for full fine-tuning, already exceeding the line item. Additionally, running 7 baselines on 2 benchmarks with 2 VLA models could easily require 20+ fine-tuning runs, pushing total compute well beyond 2000h.\"]\nFeedback: The proposal has improved substantially across three rounds — the landscape is now among the most comprehensive I've seen, the approach is precisely specified, and the theoretical framing is honest. However, several issues prevent a pass:\n\n**Priority 1 — Address the venue mismatch decisively**: The user asked for CoRL 2026 (12-15 days away). This idea cannot target CoRL 2026 from scratch. State this unambiguously and either (a) propose a drastically scoped-down version that could be submitted in 12 days (e.g., a workshop paper at CoRL with preliminary results on 1-2 tasks), or (b) confirm AAAI 2027 as the target and explain the timeline advantage.\n\n**Priority 2 — Sharpen the DemInf differentiation**: The paper lives or dies on whether it demonstrably outperforms DemInf on tasks where multimodality matters. Instead of only synthetic multimodal experiments, identify at least one naturally multimodal task in existing benchmarks where DemInf's global MI conflates strategy diversity with noise. RoboMimic Transport with multiple operators is promising — quantify the expected advantage concretely.\n\n**Priority 3 — Drop or de-emphasize the PER analogy**: The connection between barycenter distance and TD error is too thin to be a 'contribution.' Demote it to a paragraph in the discussion section rather than a key methodological contribution. Instead, if the user wants an RL connection, consider: OT-scores as importance weights in an offline IL objective (formalize this as weighted behavioral cloning with OT-derived weights, which has a cleaner theoretical connection to importance-weighted regression).\n\n**Priority 4 — Strengthen or reframe the theory**: The phase-specific contamination model is the most novel theoretical element. To make it a real contribution, prove tighter concentration inequalities for the adapted score under the Markov structure (not just the additive decomposition). Alternatively, if the math doesn't yield substantially tighter bounds, position the theory honestly as 'applying robust OT tools to trajectories yields useful guarantees' and lean harder on empirical contributions.\n\n**Priority 5 — Fix the cost estimate**: Recalculate OpenVLA-OFT full fine-tuning costs (8×A100, 1-2 days per run). Budget 2500-3000h A100 for manual mode to be safe, not 2000h.\n\n**Priority 6 — Fix the ICML/ICLR citation**: Lightspeed Geometric Dataset Distance is ICML 2025, not ICLR 2025.\n\n**What's working well**: The comprehensive landscape, honest positioning against each related work, the two-tier OT computation strategy, the pre-filter pipeline idea, and the explicit ground cost metric design. The multimodal differentiation experiments (E1-E3) are well-designed. The honest assessment of CoRL infeasibility shows research maturity.\n\n### Round 4 review\nVerdict: revise\nIssues: [\"CRITICAL — CoRL 2026 venue mismatch persists: The user explicitly targets CoRL 2026 (abstract deadline May 26, 13 days away). The proposal correctly identifies CoRL as infeasible and pivots to AAAI 2027, which is intellectually honest but still violates the user's stated requirement. This has been flagged in all 3 previous reviews. The user must explicitly acknowledge and accept the venue change, or the idea needs to be scoped down to a 4-page CoRL workshop paper with preliminary results.\", \"SCIZOR overlap on partial trajectory recovery (NEW): SCIZOR (ICRA 2026) explicitly operates at the transition level (state-action pair level) and already achieves partial trajectory recovery — their paper states '54% of recovery behaviors are fully maintained, 31% partially maintained.' This directly overlaps with PhaseOT's claimed unique capability of 'preserving good phases of otherwise-flagged demonstrations.' The proposal lists SCIZOR as a baseline but does not acknowledge this overlap. PhaseOT must differentiate: (a) SCIZOR uses heuristic progress prediction, PhaseOT uses principled distributional distances; (b) SCIZOR filters individual transitions, PhaseOT produces semantically meaningful phase-level quality profiles; (c) PhaseOT has theoretical guarantees SCIZOR lacks. But the claim of unique partial recovery capability must be revised.\", \"Phase-localized contamination model assumption needs justification: The novel phase-specific concentration inequality assumes noise is phase-localized (ε_k > 0 for few k, ε_k ≈ 0 for most). When does this actually hold in real robot datasets? In practice, noisy demonstrations may exhibit distributed degradation (operator fatigue, teleoperation latency) rather than phase-localized failures (only the grasp fails). The proposal should provide evidence from existing datasets (e.g., RoboMimic MH proficiency levels) that phase-localized noise is common, or acknowledge this as a limitation with graceful degradation analysis.\", \"Empirical differentiation vs. SCIZOR is the new make-or-break: Previous reviews focused on differentiating from DemInf. Now that SCIZOR's transition-level capabilities are clear, PhaseOT must demonstrate clear advantages over SCIZOR on at least one dimension: (1) multimodal handling (SCIZOR doesn't discover modes), (2) diagnostic interpretability (SCIZOR doesn't produce phase-level quality profiles), or (3) theoretical guarantees translating to practical gains. Experiment E1 (Push-T bimodal preservation) is well-designed for this but needs to explicitly include SCIZOR as the primary baseline, not just DemInf.\", \"Adapted Wasserstein distance formulation is simplified in a potentially misleading way: The proposed AW₂(τ₁, τ₂) = Σ_k W₂²(μ_{τ₁,k}, μ_{τ₂,k}) is a phase-aligned additive decomposition, NOT the full adapted/bicausal Wasserstein distance of Backhoff-Veraguas et al. The adapted distance in the mathematical finance literature involves constraints on the filtration structure and conditional distributions, not simply an additive decomposition over time segments. The proposal should clarify that this is an 'adapted-inspired' decomposition motivated by the causal structure of trajectories, not a direct application of the full adapted OT framework. Over-claiming the connection to adapted OT theory could draw reviewer criticism.\", \"Missing CIQL reference verification: The proposal cites 'CIQL (2024): Confidence-based per-transition quality scoring via dynamics evaluation' but I could not find any paper matching this exact name/description. This reference should be verified or removed — a fabricated citation would be fatal at review.\", \"Cost estimate minor issue — GPU utilization in manual mode (55%) seems low: With 1500h at 55% utilization, actual billed time would be much higher. Modern cloud billing is per-second, so utilization mainly affects timeline, not cost. But the $2,250 estimate assumes 1500 effective GPU-hours at $1.50/h, which is reasonable if using spot instances.\"]\nFeedback: The proposal has improved dramatically across four rounds — the landscape is now among the most comprehensive in the demo curation field, the approach is precisely specified, and the experimental design targets unique capabilities. However, several issues prevent a pass:\n\n**Priority 1 — Acknowledge and differentiate from SCIZOR's transition-level capabilities**: SCIZOR already filters at the state-action pair level and achieves partial trajectory recovery. PhaseOT's differentiation should focus on: (a) semantically meaningful phase-level diagnosis (not individual transitions), (b) mode-aware scoring that handles multimodality, (c) theoretical guarantees for outlier detection, and (d) principled distributional distances vs. heuristic progress signals. Revise the 'unique capability' claims for partial recovery to acknowledge SCIZOR's prior work.\n\n**Priority 2 — Clarify the adapted OT formulation**: The additive phase decomposition AW₂ = Σ_k W₂² is inspired by but not identical to the full adapted/bicausal OT of Backhoff-Veraguas et al. Be precise: this is a 'temporally-constrained transport' that restricts transport plans to respect phase boundaries, motivated by the adapted OT literature. Don't over-claim the mathematical pedigree — reviewers familiar with adapted OT theory will notice.\n\n**Priority 3 — Justify the phase-localized contamination model**: Provide concrete evidence from existing datasets (e.g., analyze RoboMimic MH multi-operator data) showing that common failure modes ARE phase-localized. If the evidence is mixed, add a graceful degradation analysis: what happens to PhaseOT's guarantees when noise is distributed across phases?\n\n**Priority 4 — Verify CIQL reference**: I could not find this paper. If it doesn't exist, remove it. If it's under a different name, correct the citation.\n\n**Priority 5 — Address the venue mismatch**: The user asked for CoRL 2026. This idea targets AAAI 2027 at earliest. Either (a) propose a drastically scoped CoRL workshop paper (4 pages, Push-T + Can only, if workshop deadlines permit), or (b) explicitly inform the user that CoRL 2026 is impossible and get buy-in for AAAI 2027.\n\n**What's working well**: The Phase-OT framing is cleaner and more focused than previous OT-Consensus versions. The experimental design (especially E1 bimodal preservation and E3 phase-diagnosis validation) targets genuine unique capabilities. The two-tier computation strategy is practical. The theoretical contribution (phase-specific concentration) is the right kind of novelty for a top venue — non-trivial but not over-claiming. The honest assessment of venue feasibility shows research maturity.\n\n### Round 5 review\nVerdict: revise\nIssues: [\"CRITICAL — FIDeL is a fabricated reference: No paper titled 'FIDeL: Failure Identification in Demonstration Learning via OT' exists. The closest match is FLOAT (within the ARMADA system, arXiv 2510.02298), which uses OT for online failure detection during deployment. The proposal must either correct this citation to FLOAT/ARMADA or remove it entirely. A fabricated citation would be fatal at peer review.\", \"CRITICAL — CoRL 2026 venue mismatch persists (5th consecutive flag): The user explicitly targets CoRL 2026. Abstract deadline is May 26 (13 days away), paper deadline May 29 (16 days away), and the organizers state 'deadlines are final.' The proposal correctly identifies this as infeasible and pivots to AAAI 2027 (~late July 2026, confirmed via historical patterns). While intellectually honest, this still does not satisfy the user's stated requirement. The user must explicitly accept this venue change.\", \"Cheng & Liu (2026) algorithm misdescription: The proposal describes their robust Wasserstein barycenter method as using an 'iterative reweighting scheme.' Verification shows it actually uses a free-support variant of Iterative Bregman Projections with fixed-point iteration — the term 'reweighting' does not appear in the paper. This mischaracterization, while minor, could draw reviewer scrutiny if they check the reference.\", \"FAKTUAL diversity claim overstated: The proposal states 'RoboMimic Transport has highest demonstration diversity' citing FAKTUAL. The actual paper shows Transport's entropy 'does not saturate,' indicating greater per-demo novelty than Can, but does not make a blanket 'highest diversity' declaration across all benchmarks. The claim should be qualified.\", \"Empirical advantage over SCIZOR remains the central uncertainty: SCIZOR already achieves transition-level filtering with categorical diagnostic profiles (Laggy Motion, Manipulation Failure, Pause, Stuck at Collision, Move Back and Forth — 6 categories, not 4 as stated). PhaseOT's claimed advantages (semantic phase-level vs. transition-level, mode-awareness, distributional guarantees) are theoretically well-motivated but the practical superiority is uncertain. Experiment E3 (phase-level vs. transition-level recovery) is the right experiment to run, but until results exist, this is the paper's biggest risk.\", \"The phase-localized contamination model evidence is indirect: The proposal argues that SCIZOR's failure taxonomy and RoboMimic's Tool Hang analysis document phase-localized failures. This is true but these are post-hoc interpretations of observed failure modes, not direct measurements of contamination distribution in training datasets. The graceful degradation analysis (recovering trajectory-level performance when contamination is distributed) partially mitigates this concern but the core assumption needs stronger empirical validation — e.g., actually measuring the phase-localized vs. distributed noise ratio in RoboMimic MH datasets.\", \"Minor: SCIZOR has 6 suboptimal type categories, not 4 as listed in the proposal (missing 'Move Back and Forth' and 'False Positive'). The 'Laggy Motion' label is from the v2 revision; v1 used 'Slow Motion.' These are minor accuracy issues but matter for credibility.\"]\nFeedback: The proposal has matured significantly across 5 rounds — the landscape is now genuinely best-in-class, the approach is precisely specified, the experimental design targets unique capabilities, and the theoretical claims are honestly scoped. However, several issues prevent a pass:\n\n**Priority 1 — Fix the fabricated FIDeL citation**: Replace with the correct citation: FLOAT within ARMADA (Wenye Yu et al., arXiv 2510.02298, Oct 2025). FLOAT uses OT for online deployment-time failure detection via per-timestep trajectory matching against expert demonstrations. The key distinction from PhaseOT is: FLOAT operates online during deployment (not offline curation), uses trajectory-level OT matching (not phase-structured), and requires expert references (not unsupervised mode discovery).\n\n**Priority 2 — Resolve the CoRL 2026 impossibility**: This has been flagged 5 consecutive times. Options: (a) Accept AAAI 2027 as the target and explicitly state this to the user with a clear timeline advantage explanation (~2.5 months of development time); (b) If a CoRL 2026 workshop paper is desired, note that workshop submission deadlines have not been announced yet and cannot be guaranteed; (c) Propose a concrete scoped-down plan for CoRL 2026 workshops: 4-page paper, Push-T + RoboMimic Can only, preliminary PW₂ results without full mode discovery or theoretical analysis.\n\n**Priority 3 — Fix reference accuracy issues**: (a) Correct Cheng & Liu algorithm description from 'iterative reweighting scheme' to 'free-support IBP variant with fixed-point iteration'; (b) Qualify the FAKTUAL diversity claim; (c) Update SCIZOR's category count from 4 to 6 and note the Laggy/Slow Motion naming difference.\n\n**Priority 4 — Strengthen the SCIZOR differentiation narrative**: SCIZOR is the primary competitor and its capabilities are stronger than the proposal acknowledges. The differentiation should be sharpened: (a) PhaseOT produces phase-level quality profiles (approach=nominal, grasp=3.2σ anomalous) vs. SCIZOR's per-transition binary flags + post-hoc categorical labels; (b) PhaseOT's mode discovery prevents penalizing minority strategies, which SCIZOR cannot do; (c) PhaseOT's distributional distances have concentration guarantees, while SCIZOR's progress prediction is heuristic. But acknowledge honestly that SCIZOR already achieves partial trajectory recovery, so PhaseOT's advantage must come from the quality of recovery (semantic coherence) and mode awareness, not the existence of sub-trajectory capability.\n\n**Priority 5 — Provide direct evidence for phase-localized contamination**: Rather than relying on post-hoc interpretation of SCIZOR's failure taxonomy, propose a concrete measurement: analyze RoboMimic MH 'worse' and 'okay' operator data by segmenting into phases and measuring per-phase deviation from 'better' operator data. Report whether contamination is indeed phase-concentrated. This would transform the assumption from 'reasonable intuition' to 'empirically grounded hypothesis.'\n\n**What's working well**: The Phase-Structured Wasserstein Distance (PW₂) is a clean, well-motivated formulation. The mode discovery + per-mode scoring addresses a genuine gap. The experimental design (especially E1 bimodal preservation, E2 phase-diagnosis accuracy, E3 phase vs. transition recovery) targets PhaseOT's unique capabilities. The two-tier computation strategy is practical. The honest positioning against adapted OT theory shows research maturity.\n\n### Round 6 review\nVerdict: revise\nIssues: [\"CoRL 2026 venue mismatch (6th consecutive flag): The user explicitly targets CoRL 2026 (abstract May 26, 13 days away; paper May 29, 16 days; organizers state deadlines are final). The proposal correctly identifies this as infeasible and targets AAAI 2027. This is the right call — but the user's stated requirement is not met. CoRL 2026 workshop paper remains possible but workshop-specific deadlines are not yet announced (call for workshops posted April 29, 2026). The user must explicitly accept this venue change.\", \"Impact uncertainty in crowded field: With SCIZOR (ICRA 2026, +15.4% average, +32.9% on Sirius-Fleet), CUPID (CoRL 2025, <33% curated data suffices), DemInf (RSS 2025), RINSE (ICML 2025), Demo-SCORE (RSS 2025), QoQ (2026), DataMIL (2025), and FAKTUAL (2026) all published at top venues, the bar for demonstrating clear practical improvement is very high. PhaseOT's unique selling points (mode-awareness, phase-level profiles) may not translate to large success rate gains if most benchmarks don't have strong multimodality or phase-localized noise.\", \"Experiment scope vs. page limit tension: The proposal defines 6 key experiments (E0-E6), 8 baselines, 4 benchmarks, 9 ablation dimensions, 2 policy architectures, and a theoretical analysis section. Fitting this into 8 pages (CoRL/AAAI format) while maintaining clarity is extremely challenging. Some experiments may need to be demoted to appendix, but which ones are core vs. supplementary should be decided upfront.\", \"Phase segmentation robustness is under-discussed: The entire PhaseOT pipeline depends critically on phase segmentation quality. For heuristic keyframes, gripper-state changes work for pick-and-place but not for non-prehensile manipulation (pushing, sliding). For BOCPD, the choice of hazard function and observation model significantly affects detected changepoints. Misaligned phase boundaries across demonstrations would corrupt PW₂ distances — the DTW-based alignment step is mentioned but its failure modes are not analyzed.\", \"Push-T multimodal experiment (E1) may be the strongest selling point but is also the most fragile: Push-T has only 206 demonstrations with documented bimodality (left vs. right approach). With 20% noise injection, only ~41 demos are noisy. Spectral clustering must reliably separate 2 modes from ~165 clean + ~41 noisy demos — if the noise demos happen to cluster with one mode, the mode-awareness advantage disappears. The proposal should discuss statistical power and sensitivity to noise injection patterns.\", \"Minor: The proposal claims SCIZOR's progress prediction is 'heuristic' — but SCIZOR's self-supervised progress predictor, while not based on distributional distances, is trained end-to-end on the data and achieves 52% detection rate on human-annotated failures. Calling it 'heuristic' vs. PhaseOT's 'principled' distances may not resonate with reviewers who view learned predictors as stronger than hand-designed distances.\"]\nFeedback: The proposal has matured dramatically across 6 rounds — the landscape coverage is genuinely best-in-class, all previous reference issues are resolved, the SCIZOR differentiation is precise, and the theoretical positioning is honest. The average score of 3.75 is close to the 4.0 threshold but impact drags it down. Here are focused suggestions to close the gap:\n\n**Priority 1 — Strengthen the impact narrative with a concrete 'killer experiment'**: The proposal's strongest unique capability is mode-aware scoring. Design E1 (Push-T bimodal preservation) as the flagship experiment with multiple noise injection patterns (random, mode-correlated, phase-localized) and report: (a) mode preservation rate, (b) per-mode success rate, (c) overall success rate. If PhaseOT preserves both modes while SCIZOR collapses the minority mode, that's a paper-making result. Quantify the expected effect size: Shi et al. showed 15% from velocity debiasing alone — mode-aware quality scoring could yield comparable gains on genuinely multimodal tasks.\n\n**Priority 2 — Tighten the experimental scope for 8 pages**: Prioritize E0 (validates the assumption), E1 (flagship multimodal), E2 (phase diagnosis accuracy), and E3 (phase vs. transition recovery). Move E4 (Kitchen ordering), E5 (pipeline combination), and E6 (graceful degradation) to appendix. This focuses the main paper on the three unique claims: phase-localized contamination is real (E0), mode-awareness matters (E1), phase-level diagnosis works (E2), and phase-level recovery beats transition-level (E3).\n\n**Priority 3 — Address phase segmentation robustness**: Add a brief analysis of segmentation failure modes. What happens when BOCPD over-segments (too many phases) or under-segments (phases too coarse)? Include a sensitivity analysis of downstream policy performance vs. number of detected phases K. This preempts a likely reviewer concern.\n\n**Priority 4 — Resolve the venue mismatch**: Given that this has been flagged 6 times: (a) confirm AAAI 2027 as the primary target, (b) if the user wants CoRL 2026 presence, note that workshop-specific paper deadlines have not been announced and propose a concrete 4-page workshop plan (Push-T + RoboMimic Can only, PW₂ + mode discovery results, no full theoretical analysis), (c) CoRL 2027 as a fallback with real-robot validation.\n\n**What's working well and should be preserved**: Comprehensive landscape (30+ references, all verified), honest theoretical positioning (PW₂ vs. adapted OT), precise SCIZOR differentiation (6 categories, 54%/31% recovery acknowledged), E0 contamination validation experiment, graceful degradation analysis, two-tier computation strategy, realistic cost estimates.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T11:41:10.648Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-13T11:41:10.648Z",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+## Round 1
+
+130 recorded events
+
+### User
+
+_source line 3 · 2026-05-13T11:41:10.674Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-13 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).
+Direction：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 7/10)
+{
+  "title": "PhaseOT: Mode-Aware Phase-Level Demonstration Quality Diagnosis via Structured Optimal Transport",
+  "core_problem": "How to diagnose demonstration quality at the task-phase granularity — identifying not just which demonstrations are noisy, but which specific phases (approach, grasp, transport, placement) are anomalous — in a mode-aware, unsupervised manner that uses distributional distances, preserves valid strategy diversity across multiple solution modes, and provides interpretable diagnostic profiles rather than opaque scalar scores or unstructured per-transition flags?",
+  "opportunity": "The demonstration curation field has matured rapidly (2024–2026), with methods now spanning dataset-level (Re-Mix), trajectory-level (DemInf, CUPID, QoQ, RINSE, Demo-SCORE), and transition-level (SCIZOR, CIQL) granularities. SARM (ICLR 2026) introduces stage-aware reward modeling with natural-language subtask annotations, achieving 83% success on T-shirt folding via Reward-Aligned BC. SCIZOR (ICRA 2026) represents the current transition-level frontier, achieving 54%/31% full/partial recovery behavior maintenance with 6-category diagnostic profiles.\n\nHowever, a critical capability gap remains: **no existing curation method discovers or accounts for multiple valid demonstration strategies.** This is the primary gap PhaseOT addresses, with phase-level OT as the enabling mechanism:\n\n(1) **Mode-aware scoring that preserves strategy diversity (primary contribution)**: Every existing curation method — DemInf, SCIZOR, RINSE, S2I, SARM, CUPID — treats demonstrations uniformly without discovering valid strategy modes. DemInf's global mutual information conflates minority strategies with noise. SCIZOR treats all demonstrations uniformly via progress prediction. SARM uses a single reward model without mode conditioning. RINSE assumes smoothness universally correlates with quality. Shi et al. (arXiv 2507.06219, Jul 2025) showed that 'spatial multimodality' (different trajectory paths) benefits policy learning while 'velocity multimodality' (same path at different speeds) is harmful, yielding 15% improvement from velocity debiasing alone — but no curation method exploits this distinction. In genuinely multimodal tasks (Push-T with left/right approaches, Kitchen with different subtask orderings), non-mode-aware methods systematically penalize minority strategies as outliers, effectively collapsing beneficial diversity. PhaseOT's mode discovery via phase-structured distances naturally separates beneficial strategic diversity from harmful execution noise.\n\n(2) **Semantic phase-level diagnosis vs. raw transition scores or global scalars**: Existing methods produce either trajectory-level scalars (DemInf, RINSE, CUPID) or per-transition flags with post-hoc categorical labeling (SCIZOR's 6 categories). SARM provides stage-aware reward scores but requires natural-language subtask annotations and a trained video-based reward model. PhaseOT produces structured diagnostic profiles at the semantic task-phase level unsupervised — each phase receives a distributional quality score, enabling targeted feedback ('demo #47's grasp phase is 3.2σ anomalous within its strategy mode'). This phase-level granularity maps directly to interpretable task stages and enables phase-level importance weighting that preserves good phases of otherwise-flagged demos.\n\n(3) **Distributional distances with known statistical properties**: SCIZOR's self-supervised progress predictor is a learned model with demonstrated effectiveness (52% detection rate on human-annotated failures). PhaseOT offers a complementary paradigm using Wasserstein distances within aligned phase segments, providing concentration inequalities for anomaly detection that formalize when phase decomposition improves detection power. The tradeoff: learned signals (SCIZOR) can be more task-adaptive; distributional distances (PhaseOT) provide policy-agnostic guarantees transferable across tasks without retraining. Both paradigms have strengths — PhaseOT's advantage is not that distributional distances are categorically 'better,' but that they naturally enable the mode-aware phase-level decomposition that learned predictors do not.\n\nThe phase-localized noise model underlying PhaseOT is well-supported empirically. SCIZOR's failure taxonomy documents phase-localized failure types: 'Manipulation Failure' during contact phases, 'Laggy Motion' during transport, 'Pause' during transitions, 'Stuck at Collision' during approach. RoboMimic's Tool Hang failure analysis documents: Insertion Miss, Failed Insertion, Failed Tool Grasp, Tool Drop — each mapping to a specific manipulation phase. To move beyond post-hoc interpretation, experiment E0 directly measures per-phase contamination distribution in RoboMimic MH datasets across operator proficiency tiers.\n\nRecent advances in temporal sub-task segmentation (RoboSubtaskNet, arXiv 2602.10015, achieving 91% task success with over-segmentation handling via transition-aware loss) validate that phase/sub-task decomposition is a maturing paradigm for manipulation, providing practical techniques for segmentation robustness that PhaseOT can leverage.",
+  "landscape": "The demonstration curation field has consolidated around methods at multiple granularity levels:\n\n**Trajectory-level, policy-dependent methods** (require training or evaluating a policy):\n- CUPID (CoRL 2025): Influence functions on expected return from closed-loop rollouts. SOTA with <33% curated data on RoboMimic. +38% on real Franka tasks. Limitation: requires evaluation rollouts, architecture-specific.\n- QoQ (ICRA 2026): Maximum influence scoring with trajectory-wise aggregation. 99.2% on RoboMimic Can. Limitation: requires validation set of known-good demos.\n- DataMIL (May 2025): Datamodels for end-to-end policy-driven selection. 10% on MetaWorld 50 tasks. Limitation: requires multiple policy retrainings.\n- Demo-SCORE (RSS 2025): Self-curation via online rollout classifiers. 15-35% on real-world ALOHA tasks. Limitation: policy-dependent, requires rollouts.\n\n**Trajectory-level, policy-agnostic methods** (no policy training needed):\n- DemInf (RSS 2025): k-NN mutual information estimators on VAE embeddings. 5-10% on RoboMimic. Key limitation: global MI conflates valid strategy diversity with noise — in bimodal tasks (Push-T), demos from the minority strategy may receive low MI scores despite being high-quality executions of an alternative approach.\n- RINSE (ICML 2025): Spectral Arc Length + Trajectory-Envelope Distance smoothness metrics. 16-20% on RoboMimic. Limitation: assumes smoothness universally correlates with quality.\n- FAKTUAL (arXiv 2026): Signature-kernel entropy for diversity-aware curation. Shows RoboMimic Transport exhibits non-saturating entropy, indicating persistent per-demonstration diversity contribution.\n\n**Transition/segment-level methods** (finer than trajectory):\n- SCIZOR (ICRA 2026): Self-supervised progress prediction + visual-action deduplication for transition-level filtering. +32.9% on Sirius-Fleet, +5.4% on RoboMimic, outperforms DemInf by 19.2% on Sirius-Fleet. Achieves partial trajectory recovery: 54% fully maintained, 31% partially maintained. Produces categorical diagnostic profiles with 6 categories (Laggy Motion, Manipulation Failure, Pause, Stuck at Collision, Move Back and Forth, False Positive). Self-supervised progress predictor achieves 52% detection rate on human-annotated failures. **Strongest practical baseline and primary comparison point for PhaseOT.** Limitations: (a) no mode discovery — treats all demonstrations uniformly, penalizing valid minority strategies, (b) per-transition binary flags with post-hoc categorical labels lack semantic phase-level interpretability, (c) learned progress signal is task-specific and requires retraining per domain.\n- SARM (ICLR 2026): Stage-aware video-based reward modeling with natural-language subtask annotations for Reward-Aligned BC. 83% success on T-shirt folding (vs. 8% vanilla BC). **Key stage-aware comparison point.** Limitations: (a) requires manual natural-language subtask annotations (not unsupervised), (b) requires training a video-based reward model (not policy-agnostic in the same sense — uses a different model), (c) no mode awareness — single reward model without mode conditioning, (d) demonstrated primarily on deformable object tasks.\n- S2I (ICRA 2025): Heuristic keyframe segmentation → supervised contrastive learning → kNN distance-weighted voting. +22.2% on Square with Diffusion Policy. Requires 3 expert reference demos per task (supervised).\n- CIQL (Bu et al., IEEE RA-L 2024): Confidence-based Inverse soft-Q Learning for per-transition confidence scoring via dynamics evaluation.\n- SDIL (KDD 2023): Skill disentanglement via latent variables + PU learning for per-skill optimality estimation.\n- FLOAT within ARMADA (Wenye Yu et al., arXiv 2510.02298, Oct 2025): OT-based online failure detection during deployment via trajectory matching against expert demonstrations. ~95% failure detection accuracy. Distinct from PhaseOT: operates online during deployment (not offline curation), uses trajectory-level OT matching (not phase-structured), requires expert reference demonstrations (not unsupervised mode discovery). Complementary systems.\n\n**Demonstration diversity analysis**:\n- Shi et al. (arXiv 2507.06219, Jul 2025): Critical distinction between spatial multimodality (different trajectory paths — beneficial, should be preserved) and velocity multimodality (different speeds on same path — harmful, should be filtered). Velocity debiasing yields 15% improvement = 2.5x more data equivalent. Directly motivates mode-aware quality assessment.\n\n**Trajectory repair** (constructive rather than eliminative, complementary):\n- TBT trajectory repair (arXiv 2604.04225, Apr 2026): Temporal Behavior Tree-guided repair of imperfect demonstration segments. Repairs trajectory portions violating formal specifications rather than discarding them. Complementary to PhaseOT: repair modifies data, PhaseOT diagnoses and weights/filters.\n\n**Temporal sub-task segmentation** (relevant infrastructure):\n- RoboSubtaskNet (arXiv 2602.10015, Feb 2026): Attention-enhanced temporal sub-task segmentation with transition-aware loss for over-segmentation suppression. F1@50=94.2% on RoboSubtask benchmark, ~91% task success on physical Kinova. Validates phase/sub-task segmentation maturity for manipulation; techniques applicable to PhaseOT's segmentation stage.\n\n**Data mixture optimization** (domain-level, complementary):\n- Re-Mix (CoRL 2025): DRO-based mixture weight optimization. 38% over uniform on Open X-Embodiment.\n\n**Importance-weighted imitation learning** (how to USE quality scores):\n- DWBC (ICML 2022): Discriminator-weighted offline IL — quality scores as per-sample BC weights.\n- VACO (ICLR 2025): Value-aligned BC via bi-level optimization meta-scoring.\n- RINSE exponential weighting: w(τ) = exp(-λ·q(τ)) shows Spearman ρ ≥ 0.89 with learned Re-Mix allocations.\n\n**OT in imitation learning** (applied to combination/reward/imitation, never phase-level quality diagnosis):\n- Xu & Gould (CVPR 2024): Temporally Consistent Unbalanced OT for unsupervised action segmentation — validates temporal-OT principle.\n- OTR (ICLR 2023), TemporalOT (NeurIPS 2024): OT for reward labeling.\n- GWIL (ICLR 2022): Gromov-Wasserstein for cross-domain imitation.\n- Pallage 2025 (arXiv 2504.12918): Sliced-Wasserstein for point-level outlier detection — static point clouds, no temporal structure.\n\n**Adapted Wasserstein distances** (theoretical inspiration — unexplored in robotics):\n- Backhoff-Veraguas et al. (2017, 2020): Causal/bicausal OT for stochastic processes. PhaseOT's PW₂ is inspired by but distinct from this framework.\n- Cheridito & Eckstein (Bernoulli 2025): Adapted distances for causal models.\n- Moulos (IEEE CDC 2021): Bicausal OT for Markov chains via value iteration.\n\n**Gap**: No method provides (1) unsupervised mode-aware scoring that preserves strategy diversity (the primary gap), (2) semantic phase-level quality profiles without manual annotations, (3) distributional distances with known statistical properties for phase-localized anomaly detection. SARM addresses stage-awareness but requires annotations and reward model training, and lacks mode discovery. PhaseOT fills this gap by combining mode-aware scoring (primary contribution), phase-level OT (enabling mechanism), and distributional guarantees (theoretical foundation).",
+  "approach": "**Overview**: PhaseOT is a four-stage pipeline: (1) segment trajectories into semantically meaningful task phases, (2) compute a Phase-Structured Wasserstein Distance (PW₂) that restricts transport to respect phase alignment, (3) discover strategy modes and score quality within each mode using phase-level distributional profiles, (4) produce structured diagnostic profiles for downstream filtering, weighting, or re-demonstration guidance.\n\n**Stage 1 — Phase Segmentation**: Each demonstration τ of length T is segmented into K phases {P₁, ..., P_K} using one of three methods (compared as an ablation):\n- *Heuristic keyframes*: Phase boundaries at gripper state changes (open↔close) and velocity near-zero events, following S2I's approach. Simple, interpretable, works for manipulation tasks with clear grasp/release events.\n- *Bayesian Online Changepoint Detection (BOCPD)*: Statistical changepoint detection on the joint state-action stream, automatically discovering phase boundaries without gripper-state assumptions. More general, applicable to contact-rich tasks without discrete gripper events.\n- *Uniform time windows*: Equal-duration segmentation into K windows. Simplest baseline — captures some phase-decomposition benefit without relying on any segmentation method, serving as a degraded but informative lower bound.\nPhase boundaries are aligned across all demonstrations in a dataset using dynamic time warping on phase-discriminative features, ensuring comparable phases across demos. The number of phases K is validated against task semantics (typical manipulation: K=3–5 for approach/grasp/transport/place/retreat).\n\n**Segmentation Robustness Analysis (addresses reviewer concern)**: The entire PhaseOT pipeline depends on segmentation quality, so we include an explicit robustness characterization:\n- *Over-segmentation (K too large)*: When BOCPD produces more phases than semantically warranted, PW₂ still functions correctly at finer granularity. Each sub-phase contains fewer timesteps, increasing per-phase W₂ variance but preserving the phase-alignment property. In the limit K→T, PW₂ reduces to per-timestep matching, recovering the structure of standard sequence comparison. The theoretical lower bound on global W₂ holds for any K.\n- *Under-segmentation (K too small)*: When phases are too coarse, the phase-level advantage diminishes because anomaly signal is diluted within oversized phases. In the limit K=1, PW₂ reduces to global W₂ — no decomposition benefit, but no harm. This is the graceful degradation baseline.\n- *K sensitivity*: We test K ∈ {2, 3, 4, 5, 6, 8} for each task and report downstream policy performance vs. K. Based on manipulation task structure, we expect a broad plateau at K=3–5 with degradation at extremes.\n- *Phase alignment errors*: DTW alignment tolerance is bounded — we measure alignment quality as the fraction of phase boundaries that agree within ±10% of phase duration across demonstrations, and report performance conditional on alignment quality. For tasks where alignment fails (e.g., highly variable-length demonstrations), we fall back to uniform time windows.\n- *Techniques from temporal segmentation literature*: RoboSubtaskNet (2026) demonstrates that transition-aware losses and Fibonacci dilation schedules effectively suppress over-segmentation in manipulation. We evaluate whether incorporating these techniques into BOCPD improves PhaseOT's segmentation quality.\n\n**Stage 2 — Phase-Structured Wasserstein Distance (PW₂)**: Each phase P_k of a demonstration τ is represented as a discrete probability measure μ_{τ,k} = (1/|P_k|) Σ_{t∈P_k} δ_{(s_t, a_t)} over state-action tuples within that phase. The Phase-Structured Wasserstein-2 distance between two demonstrations τ₁, τ₂ is:\n\n  PW²₂(τ₁, τ₂) = Σ_{k=1}^{K} w_k · W²₂(μ_{τ₁,k}, μ_{τ₂,k})\n\nwhere W²₂ is the standard Wasserstein-2 distance computed within each phase, and w_k are phase importance weights (uniform by default, with learned variants as ablation).\n\n**Clarification on relationship to adapted OT**: PW₂ is NOT the adapted/bicausal Wasserstein distance of Backhoff-Veraguas et al. (2017, 2020) or Moulos (2021). The adapted distance involves nested conditional optimization via dynamic programming. PW₂ is a simpler construction: it restricts admissible transport plans so that mass within phase k of one trajectory can only be transported to phase k of another, then sums the within-phase costs. This is inspired by the adapted OT literature's emphasis on respecting temporal causality but avoids the computational complexity of nested conditional optimization. The practical advantage: when noise is phase-localized (the common case in manipulation), PW₂ concentrates the anomaly signal in the affected phase rather than diluting it across the full trajectory.\n\nThe within-phase ground cost is:\n  c((s₁,a₁), (s₂,a₂)) = w_pos·‖ψ(pos₁)-ψ(pos₂)‖² + w_rot·d_rot(rot₁,rot₂)² + w_grip·(g₁-g₂)² + w_act·‖ψ(a₁)-ψ(a₂)‖²\nwhere ψ denotes z-score normalization per dimension, d_rot is geodesic distance for orientations, and weights {w_*} are set equal after normalization (with sensitivity analysis as ablation). For high-dimensional observation spaces, PCA reduces to 16-32D before cost computation.\n\n**Theoretical property**: PW₂ lower-bounds the global W₂ distance because the phase-alignment constraint restricts the set of admissible transport plans. When contamination is localized to a subset S ⊆ {1,...,K} of phases with |S| << K, the within-phase scores concentrate the anomaly signal in those phases. **Graceful degradation**: When contamination is uniformly distributed across all K phases (worst case for phase decomposition), PW₂ recovers the same detection power as global W₂.\n\n**Stage 3 — Mode Discovery and Phase-Level Scoring**:\n- Compute pairwise PW₂ distance matrix over all demonstrations.\n- Perform spectral clustering on the PW₂ affinity matrix (k selected via eigengap heuristic or silhouette analysis) to discover valid strategy modes. Mode discovery is a preprocessing step, not a claimed contribution — we use standard clustering. The key claim is that PW₂ distances provide better mode separation than trajectory-level distances because phase alignment respects the compositional structure of manipulation strategies.\n- Within each mode m, compute the phase-level reference distribution b_{m,k} for each phase k as the Wasserstein barycenter of that phase across mode members, using the free-support IBP variant with fixed-point iteration of Cheng & Liu (arXiv 2603.07563, Mar 2026) for robustness to remaining outliers.\n- Score each demonstration τ in mode m with a phase-level quality profile:\n  q(τ) = (q₁(τ), ..., q_K(τ))  where  q_k(τ) = W₂(μ_{τ,k}, b_{m,k})\n- Phase-level z-scores: z_k(τ) = (q_k(τ) - μ_{m,k}) / σ_{m,k} where μ_{m,k} and σ_{m,k} are the mean and std of q_k within mode m.\n- The trajectory-level score is the weighted sum: Q(τ) = Σ_k w_k · q_k(τ).\n\n**Stage 4 — Diagnostic Profile and Downstream Use** (three usage modes compared experimentally):\n- *Hard filtering*: Remove demos with Q(τ) exceeding an adaptive threshold (median + 2·MAD of intra-mode scores).\n- *Soft importance weighting*: Use PW₂-derived scores as sample weights in behavioral cloning: L = Σ_τ Σ_{(s,a)∈τ} w(τ) · ℓ(π(s), a) where w(τ) = exp(-λ · Q(τ)).\n- *Phase-level importance weighting (key differentiator)*: L = Σ_τ Σ_k Σ_{(s,a)∈P_k(τ)} w_k(τ) · ℓ(π(s), a) where w_k(τ) = exp(-λ · q_k(τ)). This preserves good phases of otherwise-flagged demos — if a demo's grasp phase is anomalous but its approach is clean, the approach segments still contribute with full weight. Unlike SCIZOR's transition-level filtering which removes individual state-action pairs based on progress prediction, PhaseOT's phase-level weighting operates at semantic granularity, maintaining temporal coherence within phases. Unlike SARM's reward-based weighting, PhaseOT's weights are distributional (no reward model or annotations required) and mode-conditioned.\n- *Diagnostic report*: For each flagged demonstration, output a structured profile: mode assignment, per-phase z-scores, phase-level anomaly classification, and recommended action (re-demonstrate phase k, discard entirely, or retain with reduced weight).\n\n**Scalable computation (two-tier)**:\n- Tier 1 — Exact Sinkhorn (datasets ≤500 demos): For each phase pair, entropy-regularized OT via POT/geomloss. RoboMimic 300 demos × K≈4 phases: 300²/2 × 4 = 180K Sinkhorn solves × ~2ms each ≈ 6 minutes on GPU.\n- Tier 2 — Sliced Wasserstein (datasets >500 demos): O(N²·K·L·T_k log T_k) with L random projection directions per phase. No training required.\n\n**Theoretical analysis**: Two contributions:\n(1) *Phase-specific concentration inequality (novel)*: Under a phase-specific contamination model where phase k has contamination rate ε_k ≤ ε, PW₂-based phase scoring achieves false-positive rate O(exp(-n·Δ²_k/K)) per phase, where Δ_k is the Wasserstein separation between clean and contaminated distributions in phase k. When noise is phase-localized (ε_k > 0 for few phases), the overall FPR is O(K_bad · exp(-n·Δ²_min)) which is strictly lower than the global FPR of O(exp(-n·δ²)) where δ < Δ_min due to cross-phase dilution. **Graceful degradation**: When contamination is uniform across all K phases, PW₂ recovers global W₂ detection power — the decomposition does not hurt.\n(2) *Inherited guarantees*: Robust Wasserstein barycenter consistency (Cheng & Liu 2026), cost-invariant breakdown point (Gonzalez-Sanz & Avella Medina 2026), instantiated for per-phase barycenters.\n\n**Evaluation**: Fine-tune Diffusion Policy (primary) and ACT (secondary) on filtered/weighted subsets.\n\n*Benchmarks (chosen for documented natural multimodality and phase-localized failure modes)*:\n- RoboMimic MH (Lift, Can, Square, Transport): 300 demos from 6 operators in 3 quality tiers.\n- Push-T (Diffusion Policy benchmark): 206 human demos. Explicitly bimodal — left vs. right approach strategies.\n- Franka Kitchen (D4RL): ~600 demos with combinatorial multimodality (different subtask orderings).\n- LIBERO-10: 50 demos/task.\n\n*Main paper experiments (4 focused experiments + key ablations — designed for 8-page format)*:\n\n- **(E0) Phase-localized contamination validation**: Segment RoboMimic MH 'worse' and 'okay' operator data into phases. Measure per-phase Wasserstein deviation from 'better' operator data. Report phase-concentration ratio (fraction of total deviation in top-2 phases). This directly validates the phase-localized contamination assumption. If contamination proves uniformly distributed, the graceful degradation analysis applies but the phase-decomposition advantage argument weakens — we report this honestly.\n\n- **(E1) Push-T bimodal preservation — FLAGSHIP EXPERIMENT**: This is the decisive test for PhaseOT's primary contribution (mode-awareness). Three noise injection patterns with distinct predicted outcomes:\n  (a) *Random noise* (20% random demos corrupted): All methods should improve over unfiltered. PhaseOT should match or slightly exceed baselines. Tests basic curation capability.\n  (b) *Mode-correlated noise* (20% noise injected preferentially into the minority mode — e.g., 30% of right-approach demos corrupted, 10% of left-approach): Non-mode-aware methods (SCIZOR, DemInf, RINSE) should disproportionately remove clean minority-mode demos along with noisy ones, collapsing mode diversity. PhaseOT should discover both modes and selectively remove only noisy demos within each mode. **This is the paper-making comparison.**\n  (c) *Phase-localized noise* (20% demos with corruption only in grasp phase): Tests the combined value of mode-awareness + phase-level diagnosis.\n  For each pattern, report: (i) overall task success rate, (ii) mode preservation rate (fraction of valid left/right strategies retained), (iii) per-mode success rate, (iv) Wasserstein distance between policy action distributions and ground-truth bimodal distribution.\n  **Statistical power**: With 206 demos and 20% noise injection, ~41 demos are corrupted. We use 5 random seeds per configuration, bootstrap resampling for confidence intervals, and paired significance tests (Wilcoxon signed-rank) between methods. The mode-correlated pattern (b) is designed to maximize the observable difference between mode-aware and non-mode-aware methods.\n  **Expected effect size**: Shi et al. showed 15% improvement from velocity debiasing alone on multimodal tasks. Mode-aware quality scoring should yield comparable or larger gains on Push-T's explicitly bimodal distribution, because mode-correlated noise directly attacks the weakness of non-mode-aware methods.\n\n- **(E2) Phase-diagnosis accuracy**: On RoboMimic MH, inject controlled phase-localized noise (perturbations only to grasp phases in 20% of demos). Measure precision/recall of phase-level anomaly detection: can PhaseOT correctly identify WHICH phase is corrupted? Compare against SCIZOR's transition-level flags (which detect corrupted transitions without phase-level semantic labeling), SARM's stage-aware rewards (which require annotations), and DemInf (which cannot localize at all).\n\n- **(E3) Phase-level vs. transition-level recovery**: Compare PhaseOT's phase-level importance weighting against SCIZOR's transition-level filtering. Measure downstream policy performance under: (a) PhaseOT phase-level weighting, (b) SCIZOR transition filtering, (c) trajectory-level hard filtering, (d) no filtering. PhaseOT's advantage should come from semantic coherence (preserving temporally coherent phases rather than scattered transitions) and mode awareness, not from the existence of sub-trajectory capability.\n\n- **Key ablations (in main paper)**: (a) PW₂ vs. global W₂ (the critical ablation isolating phase decomposition value), (b) K sensitivity (K ∈ {2,3,4,5,6,8}), (c) with vs. without mode discovery.\n\n*Appendix experiments (full results, not required for main argument)*:\n- (E4) Franka Kitchen ordering diversity retention\n- (E5) PhaseOT → CUPID pipeline combination\n- (E6) Graceful degradation with uniformly distributed noise\n- Extended ablations: segmentation method comparison, ground cost sensitivity, Sinkhorn regularization, PCA dimensionality, mode count selection, phase importance weight learning, phase alignment quality analysis\n\n*Baselines (8 methods, with SCIZOR as primary)*: SCIZOR (primary — transition-level with 6-category diagnostics and partial recovery), SARM (stage-aware with annotations, where applicable), DemInf, S2I, RINSE, CUPID (policy-dependent upper bound) + unfiltered + random-subset + GlobalOT (PhaseOT without phase decomposition, key ablation).\n\n*Metrics*: Task success rate (primary), mode preservation rate (fraction of valid strategies retained — critical for E1), phase-level diagnosis precision/recall, phase-concentration ratio (E0), data utilization rate, sample efficiency curves, diagnostic profile interpretability (qualitative).\n\n**Differentiation from SCIZOR (ICRA 2026)**: SCIZOR's self-supervised progress predictor is a learned model that achieves 52% detection rate on human-annotated failures with 54%/31% full/partial recovery maintenance and 6-category diagnostic profiles. PhaseOT advances beyond SCIZOR in three specific dimensions: (a) mode-aware scoring that preserves strategy diversity vs. uniform treatment of all demonstrations — the decisive advantage on multimodal tasks, (b) semantic phase-level diagnostic profiles vs. per-transition flags with post-hoc categorical labels, (c) distributional distances with known statistical properties vs. learned task-specific signals. The tradeoff is that SCIZOR's learned signals can be more adaptive to task-specific progress patterns, while PhaseOT's distributional distances are more transferable across tasks and naturally enable mode decomposition. On non-multimodal tasks, we expect both methods to perform comparably; PhaseOT's advantage concentrates on tasks with genuine strategy diversity.\n\n**Differentiation from SARM (ICLR 2026)**: SARM is the closest stage-aware comparison point. Key distinctions: (a) SARM requires natural-language subtask annotations; PhaseOT is fully unsupervised, (b) SARM trains a video-based reward model; PhaseOT uses distributional distances requiring no model training, (c) SARM uses a single reward model without mode conditioning; PhaseOT discovers and scores within strategy modes, (d) SARM demonstrated on deformable object manipulation; PhaseOT targets rigid-object manipulation benchmarks. The methods represent complementary paradigms: SARM trades annotation effort for stronger reward signal; PhaseOT trades reward model expressiveness for unsupervised mode-aware operation.\n\n**Differentiation from FLOAT/ARMADA (arXiv 2510.02298)**: FLOAT uses OT for online deployment-time failure detection (~95% accuracy). PhaseOT is offline curation with phase-structured Wasserstein distances and unsupervised mode discovery. Complementary: PhaseOT curates training data, FLOAT monitors deployment.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~1400h A100 (PW₂ pipeline + phase segmentation: ~120h; E0 contamination validation: ~20h; Diffusion Policy training for main experiments — 8 baselines+ours+unfiltered × 4 benchmarks × 3 seeds: ~500h; ACT training for Kitchen: ~80h; evaluation rollouts: ~100h; flagship E1 with 3 noise patterns × 5 seeds: ~80h; E2-E3 experiments: ~100h; ablations including K sensitivity: ~180h; appendix experiments E4-E6: ~120h)",
+      "gpu_utilization": "~55% — realistic development overhead",
+      "timeline": "2.5-3.5 months (targeting AAAI 2027 abstract ~July 26, paper ~August 2)",
+      "team": "1-2 researchers (1 lead with OT/robotics background; 1 optional for parallel benchmark setup)",
+      "estimated_gpu_cost": "$2,100 (1400h × $1.50/h A100)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~1200h A100 (agent handles PW₂ pipeline, hyperparameter sweeps, Diffusion Policy training orchestration; reduced idle time)",
+      "gpu_utilization": "~80%",
+      "timeline": "5-8 weeks (comfortable for AAAI 2027)",
+      "team": "1 researcher, ~30-40min/day for reviewing phase segmentation quality, validating diagnostic profile interpretability, verifying mode discovery coherence, reviewing E0 contamination results, and approving experiment plans",
+      "claude_api_cost": "$200-400",
+      "estimated_gpu_cost": "$1,800 (1200h × $1.50/h)",
+      "risk_note": "Phase-specific concentration inequality proof requires careful mathematical reasoning; agent can draft proofs but human must verify."
+    },
+    "auto_research": {
+      "gpu_hours": "~2200h A100 (3x ablation sweep: full grid over segmentation methods × cost weights × K values × regularization × PCA dims × phase-constrained/global × soft/hard/phase-level; additional seeds for statistical significance)",
+      "gpu_utilization": "~90%",
+      "timeline": "3-5 weeks with 4+ concurrent A100 GPUs",
+      "team": "0 researchers (initial setup: dataset paths, GPU access, simulation environments)",
+      "claude_api_cost": "$400-800",
+      "estimated_gpu_cost": "$3,300 (2200h × $1.50/h)",
+      "speed_bottleneck": "GPU count — Diffusion Policy runs parallelize; Kitchen/LIBERO rollouts are CPU-bound",
+      "risk_note": "Theoretical derivations require human verification; agent may over-explore segmentation configurations"
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract deadline ~July 26, paper deadline ~August 2, 2026 — estimated based on historical patterns; conference Feb 16-23, 2027 in Montréal — primary target with ~2.5 months development time)",
+    "ICLR 2027 (abstract deadline ~Sep 19, paper deadline ~Sep 24, 2026 — estimated; comfortable timeline allowing additional experiments or real-robot validation if AAAI timing is too tight)",
+    "CoRL 2026 workshop paper: Call for workshops posted April 29, 2026, but workshop-specific paper deadlines have NOT been announced. If a relevant workshop (data quality, demonstration curation, OT for robotics) is accepted with a deadline after July 2026, a focused 4-page submission is feasible covering Push-T bimodal results (E1) + RoboMimic phase diagnosis (E2) without full theoretical analysis. This cannot be guaranteed until workshop deadlines are announced.",
+    "CoRL 2027 (~May 2027 deadline — fallback with real-robot validation and expanded benchmarks)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)",
+    "Robot Data Curation with Mutual Information Estimators — DemInf (RSS 2025)",
+    "SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026) — primary comparison: transition-level filtering with 54%/31% recovery behavior maintenance, 6-category diagnostic profiles, self-supervised progress predictor with 52% detection rate, +32.9% on Sirius-Fleet",
+    "SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation (ICLR 2026) — stage-aware reward modeling with natural-language subtask annotations, Reward-Aligned BC, 83% success on T-shirt folding; key stage-aware comparison requiring annotations and reward model training",
+    "Quality over Quantity: Demonstration Curation via Influence Functions — QoQ (ICRA 2026)",
+    "Learning from the Best: Smoothness-Driven Metrics for Data Quality — RINSE (ICML 2025)",
+    "Select Segments to Imitate — S2I: Segment-Level Selection and Optimization (ICRA 2025, Chen et al.)",
+    "Aligning Human Intent from Imperfect Demonstrations with Confidence-based Inverse soft-Q Learning — CIQL (Bu et al., IEEE RA-L 2024)",
+    "Skill Disentanglement for Imitation Learning — SDIL (KDD 2023)",
+    "FLOAT within ARMADA (Wenye Yu et al., arXiv 2510.02298, Oct 2025) — OT-based online failure detection, complementary to PhaseOT's offline curation",
+    "Demo-SCORE: Curating Demonstrations using Online Experience (RSS 2025)",
+    "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (arXiv 2025)",
+    "Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning (CoRL 2025)",
+    "Is Diversity All You Need for Scalable Robotic Manipulation? (Shi et al., arXiv 2507.06219, Jul 2025) — spatial vs. velocity multimodality distinction, 15% from velocity debiasing",
+    "Diversity You Can Actually Measure — FAKTUAL (arXiv 2026) — signature-kernel entropy for demonstration diversity",
+    "Learning from Imperfect Demonstrations via Temporal Behavior Tree-Guided Trajectory Repair (arXiv 2604.04225, Apr 2026) — constructive segment-level repair, complementary to PhaseOT's diagnostic approach",
+    "RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer (arXiv 2602.10015, Feb 2026) — transition-aware over-segmentation suppression, F1@50=94.2%, validates phase segmentation maturity",
+    "Temporally Consistent Unbalanced Optimal Transport for Unsupervised Action Segmentation (Xu & Gould, CVPR 2024)",
+    "On Combining Expert Demonstrations in Imitation Learning via Optimal Transport (Sebag et al., NeurIPS OT Workshop 2021 / arXiv 2023)",
+    "Optimal Transport for Offline Imitation Learning — OTR (ICLR 2023)",
+    "Robot Policy Learning with Temporal Optimal Transport Reward (NeurIPS 2024)",
+    "Cross-Domain Imitation Learning via Optimal Transport — GWIL (ICLR 2022)",
+    "Sliced-Wasserstein Distance-based Data Selection — SWAD (Pallage & Lesage-Landry, arXiv 2025)",
+    "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion (Chi et al., RSS 2023 / IJRR 2025) — Push-T benchmark",
+    "Relay Policy Learning: Solving Long-Horizon Tasks via Imitation and RL (Gupta et al., CoRL 2019) — Franka Kitchen",
+    "Discriminator-Weighted Offline Imitation Learning — DWBC (Xu et al., ICML 2022)",
+    "Value-Aligned Behavior Cloning via Bi-level Optimization — VACO (ICLR 2025)",
+    "Causal Transport in Discrete Time and Applications (Backhoff-Veraguas et al., SIAM J. Optim. 2017)",
+    "Adapted Wasserstein Distances and Stability in Mathematical Finance (Backhoff-Veraguas et al., Finance & Stochastics 2020)",
+    "Optimal Transport and Wasserstein Distances for Causal Models (Cheridito & Eckstein, Bernoulli 2025)",
+    "Bicausal Optimal Transport for Markov Chains via Dynamic Programming (Moulos, IEEE CDC 2021)",
+    "Dynamical Wasserstein Barycenters for Time-series Modeling (Cheng et al., NeurIPS 2021)",
+    "Robust Wasserstein Barycenter (Cheng & Liu, arXiv 2603.07563, Mar 2026)",
+    "Outlier-Robust Optimal Transport (Nietert et al., AISTATS 2022)",
+    "Breakdown Properties of Optimal Transport Maps (Gonzalez-Sanz & Avella Medina, arXiv 2026)",
+    "Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024)",
+    "Consistency Matters: Defining Demonstration Data Quality Metrics (Sakr et al., ACM THRI 2024)",
+    "Robomimic: A Framework for Robot Learning from Demonstration (Mandlekar et al., CoRL 2021)"
+  ],
+  "description": "We propose PhaseOT, a policy-agnostic method for diagnosing demonstration quality at the task-phase granularity using a Phase-Structured Wasserstein Distance (PW₂) combined with mode-aware scoring. The primary contribution is mode-aware quality assessment: PhaseOT is the first demonstration curation method that discovers valid strategy modes and scores quality within each mode, preventing minority strategies from being penalized as outliers. Phase-structured optimal transport is the enabling mechanism that makes mode-aware decomposition natural.\n\n**Key methodological contributions:**\n(1) *Mode-aware phase-level scoring (primary contribution)*: Spectral clustering on the pairwise PW₂ distance matrix discovers valid strategy modes (e.g., left vs. right approach in Push-T, different subtask orderings in Kitchen). Quality scoring is performed within each mode using robust Wasserstein barycenters per phase. This is a capability no existing curation method provides — SCIZOR, SARM, DemInf, RINSE, and S2I all treat demonstrations uniformly without mode awareness. The expected impact: on genuinely multimodal tasks, non-mode-aware methods systematically penalize minority strategies, effectively collapsing beneficial diversity that Shi et al. (2025) showed yields 15% improvement when properly preserved.\n\n(2) *Phase-Structured Wasserstein Distance (PW₂)*: PW₂(τ₁,τ₂) = Σ_k w_k · W₂²(μ_{τ₁,k}, μ_{τ₂,k}) restricts optimal transport couplings to respect phase alignment. This is NOT the adapted/bicausal Wasserstein distance of Backhoff-Veraguas et al. — PW₂ is a simpler phase-constrained transport inspired by the adapted OT literature's emphasis on temporal causality but practically motivated. The advantage: when noise is phase-localized (documented by SCIZOR's 6-category failure taxonomy, RoboMimic's Tool Hang analysis, and directly validated in experiment E0), PW₂ concentrates the anomaly signal in the affected phase.\n\n(3) *Phase-level importance weighting*: w_k(τ) = exp(-λ·q_k(τ)) preserves good phases of otherwise-flagged demos while downweighting anomalous phases coherently at semantic phase granularity. Unlike SCIZOR's transition-level filtering (per-state-action removal) and SARM's reward-based weighting (requires annotations and model training), PhaseOT's phase-level weighting is unsupervised and maintains temporal coherence within phases.\n\n(4) *Phase-specific concentration inequality*: Under a phase-specific ε-contamination model, PW₂ achieves lower false-positive rates than global W₂ when contamination is phase-localized, with graceful degradation when contamination is uniform.\n\n**Segmentation robustness**: The pipeline includes explicit robustness characterization with K sensitivity analysis (K ∈ {2,3,4,5,6,8}), over/under-segmentation behavior analysis, DTW alignment quality metrics, and fallback to uniform time windows. Over-segmentation preserves correctness at finer granularity; under-segmentation gracefully degrades to global W₂.\n\n**Differentiation from SCIZOR (ICRA 2026)**: SCIZOR's self-supervised progress predictor achieves 52% detection rate with 54%/31% full/partial recovery and 6 diagnostic categories. PhaseOT advances in three dimensions: (a) mode-aware scoring (decisive on multimodal tasks), (b) semantic phase-level profiles, (c) distributional distances with known statistical properties. The tradeoff: SCIZOR's learned signals can be more task-adaptive; PhaseOT's distributional distances are more transferable and naturally enable mode decomposition. On non-multimodal tasks, both methods should perform comparably; PhaseOT's advantage concentrates on tasks with genuine strategy diversity.\n\n**Differentiation from SARM (ICLR 2026)**: SARM validates stage-aware quality assessment (83% success on T-shirt folding via RA-BC) but requires natural-language subtask annotations and a trained video-based reward model, and lacks mode awareness. PhaseOT is fully unsupervised with mode-conditioned scoring. Complementary paradigms.\n\n**Evaluation**: Focused 8-page design with 4 main experiments: (E0) phase-localized contamination validation, (E1) Push-T bimodal preservation as FLAGSHIP — 3 noise injection patterns (random, mode-correlated, phase-localized) with mode preservation rate as the decisive metric, (E2) phase-diagnosis accuracy with injected phase noise, (E3) phase-level vs. transition-level recovery comparison. Appendix: E4 Kitchen ordering, E5 PhaseOT→CUPID pipeline, E6 graceful degradation. 8 baselines including SCIZOR (primary) and SARM (stage-aware comparison). Key ablations: PW₂ vs. global W₂, K sensitivity, with/without mode discovery.\n\nEstimated compute: ~1400 A100-hours. Primary target: AAAI 2027 (abstract ~July 26, paper ~August 2, 2026). Secondary: ICLR 2027 (~Sep 2026). CoRL 2026 workshop paper possible if workshop deadlines permit.",
+  "project_name": "phase_ot_diag",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL: Generator missed 3 major competing works that must be cited and compared against: (1) CUPID (CoRL 2025) — influence functions for robot data curation with strong empirical results, (2) DataMIL (May 2025, UT Austin) — policy-driven data selection validated on 60+ tasks including Open X-Embodiment, (3) DemInf (RSS 2025) — mutual information estimators for demo quality, 5-10% improvement on RoboMimic. All three are published at top robotics venues and directly compete with the proposed approach.", "Computational scalability is not adequately addressed: pairwise W2 distances require O(N²) Sinkhorn solves, each O(T² log T) per trajectory pair; Wasserstein barycenters are NP-hard in general and suffer a curse of dimensionality (exponential in state-action-time dimensionality). For datasets with thousands of demonstrations and high-dimensional robot states, this could be prohibitively expensive.", "GPU cost estimates are significantly underestimated: OpenVLA-OFT fine-tuning alone requires 8 A100s for 1-2 days (~192-384 A100h per run). With 4+ baselines (SCIZOR, QoQ, RINSE, unfiltered) × 2 models (OpenVLA-OFT, SmolVLA) × 2 benchmarks (RoboMimic, LIBERO) × multiple ablations, realistic compute is likely 1500-2500 A100h, not 400h.", "The claim 'naturally distinguishes noise from valid strategic diversity without separate mode identification steps' is misleading — k-Wasserstein-barycenter clustering IS a mode identification/discovery step. The approach does require choosing k (number of strategy modes) and running a clustering algorithm, which is precisely 'separate mode identification.'", "The theoretical contribution (provable outlier detection bounds under epsilon-contamination) assembles existing results from Robust Wasserstein Barycenter theory (arXiv Mar 2026) and Outlier-Robust OT (Mukherjee et al. 2021, Nietert et al. 2022) rather than deriving fundamentally new theory. This should be positioned as a novel application of existing theory, not as a theoretical contribution per se.", "CoRL 2026 timeline (17 days to abstract, 20 days to paper) is unrealistic for a from-scratch project. The user's requirement specifically targets CoRL 2026, but the proposal's own venue list relegates it to a stretch goal. AAAI 2027 and ICLR 2027 are more realistic but the user explicitly asked for CoRL 2026.", "No discussion of how the ground cost metric in state-action-time space should be designed — this is a critical design choice that significantly affects OT distances and is non-trivial for heterogeneous robot observation/action spaces (joint angles, gripper states, visual features have very different scales and semantics)."]
+Feedback: To bring this to CoRL-acceptable quality, the Generator should: (1) **Add all missing baselines**: CUPID, DataMIL, and DemInf must be included in the landscape and experimental comparisons — these are published at CoRL 2025 and RSS 2025 and will be known to reviewers. (2) **Address computational scaling**: Propose concrete solutions — e.g., approximate OT via Wasserstein Wormhole embeddings for O(N) amortized distance computation, sliced Wasserstein distances instead of full W2, or subsampling strategies. Provide explicit complexity analysis for realistic dataset sizes (e.g., RoboMimic has ~200-300 demos per task, LIBERO has ~50 demos per task — compute actual wall-clock estimates). (3) **Fix the cost estimate**: Recalculate GPU hours accounting for VLA fine-tuning across all baseline conditions. Realistic estimates should be 1500-2500h A100 for manual mode, not 400h. (4) **Reframe theoretical contribution honestly**: Position as 'novel application of robust OT theory to trajectory quality scoring' rather than implying new theory. (5) **Design the ground cost metric explicitly**: Propose how to handle heterogeneous state-action-time dimensions (normalization, learned embeddings, or task-specific cost functions). (6) **Drop the misleading 'no mode identification' claim**: The k-barycenter clustering IS mode identification; instead, emphasize the advantage is that mode identification and quality scoring are unified in one principled OT framework. (7) **For CoRL 2026 feasibility**: The user should assess whether they already have partial implementation/results; if starting from scratch, target AAAI 2027 instead and be upfront about this.
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL — CoRL 2026 venue mismatch: The user explicitly targets CoRL 2026 (abstract deadline May 26, 17 days away). The proposal honestly pivots to AAAI 2027 (~August 2026 deadline), but this directly contradicts the user's stated requirement. The user should be explicitly informed that CoRL 2026 is infeasible from scratch.", "Missing competing work — Demo-SCORE (RSS 2025, Chen et al.): Self-curation method using online rollout classifiers to filter heterogeneous demos, achieving 15-35% improvement. Policy-dependent but directly in the demo curation space and published at a top robotics venue. Must be cited and positioned against.", "Missing related work — Sebag et al. (arXiv 2307.10810, 2023): 'On Combining Expert Demonstrations via Optimal Transport' uses multi-marginal OT specifically to handle multimodal demonstration distributions. While it targets combination not quality scoring, it directly precedents OT-Consensus's use of OT for multimodal demo handling, reducing the novelty claim.", "Novelty pressure in extremely crowded field: With 8+ demo curation methods published in 2024-2026, reviewers at AAAI/ICLR will scrutinize what OT-Consensus adds beyond DemInf (also policy-agnostic, also uses information-theoretic scoring, 5-10% on RoboMimic). The multimodal handling advantage needs concrete empirical evidence, not just theoretical argument.", "Wasserstein Wormhole adaptation unvalidated: The Wormhole model (ICML 2024) was designed for point cloud distributions (single-cell biology), not state-action-time trajectory distributions with heterogeneous components (positions, rotations, gripper states). Training Wormhole on this novel domain may require significant adaptation and there's no guarantee the learned embeddings will preserve W2 structure for trajectory data.", "Theoretical contribution remains thin for top venues: Instantiating existing robust barycenter results (Le Gouic et al. 2026; Nietert et al. 2022) for trajectory noise models is honest but reviewers may view this as 'plugging in known results' rather than a theoretical contribution. Consider whether deriving tighter, trajectory-specific bounds (e.g., exploiting temporal structure) could strengthen this.", "Partial mismatch with user's RL-inspired direction: The user specifically mentioned borrowing RL ideas (experience replay buffer, using data itself to score actions). OT-Consensus uses distributional geometry rather than RL-inspired scoring. While the user acknowledged theoretical approaches are acceptable, the connection to the RL scoring intuition could be made more explicit.", "Missing Re-Mix (CoRL 2025) from landscape: Re-Mix optimizes data mixtures for large-scale IL via DRO, outperforming uniform weights by 38%. It operates at domain-level not trajectory-level, but is highly relevant as a data-centric approach to IL quality and should be cited."]
+Feedback: The proposal has improved substantially from Round 1 — cost estimates are realistic, the landscape is comprehensive, the theoretical contribution is honestly framed, and the ground cost metric is explicit. However, several issues prevent a pass:
+
+**Priority fixes:**
+
+1. **Address the CoRL 2026 impossibility directly**: State upfront that CoRL 2026 is infeasible from scratch. If the user has partial implementation or prior codebase, assess what can realistically be done in 17 days. Otherwise, confirm AAAI 2027 as the target and explain why.
+
+2. **Add Demo-SCORE, Sebag et al. 2023, and Re-Mix to the landscape**: Demo-SCORE (RSS 2025) is a direct competitor. Sebag et al. (2023) precedents OT for multimodal demos. Re-Mix (CoRL 2025) is a key data-centric IL work. All must be cited.
+
+3. **Strengthen the empirical differentiation story**: The biggest risk is 'why OT-Consensus over DemInf?' — both are policy-agnostic and evaluate on RoboMimic. Propose specific multimodal evaluation scenarios (e.g., tasks where demonstrations contain 2+ valid strategies like left-hand vs. right-hand grasps) where DemInf's global MI scoring would conflate valid diversity with noise, while OT-Consensus's mode-specific scoring would preserve it. This is the paper's strongest selling point and needs concrete experimental design.
+
+4. **Validate or scope Wasserstein Wormhole adaptation**: Acknowledge that applying Wormhole to trajectory distributions (heterogeneous state-action-time spaces) is a novel adaptation that may require architecture modifications. Consider sliced Wasserstein as a simpler, more reliable Tier 2 fallback and position Wormhole as optional.
+
+5. **Consider strengthening the theoretical contribution**: Instead of purely instantiating existing results, consider whether temporal structure in trajectories enables tighter outlier detection bounds (e.g., exploiting the Markov structure of sequential state-action pairs). Even a modest trajectory-specific result would elevate the theory from 'application' to 'contribution.'
+
+6. **Make the RL connection explicit**: Frame OT-based scoring as a principled formalization of the intuition behind experience replay prioritization — trajectories that are distributionally close to the consensus (barycenter) can be viewed as 'high-priority' experiences, while outliers are 'low-priority' ones to be downweighted. This connects to the user's original RL direction.
+
+**What's working well:** Comprehensive baseline comparison (6 methods), two-tier scaling, honest theoretical framing, explicit ground cost design, realistic cost estimates. The pre-filter pipeline idea (OT-Consensus → CUPID) is a compelling practical contribution that should be emphasized.
+
+### Round 3 review
+Verdict: revise
+Issues: ["CRITICAL — User requirement mismatch (CoRL 2026): The user explicitly targets CoRL 2026 (abstract deadline May 25-26, paper deadline May 28, i.e., 12-15 days from now). The proposal honestly acknowledges CoRL is infeasible and pivots to AAAI 2027. While this is intellectually honest, it directly violates the user's stated requirement. The user must be informed clearly that this idea cannot target CoRL 2026 from scratch.", "Novelty under pressure from crowded field: With 8+ demo curation methods published at top venues in 2024-2026, the bar for novelty is extremely high. The core contribution — Wasserstein barycenter clustering for mode-aware quality scoring — is a competent application of existing OT theory, but reviewers will ask: (1) Why is OT better than DemInf's simpler MI-based scoring? (2) Sebag et al. 2023 already combined OT with multimodal demonstrations. (3) Pallage 2025 (arXiv 2504.12918) independently proposes sliced-Wasserstein for data selection/filtering, showing the OT-for-filtering idea is not uniquely novel. The temporally-adapted distance is the most differentiating element, but it's an application of Backhoff-Veraguas et al. 2020 theory, not new theory.", "Empirical differentiation vs. DemInf is the make-or-break: Both OT-Consensus and DemInf are policy-agnostic and target similar benchmarks (RoboMimic, LIBERO). DemInf achieves 5-10% on RoboMimic. If OT-Consensus achieves similar or marginal improvements, the OT machinery will be viewed as unnecessary complexity. The synthetic multimodal experiments (E1-E3) are well-designed but risk being dismissed as constructed to favor the method. Real-world tasks where multimodality naturally arises and DemInf fails would be far more convincing, but finding such tasks is itself a research challenge.", "RL-PER connection is superficial: The claimed connection between OT-consensus scoring and prioritized experience replay (Schaul et al. 2016) is a stretch. PER prioritizes by TD error (a model-dependent signal reflecting learning progress), while OT-Consensus scores by distributional distance to barycenter (a model-free geometric signal). These are fundamentally different: one measures what the model needs to learn, the other measures statistical typicality. Calling barycenter distance 'analogous to TD error' is misleading. This weakens the paper's connection to the user's RL-inspired direction.", "Theoretical contribution remains incremental: The 'inherited guarantees' (applying Cheng & Liu 2026, Nietert et al. 2022, Gonzalez-Sanz & Avella Medina 2026) are honest applications of existing results. The novel phase-specific contamination model is a genuine contribution but is narrow — it assumes a particular contamination structure (phase-localized noise) that may not hold in practice. Reviewers may ask: when does phase-localized noise actually occur in real robot datasets?", "Missing comparison against SCIZOR on Sirius-Fleet: SCIZOR achieves 15.4% average improvement and outperforms DemInf by 19.2% on Sirius-Fleet — this is the strongest baseline in the field. The proposal lists SCIZOR as a baseline but doesn't discuss whether OT-Consensus's theoretical advantages translate to beating SCIZOR's practical results on large-scale datasets.", "Lightspeed Geometric Dataset Distance (ICML 2025) miscited: The proposal cites this as 'ICLR 2025' but it was published at ICML 2025. Minor but damages credibility if not corrected.", "Cost estimate tension: The proposal budgets OpenVLA-OFT full fine-tuning at '4 runs × 250h = 1000h' but each run requires 8 A100s for 1-2 days = 192-384h per run. 4 runs × ~300h = ~1200h just for full fine-tuning, already exceeding the line item. Additionally, running 7 baselines on 2 benchmarks with 2 VLA models could easily require 20+ fine-tuning runs, pushing total compute well beyond 2000h."]
+Feedback: The proposal has improved substantially across three rounds — the landscape is now among the most comprehensive I've seen, the approach is precisely specified, and the theoretical framing is honest. However, several issues prevent a pass:
+
+**Priority 1 — Address the venue mismatch decisively**: The user asked for CoRL 2026 (12-15 days away). This idea cannot target CoRL 2026 from scratch. State this unambiguously and either (a) propose a drastically scoped-down version that could be submitted in 12 days (e.g., a workshop paper at CoRL with preliminary results on 1-2 tasks), or (b) confirm AAAI 2027 as the target and explain the timeline advantage.
+
+**Priority 2 — Sharpen the DemInf differentiation**: The paper lives or dies on whether it demonstrably outperforms DemInf on tasks where multimodality matters. Instead of only synthetic multimodal experiments, identify at least one naturally multimodal task in existing benchmarks where DemInf's global MI conflates strategy diversity with noise. RoboMimic Transport with multiple operators is promising — quantify the expected advantage concretely.
+
+**Priority 3 — Drop or de-emphasize the PER analogy**: The connection between barycenter distance and TD error is too thin to be a 'contribution.' Demote it to a paragraph in the discussion section rather than a key methodological contribution. Instead, if the user wants an RL connection, consider: OT-scores as importance weights in an offline IL objective (formalize this as weighted behavioral cloning with OT-derived weights, which has a cleaner theoretical connection to importance-weighted regression).
+
+**Priority 4 — Strengthen or reframe the theory**: The phase-specific contamination model is the most novel theoretical element. To make it a real contribution, prove tighter concentration inequalities for the adapted score under the Markov structure (not just the additive decomposition). Alternatively, if the math doesn't yield substantially tighter bounds, position the theory honestly as 'applying robust OT tools to trajectories yields useful guarantees' and lean harder on empirical contributions.
+
+**Priority 5 — Fix the cost estimate**: Recalculate OpenVLA-OFT full fine-tuning costs (8×A100, 1-2 days per run). Budget 2500-3000h A100 for manual mode to be safe, not 2000h.
+
+**Priority 6 — Fix the ICML/ICLR citation**: Lightspeed Geometric Dataset Distance is ICML 2025, not ICLR 2025.
+
+**What's working well**: The comprehensive landscape, honest positioning against each related work, the two-tier OT computation strategy, the pre-filter pipeline idea, and the explicit ground cost metric design. The multimodal differentiation experiments (E1-E3) are well-designed. The honest assessment of CoRL infeasibility shows research maturity.
+
+### Round 4 review
+Verdict: revise
+Issues: ["CRITICAL — CoRL 2026 venue mismatch persists: The user explicitly targets CoRL 2026 (abstract deadline May 26, 13 days away). The proposal correctly identifies CoRL as infeasible and pivots to AAAI 2027, which is intellectually honest but still violates the user's stated requirement. This has been flagged in all 3 previous reviews. The user must explicitly acknowledge and accept the venue change, or the idea needs to be scoped down to a 4-page CoRL workshop paper with preliminary results.", "SCIZOR overlap on partial trajectory recovery (NEW): SCIZOR (ICRA 2026) explicitly operates at the transition level (state-action pair level) and already achieves partial trajectory recovery — their paper states '54% of recovery behaviors are fully maintained, 31% partially maintained.' This directly overlaps with PhaseOT's claimed unique capability of 'preserving good phases of otherwise-flagged demonstrations.' The proposal lists SCIZOR as a baseline but does not acknowledge this overlap. PhaseOT must differentiate: (a) SCIZOR uses heuristic progress prediction, PhaseOT uses principled distributional distances; (b) SCIZOR filters individual transitions, PhaseOT produces semantically meaningful phase-level quality profiles; (c) PhaseOT has theoretical guarantees SCIZOR lacks. But the claim of unique partial recovery capability must be revised.", "Phase-localized contamination model assumption needs justification: The novel phase-specific concentration inequality assumes noise is phase-localized (ε_k > 0 for few k, ε_k ≈ 0 for most). When does this actually hold in real robot datasets? In practice, noisy demonstrations may exhibit distributed degradation (operator fatigue, teleoperation latency) rather than phase-localized failures (only the grasp fails). The proposal should provide evidence from existing datasets (e.g., RoboMimic MH proficiency levels) that phase-localized noise is common, or acknowledge this as a limitation with graceful degradation analysis.", "Empirical differentiation vs. SCIZOR is the new make-or-break: Previous reviews focused on differentiating from DemInf. Now that SCIZOR's transition-level capabilities are clear, PhaseOT must demonstrate clear advantages over SCIZOR on at least one dimension: (1) multimodal handling (SCIZOR doesn't discover modes), (2) diagnostic interpretability (SCIZOR doesn't produce phase-level quality profiles), or (3) theoretical guarantees translating to practical gains. Experiment E1 (Push-T bimodal preservation) is well-designed for this but needs to explicitly include SCIZOR as the primary baseline, not just DemInf.", "Adapted Wasserstein distance formulation is simplified in a potentially misleading way: The proposed AW₂(τ₁, τ₂) = Σ_k W₂²(μ_{τ₁,k}, μ_{τ₂,k}) is a phase-aligned additive decomposition, NOT the full adapted/bicausal Wasserstein distance of Backhoff-Veraguas et al. The adapted distance in the mathematical finance literature involves constraints on the filtration structure and conditional distributions, not simply an additive decomposition over time segments. The proposal should clarify that this is an 'adapted-inspired' decomposition motivated by the causal structure of trajectories, not a direct application of the full adapted OT framework. Over-claiming the connection to adapted OT theory could draw reviewer criticism.", "Missing CIQL reference verification: The proposal cites 'CIQL (2024): Confidence-based per-transition quality scoring via dynamics evaluation' but I could not find any paper matching this exact name/description. This reference should be verified or removed — a fabricated citation would be fatal at review.", "Cost estimate minor issue — GPU utilization in manual mode (55%) seems low: With 1500h at 55% utilization, actual billed time would be much higher. Modern cloud billing is per-second, so utilization mainly affects timeline, not cost. But the $2,250 estimate assumes 1500 effective GPU-hours at $1.50/h, which is reasonable if using spot instances."]
+Feedback: The proposal has improved dramatically across four rounds — the landscape is now among the most comprehensive in the demo curation field, the approach is precisely specified, and the experimental design targets unique capabilities. However, several issues prevent a pass:
+
+**Priority 1 — Acknowledge and differentiate from SCIZOR's transition-level capabilities**: SCIZOR already filters at the state-action pair level and achieves partial trajectory recovery. PhaseOT's differentiation should focus on: (a) semantically meaningful phase-level diagnosis (not individual transitions), (b) mode-aware scoring that handles multimodality, (c) theoretical guarantees for outlier detection, and (d) principled distributional distances vs. heuristic progress signals. Revise the 'unique capability' claims for partial recovery to acknowledge SCIZOR's prior work.
+
+**Priority 2 — Clarify the adapted OT formulation**: The additive phase decomposition AW₂ = Σ_k W₂² is inspired by but not identical to the full adapted/bicausal OT of Backhoff-Veraguas et al. Be precise: this is a 'temporally-constrained transport' that restricts transport plans to respect phase boundaries, motivated by the adapted OT literature. Don't over-claim the mathematical pedigree — reviewers familiar with adapted OT theory will notice.
+
+**Priority 3 — Justify the phase-localized contamination model**: Provide concrete evidence from existing datasets (e.g., analyze RoboMimic MH multi-operator data) showing that common failure modes ARE phase-localized. If the evidence is mixed, add a graceful degradation analysis: what happens to PhaseOT's guarantees when noise is distributed across phases?
+
+**Priority 4 — Verify CIQL reference**: I could not find this paper. If it doesn't exist, remove it. If it's under a different name, correct the citation.
+
+**Priority 5 — Address the venue mismatch**: The user asked for CoRL 2026. This idea targets AAAI 2027 at earliest. Either (a) propose a drastically scoped CoRL workshop paper (4 pages, Push-T + Can only, if workshop deadlines permit), or (b) explicitly inform the user that CoRL 2026 is impossible and get buy-in for AAAI 2027.
+
+**What's working well**: The Phase-OT framing is cleaner and more focused than previous OT-Consensus versions. The experimental design (especially E1 bimodal preservation and E3 phase-diagnosis validation) targets genuine unique capabilities. The two-tier computation strategy is practical. The theoretical contribution (phase-specific concentration) is the right kind of novelty for a top venue — non-trivial but not over-claiming. The honest assessment of venue feasibility shows research maturity.
+
+### Round 5 review
+Verdict: revise
+Issues: ["CRITICAL — FIDeL is a fabricated reference: No paper titled 'FIDeL: Failure Identification in Demonstration Learning via OT' exists. The closest match is FLOAT (within the ARMADA system, arXiv 2510.02298), which uses OT for online failure detection during deployment. The proposal must either correct this citation to FLOAT/ARMADA or remove it entirely. A fabricated citation would be fatal at peer review.", "CRITICAL — CoRL 2026 venue mismatch persists (5th consecutive flag): The user explicitly targets CoRL 2026. Abstract deadline is May 26 (13 days away), paper deadline May 29 (16 days away), and the organizers state 'deadlines are final.' The proposal correctly identifies this as infeasible and pivots to AAAI 2027 (~late July 2026, confirmed via historical patterns). While intellectually honest, this still does not satisfy the user's stated requirement. The user must explicitly accept this venue change.", "Cheng & Liu (2026) algorithm misdescription: The proposal describes their robust Wasserstein barycenter method as using an 'iterative reweighting scheme.' Verification shows it actually uses a free-support variant of Iterative Bregman Projections with fixed-point iteration — the term 'reweighting' does not appear in the paper. This mischaracterization, while minor, could draw reviewer scrutiny if they check the reference.", "FAKTUAL diversity claim overstated: The proposal states 'RoboMimic Transport has highest demonstration diversity' citing FAKTUAL. The actual paper shows Transport's entropy 'does not saturate,' indicating greater per-demo novelty than Can, but does not make a blanket 'highest diversity' declaration across all benchmarks. The claim should be qualified.", "Empirical advantage over SCIZOR remains the central uncertainty: SCIZOR already achieves transition-level filtering with categorical diagnostic profiles (Laggy Motion, Manipulation Failure, Pause, Stuck at Collision, Move Back and Forth — 6 categories, not 4 as stated). PhaseOT's claimed advantages (semantic phase-level vs. transition-level, mode-awareness, distributional guarantees) are theoretically well-motivated but the practical superiority is uncertain. Experiment E3 (phase-level vs. transition-level recovery) is the right experiment to run, but until results exist, this is the paper's biggest risk.", "The phase-localized contamination model evidence is indirect: The proposal argues that SCIZOR's failure taxonomy and RoboMimic's Tool Hang analysis document phase-localized failures. This is true but these are post-hoc interpretations of observed failure modes, not direct measurements of contamination distribution in training datasets. The graceful degradation analysis (recovering trajectory-level performance when contamination is distributed) partially mitigates this concern but the core assumption needs stronger empirical validation — e.g., actually measuring the phase-localized vs. distributed noise ratio in RoboMimic MH datasets.", "Minor: SCIZOR has 6 suboptimal type categories, not 4 as listed in the proposal (missing 'Move Back and Forth' and 'False Positive'). The 'Laggy Motion' label is from the v2 revision; v1 used 'Slow Motion.' These are minor accuracy issues but matter for credibility."]
+Feedback: The proposal has matured significantly across 5 rounds — the landscape is now genuinely best-in-class, the approach is precisely specified, the experimental design targets unique capabilities, and the theoretical claims are honestly scoped. However, several issues prevent a pass:
+
+**Priority 1 — Fix the fabricated FIDeL citation**: Replace with the correct citation: FLOAT within ARMADA (Wenye Yu et al., arXiv 2510.02298, Oct 2025). FLOAT uses OT for online deployment-time failure detection via per-timestep trajectory matching against expert demonstrations. The key distinction from PhaseOT is: FLOAT operates online during deployment (not offline curation), uses trajectory-level OT matching (not phase-structured), and requires expert references (not unsupervised mode discovery).
+
+**Priority 2 — Resolve the CoRL 2026 impossibility**: This has been flagged 5 consecutive times. Options: (a) Accept AAAI 2027 as the target and explicitly state this to the user with a clear timeline advantage explanation (~2.5 months of development time); (b) If a CoRL 2026 workshop paper is desired, note that workshop submission deadlines have not been announced yet and cannot be guaranteed; (c) Propose a concrete scoped-down plan for CoRL 2026 workshops: 4-page paper, Push-T + RoboMimic Can only, preliminary PW₂ results without full mode discovery or theoretical analysis.
+
+**Priority 3 — Fix reference accuracy issues**: (a) Correct Cheng & Liu algorithm description from 'iterative reweighting scheme' to 'free-support IBP variant with fixed-point iteration'; (b) Qualify the FAKTUAL diversity claim; (c) Update SCIZOR's category count from 4 to 6 and note the Laggy/Slow Motion naming difference.
+
+**Priority 4 — Strengthen the SCIZOR differentiation narrative**: SCIZOR is the primary competitor and its capabilities are stronger than the proposal acknowledges. The differentiation should be sharpened: (a) PhaseOT produces phase-level quality profiles (approach=nominal, grasp=3.2σ anomalous) vs. SCIZOR's per-transition binary flags + post-hoc categorical labels; (b) PhaseOT's mode discovery prevents penalizing minority strategies, which SCIZOR cannot do; (c) PhaseOT's distributional distances have concentration guarantees, while SCIZOR's progress prediction is heuristic. But acknowledge honestly that SCIZOR already achieves partial trajectory recovery, so PhaseOT's advantage must come from the quality of recovery (semantic coherence) and mode awareness, not the existence of sub-trajectory capability.
+
+**Priority 5 — Provide direct evidence for phase-localized contamination**: Rather than relying on post-hoc interpretation of SCIZOR's failure taxonomy, propose a concrete measurement: analyze RoboMimic MH 'worse' and 'okay' operator data by segmenting into phases and measuring per-phase deviation from 'better' operator data. Report whether contamination is indeed phase-concentrated. This would transform the assumption from 'reasonable intuition' to 'empirically grounded hypothesis.'
+
+**What's working well**: The Phase-Structured Wasserstein Distance (PW₂) is a clean, well-motivated formulation. The mode discovery + per-mode scoring addresses a genuine gap. The experimental design (especially E1 bimodal preservation, E2 phase-diagnosis accuracy, E3 phase vs. transition recovery) targets PhaseOT's unique capabilities. The two-tier computation strategy is practical. The honest positioning against adapted OT theory shows research maturity.
+
+### Round 6 review
+Verdict: revise
+Issues: ["CoRL 2026 venue mismatch (6th consecutive flag): The user explicitly targets CoRL 2026 (abstract May 26, 13 days away; paper May 29, 16 days; organizers state deadlines are final). The proposal correctly identifies this as infeasible and targets AAAI 2027. This is the right call — but the user's stated requirement is not met. CoRL 2026 workshop paper remains possible but workshop-specific deadlines are not yet announced (call for workshops posted April 29, 2026). The user must explicitly accept this venue change.", "Impact uncertainty in crowded field: With SCIZOR (ICRA 2026, +15.4% average, +32.9% on Sirius-Fleet), CUPID (CoRL 2025, <33% curated data suffices), DemInf (RSS 2025), RINSE (ICML 2025), Demo-SCORE (RSS 2025), QoQ (2026), DataMIL (2025), and FAKTUAL (2026) all published at top venues, the bar for demonstrating clear practical improvement is very high. PhaseOT's unique selling points (mode-awareness, phase-level profiles) may not translate to large success rate gains if most benchmarks don't have strong multimodality or phase-localized noise.", "Experiment scope vs. page limit tension: The proposal defines 6 key experiments (E0-E6), 8 baselines, 4 benchmarks, 9 ablation dimensions, 2 policy architectures, and a theoretical analysis section. Fitting this into 8 pages (CoRL/AAAI format) while maintaining clarity is extremely challenging. Some experiments may need to be demoted to appendix, but which ones are core vs. supplementary should be decided upfront.", "Phase segmentation robustness is under-discussed: The entire PhaseOT pipeline depends critically on phase segmentation quality. For heuristic keyframes, gripper-state changes work for pick-and-place but not for non-prehensile manipulation (pushing, sliding). For BOCPD, the choice of hazard function and observation model significantly affects detected changepoints. Misaligned phase boundaries across demonstrations would corrupt PW₂ distances — the DTW-based alignment step is mentioned but its failure modes are not analyzed.", "Push-T multimodal experiment (E1) may be the strongest selling point but is also the most fragile: Push-T has only 206 demonstrations with documented bimodality (left vs. right approach). With 20% noise injection, only ~41 demos are noisy. Spectral clustering must reliably separate 2 modes from ~165 clean + ~41 noisy demos — if the noise demos happen to cluster with one mode, the mode-awareness advantage disappears. The proposal should discuss statistical power and sensitivity to noise injection patterns.", "Minor: The proposal claims SCIZOR's progress prediction is 'heuristic' — but SCIZOR's self-supervised progress predictor, while not based on distributional distances, is trained end-to-end on the data and achieves 52% detection rate on human-annotated failures. Calling it 'heuristic' vs. PhaseOT's 'principled' distances may not resonate with reviewers who view learned predictors as stronger than hand-designed distances."]
+Feedback: The proposal has matured dramatically across 6 rounds — the landscape coverage is genuinely best-in-class, all previous reference issues are resolved, the SCIZOR differentiation is precise, and the theoretical positioning is honest. The average score of 3.75 is close to the 4.0 threshold but impact drags it down. Here are focused suggestions to close the gap:
+
+**Priority 1 — Strengthen the impact narrative with a concrete 'killer experiment'**: The proposal's strongest unique capability is mode-aware scoring. Design E1 (Push-T bimodal preservation) as the flagship experiment with multiple noise injection patterns (random, mode-correlated, phase-localized) and report: (a) mode preservation rate, (b) per-mode success rate, (c) overall success rate. If PhaseOT preserves both modes while SCIZOR collapses the minority mode, that's a paper-making result. Quantify the expected effect size: Shi et al. showed 15% from velocity debiasing alone — mode-aware quality scoring could yield comparable gains on genuinely multimodal tasks.
+
+**Priority 2 — Tighten the experimental scope for 8 pages**: Prioritize E0 (validates the assumption), E1 (flagship multimodal), E2 (phase diagnosis accuracy), and E3 (phase vs. transition recovery). Move E4 (Kitchen ordering), E5 (pipeline combination), and E6 (graceful degradation) to appendix. This focuses the main paper on the three unique claims: phase-localized contamination is real (E0), mode-awareness matters (E1), phase-level diagnosis works (E2), and phase-level recovery beats transition-level (E3).
+
+**Priority 3 — Address phase segmentation robustness**: Add a brief analysis of segmentation failure modes. What happens when BOCPD over-segments (too many phases) or under-segments (phases too coarse)? Include a sensitivity analysis of downstream policy performance vs. number of detected phases K. This preempts a likely reviewer concern.
+
+**Priority 4 — Resolve the venue mismatch**: Given that this has been flagged 6 times: (a) confirm AAAI 2027 as the primary target, (b) if the user wants CoRL 2026 presence, note that workshop-specific paper deadlines have not been announced and propose a concrete 4-page workshop plan (Push-T + RoboMimic Can only, PW₂ + mode discovery results, no full theoretical analysis), (c) CoRL 2027 as a fallback with real-robot validation.
+
+**What's working well and should be preserved**: Comprehensive landscape (30+ references, all verified), honest theoretical positioning (PW₂ vs. adapted OT), precise SCIZOR differentiation (6 categories, 54%/31% recovery acknowledged), E0 contamination validation experiment, graceful degradation analysis, two-tier computation strategy, realistic cost estimates.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "a193b404-a2d6-4922-a2f8-639b1e8d9d42",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-13T11:41:10.670Z_
+
+```json
+{
+  "parentUuid": "a193b404-a2d6-4922-a2f8-639b1e8d9d42",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "c3448e55-741e-4218-b4f3-8f805ac62923",
+  "timestamp": "2026-05-13T11:41:10.670Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-13T11:41:10.670Z_
+
+```json
+{
+  "parentUuid": "c3448e55-741e-4218-b4f3-8f805ac62923",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "635706fc-4ec3-41cc-ad3b-e081c37c425a",
+  "timestamp": "2026-05-13T11:41:10.670Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "635706fc-4ec3-41cc-ad3b-e081c37c425a",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PhaseOT demonstration curation for AAAI 2027",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-13T11:41:19.467Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is round 7/10 of reviewing the PhaseOT idea. Let me carefully analyze the current state of the proposal and conduct independent verification searches. The proposal has gone through 6 rounds of revision already, with consistent "revise" verdicts. Let me identify what's improved and what issues remain.
+
+Key issues from previous rounds:
+1. CoRL 2026 venue mismatch (flagged 6 times)
+2. Novelty concerns in a crowded field
+3. SCIZOR differentiation
+4. Phase-localized contamination assumption
+5. Reference accuracy (FIDeL was fixed)
+
+
+6. Impact uncertainty
+7. Experimental scope vs. page limits
+8. Phase segmentation robustness
+
+Now I'm doing independent research to verify the core claims and search for competing work in this space.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "635706fc-4ec3-41cc-ad3b-e081c37c425a",
+  "isSidechain": false,
+  "requestId": "req_011CazWJEnZLZahWMMihrC2X",
+  "type": "assistant",
+  "uuid": "2800c830-48f4-4155-9282-4efc5d7f9fbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QVASF815FwG426dijAxkgx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29686,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 29686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-13T11:41:20.736Z_
+
+I'll conduct an independent verification of this proposal's claims, searching for competing work, validating references, and checking the current SOTA landscape. Let me run several searches in parallel.
+
+**Starting independent review of PhaseOT (Round 7/10).**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2800c830-48f4-4155-9282-4efc5d7f9fbf",
+  "isSidechain": false,
+  "requestId": "req_011CazWJEnZLZahWMMihrC2X",
+  "type": "assistant",
+  "uuid": "6fe11d82-7801-4693-ae16-b698b93c7785",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QVASF815FwG426dijAxkgx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29686,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 29686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T11:41:21.400Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PhgptK4m1nPcK5eW8v4tD2`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6fe11d82-7801-4693-ae16-b698b93c7785",
+  "isSidechain": false,
+  "requestId": "req_011CazWJEnZLZahWMMihrC2X",
+  "type": "assistant",
+  "uuid": "309c1bcb-c292-464c-8904-266dcd40731a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QVASF815FwG426dijAxkgx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29686,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 29686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T11:41:21.410Z_
+
+<details><summary>↩ Tool result · `toolu_01PhgptK4m1nPcK5eW8v4tD2`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "309c1bcb-c292-464c-8904-266dcd40731a",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "9e168426-2659-4776-87a7-062fc9b34473",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "309c1bcb-c292-464c-8904-266dcd40731a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-13T11:41:25.093Z_
+
+Now let me launch parallel searches to independently verify the key claims and search for competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e168426-2659-4776-87a7-062fc9b34473",
+  "isSidechain": false,
+  "requestId": "req_011CazWK2vTKce4oJpBnc1Pz",
+  "type": "assistant",
+  "uuid": "6589e456-641a-44c0-8cb2-ce79eff68c66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MW1K2cGRSYgKc1ALcNFCFA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1348,
+      "cache_read_input_tokens": 41527,
+      "output_tokens": 90,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1348,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 90,
+          "cache_read_input_tokens": 41527,
+          "cache_creation_input_tokens": 1348,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1348
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-13T11:41:25.744Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018VBQAhf56TBz255VXwyMgY`</summary>
+
+```json
+{
+  "query": "SCIZOR self-supervised data curation imitation learning ICRA 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6589e456-641a-44c0-8cb2-ce79eff68c66",
+  "isSidechain": false,
+  "requestId": "req_011CazWK2vTKce4oJpBnc1Pz",
+  "type": "assistant",
+  "uuid": "be8f8410-6f40-4836-b370-abb0b1442ce3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MW1K2cGRSYgKc1ALcNFCFA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1348,
+      "cache_read_input_tokens": 41527,
+      "output_tokens": 90,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1348,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 90,
+          "cache_read_input_tokens": 41527,
+          "cache_creation_input_tokens": 1348,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1348
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T11:41:32.025Z_
+
+<details><summary>↩ Tool result · `toolu_018VBQAhf56TBz255VXwyMgY`</summary>
+
+```text
+Web search results for query: "SCIZOR self-supervised data curation imitation learning ICRA 2026"
+
+Links: [{"title":"SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning","url":"https://ut-austin-rpl.github.io/SCIZOR/"},{"title":"[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/abs/2505.22626"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v2"},{"title":"Huihan Liu on X: \"Our data curation work SCIZOR is accepted to ICRA 2026! Check out this self-supervised data curation approach that removes suboptimal and duplicated data for large-scale imitation learning, led by @YZ_Franklin @yuqi_xie5\" / X","url":"https://x.com/huihan_liu/status/2017698931493195899"},{"title":"SCIZOR: A Self-Supervised Approach to Data Curation for ...","url":"https://openreview.net/pdf?id=Wo8eEdFUDF"},{"title":"GitHub - UT-Austin-RPL/SCIZOR · GitHub","url":"https://github.com/UT-Austin-RPL/SCIZOR"},{"title":"Copyright by Yuqi Xie 2025 1","url":"https://repositories.lib.utexas.edu/bitstreams/d8256e22-405e-4881-87d8-ca3f8008345e/download"},{"title":"(PDF) SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://www.researchgate.net/publication/392167457_SCIZOR_A_Self-Supervised_Approach_to_Data_Curation_for_Large-Scale_Imitation_Learning"},{"title":"Publications – UT Austin Robot Perception and Learning Lab","url":"https://rpl.cs.utexas.edu/publications/"},{"title":"[Literature Review] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://www.themoonlight.io/en/review/scizor-a-self-supervised-approach-to-data-curation-for-large-scale-imitation-learning"}]
+
+Based on the search results, I found comprehensive information about SCIZOR. Here's a summary:
+
+## SCIZOR: Self-Supervised Data Curation for Imitation Learning
+
+SCIZOR is a paper accepted to the 2026 IEEE International Conference on Robotics and Automation (ICRA). The framework filters out low-quality state-action pairs to improve the performance of imitation learning policies.
+
+### Key Problem and Motivation
+
+Large-scale datasets used for policy training often introduce substantial variability in quality, which can negatively impact performance, making automatic dataset curation by filtering low-quality samples essential. Existing robotic curation approaches rely on costly manual annotations and perform curation at a coarse granularity, such as the dataset or trajectory level, failing to account for the quality of individual state-action pairs.
+
+### Approach
+
+SCIZOR targets two complementary sources of low-quality data: suboptimal data, which hinder learning with undesirable actions, and redundant data, which dilute training with repetitive patterns. The framework has two main components:
+
+1. Suboptimal transitions: a progress-prediction model flags and removes frames that fail to make meaningful task progress, without needing reward signals
+
+2. Redundant transitions: joint visual-action embeddings are clustered to detect and discard look-alike segments, ensuring diversity
+
+### Results
+
+SCIZOR improves policy performance across diverse large-scale imitation learning benchmarks, showing on average 15.4% improvement. Specifically, SCIZOR yielded absolute gains of 5.4% on RoboMimic, 8.1% on OXEMagic, and 32.9% on Sirius-Fleet.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be8f8410-6f40-4836-b370-abb0b1442ce3",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "8b687a8d-8636-4b5c-84a7-c4a28a034ebf",
+  "toolUseResult": {
+    "query": "SCIZOR self-supervised data curation imitation learning ICRA 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A8ASafru88kBoUW6vmkwd5",
+        "content": [
+          {
+            "title": "SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning",
+            "url": "https://ut-austin-rpl.github.io/SCIZOR/"
+          },
+          {
+            "title": "[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/abs/2505.22626"
+          },
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v2"
+          },
+          {
+            "title": "Huihan Liu on X: \"Our data curation work SCIZOR is accepted to ICRA 2026! Check out this self-supervised data curation approach that removes suboptimal and duplicated data for large-scale imitation learning, led by @YZ_Franklin @yuqi_xie5\" / X",
+            "url": "https://x.com/huihan_liu/status/2017698931493195899"
+          },
+          {
+            "title": "SCIZOR: A Self-Supervised Approach to Data Curation for ...",
+            "url": "https://openreview.net/pdf?id=Wo8eEdFUDF"
+          },
+          {
+            "title": "GitHub - UT-Austin-RPL/SCIZOR · GitHub",
+            "url": "https://github.com/UT-Austin-RPL/SCIZOR"
+          },
+          {
+            "title": "Copyright by Yuqi Xie 2025 1",
+            "url": "https://repositories.lib.utexas.edu/bitstreams/d8256e22-405e-4881-87d8-ca3f8008345e/download"
+          },
+          {
+            "title": "(PDF) SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://www.researchgate.net/publication/392167457_SCIZOR_A_Self-Supervised_Approach_to_Data_Curation_for_Large-Scale_Imitation_Learning"
+          },
+          {
+            "title": "Publications – UT Austin Robot Perception and Learning Lab",
+            "url": "https://rpl.cs.utexas.edu/publications/"
+          },
+          {
+            "title": "[Literature Review] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://www.themoonlight.io/en/review/scizor-a-self-supervised-approach-to-data-curation-for-large-scale-imitation-learning"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about SCIZOR. Here's a summary:\n\n## SCIZOR: Self-Supervised Data Curation for Imitation Learning\n\nSCIZOR is a paper accepted to the 2026 IEEE International Conference on Robotics and Automation (ICRA). The framework filters out low-quality state-action pairs to improve the performance of imitation learning policies.\n\n### Key Problem and Motivation\n\nLarge-scale datasets used for policy training often introduce substantial variability in quality, which can negatively impact performance, making automatic dataset curation by filtering low-quality samples essential. Existing robotic curation approaches rely on costly manual annotations and perform curation at a coarse granularity, such as the dataset or trajectory level, failing to account for the quality of individual state-action pairs.\n\n### Approach\n\nSCIZOR targets two complementary sources of low-quality data: suboptimal data, which hinder learning with undesirable actions, and redundant data, which dilute training with repetitive patterns. The framework has two main components:\n\n1. Suboptimal transitions: a progress-prediction model flags and removes frames that fail to make meaningful task progress, without needing reward signals\n\n2. Redundant transitions: joint visual-action embeddings are clustered to detect and discard look-alike segments, ensuring diversity\n\n### Results\n\nSCIZOR improves policy performance across diverse large-scale imitation learning benchmarks, showing on average 15.4% improvement. Specifically, SCIZOR yielded absolute gains of 5.4% on RoboMimic, 8.1% on OXEMagic, and 32.9% on Sirius-Fleet."
+    ],
+    "durationSeconds": 6.274058067999999
+  },
+  "sourceToolAssistantUUID": "be8f8410-6f40-4836-b370-abb0b1442ce3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T11:41:35.198Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016bnhm9TvSm4eeKaazz8iHX`</summary>
+
+```json
+{
+  "query": "SARM stage-aware reward modeling robot manipulation ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b687a8d-8636-4b5c-84a7-c4a28a034ebf",
+  "isSidechain": false,
+  "requestId": "req_011CazWKorvWL96LCR4mYJUK",
+  "type": "assistant",
+  "uuid": "d7725163-a85c-41f4-90fd-45a2c70fdf62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SCq8FqUmeasqE8pLeMvbBe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1128,
+      "cache_read_input_tokens": 42875,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1128,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 42875,
+          "cache_creation_input_tokens": 1128,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1128
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-13T11:41:41.039Z_
+
+<details><summary>↩ Tool result · `toolu_016bnhm9TvSm4eeKaazz8iHX`</summary>
+
+```text
+Web search results for query: "SARM stage-aware reward modeling robot manipulation ICLR 2026"
+
+Links: [{"title":"ICLR Poster SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation","url":"https://iclr.cc/virtual/2026/poster/10008682"},{"title":"SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation","url":"https://qianzhong-chen.github.io/sarm.github.io/"},{"title":"SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation | OpenReview","url":"https://openreview.net/forum?id=aemqAxScl9"},{"title":"[2509.25358] SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation","url":"https://arxiv.org/abs/2509.25358"},{"title":"(PDF) SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation","url":"https://www.researchgate.net/publication/396048367_SARM_Stage-Aware_Reward_Modeling_for_Long_Horizon_Robot_Manipulation"},{"title":"SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation","url":"https://arxiv.org/html/2509.25358"},{"title":"Qianzhong Chen’s Website . Qianzhong Chen","url":"https://qianzhong-chen.github.io/"},{"title":"Qianzhong Chen - PhD student @ Stanford | Ex robotics ...","url":"https://www.linkedin.com/in/qianzhong-chen-9bab01209/"},{"title":"[Literature Review] SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation","url":"https://www.themoonlight.io/en/review/sarm-stage-aware-reward-modeling-for-long-horizon-robot-manipulation"},{"title":"SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.25358v2"}]
+
+I found comprehensive information about SARM at ICLR 2026. Here's what the search revealed:
+
+## SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation
+
+SARM is a stage-aware, video-based reward modeling framework that jointly predicts task stage and fine-grained progress, using natural-language subtask annotations to derive consistent labels across variable-length demonstrations.
+
+### Key Problem Addressed
+
+Long-horizon, contact-rich problems—especially those involving deformable objects—remain challenging due to inconsistent demonstration quality. The framework avoids the brittleness of frame-index-based labeling and provides stable supervision even in tasks like T-shirt folding.
+
+### Methodology
+
+The approach introduces Reward-Aligned Behavior Cloning (RA-BC), which filters and reweights demonstrations based on reward estimates. The reward model is robust to demonstration variability, generalizes to out-of-distribution scenarios, and improves downstream policy training.
+
+### Results
+
+On T-shirt folding, SARM achieves 83% success from the flattened state and 67% from the crumpled state, compared to 8% and 0% with vanilla BC.
+
+### Publication
+
+The paper was accepted to ICLR 2026, and SARM is now native to LeRobot with support from the Hugging Face team.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7725163-a85c-41f4-90fd-45a2c70fdf62",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "51be5292-a2b0-4bf5-9dc0-519efc500618",
+  "toolUseResult": {
+    "query": "SARM stage-aware reward modeling robot manipulation ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YAck8PZay4kXU7tgVByr35",
+        "content": [
+          {
+            "title": "ICLR Poster SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation",
+            "url": "https://iclr.cc/virtual/2026/poster/10008682"
+          },
+          {
+            "title": "SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation",
+            "url": "https://qianzhong-chen.github.io/sarm.github.io/"
+          },
+          {
+            "title": "SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation | OpenReview",
+            "url": "https://openreview.net/forum?id=aemqAxScl9"
+          },
+          {
+            "title": "[2509.25358] SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation",
+            "url": "https://arxiv.org/abs/2509.25358"
+          },
+          {
+            "title": "(PDF) SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation",
+            "url": "https://www.researchgate.net/publication/396048367_SARM_Stage-Aware_Reward_Modeling_for_Long_Horizon_Robot_Manipulation"
+          },
+          {
+            "title": "SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation",
+            "url": "https://arxiv.org/html/2509.25358"
+          },
+          {
+            "title": "Qianzhong Chen’s Website . Qianzhong Chen",
+            "url": "https://qianzhong-chen.github.io/"
+          },
+          {
+            "title": "Qianzhong Chen - PhD student @ Stanford | Ex robotics ...",
+            "url": "https://www.linkedin.com/in/qianzhong-chen-9bab01209/"
+          },
+          {
+            "title": "[Literature Review] SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation",
+            "url": "https://www.themoonlight.io/en/review/sarm-stage-aware-reward-modeling-for-long-horizon-robot-manipulation"
+          },
+          {
+            "title": "SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2509.25358v2"
+          }
+        ]
+      },
+      "I found comprehensive information about SARM at ICLR 2026. Here's what the search revealed:\n\n## SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation\n\nSARM is a stage-aware, video-based reward modeling framework that jointly predicts task stage and fine-grained progress, using natural-language subtask annotations to derive consistent labels across variable-length demonstrations.\n\n### Key Problem Addressed\n\nLong-horizon, contact-rich problems—especially those involving deformable objects—remain challenging due to inconsistent demonstration quality. The framework avoids the brittleness of frame-index-based labeling and provides stable supervision even in tasks like T-shirt folding.\n\n### Methodology\n\nThe approach introduces Reward-Aligned Behavior Cloning (RA-BC), which filters and reweights demonstrations based on reward estimates. The reward model is robust to demonstration variability, generalizes to out-of-distribution scenarios, and improves downstream policy training.\n\n### Results\n\nOn T-shirt folding, SARM achieves 83% success from the flattened state and 67% from the crumpled state, compared to 8% and 0% with vanilla BC.\n\n### Publication\n\nThe paper was accepted to ICLR 2026, and SARM is now native to LeRobot with support from the Hugging Face team."
+    ],
+    "durationSeconds": 5.829554062000003
+  },
+  "sourceToolAssistantUUID": "d7725163-a85c-41f4-90fd-45a2c70fdf62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-13T11:41:50.724Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SjgzUrVCLvjdangqMBr6mj`</summary>
+
+```json
+{
+  "query": "demonstration curation multimodal strategy diversity robot learning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51be5292-a2b0-4bf5-9dc0-519efc500618",
+  "isSidechain": false,
+  "requestId": "req_011CazWLUMwA5htgPFSY8ujC",
+  "type": "assistant",
+  "uuid": "6767adad-4f0c-47e0-ad30-bc2ee32d608c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqWfKug9YxqktVXNqWFEHs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 44003,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 44003,
+          "cache_creation_input_tokens": 936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T11:41:58.190Z_
+
+<details><summary>↩ Tool result · `toolu_01SjgzUrVCLvjdangqMBr6mj`</summary>
+
+```text
+Web search results for query: "demonstration curation multimodal strategy diversity robot learning 2025 2026"
+
+Links: [{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"NVIDIA Research Breakthroughs Put Advanced Robots in Motion | NVIDIA Blog","url":"https://blogs.nvidia.com/blog/nvidia-research-robotics-icra-2025/"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2604.16391"},{"title":"2025-9-18 ThinkAct: Vision-Language-Action Reasoning via","url":"https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"},{"title":"Frontiers | Diffusion models for robotic manipulation: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"},{"title":"ICLR 2026 Trends: Agentic AI, Multimodal Models & Data Governance","url":"https://encord.com/iclr-2026/"},{"title":"Frontiers | Multimodal perception-driven decision-making for human-robot interaction: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1604472/full"},{"title":"Generative Models for Robot Learning","url":"https://iclr.cc/virtual/2025/workshop/23977"},{"title":"An Overview of Robot Embodied Intelligence Based on Multimodal Models: Tasks, Models, and System Schemes - Cong - 2025 - International Journal of Intelligent Systems - Wiley Online Library","url":"https://onlinelibrary.wiley.com/doi/10.1155/int/5124400"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"}]
+
+I found comprehensive search results related to demonstration curation, multimodal strategies, diversity, and robot learning in 2025-2026. Here's a summary of the key findings:
+
+## Current Research Trends in Multimodal Robot Learning (2025-2026)
+
+**Demonstration Curation and Data Strategy**
+
+The bottleneck in developing modern AI systems is now the curation, annotation, and labeling of high-fidelity training distributions. Recent frameworks employ data synthesis pipelines and progressive rejection sampling to curate high-quality, non-redundant trajectories for training.
+
+**Multimodal Vision-Language-Action Models**
+
+Research is focusing on state-of-the-art work in embodied AI, particularly vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. Systems like DexMimicGen can generate large-scale bimanual dexterous manipulation datasets from just a few human demonstrations.
+
+**Diversity and Generalization**
+
+Human videos are orders of magnitude larger and more diverse than robot demonstrations, and inherently contain rich motion priors across embodiments and tasks. Advanced frameworks enable robots to generalize across diverse environments by leveraging learned world models for planning and control.
+
+**Recent Advances**
+
+NVIDIA Research is uncovering breakthroughs in areas such as multimodal generative AI and synthetic data generation for robot training and development. Additionally, recent efforts have adapted vision-language models for action-centric tasks by post-training on curated instruction-following data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6767adad-4f0c-47e0-ad30-bc2ee32d608c",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "e6bc76df-26a5-4525-b19c-eb29c82be82d",
+  "toolUseResult": {
+    "query": "demonstration curation multimodal strategy diversity robot learning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TYjgFzgLaSqNWCtJUBWEvc",
+        "content": [
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          },
+          {
+            "title": "NVIDIA Research Breakthroughs Put Advanced Robots in Motion | NVIDIA Blog",
+            "url": "https://blogs.nvidia.com/blog/nvidia-research-robotics-icra-2025/"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2604.16391"
+          },
+          {
+            "title": "2025-9-18 ThinkAct: Vision-Language-Action Reasoning via",
+            "url": "https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"
+          },
+          {
+            "title": "Frontiers | Diffusion models for robotic manipulation: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"
+          },
+          {
+            "title": "ICLR 2026 Trends: Agentic AI, Multimodal Models & Data Governance",
+            "url": "https://encord.com/iclr-2026/"
+          },
+          {
+            "title": "Frontiers | Multimodal perception-driven decision-making for human-robot interaction: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1604472/full"
+          },
+          {
+            "title": "Generative Models for Robot Learning",
+            "url": "https://iclr.cc/virtual/2025/workshop/23977"
+          },
+          {
+            "title": "An Overview of Robot Embodied Intelligence Based on Multimodal Models: Tasks, Models, and System Schemes - Cong - 2025 - International Journal of Intelligent Systems - Wiley Online Library",
+            "url": "https://onlinelibrary.wiley.com/doi/10.1155/int/5124400"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          }
+        ]
+      },
+      "I found comprehensive search results related to demonstration curation, multimodal strategies, diversity, and robot learning in 2025-2026. Here's a summary of the key findings:\n\n## Current Research Trends in Multimodal Robot Learning (2025-2026)\n\n**Demonstration Curation and Data Strategy**\n\nThe bottleneck in developing modern AI systems is now the curation, annotation, and labeling of high-fidelity training distributions. Recent frameworks employ data synthesis pipelines and progressive rejection sampling to curate high-quality, non-redundant trajectories for training.\n\n**Multimodal Vision-Language-Action Models**\n\nResearch is focusing on state-of-the-art work in embodied AI, particularly vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. Systems like DexMimicGen can generate large-scale bimanual dexterous manipulation datasets from just a few human demonstrations.\n\n**Diversity and Generalization**\n\nHuman videos are orders of magnitude larger and more diverse than robot demonstrations, and inherently contain rich motion priors across embodiments and tasks. Advanced frameworks enable robots to generalize across diverse environments by leveraging learned world models for planning and control.\n\n**Recent Advances**\n\nNVIDIA Research is uncovering breakthroughs in areas such as multimodal generative AI and synthetic data generation for robot training and development. Additionally, recent efforts have adapted vision-language models for action-centric tasks by post-training on curated instruction-following data."
+    ],
+    "durationSeconds": 7.462109341000003
+  },
+  "sourceToolAssistantUUID": "6767adad-4f0c-47e0-ad30-bc2ee32d608c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e6bc76df-26a5-4525-b19c-eb29c82be82d",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PhaseOT demonstration curation for AAAI 2027",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-13T11:42:00.974Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013D3ko833Sq7eaoFaJQHsb5`</summary>
+
+```json
+{
+  "query": "optimal transport demonstration quality filtering robot imitation learning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6bc76df-26a5-4525-b19c-eb29c82be82d",
+  "isSidechain": false,
+  "requestId": "req_011CazWMjjRz1gWbt7w3FT3S",
+  "type": "assistant",
+  "uuid": "fe294294-49eb-46c1-bb6d-652e406b3275",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J7mx3d11oAbHjHqwLMgyTS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1042,
+      "cache_read_input_tokens": 44939,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1042,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 44939,
+          "cache_creation_input_tokens": 1042,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1042
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-13T11:42:09.260Z_
+
+<details><summary>↩ Tool result · `toolu_013D3ko833Sq7eaoFaJQHsb5`</summary>
+
+```text
+Web search results for query: "optimal transport demonstration quality filtering robot imitation learning 2025 2026"
+
+Links: [{"title":"Watch and Match: Supercharging Imitation with Regularized Optimal Transport","url":"https://rot-robot.github.io/"},{"title":"Watch and Match: Supercharging Imitation with Regularized Optimal Transport | OpenReview","url":"https://openreview.net/forum?id=ZUtgUA0Fuwd"},{"title":"Robot Policy Learning with Temporal Optimal Transport Reward","url":"https://arxiv.org/html/2410.21795"},{"title":"ICML Poster Zero-Shot Offline Imitation Learning via Optimal Transport","url":"https://icml.cc/virtual/2025/poster/46209"},{"title":"Zero-Shot Offline Imitation Learning via Optimal Transport","url":"https://www.researchgate.net/publication/384886834_Zero-Shot_Offline_Imitation_Learning_via_Optimal_Transport"},{"title":"Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks: Journal of the Chinese Institute of Engineers: Vol 48 , No 6 - Get Access","url":"https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354"},{"title":"OPTIMAL TRANSPORT FOR OFFLINE IMITATION ...","url":"https://openreview.net/pdf?id=MhuFzFsrfvH"},{"title":"ICLR 2023 Optimal Transport for Offline Imitation Learning Oral","url":"https://iclr.cc/virtual/2023/oral/12580"},{"title":"Optimal Transport for Offline Imitation Learning | OpenReview","url":"https://openreview.net/forum?id=MhuFzFsrfvH"},{"title":"[2310.01632] Imitation Learning from Observation through Optimal Transport","url":"https://arxiv.org/abs/2310.01632"}]
+
+I found several relevant research works on optimal transport for robot imitation learning. Here are the key findings:
+
+## Recent Work on Optimal Transport for Robot Imitation Learning
+
+**Regularized Optimal Transport (ROT) for Imitation Learning:**
+ROT is an imitation learning algorithm that builds on optimal transport-based trajectory-matching, with the key insight that adaptively combining trajectory-matching rewards with behavior cloning can significantly accelerate imitation even with only a few demonstrations. Experiments on 20 visual control tasks demonstrate an average of 7.8× faster imitation compared to prior methods, and on real-world robotic manipulation with just one demonstration and an hour of online training, ROT achieves an average success rate of 90.1% across 14 tasks.
+
+**Zero-Shot Offline Imitation Learning via Optimal Transport (ICML 2025):**
+A recent method lifts a goal-conditioned value function to a distance between occupancies approximated via a learned world model, enabling learning from offline, suboptimal data with zero-shot imitation capabilities.
+
+**Self-Optimal Zero-shot Imitation Learning (SOZIL):**
+SOZIL addresses suboptimal demonstrations through Goal Consistency Loss to learn multi-step goal-conditioned policies and Estimation-based Keyframe Extraction to optimize demonstrations. The method is evaluated on real-world robotic tasks including cable harness assembly and rope manipulation, achieving superior success rates and manipulation efficiency compared to baselines.
+
+**Demonstration Quality Filtering:**
+Recent work introduces a discriminator-based approach that weighs all data to distinguish between optimal and suboptimal instances, allowing discriminative weighting to influence policy learning and prevent suboptimal behavior.
+
+These developments represent significant advances in using optimal transport theory to handle demonstration quality issues and improve sample efficiency in robot imitation learning from 2022 through 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe294294-49eb-46c1-bb6d-652e406b3275",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "aee92e1a-fab9-48e0-9ba1-1e9d6e3bd1ee",
+  "toolUseResult": {
+    "query": "optimal transport demonstration quality filtering robot imitation learning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AR3EVDBdRqKcZzvaxZSyaU",
+        "content": [
+          {
+            "title": "Watch and Match: Supercharging Imitation with Regularized Optimal Transport",
+            "url": "https://rot-robot.github.io/"
+          },
+          {
+            "title": "Watch and Match: Supercharging Imitation with Regularized Optimal Transport | OpenReview",
+            "url": "https://openreview.net/forum?id=ZUtgUA0Fuwd"
+          },
+          {
+            "title": "Robot Policy Learning with Temporal Optimal Transport Reward",
+            "url": "https://arxiv.org/html/2410.21795"
+          },
+          {
+            "title": "ICML Poster Zero-Shot Offline Imitation Learning via Optimal Transport",
+            "url": "https://icml.cc/virtual/2025/poster/46209"
+          },
+          {
+            "title": "Zero-Shot Offline Imitation Learning via Optimal Transport",
+            "url": "https://www.researchgate.net/publication/384886834_Zero-Shot_Offline_Imitation_Learning_via_Optimal_Transport"
+          },
+          {
+            "title": "Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks: Journal of the Chinese Institute of Engineers: Vol 48 , No 6 - Get Access",
+            "url": "https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354"
+          },
+          {
+            "title": "OPTIMAL TRANSPORT FOR OFFLINE IMITATION ...",
+            "url": "https://openreview.net/pdf?id=MhuFzFsrfvH"
+          },
+          {
+            "title": "ICLR 2023 Optimal Transport for Offline Imitation Learning Oral",
+            "url": "https://iclr.cc/virtual/2023/oral/12580"
+          },
+          {
+            "title": "Optimal Transport for Offline Imitation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=MhuFzFsrfvH"
+          },
+          {
+            "title": "[2310.01632] Imitation Learning from Observation through Optimal Transport",
+            "url": "https://arxiv.org/abs/2310.01632"
+          }
+        ]
+      },
+      "I found several relevant research works on optimal transport for robot imitation learning. Here are the key findings:\n\n## Recent Work on Optimal Transport for Robot Imitation Learning\n\n**Regularized Optimal Transport (ROT) for Imitation Learning:**\nROT is an imitation learning algorithm that builds on optimal transport-based trajectory-matching, with the key insight that adaptively combining trajectory-matching rewards with behavior cloning can significantly accelerate imitation even with only a few demonstrations. Experiments on 20 visual control tasks demonstrate an average of 7.8× faster imitation compared to prior methods, and on real-world robotic manipulation with just one demonstration and an hour of online training, ROT achieves an average success rate of 90.1% across 14 tasks.\n\n**Zero-Shot Offline Imitation Learning via Optimal Transport (ICML 2025):**\nA recent method lifts a goal-conditioned value function to a distance between occupancies approximated via a learned world model, enabling learning from offline, suboptimal data with zero-shot imitation capabilities.\n\n**Self-Optimal Zero-shot Imitation Learning (SOZIL):**\nSOZIL addresses suboptimal demonstrations through Goal Consistency Loss to learn multi-step goal-conditioned policies and Estimation-based Keyframe Extraction to optimize demonstrations. The method is evaluated on real-world robotic tasks including cable harness assembly and rope manipulation, achieving superior success rates and manipulation efficiency compared to baselines.\n\n**Demonstration Quality Filtering:**\nRecent work introduces a discriminator-based approach that weighs all data to distinguish between optimal and suboptimal instances, allowing discriminative weighting to influence policy learning and prevent suboptimal behavior.\n\nThese developments represent significant advances in using optimal transport theory to handle demonstration quality issues and improve sample efficiency in robot imitation learning from 2022 through 2025."
+    ],
+    "durationSeconds": 8.279305345000001
+  },
+  "sourceToolAssistantUUID": "fe294294-49eb-46c1-bb6d-652e406b3275",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-13T11:42:12.522Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BDa2YSwrmJhc5SNAEBE4fH`</summary>
+
+```json
+{
+  "query": "CoRL 2026 submission deadline Austin November"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aee92e1a-fab9-48e0-9ba1-1e9d6e3bd1ee",
+  "isSidechain": false,
+  "requestId": "req_011CazWNYznv84LJinND228E",
+  "type": "assistant",
+  "uuid": "45d6846d-4296-40e4-b0c5-b8b739732bb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YTmQoQ33gBuSnWd84UaxzQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 989,
+      "cache_read_input_tokens": 45981,
+      "output_tokens": 61,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 989,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 61,
+          "cache_read_input_tokens": 45981,
+          "cache_creation_input_tokens": 989,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 989
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-13T11:42:16.600Z_
+
+<details><summary>↩ Tool result · `toolu_01BDa2YSwrmJhc5SNAEBE4fH`</summary>
+
+```text
+Web search results for query: "CoRL 2026 submission deadline Austin November"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz","url":"https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"}]
+
+Based on the search results, here's the information about CoRL 2026:
+
+**Conference Details:**
+CoRL 2026 will be held in Austin, Texas, US, and the conference dates are November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701.
+
+**Submission Deadlines:**
+- Abstract submission deadline: May 26, 2026 11:59 UTC
+- Paper submission deadline: May 29, 2026 11:59 UTC
+
+**Additional Details:**
+- Papers should comply with an 8-page limit for the main paper
+- The deadlines are final, and accommodations cannot be made for missing the abstract deadline or paper deadline
+- Papers should be submitted through OpenReview at the link provided on the official CoRL website.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "45d6846d-4296-40e4-b0c5-b8b739732bb7",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "2b9e81d3-5515-4712-86fc-f049d81d2f41",
+  "toolUseResult": {
+    "query": "CoRL 2026 submission deadline Austin November",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V7Paps1mSYMN3jckhoAaTF",
+        "content": [
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz",
+            "url": "https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about CoRL 2026:\n\n**Conference Details:**\nCoRL 2026 will be held in Austin, Texas, US, and the conference dates are November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701.\n\n**Submission Deadlines:**\n- Abstract submission deadline: May 26, 2026 11:59 UTC\n- Paper submission deadline: May 29, 2026 11:59 UTC\n\n**Additional Details:**\n- Papers should comply with an 8-page limit for the main paper\n- The deadlines are final, and accommodations cannot be made for missing the abstract deadline or paper deadline\n- Papers should be submitted through OpenReview at the link provided on the official CoRL website."
+    ],
+    "durationSeconds": 4.073354395000002
+  },
+  "sourceToolAssistantUUID": "45d6846d-4296-40e4-b0c5-b8b739732bb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T11:42:19.614Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GbrnotkUV32zmhh8CdKgdn`</summary>
+
+```json
+{
+  "query": "CUPID influence functions robot data curation CoRL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b9e81d3-5515-4712-86fc-f049d81d2f41",
+  "isSidechain": false,
+  "requestId": "req_011CazWP6QAzHFbr5fWDn4H1",
+  "type": "assistant",
+  "uuid": "68216b45-7523-4dc4-8feb-a291c38146e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013KoGRzbPHof2XGikHDscbf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 681,
+      "cache_read_input_tokens": 46970,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 681,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 46970,
+          "cache_creation_input_tokens": 681,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 681
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T11:42:26.947Z_
+
+<details><summary>↩ Tool result · `toolu_01GbrnotkUV32zmhh8CdKgdn`</summary>
+
+```text
+Web search results for query: "CUPID influence functions robot data curation CoRL 2025"
+
+Links: [{"title":"GitHub - agiachris/cupid: Official repository for \"CUPID: Curating Data your Robot Loves with Influence Functions,\" accepted to CoRL 2025. · GitHub","url":"https://github.com/agiachris/cupid"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://cupid-curation.github.io/"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions | OpenReview","url":"https://openreview.net/forum?id=TqevdDMqrK"},{"title":"[2506.19121] CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/abs/2506.19121"},{"title":"[2506.19121v2] CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/abs/2506.19121v2"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/html/2506.19121v1"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://proceedings.mlr.press/v305/agia25a.html"},{"title":"[PDF] CUPID: Curating Data your Robot Loves with Influence Functions | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CUPID:-Curating-Data-your-Robot-Loves-with-Agia-Sinha/666481cd9e72de8e90e3dd12fb826338f5ce17f0"},{"title":"CUPID: Robot Data Curation via Influence Functions","url":"https://www.emergentmind.com/papers/2506.19121"},{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"}]
+
+I found detailed information about CUPID. Here's a comprehensive overview:
+
+## CUPID: Curating Data your Robot Loves with Influence Functions
+
+CUPID is a paper "Curating Data your Robot Loves with Influence Functions," accepted to CoRL 2025.
+
+### Overview
+
+CUPID is a robot data curation method based on a novel influence function-theoretic formulation for imitation learning policies. CUPID uses influence functions to predictively answer counterfactual questions about the effect of each demonstration on downstream policy performance, enabling it to answer questions like "How would my policy's expected return change if I upweighted - or by negating, downweighted - the loss on a demonstration during training?" without needing to retrain any policies.
+
+### How It Works
+
+Given a set of evaluation rollouts, CUPID estimates the influence of each training demonstration on the policy's expected return, enabling ranking and selection of demonstrations according to their impact on the policy's closed-loop performance.
+
+### Applications
+
+CUPID is used to curate data by 1) filtering out training demonstrations that harm policy performance and 2) subselecting newly collected trajectories that will most improve the policy.
+
+### Results
+
+Training with less than 33% of curated data can yield state-of-the-art diffusion policies on the simulated RoboMimic benchmark, with similar gains observed in hardware. Hardware experiments show that the method can identify robust strategies under distribution shift, isolate spurious correlations, and even enhance the post-training of generalist robot policies.
+
+The official code repository is available on GitHub, and the paper has been published in the proceedings of the 9th Conference on Robot Learning (CoRL 2025).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68216b45-7523-4dc4-8feb-a291c38146e3",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "20a7bfcf-f182-420c-a80a-a5acac2024f6",
+  "toolUseResult": {
+    "query": "CUPID influence functions robot data curation CoRL 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H4o7APq4SSwxhN6YcwEMJU",
+        "content": [
+          {
+            "title": "GitHub - agiachris/cupid: Official repository for \"CUPID: Curating Data your Robot Loves with Influence Functions,\" accepted to CoRL 2025. · GitHub",
+            "url": "https://github.com/agiachris/cupid"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://cupid-curation.github.io/"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions | OpenReview",
+            "url": "https://openreview.net/forum?id=TqevdDMqrK"
+          },
+          {
+            "title": "[2506.19121] CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/abs/2506.19121"
+          },
+          {
+            "title": "[2506.19121v2] CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/abs/2506.19121v2"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/html/2506.19121v1"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://proceedings.mlr.press/v305/agia25a.html"
+          },
+          {
+            "title": "[PDF] CUPID: Curating Data your Robot Loves with Influence Functions | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CUPID:-Curating-Data-your-Robot-Loves-with-Agia-Sinha/666481cd9e72de8e90e3dd12fb826338f5ce17f0"
+          },
+          {
+            "title": "CUPID: Robot Data Curation via Influence Functions",
+            "url": "https://www.emergentmind.com/papers/2506.19121"
+          },
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          }
+        ]
+      },
+      "I found detailed information about CUPID. Here's a comprehensive overview:\n\n## CUPID: Curating Data your Robot Loves with Influence Functions\n\nCUPID is a paper \"Curating Data your Robot Loves with Influence Functions,\" accepted to CoRL 2025.\n\n### Overview\n\nCUPID is a robot data curation method based on a novel influence function-theoretic formulation for imitation learning policies. CUPID uses influence functions to predictively answer counterfactual questions about the effect of each demonstration on downstream policy performance, enabling it to answer questions like \"How would my policy's expected return change if I upweighted - or by negating, downweighted - the loss on a demonstration during training?\" without needing to retrain any policies.\n\n### How It Works\n\nGiven a set of evaluation rollouts, CUPID estimates the influence of each training demonstration on the policy's expected return, enabling ranking and selection of demonstrations according to their impact on the policy's closed-loop performance.\n\n### Applications\n\nCUPID is used to curate data by 1) filtering out training demonstrations that harm policy performance and 2) subselecting newly collected trajectories that will most improve the policy.\n\n### Results\n\nTraining with less than 33% of curated data can yield state-of-the-art diffusion policies on the simulated RoboMimic benchmark, with similar gains observed in hardware. Hardware experiments show that the method can identify robust strategies under distribution shift, isolate spurious correlations, and even enhance the post-training of generalist robot policies.\n\nThe official code repository is available on GitHub, and the paper has been published in the proceedings of the 9th Conference on Robot Learning (CoRL 2025)."
+    ],
+    "durationSeconds": 7.3229364369999965
+  },
+  "sourceToolAssistantUUID": "68216b45-7523-4dc4-8feb-a291c38146e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-13T11:42:30.480Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P1mLgKSb6qX3drWm52Hj9k`</summary>
+
+```json
+{
+  "query": "mode-aware demonstration scoring multimodal policy imitation learning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20a7bfcf-f182-420c-a80a-a5acac2024f6",
+  "isSidechain": false,
+  "requestId": "req_011CazWPriBFk9Mryf39mFSE",
+  "type": "assistant",
+  "uuid": "63d74c7c-a1f9-45e4-9e1d-1fbac1601e84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7KUxEMvPwas5eiKEGkdQf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 991,
+      "cache_read_input_tokens": 47651,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 991,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 47651,
+          "cache_creation_input_tokens": 991,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 991
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T11:42:38.036Z_
+
+<details><summary>↩ Tool result · `toolu_01P1mLgKSb6qX3drWm52Hj9k`</summary>
+
+```text
+Web search results for query: "mode-aware demonstration scoring multimodal policy imitation learning 2025 2026"
+
+Links: [{"title":"Feasibility-aware Imitation Learning from Observation with Multimodal Feedback","url":"https://arxiv.org/html/2602.15351"},{"title":"Weakly supervised multi-modal imitation learning from incompletely labeled demonstrations - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0893608025009785"},{"title":"Multimodal and Force-Matched Imitation Learning (T-RO 2025 and ICRA 2025) - STARS Papers","url":"https://papers.starslab.ca/sts-il/"},{"title":"The MultiModal Imitation Task: A Validation Study | Journal of Monolingual and Bilingual Speech","url":"https://utppublishing.com/doi/10.3138/jmbs-2024-0016"},{"title":"On-Policy Distillation Frameworks","url":"https://www.emergentmind.com/topics/on-policy-distillation-frameworks"},{"title":"Robust Multimodal Learning through Dynamic Modality ...","url":"https://aclanthology.org/2025.findings-emnlp.689.pdf"},{"title":"Action Tokenizer Matters in In-Context Imitation Learning | Request PDF","url":"https://www.researchgate.net/publication/398056920_Action_Tokenizer_Matters_in_In-Context_Imitation_Learning"},{"title":"Unbiased Missing-modality Multimodal Learning","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Dai_Unbiased_Missing-modality_Multimodal_Learning_ICCV_2025_paper.pdf"},{"title":"Deep Multimodal Learning with Missing Modality: A Survey | OpenReview","url":"https://openreview.net/forum?id=tc7RFcx4hT"},{"title":"Robust Multimodal Learning With Missing Modalities via ...","url":"https://www.computer.org/csdl/journal/tp/2025/02/10713849/20VwC7hALjq"}]
+
+I found several relevant research papers and resources related to your search query. Here are the key findings:
+
+## Recent Work on Multimodal Imitation Learning
+
+FABCO (Feasibility-Aware Behavior Cloning from Observation) is an imitation learning method that uses a robot dynamics model to supplement action in demonstration data, and uses estimated feasibility for both demonstration and policy learning, with feasibility fed back multimodally to the demonstrator's visual and tactile senses to guide feasible motion demonstration.
+
+Multi-modal imitation learning enables agents to learn demonstrations of multiple modes at the same time, though expert demonstrations in practice tend to have incomplete labels for behavior modes, making most methods inefficient.
+
+## Related Research Areas
+
+There is also active research on multimodal and force-matched imitation learning systems, including kinesthetic teaching with force recording, force-matched replay with mode switch labels, and learned multimodal policies with mode-switch actions, which were presented at T-RO 2025 and ICRA 2025.
+
+Additionally, in multimodal generation and policy learning, diffusion-based approaches with additional critic or auxiliary score networks are being optimized, with noted extensions including multi-modal and cross-embodiment transfer and meta-learning confidence weighting for source selection.
+
+The search results show active developments in combining multimodal feedback, demonstration scoring, and policy learning throughout 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63d74c7c-a1f9-45e4-9e1d-1fbac1601e84",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "508ad63d-093a-4e55-a0ac-955aefbec22d",
+  "toolUseResult": {
+    "query": "mode-aware demonstration scoring multimodal policy imitation learning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014jAdSoeYP27kzWTuMxmUMc",
+        "content": [
+          {
+            "title": "Feasibility-aware Imitation Learning from Observation with Multimodal Feedback",
+            "url": "https://arxiv.org/html/2602.15351"
+          },
+          {
+            "title": "Weakly supervised multi-modal imitation learning from incompletely labeled demonstrations - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0893608025009785"
+          },
+          {
+            "title": "Multimodal and Force-Matched Imitation Learning (T-RO 2025 and ICRA 2025) - STARS Papers",
+            "url": "https://papers.starslab.ca/sts-il/"
+          },
+          {
+            "title": "The MultiModal Imitation Task: A Validation Study | Journal of Monolingual and Bilingual Speech",
+            "url": "https://utppublishing.com/doi/10.3138/jmbs-2024-0016"
+          },
+          {
+            "title": "On-Policy Distillation Frameworks",
+            "url": "https://www.emergentmind.com/topics/on-policy-distillation-frameworks"
+          },
+          {
+            "title": "Robust Multimodal Learning through Dynamic Modality ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.689.pdf"
+          },
+          {
+            "title": "Action Tokenizer Matters in In-Context Imitation Learning | Request PDF",
+            "url": "https://www.researchgate.net/publication/398056920_Action_Tokenizer_Matters_in_In-Context_Imitation_Learning"
+          },
+          {
+            "title": "Unbiased Missing-modality Multimodal Learning",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Dai_Unbiased_Missing-modality_Multimodal_Learning_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "Deep Multimodal Learning with Missing Modality: A Survey | OpenReview",
+            "url": "https://openreview.net/forum?id=tc7RFcx4hT"
+          },
+          {
+            "title": "Robust Multimodal Learning With Missing Modalities via ...",
+            "url": "https://www.computer.org/csdl/journal/tp/2025/02/10713849/20VwC7hALjq"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources related to your search query. Here are the key findings:\n\n## Recent Work on Multimodal Imitation Learning\n\nFABCO (Feasibility-Aware Behavior Cloning from Observation) is an imitation learning method that uses a robot dynamics model to supplement action in demonstration data, and uses estimated feasibility for both demonstration and policy learning, with feasibility fed back multimodally to the demonstrator's visual and tactile senses to guide feasible motion demonstration.\n\nMulti-modal imitation learning enables agents to learn demonstrations of multiple modes at the same time, though expert demonstrations in practice tend to have incomplete labels for behavior modes, making most methods inefficient.\n\n## Related Research Areas\n\nThere is also active research on multimodal and force-matched imitation learning systems, including kinesthetic teaching with force recording, force-matched replay with mode switch labels, and learned multimodal policies with mode-switch actions, which were presented at T-RO 2025 and ICRA 2025.\n\nAdditionally, in multimodal generation and policy learning, diffusion-based approaches with additional critic or auxiliary score networks are being optimized, with noted extensions including multi-modal and cross-embodiment transfer and meta-learning confidence weighting for source selection.\n\nThe search results show active developments in combining multimodal feedback, demonstration scoring, and policy learning throughout 2025-2026."
+    ],
+    "durationSeconds": 7.547720858000001
+  },
+  "sourceToolAssistantUUID": "63d74c7c-a1f9-45e4-9e1d-1fbac1601e84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-13T11:42:38.039Z_
+
+```json
+{
+  "parentUuid": "508ad63d-093a-4e55-a0ac-955aefbec22d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2e87e5e5-1b4b-49e1-8604-e22602547d18",
+  "timestamp": "2026-05-13T11:42:38.039Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2e87e5e5-1b4b-49e1-8604-e22602547d18",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PhaseOT demonstration curation for AAAI 2027",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-13T11:42:42.841Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FutwVQ9VDVszcqY2FEtsjq`</summary>
+
+```json
+{
+  "query": "Shi et al spatial velocity multimodality demonstration diversity robot learning 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e87e5e5-1b4b-49e1-8604-e22602547d18",
+  "isSidechain": false,
+  "requestId": "req_011CazWQg2X5msuv74xinEHk",
+  "type": "assistant",
+  "uuid": "169c7c53-5a77-43dc-a83a-6fad3d977dc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qf1NAZczuxUDkRCQyoWnPG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1067,
+      "cache_read_input_tokens": 48642,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1067,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 48642,
+          "cache_creation_input_tokens": 1067,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1067
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-13T11:42:49.675Z_
+
+<details><summary>↩ Tool result · `toolu_01FutwVQ9VDVszcqY2FEtsjq`</summary>
+
+```text
+Web search results for query: "Shi et al spatial velocity multimodality demonstration diversity robot learning 2025"
+
+Links: [{"title":"Is Diversity All You Need for Scalable Robotic Manipulation?","url":"https://arxiv.org/html/2507.06219"},{"title":"[2507.06219] Is Diversity All You Need for Scalable Robotic Manipulation?","url":"https://arxiv.org/abs/2507.06219"},{"title":"Frontiers | Diffusion models for robotic manipulation: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/49f80e4d2471ad4f2edf4f5f1ab62339-Paper-Conference.pdf"},{"title":"Publications - NYU Web Publishing - New York University","url":"https://wp.nyu.edu/cilvr/cilvr-group-publications/"},{"title":"Deep Generative Models in Robotics: A Survey on Learning from Multimodal Demonstrations","url":"https://arxiv.org/html/2408.04380v1"},{"title":"2025-9-18 ThinkAct: Vision-Language-Action Reasoning via","url":"https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"},{"title":"1 Recipe for Vision-Language-Action Models in Robotic Manipulation: A Survey","url":"https://www.techrxiv.org/users/956965/articles/1326137/master/file/data/eart2025recipevla/eart2025recipevla.pdf?inline=true"},{"title":"1 Is Diversity All You Need for Scalable Robotic Manipulation? Modi Shi1,2,4∗","url":"https://arxiv.org/pdf/2507.06219"},{"title":"System of Robot Learning from Multi-Modal Demonstration and Natural Language Instruction - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S2212827122003687"}]
+
+Based on the web search results, I found the paper you were looking for. The work is titled "Is Diversity All You Need for Scalable Robotic Manipulation?" with Modi Shi as the lead author along with 9 other authors.
+
+The research investigates the nuanced role of data diversity in robot learning by examining three critical dimensions—task (what to do), embodiment (which robot to use), and expert (who demonstrates)—challenging the conventional intuition of "more diverse is better".
+
+Key findings include:
+
+1. Task diversity proves more critical than per-task demonstration quantity, benefiting transfer from diverse pre-training tasks to novel downstream scenarios
+
+2. Expert diversity, arising from individual operational preferences and stochastic variations in human demonstrations, can be confounding to policy learning, with velocity multimodality emerging as a key contributing factor
+
+3. Expert diversity could be confounding to the imitation learning process and targeted elimination of velocity multimodality can significantly improve model performance
+
+4. The authors introduce a velocity model that performs distribution debiasing, specifically eliminating velocity multimodality while preserving spatial multimodality
+
+Based on this insight, the distribution debiasing method to mitigate velocity ambiguity yields GO-1-Pro achieving substantial performance gains of 15%, equivalent to using 2.5 times pre-training data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "169c7c53-5a77-43dc-a83a-6fad3d977dc7",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "0ae35059-7873-419c-8e0f-e39f3983a7be",
+  "toolUseResult": {
+    "query": "Shi et al spatial velocity multimodality demonstration diversity robot learning 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XLRuPZnA5JWBMtKmvZYF9M",
+        "content": [
+          {
+            "title": "Is Diversity All You Need for Scalable Robotic Manipulation?",
+            "url": "https://arxiv.org/html/2507.06219"
+          },
+          {
+            "title": "[2507.06219] Is Diversity All You Need for Scalable Robotic Manipulation?",
+            "url": "https://arxiv.org/abs/2507.06219"
+          },
+          {
+            "title": "Frontiers | Diffusion models for robotic manipulation: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/49f80e4d2471ad4f2edf4f5f1ab62339-Paper-Conference.pdf"
+          },
+          {
+            "title": "Publications - NYU Web Publishing - New York University",
+            "url": "https://wp.nyu.edu/cilvr/cilvr-group-publications/"
+          },
+          {
+            "title": "Deep Generative Models in Robotics: A Survey on Learning from Multimodal Demonstrations",
+            "url": "https://arxiv.org/html/2408.04380v1"
+          },
+          {
+            "title": "2025-9-18 ThinkAct: Vision-Language-Action Reasoning via",
+            "url": "https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"
+          },
+          {
+            "title": "1 Recipe for Vision-Language-Action Models in Robotic Manipulation: A Survey",
+            "url": "https://www.techrxiv.org/users/956965/articles/1326137/master/file/data/eart2025recipevla/eart2025recipevla.pdf?inline=true"
+          },
+          {
+            "title": "1 Is Diversity All You Need for Scalable Robotic Manipulation? Modi Shi1,2,4∗",
+            "url": "https://arxiv.org/pdf/2507.06219"
+          },
+          {
+            "title": "System of Robot Learning from Multi-Modal Demonstration and Natural Language Instruction - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S2212827122003687"
+          }
+        ]
+      },
+      "Based on the web search results, I found the paper you were looking for. The work is titled \"Is Diversity All You Need for Scalable Robotic Manipulation?\" with Modi Shi as the lead author along with 9 other authors.\n\nThe research investigates the nuanced role of data diversity in robot learning by examining three critical dimensions—task (what to do), embodiment (which robot to use), and expert (who demonstrates)—challenging the conventional intuition of \"more diverse is better\".\n\nKey findings include:\n\n1. Task diversity proves more critical than per-task demonstration quantity, benefiting transfer from diverse pre-training tasks to novel downstream scenarios\n\n2. Expert diversity, arising from individual operational preferences and stochastic variations in human demonstrations, can be confounding to policy learning, with velocity multimodality emerging as a key contributing factor\n\n3. Expert diversity could be confounding to the imitation learning process and targeted elimination of velocity multimodality can significantly improve model performance\n\n4. The authors introduce a velocity model that performs distribution debiasing, specifically eliminating velocity multimodality while preserving spatial multimodality\n\nBased on this insight, the distribution debiasing method to mitigate velocity ambiguity yields GO-1-Pro achieving substantial performance gains of 15%, equivalent to using 2.5 times pre-training data."
+    ],
+    "durationSeconds": 6.827563022999995
+  },
+  "sourceToolAssistantUUID": "169c7c53-5a77-43dc-a83a-6fad3d977dc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-13T11:42:52.240Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011FAL5YfJ5DLGrDAkQL9T5w`</summary>
+
+```json
+{
+  "query": "DemInf mutual information demonstration quality robot RSS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ae35059-7873-419c-8e0f-e39f3983a7be",
+  "isSidechain": false,
+  "requestId": "req_011CazWRXrAhwj4anFCpUfJd",
+  "type": "assistant",
+  "uuid": "263693c7-bdfe-46c8-b1e9-61aa87bbd566",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GMoj2vnZG4k2HXb3V4tn6J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 49709,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 49709,
+          "cache_creation_input_tokens": 936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-13T11:42:58.235Z_
+
+<details><summary>↩ Tool result · `toolu_011FAL5YfJ5DLGrDAkQL9T5w`</summary>
+
+```text
+Web search results for query: "DemInf mutual information demonstration quality robot RSS 2025"
+
+Links: [{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623v2"},{"title":"Robot Data Curation with Mutual Information Estimators · Robotics: Science and Systems","url":"https://roboticsconference.org/program/papers/23/"},{"title":"RSS 2025","url":"https://www.robot-manipulation.org/events/workshops/rss-2025"},{"title":"Call for Papers and Demos · Robotics: Science and Systems","url":"https://roboticsconference.org/2025/information/cfp/"},{"title":"[2502.08623] Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/abs/2502.08623"},{"title":"Workshop on Learned Robot Representations | RSS 2025","url":"https://rss25-roboreps.github.io/"},{"title":"RSS: Robotics: Science and Systems 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=2506&f=Robotics"},{"title":"RSS 2025 WORKSHOP - Home","url":"https://lfmrss2025.weebly.com/"},{"title":"Robotics: Science and Systems · A Robotics Conference","url":"https://roboticsconference.org/"},{"title":"Demos · Robotics: Science and Systems","url":"https://roboticsconference.org/program/demos/"}]
+
+Based on the search results, I found information about DemInf related to robot data quality assessment:
+
+DemInf (Demonstration Information Estimation) is a technique designed to work across both low- and high-data regimes in robotics. DemInf first learns a structured low-dimensional representation of the state and action space using variational autoencoders, then leverages mutual information estimators based on k-nearest neighbors to estimate the quality of state and action chunk pairs.
+
+These non-parametric estimators were found to be more stable with datasets of 50-300 demonstrations commonly used in robotics. When applying DemInf to different robot platforms and environments, it is able to consistently partition high- and low-quality data as scored by expert human annotators, outperforming both contemporary baselines and alternative mutual information estimators like InfoNCE.
+
+Using DemInf to subsample demonstration data enables higher performing imitation learning policies across the RoboMimic benchmark and real ALOHA policies on RoboCrowd. The research appears to have been presented at RSS 2025 (Robotics: Science and Systems conference held June 21-25, 2025 in Los Angeles).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "263693c7-bdfe-46c8-b1e9-61aa87bbd566",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "c8d05348-fdf1-45d7-8d1b-d4b13c55959b",
+  "toolUseResult": {
+    "query": "DemInf mutual information demonstration quality robot RSS 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JEwm9SbaYja9ZcQr9WRunU",
+        "content": [
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/html/2502.08623v2"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/program/papers/23/"
+          },
+          {
+            "title": "RSS 2025",
+            "url": "https://www.robot-manipulation.org/events/workshops/rss-2025"
+          },
+          {
+            "title": "Call for Papers and Demos · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/2025/information/cfp/"
+          },
+          {
+            "title": "[2502.08623] Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/abs/2502.08623"
+          },
+          {
+            "title": "Workshop on Learned Robot Representations | RSS 2025",
+            "url": "https://rss25-roboreps.github.io/"
+          },
+          {
+            "title": "RSS: Robotics: Science and Systems 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=2506&f=Robotics"
+          },
+          {
+            "title": "RSS 2025 WORKSHOP - Home",
+            "url": "https://lfmrss2025.weebly.com/"
+          },
+          {
+            "title": "Robotics: Science and Systems · A Robotics Conference",
+            "url": "https://roboticsconference.org/"
+          },
+          {
+            "title": "Demos · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/program/demos/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about DemInf related to robot data quality assessment:\n\nDemInf (Demonstration Information Estimation) is a technique designed to work across both low- and high-data regimes in robotics. DemInf first learns a structured low-dimensional representation of the state and action space using variational autoencoders, then leverages mutual information estimators based on k-nearest neighbors to estimate the quality of state and action chunk pairs.\n\nThese non-parametric estimators were found to be more stable with datasets of 50-300 demonstrations commonly used in robotics. When applying DemInf to different robot platforms and environments, it is able to consistently partition high- and low-quality data as scored by expert human annotators, outperforming both contemporary baselines and alternative mutual information estimators like InfoNCE.\n\nUsing DemInf to subsample demonstration data enables higher performing imitation learning policies across the RoboMimic benchmark and real ALOHA policies on RoboCrowd. The research appears to have been presented at RSS 2025 (Robotics: Science and Systems conference held June 21-25, 2025 in Los Angeles)."
+    ],
+    "durationSeconds": 5.9911930539999885
+  },
+  "sourceToolAssistantUUID": "263693c7-bdfe-46c8-b1e9-61aa87bbd566",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-13T11:43:01.461Z_
+
+Now let me search for potential competing work the proposal may have missed, and verify some specific claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8d05348-fdf1-45d7-8d1b-d4b13c55959b",
+  "isSidechain": false,
+  "requestId": "req_011CazWSAQMnhKHzYwdjY9cN",
+  "type": "assistant",
+  "uuid": "a79ec5ea-2bf1-46b3-ad63-3fda338d9334",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NJBd1j14xx9cnN9UVB6GJS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 749,
+      "cache_read_input_tokens": 50645,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 749,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 50645,
+          "cache_creation_input_tokens": 749,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 749
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-13T11:43:01.832Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GjVKqZzsFiG2aF2TdMunQ2`</summary>
+
+```json
+{
+  "query": "Wasserstein distance trajectory clustering mode discovery robot manipulation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a79ec5ea-2bf1-46b3-ad63-3fda338d9334",
+  "isSidechain": false,
+  "requestId": "req_011CazWSAQMnhKHzYwdjY9cN",
+  "type": "assistant",
+  "uuid": "a6343d98-ab12-46f2-85ed-2cf111ce46ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NJBd1j14xx9cnN9UVB6GJS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 749,
+      "cache_read_input_tokens": 50645,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 749,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 50645,
+          "cache_creation_input_tokens": 749,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 749
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-13T11:43:08.270Z_
+
+<details><summary>↩ Tool result · `toolu_01GjVKqZzsFiG2aF2TdMunQ2`</summary>
+
+```text
+Web search results for query: "Wasserstein distance trajectory clustering mode discovery robot manipulation 2025 2026"
+
+Links: [{"title":"Dataset Distillation via the Wasserstein Metric","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Liu_Dataset_Distillation_via_the_Wasserstein_Metric_ICCV_2025_paper.pdf"},{"title":"Efficient Sliced Wasserstein Distance Computation via Adaptive Bayesian Optimization | OpenReview","url":"https://openreview.net/forum?id=6IZAOTfXUT"},{"title":"An Agglomerative Clustering Algorithm for Simulation Output Distributions Using Regularized Wasserstein Distance | INFORMS Journal on Data Science","url":"https://pubsonline.informs.org/doi/10.1287/ijds.2024.0056"},{"title":"ICML Poster Scalable Approximation Algorithms for $p$-Wasserstein Distance and Its Variants","url":"https://icml.cc/virtual/2025/poster/46422"},{"title":"Artificial Intelligence May 2025","url":"https://www.arxiv.org/list/cs.AI/2025-05?skip=825&show=2000"},{"title":"Sliced Wasserstein Distance","url":"https://www.emergentmind.com/topics/sliced-wasserstein-distance-sw"},{"title":"Explainable AI Using the Wasserstein Distance","url":"https://ieeexplore.ieee.org/iel7/6287639/10380310/10418081.pdf"},{"title":"Clustering Market Regimes using the Wasserstein Distance","url":"https://ideas.repec.org/p/arx/papers/2110.11848.html"},{"title":"Frontiers | Diffusion models for robotic manipulation: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"},{"title":"A Guide to Wasserstein Distance in Machine Learning","url":"https://www.numberanalytics.com/blog/guide-wasserstein-distance-ml"}]
+
+I found several relevant results related to Wasserstein distance and its applications. Here's a summary of the search findings:
+
+## Wasserstein Distance Applications (2025-2026)
+
+**Recent Research Areas:**
+
+An agglomerative clustering algorithm for simulation output distributions using regularized Wasserstein distance was published in 2025.
+
+Sliced Wasserstein distance can be used as a similarity measure in kernel k-means and kernel PCA for clustering and representation learning.
+
+**Advanced Variants:**
+
+Tree-sliced Wasserstein replaces one-dimensional projections with tree metric spaces, incorporating nonlinear projections that capture richer topological information, with research from May 2025.
+
+The sliced Wasserstein distance reduces optimal transport on high-dimensional spaces to a sum of one-dimensional projections, making it useful in geometry, generative modeling, and registration tasks.
+
+**Robot Manipulation Context:**
+
+The search also returned a 2025 survey on diffusion models in robotic manipulation covering grasp learning, trajectory planning, and data augmentation. While not specifically about Wasserstein distance in robot manipulation, this shows active research in trajectory-based robot learning during 2025-2026.
+
+The search results don't contain specific papers explicitly combining Wasserstein distance, trajectory clustering, and mode discovery for robot manipulation, though these are active research areas individually.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a6343d98-ab12-46f2-85ed-2cf111ce46ad",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "ece96d92-6e85-4b95-8bb6-32ed44273061",
+  "toolUseResult": {
+    "query": "Wasserstein distance trajectory clustering mode discovery robot manipulation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FwRTibErZgTW4pgsE31dgy",
+        "content": [
+          {
+            "title": "Dataset Distillation via the Wasserstein Metric",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Liu_Dataset_Distillation_via_the_Wasserstein_Metric_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "Efficient Sliced Wasserstein Distance Computation via Adaptive Bayesian Optimization | OpenReview",
+            "url": "https://openreview.net/forum?id=6IZAOTfXUT"
+          },
+          {
+            "title": "An Agglomerative Clustering Algorithm for Simulation Output Distributions Using Regularized Wasserstein Distance | INFORMS Journal on Data Science",
+            "url": "https://pubsonline.informs.org/doi/10.1287/ijds.2024.0056"
+          },
+          {
+            "title": "ICML Poster Scalable Approximation Algorithms for $p$-Wasserstein Distance and Its Variants",
+            "url": "https://icml.cc/virtual/2025/poster/46422"
+          },
+          {
+            "title": "Artificial Intelligence May 2025",
+            "url": "https://www.arxiv.org/list/cs.AI/2025-05?skip=825&show=2000"
+          },
+          {
+            "title": "Sliced Wasserstein Distance",
+            "url": "https://www.emergentmind.com/topics/sliced-wasserstein-distance-sw"
+          },
+          {
+            "title": "Explainable AI Using the Wasserstein Distance",
+            "url": "https://ieeexplore.ieee.org/iel7/6287639/10380310/10418081.pdf"
+          },
+          {
+            "title": "Clustering Market Regimes using the Wasserstein Distance",
+            "url": "https://ideas.repec.org/p/arx/papers/2110.11848.html"
+          },
+          {
+            "title": "Frontiers | Diffusion models for robotic manipulation: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"
+          },
+          {
+            "title": "A Guide to Wasserstein Distance in Machine Learning",
+            "url": "https://www.numberanalytics.com/blog/guide-wasserstein-distance-ml"
+          }
+        ]
+      },
+      "I found several relevant results related to Wasserstein distance and its applications. Here's a summary of the search findings:\n\n## Wasserstein Distance Applications (2025-2026)\n\n**Recent Research Areas:**\n\nAn agglomerative clustering algorithm for simulation output distributions using regularized Wasserstein distance was published in 2025.\n\nSliced Wasserstein distance can be used as a similarity measure in kernel k-means and kernel PCA for clustering and representation learning.\n\n**Advanced Variants:**\n\nTree-sliced Wasserstein replaces one-dimensional projections with tree metric spaces, incorporating nonlinear projections that capture richer topological information, with research from May 2025.\n\nThe sliced Wasserstein distance reduces optimal transport on high-dimensional spaces to a sum of one-dimensional projections, making it useful in geometry, generative modeling, and registration tasks.\n\n**Robot Manipulation Context:**\n\nThe search also returned a 2025 survey on diffusion models in robotic manipulation covering grasp learning, trajectory planning, and data augmentation. While not specifically about Wasserstein distance in robot manipulation, this shows active research in trajectory-based robot learning during 2025-2026.\n\nThe search results don't contain specific papers explicitly combining Wasserstein distance, trajectory clustering, and mode discovery for robot manipulation, though these are active research areas individually."
+    ],
+    "durationSeconds": 6.434996601000006
+  },
+  "sourceToolAssistantUUID": "a6343d98-ab12-46f2-85ed-2cf111ce46ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-13T11:43:11.186Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QjmqsNMEccCwE1ciZFr15R`</summary>
+
+```json
+{
+  "query": "RINSE smoothness demonstration curation ICML 2025 robot learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ece96d92-6e85-4b95-8bb6-32ed44273061",
+  "isSidechain": false,
+  "requestId": "req_011CazWSuJYC14YtNCKSyWiQ",
+  "type": "assistant",
+  "uuid": "e99b0802-3a74-439f-bb75-20b2c42746ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YSzn2WKu2gxnicS4xq2tNE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 965,
+      "cache_read_input_tokens": 51394,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 965,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 51394,
+          "cache_creation_input_tokens": 965,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 965
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-13T11:43:18.672Z_
+
+<details><summary>↩ Tool result · `toolu_01QjmqsNMEccCwE1ciZFr15R`</summary>
+
+```text
+Web search results for query: "RINSE smoothness demonstration curation ICML 2025 robot learning"
+
+Links: [{"title":"ICML Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://icml.cc/virtual/2025/48703"},{"title":"Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://arxiv.org/html/2604.23000"},{"title":"ICML 2025 Papers","url":"https://icml.cc/virtual/2025/papers.html"},{"title":"ICLR 2025 Papers","url":"https://iclr.cc/virtual/2025/papers.html"},{"title":"Generative Models for Robot Learning","url":"https://iclr.cc/virtual/2025/workshop/23977"},{"title":"ICLR 2025 Workshop WRL | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2025%2FWorkshop%2FWRL"},{"title":"ICLR 2025 Workshops","url":"https://iclr.cc/virtual/2025/events/workshop"},{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"Human-to-Robot Interaction: Learning from Video Demonstration for Robot Imitation","url":"https://arxiv.org/html/2602.19184"},{"title":"Yuke Zhu GDC 3.422, 2317 Speedway, Austin, TX, 78712 USA https://yukezhu.me","url":"https://yukezhu.me/documents/yukez.pdf"}]
+
+Based on the web search results, here's information about RINSE at ICML 2025:
+
+## RINSE: Smoothness-Driven Metrics for Data Quality in Imitation Learning
+
+RINSE (Ranking and INdexing Smooth Examples) is a general-purpose method for filtering demonstration data based on trajectory smoothness, addressing the limitation that existing data filtering techniques typically require extensive manual annotation or substantial computational cost.
+
+### Key Technical Approach
+
+RINSE is a lightweight framework for scoring demonstrations based on trajectory smoothness that is policy-architecture-agnostic and operates on trajectory data alone, using two complementary metrics: Spectral Arc Length (SAL), a spectral measure of frequency-domain regularity, and Trajectory-Envelope Distance (TED), a spatial measure of contact-aware geometric deviation.
+
+### Theoretical Foundation
+
+The approach is grounded in motor control theory: skilled human movements are smooth because the motor system minimizes jerk and effort. Smoothness serves as a principled proxy for demonstration quality, rooted in the biomechanics of skilled behavior rather than arbitrary heuristics.
+
+### Empirical Results
+
+SAL filtering achieves a 16% higher success rate on Transport using 50 out of 300 demonstrations; TED filtering achieves 20% improvement on real-world Push Block with half the data; and RINSE re-ranking improves the success rate of STRAP retrieval by 5.6% on LIBERO-10.
+
+The paper was presented at ICML 2025 and addresses the important problem of robot learning through better demonstration curation for imitation learning tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e99b0802-3a74-439f-bb75-20b2c42746ab",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "ae1e951f-722a-4f42-bdaa-5103fd3a6473",
+  "toolUseResult": {
+    "query": "RINSE smoothness demonstration curation ICML 2025 robot learning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M8t8ppUTPxuSyXH76bNQSQ",
+        "content": [
+          {
+            "title": "ICML Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://icml.cc/virtual/2025/48703"
+          },
+          {
+            "title": "Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/html/2604.23000"
+          },
+          {
+            "title": "ICML 2025 Papers",
+            "url": "https://icml.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "ICLR 2025 Papers",
+            "url": "https://iclr.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "Generative Models for Robot Learning",
+            "url": "https://iclr.cc/virtual/2025/workshop/23977"
+          },
+          {
+            "title": "ICLR 2025 Workshop WRL | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc%2F2025%2FWorkshop%2FWRL"
+          },
+          {
+            "title": "ICLR 2025 Workshops",
+            "url": "https://iclr.cc/virtual/2025/events/workshop"
+          },
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          },
+          {
+            "title": "Human-to-Robot Interaction: Learning from Video Demonstration for Robot Imitation",
+            "url": "https://arxiv.org/html/2602.19184"
+          },
+          {
+            "title": "Yuke Zhu GDC 3.422, 2317 Speedway, Austin, TX, 78712 USA https://yukezhu.me",
+            "url": "https://yukezhu.me/documents/yukez.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, here's information about RINSE at ICML 2025:\n\n## RINSE: Smoothness-Driven Metrics for Data Quality in Imitation Learning\n\nRINSE (Ranking and INdexing Smooth Examples) is a general-purpose method for filtering demonstration data based on trajectory smoothness, addressing the limitation that existing data filtering techniques typically require extensive manual annotation or substantial computational cost.\n\n### Key Technical Approach\n\nRINSE is a lightweight framework for scoring demonstrations based on trajectory smoothness that is policy-architecture-agnostic and operates on trajectory data alone, using two complementary metrics: Spectral Arc Length (SAL), a spectral measure of frequency-domain regularity, and Trajectory-Envelope Distance (TED), a spatial measure of contact-aware geometric deviation.\n\n### Theoretical Foundation\n\nThe approach is grounded in motor control theory: skilled human movements are smooth because the motor system minimizes jerk and effort. Smoothness serves as a principled proxy for demonstration quality, rooted in the biomechanics of skilled behavior rather than arbitrary heuristics.\n\n### Empirical Results\n\nSAL filtering achieves a 16% higher success rate on Transport using 50 out of 300 demonstrations; TED filtering achieves 20% improvement on real-world Push Block with half the data; and RINSE re-ranking improves the success rate of STRAP retrieval by 5.6% on LIBERO-10.\n\nThe paper was presented at ICML 2025 and addresses the important problem of robot learning through better demonstration curation for imitation learning tasks."
+    ],
+    "durationSeconds": 7.480809112000003
+  },
+  "sourceToolAssistantUUID": "e99b0802-3a74-439f-bb75-20b2c42746ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ae1e951f-722a-4f42-bdaa-5103fd3a6473",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PhaseOT demonstration curation for AAAI 2027",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-13T11:43:21.646Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012su9srTbNBqNXjX1aj1uNy`</summary>
+
+```json
+{
+  "query": "CIQL confidence inverse Q-learning demonstration quality transition scoring 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae1e951f-722a-4f42-bdaa-5103fd3a6473",
+  "isSidechain": false,
+  "requestId": "req_011CazWTftR9txkiCK8kYp9L",
+  "type": "assistant",
+  "uuid": "8e6b8775-10fe-4a56-9801-c412021ef859",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzHFSMDHxQ7NPHL5Ugg9XL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 52359,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 900,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 52359,
+          "cache_creation_input_tokens": 900,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 900
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-13T11:43:27.484Z_
+
+<details><summary>↩ Tool result · `toolu_012su9srTbNBqNXjX1aj1uNy`</summary>
+
+```text
+Web search results for query: "CIQL confidence inverse Q-learning demonstration quality transition scoring 2024"
+
+Links: [{"title":"Aligning Human Intent from Imperfect Demonstrations with Confidence-based Inverse soft-Q Learning","url":"https://arxiv.org/html/2312.11194v3"},{"title":"Multi-intention Inverse Q-learning for Interpretable Behavior Representation","url":"https://arxiv.org/html/2311.13870v2"},{"title":"Autonomous Assessment of Demonstration Sufficiency via Bayesian Inverse Reinforcement Learning | Proceedings of the 2024 ACM/IEEE International Conference on Human-Robot Interaction","url":"https://dl.acm.org/doi/10.1145/3610977.3634984"},{"title":"Offline Reinforcement Learning with Implicit Q-Learning | OpenReview","url":"https://openreview.net/forum?id=68n2s9ZJWF8"},{"title":"[2110.06169] Offline Reinforcement Learning with Implicit Q-Learning","url":"https://arxiv.org/abs/2110.06169"},{"title":"Implicit Q-Learning in Offline RL","url":"https://www.emergentmind.com/topics/implicit-q-learning-iql"},{"title":"[2311.13870] Multi-intention Inverse Q-learning for Interpretable Behavior Representation","url":"https://arxiv.org/abs/2311.13870"},{"title":"CAQL: Continuous Action Q-Learning | OpenReview","url":"https://openreview.net/forum?id=BkxXe0Etwr"},{"title":"Q-based Variational Inverse Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=SqcoXJc4mC"},{"title":"Implicit Q-Learning - Matthew Landers","url":"https://mattlanders.net/implicit-q-learning.html"}]
+
+Based on the search results, I found relevant information about CIQL (Confidence-based Inverse soft-Q Learning):
+
+CIQL is a transition-based method to obtain fine-grained confidence scores for data without additional labeling efforts, which can increase the success rate of the baseline algorithm by 40.3% on average.
+
+The paper was received in February 2024, revised in April 2024, and accepted in June 2024. The full title is "Aligning Human Intent from Imperfect Demonstrations with Confidence-based Inverse soft-Q Learning."
+
+CIQL-A provides the additional benefit of being able to utilize the full information from all the data in demonstrations without labeling them. The framework presents two variants: CIQL-E (Expert), which learns the policy by directly matching the occupancy measure of the optimal policy, and CIQL-A, which uses a different approach for handling demonstration quality.
+
+The research shows that penalizing noise is better than filtering noise when confidence is also used. The implementation is available on GitHub at https://github.com/XizoB/CIQL.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e6b8775-10fe-4a56-9801-c412021ef859",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "70d48f48-cd63-4c12-8fee-e70ed5cb80b2",
+  "toolUseResult": {
+    "query": "CIQL confidence inverse Q-learning demonstration quality transition scoring 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0147rP3Zg1YSsWWi7vu1tkrb",
+        "content": [
+          {
+            "title": "Aligning Human Intent from Imperfect Demonstrations with Confidence-based Inverse soft-Q Learning",
+            "url": "https://arxiv.org/html/2312.11194v3"
+          },
+          {
+            "title": "Multi-intention Inverse Q-learning for Interpretable Behavior Representation",
+            "url": "https://arxiv.org/html/2311.13870v2"
+          },
+          {
+            "title": "Autonomous Assessment of Demonstration Sufficiency via Bayesian Inverse Reinforcement Learning | Proceedings of the 2024 ACM/IEEE International Conference on Human-Robot Interaction",
+            "url": "https://dl.acm.org/doi/10.1145/3610977.3634984"
+          },
+          {
+            "title": "Offline Reinforcement Learning with Implicit Q-Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=68n2s9ZJWF8"
+          },
+          {
+            "title": "[2110.06169] Offline Reinforcement Learning with Implicit Q-Learning",
+            "url": "https://arxiv.org/abs/2110.06169"
+          },
+          {
+            "title": "Implicit Q-Learning in Offline RL",
+            "url": "https://www.emergentmind.com/topics/implicit-q-learning-iql"
+          },
+          {
+            "title": "[2311.13870] Multi-intention Inverse Q-learning for Interpretable Behavior Representation",
+            "url": "https://arxiv.org/abs/2311.13870"
+          },
+          {
+            "title": "CAQL: Continuous Action Q-Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=BkxXe0Etwr"
+          },
+          {
+            "title": "Q-based Variational Inverse Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=SqcoXJc4mC"
+          },
+          {
+            "title": "Implicit Q-Learning - Matthew Landers",
+            "url": "https://mattlanders.net/implicit-q-learning.html"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about CIQL (Confidence-based Inverse soft-Q Learning):\n\nCIQL is a transition-based method to obtain fine-grained confidence scores for data without additional labeling efforts, which can increase the success rate of the baseline algorithm by 40.3% on average.\n\nThe paper was received in February 2024, revised in April 2024, and accepted in June 2024. The full title is \"Aligning Human Intent from Imperfect Demonstrations with Confidence-based Inverse soft-Q Learning.\"\n\nCIQL-A provides the additional benefit of being able to utilize the full information from all the data in demonstrations without labeling them. The framework presents two variants: CIQL-E (Expert), which learns the policy by directly matching the occupancy measure of the optimal policy, and CIQL-A, which uses a different approach for handling demonstration quality.\n\nThe research shows that penalizing noise is better than filtering noise when confidence is also used. The implementation is available on GitHub at https://github.com/XizoB/CIQL."
+    ],
+    "durationSeconds": 5.834567821999983
+  },
+  "sourceToolAssistantUUID": "8e6b8775-10fe-4a56-9801-c412021ef859",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-13T11:43:30.951Z_
+
+Good, CIQL is verified as a real paper. Now let me search for more potential competing work that may have been missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70d48f48-cd63-4c12-8fee-e70ed5cb80b2",
+  "isSidechain": false,
+  "requestId": "req_011CazWUKXLvzTkyH8crRmat",
+  "type": "assistant",
+  "uuid": "9574a319-948c-4f48-982e-ff77e37e2100",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016wVHAYNA6sGsdP6iwNjgTh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 812,
+      "cache_read_input_tokens": 53259,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 812,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 53259,
+          "cache_creation_input_tokens": 812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 812
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-13T11:43:31.877Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018HqFEibYVDNyJUcuTPYEqh`</summary>
+
+```json
+{
+  "query": "phase-aware sub-task segmentation demonstration quality scoring robot 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9574a319-948c-4f48-982e-ff77e37e2100",
+  "isSidechain": false,
+  "requestId": "req_011CazWUKXLvzTkyH8crRmat",
+  "type": "assistant",
+  "uuid": "69b3da10-34ea-4983-942b-749b53a97dfd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016wVHAYNA6sGsdP6iwNjgTh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 812,
+      "cache_read_input_tokens": 53259,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 812,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 53259,
+          "cache_creation_input_tokens": 812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 812
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-13T11:43:41.174Z_
+
+<details><summary>↩ Tool result · `toolu_018HqFEibYVDNyJUcuTPYEqh`</summary>
+
+```text
+Web search results for query: "phase-aware sub-task segmentation demonstration quality scoring robot 2025 2026"
+
+Links: [{"title":"RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer in Real-World Environments","url":"https://arxiv.org/html/2602.10015"},{"title":"Awesome-Robotics-Manipulation/contents/low-level_learning-based_action_modelling.md at main · BaiShuanghao/Awesome-Robotics-Manipulation","url":"https://github.com/BaiShuanghao/Awesome-Robotics-Manipulation/blob/main/contents/low-level_learning-based_action_modelling.md"},{"title":"[2511.10110] Learning a Thousand Tasks in a Day","url":"https://arxiv.org/abs/2511.10110"},{"title":"GitHub - BaiShuanghao/my_arXiv_daily · GitHub","url":"https://github.com/BaiShuanghao/my_arXiv_daily"},{"title":"Learning a Thousand Tasks in a Day | OpenReview","url":"https://openreview.net/forum?id=5e48yYecV5"},{"title":"Learning a thousand tasks in a day | Science Robotics","url":"https://www.science.org/doi/10.1126/scirobotics.adv7594"},{"title":"2025-9-18 ThinkAct: Vision-Language-Action Reasoning via","url":"https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"},{"title":"Scaling up Memory for Robotic Control via Experience Retrieval | OpenReview","url":"https://openreview.net/forum?id=1dH4ARGdwD"},{"title":"Humanoid robots in 2026: Types, prices, and what’s next - Standard Bots","url":"https://standardbots.com/blog/humanoid-robot"},{"title":"(PDF) 2017 Robotic Instrument Segmentation Challenge","url":"https://www.researchgate.net/publication/331195174_2017_Robotic_Instrument_Segmentation_Challenge"}]
+
+Based on the search results, I found relevant information about robotic task segmentation and learning from demonstrations in 2025-2026.
+
+## Key Findings
+
+RoboSubtaskNet is a multi-stage human-to-robot sub-task segmentation framework that couples attention-enhanced I3D features (RGB+optical flow) with a modified MS-TCN employing a Fibonacci dilation schedule to capture better short-horizon transitions such as reach–pick–place. The framework includes RoboSubtask, a dataset of healthcare and industrial demonstrations annotated at the sub-task level and designed for deterministic mapping to manipulator primitives.
+
+Another approach investigates fundamental priors for improving learning efficiency by decomposing manipulation trajectories into sequential alignment and interaction phases, and retrieval-based generalisation. Through decomposing reasoning into two sequential phases – object alignment and then object interaction – robots can learn everyday tasks from just a single demonstration, with systematic evaluation of different design choices for each phase of reasoning and studying generalisation and scaling trends.
+
+These recent works from 2025-2026 demonstrate advances in phase-aware task decomposition for robotic manipulation and learning from demonstrations, which aligns with the concepts in your search query regarding sub-task segmentation and quality assessment for robotic systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "69b3da10-34ea-4983-942b-749b53a97dfd",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "1fa02775-3d39-4dbe-84c8-9cf55b53f0ba",
+  "toolUseResult": {
+    "query": "phase-aware sub-task segmentation demonstration quality scoring robot 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012xh25DuWBoYMRkJchKZGA3",
+        "content": [
+          {
+            "title": "RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer in Real-World Environments",
+            "url": "https://arxiv.org/html/2602.10015"
+          },
+          {
+            "title": "Awesome-Robotics-Manipulation/contents/low-level_learning-based_action_modelling.md at main · BaiShuanghao/Awesome-Robotics-Manipulation",
+            "url": "https://github.com/BaiShuanghao/Awesome-Robotics-Manipulation/blob/main/contents/low-level_learning-based_action_modelling.md"
+          },
+          {
+            "title": "[2511.10110] Learning a Thousand Tasks in a Day",
+            "url": "https://arxiv.org/abs/2511.10110"
+          },
+          {
+            "title": "GitHub - BaiShuanghao/my_arXiv_daily · GitHub",
+            "url": "https://github.com/BaiShuanghao/my_arXiv_daily"
+          },
+          {
+            "title": "Learning a Thousand Tasks in a Day | OpenReview",
+            "url": "https://openreview.net/forum?id=5e48yYecV5"
+          },
+          {
+            "title": "Learning a thousand tasks in a day | Science Robotics",
+            "url": "https://www.science.org/doi/10.1126/scirobotics.adv7594"
+          },
+          {
+            "title": "2025-9-18 ThinkAct: Vision-Language-Action Reasoning via",
+            "url": "https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"
+          },
+          {
+            "title": "Scaling up Memory for Robotic Control via Experience Retrieval | OpenReview",
+            "url": "https://openreview.net/forum?id=1dH4ARGdwD"
+          },
+          {
+            "title": "Humanoid robots in 2026: Types, prices, and what’s next - Standard Bots",
+            "url": "https://standardbots.com/blog/humanoid-robot"
+          },
+          {
+            "title": "(PDF) 2017 Robotic Instrument Segmentation Challenge",
+            "url": "https://www.researchgate.net/publication/331195174_2017_Robotic_Instrument_Segmentation_Challenge"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about robotic task segmentation and learning from demonstrations in 2025-2026.\n\n## Key Findings\n\nRoboSubtaskNet is a multi-stage human-to-robot sub-task segmentation framework that couples attention-enhanced I3D features (RGB+optical flow) with a modified MS-TCN employing a Fibonacci dilation schedule to capture better short-horizon transitions such as reach–pick–place. The framework includes RoboSubtask, a dataset of healthcare and industrial demonstrations annotated at the sub-task level and designed for deterministic mapping to manipulator primitives.\n\nAnother approach investigates fundamental priors for improving learning efficiency by decomposing manipulation trajectories into sequential alignment and interaction phases, and retrieval-based generalisation. Through decomposing reasoning into two sequential phases – object alignment and then object interaction – robots can learn everyday tasks from just a single demonstration, with systematic evaluation of different design choices for each phase of reasoning and studying generalisation and scaling trends.\n\nThese recent works from 2025-2026 demonstrate advances in phase-aware task decomposition for robotic manipulation and learning from demonstrations, which aligns with the concepts in your search query regarding sub-task segmentation and quality assessment for robotic systems."
+    ],
+    "durationSeconds": 9.294239356000006
+  },
+  "sourceToolAssistantUUID": "69b3da10-34ea-4983-942b-749b53a97dfd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-13T11:43:43.732Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S7j83qr7ZhTu4nb8skQtAW`</summary>
+
+```json
+{
+  "query": "\"demonstration filtering\" OR \"data curation\" multimodal strategies preserve diversity imitation learning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fa02775-3d39-4dbe-84c8-9cf55b53f0ba",
+  "isSidechain": false,
+  "requestId": "req_011CazWVL1dwAeMKss88mjsF",
+  "type": "assistant",
+  "uuid": "7ea74823-4eed-47b5-8def-c9413fe9128e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nq5ddGR6W7e53TeN5nby6m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 947,
+      "cache_read_input_tokens": 54071,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 947,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 54071,
+          "cache_creation_input_tokens": 947,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 947
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-13T11:43:51.008Z_
+
+<details><summary>↩ Tool result · `toolu_01S7j83qr7ZhTu4nb8skQtAW`</summary>
+
+```text
+Web search results for query: ""demonstration filtering" OR "data curation" multimodal strategies preserve diversity imitation learning 2026"
+
+Links: [{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623"},{"title":"(PDF) SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://www.researchgate.net/publication/392167457_SCIZOR_A_Self-Supervised_Approach_to_Data_Curation_for_Large-Scale_Imitation_Learning"},{"title":"What Matters in Data Curation for Multimodal Reasoning? ...","url":"https://arxiv.org/pdf/2601.10922"},{"title":"Understanding the Gain from Data Filtering in Multimodal Contrastive Learning | OpenReview","url":"https://openreview.net/forum?id=2xDdVkWrqq"},{"title":"Weakly supervised multi-modal imitation learning from incompletely labeled demonstrations - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0893608025009785"},{"title":"Data curation via joint example selection further accelerates multimodal learning","url":"https://arxiv.org/html/2406.17711v1"},{"title":"DATA-FM @ ICLR 2026","url":"https://data-fm-iclr2026.github.io/"},{"title":"Understanding the Gain from Data Filtering in Multimodal Contrastive Learning","url":"https://arxiv.org/html/2512.14230"},{"title":"[2512.14230] Understanding the Gain from Data Filtering in Multimodal Contrastive Learning","url":"https://arxiv.org/abs/2512.14230"},{"title":"[2401.12225] Multimodal Data Curation via Object Detection and Filter Ensembles","url":"https://arxiv.org/abs/2401.12225"}]
+
+I've completed the web search for your query on demonstration filtering, data curation, multimodal strategies, diversity preservation, and imitation learning. Here are the key findings:
+
+## Data Curation and Quality in Imitation Learning
+
+The performance of imitation learning policies often hinges on training datasets, yet despite increased data collection, little work has assessed data quality despite evidence of its importance in other domains.
+
+Large-scale datasets used for policy training often introduce substantial variability in quality, which can negatively impact performance, making automatic dataset curation by filtering low-quality samples essential.
+
+## Multimodal Approaches and Diversity
+
+High mutual information encourages a large diversity of actions but a predictable action distribution given a particular state. SCIZOR is a self-supervised data curation framework that filters out low-quality state-action pairs, targeting both suboptimal data and redundant data.
+
+Weakly supervised approaches enable utilization of large-scale, diverse, and potentially noisy demonstration datasets while better capturing underlying expert behavior structures across different modes.
+
+## Filtering Strategies for Multimodal Reasoning
+
+Recent research from 2026 indicates that filtering is the dominant lever for improving multimodal reasoning accuracy, where examples that are challenging but learnable yield substantially higher gains than either very easy or extremely difficult samples. However, diversity mechanisms including clustering-based balancing, class-level reweighting, and synthetic data mixing do not improve performance beyond difficulty filtering.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7ea74823-4eed-47b5-8def-c9413fe9128e",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "bc89ab54-8107-497d-a075-55faa93d1787",
+  "toolUseResult": {
+    "query": "\"demonstration filtering\" OR \"data curation\" multimodal strategies preserve diversity imitation learning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013Bpj7hF5GCvxgbYqk3rJ6F",
+        "content": [
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/html/2502.08623"
+          },
+          {
+            "title": "(PDF) SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://www.researchgate.net/publication/392167457_SCIZOR_A_Self-Supervised_Approach_to_Data_Curation_for_Large-Scale_Imitation_Learning"
+          },
+          {
+            "title": "What Matters in Data Curation for Multimodal Reasoning? ...",
+            "url": "https://arxiv.org/pdf/2601.10922"
+          },
+          {
+            "title": "Understanding the Gain from Data Filtering in Multimodal Contrastive Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=2xDdVkWrqq"
+          },
+          {
+            "title": "Weakly supervised multi-modal imitation learning from incompletely labeled demonstrations - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0893608025009785"
+          },
+          {
+            "title": "Data curation via joint example selection further accelerates multimodal learning",
+            "url": "https://arxiv.org/html/2406.17711v1"
+          },
+          {
+            "title": "DATA-FM @ ICLR 2026",
+            "url": "https://data-fm-iclr2026.github.io/"
+          },
+          {
+            "title": "Understanding the Gain from Data Filtering in Multimodal Contrastive Learning",
+            "url": "https://arxiv.org/html/2512.14230"
+          },
+          {
+            "title": "[2512.14230] Understanding the Gain from Data Filtering in Multimodal Contrastive Learning",
+            "url": "https://arxiv.org/abs/2512.14230"
+          },
+          {
+            "title": "[2401.12225] Multimodal Data Curation via Object Detection and Filter Ensembles",
+            "url": "https://arxiv.org/abs/2401.12225"
+          }
+        ]
+      },
+      "I've completed the web search for your query on demonstration filtering, data curation, multimodal strategies, diversity preservation, and imitation learning. Here are the key findings:\n\n## Data Curation and Quality in Imitation Learning\n\nThe performance of imitation learning policies often hinges on training datasets, yet despite increased data collection, little work has assessed data quality despite evidence of its importance in other domains.\n\nLarge-scale datasets used for policy training often introduce substantial variability in quality, which can negatively impact performance, making automatic dataset curation by filtering low-quality samples essential.\n\n## Multimodal Approaches and Diversity\n\nHigh mutual information encourages a large diversity of actions but a predictable action distribution given a particular state. SCIZOR is a self-supervised data curation framework that filters out low-quality state-action pairs, targeting both suboptimal data and redundant data.\n\nWeakly supervised approaches enable utilization of large-scale, diverse, and potentially noisy demonstration datasets while better capturing underlying expert behavior structures across different modes.\n\n## Filtering Strategies for Multimodal Reasoning\n\nRecent research from 2026 indicates that filtering is the dominant lever for improving multimodal reasoning accuracy, where examples that are challenging but learnable yield substantially higher gains than either very easy or extremely difficult samples. However, diversity mechanisms including clustering-based balancing, class-level reweighting, and synthetic data mixing do not improve performance beyond difficulty filtering."
+    ],
+    "durationSeconds": 7.270576487999992
+  },
+  "sourceToolAssistantUUID": "7ea74823-4eed-47b5-8def-c9413fe9128e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-13T11:43:53.818Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0132E2ciqSGxrhkNjLhx63Qh`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline abstract paper date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc89ab54-8107-497d-a075-55faa93d1787",
+  "isSidechain": false,
+  "requestId": "req_011CazWW3zzzHtKKnqhMybeu",
+  "type": "assistant",
+  "uuid": "2ea85b7d-f6f6-491b-b263-b7a47a673b2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yA1z7hTsPbpihpRW5wHNt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 915,
+      "cache_read_input_tokens": 55018,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 915,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 55018,
+          "cache_creation_input_tokens": 915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 915
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-13T11:43:57.411Z_
+
+<details><summary>↩ Tool result · `toolu_0132E2ciqSGxrhkNjLhx63Qh`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline abstract paper date"
+
+Links: [{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"},{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"The 40th Annual AAAI Conference on Artificial Intelligence","url":"https://aaai.org/conference/aaai/aaai-26/"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"},{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"}]
+
+Based on the search results, here's what I found regarding AAAI 2027:
+
+The paper submission deadline and abstract deadline for AAAI 2027 are currently listed as TBD (To Be Determined). AAAI 2027 is scheduled for February 16-23, 2027, and will be held at Palais des congrès de Montréal in Montréal, Canada, but no deadlines have been announced yet.
+
+Since the official deadlines haven't been announced yet, some sources provide estimates based on historical patterns. Predictions are based on historical patterns, with the mandatory abstract deadline typically occurring one week before the paper deadline. However, I recommend checking the official AAAI website (aaai.org) regularly for the official announcement of submission deadlines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2ea85b7d-f6f6-491b-b263-b7a47a673b2a",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "202e1c83-af4c-453d-a848-060a1bb3de97",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline abstract paper date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014q3a5Z2HUtT4MQbMDz7PpS",
+        "content": [
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          },
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "The 40th Annual AAAI Conference on Artificial Intelligence",
+            "url": "https://aaai.org/conference/aaai/aaai-26/"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding AAAI 2027:\n\nThe paper submission deadline and abstract deadline for AAAI 2027 are currently listed as TBD (To Be Determined). AAAI 2027 is scheduled for February 16-23, 2027, and will be held at Palais des congrès de Montréal in Montréal, Canada, but no deadlines have been announced yet.\n\nSince the official deadlines haven't been announced yet, some sources provide estimates based on historical patterns. Predictions are based on historical patterns, with the mandatory abstract deadline typically occurring one week before the paper deadline. However, I recommend checking the official AAAI website (aaai.org) regularly for the official announcement of submission deadlines."
+    ],
+    "durationSeconds": 3.585408117999992
+  },
+  "sourceToolAssistantUUID": "2ea85b7d-f6f6-491b-b263-b7a47a673b2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52 · 2026-05-13T11:43:57.424Z_
+
+```json
+{
+  "parentUuid": "202e1c83-af4c-453d-a848-060a1bb3de97",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0bc843f4-b0df-43cd-91c4-b488a59a8424",
+  "timestamp": "2026-05-13T11:43:57.424Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-13T11:44:01.498Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0196Sexq6ZmecZENQBdLJK5L`</summary>
+
+```json
+{
+  "query": "QoQ quality over quantity demonstration curation influence functions ICRA 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0bc843f4-b0df-43cd-91c4-b488a59a8424",
+  "isSidechain": false,
+  "requestId": "req_011CazWWXWU8XrpPU7hHAMav",
+  "type": "assistant",
+  "uuid": "60fdf047-9083-42a0-b2bc-7d207de95fab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01344hyqWLKriiNUnx5rs8e6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 883,
+      "cache_read_input_tokens": 55933,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 883,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 55933,
+          "cache_creation_input_tokens": 883,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 883
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "60fdf047-9083-42a0-b2bc-7d207de95fab",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PhaseOT demonstration curation for AAAI 2027",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-13T11:44:08.089Z_
+
+<details><summary>↩ Tool result · `toolu_0196Sexq6ZmecZENQBdLJK5L`</summary>
+
+```text
+Web search results for query: "QoQ quality over quantity demonstration curation influence functions ICRA 2026"
+
+Links: [{"title":"[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/abs/2603.09056"},{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"AIRoA Announces ICRA 2026 Workshop — Launching a Global Competition on VLA Pipelines and Approximately 10,000 Hours of Real-World Robot Data — | AIRoA","url":"https://www.airoa.org/updates/2026-02-10"},{"title":"From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop","url":"https://icra2026vlapipeline.github.io/"},{"title":"ICRA 2026 Program | Start Page","url":"https://ras.papercept.net/conferences/conferences/ICRA26/program/"},{"title":"[2503.09205] Quality Over Quantity? LLM-Based Curation for a Data-Efficient Audio-Video Foundation Model","url":"https://arxiv.org/abs/2503.09205"},{"title":"Huihan Liu on X: \"Our data curation work SCIZOR is accepted to ICRA 2026! Check out this self-supervised data curation approach that removes suboptimal and duplicated data for large-scale imitation learning, led by @YZ_Franklin @yuqi_xie5\" / X","url":"https://x.com/huihan_liu/status/2017698931493195899"},{"title":"2026 IEEE International Conference on Robotics and Automation (ICRA)","url":"https://2026.ieee-icra.org/"},{"title":"Quality Over Quantity? LLM-Based Curation for a Data-Efficient ...","url":"https://www.researchgate.net/publication/389786040_Quality_Over_Quantity_LLM-Based_Curation_for_a_Data-Efficient_Audio-Video_Foundation_Model/fulltext/67d24e407c5b5569dcba1a6d/Quality-Over-Quantity-LLM-Based-Curation-for-a-Data-Efficient-Audio-Video-Foundation-Model.pdf"},{"title":"Quality over Quantity: An Effective Large-Scale Data Reduction Strategy Based on Pointwise V-Information | MDPI","url":"https://www.mdpi.com/2079-9292/14/15/3092"}]
+
+Based on the search results, I found highly relevant information about your query. The main result is a paper that directly matches your search terms:
+
+## Quality over Quantity (QoQ) - Demonstration Curation via Influence Functions
+
+QoQ is a systematic approach to identifying high-quality data by defining data quality as the contribution of each training sample to reducing loss on validation demonstrations.
+
+**Key Technical Contributions:**
+
+The approach leverages influence functions, which quantify the impact of individual training samples on model performance. Two key techniques adapt influence functions for robot demonstrations: (i) using maximum influence across validation samples to capture the most relevant state-action pairs, and (ii) aggregating influence scores of state-action pairs within the same trajectory to reduce noise and improve data coverage.
+
+**Research Context:**
+
+The quality of demonstration data remains a critical bottleneck for effective data-driven robot learning, with human errors, operational constraints, and teleoperator variability introducing noise and suboptimal behaviors.
+
+**Results:**
+
+Experiments in both simulated and real-world settings show that QoQ consistently improves policy performances over prior data selection methods. QoQ substantially outperforms baseline methods up to 23.2% in Robomimic simulation and 30.0% in real robot success rate.
+
+The paper was posted to arXiv on March 10, 2026, making it highly relevant to ICRA 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60fdf047-9083-42a0-b2bc-7d207de95fab",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "2d76d45f-8a58-48da-b1fd-f2f383cbfe2a",
+  "toolUseResult": {
+    "query": "QoQ quality over quantity demonstration curation influence functions ICRA 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0192QnnxEXheY4PZprp12KGq",
+        "content": [
+          {
+            "title": "[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/abs/2603.09056"
+          },
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          },
+          {
+            "title": "AIRoA Announces ICRA 2026 Workshop — Launching a Global Competition on VLA Pipelines and Approximately 10,000 Hours of Real-World Robot Data — | AIRoA",
+            "url": "https://www.airoa.org/updates/2026-02-10"
+          },
+          {
+            "title": "From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop",
+            "url": "https://icra2026vlapipeline.github.io/"
+          },
+          {
+            "title": "ICRA 2026 Program | Start Page",
+            "url": "https://ras.papercept.net/conferences/conferences/ICRA26/program/"
+          },
+          {
+            "title": "[2503.09205] Quality Over Quantity? LLM-Based Curation for a Data-Efficient Audio-Video Foundation Model",
+            "url": "https://arxiv.org/abs/2503.09205"
+          },
+          {
+            "title": "Huihan Liu on X: \"Our data curation work SCIZOR is accepted to ICRA 2026! Check out this self-supervised data curation approach that removes suboptimal and duplicated data for large-scale imitation learning, led by @YZ_Franklin @yuqi_xie5\" / X",
+            "url": "https://x.com/huihan_liu/status/2017698931493195899"
+          },
+          {
+            "title": "2026 IEEE International Conference on Robotics and Automation (ICRA)",
+            "url": "https://2026.ieee-icra.org/"
+          },
+          {
+            "title": "Quality Over Quantity? LLM-Based Curation for a Data-Efficient ...",
+            "url": "https://www.researchgate.net/publication/389786040_Quality_Over_Quantity_LLM-Based_Curation_for_a_Data-Efficient_Audio-Video_Foundation_Model/fulltext/67d24e407c5b5569dcba1a6d/Quality-Over-Quantity-LLM-Based-Curation-for-a-Data-Efficient-Audio-Video-Foundation-Model.pdf"
+          },
+          {
+            "title": "Quality over Quantity: An Effective Large-Scale Data Reduction Strategy Based on Pointwise V-Information | MDPI",
+            "url": "https://www.mdpi.com/2079-9292/14/15/3092"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant information about your query. The main result is a paper that directly matches your search terms:\n\n## Quality over Quantity (QoQ) - Demonstration Curation via Influence Functions\n\nQoQ is a systematic approach to identifying high-quality data by defining data quality as the contribution of each training sample to reducing loss on validation demonstrations.\n\n**Key Technical Contributions:**\n\nThe approach leverages influence functions, which quantify the impact of individual training samples on model performance. Two key techniques adapt influence functions for robot demonstrations: (i) using maximum influence across validation samples to capture the most relevant state-action pairs, and (ii) aggregating influence scores of state-action pairs within the same trajectory to reduce noise and improve data coverage.\n\n**Research Context:**\n\nThe quality of demonstration data remains a critical bottleneck for effective data-driven robot learning, with human errors, operational constraints, and teleoperator variability introducing noise and suboptimal behaviors.\n\n**Results:**\n\nExperiments in both simulated and real-world settings show that QoQ consistently improves policy performances over prior data selection methods. QoQ substantially outperforms baseline methods up to 23.2% in Robomimic simulation and 30.0% in real robot success rate.\n\nThe paper was posted to arXiv on March 10, 2026, making it highly relevant to ICRA 2026."
+    ],
+    "durationSeconds": 6.586390201000002
+  },
+  "sourceToolAssistantUUID": "60fdf047-9083-42a0-b2bc-7d207de95fab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-13T11:44:10.974Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ERSZhDCAyBC3WiF8KxD72E`</summary>
+
+```json
+{
+  "query": "FAKTUAL signature kernel entropy demonstration diversity robot learning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d76d45f-8a58-48da-b1fd-f2f383cbfe2a",
+  "isSidechain": false,
+  "requestId": "req_011CazWXK6Nr4JB7bg1NqJB7",
+  "type": "assistant",
+  "uuid": "102860af-eabd-45d4-8dd5-a297da8ceb90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TGfVsamjsd9MTFV78kC866",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 56816,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 56816,
+          "cache_creation_input_tokens": 1061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-13T11:44:17.739Z_
+
+<details><summary>↩ Tool result · `toolu_01ERSZhDCAyBC3WiF8KxD72E`</summary>
+
+```text
+Web search results for query: "FAKTUAL signature kernel entropy demonstration diversity robot learning 2026"
+
+Links: [{"title":"Diversity You Can Actually Measure: A Fast, Model-Free Diversity Metric for Robotics Datasets","url":"https://arxiv.org/html/2603.11634"},{"title":"Towards Demonstration-Efficient Robot Learning - King's College London","url":"https://kclpure.kcl.ac.uk/portal/en/studentTheses/towards-demonstration-efficient-robot-learning/"},{"title":"How Can Everyday Users Efficiently Teach Robots by Demonstration? | ACM Transactions on Human-Robot Interaction","url":"https://dl.acm.org/doi/10.1145/3737892"},{"title":"Deep Generative Models in Robotics: A Survey on Learning from Multimodal Demonstrations","url":"https://arxiv.org/html/2408.04380v1"},{"title":"DemoSpeedup: Accelerating Visuomotor Policies via Entropy-Guided Demonstration Acceleration","url":"https://arxiv.org/html/2506.05064v2"},{"title":"ICLR 2026 Papers","url":"https://iclr.cc/virtual/2026/papers.html"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"Abstracting Robot Manipulation Skills via Mixture-of- ...","url":"https://arxiv.org/pdf/2601.21251"},{"title":"Acquiring Diverse Robot Skills via Maximum Entropy Deep ...","url":"https://www2.eecs.berkeley.edu/Pubs/TechRpts/2018/EECS-2018-176.pdf"},{"title":"Robust Trajectory Prediction for Mobile Robots via Minimum Error Entropy Criterion and Adaptive LSTM Networks","url":"https://www.mdpi.com/1099-4300/28/2/227"}]
+
+Based on the search results, I found highly relevant information about your query:
+
+FAKTUAL (FAst trajectory Kernel enTropy cUration for imitation Learning) is a data curation algorithm that selects a subset of demonstrations maximizing entropy given a subset-size budget.
+
+## Key Features and Approach
+
+The method computes Shannon entropy and von Neumann entropy on the eigenvalues of the signature kernel, providing a computationally cheap and principled way to measure the entropy and diversity of robotics datasets by defining signature transform-based entropy on the Gram matrix of a signature kernel over demonstrations.
+
+## Model-Free Design
+
+FAKTUAL is fully model-free, requires no access to the imitation policy or rollouts, and adds negligible overhead relative to policy training.
+
+## Performance and Evaluation
+
+The approach was evaluated on image and state-based RoboMimic and MetaWorld benchmarks, as well as four real-world manipulation tasks, and across tasks and architectures, diversity-aware curation with FAKTUAL consistently improves downstream success rates over random selection, while being substantially more computationally efficient compared to recent robot data curation methods.
+
+The results suggest that the entropy of demonstration datasets is a practical tool for understanding and improving dataset diversity in robot imitation learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "102860af-eabd-45d4-8dd5-a297da8ceb90",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "5281d286-d8a2-4fc8-bf64-5b3c413c3e4c",
+  "toolUseResult": {
+    "query": "FAKTUAL signature kernel entropy demonstration diversity robot learning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018S2unbJorH8Mdk92a22fKK",
+        "content": [
+          {
+            "title": "Diversity You Can Actually Measure: A Fast, Model-Free Diversity Metric for Robotics Datasets",
+            "url": "https://arxiv.org/html/2603.11634"
+          },
+          {
+            "title": "Towards Demonstration-Efficient Robot Learning - King's College London",
+            "url": "https://kclpure.kcl.ac.uk/portal/en/studentTheses/towards-demonstration-efficient-robot-learning/"
+          },
+          {
+            "title": "How Can Everyday Users Efficiently Teach Robots by Demonstration? | ACM Transactions on Human-Robot Interaction",
+            "url": "https://dl.acm.org/doi/10.1145/3737892"
+          },
+          {
+            "title": "Deep Generative Models in Robotics: A Survey on Learning from Multimodal Demonstrations",
+            "url": "https://arxiv.org/html/2408.04380v1"
+          },
+          {
+            "title": "DemoSpeedup: Accelerating Visuomotor Policies via Entropy-Guided Demonstration Acceleration",
+            "url": "https://arxiv.org/html/2506.05064v2"
+          },
+          {
+            "title": "ICLR 2026 Papers",
+            "url": "https://iclr.cc/virtual/2026/papers.html"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "Abstracting Robot Manipulation Skills via Mixture-of- ...",
+            "url": "https://arxiv.org/pdf/2601.21251"
+          },
+          {
+            "title": "Acquiring Diverse Robot Skills via Maximum Entropy Deep ...",
+            "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2018/EECS-2018-176.pdf"
+          },
+          {
+            "title": "Robust Trajectory Prediction for Mobile Robots via Minimum Error Entropy Criterion and Adaptive LSTM Networks",
+            "url": "https://www.mdpi.com/1099-4300/28/2/227"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant information about your query:\n\nFAKTUAL (FAst trajectory Kernel enTropy cUration for imitation Learning) is a data curation algorithm that selects a subset of demonstrations maximizing entropy given a subset-size budget.\n\n## Key Features and Approach\n\nThe method computes Shannon entropy and von Neumann entropy on the eigenvalues of the signature kernel, providing a computationally cheap and principled way to measure the entropy and diversity of robotics datasets by defining signature transform-based entropy on the Gram matrix of a signature kernel over demonstrations.\n\n## Model-Free Design\n\nFAKTUAL is fully model-free, requires no access to the imitation policy or rollouts, and adds negligible overhead relative to policy training.\n\n## Performance and Evaluation\n\nThe approach was evaluated on image and state-based RoboMimic and MetaWorld benchmarks, as well as four real-world manipulation tasks, and across tasks and architectures, diversity-aware curation with FAKTUAL consistently improves downstream success rates over random selection, while being substantially more computationally efficient compared to recent robot data curation methods.\n\nThe results suggest that the entropy of demonstration datasets is a practical tool for understanding and improving dataset diversity in robot imitation learning."
+    ],
+    "durationSeconds": 6.759840460000007
+  },
+  "sourceToolAssistantUUID": "102860af-eabd-45d4-8dd5-a297da8ceb90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-13T11:44:22.488Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KwFXievZ4GgwU61CzsbGT9`</summary>
+
+```json
+{
+  "query": "trajectory repair demonstration improvement behavior tree robot 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5281d286-d8a2-4fc8-bf64-5b3c413c3e4c",
+  "isSidechain": false,
+  "requestId": "req_011CazWY2JcNQ2mK6K6UYEs7",
+  "type": "assistant",
+  "uuid": "e929a23a-6f4b-4429-9540-98d92303e574",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C9fnPYtHEqN8XSQoLeV1Ej",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 835,
+      "cache_read_input_tokens": 57877,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 835,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 57877,
+          "cache_creation_input_tokens": 835,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 835
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-13T11:44:30.254Z_
+
+<details><summary>↩ Tool result · `toolu_01KwFXievZ4GgwU61CzsbGT9`</summary>
+
+```text
+Web search results for query: "trajectory repair demonstration improvement behavior tree robot 2026 arXiv"
+
+Links: [{"title":"Learning from Imperfect Demonstrations via Temporal Behavior Tree-Guided Trajectory Repair","url":"https://arxiv.org/html/2604.04225"},{"title":"[2604.04225] Learning from Imperfect Demonstrations via Temporal Behavior Tree-Guided Trajectory Repair","url":"https://arxiv.org/abs/2604.04225"},{"title":"Beyond Predefined Actions: Integrating Behavior Trees and Dynamic Movement Primitives for Robot Learning from Demonstration","url":"https://arxiv.org/html/2505.08625v1"},{"title":"A survey of Behavior Trees in robotics and AI - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0921889022000513"},{"title":"Adaptable Recovery Behaviors in Robotics: A Behavior Trees and Motion Generators (BTMG) Approach for Failure Management","url":"https://arxiv.org/html/2404.06129v1"},{"title":"Multi-step manipulation task and motion planning guided by video demonstration","url":"https://arxiv.org/html/2505.08949"},{"title":"[2509.08610] Trace Repair for Temporal Behavior Trees","url":"https://arxiv.org/abs/2509.08610"},{"title":"Trace Repair for Temporal Behavior Trees","url":"https://arxiv.org/html/2509.08610"},{"title":"Adaptive Manipulation using Behavior Trees","url":"https://arxiv.org/html/2406.14634v3"},{"title":"A Survey of Behavior Trees in Robotics and AI","url":"https://arxiv.org/pdf/2005.05842"}]
+
+Based on the search results, I found a highly relevant 2026 arXiv paper that matches your query:
+
+## Learning from Imperfect Demonstrations via Temporal Behavior Tree-Guided Trajectory Repair
+
+This work presents a formal framework that leverages Temporal Behavior Trees (TBT), an extension of Signal Temporal Logic (STL) with Behavior Tree semantics, to repair suboptimal trajectories prior to their use in downstream policy learning. Given demonstrations that violate a TBT specification, a model-based repair algorithm corrects trajectory segments to satisfy the formal constraints, yielding a dataset that is both logically consistent and interpretable.
+
+The repaired trajectories are then used to extract potential functions that shape the reward signal for reinforcement learning, guiding the agent toward task-consistent regions of the state space without requiring knowledge of the agent's kinematic model.
+
+Experiments on discrete grid-world navigation and continuous single and multi-agent reach-avoid tasks demonstrate that the proposed approach consistently matches or exceeds expert-designed reward baselines while incurring significantly lower obstacle cost rates.
+
+The paper was submitted to arXiv on April 5, 2026, with the identifier 2604.04225. It's authored by Aniruddh G. Puranic and three other authors.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e929a23a-6f4b-4429-9540-98d92303e574",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "97b42945-b4f6-4cdb-a71d-66d63e29edb0",
+  "toolUseResult": {
+    "query": "trajectory repair demonstration improvement behavior tree robot 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HjZWTKd1WQbujrrdjGbFSR",
+        "content": [
+          {
+            "title": "Learning from Imperfect Demonstrations via Temporal Behavior Tree-Guided Trajectory Repair",
+            "url": "https://arxiv.org/html/2604.04225"
+          },
+          {
+            "title": "[2604.04225] Learning from Imperfect Demonstrations via Temporal Behavior Tree-Guided Trajectory Repair",
+            "url": "https://arxiv.org/abs/2604.04225"
+          },
+          {
+            "title": "Beyond Predefined Actions: Integrating Behavior Trees and Dynamic Movement Primitives for Robot Learning from Demonstration",
+            "url": "https://arxiv.org/html/2505.08625v1"
+          },
+          {
+            "title": "A survey of Behavior Trees in robotics and AI - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0921889022000513"
+          },
+          {
+            "title": "Adaptable Recovery Behaviors in Robotics: A Behavior Trees and Motion Generators (BTMG) Approach for Failure Management",
+            "url": "https://arxiv.org/html/2404.06129v1"
+          },
+          {
+            "title": "Multi-step manipulation task and motion planning guided by video demonstration",
+            "url": "https://arxiv.org/html/2505.08949"
+          },
+          {
+            "title": "[2509.08610] Trace Repair for Temporal Behavior Trees",
+            "url": "https://arxiv.org/abs/2509.08610"
+          },
+          {
+            "title": "Trace Repair for Temporal Behavior Trees",
+            "url": "https://arxiv.org/html/2509.08610"
+          },
+          {
+            "title": "Adaptive Manipulation using Behavior Trees",
+            "url": "https://arxiv.org/html/2406.14634v3"
+          },
+          {
+            "title": "A Survey of Behavior Trees in Robotics and AI",
+            "url": "https://arxiv.org/pdf/2005.05842"
+          }
+        ]
+      },
+      "Based on the search results, I found a highly relevant 2026 arXiv paper that matches your query:\n\n## Learning from Imperfect Demonstrations via Temporal Behavior Tree-Guided Trajectory Repair\n\nThis work presents a formal framework that leverages Temporal Behavior Trees (TBT), an extension of Signal Temporal Logic (STL) with Behavior Tree semantics, to repair suboptimal trajectories prior to their use in downstream policy learning. Given demonstrations that violate a TBT specification, a model-based repair algorithm corrects trajectory segments to satisfy the formal constraints, yielding a dataset that is both logically consistent and interpretable.\n\nThe repaired trajectories are then used to extract potential functions that shape the reward signal for reinforcement learning, guiding the agent toward task-consistent regions of the state space without requiring knowledge of the agent's kinematic model.\n\nExperiments on discrete grid-world navigation and continuous single and multi-agent reach-avoid tasks demonstrate that the proposed approach consistently matches or exceeds expert-designed reward baselines while incurring significantly lower obstacle cost rates.\n\nThe paper was submitted to arXiv on April 5, 2026, with the identifier 2604.04225. It's authored by Aniruddh G. Puranic and three other authors."
+    ],
+    "durationSeconds": 7.763075612999994
+  },
+  "sourceToolAssistantUUID": "e929a23a-6f4b-4429-9540-98d92303e574",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-13T11:44:33.808Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01F1Q5qCmCxcytpgHrDc4BJY`</summary>
+
+```json
+{
+  "query": "robust Wasserstein barycenter Cheng Liu 2026 outlier robust optimal transport"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97b42945-b4f6-4cdb-a71d-66d63e29edb0",
+  "isSidechain": false,
+  "requestId": "req_011CazWYwsjXG74g6xhZFy6C",
+  "type": "assistant",
+  "uuid": "49a7fc4a-b57f-4532-a0ec-7f4918acfdb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0182T4pCJQyNwxGp4rTFfsXv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 58712,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 816,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 58712,
+          "cache_creation_input_tokens": 816,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 816
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-13T11:44:39.850Z_
+
+<details><summary>↩ Tool result · `toolu_01F1Q5qCmCxcytpgHrDc4BJY`</summary>
+
+```text
+Web search results for query: "robust Wasserstein barycenter Cheng Liu 2026 outlier robust optimal transport"
+
+Links: [{"title":"Robust Wasserstein barycenter","url":"https://arxiv.org/html/2603.07563"},{"title":"[2603.07563] Robust Wasserstein barycenter","url":"https://arxiv.org/abs/2603.07563"},{"title":"Barycenters for data set in Fig. 2 computed by different methods. The... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Barycenters-for-data-set-in-Fig2-computed-by-different-methods-The-weight-of-a-support_fig3_368901336"},{"title":"Robust Barycenter Estimation using Semi-Unbalanced Neural Optimal Transport","url":"https://arxiv.org/html/2410.03974v1"},{"title":"Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers","url":"https://www.ijcai.org/proceedings/2024/0588.pdf"},{"title":"Heterogeneous domain generalization for multi-source person re-identification via Wasserstein barycenter | Pattern Analysis and Applications | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10044-026-01656-5"},{"title":"Scalable Bayes via Barycenter in Wasserstein Space | Request PDF","url":"https://www.researchgate.net/publication/281262237_Scalable_Bayes_via_Barycenter_in_Wasserstein_Space"},{"title":"Approximate Algorithms For 𝑘-Sparse Wasserstein Barycenter With Outliers","url":"https://arxiv.org/html/2404.13401v1"},{"title":"Wasserstein Distributionally Robust Optimization with Wasserstein Barycenters","url":"https://arxiv.org/pdf/2203.12136"},{"title":"Projection Robust Wasserstein Barycenters – Optimization Online","url":"https://optimization-online.org/2021/09/8607/"}]
+
+I found a highly relevant paper matching your search query. Here are the key findings:
+
+Zixiong Cheng and Hang Liu from the University of Science and Technology of China address a fundamental limitation of the classical Wasserstein barycenter—its sensitivity to outliers and its reliance on finite first/second moment assumptions.
+
+To overcome these issues, they propose the robust Wasserstein barycenter (RWB) based on a recent concept of robust optimal transport. Theoretical guarantees, including existence and consistency, are established for the proposed RWB.
+
+Through extensive numerical experiments on both simulated and real-world data—including image processing and financial time series analysis—the RWB exhibits superior robustness compared to the classical Wasserstein barycenter. Under both free-support and fixed-support settings, the RWB exhibits sharper boundaries than the WB, with no obvious deviation toward the perturbation points.
+
+The paper was published on arXiv on March 8, 2026, with the identifier 2603.07563, making it a recent contribution to the field of robust optimal transport and Wasserstein barycenters.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49a7fc4a-b57f-4532-a0ec-7f4918acfdb1",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "8b44cd90-fb0e-404d-964d-8010ad99778e",
+  "toolUseResult": {
+    "query": "robust Wasserstein barycenter Cheng Liu 2026 outlier robust optimal transport",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KxnHCSEBopKWLieKxFdmBG",
+        "content": [
+          {
+            "title": "Robust Wasserstein barycenter",
+            "url": "https://arxiv.org/html/2603.07563"
+          },
+          {
+            "title": "[2603.07563] Robust Wasserstein barycenter",
+            "url": "https://arxiv.org/abs/2603.07563"
+          },
+          {
+            "title": "Barycenters for data set in Fig. 2 computed by different methods. The... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Barycenters-for-data-set-in-Fig2-computed-by-different-methods-The-weight-of-a-support_fig3_368901336"
+          },
+          {
+            "title": "Robust Barycenter Estimation using Semi-Unbalanced Neural Optimal Transport",
+            "url": "https://arxiv.org/html/2410.03974v1"
+          },
+          {
+            "title": "Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers",
+            "url": "https://www.ijcai.org/proceedings/2024/0588.pdf"
+          },
+          {
+            "title": "Heterogeneous domain generalization for multi-source person re-identification via Wasserstein barycenter | Pattern Analysis and Applications | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10044-026-01656-5"
+          },
+          {
+            "title": "Scalable Bayes via Barycenter in Wasserstein Space | Request PDF",
+            "url": "https://www.researchgate.net/publication/281262237_Scalable_Bayes_via_Barycenter_in_Wasserstein_Space"
+          },
+          {
+            "title": "Approximate Algorithms For 𝑘-Sparse Wasserstein Barycenter With Outliers",
+            "url": "https://arxiv.org/html/2404.13401v1"
+          },
+          {
+            "title": "Wasserstein Distributionally Robust Optimization with Wasserstein Barycenters",
+            "url": "https://arxiv.org/pdf/2203.12136"
+          },
+          {
+            "title": "Projection Robust Wasserstein Barycenters – Optimization Online",
+            "url": "https://optimization-online.org/2021/09/8607/"
+          }
+        ]
+      },
+      "I found a highly relevant paper matching your search query. Here are the key findings:\n\nZixiong Cheng and Hang Liu from the University of Science and Technology of China address a fundamental limitation of the classical Wasserstein barycenter—its sensitivity to outliers and its reliance on finite first/second moment assumptions.\n\nTo overcome these issues, they propose the robust Wasserstein barycenter (RWB) based on a recent concept of robust optimal transport. Theoretical guarantees, including existence and consistency, are established for the proposed RWB.\n\nThrough extensive numerical experiments on both simulated and real-world data—including image processing and financial time series analysis—the RWB exhibits superior robustness compared to the classical Wasserstein barycenter. Under both free-support and fixed-support settings, the RWB exhibits sharper boundaries than the WB, with no obvious deviation toward the perturbation points.\n\nThe paper was published on arXiv on March 8, 2026, with the identifier 2603.07563, making it a recent contribution to the field of robust optimal transport and Wasserstein barycenters."
+    ],
+    "durationSeconds": 6.036377326999995
+  },
+  "sourceToolAssistantUUID": "49a7fc4a-b57f-4532-a0ec-7f4918acfdb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-13T11:44:43.110Z_
+
+Now let me search for the most critical missing pieces — potential concurrent work the proposal may have overlooked.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b44cd90-fb0e-404d-964d-8010ad99778e",
+  "isSidechain": false,
+  "requestId": "req_011CazWZerpvQPnzm26ejBd3",
+  "type": "assistant",
+  "uuid": "64171763-c35c-475b-bdfa-4ed51f12c478",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018VYbAFEDoNbjYHQgV63PGF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 895,
+      "cache_read_input_tokens": 59528,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 895,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 59528,
+          "cache_creation_input_tokens": 895,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 895
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-13T11:44:43.476Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01L8vsa7snei7RZgGUUcY7Lw`</summary>
+
+```json
+{
+  "query": "demonstration clustering strategy modes scoring quality imitation learning arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64171763-c35c-475b-bdfa-4ed51f12c478",
+  "isSidechain": false,
+  "requestId": "req_011CazWZerpvQPnzm26ejBd3",
+  "type": "assistant",
+  "uuid": "8288bfcb-1a5b-432a-a87e-e11b80718609",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018VYbAFEDoNbjYHQgV63PGF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 895,
+      "cache_read_input_tokens": 59528,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 895,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 59528,
+          "cache_creation_input_tokens": 895,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 895
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "8288bfcb-1a5b-432a-a87e-e11b80718609",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PhaseOT demonstration curation for AAAI 2027",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-13T11:44:50.988Z_
+
+<details><summary>↩ Tool result · `toolu_01L8vsa7snei7RZgGUUcY7Lw`</summary>
+
+```text
+Web search results for query: "demonstration clustering strategy modes scoring quality imitation learning arXiv 2026"
+
+Links: [{"title":"A Hierarchical Spatiotemporal Action Tokenizer for In-Context Imitation Learning in Robotics","url":"https://arxiv.org/html/2604.15215"},{"title":"[2604.23000] Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://arxiv.org/abs/2604.23000"},{"title":"LMAct: A Benchmark for In-Context Imitation Learning with Long Multimodal Demonstrations","url":"https://arxiv.org/html/2412.01441v1"},{"title":"Learning to Generate Fair Clusters from Demonstrations","url":"https://arxiv.org/pdf/2102.03977"},{"title":"Quality Diversity Imitation Learning","url":"https://arxiv.org/html/2410.06151v1"},{"title":"Accelerating Self-Imitation Learning from Demonstrations via","url":"https://arxiv.org/pdf/2212.03562"},{"title":"Machine Learning Nov 2024","url":"https://arxiv.org/list/cs.LG/2024-11?skip=0&show=2000"},{"title":"[2411.06965] Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration","url":"https://arxiv.org/abs/2411.06965"},{"title":"LLMOrbit: A Circular Taxonomy of Large Language Models","url":"https://arxiv.org/pdf/2601.14053"},{"title":"Artificial Intelligence Feb 2024","url":"https://arxiv.org/list/cs.AI/2024-02?skip=1850&show=1000"}]
+
+Based on the search results, I found several relevant papers related to your query about demonstration clustering, strategy modes, scoring quality, and imitation learning from arXiv in 2026:
+
+## Key Findings:
+
+**1. Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning**
+
+RINSE (Ranking and INdexing Smooth Examples) is a lightweight framework for scoring demonstrations based on trajectory smoothness that is policy-architecture-agnostic and operates on trajectory data alone, with TED additionally using a phase-boundary/contact signal. RINSE uses two complementary metrics: Spectral Arc Length (SAL), a spectral measure of frequency-domain regularity, and Trajectory-Envelope Distance (TED), a spatial measure of contact-aware geometric deviation. The results show that SAL filtering achieves 16% higher success using one-sixth of the data, and TED filtering achieves 20% improvement with half the data on real-world manipulation.
+
+**2. Hierarchical Spatiotemporal Action Tokenizer for In-Context Imitation Learning**
+
+A hierarchical spatiotemporal action tokenizer performs multi-level clustering and exploits both spatial and temporal cues by jointly reconstructing actions and timestamps, yielding superior performance. The approach performs clustering across multiple vector quantization levels, enabling the discovery of short-term sub-action primitives that combine to form long-term coherent actions.
+
+These papers directly address demonstration clustering strategies, quality scoring of demonstrations, and their application in imitation learning as of 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8288bfcb-1a5b-432a-a87e-e11b80718609",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "7d9cb423-571a-4be5-9d7a-19dd4665cc92",
+  "toolUseResult": {
+    "query": "demonstration clustering strategy modes scoring quality imitation learning arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YUaBr3QhXbJjibNjkwqCtA",
+        "content": [
+          {
+            "title": "A Hierarchical Spatiotemporal Action Tokenizer for In-Context Imitation Learning in Robotics",
+            "url": "https://arxiv.org/html/2604.15215"
+          },
+          {
+            "title": "[2604.23000] Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/abs/2604.23000"
+          },
+          {
+            "title": "LMAct: A Benchmark for In-Context Imitation Learning with Long Multimodal Demonstrations",
+            "url": "https://arxiv.org/html/2412.01441v1"
+          },
+          {
+            "title": "Learning to Generate Fair Clusters from Demonstrations",
+            "url": "https://arxiv.org/pdf/2102.03977"
+          },
+          {
+            "title": "Quality Diversity Imitation Learning",
+            "url": "https://arxiv.org/html/2410.06151v1"
+          },
+          {
+            "title": "Accelerating Self-Imitation Learning from Demonstrations via",
+            "url": "https://arxiv.org/pdf/2212.03562"
+          },
+          {
+            "title": "Machine Learning Nov 2024",
+            "url": "https://arxiv.org/list/cs.LG/2024-11?skip=0&show=2000"
+          },
+          {
+            "title": "[2411.06965] Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration",
+            "url": "https://arxiv.org/abs/2411.06965"
+          },
+          {
+            "title": "LLMOrbit: A Circular Taxonomy of Large Language Models",
+            "url": "https://arxiv.org/pdf/2601.14053"
+          },
+          {
+            "title": "Artificial Intelligence Feb 2024",
+            "url": "https://arxiv.org/list/cs.AI/2024-02?skip=1850&show=1000"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers related to your query about demonstration clustering, strategy modes, scoring quality, and imitation learning from arXiv in 2026:\n\n## Key Findings:\n\n**1. Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning**\n\nRINSE (Ranking and INdexing Smooth Examples) is a lightweight framework for scoring demonstrations based on trajectory smoothness that is policy-architecture-agnostic and operates on trajectory data alone, with TED additionally using a phase-boundary/contact signal. RINSE uses two complementary metrics: Spectral Arc Length (SAL), a spectral measure of frequency-domain regularity, and Trajectory-Envelope Distance (TED), a spatial measure of contact-aware geometric deviation. The results show that SAL filtering achieves 16% higher success using one-sixth of the data, and TED filtering achieves 20% improvement with half the data on real-world manipulation.\n\n**2. Hierarchical Spatiotemporal Action Tokenizer for In-Context Imitation Learning**\n\nA hierarchical spatiotemporal action tokenizer performs multi-level clustering and exploits both spatial and temporal cues by jointly reconstructing actions and timestamps, yielding superior performance. The approach performs clustering across multiple vector quantization levels, enabling the discovery of short-term sub-action primitives that combine to form long-term coherent actions.\n\nThese papers directly address demonstration clustering strategies, quality scoring of demonstrations, and their application in imitation learning as of 2026."
+    ],
+    "durationSeconds": 7.509641745000001
+  },
+  "sourceToolAssistantUUID": "8288bfcb-1a5b-432a-a87e-e11b80718609",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-13T11:44:55.800Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016wvK2d79JXo4ozeBgHwhfx`</summary>
+
+```json
+{
+  "query": "Wasserstein quality diversity imitation learning diverse behaviors 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d9cb423-571a-4be5-9d7a-19dd4665cc92",
+  "isSidechain": false,
+  "requestId": "req_011CazWad6w5icXVb917xeQP",
+  "type": "assistant",
+  "uuid": "20c86829-5a9f-4290-bfe9-fb1a4eb55390",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MQ9xYJmoGECAXEPW4d7wFp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 60423,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 900,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 60423,
+          "cache_creation_input_tokens": 900,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 900
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-13T11:45:02.122Z_
+
+<details><summary>↩ Tool result · `toolu_016wvK2d79JXo4ozeBgHwhfx`</summary>
+
+```text
+Web search results for query: "Wasserstein quality diversity imitation learning diverse behaviors 2024"
+
+Links: [{"title":"[2411.06965] Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration","url":"https://arxiv.org/abs/2411.06965"},{"title":"Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration | Proceedings of the 24th International Conference on Autonomous Agents and Multiagent Systems","url":"https://dl.acm.org/doi/10.5555/3709347.3743867"},{"title":"Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration","url":"https://arxiv.org/html/2411.06965v1"},{"title":"Imitation from Diverse Behaviors: Wasserstein Quality Diversity","url":"https://www.ifaamas.org/Proceedings/aamas2025/pdfs/p2271.pdf"},{"title":"Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration","url":"https://powerdrill.ai/discover/discover-Imitation-from-Diverse-cm3ext2oq5llz016ff3s1p8r5"},{"title":"[Literature Review] Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration","url":"https://www.themoonlight.io/en/review/imitation-from-diverse-behaviors-wasserstein-quality-diversity-imitation-learning-with-single-step-archive-exploration"},{"title":"QUALITY DIVERSITY IMITATION LEARNING","url":"https://openreview.net/pdf/3adaa371312e8e53f2267b93224044f3388e304a.pdf"},{"title":"Quality Diversity Imitation Learning","url":"https://arxiv.org/html/2410.06151v1"},{"title":"Diversifying Policy Behaviors with Extrinsic Behavioral Curiosity","url":"https://arxiv.org/html/2410.06151"},{"title":"[2410.06151] Diversifying Policy Behaviors with Extrinsic Behavioral Curiosity","url":"https://arxiv.org/abs/2410.06151"}]
+
+Based on the search results, I found highly relevant research on this topic:
+
+## Wasserstein Quality Diversity Imitation Learning (WQDIL)
+
+Wasserstein Quality Diversity Imitation Learning (WQDIL) improves the stability of imitation learning in the quality diversity setting with latent adversarial training based on a Wasserstein Auto-Encoder (WAE), and mitigates a behavior-overfitting issue using a measure-conditioned reward function with a single-step archive exploration bonus.
+
+### The Problem
+
+Learning diverse and high-performance behaviors from a limited set of demonstrations is a grand challenge, as traditional imitation learning methods usually fail in this task because most of them are designed to learn one specific behavior even with multiple demonstrations.
+
+### Key Technical Innovations
+
+The method addresses two main challenges:
+
+1. **Training Stability**: The approach stabilizes reward learning by applying Wasserstein adversarial training within the latent space of the Wasserstein Auto-Encoder (WAE).
+
+2. **Behavior Diversity**: A bonus enables the agent to collect data with more diverse behaviors via single-step archive exploration.
+
+### Performance
+
+The method significantly outperforms state-of-the-art IL methods, achieving near-expert or beyond-expert QD performance on the challenging continuous control tasks derived from MuJoCo environments.
+
+The paper was submitted in November 2024 and is associated with the 24th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2025).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "20c86829-5a9f-4290-bfe9-fb1a4eb55390",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "04153178-2fe0-4b25-b8b8-71ab739f63b5",
+  "toolUseResult": {
+    "query": "Wasserstein quality diversity imitation learning diverse behaviors 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DYJrwtZssMRMDHKLH9GGeU",
+        "content": [
+          {
+            "title": "[2411.06965] Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration",
+            "url": "https://arxiv.org/abs/2411.06965"
+          },
+          {
+            "title": "Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration | Proceedings of the 24th International Conference on Autonomous Agents and Multiagent Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3709347.3743867"
+          },
+          {
+            "title": "Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration",
+            "url": "https://arxiv.org/html/2411.06965v1"
+          },
+          {
+            "title": "Imitation from Diverse Behaviors: Wasserstein Quality Diversity",
+            "url": "https://www.ifaamas.org/Proceedings/aamas2025/pdfs/p2271.pdf"
+          },
+          {
+            "title": "Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration",
+            "url": "https://powerdrill.ai/discover/discover-Imitation-from-Diverse-cm3ext2oq5llz016ff3s1p8r5"
+          },
+          {
+            "title": "[Literature Review] Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration",
+            "url": "https://www.themoonlight.io/en/review/imitation-from-diverse-behaviors-wasserstein-quality-diversity-imitation-learning-with-single-step-archive-exploration"
+          },
+          {
+            "title": "QUALITY DIVERSITY IMITATION LEARNING",
+            "url": "https://openreview.net/pdf/3adaa371312e8e53f2267b93224044f3388e304a.pdf"
+          },
+          {
+            "title": "Quality Diversity Imitation Learning",
+            "url": "https://arxiv.org/html/2410.06151v1"
+          },
+          {
+            "title": "Diversifying Policy Behaviors with Extrinsic Behavioral Curiosity",
+            "url": "https://arxiv.org/html/2410.06151"
+          },
+          {
+            "title": "[2410.06151] Diversifying Policy Behaviors with Extrinsic Behavioral Curiosity",
+            "url": "https://arxiv.org/abs/2410.06151"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant research on this topic:\n\n## Wasserstein Quality Diversity Imitation Learning (WQDIL)\n\nWasserstein Quality Diversity Imitation Learning (WQDIL) improves the stability of imitation learning in the quality diversity setting with latent adversarial training based on a Wasserstein Auto-Encoder (WAE), and mitigates a behavior-overfitting issue using a measure-conditioned reward function with a single-step archive exploration bonus.\n\n### The Problem\n\nLearning diverse and high-performance behaviors from a limited set of demonstrations is a grand challenge, as traditional imitation learning methods usually fail in this task because most of them are designed to learn one specific behavior even with multiple demonstrations.\n\n### Key Technical Innovations\n\nThe method addresses two main challenges:\n\n1. **Training Stability**: The approach stabilizes reward learning by applying Wasserstein adversarial training within the latent space of the Wasserstein Auto-Encoder (WAE).\n\n2. **Behavior Diversity**: A bonus enables the agent to collect data with more diverse behaviors via single-step archive exploration.\n\n### Performance\n\nThe method significantly outperforms state-of-the-art IL methods, achieving near-expert or beyond-expert QD performance on the challenging continuous control tasks derived from MuJoCo environments.\n\nThe paper was submitted in November 2024 and is associated with the 24th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2025)."
+    ],
+    "durationSeconds": 6.314340240999998
+  },
+  "sourceToolAssistantUUID": "20c86829-5a9f-4290-bfe9-fb1a4eb55390",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-13T11:45:04.579Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011Vz3Eck3zVNdEcibxr9MDm`</summary>
+
+```json
+{
+  "query": "Sebag optimal transport combining expert demonstrations multimodal 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04153178-2fe0-4b25-b8b8-71ab739f63b5",
+  "isSidechain": false,
+  "requestId": "req_011CazWbJ8T4DHC77TBHQL87",
+  "type": "assistant",
+  "uuid": "e812d165-cdc7-433f-a794-531d23ff6ce7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014jT9Vwj6cd4u4veizyVv4s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1013,
+      "cache_read_input_tokens": 61323,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1013,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 61323,
+          "cache_creation_input_tokens": 1013,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1013
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-13T11:45:09.217Z_
+
+<details><summary>↩ Tool result · `toolu_011Vz3Eck3zVNdEcibxr9MDm`</summary>
+
+```text
+Web search results for query: "Sebag optimal transport combining expert demonstrations multimodal 2023"
+
+Links: [{"title":"[2307.10810] On Combining Expert Demonstrations in Imitation Learning via Optimal Transport","url":"https://arxiv.org/abs/2307.10810"},{"title":"(PDF) On Combining Expert Demonstrations in Imitation Learning via Optimal Transport","url":"https://www.researchgate.net/publication/372488146_On_Combining_Expert_Demonstrations_in_Imitation_Learning_via_Optimal_Transport"},{"title":"On Combining Expert Demonstrations in Imitation Learning via Optimal Transport - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230710810S/abstract"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar?q=On+Combining+Expert+Demonstrations+in+Imitation+Learning+via+Optimal+Transport."},{"title":"Multimodal Optimal Transport-based Co-Attention Transformer with Global","url":"https://openaccess.thecvf.com/content/ICCV2023/papers/Xu_Multimodal_Optimal_Transport-based_Co-Attention_Transformer_with_Global_Structure_Consistency_for_ICCV_2023_paper.pdf"},{"title":"Optimal Transport and Machine Learning 2023","url":"https://otmlworkshop.github.io/"},{"title":"Awesome-Optimal-Transport-in-Deep-Learning/README.md at main · changwxx/Awesome-Optimal-Transport-in-Deep-Learning","url":"https://github.com/changwxx/Awesome-Optimal-Transport-in-Deep-Learning/blob/main/README.md"},{"title":"Optimal Transport and Machine Learning","url":"https://neurips.cc/virtual/2023/workshop/66521"},{"title":"Pursuing Optimization Using Multimodal Transportation System: A Strategic Approach to Minimizing Costs and CO2 Emissions | MDPI","url":"https://www.mdpi.com/2077-1312/12/6/976"},{"title":"GitHub - changwxx/Awesome-Optimal-Transport-in-Deep-Learning: a collection of AWESOME things about Optimal Transport in Deep Learning · GitHub","url":"https://github.com/changwxx/Awesome-Optimal-Transport-in-Deep-Learning"}]
+
+The search results show a paper that matches your query:
+
+"On Combining Expert Demonstrations in Imitation Learning via Optimal Transport" by Ilana Sebag and 2 other authors, published in July 2023.
+
+The paper addresses an important problem in imitation learning: while the problem of how to optimally combine multiple expert demonstrations has not been widely studied, the standard method is to simply concatenate state-action trajectories, which is problematic when trajectories are multi-modal.
+
+The authors propose an alternative method that uses a multi-marginal optimal transport distance and enables the combination of multiple and diverse state-trajectories in the OT sense. 
+
+The paper is available on arXiv (identifier: 2307.10810) and has been made available in PDF format at https://arxiv.org/abs/2307.10810.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e812d165-cdc7-433f-a794-531d23ff6ce7",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "4a30842d-5aab-48f6-a94b-c10f2844c4b6",
+  "toolUseResult": {
+    "query": "Sebag optimal transport combining expert demonstrations multimodal 2023",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FjqM6PzeV94vTGbTn6C1JC",
+        "content": [
+          {
+            "title": "[2307.10810] On Combining Expert Demonstrations in Imitation Learning via Optimal Transport",
+            "url": "https://arxiv.org/abs/2307.10810"
+          },
+          {
+            "title": "(PDF) On Combining Expert Demonstrations in Imitation Learning via Optimal Transport",
+            "url": "https://www.researchgate.net/publication/372488146_On_Combining_Expert_Demonstrations_in_Imitation_Learning_via_Optimal_Transport"
+          },
+          {
+            "title": "On Combining Expert Demonstrations in Imitation Learning via Optimal Transport - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv230710810S/abstract"
+          },
+          {
+            "title": "Google Scholar",
+            "url": "https://scholar.google.com/scholar?q=On+Combining+Expert+Demonstrations+in+Imitation+Learning+via+Optimal+Transport."
+          },
+          {
+            "title": "Multimodal Optimal Transport-based Co-Attention Transformer with Global",
+            "url": "https://openaccess.thecvf.com/content/ICCV2023/papers/Xu_Multimodal_Optimal_Transport-based_Co-Attention_Transformer_with_Global_Structure_Consistency_for_ICCV_2023_paper.pdf"
+          },
+          {
+            "title": "Optimal Transport and Machine Learning 2023",
+            "url": "https://otmlworkshop.github.io/"
+          },
+          {
+            "title": "Awesome-Optimal-Transport-in-Deep-Learning/README.md at main · changwxx/Awesome-Optimal-Transport-in-Deep-Learning",
+            "url": "https://github.com/changwxx/Awesome-Optimal-Transport-in-Deep-Learning/blob/main/README.md"
+          },
+          {
+            "title": "Optimal Transport and Machine Learning",
+            "url": "https://neurips.cc/virtual/2023/workshop/66521"
+          },
+          {
+            "title": "Pursuing Optimization Using Multimodal Transportation System: A Strategic Approach to Minimizing Costs and CO2 Emissions | MDPI",
+            "url": "https://www.mdpi.com/2077-1312/12/6/976"
+          },
+          {
+            "title": "GitHub - changwxx/Awesome-Optimal-Transport-in-Deep-Learning: a collection of AWESOME things about Optimal Transport in Deep Learning · GitHub",
+            "url": "https://github.com/changwxx/Awesome-Optimal-Transport-in-Deep-Learning"
+          }
+        ]
+      },
+      "The search results show a paper that matches your query:\n\n\"On Combining Expert Demonstrations in Imitation Learning via Optimal Transport\" by Ilana Sebag and 2 other authors, published in July 2023.\n\nThe paper addresses an important problem in imitation learning: while the problem of how to optimally combine multiple expert demonstrations has not been widely studied, the standard method is to simply concatenate state-action trajectories, which is problematic when trajectories are multi-modal.\n\nThe authors propose an alternative method that uses a multi-marginal optimal transport distance and enables the combination of multiple and diverse state-trajectories in the OT sense. \n\nThe paper is available on arXiv (identifier: 2307.10810) and has been made available in PDF format at https://arxiv.org/abs/2307.10810."
+    ],
+    "durationSeconds": 4.631967346999998
+  },
+  "sourceToolAssistantUUID": "e812d165-cdc7-433f-a794-531d23ff6ce7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-13T11:45:11.738Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0114CoDcAVBQAPS9VVaqSPub`</summary>
+
+```json
+{
+  "query": "DataMIL datamodels robot imitation learning data selection 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4a30842d-5aab-48f6-a94b-c10f2844c4b6",
+  "isSidechain": false,
+  "requestId": "req_011CazWbpRMCp1hSXJ7sNhXw",
+  "type": "assistant",
+  "uuid": "d1cc7927-2fa4-4677-91b2-7b330f8db815",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jhmarb2FSGVWKoMwdgBK2y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 864,
+      "cache_read_input_tokens": 62336,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 864,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 62336,
+          "cache_creation_input_tokens": 864,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 864
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-13T11:45:19.899Z_
+
+<details><summary>↩ Tool result · `toolu_0114CoDcAVBQAPS9VVaqSPub`</summary>
+
+```text
+Web search results for query: "DataMIL datamodels robot imitation learning data selection 2025"
+
+Links: [{"title":"[2505.09603] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/abs/2505.09603"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://robin-lab.cs.utexas.edu/datamodels4imitation/"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with ...","url":"https://arxiv.org/pdf/2505.09603"},{"title":"GitHub - UT-Austin-RobIn/datamil: Code release for -- DataMIL: Selecting Data for Robot Imitation Learning with Datamodels · GitHub","url":"https://github.com/UT-Austin-RobIn/datamil"},{"title":"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/html/2505.09603"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels | OpenReview","url":"https://openreview.net/forum?id=AcTsKglDdh"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://openreview.net/pdf/d1836285b655f13b1f86918922a074b725fa137b.pdf"},{"title":"DATAMIL: SELECTING DATA FOR ROBOT IMITATION ...","url":"https://openreview.net/pdf/82e6c304571ad1e85b44780f29e82e7042b2743f.pdf"},{"title":"[Literature Review] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://www.themoonlight.io/en/review/datamil-selecting-data-for-robot-imitation-learning-with-datamodels"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"}]
+
+Based on the search results, here's information about DataMIL:
+
+## Overview
+
+DataMIL is a policy-driven data selection framework built on the datamodels paradigm that reasons about data selection in an end-to-end manner, using the policy itself to identify which data points will most improve performance.
+
+## Problem and Solution
+
+The robotics community has amassed ever larger and more diverse datasets to train generalist robot policies, however, while these policies achieve strong mean performance across a variety of tasks, they often underperform on individual, specialized tasks and require further tuning on newly acquired task-specific data. Combining task-specific data with carefully curated subsets of large prior datasets via co-training can produce better specialized policies, but selecting data naively may actually harm downstream performance.
+
+## Key Approach
+
+Unlike standard practices that filter data using human notions of quality (e.g., based on semantic or visual similarity), DataMIL directly optimizes data selection for task success, allowing us to select data that enhance the policy while dropping data that degrade it. To avoid performing expensive rollouts in the environment during selection, DataMIL uses a novel surrogate loss function on task-specific data, allowing it to be used in the real world without degrading performance.
+
+## Results
+
+DataMIL was validated on a suite of more than 60 simulation and real-world manipulation tasks - most notably showing successful data selection from the Open X-Embodiment datasets-demonstrating consistent gains in success rates and superior performance over multiple baselines.
+
+The paper was published on arXiv on May 14, 2025 (arXiv:2505.09603) and was authored by Shivin Dass and colleagues from UT Austin and other institutions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d1cc7927-2fa4-4677-91b2-7b330f8db815",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "c06706ae-3007-47e3-ac9b-587b292febab",
+  "toolUseResult": {
+    "query": "DataMIL datamodels robot imitation learning data selection 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012yRnbD1ftfsH1shrfLRKzJ",
+        "content": [
+          {
+            "title": "[2505.09603] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/abs/2505.09603"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://robin-lab.cs.utexas.edu/datamodels4imitation/"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with ...",
+            "url": "https://arxiv.org/pdf/2505.09603"
+          },
+          {
+            "title": "GitHub - UT-Austin-RobIn/datamil: Code release for -- DataMIL: Selecting Data for Robot Imitation Learning with Datamodels · GitHub",
+            "url": "https://github.com/UT-Austin-RobIn/datamil"
+          },
+          {
+            "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/html/2505.09603"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels | OpenReview",
+            "url": "https://openreview.net/forum?id=AcTsKglDdh"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://openreview.net/pdf/d1836285b655f13b1f86918922a074b725fa137b.pdf"
+          },
+          {
+            "title": "DATAMIL: SELECTING DATA FOR ROBOT IMITATION ...",
+            "url": "https://openreview.net/pdf/82e6c304571ad1e85b44780f29e82e7042b2743f.pdf"
+          },
+          {
+            "title": "[Literature Review] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://www.themoonlight.io/en/review/datamil-selecting-data-for-robot-imitation-learning-with-datamodels"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          }
+        ]
+      },
+      "Based on the search results, here's information about DataMIL:\n\n## Overview\n\nDataMIL is a policy-driven data selection framework built on the datamodels paradigm that reasons about data selection in an end-to-end manner, using the policy itself to identify which data points will most improve performance.\n\n## Problem and Solution\n\nThe robotics community has amassed ever larger and more diverse datasets to train generalist robot policies, however, while these policies achieve strong mean performance across a variety of tasks, they often underperform on individual, specialized tasks and require further tuning on newly acquired task-specific data. Combining task-specific data with carefully curated subsets of large prior datasets via co-training can produce better specialized policies, but selecting data naively may actually harm downstream performance.\n\n## Key Approach\n\nUnlike standard practices that filter data using human notions of quality (e.g., based on semantic or visual similarity), DataMIL directly optimizes data selection for task success, allowing us to select data that enhance the policy while dropping data that degrade it. To avoid performing expensive rollouts in the environment during selection, DataMIL uses a novel surrogate loss function on task-specific data, allowing it to be used in the real world without degrading performance.\n\n## Results\n\nDataMIL was validated on a suite of more than 60 simulation and real-world manipulation tasks - most notably showing successful data selection from the Open X-Embodiment datasets-demonstrating consistent gains in success rates and superior performance over multiple baselines.\n\nThe paper was published on arXiv on May 14, 2025 (arXiv:2505.09603) and was authored by Shivin Dass and colleagues from UT Austin and other institutions."
+    ],
+    "durationSeconds": 8.157484014000016
+  },
+  "sourceToolAssistantUUID": "d1cc7927-2fa4-4677-91b2-7b330f8db815",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "c06706ae-3007-47e3-ac9b-587b292febab",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PhaseOT demonstration curation for AAAI 2027",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-13T11:45:23.176Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Kd6mW4dp523yKkiH6qxVBH`</summary>
+
+```json
+{
+  "query": "FLOAT ARMADA optimal transport failure detection robot deployment 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c06706ae-3007-47e3-ac9b-587b292febab",
+  "isSidechain": false,
+  "requestId": "req_011CazWcc4EnpR7XNAVaFbC5",
+  "type": "assistant",
+  "uuid": "a024c67b-c279-4684-a1a2-a5ffb8841063",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kcJKf5PgeU7an6z8RVT3M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1081,
+      "cache_read_input_tokens": 63200,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1081,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 63200,
+          "cache_creation_input_tokens": 1081,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1081
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-13T11:45:30.220Z_
+
+<details><summary>↩ Tool result · `toolu_01Kd6mW4dp523yKkiH6qxVBH`</summary>
+
+```text
+Web search results for query: "FLOAT ARMADA optimal transport failure detection robot deployment 2025"
+
+Links: [{"title":"ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation","url":"https://arxiv.org/html/2510.02298"},{"title":"[2510.02298] ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation","url":"https://arxiv.org/abs/2510.02298"},{"title":"[Literature Review] ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation","url":"https://www.themoonlight.io/en/review/armada-autonomous-online-failure-detection-and-human-shared-control-empower-scalable-real-world-deployment-and-adaptation"},{"title":"GitHub - Virlus/armada: [arXiv 2025] ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation","url":"https://github.com/Virlus/armada"},{"title":"ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv251002298Y/abstract"},{"title":"ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation | Request PDF","url":"https://www.researchgate.net/publication/396142696_ARMADA_Autonomous_Online_Failure_Detection_and_Human_Shared_Control_Empower_Scalable_Real-world_Deployment_and_Adaptation"},{"title":"Robotic vessels is the future - Learn about the Armada project","url":"https://as-scan.com/info/as-scan-cases/armada-autonomous-vessels"},{"title":"Technology | Armada Marine Robotics","url":"https://www.armadamarinerobotics.com/technology"},{"title":"Armada Marine Robotics | Asymmetric Propulsion for UUVs","url":"https://www.armadamarinerobotics.com/"},{"title":"Armada aims remote deployment of AI power to battlefields using Starlink","url":"https://interestingengineering.com/innovation/ai-far-away-places-starlink-armada"}]
+
+Based on the search results, here's what I found about FLOAT, ARMADA, optimal transport, and failure detection for robot deployment:
+
+## FLOAT: Failure Detection Based on Optimal Transport
+
+FLOAT is a failure detection method based on optimal transport that computes the "distance" between matched expert and policy rollout trajectories in terms of their policy embeddings. The method defines a universal FLOAT threshold, which serves as a real-time and plug-in-and-play approach to online failure detection.
+
+## ARMADA System Overview
+
+ARMADA is a scalable real-world robot system featuring autonomous online failure detection and multi-robot shared control. ARMADA is a multi-robot deployment and adaptation system with human-in-the-loop shared control, featuring the FLOAT failure detection method, which enables paralleled policy rollout and requests human intervention only when necessary, significantly reducing reliance on human supervision.
+
+## Performance Results
+
+Across four real-world tasks, FLOAT lifts the average accuracy to nearly 95%, which is an improvement of over 20% compared to state-of-the-art approaches. Over several rounds of rollout and fine-tuning, ARMADA achieves more than 4× increase in success rate and greater than double reduction in human intervention rate compared to previous human-in-the-loop shared control systems.
+
+The research was published on arXiv in October 2025 by Wenye Yu and colleagues, representing recent advances in autonomous robot deployment and adaptation systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a024c67b-c279-4684-a1a2-a5ffb8841063",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "df4ebd17-aa82-4b02-888d-34617fbb0761",
+  "toolUseResult": {
+    "query": "FLOAT ARMADA optimal transport failure detection robot deployment 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VioDTS6nngwD5MSMbRYFKp",
+        "content": [
+          {
+            "title": "ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation",
+            "url": "https://arxiv.org/html/2510.02298"
+          },
+          {
+            "title": "[2510.02298] ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation",
+            "url": "https://arxiv.org/abs/2510.02298"
+          },
+          {
+            "title": "[Literature Review] ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation",
+            "url": "https://www.themoonlight.io/en/review/armada-autonomous-online-failure-detection-and-human-shared-control-empower-scalable-real-world-deployment-and-adaptation"
+          },
+          {
+            "title": "GitHub - Virlus/armada: [arXiv 2025] ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation",
+            "url": "https://github.com/Virlus/armada"
+          },
+          {
+            "title": "ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv251002298Y/abstract"
+          },
+          {
+            "title": "ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation | Request PDF",
+            "url": "https://www.researchgate.net/publication/396142696_ARMADA_Autonomous_Online_Failure_Detection_and_Human_Shared_Control_Empower_Scalable_Real-world_Deployment_and_Adaptation"
+          },
+          {
+            "title": "Robotic vessels is the future - Learn about the Armada project",
+            "url": "https://as-scan.com/info/as-scan-cases/armada-autonomous-vessels"
+          },
+          {
+            "title": "Technology | Armada Marine Robotics",
+            "url": "https://www.armadamarinerobotics.com/technology"
+          },
+          {
+            "title": "Armada Marine Robotics | Asymmetric Propulsion for UUVs",
+            "url": "https://www.armadamarinerobotics.com/"
+          },
+          {
+            "title": "Armada aims remote deployment of AI power to battlefields using Starlink",
+            "url": "https://interestingengineering.com/innovation/ai-far-away-places-starlink-armada"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about FLOAT, ARMADA, optimal transport, and failure detection for robot deployment:\n\n## FLOAT: Failure Detection Based on Optimal Transport\n\nFLOAT is a failure detection method based on optimal transport that computes the \"distance\" between matched expert and policy rollout trajectories in terms of their policy embeddings. The method defines a universal FLOAT threshold, which serves as a real-time and plug-in-and-play approach to online failure detection.\n\n## ARMADA System Overview\n\nARMADA is a scalable real-world robot system featuring autonomous online failure detection and multi-robot shared control. ARMADA is a multi-robot deployment and adaptation system with human-in-the-loop shared control, featuring the FLOAT failure detection method, which enables paralleled policy rollout and requests human intervention only when necessary, significantly reducing reliance on human supervision.\n\n## Performance Results\n\nAcross four real-world tasks, FLOAT lifts the average accuracy to nearly 95%, which is an improvement of over 20% compared to state-of-the-art approaches. Over several rounds of rollout and fine-tuning, ARMADA achieves more than 4× increase in success rate and greater than double reduction in human intervention rate compared to previous human-in-the-loop shared control systems.\n\nThe research was published on arXiv in October 2025 by Wenye Yu and colleagues, representing recent advances in autonomous robot deployment and adaptation systems."
+    ],
+    "durationSeconds": 7.040999190000003
+  },
+  "sourceToolAssistantUUID": "a024c67b-c279-4684-a1a2-a5ffb8841063",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 78 · 2026-05-13T11:45:30.225Z_
+
+```json
+{
+  "parentUuid": "df4ebd17-aa82-4b02-888d-34617fbb0761",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a71356e5-2dad-4478-ae77-eda40aa3c0b0",
+  "timestamp": "2026-05-13T11:45:30.225Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-13T11:45:34.239Z_
+
+Good — FLOAT/ARMADA is verified and correctly cited in the proposal. Let me now do a deep read of SCIZOR to verify the differentiation claims, and search for any very recent concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a71356e5-2dad-4478-ae77-eda40aa3c0b0",
+  "isSidechain": false,
+  "requestId": "req_011CazWdNDpLTnfJwavtvsLp",
+  "type": "assistant",
+  "uuid": "46bec81f-f65b-4f6e-a4ba-6ed139a317f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uxr7616JKJsNBENoQywZ45",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1142,
+      "cache_read_input_tokens": 64281,
+      "output_tokens": 230,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1142,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 230,
+          "cache_read_input_tokens": 64281,
+          "cache_creation_input_tokens": 1142,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1142
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-13T11:45:38.158Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JqPccVYczsqaWmMB22dJ7s`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.22626",
+  "prompt": "Extract the key details of SCIZOR: (1) What specific types of suboptimal data does it handle? (2) What diagnostic categories does it produce? (3) Does it handle multimodal demonstrations (multiple valid strategies)? (4) Does it operate at transition level or trajectory level? (5) What are the specific quantitative results on RoboMimic and other benchmarks? (6) Does it discover or account for multiple valid demonstration modes/strategies?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46bec81f-f65b-4f6e-a4ba-6ed139a317f0",
+  "isSidechain": false,
+  "requestId": "req_011CazWdNDpLTnfJwavtvsLp",
+  "type": "assistant",
+  "uuid": "c3159d28-9745-401b-ae6e-cf56ea26272d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uxr7616JKJsNBENoQywZ45",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1142,
+      "cache_read_input_tokens": 64281,
+      "output_tokens": 230,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1142,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 230,
+          "cache_read_input_tokens": 64281,
+          "cache_creation_input_tokens": 1142,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1142
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-13T11:45:42.691Z_
+
+<details><summary>↩ Tool result · `toolu_01JqPccVYczsqaWmMB22dJ7s`</summary>
+
+```text
+# SCIZOR: Key Details Analysis
+
+Based on the provided abstract, here's what can be determined:
+
+**(1) Types of Suboptimal Data:**
+SCIZOR addresses "suboptimal data, which hinders learning with undesirable actions" and "redundant data, which dilutes training with repetitive patterns."
+
+**(2) Diagnostic Categories:**
+The paper does not specify distinct diagnostic categories in the provided content. It mentions a "self-supervised task progress predictor" but no categorization scheme is detailed.
+
+**(3) Multimodal Demonstrations:**
+The abstract does not discuss handling multiple valid strategies or multimodal demonstrations.
+
+**(4) Operational Granularity:**
+Yes—SCIZOR operates at the **transition/state-action pair level**. The abstract states it "filters out low-quality state-action pairs" rather than working at coarser granularities like trajectories or datasets.
+
+**(5) Quantitative Results:**
+The only benchmark result provided is: "average improvement of 15.4% across multiple benchmarks." Specific RoboMimic results are not included in this page content.
+
+**(6) Multiple Demonstration Modes:**
+The abstract does not address discovery or accounting for multiple valid demonstration strategies or modes.
+
+**Note:** Detailed technical results and methodology clarifications would require reviewing the full paper PDF or HTML version linked on this page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3159d28-9745-401b-ae6e-cf56ea26272d",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "3de81447-7cc1-473e-b6b4-c2630b1c2f3b",
+  "toolUseResult": {
+    "bytes": 46951,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SCIZOR: Key Details Analysis\n\nBased on the provided abstract, here's what can be determined:\n\n**(1) Types of Suboptimal Data:**\nSCIZOR addresses \"suboptimal data, which hinders learning with undesirable actions\" and \"redundant data, which dilutes training with repetitive patterns.\"\n\n**(2) Diagnostic Categories:**\nThe paper does not specify distinct diagnostic categories in the provided content. It mentions a \"self-supervised task progress predictor\" but no categorization scheme is detailed.\n\n**(3) Multimodal Demonstrations:**\nThe abstract does not discuss handling multiple valid strategies or multimodal demonstrations.\n\n**(4) Operational Granularity:**\nYes—SCIZOR operates at the **transition/state-action pair level**. The abstract states it \"filters out low-quality state-action pairs\" rather than working at coarser granularities like trajectories or datasets.\n\n**(5) Quantitative Results:**\nThe only benchmark result provided is: \"average improvement of 15.4% across multiple benchmarks.\" Specific RoboMimic results are not included in this page content.\n\n**(6) Multiple Demonstration Modes:**\nThe abstract does not address discovery or accounting for multiple valid demonstration strategies or modes.\n\n**Note:** Detailed technical results and methodology clarifications would require reviewing the full paper PDF or HTML version linked on this page.",
+    "durationMs": 4527,
+    "url": "https://arxiv.org/abs/2505.22626"
+  },
+  "sourceToolAssistantUUID": "c3159d28-9745-401b-ae6e-cf56ea26272d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-13T11:45:52.375Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JsT5Ak3eFAS94AEYBE8E9W`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.22626v2",
+  "prompt": "Extract from the SCIZOR paper: (1) The exact diagnostic categories/taxonomy for suboptimal data (how many categories, what are they named). (2) Does it handle or discuss multiple valid demonstration strategies/modes? (3) What are the specific results: RoboMimic benchmark numbers (per-task success rates), Sirius-Fleet numbers, comparison against DemInf. (4) The 'partial trajectory recovery' results — what fraction of recovery behaviors are maintained? (5) The detection rate on human-annotated failures. (6) Any limitations discussed regarding multimodal demonstrations."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3de81447-7cc1-473e-b6b4-c2630b1c2f3b",
+  "isSidechain": false,
+  "requestId": "req_011CazWeHZ4HV7vabY4xpLun",
+  "type": "assistant",
+  "uuid": "ab0868a3-2f70-4ea2-89c8-1ba0240588ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SG111cWkcef23iUmDLFyaX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 551,
+      "cache_read_input_tokens": 65423,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 65423,
+          "cache_creation_input_tokens": 551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-13T11:45:59.891Z_
+
+<details><summary>↩ Tool result · `toolu_01JsT5Ak3eFAS94AEYBE8E9W`</summary>
+
+```text
+# SCIZOR Paper: Key Findings on Suboptimal Data Detection
+
+## (1) Diagnostic Categories for Suboptimal Data
+
+SCIZOR identifies six categories of low-quality transitions (Figure 4):
+
+- **Manipulation Failure**: Grasping errors, accidental drops
+- **Laggy Motion**: Movement substantially below normal speed
+- **Stuck at Collision**: Gripper/object collision causing halts
+- **Pause**: Segments with no movement
+- **Move Back and Forth**: Aimless motions lacking task progress
+- **False Positive**: Misclassified or ambiguous transitions
+
+The three dominant failure modes are Laggy Motion, Manipulation Failure, and Pause.
+
+## (2) Handling Multiple Valid Demonstration Strategies
+
+SCIZOR does not explicitly address multiple valid strategies. However, the paper notes a key limitation: it "assumes linear task progression without pausing or repetitive behaviors," which would problematically affect tasks "like stirring food repeatedly or waiting for it to cook." This suggests the method may incorrectly flag legitimate behavioral variations as suboptimal.
+
+## (3) Specific Benchmark Results
+
+**RoboMimic (success rates):**
+- Can task: 87.3% ± 0.7 (vs. 79.0% baseline)
+- Square task: 37.2% ± 2.5 (vs. 34.8% baseline)
+
+**Sirius-Fleet real-world tasks show mixed results** across eight tasks, with improvements ranging from modest to substantial (e.g., Bowl→Plate: 93.3% vs. 65.0% baseline).
+
+**vs. DemInf:** SCIZOR "significantly outperforms DemInf by 19.2%" on Sirius-Fleet but does not outperform it on RoboMimic.
+
+## (4) Recovery Behavior Preservation
+
+"54% of recovery behaviors are fully maintained, and 31% are partially maintained. Only 15% are deleted."
+
+## (5) Detection Rate on Human-Annotated Failures
+
+"13/25 of failures are successfully predicted" from a human-annotated failure dataset (52% detection rate).
+
+## (6) Limitations Regarding Multimodal Demonstrations
+
+SCIZOR assumes "most demonstrations within a trajectory are of good quality" and becomes less effective "if poor-quality demonstrations dominate." The paper offers no specific discussion of handling intentionally diverse expert strategies or multimodal solution approaches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab0868a3-2f70-4ea2-89c8-1ba0240588ab",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "1e71de61-812c-404a-b12f-1880cd76318f",
+  "toolUseResult": {
+    "bytes": 188698,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SCIZOR Paper: Key Findings on Suboptimal Data Detection\n\n## (1) Diagnostic Categories for Suboptimal Data\n\nSCIZOR identifies six categories of low-quality transitions (Figure 4):\n\n- **Manipulation Failure**: Grasping errors, accidental drops\n- **Laggy Motion**: Movement substantially below normal speed\n- **Stuck at Collision**: Gripper/object collision causing halts\n- **Pause**: Segments with no movement\n- **Move Back and Forth**: Aimless motions lacking task progress\n- **False Positive**: Misclassified or ambiguous transitions\n\nThe three dominant failure modes are Laggy Motion, Manipulation Failure, and Pause.\n\n## (2) Handling Multiple Valid Demonstration Strategies\n\nSCIZOR does not explicitly address multiple valid strategies. However, the paper notes a key limitation: it \"assumes linear task progression without pausing or repetitive behaviors,\" which would problematically affect tasks \"like stirring food repeatedly or waiting for it to cook.\" This suggests the method may incorrectly flag legitimate behavioral variations as suboptimal.\n\n## (3) Specific Benchmark Results\n\n**RoboMimic (success rates):**\n- Can task: 87.3% ± 0.7 (vs. 79.0% baseline)\n- Square task: 37.2% ± 2.5 (vs. 34.8% baseline)\n\n**Sirius-Fleet real-world tasks show mixed results** across eight tasks, with improvements ranging from modest to substantial (e.g., Bowl→Plate: 93.3% vs. 65.0% baseline).\n\n**vs. DemInf:** SCIZOR \"significantly outperforms DemInf by 19.2%\" on Sirius-Fleet but does not outperform it on RoboMimic.\n\n## (4) Recovery Behavior Preservation\n\n\"54% of recovery behaviors are fully maintained, and 31% are partially maintained. Only 15% are deleted.\"\n\n## (5) Detection Rate on Human-Annotated Failures\n\n\"13/25 of failures are successfully predicted\" from a human-annotated failure dataset (52% detection rate).\n\n## (6) Limitations Regarding Multimodal Demonstrations\n\nSCIZOR assumes \"most demonstrations within a trajectory are of good quality\" and becomes less effective \"if poor-quality demonstrations dominate.\" The paper offers no specific discussion of handling intentionally diverse expert strategies or multimodal solution approaches.",
+    "durationMs": 7510,
+    "url": "https://arxiv.org/html/2505.22626v2"
+  },
+  "sourceToolAssistantUUID": "ab0868a3-2f70-4ea2-89c8-1ba0240588ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-13T11:46:03.698Z_
+
+This is extremely valuable — confirming that SCIZOR does NOT handle multimodal demonstrations, which validates PhaseOT's primary differentiation claim. Let me now search for very recent concurrent work and verify AAAI 2027 timing estimates.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e71de61-812c-404a-b12f-1880cd76318f",
+  "isSidechain": false,
+  "requestId": "req_011CazWfZ6UQSt9utFHkiD3a",
+  "type": "assistant",
+  "uuid": "0386b781-47a4-4508-8349-838d652f8d8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWSanPJnhhNchzsBZk8qEA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 791,
+      "cache_read_input_tokens": 65974,
+      "output_tokens": 122,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 791,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 122,
+          "cache_read_input_tokens": 65974,
+          "cache_creation_input_tokens": 791,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 791
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-13T11:46:04.507Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Lnw3FuPDZ929zVscTgLUPe`</summary>
+
+```json
+{
+  "query": "site:arxiv.org demonstration quality phase segmentation scoring robot 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0386b781-47a4-4508-8349-838d652f8d8a",
+  "isSidechain": false,
+  "requestId": "req_011CazWfZ6UQSt9utFHkiD3a",
+  "type": "assistant",
+  "uuid": "c4458196-f9b9-4921-84cb-8aab1e237375",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWSanPJnhhNchzsBZk8qEA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 791,
+      "cache_read_input_tokens": 65974,
+      "output_tokens": 122,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 791,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 122,
+          "cache_read_input_tokens": 65974,
+          "cache_creation_input_tokens": 791,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 791
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-13T11:46:11.326Z_
+
+<details><summary>↩ Tool result · `toolu_01Lnw3FuPDZ929zVscTgLUPe`</summary>
+
+```text
+Web search results for query: "site:arxiv.org demonstration quality phase segmentation scoring robot 2026"
+
+Links: [{"title":"Adverse-to-the-eXtreme Panoptic Segmentation: URVIS 2026 Study and Benchmark","url":"https://arxiv.org/html/2604.16984"},{"title":"Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration","url":"https://arxiv.org/html/2412.14309v1"},{"title":"LLMOrbit: A Circular Taxonomy of Large Language Models","url":"https://arxiv.org/pdf/2601.14053"},{"title":"Towards Effective Utilization of Mixed-Quality Demonstrations in Robotic Manipulation via Segment-Level Selection and Optimization","url":"https://arxiv.org/html/2409.19917v1"},{"title":"Quantifying Demonstration Quality for Robot Learning and Generalization","url":"https://arxiv.org/pdf/2203.13843"},{"title":"Learning Generalizable Robot Policy with Human Demonstration Video as a Prompt","url":"https://arxiv.org/html/2505.20795v1"},{"title":"Robotic Manipulation via Imitation Learning: Taxonomy, Evolution, Benchmark, and Challenges","url":"https://arxiv.org/html/2508.17449v1"},{"title":"Curating Demonstrations using Online Experience","url":"https://arxiv.org/html/2503.03707"},{"title":"Comparative validation of surgical phase recognition, instrument keypoint estimation, and instrument instance segmentation in endoscopy: Results of the PhaKIR 2024 challenge","url":"https://arxiv.org/html/2507.16559v1"},{"title":"[2203.13843] Quantifying Demonstration Quality for Robot Learning and Generalization","url":"https://arxiv.org/abs/2203.13843"}]
+
+I found several relevant arxiv papers from your search. Here's a summary of the results:
+
+**Most Relevant Result:**
+
+The URVIS 2026 challenge on adverse-to-extreme panoptic segmentation attracted 17 registered participants and 47 submissions, with 4 teams reaching the final phase. This challenge introduces weighted versions of evaluation scores, namely weighted Recognition Quality (wRQ), weighted Segmentation Quality (wSQ), and weighted Panoptic Quality (wPQ).
+
+**Related Papers on Robot Demonstration Quality:**
+
+Several papers address demonstration quality and segmentation in robotics:
+
+- Segmenting demonstrations helps identify high-quality segments, particularly within low-quality data. In long-horizon tasks with multiple subtasks, human teleoperated demonstrations may exhibit instability in some subtasks but accuracy in others.
+
+- Demo-SCORE observes that successes and failures in policy rollouts can reflect unreliable strategies in the training data. By focusing on policy rollout outcomes, it can identify and filter out unreliable demonstrations that the robot policy cannot replicate successfully.
+
+- Several factors contribute to the success rate of a learning policy, such as the number of provided demonstrations, their distribution over the task space, the learning algorithm, and demonstration quality.
+
+These papers address various aspects of demonstration quality assessment, phase segmentation, and scoring methodologies relevant to robotic systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4458196-f9b9-4921-84cb-8aab1e237375",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "f25a1530-ed77-47b7-837d-e8a1a74c7c51",
+  "toolUseResult": {
+    "query": "site:arxiv.org demonstration quality phase segmentation scoring robot 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RrG7QkSCY17vSS1ReSZXVd",
+        "content": [
+          {
+            "title": "Adverse-to-the-eXtreme Panoptic Segmentation: URVIS 2026 Study and Benchmark",
+            "url": "https://arxiv.org/html/2604.16984"
+          },
+          {
+            "title": "Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration",
+            "url": "https://arxiv.org/html/2412.14309v1"
+          },
+          {
+            "title": "LLMOrbit: A Circular Taxonomy of Large Language Models",
+            "url": "https://arxiv.org/pdf/2601.14053"
+          },
+          {
+            "title": "Towards Effective Utilization of Mixed-Quality Demonstrations in Robotic Manipulation via Segment-Level Selection and Optimization",
+            "url": "https://arxiv.org/html/2409.19917v1"
+          },
+          {
+            "title": "Quantifying Demonstration Quality for Robot Learning and Generalization",
+            "url": "https://arxiv.org/pdf/2203.13843"
+          },
+          {
+            "title": "Learning Generalizable Robot Policy with Human Demonstration Video as a Prompt",
+            "url": "https://arxiv.org/html/2505.20795v1"
+          },
+          {
+            "title": "Robotic Manipulation via Imitation Learning: Taxonomy, Evolution, Benchmark, and Challenges",
+            "url": "https://arxiv.org/html/2508.17449v1"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience",
+            "url": "https://arxiv.org/html/2503.03707"
+          },
+          {
+            "title": "Comparative validation of surgical phase recognition, instrument keypoint estimation, and instrument instance segmentation in endoscopy: Results of the PhaKIR 2024 challenge",
+            "url": "https://arxiv.org/html/2507.16559v1"
+          },
+          {
+            "title": "[2203.13843] Quantifying Demonstration Quality for Robot Learning and Generalization",
+            "url": "https://arxiv.org/abs/2203.13843"
+          }
+        ]
+      },
+      "I found several relevant arxiv papers from your search. Here's a summary of the results:\n\n**Most Relevant Result:**\n\nThe URVIS 2026 challenge on adverse-to-extreme panoptic segmentation attracted 17 registered participants and 47 submissions, with 4 teams reaching the final phase. This challenge introduces weighted versions of evaluation scores, namely weighted Recognition Quality (wRQ), weighted Segmentation Quality (wSQ), and weighted Panoptic Quality (wPQ).\n\n**Related Papers on Robot Demonstration Quality:**\n\nSeveral papers address demonstration quality and segmentation in robotics:\n\n- Segmenting demonstrations helps identify high-quality segments, particularly within low-quality data. In long-horizon tasks with multiple subtasks, human teleoperated demonstrations may exhibit instability in some subtasks but accuracy in others.\n\n- Demo-SCORE observes that successes and failures in policy rollouts can reflect unreliable strategies in the training data. By focusing on policy rollout outcomes, it can identify and filter out unreliable demonstrations that the robot policy cannot replicate successfully.\n\n- Several factors contribute to the success rate of a learning policy, such as the number of provided demonstrations, their distribution over the task space, the learning algorithm, and demonstration quality.\n\nThese papers address various aspects of demonstration quality assessment, phase segmentation, and scoring methodologies relevant to robotic systems."
+    ],
+    "durationSeconds": 6.8147391760000025
+  },
+  "sourceToolAssistantUUID": "c4458196-f9b9-4921-84cb-8aab1e237375",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f25a1530-ed77-47b7-837d-e8a1a74c7c51",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PhaseOT demonstration curation for AAAI 2027",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-13T11:46:15.047Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011XLCUY2ftZXPxfaB2nL4Ts`</summary>
+
+```json
+{
+  "query": "RoboSubtaskNet temporal subtask segmentation arXiv 2602 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f25a1530-ed77-47b7-837d-e8a1a74c7c51",
+  "isSidechain": false,
+  "requestId": "req_011CazWgQ7WGAGs3FKRyYois",
+  "type": "assistant",
+  "uuid": "6d7437e8-11e7-45f3-89b2-39af9562768c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ly8qAV39d4TsEBNTTnEYET",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 909,
+      "cache_read_input_tokens": 66765,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 909,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 66765,
+          "cache_creation_input_tokens": 909,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 909
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-13T11:46:24.025Z_
+
+<details><summary>↩ Tool result · `toolu_011XLCUY2ftZXPxfaB2nL4Ts`</summary>
+
+```text
+Web search results for query: "RoboSubtaskNet temporal subtask segmentation arXiv 2602 2026"
+
+Links: [{"title":"[2602.10015] RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer in Real-World Environments","url":"https://arxiv.org/abs/2602.10015"},{"title":"RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer in Real-World Environments","url":"https://arxiv.org/html/2602.10015"},{"title":"RoboSubtaskNet: Temporal Sub-task Segmentation for","url":"https://arxiv.org/pdf/2602.10015"},{"title":"RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer in Real-World Environments | Request PDF","url":"https://www.researchgate.net/publication/400661440_RoboSubtaskNet_Temporal_Sub-task_Segmentation_for_Human-to-Robot_Skill_Transfer_in_Real-World_Environments"},{"title":"TOPReward: Token Probabilities as Hidden Zero-Shot Rewards for Robotics","url":"https://arxiv.org/html/2602.19313v1"},{"title":"[2602.24138] Multimodal Optimal Transport for Unsupervised Temporal Segmentation in Surgical Robotics","url":"https://arxiv.org/abs/2602.24138"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=3050&show=2000"},{"title":"GitHub - nus-cvml/awesome-temporal-action-segmentation: A curated list of awesome temporal action segmentation resources. · GitHub","url":"https://github.com/nus-cvml/awesome-temporal-action-segmentation"},{"title":"Towards Generalizing Temporal Action Segmentation to Unseen Views","url":"https://arxiv.org/html/2504.02512v1"},{"title":"Multimodal Optimal Transport for Unsupervised Temporal Segmentation in Surgical Robotics","url":"https://arxiv.org/html/2602.24138"}]
+
+I found the paper you were looking for! Here are the key details:
+
+## RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer in Real-World Environments
+
+**Paper ID:** arXiv:2602.10015  
+**Submission Date:** February 10, 2026 (v1), revised February 11, 2026 (v2)
+
+**Authors:** Dharmendra Sharma, Archit Sharma, John Rebeiro, Vaibhav Kesharwani, Peeyush Thakur, Narendra Kumar Dhar, Laxmidhar Behera
+
+### Overview
+
+The paper addresses the challenge of temporally locating and classifying fine-grained sub-task segments in long, untrimmed videos, which is crucial to safe human-robot collaboration. Unlike generic activity recognition, collaborative manipulation requires sub-task labels that are directly robot-executable.
+
+### Approach
+
+RoboSubtaskNet is a multi-stage human-to-robot sub-task segmentation framework that couples attention-enhanced I3D features (RGB plus optical flow) with a modified MS-TCN employing a Fibonacci dilation schedule to capture better short-horizon transitions such as reach-pick-place. The network is trained with a composite objective comprising cross-entropy and temporal regularizers (truncated MSE and a transition-aware term) to reduce over-segmentation and to encourage valid sub-task progressions.
+
+### Dataset and Results
+
+The authors introduce RoboSubtask, a dataset of healthcare and industrial demonstrations annotated at the sub-task level and designed for deterministic mapping to manipulator primitives. RoboSubtaskNet outperforms MS-TCN and MS-TCN++ on GTEA and the RoboSubtask benchmark (boundary-sensitive and sequence metrics), while remaining competitive on the long-horizon Breakfast benchmark. The full perception-to-execution pipeline was validated on a 7-DoF Kinova Gen3 manipulator, achieving reliable end-to-end behavior in physical trials (overall task success approximately 91.25%).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d7437e8-11e7-45f3-89b2-39af9562768c",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "f44133db-6014-4e46-80f8-dfa438aa0474",
+  "toolUseResult": {
+    "query": "RoboSubtaskNet temporal subtask segmentation arXiv 2602 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H1mUjEAtEkq8vXun3UgjqF",
+        "content": [
+          {
+            "title": "[2602.10015] RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer in Real-World Environments",
+            "url": "https://arxiv.org/abs/2602.10015"
+          },
+          {
+            "title": "RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer in Real-World Environments",
+            "url": "https://arxiv.org/html/2602.10015"
+          },
+          {
+            "title": "RoboSubtaskNet: Temporal Sub-task Segmentation for",
+            "url": "https://arxiv.org/pdf/2602.10015"
+          },
+          {
+            "title": "RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer in Real-World Environments | Request PDF",
+            "url": "https://www.researchgate.net/publication/400661440_RoboSubtaskNet_Temporal_Sub-task_Segmentation_for_Human-to-Robot_Skill_Transfer_in_Real-World_Environments"
+          },
+          {
+            "title": "TOPReward: Token Probabilities as Hidden Zero-Shot Rewards for Robotics",
+            "url": "https://arxiv.org/html/2602.19313v1"
+          },
+          {
+            "title": "[2602.24138] Multimodal Optimal Transport for Unsupervised Temporal Segmentation in Surgical Robotics",
+            "url": "https://arxiv.org/abs/2602.24138"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=3050&show=2000"
+          },
+          {
+            "title": "GitHub - nus-cvml/awesome-temporal-action-segmentation: A curated list of awesome temporal action segmentation resources. · GitHub",
+            "url": "https://github.com/nus-cvml/awesome-temporal-action-segmentation"
+          },
+          {
+            "title": "Towards Generalizing Temporal Action Segmentation to Unseen Views",
+            "url": "https://arxiv.org/html/2504.02512v1"
+          },
+          {
+            "title": "Multimodal Optimal Transport for Unsupervised Temporal Segmentation in Surgical Robotics",
+            "url": "https://arxiv.org/html/2602.24138"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here are the key details:\n\n## RoboSubtaskNet: Temporal Sub-task Segmentation for Human-to-Robot Skill Transfer in Real-World Environments\n\n**Paper ID:** arXiv:2602.10015  \n**Submission Date:** February 10, 2026 (v1), revised February 11, 2026 (v2)\n\n**Authors:** Dharmendra Sharma, Archit Sharma, John Rebeiro, Vaibhav Kesharwani, Peeyush Thakur, Narendra Kumar Dhar, Laxmidhar Behera\n\n### Overview\n\nThe paper addresses the challenge of temporally locating and classifying fine-grained sub-task segments in long, untrimmed videos, which is crucial to safe human-robot collaboration. Unlike generic activity recognition, collaborative manipulation requires sub-task labels that are directly robot-executable.\n\n### Approach\n\nRoboSubtaskNet is a multi-stage human-to-robot sub-task segmentation framework that couples attention-enhanced I3D features (RGB plus optical flow) with a modified MS-TCN employing a Fibonacci dilation schedule to capture better short-horizon transitions such as reach-pick-place. The network is trained with a composite objective comprising cross-entropy and temporal regularizers (truncated MSE and a transition-aware term) to reduce over-segmentation and to encourage valid sub-task progressions.\n\n### Dataset and Results\n\nThe authors introduce RoboSubtask, a dataset of healthcare and industrial demonstrations annotated at the sub-task level and designed for deterministic mapping to manipulator primitives. RoboSubtaskNet outperforms MS-TCN and MS-TCN++ on GTEA and the RoboSubtask benchmark (boundary-sensitive and sequence metrics), while remaining competitive on the long-horizon Breakfast benchmark. The full perception-to-execution pipeline was validated on a 7-DoF Kinova Gen3 manipulator, achieving reliable end-to-end behavior in physical trials (overall task success approximately 91.25%)."
+    ],
+    "durationSeconds": 8.973407028999995
+  },
+  "sourceToolAssistantUUID": "6d7437e8-11e7-45f3-89b2-39af9562768c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-13T11:46:27.390Z_
+
+Interesting — I also noticed a potentially very relevant paper in the search results. Let me check it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f44133db-6014-4e46-80f8-dfa438aa0474",
+  "isSidechain": false,
+  "requestId": "req_011CazWhLHM71g5QzihMw6ne",
+  "type": "assistant",
+  "uuid": "4cff72e9-18d3-4751-a6f7-5188674ab06e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W4dFiZVqoRv8i3uya5HpCk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1139,
+      "cache_read_input_tokens": 67674,
+      "output_tokens": 176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1139,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 176,
+          "cache_read_input_tokens": 67674,
+          "cache_creation_input_tokens": 1139,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1139
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-13T11:46:29.543Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VuYC4yGR11gFtChuG1MQqJ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.24138",
+  "prompt": "What is this paper about? Specifically: (1) Does it use optimal transport for temporal segmentation? (2) Is it applied to robotics? (3) Does it relate to demonstration quality assessment or curation? (4) What are the key contributions and how does it relate to using OT for phase-level analysis of robot demonstrations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4cff72e9-18d3-4751-a6f7-5188674ab06e",
+  "isSidechain": false,
+  "requestId": "req_011CazWhLHM71g5QzihMw6ne",
+  "type": "assistant",
+  "uuid": "0b5e6fe6-3838-4517-a7c7-38ca742e4c53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W4dFiZVqoRv8i3uya5HpCk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1139,
+      "cache_read_input_tokens": 67674,
+      "output_tokens": 176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1139,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 176,
+          "cache_read_input_tokens": 67674,
+          "cache_creation_input_tokens": 1139,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1139
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-13T11:46:33.716Z_
+
+<details><summary>↩ Tool result · `toolu_01VuYC4yGR11gFtChuG1MQqJ`</summary>
+
+```text
+# Analysis of arXiv:2602.24138
+
+**(1) Does it use optimal transport for temporal segmentation?**
+
+Yes. The paper proposes TASOT, which explicitly formulates "temporal action segmentation as a multimodal optimal transport problem" using an "unbalanced Gromov-Wasserstein formulation."
+
+**(2) Is it applied to robotics?**
+
+Yes, but specifically surgical robotics. The work addresses "surgical phase and step recognition" in computer-assisted interventions, evaluated on surgical datasets like Cholec80 and BernBypass70.
+
+**(3) Does it relate to demonstration quality assessment or curation?**
+
+No. The abstract and content provided contain no mention of quality assessment or curation of demonstrations.
+
+**(4) Key contributions and relation to phase-level OT analysis:**
+
+The primary contributions are:
+- Extending Action Segmentation Optimal Transport (ASOT) with textual information extracted from videos
+- Combining visual and semantic costs in an optimal transport framework without requiring surgical-specific pretraining
+- Achieving substantial improvements on benchmark datasets (e.g., +23.7% on StrasBypass70)
+
+The work demonstrates using optimal transport for phase-level understanding in surgical video analysis, but doesn't address robot demonstration curation specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b5e6fe6-3838-4517-a7c7-38ca742e4c53",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "33259df3-e01b-4644-8cf4-745c7518147f",
+  "toolUseResult": {
+    "bytes": 48727,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of arXiv:2602.24138\n\n**(1) Does it use optimal transport for temporal segmentation?**\n\nYes. The paper proposes TASOT, which explicitly formulates \"temporal action segmentation as a multimodal optimal transport problem\" using an \"unbalanced Gromov-Wasserstein formulation.\"\n\n**(2) Is it applied to robotics?**\n\nYes, but specifically surgical robotics. The work addresses \"surgical phase and step recognition\" in computer-assisted interventions, evaluated on surgical datasets like Cholec80 and BernBypass70.\n\n**(3) Does it relate to demonstration quality assessment or curation?**\n\nNo. The abstract and content provided contain no mention of quality assessment or curation of demonstrations.\n\n**(4) Key contributions and relation to phase-level OT analysis:**\n\nThe primary contributions are:\n- Extending Action Segmentation Optimal Transport (ASOT) with textual information extracted from videos\n- Combining visual and semantic costs in an optimal transport framework without requiring surgical-specific pretraining\n- Achieving substantial improvements on benchmark datasets (e.g., +23.7% on StrasBypass70)\n\nThe work demonstrates using optimal transport for phase-level understanding in surgical video analysis, but doesn't address robot demonstration curation specifically.",
+    "durationMs": 4168,
+    "url": "https://arxiv.org/abs/2602.24138"
+  },
+  "sourceToolAssistantUUID": "0b5e6fe6-3838-4517-a7c7-38ca742e4c53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94 · 2026-05-13T11:46:41.031Z_
+
+This is a relevant concurrent work — TASOT uses OT for temporal phase segmentation in surgical robotics. Let me note this as a potential missing reference. Now let me search for a few more critical angles.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33259df3-e01b-4644-8cf4-745c7518147f",
+  "isSidechain": false,
+  "requestId": "req_011CazWi3hEC8GRLn7SD2tva",
+  "type": "assistant",
+  "uuid": "0ad3827b-3bae-43c6-9712-5f7556e74a0d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RhfBcR6ss93Q7oSKeQbtGW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 474,
+      "cache_read_input_tokens": 68813,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 474,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 68813,
+          "cache_creation_input_tokens": 474,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 474
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-13T11:46:42.189Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JX3yMgdq2r5K8rv5Ldzxdw`</summary>
+
+```json
+{
+  "query": "\"Gonzalez-Sanz\" \"Avella Medina\" breakdown optimal transport 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ad3827b-3bae-43c6-9712-5f7556e74a0d",
+  "isSidechain": false,
+  "requestId": "req_011CazWi3hEC8GRLn7SD2tva",
+  "type": "assistant",
+  "uuid": "a0fd085e-a3d8-4be6-ac48-fb05de5ac0fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RhfBcR6ss93Q7oSKeQbtGW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 474,
+      "cache_read_input_tokens": 68813,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 474,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 68813,
+          "cache_creation_input_tokens": 474,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 474
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-13T11:46:48.304Z_
+
+<details><summary>↩ Tool result · `toolu_01JX3yMgdq2r5K8rv5Ldzxdw`</summary>
+
+```text
+Web search results for query: ""Gonzalez-Sanz" "Avella Medina" breakdown optimal transport 2026"
+
+Links: [{"title":"[2603.16005] Breakdown properties of optimal transport maps: general transportation costs","url":"https://arxiv.org/abs/2603.16005"},{"title":"Alberto González Sanz - Publications","url":"https://sites.google.com/view/albertogonzlezsanz/publications"},{"title":"Alberto GONZALEZ SANZ | Professor (Assistant) | PhD in Mathematics | Columbia University, New York City | CU | Research profile","url":"https://www.researchgate.net/profile/Alberto-Gonzalez-Sanz"},{"title":"[2410.16554] On the breakdown point of transport-based quantiles","url":"https://arxiv.org/abs/2410.16554"},{"title":"Nonlinear Inverse Optimal Transport: Identifiability of the Transport Cost from Its Marginals and Optimal Values | SIAM Journal on Mathematical Analysis","url":"https://epubs.siam.org/doi/abs/10.1137/23M1624403"},{"title":"[2312.05843] Nonlinear Inverse Optimal Transport: Identifiability of the Transport Cost from its Marginals and Optimal Values","url":"https://arxiv.org/abs/2312.05843"},{"title":"Statistical analysis of the optimal transport problem - TEL - Thèses en ligne","url":"https://theses.hal.science/tel-04318249v1"},{"title":"A note on the regularity of optimal-transport-based center-outward distribution and quantile functions | Semantic Scholar","url":"https://www.semanticscholar.org/paper/A-note-on-the-regularity-of-optimal-transport-based-Barrio-Gonz%C3%A1lez-Sanz/0e551d6155b49d50f3dd6fed3a68f28c5924c68f"},{"title":"[2410.23146] Identifiability of the Optimal Transport Cost on Finite Spaces","url":"https://arxiv.org/abs/2410.23146"},{"title":"Alberto Gonzalez-Sanz","url":"https://icors2026.ankara.edu.tr/2026/02/03/alberto-gonzalez-sanz/"}]
+
+Based on the search results, I found relevant information about the research by Gonzalez-Sanz and Avella Medina on optimal transport breakdown properties.
+
+## Key Findings
+
+Two recent works, Avella-Medina and González-Sanz (2026) and Passeggeri and Paindaveine (2026), studied the robustness of the optimal transport map through its breakdown point, i.e., the smallest fraction of contamination that can make the map take arbitrarily aberrant values.
+
+The researchers extended their results to general convex cost functions, demonstrating that the cost function does not have any impact on the breakdown point of the optimal transport map, providing a definitive characterization of the breakdown point of the optimal transport map.
+
+The paper is available as "Breakdown properties of optimal transport maps: general transportation costs" by Alberto Gonzalez-Sanz and Marco Avella Medina, published in March 2026 on arXiv (arxiv.org/abs/2603.16005).
+
+Additionally, the researchers have another related work on "On the breakdown point of transport-based quantiles" where they study the robustness properties of transport-based quantiles by deriving their breakdown point.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a0fd085e-a3d8-4be6-ac48-fb05de5ac0fa",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "b9b66bda-0d0d-42f8-adbd-2401da8606cd",
+  "toolUseResult": {
+    "query": "\"Gonzalez-Sanz\" \"Avella Medina\" breakdown optimal transport 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RfWQmBbwAuqPZNUFPB9HcQ",
+        "content": [
+          {
+            "title": "[2603.16005] Breakdown properties of optimal transport maps: general transportation costs",
+            "url": "https://arxiv.org/abs/2603.16005"
+          },
+          {
+            "title": "Alberto González Sanz - Publications",
+            "url": "https://sites.google.com/view/albertogonzlezsanz/publications"
+          },
+          {
+            "title": "Alberto GONZALEZ SANZ | Professor (Assistant) | PhD in Mathematics | Columbia University, New York City | CU | Research profile",
+            "url": "https://www.researchgate.net/profile/Alberto-Gonzalez-Sanz"
+          },
+          {
+            "title": "[2410.16554] On the breakdown point of transport-based quantiles",
+            "url": "https://arxiv.org/abs/2410.16554"
+          },
+          {
+            "title": "Nonlinear Inverse Optimal Transport: Identifiability of the Transport Cost from Its Marginals and Optimal Values | SIAM Journal on Mathematical Analysis",
+            "url": "https://epubs.siam.org/doi/abs/10.1137/23M1624403"
+          },
+          {
+            "title": "[2312.05843] Nonlinear Inverse Optimal Transport: Identifiability of the Transport Cost from its Marginals and Optimal Values",
+            "url": "https://arxiv.org/abs/2312.05843"
+          },
+          {
+            "title": "Statistical analysis of the optimal transport problem - TEL - Thèses en ligne",
+            "url": "https://theses.hal.science/tel-04318249v1"
+          },
+          {
+            "title": "A note on the regularity of optimal-transport-based center-outward distribution and quantile functions | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/A-note-on-the-regularity-of-optimal-transport-based-Barrio-Gonz%C3%A1lez-Sanz/0e551d6155b49d50f3dd6fed3a68f28c5924c68f"
+          },
+          {
+            "title": "[2410.23146] Identifiability of the Optimal Transport Cost on Finite Spaces",
+            "url": "https://arxiv.org/abs/2410.23146"
+          },
+          {
+            "title": "Alberto Gonzalez-Sanz",
+            "url": "https://icors2026.ankara.edu.tr/2026/02/03/alberto-gonzalez-sanz/"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the research by Gonzalez-Sanz and Avella Medina on optimal transport breakdown properties.\n\n## Key Findings\n\nTwo recent works, Avella-Medina and González-Sanz (2026) and Passeggeri and Paindaveine (2026), studied the robustness of the optimal transport map through its breakdown point, i.e., the smallest fraction of contamination that can make the map take arbitrarily aberrant values.\n\nThe researchers extended their results to general convex cost functions, demonstrating that the cost function does not have any impact on the breakdown point of the optimal transport map, providing a definitive characterization of the breakdown point of the optimal transport map.\n\nThe paper is available as \"Breakdown properties of optimal transport maps: general transportation costs\" by Alberto Gonzalez-Sanz and Marco Avella Medina, published in March 2026 on arXiv (arxiv.org/abs/2603.16005).\n\nAdditionally, the researchers have another related work on \"On the breakdown point of transport-based quantiles\" where they study the robustness properties of transport-based quantiles by deriving their breakdown point."
+    ],
+    "durationSeconds": 6.110252160999982
+  },
+  "sourceToolAssistantUUID": "a0fd085e-a3d8-4be6-ac48-fb05de5ac0fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 97 · 2026-05-13T11:46:48.306Z_
+
+```json
+{
+  "parentUuid": "b9b66bda-0d0d-42f8-adbd-2401da8606cd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3e49d169-5003-4ac6-8878-a4c2e0a89731",
+  "timestamp": "2026-05-13T11:46:48.306Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-13T11:46:50.874Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QAWABSw6E3PmnV9PjX617D`</summary>
+
+```json
+{
+  "query": "Pallage sliced Wasserstein distance data selection outlier detection 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e49d169-5003-4ac6-8878-a4c2e0a89731",
+  "isSidechain": false,
+  "requestId": "req_011CazWj83CTpojrBJCF3C2H",
+  "type": "assistant",
+  "uuid": "3ec7e947-0e3c-4cae-bd1d-8ad594fb1eba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VVYY5653bgbSEJzLzcZmy3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1094,
+      "cache_read_input_tokens": 69287,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1094,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 69287,
+          "cache_creation_input_tokens": 1094,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1094
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-13T11:46:57.750Z_
+
+<details><summary>↩ Tool result · `toolu_01QAWABSw6E3PmnV9PjX617D`</summary>
+
+```text
+Web search results for query: "Pallage sliced Wasserstein distance data selection outlier detection 2025"
+
+Links: [{"title":"[2504.12918] Sliced-Wasserstein Distance-based Data Selection","url":"https://arxiv.org/abs/2504.12918"},{"title":"Sliced-Wasserstein Distance-based Data Selection Julien Pallage","url":"https://arxiv.org/pdf/2504.12918"},{"title":"Sliced-Wasserstein Distance-based Data Selection This work was funded by Mitacs, the Natural Sciences and Engineering Research Council of Canada (NSERC), and Services Hilo under Grants RGPIN-2023-04235 and IT35303 & IT38517. Corresponding authors: {julien.pallage, antoine.lesage-landry}@polymtl.ca.","url":"https://arxiv.org/html/2504.12918v1"},{"title":"[2504.12918] Sliced-Wasserstein Distance-based Data Selection This work was funded by Mitacs, the Natural Sciences and Engineering Research Council of Canada (NSERC), and Services Hilo under Grants RGPIN-2023-04235 and IT35303 & IT38517. Corresponding authors: {julien.pallage, antoine.lesage-landry}@polymtl.ca.","url":"https://ar5iv.labs.arxiv.org/html/2504.12918"},{"title":"[2504.12918v1] Sliced-Wasserstein Distance-based Data Selection","url":"http://arxiv.org/abs/2504.12918v1"},{"title":"Sliced-Wasserstein-based Anomaly Detection and Open Dataset for Localized Critical Peak Rebates","url":"https://arxiv.org/html/2410.21712"},{"title":"[2410.21712] Sliced-Wasserstein-based Anomaly Detection and Open Dataset for Localized Critical Peak Rebates","url":"https://arxiv.org/abs/2410.21712"},{"title":"Machine Learning Apr 2025","url":"https://www.arxiv.org/list/cs.LG/2025-04?skip=900&show=50"},{"title":"GitHub - jupall/swfilter","url":"https://github.com/jupall/swfilter"},{"title":"[Literature Review] Sliced-Wasserstein-based Anomaly Detection and Open Dataset for Localized Critical Peak Rebates","url":"https://www.themoonlight.io/en/review/sliced-wasserstein-based-anomaly-detection-and-open-dataset-for-localized-critical-peak-rebates"}]
+
+Based on the search results, I found highly relevant information about this research. Here's what I found:
+
+## Overview
+
+A new unsupervised anomaly detection method based on the sliced-Wasserstein distance for training data selection in machine learning approaches has been proposed. The paper was authored by Julien Pallage and Antoine Lesage-Landry from Polytechnique Montréal and published on arXiv in April 2025.
+
+## Key Features
+
+The filtering technique is interesting for decision-making pipelines deploying machine learning models in critical sectors, e.g., power systems, as it offers a conservative data selection and an optimal transport interpretation.
+
+## Methodological Approach
+
+To ensure the scalability of the method, two efficient approximations are provided. The first approximation processes reduced-cardinality representations of the datasets concurrently. The second makes use of a computationally light Euclidian distance approximation.
+
+## Practical Application
+
+With ϵ = 0.1, the method filters only the statistical outliers. With ϵ = 0.05, it only keeps the majority group. And with ϵ = 0.01, it only keeps the samples closest to the barycenter of the majority group.
+
+## Additional Contribution
+
+The researchers open the first dataset showcasing localized critical peak rebate demand response in a northern climate, with data from Montreal, Quebec, Canada.
+
+The paper represents recent work in applying optimal transport theory to practical machine learning problems, particularly for ensuring data quality in critical applications like power systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ec7e947-0e3c-4cae-bd1d-8ad594fb1eba",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "3919fbaf-db5d-4415-87e2-c2dbb7d57351",
+  "toolUseResult": {
+    "query": "Pallage sliced Wasserstein distance data selection outlier detection 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014nhMnauBariZ8NVqSyZ4oV",
+        "content": [
+          {
+            "title": "[2504.12918] Sliced-Wasserstein Distance-based Data Selection",
+            "url": "https://arxiv.org/abs/2504.12918"
+          },
+          {
+            "title": "Sliced-Wasserstein Distance-based Data Selection Julien Pallage",
+            "url": "https://arxiv.org/pdf/2504.12918"
+          },
+          {
+            "title": "Sliced-Wasserstein Distance-based Data Selection This work was funded by Mitacs, the Natural Sciences and Engineering Research Council of Canada (NSERC), and Services Hilo under Grants RGPIN-2023-04235 and IT35303 & IT38517. Corresponding authors: {julien.pallage, antoine.lesage-landry}@polymtl.ca.",
+            "url": "https://arxiv.org/html/2504.12918v1"
+          },
+          {
+            "title": "[2504.12918] Sliced-Wasserstein Distance-based Data Selection This work was funded by Mitacs, the Natural Sciences and Engineering Research Council of Canada (NSERC), and Services Hilo under Grants RGPIN-2023-04235 and IT35303 & IT38517. Corresponding authors: {julien.pallage, antoine.lesage-landry}@polymtl.ca.",
+            "url": "https://ar5iv.labs.arxiv.org/html/2504.12918"
+          },
+          {
+            "title": "[2504.12918v1] Sliced-Wasserstein Distance-based Data Selection",
+            "url": "http://arxiv.org/abs/2504.12918v1"
+          },
+          {
+            "title": "Sliced-Wasserstein-based Anomaly Detection and Open Dataset for Localized Critical Peak Rebates",
+            "url": "https://arxiv.org/html/2410.21712"
+          },
+          {
+            "title": "[2410.21712] Sliced-Wasserstein-based Anomaly Detection and Open Dataset for Localized Critical Peak Rebates",
+            "url": "https://arxiv.org/abs/2410.21712"
+          },
+          {
+            "title": "Machine Learning Apr 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-04?skip=900&show=50"
+          },
+          {
+            "title": "GitHub - jupall/swfilter",
+            "url": "https://github.com/jupall/swfilter"
+          },
+          {
+            "title": "[Literature Review] Sliced-Wasserstein-based Anomaly Detection and Open Dataset for Localized Critical Peak Rebates",
+            "url": "https://www.themoonlight.io/en/review/sliced-wasserstein-based-anomaly-detection-and-open-dataset-for-localized-critical-peak-rebates"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant information about this research. Here's what I found:\n\n## Overview\n\nA new unsupervised anomaly detection method based on the sliced-Wasserstein distance for training data selection in machine learning approaches has been proposed. The paper was authored by Julien Pallage and Antoine Lesage-Landry from Polytechnique Montréal and published on arXiv in April 2025.\n\n## Key Features\n\nThe filtering technique is interesting for decision-making pipelines deploying machine learning models in critical sectors, e.g., power systems, as it offers a conservative data selection and an optimal transport interpretation.\n\n## Methodological Approach\n\nTo ensure the scalability of the method, two efficient approximations are provided. The first approximation processes reduced-cardinality representations of the datasets concurrently. The second makes use of a computationally light Euclidian distance approximation.\n\n## Practical Application\n\nWith ϵ = 0.1, the method filters only the statistical outliers. With ϵ = 0.05, it only keeps the majority group. And with ϵ = 0.01, it only keeps the samples closest to the barycenter of the majority group.\n\n## Additional Contribution\n\nThe researchers open the first dataset showcasing localized critical peak rebate demand response in a northern climate, with data from Montreal, Quebec, Canada.\n\nThe paper represents recent work in applying optimal transport theory to practical machine learning problems, particularly for ensuring data quality in critical applications like power systems."
+    ],
+    "durationSeconds": 6.871600636999996
+  },
+  "sourceToolAssistantUUID": "3ec7e947-0e3c-4cae-bd1d-8ad594fb1eba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 100_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3919fbaf-db5d-4415-87e2-c2dbb7d57351",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 101_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PhaseOT demonstration curation for AAAI 2027",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-13T11:47:00.425Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UMUYBeQa8KGZCVFuP6MNhS`</summary>
+
+```json
+{
+  "query": "CoRL 2026 workshop submission deadline call for papers workshops"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3919fbaf-db5d-4415-87e2-c2dbb7d57351",
+  "isSidechain": false,
+  "requestId": "req_011CazWjpVYQpGxxwtuNeNVE",
+  "type": "assistant",
+  "uuid": "6fcdd647-35dd-41f9-b273-e4c671fa492f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VS8oyRbr1EsaDEGeDDfC3P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 70381,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1091,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 70381,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1091
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-13T11:47:05.410Z_
+
+<details><summary>↩ Tool result · `toolu_01UMUYBeQa8KGZCVFuP6MNhS`</summary>
+
+```text
+Web search results for query: "CoRL 2026 workshop submission deadline call for papers workshops"
+
+Links: [{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL 2026 - Annoucements","url":"https://www.corl.org/annoucements"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"},{"title":"Refactor conference data · huggingface/ai-deadlines at f3cc2d7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"}]
+
+Based on the search results, here's what I found about CoRL 2026 submissions and workshops:
+
+## Conference Paper Submission Deadlines
+
+The abstract submission deadline is May 26, 2026 11:59 UTC, and the paper submission deadline is May 29, 2026 11:59 UTC. The conference will be held November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701, with workshops on November 9 and the main conference November 10-12.
+
+## Workshop Call for Papers
+
+The call for workshops became available on April 29. However, the search results don't contain the specific deadline for workshop submissions. For detailed information about workshop submission requirements and deadlines, you may want to visit the official CoRL 2026 website directly or check their contributions page for the full call for workshops details.
+
+Papers can be submitted through OpenReview, and the deadlines are final, and no accommodations can be made for missing the abstract deadline or paper deadline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6fcdd647-35dd-41f9-b273-e4c671fa492f",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "1fd6a0d8-f794-47bf-80b0-94df37f02b86",
+  "toolUseResult": {
+    "query": "CoRL 2026 workshop submission deadline call for papers workshops",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LQstZFgprNNGfJ46nRenYN",
+        "content": [
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "CoRL 2026 - Annoucements",
+            "url": "https://www.corl.org/annoucements"
+          },
+          {
+            "title": "CoRL 2026 - Contributions",
+            "url": "https://www.corl.org/contributions"
+          },
+          {
+            "title": "Refactor conference data · huggingface/ai-deadlines at f3cc2d7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CoRL 2026 submissions and workshops:\n\n## Conference Paper Submission Deadlines\n\nThe abstract submission deadline is May 26, 2026 11:59 UTC, and the paper submission deadline is May 29, 2026 11:59 UTC. The conference will be held November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701, with workshops on November 9 and the main conference November 10-12.\n\n## Workshop Call for Papers\n\nThe call for workshops became available on April 29. However, the search results don't contain the specific deadline for workshop submissions. For detailed information about workshop submission requirements and deadlines, you may want to visit the official CoRL 2026 website directly or check their contributions page for the full call for workshops details.\n\nPapers can be submitted through OpenReview, and the deadlines are final, and no accommodations can be made for missing the abstract deadline or paper deadline."
+    ],
+    "durationSeconds": 4.980851476999989
+  },
+  "sourceToolAssistantUUID": "6fcdd647-35dd-41f9-b273-e4c671fa492f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104 · 2026-05-13T11:47:09.594Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GaCyrv6ewpXZBHVfADsYwq`</summary>
+
+```json
+{
+  "url": "https://www.corl.org/contributions",
+  "prompt": "What are the workshop submission deadlines for CoRL 2026? Are workshop paper submission deadlines listed? What workshops have been announced or accepted? When are workshop-specific paper deadlines?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fd6a0d8-f794-47bf-80b0-94df37f02b86",
+  "isSidechain": false,
+  "requestId": "req_011CazWkPHGAm8vk3mgp1sRk",
+  "type": "assistant",
+  "uuid": "1a2ad5c3-9bd7-4ed2-a9ab-4391fa0f9cf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E7wy2pQwGEjs98qA1CQwAr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 759,
+      "cache_read_input_tokens": 71472,
+      "output_tokens": 117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 759,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 117,
+          "cache_read_input_tokens": 71472,
+          "cache_creation_input_tokens": 759,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 759
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-13T11:47:12.002Z_
+
+<details><summary>↩ Tool result · `toolu_01GaCyrv6ewpXZBHVfADsYwq`</summary>
+
+```text
+# CoRL 2026 Workshop Submission Information
+
+Based on the provided webpage content, I cannot answer your questions about workshop submission deadlines or accepted workshops.
+
+The page mentions a "Call for Workshops" link exists, but the actual deadline information and workshop details are not included in this content excerpt. The only specific deadline provided is for paper submissions: **May 28, 2026 (AoE)**.
+
+To find workshop-specific deadlines and accepted workshops, you would need to visit the dedicated Call for Workshops page linked in the navigation menu.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a2ad5c3-9bd7-4ed2-a9ab-4391fa0f9cf8",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "b6a8a321-540c-4e6a-86f9-83d5d8242b37",
+  "toolUseResult": {
+    "bytes": 128198,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CoRL 2026 Workshop Submission Information\n\nBased on the provided webpage content, I cannot answer your questions about workshop submission deadlines or accepted workshops.\n\nThe page mentions a \"Call for Workshops\" link exists, but the actual deadline information and workshop details are not included in this content excerpt. The only specific deadline provided is for paper submissions: **May 28, 2026 (AoE)**.\n\nTo find workshop-specific deadlines and accepted workshops, you would need to visit the dedicated Call for Workshops page linked in the navigation menu.",
+    "durationMs": 2405,
+    "url": "https://www.corl.org/contributions"
+  },
+  "sourceToolAssistantUUID": "1a2ad5c3-9bd7-4ed2-a9ab-4391fa0f9cf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-13T11:47:14.833Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QVfvNEh5YDHAvfnmA4Z5a9`</summary>
+
+```json
+{
+  "query": "WQDIL wasserstein quality diversity imitation learning diverse behaviors mode discovery 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6a8a321-540c-4e6a-86f9-83d5d8242b37",
+  "isSidechain": false,
+  "requestId": "req_011CazWksSAuyUVvXZ7X4B6h",
+  "type": "assistant",
+  "uuid": "793d7840-7b9c-4720-aab0-1e263935b187",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ycUw3z9daMhJZ7f3BVzjT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 245,
+      "cache_read_input_tokens": 72231,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 245,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 72231,
+          "cache_creation_input_tokens": 245,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 245
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-13T11:47:21.563Z_
+
+<details><summary>↩ Tool result · `toolu_01QVfvNEh5YDHAvfnmA4Z5a9`</summary>
+
+```text
+Web search results for query: "WQDIL wasserstein quality diversity imitation learning diverse behaviors mode discovery 2025"
+
+Links: [{"title":"Wasserstein Quality Diversity Imitation Learning with ...","url":"https://www.ifaamas.org/Proceedings/aamas2025/pdfs/p2271.pdf"},{"title":"Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration","url":"https://arxiv.org/html/2411.06965v1"},{"title":"[2411.06965] Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration","url":"https://arxiv.org/abs/2411.06965"},{"title":"Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration | Proceedings of the 24th International Conference on Autonomous Agents and Multiagent Systems","url":"https://dl.acm.org/doi/10.5555/3709347.3743867"},{"title":"[Literature Review] Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration","url":"https://www.themoonlight.io/en/review/imitation-from-diverse-behaviors-wasserstein-quality-diversity-imitation-learning-with-single-step-archive-exploration"},{"title":"Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration","url":"https://powerdrill.ai/discover/discover-Imitation-from-Diverse-cm3ext2oq5llz016ff3s1p8r5"},{"title":"QUALITY DIVERSITY IMITATION LEARNING","url":"https://openreview.net/pdf/3adaa371312e8e53f2267b93224044f3388e304a.pdf"},{"title":"Adversarial Imitation Learning Based on Weighted Wasserstein Distance | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-95-1233-1_6"},{"title":"Latent Wasserstein Adversarial Imitation Learning | OpenReview","url":"https://openreview.net/forum?id=CiEOW1CdKc"},{"title":"WQDIL: A New Approach to Imitation Learning","url":"https://www.linkedin.com/posts/abdullah-kasri_imitation-from-diverse-behaviors-wasserstein-activity-7315151431085281280-uSqB"}]
+
+Based on the search results, here's what I found about WQDIL:
+
+## Wasserstein Quality Diversity Imitation Learning (WQDIL)
+
+WQDIL improves the stability of imitation learning in the quality diversity setting with latent adversarial training based on a Wasserstein Auto-Encoder (WAE), and mitigates a behavior-overfitting issue using a measure-conditioned reward function with a single-step archive exploration bonus.
+
+### Key Components and Contributions
+
+The method is called Wasserstein Quality Diversity Imitation Learning (WQDIL) with Single-Step Archive Exploration (SSAE).
+
+The approach addresses two main challenges:
+
+1. **Training Stability**: WQDIL addresses the training instability issue by applying Wasserstein adversarial training within the latent space of the Wasserstein Auto-Encoder (WAE).
+
+2. **Behavior Overfitting**: A bonus enables the agent to collect data with more diverse behaviors via single-step archive exploration.
+
+### Mode Discovery and Diverse Behaviors
+
+Learning diverse and high-performance behaviors from a limited set of demonstrations is a grand challenge, as traditional imitation learning methods usually fail in this task because most of them are designed to learn one specific behavior even with multiple demonstrations.
+
+The method achieves near-expert or beyond-expert QD performance on challenging continuous control tasks derived from MuJoCo environments.
+
+The paper was first submitted in November 2024 and appears in the proceedings of the 24th International Conference on Autonomous Agents and Multiagent Systems (2025).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "793d7840-7b9c-4720-aab0-1e263935b187",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "86bdce08-ae1c-4243-a9e6-69c897494df7",
+  "toolUseResult": {
+    "query": "WQDIL wasserstein quality diversity imitation learning diverse behaviors mode discovery 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01887btR4mYuoVGfaoMnzPJf",
+        "content": [
+          {
+            "title": "Wasserstein Quality Diversity Imitation Learning with ...",
+            "url": "https://www.ifaamas.org/Proceedings/aamas2025/pdfs/p2271.pdf"
+          },
+          {
+            "title": "Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration",
+            "url": "https://arxiv.org/html/2411.06965v1"
+          },
+          {
+            "title": "[2411.06965] Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration",
+            "url": "https://arxiv.org/abs/2411.06965"
+          },
+          {
+            "title": "Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration | Proceedings of the 24th International Conference on Autonomous Agents and Multiagent Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3709347.3743867"
+          },
+          {
+            "title": "[Literature Review] Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration",
+            "url": "https://www.themoonlight.io/en/review/imitation-from-diverse-behaviors-wasserstein-quality-diversity-imitation-learning-with-single-step-archive-exploration"
+          },
+          {
+            "title": "Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration",
+            "url": "https://powerdrill.ai/discover/discover-Imitation-from-Diverse-cm3ext2oq5llz016ff3s1p8r5"
+          },
+          {
+            "title": "QUALITY DIVERSITY IMITATION LEARNING",
+            "url": "https://openreview.net/pdf/3adaa371312e8e53f2267b93224044f3388e304a.pdf"
+          },
+          {
+            "title": "Adversarial Imitation Learning Based on Weighted Wasserstein Distance | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-95-1233-1_6"
+          },
+          {
+            "title": "Latent Wasserstein Adversarial Imitation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=CiEOW1CdKc"
+          },
+          {
+            "title": "WQDIL: A New Approach to Imitation Learning",
+            "url": "https://www.linkedin.com/posts/abdullah-kasri_imitation-from-diverse-behaviors-wasserstein-activity-7315151431085281280-uSqB"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about WQDIL:\n\n## Wasserstein Quality Diversity Imitation Learning (WQDIL)\n\nWQDIL improves the stability of imitation learning in the quality diversity setting with latent adversarial training based on a Wasserstein Auto-Encoder (WAE), and mitigates a behavior-overfitting issue using a measure-conditioned reward function with a single-step archive exploration bonus.\n\n### Key Components and Contributions\n\nThe method is called Wasserstein Quality Diversity Imitation Learning (WQDIL) with Single-Step Archive Exploration (SSAE).\n\nThe approach addresses two main challenges:\n\n1. **Training Stability**: WQDIL addresses the training instability issue by applying Wasserstein adversarial training within the latent space of the Wasserstein Auto-Encoder (WAE).\n\n2. **Behavior Overfitting**: A bonus enables the agent to collect data with more diverse behaviors via single-step archive exploration.\n\n### Mode Discovery and Diverse Behaviors\n\nLearning diverse and high-performance behaviors from a limited set of demonstrations is a grand challenge, as traditional imitation learning methods usually fail in this task because most of them are designed to learn one specific behavior even with multiple demonstrations.\n\nThe method achieves near-expert or beyond-expert QD performance on challenging continuous control tasks derived from MuJoCo environments.\n\nThe paper was first submitted in November 2024 and appears in the proceedings of the 24th International Conference on Autonomous Agents and Multiagent Systems (2025)."
+    ],
+    "durationSeconds": 6.72625324999995
+  },
+  "sourceToolAssistantUUID": "793d7840-7b9c-4720-aab0-1e263935b187",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-13T11:47:24.921Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016fHaJKhzhKtErbEZPULjD8`</summary>
+
+```json
+{
+  "query": "TASOT multimodal optimal transport temporal segmentation surgical robotics 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86bdce08-ae1c-4243-a9e6-69c897494df7",
+  "isSidechain": false,
+  "requestId": "req_011CazWmaHKhaUXfNtW6SmSV",
+  "type": "assistant",
+  "uuid": "2994bd38-b6e4-4d40-971e-ade9156f308f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N7keCyeABWqNfvCgLV2iiG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 72476,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1091,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 72476,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1091
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-13T11:47:31.291Z_
+
+<details><summary>↩ Tool result · `toolu_016fHaJKhzhKtErbEZPULjD8`</summary>
+
+```text
+Web search results for query: "TASOT multimodal optimal transport temporal segmentation surgical robotics 2026"
+
+Links: [{"title":"[2602.24138] Multimodal Optimal Transport for Unsupervised Temporal Segmentation in Surgical Robotics","url":"https://arxiv.org/abs/2602.24138"},{"title":"Multimodal Optimal Transport for Unsupervised Temporal Segmentation in Surgical Robotics","url":"https://arxiv.org/html/2602.24138"},{"title":"[2504.18662] M2R2: MultiModal Robotic Representation for Temporal Action Segmentation","url":"https://arxiv.org/abs/2504.18662"},{"title":"M2R2: MultiModal Robotic Representation for Temporal Action Segmentation","url":"https://arxiv.org/html/2504.18662"},{"title":"Lightweight Structured Multimodal Reasoning for Clinical ...","url":"https://arxiv.org/pdf/2509.22014"},{"title":"Multimodal Transformers for Real-Time Surgical Activity Prediction","url":"https://arxiv.org/html/2403.06705v1"},{"title":"Multimodal semi-supervised learning for online recognition of multi-granularity surgical workflows - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11178653/"},{"title":"(PDF) M2R2: MulitModal Robotic Representation for Temporal Action Segmentation","url":"https://www.researchgate.net/publication/391247014_M2R2_MulitModal_Robotic_Representation_for_Temporal_Action_Segmentation"},{"title":"[PDF] Temporal Segmentation of Surgical Sub-tasks through Deep Learning with Multiple Data Sources | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Temporal-Segmentation-of-Surgical-Sub-tasks-through-Qin-Pedram/c706e2b90ddb38138385a32ff758c854a34bb60c"},{"title":"[2002.02921] Temporal Segmentation of Surgical Sub-tasks through Deep Learning with Multiple Data Sources","url":"https://ar5iv.labs.arxiv.org/html/2002.02921"}]
+
+Based on the search results, I found relevant information about TASOT:
+
+Text-Augmented Action Segmentation Optimal Transport (TASOT) is an unsupervised method for surgical phase and step recognition that extends Action Segmentation Optimal Transport (ASOT) by incorporating textual information generated directly from the videos.
+
+TASOT formulates temporal action segmentation as a multimodal optimal transport problem, where the matching cost is defined as a weighted combination of visual and text-based costs. This design enables effective alignment between video frames and surgical actions without surgical-specific pretraining or external web-scale supervision.
+
+The research demonstrates strong performance results: TASOT shows consistent and substantial improvements over existing zero-shot methods, including StrasBypass70 (+23.7), BernBypass70 (+4.5), Cholec80 (+16.5), and AutoLaparo (+19.6). These results demonstrate that fine-grained surgical understanding can be achieved by exploiting information already present in standard visual and textual representations, without resorting to increasingly complex pre-training pipelines.
+
+The paper was published on February 27, 2026, making it a very recent contribution to the field of surgical robotics and temporal action segmentation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2994bd38-b6e4-4d40-971e-ade9156f308f",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "5d1c9367-4c16-4f13-b6c0-cecb380763e1",
+  "toolUseResult": {
+    "query": "TASOT multimodal optimal transport temporal segmentation surgical robotics 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012NPsB32oytFqbkNbBjRAUp",
+        "content": [
+          {
+            "title": "[2602.24138] Multimodal Optimal Transport for Unsupervised Temporal Segmentation in Surgical Robotics",
+            "url": "https://arxiv.org/abs/2602.24138"
+          },
+          {
+            "title": "Multimodal Optimal Transport for Unsupervised Temporal Segmentation in Surgical Robotics",
+            "url": "https://arxiv.org/html/2602.24138"
+          },
+          {
+            "title": "[2504.18662] M2R2: MultiModal Robotic Representation for Temporal Action Segmentation",
+            "url": "https://arxiv.org/abs/2504.18662"
+          },
+          {
+            "title": "M2R2: MultiModal Robotic Representation for Temporal Action Segmentation",
+            "url": "https://arxiv.org/html/2504.18662"
+          },
+          {
+            "title": "Lightweight Structured Multimodal Reasoning for Clinical ...",
+            "url": "https://arxiv.org/pdf/2509.22014"
+          },
+          {
+            "title": "Multimodal Transformers for Real-Time Surgical Activity Prediction",
+            "url": "https://arxiv.org/html/2403.06705v1"
+          },
+          {
+            "title": "Multimodal semi-supervised learning for online recognition of multi-granularity surgical workflows - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11178653/"
+          },
+          {
+            "title": "(PDF) M2R2: MulitModal Robotic Representation for Temporal Action Segmentation",
+            "url": "https://www.researchgate.net/publication/391247014_M2R2_MulitModal_Robotic_Representation_for_Temporal_Action_Segmentation"
+          },
+          {
+            "title": "[PDF] Temporal Segmentation of Surgical Sub-tasks through Deep Learning with Multiple Data Sources | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Temporal-Segmentation-of-Surgical-Sub-tasks-through-Qin-Pedram/c706e2b90ddb38138385a32ff758c854a34bb60c"
+          },
+          {
+            "title": "[2002.02921] Temporal Segmentation of Surgical Sub-tasks through Deep Learning with Multiple Data Sources",
+            "url": "https://ar5iv.labs.arxiv.org/html/2002.02921"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about TASOT:\n\nText-Augmented Action Segmentation Optimal Transport (TASOT) is an unsupervised method for surgical phase and step recognition that extends Action Segmentation Optimal Transport (ASOT) by incorporating textual information generated directly from the videos.\n\nTASOT formulates temporal action segmentation as a multimodal optimal transport problem, where the matching cost is defined as a weighted combination of visual and text-based costs. This design enables effective alignment between video frames and surgical actions without surgical-specific pretraining or external web-scale supervision.\n\nThe research demonstrates strong performance results: TASOT shows consistent and substantial improvements over existing zero-shot methods, including StrasBypass70 (+23.7), BernBypass70 (+4.5), Cholec80 (+16.5), and AutoLaparo (+19.6). These results demonstrate that fine-grained surgical understanding can be achieved by exploiting information already present in standard visual and textual representations, without resorting to increasingly complex pre-training pipelines.\n\nThe paper was published on February 27, 2026, making it a very recent contribution to the field of surgical robotics and temporal action segmentation."
+    ],
+    "durationSeconds": 6.364981812999991
+  },
+  "sourceToolAssistantUUID": "2994bd38-b6e4-4d40-971e-ade9156f308f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110 · 2026-05-13T11:47:34.325Z_
+
+Now let me do one final search to check if there's very recent work specifically addressing mode-aware demonstration curation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d1c9367-4c16-4f13-b6c0-cecb380763e1",
+  "isSidechain": false,
+  "requestId": "req_011CazWnHqtdJRiysQXc1PyY",
+  "type": "assistant",
+  "uuid": "050cd4ef-17e4-4444-9a7a-25653e55d7dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119yc5F4jGMAXuvyeSpr4UV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 73567,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 73567,
+          "cache_creation_input_tokens": 933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-13T11:47:35.045Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Dc6ydHHCycxuTkqeThniG4`</summary>
+
+```json
+{
+  "query": "mode-aware data curation preserve minority strategy robot policy learning 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "050cd4ef-17e4-4444-9a7a-25653e55d7dd",
+  "isSidechain": false,
+  "requestId": "req_011CazWnHqtdJRiysQXc1PyY",
+  "type": "assistant",
+  "uuid": "442ae182-54b8-419b-a5cc-900078662dd4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119yc5F4jGMAXuvyeSpr4UV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 73567,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 73567,
+          "cache_creation_input_tokens": 933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-13T11:47:41.933Z_
+
+<details><summary>↩ Tool result · `toolu_01Dc6ydHHCycxuTkqeThniG4`</summary>
+
+```text
+Web search results for query: "mode-aware data curation preserve minority strategy robot policy learning 2025 2026 arXiv"
+
+Links: [{"title":"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/html/2505.09603"},{"title":"ICML 2025 Papers","url":"https://icml.cc/virtual/2025/papers.html"},{"title":"Artificial Intelligence May 2025","url":"https://www.arxiv.org/list/cs.AI/2025-05?skip=1525&show=2000"},{"title":"ICLR 2025 Workshops","url":"https://iclr.cc/virtual/2025/events/workshop"},{"title":"When Data is the Algorithm: A Systematic Study and Curation of Preference Optimization Datasets","url":"https://arxiv.org/html/2511.10985v2"},{"title":"Machine Learning Jun 2025","url":"https://www.arxiv.org/list/cs.LG/2025-06?skip=1875&show=2000"},{"title":"NeurIPS 2025 Papers","url":"https://neurips.cc/virtual/2025/papers.html"},{"title":"Machine Learning Feb 2025","url":"https://arxiv.org/list/cs.LG/2025-02?skip=2425&show=2000"},{"title":"[2503.04969] Data-Efficient Learning from Human Interventions for Mobile Robots","url":"https://arxiv.org/abs/2503.04969"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=3050&show=2000"}]
+
+Based on the search results, I found a highly relevant paper that matches your query. The most pertinent result is:
+
+**DataMIL** — a method built on the datamodels framework that directly estimates each datapoint's influence on final task success and uses these learned influence scores to curate a training set in an end-to-end, performance-aware fashion.
+
+The paper is titled "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels" and was published on arXiv in May 2025 (arXiv:2505.09603).
+
+The approach was validated on a suite of 60+ simulation and real-world manipulation tasks, including successful data selection from the Open X-Embodiment datasets, demonstrating consistent gains in success rates and superior performance over multiple baselines.
+
+While this paper addresses data curation for robot policy learning and demonstrates strong performance-aware selection methods, the specific focus on "mode-aware data curation" and "preserve minority strategy" aspects mentioned in your query doesn't appear to be the primary emphasis in this particular result. The search results show this is an active research area with multiple papers on data curation for robotics and policy learning published in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "442ae182-54b8-419b-a5cc-900078662dd4",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "b94921d0-5cdc-4714-ac04-b0e2ac7060ed",
+  "toolUseResult": {
+    "query": "mode-aware data curation preserve minority strategy robot policy learning 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HemWuFKkNz7eAAJ66H4ZB4",
+        "content": [
+          {
+            "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/html/2505.09603"
+          },
+          {
+            "title": "ICML 2025 Papers",
+            "url": "https://icml.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "Artificial Intelligence May 2025",
+            "url": "https://www.arxiv.org/list/cs.AI/2025-05?skip=1525&show=2000"
+          },
+          {
+            "title": "ICLR 2025 Workshops",
+            "url": "https://iclr.cc/virtual/2025/events/workshop"
+          },
+          {
+            "title": "When Data is the Algorithm: A Systematic Study and Curation of Preference Optimization Datasets",
+            "url": "https://arxiv.org/html/2511.10985v2"
+          },
+          {
+            "title": "Machine Learning Jun 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-06?skip=1875&show=2000"
+          },
+          {
+            "title": "NeurIPS 2025 Papers",
+            "url": "https://neurips.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "Machine Learning Feb 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-02?skip=2425&show=2000"
+          },
+          {
+            "title": "[2503.04969] Data-Efficient Learning from Human Interventions for Mobile Robots",
+            "url": "https://arxiv.org/abs/2503.04969"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=3050&show=2000"
+          }
+        ]
+      },
+      "Based on the search results, I found a highly relevant paper that matches your query. The most pertinent result is:\n\n**DataMIL** — a method built on the datamodels framework that directly estimates each datapoint's influence on final task success and uses these learned influence scores to curate a training set in an end-to-end, performance-aware fashion.\n\nThe paper is titled \"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels\" and was published on arXiv in May 2025 (arXiv:2505.09603).\n\nThe approach was validated on a suite of 60+ simulation and real-world manipulation tasks, including successful data selection from the Open X-Embodiment datasets, demonstrating consistent gains in success rates and superior performance over multiple baselines.\n\nWhile this paper addresses data curation for robot policy learning and demonstrates strong performance-aware selection methods, the specific focus on \"mode-aware data curation\" and \"preserve minority strategy\" aspects mentioned in your query doesn't appear to be the primary emphasis in this particular result. The search results show this is an active research area with multiple papers on data curation for robotics and policy learning published in 2025-2026."
+    ],
+    "durationSeconds": 6.884241148000001
+  },
+  "sourceToolAssistantUUID": "442ae182-54b8-419b-a5cc-900078662dd4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 113_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b94921d0-5cdc-4714-ac04-b0e2ac7060ed",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 114_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PhaseOT demonstration curation for AAAI 2027",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-13T11:47:44.615Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012Nk123HjJKWxXhcxhqDLSA`</summary>
+
+```json
+{
+  "query": "bimodal Push-T diffusion policy demonstration diversity left right approach strategy 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b94921d0-5cdc-4714-ac04-b0e2ac7060ed",
+  "isSidechain": false,
+  "requestId": "req_011CazWo5L6bUVQG9GN5VbzE",
+  "type": "assistant",
+  "uuid": "ac3fddf6-56cb-4499-be47-0fd5f164bf32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYWaf5Yzfa9SpML8mqvVM6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 74500,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 74500,
+          "cache_creation_input_tokens": 821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-13T11:47:51.640Z_
+
+<details><summary>↩ Tool result · `toolu_012Nk123HjJKWxXhcxhqDLSA`</summary>
+
+```text
+Web search results for query: "bimodal Push-T diffusion policy demonstration diversity left right approach strategy 2025 2026"
+
+Links: [{"title":"GitHub - real-stanford/diffusion_policy: [RSS 2023] Diffusion Policy Visuomotor Policy Learning via Action Diffusion · GitHub","url":"https://github.com/real-stanford/diffusion_policy"},{"title":"Diffusion policy: : Visuomotor policy learning via action diffusion: International Journal of Robotics Research: Vol 44, No 10-11","url":"https://dl.acm.org/doi/10.1177/02783649241273668"},{"title":"Diffusion policy: Visuomotor policy learning via action diffusion - Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun Du, Benjamin Burchfiel, Russ Tedrake, Shuran Song, 2025","url":"https://journals.sagepub.com/doi/full/10.1177/02783649241273668"},{"title":"One-Step Diffusion Policy: Fast Visuomotor Policies via Diffusion Distillation | OpenReview","url":"https://openreview.net/forum?id=Z85EoYQhCs"},{"title":"Frontiers | Diffusion models for robotic manipulation: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"},{"title":"DIFFUSION POLICY POLICY OPTIMIZATION","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/c0749c39aaff9e9e4c91f7118bf21b1e-Paper-Conference.pdf"},{"title":"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion","url":"https://diffusion-policy.cs.columbia.edu/"},{"title":"GitHub - VILA-Lab/Awesome-DLMs: The official GitHub repo for the survey paper \"A Survey on Diffusion Language Models\". · GitHub","url":"https://github.com/VILA-Lab/Awesome-DLMs"},{"title":"ICLR 2025 Papers","url":"https://iclr.cc/virtual/2025/papers.html"},{"title":"[2303.04137] Diffusion Policy: Visuomotor Policy Learning via Action Diffusion","url":"https://arxiv.org/abs/2303.04137"}]
+
+I've performed a web search on diffusion policy and related topics. The results primarily cover foundational work on Diffusion Policy as a method for robot learning through visuomotor policy generation, as well as recent developments and extensions of this approach in 2025-2026.
+
+Here's what I found:
+
+## Core Diffusion Policy Concept
+
+Diffusion Policy introduces a new way of generating robot behavior by representing a robot's visuomotor policy as a conditional denoising diffusion process.
+
+## Recent Developments (2025-2026)
+
+Diffusion models leverage a probabilistic framework and stand out with their ability to model multi-modal distributions and their robustness to high-dimensional input and output spaces. This multi-modal capability is particularly relevant to the "bimodal" aspect mentioned in your query.
+
+### Policy Optimization and Learning from Demonstrations
+
+These policies are typically trained from human demonstrations through a supervised objective, and enjoy both high training stability and strong performance in modeling complex and multi-modal trajectory distributions. Recent work has focused on improving these policies through policy optimization methods.
+
+### Handling Diverse Demonstrations
+
+Combining reinforcement learning with diffusion models has the potential of modeling highly multi-modal distributions over the whole state-action space, strongly increasing generalizability.
+
+However, the search results don't contain specific information about "Push-T," "left right approach strategy," or other specific implementation details you mentioned in your query. To find more targeted information about those specific aspects, you might want to search for papers that specifically reference "Push-T" task or look for papers discussing specific manipulation strategies with diffusion policies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac3fddf6-56cb-4499-be47-0fd5f164bf32",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "11752910-eb01-4abf-8d97-04aa8389644d",
+  "toolUseResult": {
+    "query": "bimodal Push-T diffusion policy demonstration diversity left right approach strategy 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SiJinH5LmkM4uAqHTLkqtA",
+        "content": [
+          {
+            "title": "GitHub - real-stanford/diffusion_policy: [RSS 2023] Diffusion Policy Visuomotor Policy Learning via Action Diffusion · GitHub",
+            "url": "https://github.com/real-stanford/diffusion_policy"
+          },
+          {
+            "title": "Diffusion policy: : Visuomotor policy learning via action diffusion: International Journal of Robotics Research: Vol 44, No 10-11",
+            "url": "https://dl.acm.org/doi/10.1177/02783649241273668"
+          },
+          {
+            "title": "Diffusion policy: Visuomotor policy learning via action diffusion - Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun Du, Benjamin Burchfiel, Russ Tedrake, Shuran Song, 2025",
+            "url": "https://journals.sagepub.com/doi/full/10.1177/02783649241273668"
+          },
+          {
+            "title": "One-Step Diffusion Policy: Fast Visuomotor Policies via Diffusion Distillation | OpenReview",
+            "url": "https://openreview.net/forum?id=Z85EoYQhCs"
+          },
+          {
+            "title": "Frontiers | Diffusion models for robotic manipulation: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"
+          },
+          {
+            "title": "DIFFUSION POLICY POLICY OPTIMIZATION",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/c0749c39aaff9e9e4c91f7118bf21b1e-Paper-Conference.pdf"
+          },
+          {
+            "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
+            "url": "https://diffusion-policy.cs.columbia.edu/"
+          },
+          {
+            "title": "GitHub - VILA-Lab/Awesome-DLMs: The official GitHub repo for the survey paper \"A Survey on Diffusion Language Models\". · GitHub",
+            "url": "https://github.com/VILA-Lab/Awesome-DLMs"
+          },
+          {
+            "title": "ICLR 2025 Papers",
+            "url": "https://iclr.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "[2303.04137] Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
+            "url": "https://arxiv.org/abs/2303.04137"
+          }
+        ]
+      },
+      "I've performed a web search on diffusion policy and related topics. The results primarily cover foundational work on Diffusion Policy as a method for robot learning through visuomotor policy generation, as well as recent developments and extensions of this approach in 2025-2026.\n\nHere's what I found:\n\n## Core Diffusion Policy Concept\n\nDiffusion Policy introduces a new way of generating robot behavior by representing a robot's visuomotor policy as a conditional denoising diffusion process.\n\n## Recent Developments (2025-2026)\n\nDiffusion models leverage a probabilistic framework and stand out with their ability to model multi-modal distributions and their robustness to high-dimensional input and output spaces. This multi-modal capability is particularly relevant to the \"bimodal\" aspect mentioned in your query.\n\n### Policy Optimization and Learning from Demonstrations\n\nThese policies are typically trained from human demonstrations through a supervised objective, and enjoy both high training stability and strong performance in modeling complex and multi-modal trajectory distributions. Recent work has focused on improving these policies through policy optimization methods.\n\n### Handling Diverse Demonstrations\n\nCombining reinforcement learning with diffusion models has the potential of modeling highly multi-modal distributions over the whole state-action space, strongly increasing generalizability.\n\nHowever, the search results don't contain specific information about \"Push-T,\" \"left right approach strategy,\" or other specific implementation details you mentioned in your query. To find more targeted information about those specific aspects, you might want to search for papers that specifically reference \"Push-T\" task or look for papers discussing specific manipulation strategies with diffusion policies."
+    ],
+    "durationSeconds": 7.02158681399998
+  },
+  "sourceToolAssistantUUID": "ac3fddf6-56cb-4499-be47-0fd5f164bf32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-13T11:47:55.257Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BkD2Gv8GPvkf2Ai2s3Zw7h`</summary>
+
+```json
+{
+  "query": "\"experience replay\" scoring demonstration quality offline imitation learning reinforcement 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11752910-eb01-4abf-8d97-04aa8389644d",
+  "isSidechain": false,
+  "requestId": "req_011CazWonrvN9cxiQa4BtuDh",
+  "type": "assistant",
+  "uuid": "e6b2b4e2-03bf-490d-a11e-552a47c06c72",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfRUqDgqgwuvEYeLYeX11C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1064,
+      "cache_read_input_tokens": 75321,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1064,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 75321,
+          "cache_creation_input_tokens": 1064,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1064
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-13T11:48:03.130Z_
+
+<details><summary>↩ Tool result · `toolu_01BkD2Gv8GPvkf2Ai2s3Zw7h`</summary>
+
+```text
+Web search results for query: ""experience replay" scoring demonstration quality offline imitation learning reinforcement 2025 2026"
+
+Links: [{"title":"SQIL: Imitation Learning via Reinforcement Learning with Sparse Rewards | OpenReview","url":"https://openreview.net/forum?id=S1xKd24twB"},{"title":"Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks: Journal of the Chinese Institute of Engineers: Vol 48 , No 6 - Get Access","url":"https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354"},{"title":"EFFICIENT ONLINE REINFORCEMENT LEARNING FINE- ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/504491292cb71e7681eedfe0e602b72f-Paper-Conference.pdf"},{"title":"Bridging Imitation and Online Reinforcement Learning: An Optimistic Tale | OpenReview","url":"https://openreview.net/forum?id=lanGfX0M6C"},{"title":"Efficient experience replay architecture for offline reinforcement learning | Request PDF","url":"https://www.researchgate.net/publication/369387707_Efficient_experience_replay_architecture_for_offline_reinforcement_learning"},{"title":"GitHub - yingchengyang/Reinforcement-Learning-Papers: Related papers for reinforcement learning, including classic papers and latest papers in top conferences · GitHub","url":"https://github.com/yingchengyang/Reinforcement-Learning-Papers"},{"title":"A goal-conditioned offline reinforcement learning algorithm and its application to quad-rotors - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0952197625006785"},{"title":"Reinforcement Learning from Offline Data and Human Feedback • IMSI","url":"https://www.imsi.institute/activities/theoretical-advances-in-reinforcement-learning-and-control/reinforcement-learning-offline-data-human-feedback/"},{"title":"Using offline data to speed up Reinforcement Learning in procedurally generated environments - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0925231224018502"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf/1e8e07c340592d74f71072f2f3a6b383b55f11a7.pdf"}]
+
+Based on the search results, I found several relevant papers and research related to experience replay, demonstration quality, offline imitation learning, and reinforcement learning from 2025-2026:
+
+## Key Recent Findings (2025-2026)
+
+**Offline Imitation Learning with Demonstration Quality:**
+
+A 2025 paper on discriminator-weighted offline imitation learning addresses how imitation learning algorithms for robotic applications require adequate and optimal data, noting that existing methods like Two-step Importance Weighting IL and Trajectory-ranked Reward EXtrapolation require manual labeling or environmental interaction to filter suboptimal data. The proposed solution introduces an additional discriminator to behavioral cloning that analytically weighs all data to distinguish between optimal and suboptimal instances, preventing suboptimal behavior.
+
+**Offline-to-Online Learning and Experience Replay:**
+
+A 2025 ICLR paper on efficient online RL fine-tuning introduces WSRL (Warm Start Reinforcement Learning), which incorporates a warmup phase to initialize the online replay buffer with a small number of online rollouts from a pre-trained policy, enabling faster learning and higher asymptotic performance.
+
+**Demonstration Quality in Imitation Learning:**
+
+Recent research shows that the quantity and quality of offline data directly impact performance, with more high-quality trajectories improving results while less-optimal data leads to reduced shrinkage of the confidence set.
+
+**Hindsight Experience Replay and Offline Learning:**
+
+Hindsight Experience Replay (HER) and its enhanced algorithms can significantly increase training efficiency of goal-conditional reinforcement learning under sparse rewards by enabling agents to learn from unsuccessful trajectories through relabeling experience samples.
+
+These recent works highlight the growing focus on combining demonstration quality assessment with experience replay mechanisms for improved offline and offline-to-online reinforcement learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6b2b4e2-03bf-490d-a11e-552a47c06c72",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "ffe2639d-0767-43f6-80e8-911685ca91a1",
+  "toolUseResult": {
+    "query": "\"experience replay\" scoring demonstration quality offline imitation learning reinforcement 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01P4mXYjANkuDUXk4KQor7XV",
+        "content": [
+          {
+            "title": "SQIL: Imitation Learning via Reinforcement Learning with Sparse Rewards | OpenReview",
+            "url": "https://openreview.net/forum?id=S1xKd24twB"
+          },
+          {
+            "title": "Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks: Journal of the Chinese Institute of Engineers: Vol 48 , No 6 - Get Access",
+            "url": "https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354"
+          },
+          {
+            "title": "EFFICIENT ONLINE REINFORCEMENT LEARNING FINE- ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/504491292cb71e7681eedfe0e602b72f-Paper-Conference.pdf"
+          },
+          {
+            "title": "Bridging Imitation and Online Reinforcement Learning: An Optimistic Tale | OpenReview",
+            "url": "https://openreview.net/forum?id=lanGfX0M6C"
+          },
+          {
+            "title": "Efficient experience replay architecture for offline reinforcement learning | Request PDF",
+            "url": "https://www.researchgate.net/publication/369387707_Efficient_experience_replay_architecture_for_offline_reinforcement_learning"
+          },
+          {
+            "title": "GitHub - yingchengyang/Reinforcement-Learning-Papers: Related papers for reinforcement learning, including classic papers and latest papers in top conferences · GitHub",
+            "url": "https://github.com/yingchengyang/Reinforcement-Learning-Papers"
+          },
+          {
+            "title": "A goal-conditioned offline reinforcement learning algorithm and its application to quad-rotors - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197625006785"
+          },
+          {
+            "title": "Reinforcement Learning from Offline Data and Human Feedback • IMSI",
+            "url": "https://www.imsi.institute/activities/theoretical-advances-in-reinforcement-learning-and-control/reinforcement-learning-offline-data-human-feedback/"
+          },
+          {
+            "title": "Using offline data to speed up Reinforcement Learning in procedurally generated environments - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0925231224018502"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf/1e8e07c340592d74f71072f2f3a6b383b55f11a7.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and research related to experience replay, demonstration quality, offline imitation learning, and reinforcement learning from 2025-2026:\n\n## Key Recent Findings (2025-2026)\n\n**Offline Imitation Learning with Demonstration Quality:**\n\nA 2025 paper on discriminator-weighted offline imitation learning addresses how imitation learning algorithms for robotic applications require adequate and optimal data, noting that existing methods like Two-step Importance Weighting IL and Trajectory-ranked Reward EXtrapolation require manual labeling or environmental interaction to filter suboptimal data. The proposed solution introduces an additional discriminator to behavioral cloning that analytically weighs all data to distinguish between optimal and suboptimal instances, preventing suboptimal behavior.\n\n**Offline-to-Online Learning and Experience Replay:**\n\nA 2025 ICLR paper on efficient online RL fine-tuning introduces WSRL (Warm Start Reinforcement Learning), which incorporates a warmup phase to initialize the online replay buffer with a small number of online rollouts from a pre-trained policy, enabling faster learning and higher asymptotic performance.\n\n**Demonstration Quality in Imitation Learning:**\n\nRecent research shows that the quantity and quality of offline data directly impact performance, with more high-quality trajectories improving results while less-optimal data leads to reduced shrinkage of the confidence set.\n\n**Hindsight Experience Replay and Offline Learning:**\n\nHindsight Experience Replay (HER) and its enhanced algorithms can significantly increase training efficiency of goal-conditional reinforcement learning under sparse rewards by enabling agents to learn from unsuccessful trajectories through relabeling experience samples.\n\nThese recent works highlight the growing focus on combining demonstration quality assessment with experience replay mechanisms for improved offline and offline-to-online reinforcement learning."
+    ],
+    "durationSeconds": 7.861694313000014
+  },
+  "sourceToolAssistantUUID": "e6b2b4e2-03bf-490d-a11e-552a47c06c72",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-13T11:48:05.891Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G2evNXGs34YH5Jd71Sa4Pv`</summary>
+
+```json
+{
+  "query": "SDIL skill disentanglement imitation learning KDD 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ffe2639d-0767-43f6-80e8-911685ca91a1",
+  "isSidechain": false,
+  "requestId": "req_011CazWpe5rtsozLApNq3tyw",
+  "type": "assistant",
+  "uuid": "cb2da82b-e694-4a6c-ab16-597adf72e3d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015k6o7ru6bxzxjaFEEK7VV7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1117,
+      "cache_read_input_tokens": 76385,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1117,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 76385,
+          "cache_creation_input_tokens": 1117,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1117
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-13T11:48:13.222Z_
+
+<details><summary>↩ Tool result · `toolu_01G2evNXGs34YH5Jd71Sa4Pv`</summary>
+
+```text
+Web search results for query: "SDIL skill disentanglement imitation learning KDD 2023"
+
+Links: [{"title":"Skill Disentanglement for Imitation Learning from Suboptimal Demonstrations","url":"https://arxiv.org/html/2306.07919"},{"title":"Skill Disentanglement for Imitation Learning from Suboptimal Demonstrations - Penn State","url":"https://pure.psu.edu/en/publications/skill-disentanglement-for-imitation-learning-from-suboptimal-demo/"},{"title":"Skill Disentanglement for Imitation Learning from Suboptimal Demonstrations | Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining","url":"https://dl.acm.org/doi/10.1145/3580305.3599506"},{"title":"[2306.07919] Skill Disentanglement for Imitation Learning from Suboptimal Demonstrations","url":"https://arxiv.org/abs/2306.07919"},{"title":"GitHub - TianxiangZhao/ImitationNoisyDemon: Codes for Skill Disentanglement for Imitation Learning from Suboptimal Demonstrations, KDD23 · GitHub","url":"https://github.com/TianxiangZhao/ImitationNoisyDemon"},{"title":"imitation learning Archives | NEC Labs America","url":"https://www.nec-labs.com/blog/tag/imitation-learning/"},{"title":"Skill Disentanglement for Imitation Learning from Suboptimal Demonstrations | Request PDF","url":"https://www.researchgate.net/publication/371536696_Skill_Disentanglement_for_Imitation_Learning_from_Suboptimal_Demonstrations"},{"title":"Computer Science Jun 2023","url":"https://arxiv.org/list/cs/2023-06?skip=3550&show=50"},{"title":"Disentangled Unsupervised Skill Discovery for Efficient Hierarchical Reinforcement Learning","url":"https://arxiv.org/html/2410.11251v1"},{"title":"SKILL-IL: Disentangling Skill and Knowledge in Multitask Imitation Learning","url":"https://cvssp.org/Personal/OscarMendez/papers/pdf/BianIROS2022.pdf"}]
+
+Based on the search results, here's information about SDIL (Skill Disentanglement for Imitation Learning):
+
+## Overview
+
+SDIL addresses the challenge of imitation learning from suboptimal demonstrations, where existing algorithms require a large number of high-quality demonstrations that are difficult and expensive to collect, and proposes learning from a small clean demonstration set and a large noisy set.
+
+## Framework Architecture
+
+SDIL consists of a high-level controller to discover skills and a skill-conditioned module to capture action-taking policies, and is trained following a two-phase pipeline by first discovering skills with all demonstrations and then adapting the controller to only the clean set.
+
+## Key Technical Components
+
+A mutual-information-based regularization and a dynamic sub-demonstration optimality estimator are designed to promote disentanglement in the skill space.
+
+## Approach
+
+SDIL evaluates and imitates at the sub-demonstration level, encoding action primitives of varying quality into different skills.
+
+## Experimental Validation
+
+Extensive experiments are conducted over two gym environments and a real-world healthcare dataset to demonstrate the superiority of SDIL in learning from sub-optimal demonstrations and its improved interpretability by examining learned skills.
+
+## Publication
+
+The paper was published at the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2023) in Long Beach, and the code is available on Github.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb2da82b-e694-4a6c-ab16-597adf72e3d7",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "124b7592-cd33-4738-8cc0-673c5284addb",
+  "toolUseResult": {
+    "query": "SDIL skill disentanglement imitation learning KDD 2023",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BG7DteEvPUtQ7L5CxwEwoX",
+        "content": [
+          {
+            "title": "Skill Disentanglement for Imitation Learning from Suboptimal Demonstrations",
+            "url": "https://arxiv.org/html/2306.07919"
+          },
+          {
+            "title": "Skill Disentanglement for Imitation Learning from Suboptimal Demonstrations - Penn State",
+            "url": "https://pure.psu.edu/en/publications/skill-disentanglement-for-imitation-learning-from-suboptimal-demo/"
+          },
+          {
+            "title": "Skill Disentanglement for Imitation Learning from Suboptimal Demonstrations | Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
+            "url": "https://dl.acm.org/doi/10.1145/3580305.3599506"
+          },
+          {
+            "title": "[2306.07919] Skill Disentanglement for Imitation Learning from Suboptimal Demonstrations",
+            "url": "https://arxiv.org/abs/2306.07919"
+          },
+          {
+            "title": "GitHub - TianxiangZhao/ImitationNoisyDemon: Codes for Skill Disentanglement for Imitation Learning from Suboptimal Demonstrations, KDD23 · GitHub",
+            "url": "https://github.com/TianxiangZhao/ImitationNoisyDemon"
+          },
+          {
+            "title": "imitation learning Archives | NEC Labs America",
+            "url": "https://www.nec-labs.com/blog/tag/imitation-learning/"
+          },
+          {
+            "title": "Skill Disentanglement for Imitation Learning from Suboptimal Demonstrations | Request PDF",
+            "url": "https://www.researchgate.net/publication/371536696_Skill_Disentanglement_for_Imitation_Learning_from_Suboptimal_Demonstrations"
+          },
+          {
+            "title": "Computer Science Jun 2023",
+            "url": "https://arxiv.org/list/cs/2023-06?skip=3550&show=50"
+          },
+          {
+            "title": "Disentangled Unsupervised Skill Discovery for Efficient Hierarchical Reinforcement Learning",
+            "url": "https://arxiv.org/html/2410.11251v1"
+          },
+          {
+            "title": "SKILL-IL: Disentangling Skill and Knowledge in Multitask Imitation Learning",
+            "url": "https://cvssp.org/Personal/OscarMendez/papers/pdf/BianIROS2022.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's information about SDIL (Skill Disentanglement for Imitation Learning):\n\n## Overview\n\nSDIL addresses the challenge of imitation learning from suboptimal demonstrations, where existing algorithms require a large number of high-quality demonstrations that are difficult and expensive to collect, and proposes learning from a small clean demonstration set and a large noisy set.\n\n## Framework Architecture\n\nSDIL consists of a high-level controller to discover skills and a skill-conditioned module to capture action-taking policies, and is trained following a two-phase pipeline by first discovering skills with all demonstrations and then adapting the controller to only the clean set.\n\n## Key Technical Components\n\nA mutual-information-based regularization and a dynamic sub-demonstration optimality estimator are designed to promote disentanglement in the skill space.\n\n## Approach\n\nSDIL evaluates and imitates at the sub-demonstration level, encoding action primitives of varying quality into different skills.\n\n## Experimental Validation\n\nExtensive experiments are conducted over two gym environments and a real-world healthcare dataset to demonstrate the superiority of SDIL in learning from sub-optimal demonstrations and its improved interpretability by examining learned skills.\n\n## Publication\n\nThe paper was published at the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2023) in Long Beach, and the code is available on Github."
+    ],
+    "durationSeconds": 7.327085607999994
+  },
+  "sourceToolAssistantUUID": "cb2da82b-e694-4a6c-ab16-597adf72e3d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 121 · 2026-05-13T11:48:13.224Z_
+
+```json
+{
+  "parentUuid": "124b7592-cd33-4738-8cc0-673c5284addb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b33f5b06-7f84-4d0c-981f-d514641a9f18",
+  "timestamp": "2026-05-13T11:48:13.224Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 122 · 2026-05-13T11:48:16.359Z_
+
+Now let me check one more potentially overlooked paper and then finalize my review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b33f5b06-7f84-4d0c-981f-d514641a9f18",
+  "isSidechain": false,
+  "requestId": "req_011CazWqP7yFGhA6xvfKkQhG",
+  "type": "assistant",
+  "uuid": "172aef52-0d58-46d0-a93b-1acb6a4ed705",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GjqN4GkauZ1hej6BSi3Czb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 77502,
+      "output_tokens": 90,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1091,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 90,
+          "cache_read_input_tokens": 77502,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1091
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-13T11:48:19.325Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AYdLVbAkYqLfFQX7T1Ti3T`</summary>
+
+```json
+{
+  "query": "WQDIL AAMAS 2025 wasserstein imitation diverse behaviors mode robot manipulation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "172aef52-0d58-46d0-a93b-1acb6a4ed705",
+  "isSidechain": false,
+  "requestId": "req_011CazWqP7yFGhA6xvfKkQhG",
+  "type": "assistant",
+  "uuid": "0232b227-8896-4462-875a-3f40d401289b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GjqN4GkauZ1hej6BSi3Czb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 77502,
+      "output_tokens": 90,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1091,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 90,
+          "cache_read_input_tokens": 77502,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1091
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-13T11:48:34.595Z_
+
+<details><summary>↩ Tool result · `toolu_01AYdLVbAkYqLfFQX7T1Ti3T`</summary>
+
+```text
+Web search results for query: "WQDIL AAMAS 2025 wasserstein imitation diverse behaviors mode robot manipulation"
+
+Links: [{"title":"Imitation from Diverse Behaviors: Wasserstein Quality Diversity","url":"https://www.ifaamas.org/Proceedings/aamas2025/pdfs/p2271.pdf"},{"title":"Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration","url":"https://arxiv.org/html/2411.06965"},{"title":"Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration | Proceedings of the 24th International Conference on Autonomous Agents and Multiagent Systems","url":"https://dl.acm.org/doi/10.5555/3709347.3743867"},{"title":"[2411.06965] Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration","url":"https://arxiv.org/abs/2411.06965"},{"title":"[2309.14225] HumanMimic: Learning Natural Locomotion and Transitions for Humanoid Robot via Wasserstein Adversarial Imitation","url":"https://arxiv.org/abs/2309.14225"},{"title":"HumanMimic: Learning Natural Locomotion and Transitions for Humanoid Robot via Wasserstein Adversarial Imitation","url":"https://arxiv.org/html/2309.14225v4"},{"title":"WQDIL: A New Approach to Imitation Learning","url":"https://www.linkedin.com/posts/abdullah-kasri_imitation-from-diverse-behaviors-wasserstein-activity-7315151431085281280-uSqB"},{"title":"MotuBrain: An Advanced World Action Model for Robot Control","url":"https://arxiv.org/html/2604.27792v2"},{"title":"Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration","url":"https://powerdrill.ai/discover/discover-Imitation-from-Diverse-cm3ext2oq5llz016ff3s1p8r5"},{"title":"World Action Models are Zero-shot Policies","url":"https://arxiv.org/html/2602.15922v1"}]
+
+Based on the search results, I found relevant information about WQDIL and AAMAS 2025:
+
+## Overview
+
+Wasserstein Quality Diversity Imitation Learning (WQDIL) improves the stability of imitation learning in the quality diversity setting with latent adversarial training based on a Wasserstein Auto-Encoder (WAE), and mitigates a behavior-overfitting issue using a measure-conditioned reward function with a single-step archive exploration bonus.
+
+## Key Problem Addressed
+
+Learning diverse and high-performance behaviors from a limited set of demonstrations is a grand challenge, as traditional imitation learning methods usually fail in this task because most of them are designed to learn one specific behavior even with multiple demonstrations.
+
+## Methodology
+
+The approach uses two main strategies:
+
+1. **Training Stability:** The method stabilizes reward learning by applying Wasserstein adversarial training within the latent space of the Wasserstein Auto-Encoder (WAE), and proposes latent Wasserstein adversarial training to further improve the consistency of the reward training stability.
+
+2. **Behavior Exploration:** A bonus enables the agent to collect data with more diverse behaviors via single-step archive exploration, resulting in the method called Wasserstein Quality Diversity Imitation Learning (WQDIL) with Single-Step Archive Exploration (SSAE).
+
+## Results
+
+The method significantly outperforms state-of-the-art IL methods, achieving near-expert or beyond-expert QD performance on challenging continuous control tasks derived from MuJoCo environments. The work was presented at AAMAS 2025 in Detroit, Michigan, USA, May 19 – 23, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0232b227-8896-4462-875a-3f40d401289b",
+  "isSidechain": false,
+  "promptId": "1521788e-f0d8-47b1-9d24-197e2774c2eb",
+  "type": "user",
+  "uuid": "5104f868-ed9f-4015-930d-e6923f6520bc",
+  "toolUseResult": {
+    "query": "WQDIL AAMAS 2025 wasserstein imitation diverse behaviors mode robot manipulation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Mf15zMJgBprgNTh15ExrdA",
+        "content": [
+          {
+            "title": "Imitation from Diverse Behaviors: Wasserstein Quality Diversity",
+            "url": "https://www.ifaamas.org/Proceedings/aamas2025/pdfs/p2271.pdf"
+          },
+          {
+            "title": "Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration",
+            "url": "https://arxiv.org/html/2411.06965"
+          },
+          {
+            "title": "Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration | Proceedings of the 24th International Conference on Autonomous Agents and Multiagent Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3709347.3743867"
+          },
+          {
+            "title": "[2411.06965] Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration",
+            "url": "https://arxiv.org/abs/2411.06965"
+          },
+          {
+            "title": "[2309.14225] HumanMimic: Learning Natural Locomotion and Transitions for Humanoid Robot via Wasserstein Adversarial Imitation",
+            "url": "https://arxiv.org/abs/2309.14225"
+          },
+          {
+            "title": "HumanMimic: Learning Natural Locomotion and Transitions for Humanoid Robot via Wasserstein Adversarial Imitation",
+            "url": "https://arxiv.org/html/2309.14225v4"
+          },
+          {
+            "title": "WQDIL: A New Approach to Imitation Learning",
+            "url": "https://www.linkedin.com/posts/abdullah-kasri_imitation-from-diverse-behaviors-wasserstein-activity-7315151431085281280-uSqB"
+          },
+          {
+            "title": "MotuBrain: An Advanced World Action Model for Robot Control",
+            "url": "https://arxiv.org/html/2604.27792v2"
+          },
+          {
+            "title": "Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration",
+            "url": "https://powerdrill.ai/discover/discover-Imitation-from-Diverse-cm3ext2oq5llz016ff3s1p8r5"
+          },
+          {
+            "title": "World Action Models are Zero-shot Policies",
+            "url": "https://arxiv.org/html/2602.15922v1"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about WQDIL and AAMAS 2025:\n\n## Overview\n\nWasserstein Quality Diversity Imitation Learning (WQDIL) improves the stability of imitation learning in the quality diversity setting with latent adversarial training based on a Wasserstein Auto-Encoder (WAE), and mitigates a behavior-overfitting issue using a measure-conditioned reward function with a single-step archive exploration bonus.\n\n## Key Problem Addressed\n\nLearning diverse and high-performance behaviors from a limited set of demonstrations is a grand challenge, as traditional imitation learning methods usually fail in this task because most of them are designed to learn one specific behavior even with multiple demonstrations.\n\n## Methodology\n\nThe approach uses two main strategies:\n\n1. **Training Stability:** The method stabilizes reward learning by applying Wasserstein adversarial training within the latent space of the Wasserstein Auto-Encoder (WAE), and proposes latent Wasserstein adversarial training to further improve the consistency of the reward training stability.\n\n2. **Behavior Exploration:** A bonus enables the agent to collect data with more diverse behaviors via single-step archive exploration, resulting in the method called Wasserstein Quality Diversity Imitation Learning (WQDIL) with Single-Step Archive Exploration (SSAE).\n\n## Results\n\nThe method significantly outperforms state-of-the-art IL methods, achieving near-expert or beyond-expert QD performance on challenging continuous control tasks derived from MuJoCo environments. The work was presented at AAMAS 2025 in Detroit, Michigan, USA, May 19 – 23, 2025."
+    ],
+    "durationSeconds": 15.264208328999986
+  },
+  "sourceToolAssistantUUID": "0232b227-8896-4462-875a-3f40d401289b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 125_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "5104f868-ed9f-4015-930d-e6923f6520bc",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 126_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PhaseOT demonstration curation for AAAI 2027",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 127 · 2026-05-13T11:50:15.016Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to conduct a thorough review. Let me synthesize my findings:
+
+## Key findings from my independent research:
+
+### 1. SOTA Verification
+- **SCIZOR (ICRA 2026)**: Verified. Transition-level filtering with 6 diagnostic categories, 54%/31% full/partial recovery, 52% detection rate. Crucially: does NOT handle multimodal demonstrations or mode discovery.
+- **SARM (ICLR 2026)**: Verified. Stage-aware reward modeling, 83% on T-shirt folding, requires NL annotations.
+
+
+- **CUPID (CoRL 2025)**: Verified. Uses influence functions with <33% curated data sufficing.
+- **DemInf (RSS 2025)**: Verified. MI-based approach that's policy-agnostic.
+- **RINSE (ICML 2025)**: Verified. Smoothness metrics achieving 16-20% improvement.
+- **QoQ (ICRA 2026)**: Verified. Influence functions reaching up to 23.2% on RoboMimic.
+- **DataMIL (May 2025)**: Verified. Datamodels approach scaling across 60+ tasks.
+- **FAKTUAL (2026)**: Verified. Uses signature kernel entropy.
+- **Shi et al. (arXiv 2507.06219)**: Verified. Distinguishes spatial vs. velocity multimodality, with 15% gains from velocity debiasing.
+
+I've confirmed all the cited papers exist and are accurately described—the previous FIDeL fabrication has been replaced with FLOAT/ARMADA, and I've verified CIQL, Cheng & Liu's robust Wasserstein barycenter work, and Gonzalez-Sanz & Avella Medina's breakdown properties. Now examining the core gap: SCIZOR and SARM both lack mode awareness, treating demonstrations uniformly and assuming linear task progression, which is where mode-aware curation becomes critical.
+
+Looking at the broader landscape—DemInf relies on global mutual information without mode conditioning, RINSE uses smoothness heuristics, CUPID applies influence functions without explicit mode handling, DataMIL is policy-driven but doesn't discover modes, and QoQ is influence-based without mode awareness. The genuine gap PhaseOT fills is that no existing method discovers and accounts for multiple valid strategy modes in demonstration curation.
+
+I should note WQDIL (AAMAS 2025) combines Wasserstein distance with diversity in imitation learning, but it's about learning diverse policies rather than curating demonstrations—a different problem that probably deserves mention in related work. TASOT (arXiv 2602.24138) also uses multi-...
+
+Continuing with the next chunk: TASOT applies multi-modal optimal transport for temporal segmentation in surgical robotics, which is a different domain and goal than what we're doing, but the OT-based phase-level analysis is conceptually related and worth citing as precedent.
+
+For venue timing, CoRL 2026 is impossible—abstract due in 13 days, paper in 16 days. AAAI 2027 looks feasible with abstract around late July and paper early August based on historical patterns. ICLR 2027 gives even more breathing room with an estimated September deadline.
+
+Now I'm checking the feasibility: 1400 GPU hours is reasonable for the scope, phase segmentation plus the Wasserstein distance computation is tractable, and diffusion policy training times are well-documented. The pipeline itself is clearly specified.
+
+Looking at novelty, the mode-aware phase-level scoring is genuinely novel—no existing work combines mode discovery with phase-level quality scoring within each mode. The Phase-Structured Wasserstein Distance is a clean formulation, and while it's not the full adapted OT, the clarification is honest about what it actually is.
+
+The phase-level importance weighting is a novel application that preserves good phases from otherwise flagged demos, sitting between SCIZOR's transition-level filtering and trajectory-level approaches. The phase-specific concentration inequality is a genuine theoretical contribution, though narrow—the assumption about phase-localized contamination is well-motivated by SCIZOR's failure taxonomy and RoboMimic's analysis, but direct validation will be crucial.
+
+There are still some loose ends: the venue mismatch with CoRL 2026 persists, WQDIL and TASOT should be added as references since they touch on related techniques, and phase segmentation robustness is now better addressed with K sensitivity analysis and fallback strategies. The experiment scope looks manageable for 8 pages, and I need to finish clarifying how this differentiates from SCIZOR.
+
+The core distinction is becoming clearer—SCIZOR handles transition-level recovery, but PhaseOT adds mode-awareness and semantic phase-level granularity, which is a real and verifiable gap. After seven rounds of refinement, the proposal feels solid: the landscape is comprehensive with 30+ verified references, the math is precise, the experiments target PhaseOT's unique strengths, and the claims are honest about what's novel versus what's combining existing techniques. The mode-awareness gap is genuine and independently validated. On novelty, this scores around 4—the mode-aware phase-level scoring with the clean PW₂ formulation is genuinely novel, though the individual components are established techniques being combined in a new way.
+
+Feasibility also lands at 4—the pipeline is clearly specified with realistic compute estimates and well-chosen benchmarks, and phase segmentation robustness is now addressed. The real test will be whether the Push-T bimodal experiment demonstrates the expected advantage over SCIZOR. Clarity is strong at 4 as well, with precise differentiation from competing methods and a focused experimental design. Impact is the constraint at 3.5—the field is crowded with 8+ methods at top venues in 2024-2026, and PhaseOT's advantage concentrates on multimodal tasks, potentially underperforming on non-multimodal problems where SCIZOR or CUPID might suffice. The practical significance ultimately hinges on how prevalent genuine multimodality is in real-world robot demonstrations.
+
+Averaging these scores gives 3.875, just below the 4.0 threshold. After six rounds of revision, the proposal has addressed nearly every fixable issue—the remaining concerns are fundamental to the approach itself rather than presentation problems. To meaningfully improve the impact score, I'd need stronger evidence that multimodal tasks are genuinely common in practice beyond Push-T, a more compelling case for why phase-level diagnosis matters in non-multimodal settings, or additional application scenarios that broaden the method's relevance.
+
+But reconsidering the experiments and evidence more carefully, the proposal actually demonstrates several layers of value beyond just multimodal tasks. The phase-level diagnosis provides more interpretable and actionable feedback than trajectory or transition-level methods even on standard benchmarks, and the phase-level importance weighting—which preserves good phases from otherwise-flagged demonstrations—could help across different task types. Combined with the mode-awareness component, this might have broader impact than I initially credited.
+
+Still, on the standard RoboMimic benchmarks like Can and Square, the incremental gains over SCIZOR are likely modest. The real strength lies in multimodal tasks, so that's where the impact narrative should anchor. I'll keep the impact score at 3.5 but acknowledge the potential upside.
+
+Now I'm reconsidering the venue fit more carefully. The deadline is extremely tight—abstract due in 17 days, paper in 20 days—and the user mentioned that from a theoretical perspective on demonstration filtering for VLA training, real-robot validation might not be necessary.
+
+But there's a persistent mismatch: this proposal is actually targeting AAAI 2027, not CoRL 2026, and that's been flagged repeatedly. The generator has been honest that CoRL 2026 is infeasible from scratch, yet the user explicitly asked for it. At this point in the review cycle, I think the right call is to maintain a "revise" recommendation but make clear that the fundamental venue misalignment is something the user needs to accept—it's not a problem the generator can solve. That said, for AAAI 2027 with 2.5 months to go, the idea is realistic: the pipeline is well-defined, the benchmarks are standard, and the compute budget of 1400 A100 hours is reasonable for a team with OT and robotics experience.
+
+The theoretical contributions are modest but derivable in that timeframe, and overall the proposal is genuinely strong—novel mode-aware approach, comprehensive experimental design, honest positioning. The main vulnerabilities are impact uncertainty in a saturated field and that persistent venue mismatch. With an average around 3.875, it's close to the 4.0 threshold but not quite there. After six rounds of feedback, the remaining issues aren't really fixable in the traditional sense: the venue choice is a strategic decision the user must make, and the impact concern is inherent to how the work sits in the landscape. I'll recommend "revise" with narrow, actionable feedback—adding WQDIL and TASOT to related work and tightening a few claims could push this over the line.
+
+I'm also double-checking the reference dates, which use arXiv's YYMM format, so 2507 is July 2025 and that's already past. The description of the Cheng & Liu algorithm was corrected from an earlier error to properly characterize it as a free-support IBP variant with fixed-point iteration. I should verify whether the proposal actually addressed the feedback from the previous round.
+
+Looking at the approach section, the segmentation robustness concern is thoroughly covered with subsections on over-segmentation, under-segmentation, K sensitivity, and phase alignment errors. The Push-T statistical power issue is also resolved—the proposal now specifies 206 demos with 20% noise injection, 5 random seeds per configuration, bootstrap resampling, and Wilcoxon signed-rank tests for significance. 
+
+Now I'm settling on my final scores: novelty gets a 4 out of 5 since the mode-aware phase-level scoring is genuinely novel even though individual components are established techniques, and feasibility also gets a 4 out of 5 given the well-specified pipeline, realistic computational requirements, and standard benchmarks with robustness concerns properly addressed.
+
+For clarity, I'm giving a 4 out of 5—the proposal is exceptionally well-structured with precise differentiation from competitors and clear mathematical formulation. Impact lands at 3.5 out of 5 because while the method is solid, the field is crowded with 8+ existing approaches, the advantage mainly applies to multimodal tasks, and practical impact hinges on how prevalent multimodality actually is in real-world datasets. That brings my average to 3.875, which falls just below the 4.0 threshold, so this warrants a revision recommendation. The main issues holding it back are the persistent venue mismatch, missing references to WQDIL and TASOT, and an impact narrative that could be strengthened to address the broader applicability question. Since we're at round 7 out of 10, there's still room to address these gaps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5104f868-ed9f-4015-930d-e6923f6520bc",
+  "isSidechain": false,
+  "requestId": "req_011CazWrxaevs3BLTJvK8QTg",
+  "type": "assistant",
+  "uuid": "40ae35c7-acd4-4414-9573-c7d115bbd071",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1JFJLEzLkFx2ZdSzKhKFX",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1084,
+      "cache_read_input_tokens": 78593,
+      "output_tokens": 6037,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1084,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6037,
+          "cache_read_input_tokens": 78593,
+          "cache_creation_input_tokens": 1084,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1084
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 128 · 2026-05-13T11:51:10.305Z_
+
+I've completed extensive independent research — verified 15+ references, confirmed the gap validity, checked for concurrent work, and assessed all major claims. Let me now compile my review.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 4, "rationale": "The mode-aware phase-level scoring gap is independently verified as real — SCIZOR, SARM, DemInf, RINSE, CUPID, QoQ, and DataMIL all treat demonstrations uniformly without discovering strategy modes. PW₂ is a clean formulation, and the combination of mode discovery + per-mode phase-level scoring is genuinely novel. However, individual components (spectral clustering, phase segmentation, Wasserstein distances) are all existing techniques composed together, and WQDIL (AAMAS 2025) already combines Wasserstein + diversity preservation in IL (different problem but weakens the 'first to combine OT with diversity' narrative)."},
+    "feasibility": {"score": 4, "rationale": "Pipeline is precisely specified with tractable computation (PW₂ is O(N²·K) Sinkhorn solves, feasible for RoboMimic-scale datasets). Phase segmentation robustness is now explicitly addressed with K sensitivity analysis, over/under-segmentation behavior, and uniform-window fallback. Benchmarks (RoboMimic, Push-T, Kitchen, LIBERO) are all publicly available. ~1400h A100 is realistic for the described experimental scope. Timeline to AAAI 2027 (~2.5 months) is achievable for a team with OT/robotics background."},
+    "clarity": {"score": 4, "rationale": "Exceptionally well-structured after 7 rounds. Four-stage pipeline is clearly described with explicit mathematical formulation. SCIZOR differentiation is now precise (6 categories acknowledged, 54%/31% recovery acknowledged, advantage argued on mode-awareness and semantic granularity, not on the mere existence of sub-trajectory capability). SARM differentiation is honest (complementary paradigms). Theoretical claims properly scoped (PW₂ vs. adapted OT clarified). Experimental design focused on unique capabilities."},
+    "impact": {"score": 3, "rationale": "The crowded field (SCIZOR, CUPID, DemInf, RINSE, QoQ, DataMIL, Demo-SCORE, FAKTUAL — 8 methods at top venues 2024-2026) sets an extremely high bar. PhaseOT's advantage concentrates specifically on multimodal tasks with phase-localized noise — on standard non-multimodal benchmarks (RoboMimic Can/Lift), improvements over SCIZOR may be marginal. Push-T (206 demos) is the strongest test case but is a single task; Kitchen has combinatorial multimodality but is less used in recent curation papers. The practical prevalence of genuine mode diversity requiring mode-aware curation (beyond Push-T) remains an open question that limits broader impact claims."}
+  },
+  "issues": [
+    "CoRL 2026 venue mismatch (7th consecutive flag): The user explicitly targets CoRL 2026 (abstract May 26, 13 days away; paper May 29, 16 days; deadlines are final). The proposal correctly identifies this as infeasible and targets AAAI 2027 (estimated abstract ~July 26, paper ~August 2). This is the right decision but does not satisfy the user's stated requirement. The user must explicitly accept this venue change — this is not something further revision can fix.",
+    "Missing related work — WQDIL (AAMAS 2025): 'Imitation from Diverse Behaviors: Wasserstein Quality Diversity Imitation Learning with Single-Step Archive Exploration' (arXiv 2411.06965) combines Wasserstein adversarial training with quality-diversity optimization to learn diverse behaviors from demonstrations. While WQDIL addresses a different problem (policy learning, not data curation), it combines Wasserstein + diversity preservation + imitation learning and should be cited to show awareness of the intersection. Failure to cite it weakens the 'first to use OT for diversity-aware IL' framing.",
+    "Missing related work — TASOT (arXiv 2602.24138, Feb 2026): 'Multimodal Optimal Transport for Unsupervised Temporal Segmentation in Surgical Robotics' uses OT for phase-level temporal segmentation in robotics. While it targets surgical video segmentation (not manipulation demo curation), it directly validates the OT-for-phase-decomposition principle in a robotics context and should be cited alongside Xu & Gould (CVPR 2024) as 'OT for temporal structure' precedent.",
+    "Impact narrative needs strengthening beyond Push-T: The mode-aware advantage is real but the paper leans heavily on Push-T (206 demos, explicitly bimodal) as the flagship. Reviewers may ask: 'How common is genuine mode diversity requiring mode-aware curation?' The proposal mentions Kitchen (different subtask orderings) but this is less documented as a mode-diversity problem in recent curation literature. Consider: (a) quantifying mode diversity prevalence across standard benchmarks (e.g., how many RoboMimic tasks exhibit multi-operator strategy diversity?), (b) arguing that mode awareness prevents a specific failure mode (minority strategy collapse) that is invisible to standard success-rate metrics but critical for deployment robustness, (c) citing Shi et al.'s 15% improvement from velocity debiasing as lower-bound evidence that mode-aware processing yields substantial gains.",
+    "Impact score drags the average below 4.0 threshold: With novelty=4, feasibility=4, clarity=4, impact=3, average=3.75. The impact limitation is partially intrinsic (advantage concentrates on multimodal tasks in a crowded field) and partially addressable (stronger prevalence arguments, broader applicability evidence).",
+    "Minor: The proposal could strengthen the phase-level importance weighting contribution by connecting it more explicitly to the 'preserving temporal coherence' argument. SCIZOR removes individual transitions which may break temporal coherence within a manipulation phase; PhaseOT's phase-level weighting maintains coherent phase segments. This is mentioned but could be emphasized with a concrete example (e.g., 'SCIZOR might remove 3 scattered frames from a 20-frame grasp phase, creating discontinuities; PhaseOT downweights the entire phase uniformly, preserving its internal dynamics')."
+  ],
+  "feedback": "The proposal has reached near-pass quality after 7 rounds — the landscape is genuinely best-in-class, the gap is independently verified, and the approach is precisely specified. The average score (3.75) is tantalizingly close to the 4.0 threshold, with impact as the sole drag. Here are focused suggestions for the final rounds:\n\n**Priority 1 — Boost the impact narrative (the only dimension below 4):**\n(a) Add a quantitative argument for mode diversity prevalence: analyze how many standard benchmarks exhibit multi-strategy demonstrations. RoboMimic MH has 6 operators in 3 quality tiers — do operators use systematically different strategies (e.g., different grasp approaches for Square)? If so, this is a natural multimodal task beyond Push-T. Kitchen has combinatorial subtask orderings — quantify how many distinct orderings exist in the D4RL dataset.\n(b) Frame mode awareness as a safety/robustness property, not just a performance metric: collapsing minority strategies during curation reduces the policy's coverage of valid action modes, making it brittle during deployment. This connects to broader robotics concerns about generalization and robustness.\n(c) Emphasize that phase-level diagnosis has utility beyond mode-aware curation — it provides actionable feedback for data collection ('re-demonstrate the grasp phase, your approach was fine'), which no existing method offers at this granularity without annotations.\n\n**Priority 2 — Cite WQDIL (AAMAS 2025) and TASOT (arXiv 2602.24138):**\nWQDIL: Position as 'Wasserstein for diverse behavior learning (policy-side), complementary to PhaseOT's Wasserstein for diverse data curation (data-side).' TASOT: Position alongside Xu & Gould (CVPR 2024) as 'OT for temporal phase decomposition in robotics, validated in surgical domain.'\n\n**Priority 3 — Resolve the venue mismatch transparently:**\nThis has been flagged 7 times. The generator cannot fix it — CoRL 2026 is 13 days away and impossible from scratch. The final proposal should state: 'CoRL 2026 main conference is infeasible. CoRL 2026 workshop paper is possible if a relevant workshop has a deadline after July 2026, but workshop-specific deadlines are not yet announced. Primary target: AAAI 2027 (~July 26 abstract, ~August 2 paper, based on historical patterns). Secondary: ICLR 2027 (~September 2026).' The user must then accept or reject this venue change.\n\n**What's working well and must be preserved:** Mode-aware gap verified as real (no competing method does this), comprehensive landscape (30+ verified references), precise SCIZOR/SARM differentiation, honest theoretical positioning, focused 4-experiment design, segmentation robustness analysis, two-tier computation strategy, realistic cost estimates.",
+  "reason": "Average score 3.75 (impact=3 drags below 4.0 threshold) — mode-aware gap is verified as genuinely novel but practical impact is uncertain in a crowded field with 8+ recent methods; impact narrative needs strengthening to demonstrate broader applicability beyond Push-T's explicit bimodality."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40ae35c7-acd4-4414-9573-c7d115bbd071",
+  "isSidechain": false,
+  "requestId": "req_011CazWrxaevs3BLTJvK8QTg",
+  "type": "assistant",
+  "uuid": "0693ee93-553a-4f01-a84b-4cc27c3dd691",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1JFJLEzLkFx2ZdSzKhKFX",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1084,
+      "cache_read_input_tokens": 78593,
+      "output_tokens": 6037,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1084,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6037,
+          "cache_read_input_tokens": 78593,
+          "cache_creation_input_tokens": 1084,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1084
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 129_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0693ee93-553a-4f01-a84b-4cc27c3dd691",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 130_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PhaseOT demonstration curation for AAAI 2027",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 131_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0693ee93-553a-4f01-a84b-4cc27c3dd691",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 132_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PhaseOT demonstration curation for AAAI 2027",
+  "sessionId": "84793084-1f79-472a-b57e-3d60d8446cc2"
+}
+```
+
+---

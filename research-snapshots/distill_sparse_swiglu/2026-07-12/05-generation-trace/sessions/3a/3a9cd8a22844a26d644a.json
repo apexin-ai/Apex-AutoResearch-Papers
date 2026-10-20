@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "3a9cd8a22844a26d644a",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/ Registry 工具",
+  "task_key": "c3531263-9e9c-43e4-8f45-2fbded6acba7",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/c3531263-9e9c-43e4-8f45-2fbded6acba7.jsonl",
+    "occurrence": 1,
+    "bytes": 1099448,
+    "sha256": "06527149c745c06c983be66b796419185f3075b2842db7c71b09cf2a468a5ba5"
+  },
+  "statistics": {
+    "messages": 257,
+    "user_turns": 1,
+    "tool_calls": 78,
+    "roles": {
+      "record": 48,
+      "user": 1,
+      "assistant": 52,
+      "tool_call": 78,
+      "tool_result": 78
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3a9cd8a22844a26d644a-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 255,
+      "chunks": [
+        {
+          "path": "3a9cd8a22844a26d644a-part-0001.json",
+          "message_count": 39
+        },
+        {
+          "path": "3a9cd8a22844a26d644a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3a9cd8a22844a26d644a-part-0003.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-home-ubuntu-agent-ml-research-idea-gen-0509-14-projects-distill-copy-4.md"
+}

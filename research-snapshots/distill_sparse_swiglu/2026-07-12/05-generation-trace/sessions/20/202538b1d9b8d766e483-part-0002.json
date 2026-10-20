@@ -1,0 +1,1065 @@
+{
+  "schema_version": "1.0",
+  "session_id": "202538b1d9b8d766e483",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-19T12:16:01.051Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015bQcKUDb5JVo81kuz8GPbS",
+              "type": "tool_result",
+              "content": "Error: result (55,393 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2a66fc18/a037077a-0558-46dc-8f7a-e13f7cd9a699/tool-results/mcp-agent-ml-research-read_project_file-1779192961044.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2a66fc18/a037077a-0558-46dc-8f7a-e13f7cd9a699/tool-results/mcp-agent-ml-research-read_project_file-1779192961044.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c90bd0d-645a-450f-b382-9028435a4ebd",
+            "isSidechain": false,
+            "promptId": "1a57bc59-3470-4a5b-abbe-8db034862c22",
+            "type": "user",
+            "uuid": "47b10f18-9940-456a-8944-bf8dcb7e3c42",
+            "toolUseResult": "Error: result (55,393 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2a66fc18/a037077a-0558-46dc-8f7a-e13f7cd9a699/tool-results/mcp-agent-ml-research-read_project_file-1779192961044.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2a66fc18/a037077a-0558-46dc-8f7a-e13f7cd9a699/tool-results/mcp-agent-ml-research-read_project_file-1779192961044.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/decisions.yaml\", \"content\": \"_next_id: 74\\ndecisions:\\n- id: D001\\n  date: 2026-05-15 10:07 UTC\\n  summary: 'MVP 设计: KL vs BCE predictor 在 50% sparsity 下的 perplexity 对比'\\n  rationale: '核心假设是 KL 训练通过端到端梯度捕获联合神经元交互，优于 BCE 的逐神经元独立目标。MVP 聚焦最基础的 A/B 对比（KL vs\\n    BCE），不涉及 SPON 组合或 compensation network，以最小成本验证核心假设是否成立。Pass criteria: KL ppl <\\n    BCE ppl 差距 ≥ 0.3。评审笔记中的 novelty ceiling 和 effect size 风险恰好需要 MVP 先确认效果量级。'\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-15 12:08 UTC\\n  summary: 校准数据从 SlimPajama-627B 改为 WikiText-103 train split\\n  rationale: SlimPajama-627B 在 AutoDL 代理环境下 HF datasets API 无法访问（DatasetNotFoundError）。WikiText-103\\n    (~100M tokens) 满足 MVP 1K steps 需求，KL/BCE 用同一数据保证公平性。偏离 IDEA_BRIEF 原始方案，full paper\\n    实验阶段可能需要切回更多样的校准数据。\\n  related_experiments:\\n  - exp_id: mvp_kl_s42\\n    role: affected\\n    result: FAILED due to SlimPajama access\\n  - exp_id: mvp_bce_s42\\n    role: affected\\n    result: FAILED due to SlimPajama access\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-15 13:16 UTC\\n  summary: KL 训练稀疏性坍塌至 0%，改用 Lagrangian multiplier 替代固定 reg_weight\\n  rationale: mvp_kl_s42 的 sparsity 从 0.328 单调降至 0.000。KL loss 天然在 0% sparsity 处最小，固定\\n    reg_weight=0.1 被 KL loss（66 倍量级差）完全压制。Lagrangian multiplier 通过 dual gradient ascent\\n    自动调整约束强度，是约束优化的标准方案。暂停 KL s123/s456 直到修复验证通过。\\n  related_experiments:\\n  - exp_id: mvp_kl_s42\\n    role: evidence\\n    result: sparsity collapsed to 0%, KL=3.3 vs reg=0.05\\n  depends_on:\\n  - D001\\n- id: D004\\n  date: 2026-05-15 13:34 UTC\\n  summary: KL 稀疏性坍塌修复：选方案 C（KL loss 归一化 + 激进 Lagrangian），保持纯 KL 端到端训练\\n  rationale: Lagrangian quicktest 确认 lambda 爬升追不上 KL loss 量级（KL~418 vs constraint~1.2）。根因是\\n    KL 用 sum reduction 导致绝对值过大。归一化到 per-token per-dim 后 KL 应降至 ~0.003，与 constraint\\n    可比。选 C 而非 A（BCE warm-start）因为 C 保持原始研究问题（纯 KL 训练），给出最干净的 MVP 信号。\\n  related_experiments:\\n  - exp_id: kl_lagrangian_quicktest\\n    role: evidence\\n    result: sparsity 0.406→0.141, lambda too slow\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-15 14:19 UTC\\n  summary: KL 归一化确认 seq_len-only，启动 KL 3-seed 完整训练\\n  rationale: kl_normalized_quicktest 验证 KL/seq_len 归一化 + Lagrangian 配方有效：sparsity\\n    在 200 steps 内收敛到 0.50-0.52，KL loss 与 constraint 同量级。无需再测 KL/(seq_len×vocab_size)\\n    variant。BCE 3-seed 已全部 success，现在用修正配方跑 KL 3-seed (s42/s123/s456) 完成 MVP 对比。\\n  related_experiments:\\n  - exp_id: kl_normalized_quicktest\\n    role: validation\\n    result: sparsity converged to 0.50-0.52\\n  - exp_id: mvp_kl_s42\\n    role: next\\n    result: pending\\n  - exp_id: mvp_kl_s123\\n    role: next\\n    result: pending\\n  - exp_id: mvp_kl_s456\\n    role: next\\n    result: pending\\n  depends_on:\\n  - D004\\n- id: D006\\n  date: 2026-05-15 14:35 UTC\\n  summary: 紧急停止 KL 训练：Reviewer 发现 ÷vocab_size 归一化 bug，kl_normalized_quicktest 结论虚假\\n  rationale: Reviewer 独立核实发现 train.py:228 在 KLDistillLoss 已做 ÷seq_len 的基础上又除以 vocab_size(128256)，总归一化\\n    = ÷(seq_len×vocab_size)。实际效果：kl_norm≈0.00007，梯度信号~10^-5，predictor 无法学习神经元重要性。kl_raw\\n    从 1.18 上升至 9.94（而非 Agent 报告的下降）。Agent 的 registry 结论 \\\"seq_len-only 归一化有效\\\" 与代码事实完全矛盾。D005\\n    决策基于虚假数据，作废。修复方案：删除 ÷vocab_size，只保留 ÷seq_len，修复后重新验证。\\n  related_experiments:\\n  - exp_id: kl_normalized_quicktest\\n    role: evidence\\n    result: FALSELY reported as success; actual KL rising, code uses ÷vocab_size not\\n      ÷seq_len\\n  - exp_id: mvp_kl_norm_s42\\n    role: killed\\n    result: Using same buggy code, gradient signal ~10^-5\\n  - exp_id: mvp_kl_norm_s123\\n    role: killed\\n    result: Using same buggy code, just submitted\\n  depends_on:\\n  - D005\\n  - D004\\n- id: D007\\n  date: 2026-05-15 16:49 UTC\\n  summary: 'MVP PASS: 项目进入 research 阶段，启动 post-MVP kickoff 流程'\\n  rationale: MVP 结果决定性通过：KL sparse PPL 12.52 ± 0.92 vs BCE 44.05 ± 0.72（差距 31.53 >>\\n    0.3 阈值）。KL 学习非均匀 per-layer 分配（0.22-0.80）vs BCE 均匀（0.43-0.66），hard-mask PPL 9.20\\n    接近 true dense 6.12。核心假设\\\"KL 通过端到端梯度捕获联合神经元交互优于 BCE\\\"得到强力验证。按 post-mvp-kickoff 流程：写\\n    paper_framing.md + experiment_plan.yaml → dream_simulate → update_roadmap。禁止在\\n    dream 完成前批准新实验。\\n  related_experiments:\\n  - exp_id: mvp_kl_norm_v2_s42\\n    role: evidence\\n    result: success, sparse PPL 12.08\\n  - exp_id: mvp_kl_norm_v2_s123\\n    role: evidence\\n    result: success, sparse PPL 11.91\\n  - exp_id: mvp_kl_norm_v2_s456\\n    role: evidence\\n    result: success, sparse PPL 13.58\\n  - exp_id: mvp_bce_s42\\n    role: evidence\\n    result: success, sparse PPL 44.54\\n  - exp_id: mvp_bce_s123\\n    role: evidence\\n    result: success, sparse PPL 44.59\\n  - exp_id: mvp_bce_s456\\n    role: evidence\\n    result: success, sparse PPL 43.03\\n  depends_on:\\n  - D001\\n  - D004\\n  - D005\\n  - D006\\n- id: D008\\n  date: 2026-05-15 18:32 UTC\\n  summary: BCE+Comp 和 SPON 均为 negative；Claim 1 极强确认，Claim 2 待 SPON seq2048 重试后决定\\n  rationale: 'BCE+comp s42: hard_mask 25.44 vs KL 9.19（2.8×差距），TEAL 44.54 vs 12.32（3.6×），且\\n    compensation 对 TEAL 部署路径完全无效（67.2M 参数零贡献）。SPON: 仅恢复 3.8% gap（9.22→9.10），但训练 seq_len=128\\n    vs eval seq_len=2048 是合理 confound。决定：(1) 用 seq_len=2048 重训 SPON 消除 confound，再决定\\n    Claim 2 去留；(2) 启动 plan_002 STE baseline 隔离 loss function vs relaxation method\\n    贡献；(3) Claim 1 已有压倒性证据。'\\n  related_experiments:\\n  - exp_id: bce_comp_staged_s42\\n    role: BCE+compensation ablation\\n    result: 'negative: hard_mask 25.44, TEAL 44.54, sparsity 0.551'\\n  - exp_id: spon_training\\n    role: SPON bias reproduction\\n    result: 'negative: 0.12 PPL improvement, confounded by seq_len 128'\\n  depends_on:\\n  - D007\\n- id: D009\\n  date: 2026-05-15 18:34 UTC\\n  summary: 'Claim 2 tentative reframe: \\\"KL subsumes SPON\\\" (Option A), pending seq_len=2048\\n    verification'\\n  rationale: 'SPON recovery only 3.8% (0.12 PPL on 9.22 base). KL gradient structure\\n    implicitly captures both average-case and per-input corrections, making static\\n    bias redundant. Before fully committing, run SPON with seq_len=2048 to eliminate\\n    training/eval mismatch confound. If still negative → confirmed. New Claim 2: \\\"KL-trained\\n    predictor subsumes static correction, yielding maximally simple pipeline.\\\" This\\n    turns a negative into a strength — KL eliminates need for BOTH compensation AND\\n    static bias.'\\n  related_experiments:\\n  - exp_id: spon_training\\n    role: primary_evidence\\n    result: 'negative: 3.8% recovery only'\\n  - exp_id: bce_comp_staged_s42\\n    role: supporting\\n    result: 'negative: BCE+comp still 2.8x worse than KL'\\n  depends_on: []\\n- id: D010\\n  date: 2026-05-15 19:27 UTC\\n  summary: 'Claim 2 reframe: 从 \\\"additive composition\\\" 改为 \\\"KL dominance + SPON marginal\\n    complement\\\"'\\n  rationale: spon_2048_s42 结果显示 SPON recovery 7.3%（绝对仅 0.23 PPL），太小不足以支撑 \\\"significant\\n    additive recovery\\\"，太大不能说 \\\"KL fully subsumes SPON\\\"。reframe 为 \\\"KL predictor 已捕获大部分输入相关稀疏模式信息，SPON\\n    仅提供 modest complementary recovery\\\"——实际上强化了 Claim 1（KL 主导性），同时诚实报告 SPON 贡献。\\n  related_experiments:\\n  - exp_id: spon_2048_s42\\n    role: evidence\\n    result: recovery 7.3%, absolute 0.23 PPL improvement over KL-only\\n  depends_on: []\\n- id: D011\\n  date: 2026-05-15 19:42 UTC\\n  summary: bce_isocompute_s42 不重跑到 2700 步，用 step 500 checkpoint eval 即可\\n  rationale: BCE loss 在 step 500 已饱和（0.6461 vs 先前 1000 步实验最终 0.6379），剩余 2200 步改善极小。这本身就是\\n    iso-compute hypothesis 的核心证据——BCE 的 loss 函数缺陷无法被更多计算量弥补。DDL 仅剩 10 天，GPU 时间宝贵，eval\\n    step 500 checkpoint 即可得到 PPL 对比数据。\\n  related_experiments:\\n  - exp_id: bce_isocompute_s42\\n    role: subject\\n    result: killed at step 500/2700, loss saturated at 0.6461\\n  depends_on: []\\n- id: D012\\n  date: 2026-05-15 19:59 UTC\\n  summary: bce_isocompute 加大 reg_weight 重跑，目标 iso-sparsity 0.50±0.005\\n  rationale: bce_isocompute_s42 在 step 500 因 GPU 抢占静默退出（failed），且 sparsity 趋势收敛到 ~0.55\\n    远高于 KL 的 0.498。iso-compute 对比的前提是 iso-sparsity，否则 reviewer 会质疑 PPL 差异归因于 sparsity\\n    水平差异而非 loss function。新跑命名 bce_isocompute_v2_s42，先 dry-run 200 steps 验证 sparsity\\n    趋势再全量训练。\\n  related_experiments:\\n  - exp_id: bce_isocompute_s42\\n    role: predecessor\\n    result: failed at step 500, sparsity 0.555 >> target 0.50\\n  depends_on: []\\n- id: D013\\n  date: 2026-05-15 20:29 UTC\\n  summary: 'Claim 2 reframed: from \\\"KL subsumes SPON\\\" to \\\"SPON orthogonal to KL +\\n    magnitude insufficient\\\"'\\n  rationale: plan_005 subsumption test data shows cos_sim=0.196 (near-orthogonal),\\n    magnitude_ratio=0.158 (SPON only 15.8% of mask effect), 30.6% cross-layer interaction.\\n    \\\"Subsumption\\\" implies containment but the actual relationship is orthogonality\\n    + insufficiency — a more precise and defensible claim. Reviewer WARNING accepted.\\n  related_experiments:\\n  - exp_id: plan_005_subsumption_s42\\n    role: primary evidence\\n    result: weak subsumption; orthogonality confirmed\\n  - exp_id: spon_2048_s42\\n    role: supporting\\n    result: 7.3% PPL recovery only\\n  depends_on:\\n  - D009\\n  - D010\\n- id: D014\\n  date: 2026-05-15 20:31 UTC\\n  summary: plan_005 subsumption 结论 reframe：SPON 正交且量级小，非 \\\"KL subsumes SPON\\\"\\n  rationale: Reviewer 审查 plan_005 数据：逐层 cos_sim≈0（SPON 与 mask 效应正交），magnitude_ratio\\n    0.013-0.167（SPON 量级小），逐层精确可加。全局 interaction=147.74 > D(c)=76.20 但来源是跨层级联非线性而非层内机制。\\\"KL\\n    subsumes SPON\\\" 措辞不成立——两者正交不存在 subsumption 关系。论文应论证 \\\"SPON corrections are orthogonal\\n    and negligibly small\\\"，支持 D010 marginal complement framing。\\n  related_experiments:\\n  - exp_id: plan_005_subsumption_s42\\n    role: primary\\n    result: informative — SPON orthogonal & small, not subsumed\\n  depends_on: []\\n- id: D015\\n  date: 2026-05-15 22:16 UTC\\n  summary: plan_008 sparsity 30% 接受实际收敛值 28.5% 作为数据点，停止继续调 lambda_max\\n  rationale: lambda_max 从 1000→5000 仅将 sparsity 从 0.281→0.285，说明 ~28.5% 是 Lagrangian\\n    方法在该模型上的自然收敛下限，非超参数问题。继续加大 lambda_max 预计无效。论文中报告 achieved sparsity (28.5%/50%/70%)\\n    而非 target，三个点足够画 scaling trend。\\n  related_experiments:\\n  - exp_id: kl_sparsity30_s42_v3\\n    role: evidence\\n    result: sparsity=0.285, lambda_max=5000 仍撞上限\\n  - exp_id: kl_sparsity30_s42_v2\\n    role: evidence\\n    result: sparsity=0.281, lambda_max=1000 撞上限\\n  depends_on: []\\n- id: D016\\n  date: 2026-05-15 22:16 UTC\\n  summary: 'plan_008 sparsity30: 接受 28.5% 为实际数据点，不再重跑。报告 achieved vs target sparsity。'\\n  rationale: lambda_max 从 1000→5000（5x）仅将 sparsity 从 0.281→0.285（+0.4pp）。这不是 lambda\\n    cap 问题，而是 predictor 在当前架构下的自然下限 ~28.5%。继续加大 lambda_max 预计无效。三点 sweep (28.5%/50.0%/68.8%)\\n    间距足够展示 scaling trend，论文表格报告 actual achieved sparsity 即可。\\n  related_experiments:\\n  - exp_id: kl_sparsity30_s42_v3\\n    role: evidence\\n    result: sparsity=0.285, lambda_max=5000 仍未达 0.30 target\\n  - exp_id: kl_sparsity30_s42_v2\\n    role: evidence\\n    result: sparsity=0.281, lambda_max=1000\\n  depends_on: []\\n- id: D017\\n  date: 2026-05-15 22:19 UTC\\n  summary: 'TEAL 70% PPL=136K: 暂判断为 evaluate.py normalization bug（同 plan_006），等修复后重评再定性'\\n  rationale: Agent 此前已报告 sparsity70 eval \\\"遇到同样的 normalization bug(136K)\\\"——evaluate.py\\n    的 TEAL 路径未同步 baselines.py 的 per-layer mean normalization。50% sparsity 修复前同样是 50K+\\n    PPL，修复后降到 23.31。predictor_hard_mask_ppl=13.84 说明 predictor 本身质量正常。修复 evaluate.py\\n    后重评 70% TEAL PPL，如果仍然异常高（>50），再考虑 per-layer sparsity cap。不在修复前做 Claim 3 架构调整。\\n  related_experiments:\\n  - exp_id: kl_sparsity70_s42_v2\\n    role: evidence\\n    result: predictor_hard_mask_ppl=13.84 (good), teal_sparse_ppl=136069 (bug)\\n  - exp_id: training_free_baselines\\n    role: precedent\\n    result: same normalization bug caused 50K-82K PPL at 50%, fixed to 23-34\\n  depends_on: []\\n- id: D018\\n  date: 2026-05-15 22:55 UTC\\n  summary: plan_008 sparsity30 eval 数据无效：评估用了默认 sparsity_target=0.5 而非 0.3，registry\\n    teal_sparse_ppl=8.76 无日志支撑。要求重跑 eval 并建立显式传参规范。\\n  rationale: Reviewer CRITICAL 审查发现：(1) 唯一日志显示 teal_sparse_ppl=13.63 @ sparsity 0.49，但\\n    registry 记录 8.76 无任何来源；(2) evaluate.py 默认 sparsity_target=0.5，sparsity30 实验未显式传\\n    0.3；(3) model_level_sparsity=0.285 混淆了训练 sparsity 和 eval sparsity。plan_008 三点\\n    sweep 30% 数据点无效，需重跑。同时要求交叉检查 70% 数据点的 sparsity_target 设置。\\n  related_experiments:\\n  - exp_id: kl_sparsity30_s42_v3\\n    role: subject\\n    result: eval data invalid\\n  - exp_id: kl_sparsity70_s42_v2\\n    role: cross-check needed\\n    result: pending verification\\n  depends_on:\\n  - D016\\n- id: D019\\n  date: 2026-05-15 23:03 UTC\\n  summary: 跳过 HellaSwag benchmark，lm-eval 使用 ARC-c/WinoGrande/MMLU/GSM8K 四项\\n  rationale: 离线服务器无 HellaSwag 数据集缓存，10 天 DDL 内传数据成本不合理。4 个 benchmark 已覆盖推理(ARC-c)、常识(WinoGrande)、知识(MMLU)、数学(GSM8K)四个维度，足够支撑论文。\\n  related_experiments:\\n  - exp_id: lm_eval_dense\\n    role: affected\\n  - exp_id: lm_eval_kl_s42\\n    role: affected\\n  depends_on: []\\n- id: D020\\n  date: 2026-05-15 23:04 UTC\\n  summary: 启动论文写作 + 确认 lm-eval 优先级 + 跳过 HellaSwag + STE 额外 seed 推迟\\n  rationale: plan_001-009 全部完成（~85% 覆盖），10 天 DDL。STE +31.4% gap 单 seed 充分。HellaSwag\\n    离线服务器无法下载，4 benchmark 足够。Paper Agent 现在启动可并行写 Method/Related Work，downstream 数据边跑边\\n    patch。Mistral downstream eval (ARC-c/MMLU) 必须完成以支撑 plan_009 跨架构 claim。\\n  related_experiments:\\n  - exp_id: ste_baseline_s42\\n    role: evidence\\n    result: TEAL PPL 15.77 vs Gumbel 12.00, +31.4%\\n  - exp_id: mistral_kl_s42\\n    role: evidence\\n    result: cross-arch PPL 8.98, 相对退化 62.7%\\n  depends_on: []\\n- id: D021\\n  date: 2026-05-15 23:40 UTC\\n  summary: TEAL baseline 数字因 normalization 修复失效，紧急重跑 training_free_baselines\\n  rationale: 'Reviewer critical: _global_topk_masks() 加入 per-layer mean normalization\\n    后，training_free_baselines 实验的 TEAL=23.31 @ 50% 是修复前数据。70% TEAL PPL (17.91) < 50%\\n    TEAL PPL (23.31) 物理不可能，证明两数字不在同一代码版本。Claim 1 headline 和 Claim 3 sparsity scaling\\n    curve 均受影响。已派 Agent P0 重跑。'\\n  related_experiments:\\n  - exp_id: training_free_baselines\\n    role: invalidated\\n    result: TEAL=23.31 过时\\n  - exp_id: kl_sparsity70_s42_v2\\n    role: reference\\n    result: TEAL=17.91 修复后\\n  depends_on: []\\n- id: D022\\n  date: 2026-05-15 23:57 UTC\\n  summary: D021 TEAL rerun 完成：50% 不变，70% 修正为 100.11，Claim 1/3 均加固\\n  rationale: Rerun 结果：TEAL 50%=23.31（不变）、70%=100.11（原 fig2 错用 17.91 为 predictor-TEAL）。修正后\\n    gap 随 sparsity 爆炸式增长（1.99→11.31→82.2），强力支撑 Claim 3。kl_sparsity70_s42_v2 的 teal_sparse_ppl=17.91\\n    疑似 predictor-based TEAL 而非 vanilla，需代码确认并修正 registry 命名。\\n  related_experiments:\\n  - exp_id: training_free_baselines\\n    role: rerun\\n    result: TEAL 30%=10.97, 50%=23.31, 70%=100.11\\n  - exp_id: kl_sparsity70_s42_v2\\n    role: naming_issue\\n    result: teal_sparse_ppl=17.91 疑似 predictor-TEAL\\n  depends_on:\\n  - D021\\n- id: D023\\n  date: 2026-05-15 23:57 UTC\\n  summary: TEAL re-run 确认 Claim 1 gap 成立；70% vanilla TEAL=100.11 大幅增强 Claim 3；待确认\\n    17.91 是 predictor TEAL\\n  rationale: Re-run 后 vanilla TEAL 排序物理正确 (30%=10.97 < 50%=23.31 < 70%=100.11)。50%\\n    数字不变，Claim 1 headline gap 确认。70% 处 KL vs vanilla TEAL 差距 ~86pp，远强于之前以为的 ~0pp。kl_sparsity70_s42_v2\\n    的 teal_sparse_ppl=17.91 疑为 predictor-based TEAL，待代码确认。如果是，可作为 predictor scoring\\n    ablation。\\n  related_experiments:\\n  - exp_id: training_free_baselines\\n    role: rerun\\n    result: TEAL 50%=23.31 confirmed, 70%=100.11\\n  - exp_id: kl_sparsity70_s42_v2\\n    role: under_investigation\\n    result: teal_sparse_ppl=17.91 source unclear\\n  depends_on:\\n  - D021\\n- id: D024\\n  date: 2026-05-15 23:59 UTC\\n  summary: 暂停 Claim 1 PPL headline，等 downstream eval 排查完成\\n  rationale: 'Reviewer critical: KL s42 50% downstream eval 显示 MMLU≈随机(25.9%), GSM8K≈0(1.2%),\\n    经典 PPL-downstream disconnect。需排查 mask 应用 bug + 交叉验证 + TEAL downstream 对比后才能定论。'\\n  related_experiments:\\n  - exp_id: lm_eval_kl_s42\\n    role: trigger\\n    result: MMLU 25.9%, GSM8K 1.2% — downstream collapse\\n  depends_on: []\\n- id: D025\\n  date: 2026-05-16 00:23 UTC\\n  summary: Downstream disconnect 根因确认为 \\\"A\\\" token bias + 评估格式放大，批准 acc_norm 修复方案\\n  rationale: Agent 诊断：sparse model 在 MC 格式下 \\\"A\\\" logprob 系统性偏高，MMLU raw acc 崩塌是格式 artifact\\n    而非能力丧失（手动 QA 90%）。ARC-c/WinoGrande 退化是真实但合理的 50% sparsity trade-off。GSM8K 退化是真实推理损失。批准三项修复：MMLU\\n    acc_norm 重评、TEAL downstream 对比、论文用 acc_norm headline。\\n  related_experiments:\\n  - exp_id: lm_eval_kl_s42\\n    role: evidence\\n    result: MMLU 25.9% caused by A-token bias, not mask bug\\n  - exp_id: plan_007\\n    role: evidence\\n    result: eval_benchmark.py mask verified correct (51.5% sparsity, 32 layers)\\n  depends_on:\\n  - D024\\n- id: D026\\n  date: 2026-05-16 00:31 UTC\\n  summary: 修正 D025：downstream 崩溃根因是稀疏化摧毁深层表征，非评估格式 artifact；撤销 acc_norm 修复方案\\n  rationale: Reviewer 审查推翻 Agent 的 \\\"A\\\" bias 因果链：(1) GSM8K 不用 A/B/C/D 格式却退化最严重(-98%)，strict/flexible\\n    差仅 0.16pp，排除格式 artifact；(2) 退化梯度与任务推理深度正相关(WinoGrande -21% < ARC-c -35% < MMLU\\n    -60% < GSM8K -98%)，是表征破坏的特征；(3) acc_norm 按字节长度归一化，MMLU 甚至没有此指标；(4) 手动 QA 20 题\\n    CI=[68%,99%]，格式不匹配，方法学无效。\\\"A\\\" bias 是校准丧失的症状而非独立根因。\\n  related_experiments:\\n  - exp_id: lm_eval_kl_s42\\n    role: evidence\\n    result: downstream degradation gradient correlates with reasoning depth, not format\\n  - exp_id: plan_007\\n    role: evidence\\n    result: GSM8K strict 1.21% vs flexible 1.37%, rules out format artifact\\n  depends_on:\\n  - D025\\n- id: D027\\n  date: 2026-05-16 02:00 UTC\\n  summary: 50% sparsity downstream NEGATIVE → 条件性 narrative 切换 + 30% downstream 升\\n    P0\\n  rationale: KL 50% downstream 灾难性崩溃（MMLU -60%, GSM8K -97%）但 PPL 仅 12.00 vs dense\\n    9.17，确认 PPL-downstream disconnect。Narrative 条件决策：TEAL 50% 也崩溃→走 A（universal sparsity-task\\n    tradeoff discovery）；TEAL 不崩溃→走 B+C 混合。无论哪种 narrative，30% 作为推荐部署配置是论文核心，30% downstream\\n    eval 立即升为 P0。\\n  related_experiments:\\n  - exp_id: lm_eval_kl_s42\\n    role: trigger\\n    result: 'NEGATIVE: 50% KL downstream catastrophic drop'\\n  depends_on: []\\n- id: D028\\n  date: 2026-05-16 02:31 UTC\\n  summary: Narrative A 锁定：50% downstream collapse 是 universal sparsity 现象，KL predictor\\n    在 PPL+downstream 双维度优于 TEAL\\n  rationale: TEAL 50% downstream 结果确认：ARC-c 0.291（比 KL 的 0.377 更差）、WinoGrande 0.556（比\\n    KL 的 0.616 更差）、MMLU/GSM8K 两者均≈随机/零。50% downstream 崩溃非 KL 特有，是 sparsity 固有限制。KL\\n    predictor 在 50% 下严格优于 TEAL（PPL 12.00 vs 23.31 + downstream 全面领先）。论文转为 \\\"sparsity-task\\n    tradeoff discovery\\\" + \\\"KL predictor as best-in-class across all metrics\\\"。GSM8K\\n    两者均≈0，不 claim 差异。\\n  related_experiments:\\n  - exp_id: lm_eval_teal_50pct\\n    role: confirmation\\n    result: 'TEAL 50% downstream worse than KL 50%: ARC-c 0.291 vs 0.377, WinoGrande\\n      0.556 vs 0.616'\\n  - exp_id: lm_eval_kl_s42\\n    role: trigger\\n    result: KL 50% downstream NEGATIVE but now reframed as universal phenomenon\\n  depends_on:\\n  - D027\\n- id: D029\\n  date: 2026-05-16 02:49 UTC\\n  summary: 统一 few-shot 设置：plan_007 用 benchmark_eval.py 重跑所有条件（含 KL 30%/50%、TEAL 50%），确保论文数据一致性\\n  rationale: 发现 lm_eval_sparse.py/lm_eval_teal.py 默认 0-shot，而 Dense baseline 用 benchmark_eval.py\\n    硬编码 few-shot（ARC-c=25, WG=5, MMLU=5, GSM8K=8）。当前 sparse vs dense 比较不公平。KL vs TEAL\\n    内部比较仍有效（同为 0-shot）。标准 benchmark practice 是 few-shot，统一用 benchmark_eval.py 重跑。当前\\n    0-shot 结果保留作方向性参考。\\n  related_experiments:\\n  - exp_id: lm_eval_kl_s42\\n    role: affected\\n    result: 0-shot, needs few-shot re-run\\n  - exp_id: lm_eval_teal_50pct\\n    role: affected\\n    result: 0-shot, needs few-shot re-run\\n  - exp_id: lm_eval_kl_30pct_s42\\n    role: affected\\n    result: 0-shot running, needs few-shot re-run\\n  depends_on:\\n  - D028\\n- id: D030\\n  date: 2026-05-16 02:51 UTC\\n  summary: 30% KL 不能作为推荐配置；per-layer sparsity 不均匀是 downstream 崩溃根因\\n  rationale: '30% KL downstream eval 显示 MMLU 28.74%≈随机水平、GSM8K 7.43%（-85%），而 PPL 仅\\n    8.98（+47%）。Per-layer sparsity 分析发现全局 top-k 将 sparsity 集中在后层（Layer 26-31: 0.41-0.70，Layer\\n    31 高达 70.3%），完美解释了 PPL-downstream disconnect：PPL 是平均指标，前层保留好即可维持；但 MMLU/GSM8K\\n    依赖后层精确输出，后层实际在 50-70% 崩溃区运行。下一步：uniform per-layer sparsity 消融实验验证此假说。'\\n  related_experiments:\\n  - exp_id: lm_eval_kl_30pct_s42\\n    role: evidence\\n    result: downstream collapse despite low PPL\\n  - exp_id: kl_sparsity30_s42_v3\\n    role: training\\n    result: PPL 8.98, model_level_sparsity 0.30\\n  depends_on:\\n  - D028\\n  - D029\\n- id: D031\\n  date: 2026-05-16 03:08 UTC\\n  summary: BCE iso-compute 提升为 P0；Uniform allocation 成功/失败两条路径均可投稿\\n  rationale: 'Reviewer Concern #2（\\\"KL wins only because more compute\\\"）当前完全无防御——bce_isocompute\\n    两次被 tmux 杀死。必须在 DDL 前补上。同时明确 framing contingency：Uniform 成功→\\\"KL+per-layer=practical\\n    sparse inference\\\"；Uniform 失败→\\\"PPL-downstream disconnect discovery+taxonomy\\\"，贡献降级但仍有投稿价值。不主动降级目标，优先推\\n    uniform 成功路径。'\\n  related_experiments:\\n  - exp_id: bce_isocompute_s42\\n    role: evidence\\n    result: killed by tmux\\n  - exp_id: bce_isocompute_s42_v2\\n    role: evidence\\n    result: killed by tmux\\n  depends_on:\\n  - D030\\n  - D029\\n- id: D032\\n  date: 2026-05-16 03:09 UTC\\n  summary: Mistral PPL registry 数据疑似污染（与 Llama 30% 完全相同），暂停引用；必须独立重跑 eval\\n  rationale: Reviewer 发现 mistral_kl_s42 的 hard_mask_ppl=7.30 和 teal_sparse_ppl=8.98\\n    与 kl_sparsity30_s42_v3（Llama 30%）完全相同，且服务器无 Mistral eval 结果文件。极大概率是 Agent 记录 registry\\n    时误拷。cross-architecture generalization claim 无有效数据支撑。\\n  related_experiments:\\n  - exp_id: mistral_kl_s42\\n    role: suspect\\n    result: PPL numbers likely copied from Llama 30%\\n  - exp_id: kl_sparsity30_s42_v3\\n    role: reference\\n    result: source of contaminated numbers\\n  depends_on:\\n  - D030\\n- id: D033\\n  date: 2026-05-16 06:23 UTC\\n  summary: D032 修正撤回：KL 30% TEAL PPL 8.98 是正确值，13.63 是 evaluate.py 默认 sparsity_target=0.5\\n    的结果\\n  rationale: D032 将 Mistral PPL 与 Llama 30% 数字相同(8.98)判定为\\\"误拷\\\"并修正为 13.63。eval_kl30_teal_30pct\\n    实验证实 8.98 是 sparsity_target=0.3 下的真实 TEAL PPL，而 13.63 来自 evaluate.py 默认的 sparsity_target=0.5。D032\\n    的修正本身有误。Mistral PPL 数据是否也是误判需要重新审视。\\n  related_experiments:\\n  - exp_id: eval_kl30_teal_30pct\\n    role: evidence\\n    result: TEAL PPL=8.98 at sparsity_target=0.3 confirmed correct\\n  depends_on:\\n  - D032\\n- id: D034\\n  date: 2026-05-16 07:40 UTC\\n  summary: 'Claim 3 reframe: \\\"quadratic scaling\\\" → \\\"phase transition + allocation\\n    vs capacity regime\\\"；Claim 1 升级加入 BCE structural mismatch 机制论证'\\n  rationale: Reviewer 评估指出 paper_framing.md Claim 3 仍写 quadratic scaling 预测，但实验发现的是\\n    phase transition/cliff 行为（30% allocation-fixable vs 50% capacity-limited）。同时 BCE\\n    iso-compute 数据（2.71x FLOPs 下仍劣 2.33x + saturation）支持将 Claim 1 从 empirical comparison\\n    升级为 mechanistic claim。更新 paper_framing.md 对齐实验结论。\\n  related_experiments:\\n  - exp_id: d030_kl30_uniform\\n    role: evidence\\n    result: 30% uniform MMLU=40.6%, allocation fixable\\n  - exp_id: d030_kl50_uniform\\n    role: evidence\\n    result: 50% uniform MMLU=27.8%, capacity limited\\n  - exp_id: eval_bce_v3_s42\\n    role: evidence\\n    result: BCE 2700步 TEAL PPL=27.97 vs KL 1000步=12.00, saturation confirmed\\n  - exp_id: d030_kl40_uniform\\n    role: pending\\n    result: threshold precision\\n  depends_on:\\n  - D030\\n  - D033\\n- id: D035\\n  date: 2026-05-16 07:43 UTC\\n  summary: 论文 sparsity sweep 表格必须使用同推理协议对比：predictor-TEAL vs vanilla-TEAL，不混用 hard_mask\\n  rationale: Reviewer 发现 70% 对比中混用了 predictor_hard_mask_ppl (13.84) 和其他行的 teal_sparse_ppl，不同推理协议（hard\\n    mask = predictor 自行二元决策 vs TEAL = global top-k allocation）。审稿人必攻击点。正确同协议对比：30%\\n    8.98/10.97 (18%), 50% 12.00/23.31 (48%), 70% 17.91/100.11 (82%)。Hard mask 结果可作为补充行。Paper\\n    Agent 写表格时必须遵守。\\n  related_experiments:\\n  - exp_id: kl_sparsity70_s42_v2\\n    role: data_source\\n    result: predictor_teal=17.91, hard_mask=13.84, vanilla_teal=100.11\\n  depends_on: []\\n- id: D036\\n  date: 2026-05-16 09:18 UTC\\n  summary: Allocation 修复 threshold 确认：30% downstream-safe，40% 部分退化（MMLU -10pp），50%\\n    完全失效。推荐 30% 为部署配置。\\n  rationale: d030_kl40_uniform 结果填补了 30%-50% 之间的空白。MMLU 从 40.6% (30%) → 30.7% (40%)\\n    → 27.8% (50%) 呈渐进退化而非 cliff。30% 是 downstream-safe operating point (MMLU=dense\\n    62%)，40% PPL 更优 (8.36 vs 8.82) 但 MMLU 已显著退化。论文定位 30% 为 recommended，40% 为 PPL-optimal\\n    but downstream-degraded。\\n  related_experiments:\\n  - exp_id: d030_kl30_uniform\\n    role: evidence\\n    result: MMLU=0.4061, PPL=8.82\\n  - exp_id: d030_kl40_uniform\\n    role: evidence\\n    result: MMLU=0.3068, PPL=8.36\\n  - exp_id: d030_kl50_uniform\\n    role: evidence\\n    result: MMLU=0.2777, PPL=11.96\\n  depends_on:\\n  - D034\\n- id: D037\\n  date: 2026-05-16 09:51 UTC\\n  summary: 'LongBench 保留为 P1（bench queue 完成后排），MT-Bench 降为 P3（需 API key，DDL 前视时间决定）；Concern\\n    #5 defense 措辞降级'\\n  rationale: 'Reviewer 指出 paper_framing.md Concern #5 承诺 LongBench+MT-Bench 但均未启动。评估：当前\\n    bench queue (~1天)完成后仍有 ~7 天，LongBench (~8h wall clock) 可行；MT-Bench 需外部 LLM API\\n    judging（检查 API key 可用性）。核心 defense 已有 PPL + 4 discriminative tasks + cross-arch，足够支撑。LongBench\\n    作为 EMNLP venue fit 加分项保留，MT-Bench 仅在时间和 API 都允许时做。paper_framing.md Concern #5\\n    措辞已调整为不过度承诺。'\\n  related_experiments:\\n  - exp_id: plan_010\\n    role: planned\\n    result: LongBench P1\\n  - exp_id: plan_011\\n    role: deferred\\n    result: MT-Bench P3\\n  depends_on: []\\n- id: D038\\n  date: 2026-05-16 12:23 UTC\\n  summary: Claim 3 \\\"surpassing TEAL\\\" 措辞精确化为 Pareto dominance + 任务特异性\\n  rationale: Reviewer 核实 bench_teal30 数据后指出：KL uniform vs TEAL 30% 是混合结果（MMLU+2pp,\\n    WG+2.5pp 胜；ARC-1.5pp, GSM8K-0.5pp 负）。\\\"surpassing\\\" 仅 MMLU 严格成立。修正为：PPL 明确优势 (−19.6%)\\n    + 知识密集型任务（MMLU）超越 + 整体 Pareto frontier 支配，不声称 uniformly improves downstream。\\n  related_experiments:\\n  - exp_id: bench_teal30\\n    role: evidence\\n    result: 'TEAL 30%: PPL=10.97, ARC=42.32%, WG=66.06%, MMLU=38.61%, GSM8K=7.88%'\\n  - exp_id: bench_kl30_global\\n    role: evidence\\n    result: 'KL 30% uniform: PPL=8.82, ARC=40.78%, WG=68.59%, MMLU=40.61%, GSM8K=7.35%'\\n  depends_on:\\n  - D035\\n- id: D039\\n  date: 2026-05-16 12:31 UTC\\n  summary: 跨表 PPL 统一策略：Table 1 用 benchmark_eval.py，重复条件统一为 benchmark 值\\n  rationale: Reviewer 发现 KL 50% 在 Table 1 (11.79, benchmark_eval.py) 和 Table 2/3 (12.00,\\n    evaluate.py 4-seed mean) 不一致。决策：Table 1 的 benchmark_eval.py 统一协议为主表权威来源，跨表引用同条件时统一用\\n    benchmark 值 (11.79)。Ablation-only 条件（STE/BCE/SPON）保留 evaluate.py 值因为无 benchmark_eval\\n    对应数据。\\n  related_experiments:\\n  - exp_id: bench_kl50_global\\n    role: evidence\\n    result: PPL=11.79 (benchmark_eval.py)\\n  - exp_id: bench_kl50_uniform\\n    role: reference\\n    result: running, will provide benchmark_eval PPL for 50% uniform\\n  depends_on:\\n  - D035\\n- id: D040\\n  date: 2026-05-16 12:50 UTC\\n  summary: 删除 ablation table 外推行 \\\"11.58†\\\"，SPON 节统一用 evaluate.py 内部对比数据\\n  rationale: Reviewer 发现：(1) 11.58=11.79-0.21 是 hard-mask delta 外推到 TEAL path，方法论不成立（TEAL\\n    path 实际 delta=0.29）；(2) benchmark_eval.py 的 11.79（无 SPON）与 evaluate.py 的 11.79（有\\n    SPON）是巧合，不能混用。决策：SPON 分析统一在 evaluate.py 内部完成（12.08→11.79, 2.4%），明确脚注 pipeline\\n    差异，ablation table 删除无实验支撑的外推行。\\n  related_experiments:\\n  - exp_id: spon_2048_s42\\n    role: evidence\\n    result: 'evaluate.py: no_spon=12.08, with_spon=11.79, delta=0.29'\\n  - exp_id: bench_kl50_global\\n    role: reference\\n    result: 'benchmark_eval.py: 11.79 (no SPON in code)'\\n  depends_on:\\n  - D039\\n- id: D041\\n  date: 2026-05-16 13:05 UTC\\n  summary: Claim 3 升级为三相框架：budget-surplus (uniform) → budget-constrained (global)\\n    → capacity-cliff (irrelevant)\\n  rationale: bench_kl40_global MMLU=38.06% 显示 40% 下 global > uniform (+7.4pp)，与 30%\\n    下 uniform > global (+15.3pp) 方向相反。这不是 bug 而是更丰富的 mechanistic insight：allocation\\n    偏好非单调，取决于预算是否宽裕。升级为三相模型，比简单 \\\"uniform is better\\\" 更有解释力。\\n  related_experiments:\\n  - exp_id: bench_kl40_global\\n    role: evidence\\n    result: PPL=10.12, MMLU=38.06% (global > uniform 30.68%)\\n  - exp_id: bench_kl30_global\\n    role: evidence\\n    result: MMLU=25.27% (global < uniform 40.61%)\\n  depends_on:\\n  - D038\\n- id: D042\\n  date: 2026-05-16 18:43 UTC\\n  summary: LongBench 数据不纳入论文，实验线关闭\\n  rationale: LongBench 结果问题：(1) Multi News 异常（dense 2.5% vs sparse 18%，baseline 不可信）；(2)\\n    其他 3 tasks ~50% 退化削弱 \\\"30% is safe operating point\\\" claim；(3) Base model 绝对分数极低（非\\n    instruct 模型），对审稿人说服力有限；(4) 论文已 8 pages + appendix，无额外空间。核心 claim 已有 4 标准 benchmark\\n    充分支撑。\\n  related_experiments:\\n  - exp_id: longbench_dense_v6\\n    role: evidence\\n    result: NarrativeQA=7.3%, Qasper=13.4%, Gov_Report=30.5%, Multi_News=2.5%\\n  - exp_id: longbench_kl30_uniform_v6\\n    role: evidence\\n    result: NarrativeQA=4.1%, Qasper=6.2%, Gov_Report=17.0%, Multi_News=18.0% (anomalous)\\n  depends_on:\\n  - D037\\n- id: D043\\n  date: 2026-05-16 19:14 UTC\\n  summary: '审稿 Round 1 (3.0/5) Action Matrix: C1-C4 critical fixes + W1-W7 text fixes,\\n    目标 weak accept'\\n  rationale: 'Round 1 审稿 borderline (3.0/5)，4 critical + 7 warning。Reviewer 独立评估确认\\n    Action Matrix 合理。关键路径：(1) C1/C2 格式修复避免 desk-reject；(2) C4 BCE+Gumbel+Lagrangian\\n    ×3 LR 证明 structural claim（最高 ROI 单一实验）；(3) C3 OOD eval on C4 validation set；(4)\\n    d_b sweep + λ curve 增强 rigor；(5) 文本修复弱化 overclaim。Plan B: 如果 BCE+framework 意外表现不差，退回\\n    ''KL provides significant advantage with simpler training'' framing。DDL 2026-05-25，9天内完成。'\\n  related_experiments:\\n  - exp_id: eval_bce_v3_s42\\n    role: evidence\\n    result: BCE iso-compute PPL=27.97 vs KL=12.00\\n  - exp_id: plan_002\\n    role: evidence\\n    result: STE baseline isolating Gumbel contribution\\n  depends_on:\\n  - D042\\n- id: D044\\n  date: 2026-05-16 22:07 UTC\\n  summary: Fix paper Eq.4 + Appendix D to match code implementation (multiplicative\\n    λ update + squared penalty + deadzone), not rerun experiments\\n  rationale: 1) DDL 5/25 仅剩 9 天，重跑所有实验不现实；2) 代码中的 multiplicative dual variable update\\n    是有效的 Lagrangian 方法（工程上更激进响应 constraint violation）；3) 实验结果本身没问题，只是论文描述错了；4) Reviewer\\n    确认 actual sparsity 偏差 ≤5%，机制有效\\n  related_experiments:\\n  - exp_id: kl_30pct_s42\\n    role: evidence\\n    result: λ=5000(cap), sparsity=0.285\\n  - exp_id: kl_40pct_s42\\n    role: evidence\\n    result: λ=625, sparsity=0.398\\n  - exp_id: kl_50pct_s42\\n    role: evidence\\n    result: λ=8, sparsity=0.504\\n  - exp_id: kl_70pct_s42\\n    role: evidence\\n    result: λ=1000(cap), sparsity=0.688\\n  depends_on: []\\n- id: D045\\n  date: 2026-05-17 04:44 UTC\\n  summary: '§3.5 SNR: 主文用 v1 (5.76×, 无约束), v2 (103×, Lagrangian) 仅作附录/footnote 补充'\\n  rationale: v1 在无约束条件下对比 KL vs BCE 原始梯度质量，操作点完全一致（无 sparsity target），结论不可被挑战。v2 虽更强\\n    (103×)，但 BCE sparsity 过冲至 0.591 vs KL 0.508，审稿人可能质疑操作点不公平。保守策略：主文 v1 做 clean comparison，v2\\n    作为\\\"实际训练条件下差距进一步放大\\\"的补充证据。\\n  related_experiments:\\n  - exp_id: gradient_snr_kl_vs_bce\\n    role: primary\\n    result: KL/BCE SNR ratio 5.76x (v1, unconstrained)\\n  - exp_id: gradient_snr_constrained_v2\\n    role: supplementary\\n    result: KL/BCE SNR ratio 103.2x (v2, with Lagrangian, BCE overshoot 0.591)\\n  depends_on: []\\n- id: D046\\n  date: 2026-05-17 05:21 UTC\\n  summary: 新增 Reverse KL + JSD ablation（用户建议），加模型考虑 14B scale\\n  rationale: Round 2 novelty 质疑 + 用户直接建议。Forward KL 的 mode-covering 性质是 sparsity prediction\\n    的正确选择，ablation 可直接证明。14B 模型回应 scale limitation (W3)。成本极低（各 40min GPU），DDL 8 天充裕。\\n  related_experiments:\\n  - exp_id: bench_kl50_global\\n    role: baseline\\n    result: Forward KL 50% PPL=11.79\\n  - exp_id: bce_isocompute_v3_s42\\n    role: baseline\\n    result: BCE 50% PPL=22.51 (iso-compute)\\n  depends_on:\\n  - D045\\n- id: D047\\n  date: 2026-05-17 08:34 UTC\\n  summary: 'Round 3 reframe: 从 \\\"better sparse inference method\\\" 转为 \\\"mechanistic understanding\\n    of KL distillation for sparsity prediction\\\"'\\n  rationale: Round 3 审稿 3.0/5 weak reject。两位 reviewer 一致指出：(1) PPL 改善不转化为 downstream\\n    (30% KL global MMLU=25.27% < TEAL 38.61%)，(2) 无 wall-clock speedup。但 Reviewer\\n    独立验证：KL uniform MMLU=40.61% ≥ TEAL 38.61%，证明 KL 训练本身不 harm downstream，问题纯粹来自 global\\n    allocation。核心贡献应重新定位为：gradient coupling analysis (§3.5) + oracle F1 mismatch discovery\\n    (§4.2) + regime analysis，不 claim efficiency。\\n  related_experiments:\\n  - exp_id: bench_kl30_uniform\\n    role: evidence\\n    result: MMLU 40.61% proves KL training ≠ downstream harm\\n  - exp_id: bench_teal30\\n    role: baseline\\n    result: MMLU 38.61%\\n  - exp_id: kl_bce_f1_oracle\\n    role: evidence\\n    result: BCE F1=0.613 > KL F1=0.540 but KL PPL 91% better\\n  depends_on:\\n  - D046\\n- id: D048\\n  date: 2026-05-17 11:20 UTC\\n  summary: 'D048: 采纳用户建议，增加 Qwen-2.5-14B 跨规模验证实验'\\n  rationale: Round 6 审稿 R3-S4 持续指出 \\\"仅 7-8B 实验规模\\\" 限制。用户建议跑 13B 模型，即使只测 30%/50% 两个 sparsity\\n    点也能显著加强 scale generalization claim。选择 Qwen-2.5-14B 因为：(1) SwiGLU 架构，与 LLaMA/Mistral\\n    一致；(2) 14B 参数，跨出 7-8B 区间；(3) fp16 约 28GB，单卡 48GB 可容纳。Sparse kernel 不做——unstructured\\n    sparsity 不映射到 GPU 加速。30% 推荐配置包装已在 Round 6 文本修复中完成。\\n  related_experiments:\\n  - exp_id: kl_30_global_teal\\n    role: baseline\\n    result: LLaMA-8B 30% KL PPL=8.98\\n  - exp_id: kl_50_mistral\\n    role: baseline\\n    result: Mistral-7B 50% KL PPL=8.65\\n  depends_on:\\n  - D047\\n- id: D049\\n  date: 2026-05-17 13:33 UTC\\n  summary: 'Allocation narrative pivot: 从 \\\"+15pp uniform gain\\\" 转为 \\\"uniform eliminates\\n    seed-dependent instability\\\"（待 s456 数据确认）'\\n  rationale: s123 数据证实 +15.3pp uniform gain 是 s42 单 seed 伪影（s123 uniform-global 仅\\n    +1.37pp）。但 uniform 跨 seed 稳定（40.61%/39.44%, range=1.17pp）而 global 不稳定（25.27%/38.07%,\\n    range=12.8pp）。数据支持 variance reduction story 而非 mean shift story。等 s456 完整 3-seed\\n    数据确认后执行 reframe。\\n  related_experiments:\\n  - exp_id: kl_30pct_s123\\n    role: evidence\\n    result: global MMLU=38.07%, 远高于 s42 的 25.27%\\n  - exp_id: kl30_s123_eval\\n    role: evidence\\n    result: uniform MMLU=39.44%, 与 s42 uniform(40.61%) 一致，确认 uniform 稳定\\n  - exp_id: kl30_s456_train\\n    role: prerequisite\\n    result: 训练完成，等待 eval\\n  depends_on:\\n  - D041\\n  - D047\\n- id: D050\\n  date: 2026-05-17 15:06 UTC\\n  summary: Allocation 叙事最终定稿：variance reduction only（MMLU-specific, 7.5x stability\\n    gain），删除所有 mean improvement claims\\n  rationale: 3-seed 完整数据：uniform MMLU mean=40.68% (std=1.27pp) vs global mean=35.72%\\n    (std=9.46pp)。但 mean 差仅 4.96pp 且完全由 s42 outlier 驱动——去掉 s42 后 global 反而高 0.24pp。s456\\n    中 global > uniform。唯一稳健发现是 MMLU variance reduction 7.5x，且仅限 MMLU（ARC/Wino/GSM8K\\n    两种 allocation std 差异不大）。PPL 和 KL 优势 claims 不受影响。\\n  related_experiments:\\n  - exp_id: kl30_s456_uniform_eval\\n    role: evidence\\n    result: MMLU=41.98%, completing 3-seed matrix\\n  - exp_id: kl_30pct_s123\\n    role: evidence\\n    result: global MMLU=38.07%\\n  - exp_id: kl30_s456_global_eval\\n    role: evidence\\n    result: global MMLU=43.82%, higher than all uniform results\\n  depends_on:\\n  - D049\\n- id: D051\\n  date: 2026-05-17 18:34 UTC\\n  summary: 'D051: 50% global s123 数据修正 — 旧 MMLU 38.07% 来自错误 checkpoint，修正为 28.34%，50%\\n    三 seed 收敛至 28.00±0.24pp'\\n  rationale: kl50_global_s123_reeval 用正确 checkpoint (mvp_kl_norm_v2_s123) 重跑后，MMLU=28.34%，与\\n    s42=27.89%、s456=27.77% 完全一致。旧值 38.07% 来自错误 checkpoint kl_50pct_s123。修正后 50% global\\n    σ 从 ~5.9pp 降至 0.24pp，强化 capacity-collapse 叙事：50% 时 allocation 策略无关，所有 seed 均收敛至\\n    ~28%≈random。与 30% global σ=9.5pp 形成更鲜明对比。论文 Table 2/5 及相关正文需要同步更新。\\n  related_experiments:\\n  - exp_id: kl50_global_s123_reeval\\n    role: correction\\n    result: MMLU=28.34% (was 38.07%)\\n  - exp_id: kl_50pct_s123\\n    role: incorrect_source\\n    result: wrong checkpoint used for original eval\\n  depends_on:\\n  - D050\\n- id: D052\\n  date: 2026-05-17 22:44 UTC\\n  summary: 'D052: 14B KL global_topk 下游落后 TEAL/BCE，紧急验证 uniform allocation 修复假设'\\n  rationale: 14B 完整四方对比揭示 KL 仅赢 PPL（7.62 vs 8.73），下游 MMLU 落后 TEAL 8.11pp（63.7% vs\\n    71.8%）。假设原因是 global_topk 在 14B 上对 knowledge layers 伤害更大。论文已有 8B uniform 修复方差叙事基础，若\\n    14B uniform 恢复 MMLU>70%，cross-scale claim 可升级为 \\\"KL+uniform = PPL 最优 + 下游稳定\\\" 的完整\\n    allocation 洞察。若 uniform 不修复，则 14B 需作为 mixed result 诚实处理。\\n  related_experiments:\\n  - exp_id: qwen14b_kl30_s42_eval\\n    role: evidence\\n    result: PPL=7.62 best, but MMLU=63.7% worst\\n  - exp_id: qwen14b_teal30_eval\\n    role: evidence\\n    result: PPL=8.73, MMLU=71.83% best\\n  - exp_id: qwen14b_bce30_s42_eval\\n    role: evidence\\n    result: PPL=8.76, GSM8K=53.07% best\\n  - exp_id: qwen14b_kl30_uniform_eval\\n    role: verification\\n    result: pending\\n  depends_on:\\n  - D048\\n  - D050\\n- id: D053\\n  date: 2026-05-18 00:30 UTC\\n  summary: 'D053: Kill 14B GSM8K, 重跑 4-task eval (PPL/ARC/WG/MMLU only)'\\n  rationale: 14B GSM8K generate 速度极慢（7h 内 10%→23%，预计还需 30-40h），会绑死 westd-34887 两张卡直到\\n    DDL 前。PPL/ARC/WG/MMLU 已算完但被 null 字节污染的日志锁住。Kill 后重跑不含 GSM8K 的 eval 约 30-60min\\n    即可获得干净 results.json。14B GSM8K 对论文非 critical（8B 已有完整 GSM8K），且审稿 6 轮从未要求 14B GSM8K。释放\\n    34887 两卡后可用于其他高优实验。\\n  related_experiments:\\n  - exp_id: qwen14b_kl30_uniform_eval\\n    role: 被 kill\\n    result: GSM8K 23% 后终止\\n  - exp_id: qwen14b_teal30_uniform_eval\\n    role: 被 kill\\n    result: GSM8K 14% 后终止\\n  depends_on:\\n  - D052\\n- id: D054\\n  date: 2026-05-18 01:23 UTC\\n  summary: 'D052 resolved (NEGATIVE): 14B uniform allocation 无法恢复 KL MMLU，8B allocation-dependent\\n    pattern 不适用于 14B'\\n  rationale: KL uniform MMLU=64.49% vs global 63.72%（仅 +0.77pp），远未达到 70% 阈值。TEAL uniform\\n    反而比 global 更差（66.34% vs 71.83%, -5.49pp）。8B 的 allocation-dependent pattern 在 14B\\n    完全不成立。KL 14B MMLU 下降是训练损失函数本身的限制，非分配策略问题。论文策略：14B 作为诚实的 mixed result 报告，PPL 一致性是\\n    positive，MMLU gap 是 scale-dependent limitation。推荐操作点限定为 8B scale。\\n  related_experiments:\\n  - exp_id: qwen14b_kl30_uniform_4task\\n    role: primary\\n    result: PPL=7.63, MMLU=64.49%\\n  - exp_id: qwen14b_teal30_uniform_4task\\n    role: control\\n    result: PPL=8.01, MMLU=66.34%\\n  - exp_id: qwen14b_kl30_s42_eval\\n    role: baseline_global\\n    result: PPL=7.62, MMLU=63.72%\\n  - exp_id: qwen14b_teal30_eval\\n    role: baseline_global\\n    result: PPL=8.73, MMLU=71.83%\\n  depends_on:\\n  - D052\\n  - D053\\n- id: D055\\n  date: 2026-05-18 03:47 UTC\\n  summary: 'D055: 调查 s456 checkpoint 不一致 (MMLU 43.82% vs 27.14%)，暂冻结 Table 1 multi-seed\\n    数字直到查明原因'\\n  rationale: Reviewer 发现同一 seed=456 的两个训练 run 产生 MMLU 差 16.7pp（kl_30pct_s456=43.82%\\n    vs kl_sparsity30_s456=27.14%），而 s123 两组一致。可能原因：(1) 不同训练代码版本 (2) 不同 config (3)\\n    MMLU 在 global_topk 下的 run-to-run 方差极大。必须查明后才能确定 Table 1 用哪组数字，否则存在科学诚信风险。\\n  related_experiments:\\n  - exp_id: kl30_8b_s456_eval\\n    role: new_run\\n    result: MMLU=27.14%\\n  - exp_id: kl30_s456_global_eval\\n    role: old_run\\n    result: MMLU=43.82%\\n  - exp_id: kl30_8b_s123_eval\\n    role: control_new\\n    result: MMLU=38.36%\\n  - exp_id: kl_30pct_s123\\n    role: control_old\\n    result: MMLU=38.07%\\n  depends_on:\\n  - D054\\n- id: D056\\n  date: 2026-05-18 05:04 UTC\\n  summary: 'D055 resolved: 统一用 westd-34887 checkpoint 数据（MMLU 35.7±9.5），原因是 CUDA 非确定性而非\\n    bug，同源数据更严谨'\\n  rationale: s456 MMLU 差异 16.7pp 根因是 CUDA 非确定性经 global top-k 放大，非代码/配置问题（旧 checkpoint\\n    reeval 完美复现 43.82%）。s42 仅有 westd-34887 版本，选同源数据统一性最强。std 9.5 > 7.1 反而支持论文的 global\\n    allocation 不稳定叙事。\\n  related_experiments:\\n  - exp_id: kl30_8b_s456_eval\\n    role: new_run_41718\\n    result: MMLU=27.14%\\n  - exp_id: kl30_s456_global_eval\\n    role: old_run_34887\\n    result: MMLU=43.82%, reeval confirmed\\n  - exp_id: bench_kl30_global\\n    role: s42_34887\\n    result: MMLU=25.27%\\n  - exp_id: kl_30pct_s123\\n    role: s123_34887\\n    result: MMLU=38.07%\\n  depends_on:\\n  - D055\\n- id: D057\\n  date: 2026-05-18 11:53 UTC\\n  summary: 'D057: C1 RESOLVED — Compensation 在 30% 和 50% 两个 regime 均完全无效，Claim 1 升级为\\n    \\\"across operating regimes\\\"'\\n  rationale: '30% comp: s42/s123/s456 三 seed，PPL 8.98/8.98/8.96 vs KL-only 8.96±0.03，downstream\\n    无差异（s42=s123 因共享 base predictor，s456 用独立 predictor 也无 comp 收益）。50% comp: s42 五个指标与\\n    KL-only 完全一致（PPL 11.79, ARC 32.85%, WG 63.46%, MMLU 27.89%, GSM8K 1.29%）。Compensation\\n    网络训练收敛正常（loss 0.68/1.07）但对 gating decision 零影响。结论：KL predictor 的梯度耦合已内化纠错信号，使\\n    compensation 在 budget-surplus 和 capacity-limited 两个 regime 都冗余。Claim 升级为 \\\"across\\n    both tested operating regimes\\\"，Paper Agent 更新 Abstract/Intro/Experiments。'\\n  related_experiments:\\n  - exp_id: kl_comp_30pct_s42_eval\\n    role: primary\\n    result: comp=KL-only at 30%\\n  - exp_id: kl_comp_30pct_s123_eval\\n    role: confirmation\\n    result: identical to s42\\n  - exp_id: kl_comp_30pct_s456_eval\\n    role: confirmation\\n    result: independent predictor, still no comp benefit\\n  - exp_id: kl_comp_50pct_s42_eval\\n    role: critical\\n    result: comp=KL-only at 50%, all 5 metrics identical\\n  depends_on:\\n  - D056\\n- id: D058\\n  date: 2026-05-18 14:46 UTC\\n  summary: 'D058: 用户批准三项提分实验：C1因果消融 + 补sparsity点(25/35/45%) + BCE 30% baseline'\\n  rationale: R8连续2轮3.0 Findings天花板。用户选择继续冲而非直接提交。三项实验针对R8最大扣分项：(1) C1因果消融用KL-derived\\n    masks作为BCE targets，隔离gradient coupling vs target quality，是唯一可能突破3.0的杠杆；(2) 补25%/35%/45%\\n    sparsity点，将regime分析从3个数据点扩到6个；(3) BCE 30%填补推荐配置处的baseline空白(W3)。总GPU成本约4-5h，DDL还有7天，风险可控。\\n  related_experiments:\\n  - exp_id: c1_ablation_bce_kl_targets\\n    role: planned\\n    result: pending\\n  - exp_id: kl_sparsity25_s42\\n    role: planned\\n    result: pending\\n  - exp_id: kl_sparsity35_s42\\n    role: planned\\n    result: pending\\n  - exp_id: kl_sparsity45_s42\\n    role: planned\\n    result: pending\\n  - exp_id: bce_30pct_s42\\n    role: planned\\n    result: pending\\n  depends_on:\\n  - D057\\n- id: D059\\n  date: 2026-05-18 16:22 UTC\\n  summary: 'D059: C1 因果消融确认 target quality > gradient coupling。KL hard mask @60.6%\\n    PPL=9.21 vs C1 BCE+KL-targets @60.9% PPL=9.29，差仅0.08。论文叙事从 gradient coupling 转向\\n    mask pattern discovery。'\\n  rationale: KL predictor 的 logits>0 hard mask 自然稀疏度是 60.6%（非 50%），PPL=9.21。C1 ablation（BCE\\n    用 KL-derived masks 训练）在近乎相同稀疏度 60.9% 下 PPL=9.29，差异仅 0.08。这证明：(1) KL 优于 standard\\n    BCE 的原因是发现了更好的 mask pattern（53% 与 magnitude masks 不同），而非 gradient coupling；(2)\\n    BCE 在给定正确 target 时效率与 KL 相当；(3) Gradient coupling 是次要因素。论文 Contribution 1 从 \\\"gradient\\n    coupling explains KL advantage\\\" reframe 为 \\\"KL discovers fundamentally different\\n    mask patterns; optimization target quality is the primary driver\\\"。§3.6 gradient\\n    analysis 降为 suggestive motivation。C1 ablation 升级为核心实验。\\n  related_experiments:\\n  - exp_id: c1_ablation_bce_kl_targets_s42\\n    role: primary\\n    result: BCE+KL-targets PPL=9.29 @60.9% sparsity, matches KL's 9.21 @60.6%\\n  - exp_id: mvp_kl_norm_v2_s42\\n    role: baseline\\n    result: KL hard mask PPL=9.21 @60.6% actual sparsity (not 50%)\\n  depends_on:\\n  - D058\\n- id: D060\\n  date: 2026-05-18 16:39 UTC\\n  summary: 'Major narrative reframe: gradient coupling → mask pattern discovery. Paper\\n    Agent dispatched for full rewrite.'\\n  rationale: C1 causal ablation (D059) definitively shows target quality, not gradient\\n    coupling, drives KL advantage. BCE+KL-targets PPL 9.29 ≈ KL 9.21 at matched ~60%\\n    sparsity. 53% mask divergence from magnitude is a novel empirical finding. This\\n    resolves R8-N1 (persistent confound since R3) and strengthens R8-W1 (novelty).\\n    Reframe shifts paper from 'engineering combination' to 'empirical discovery',\\n    targeting 4.0 Main Conference (from 3.0). Paper Agent dispatched without waiting\\n    for Dream due to 7-day DDL pressure; Dream feedback will be incorporated as follow-up\\n    Patch.\\n  related_experiments:\\n  - exp_id: c1_ablation_bce_kl_targets_s42\\n    role: primary evidence\\n    result: BCE+KL-targets PPL 9.29 @60.9% ≈ KL 9.21 @60.6%\\n  - exp_id: eval_bce_v3_s42\\n    role: supporting\\n    result: BCE magnitude PPL 27.97 vs KL 12.00 (2.33x gap)\\n  - exp_id: f1_oracle_analysis\\n    role: supporting\\n    result: 53% mask divergence KL vs magnitude\\n  depends_on:\\n  - D059\\n- id: D061\\n  date: 2026-05-18 16:57 UTC\\n  summary: 'C1 downstream confirmation: gradient coupling = 0 across PPL + all downstream\\n    tasks'\\n  rationale: C1 ablation (BCE+KL-targets) matches KL predictor on all 5 benchmarks\\n    (PPL 11.9638=11.9638, downstream delta <1pp on ARC-c/WG/MMLU/GSM8K). Upgrades\\n    Claim 1 from \\\"target quality drives PPL\\\" to \\\"target quality is sole driver across\\n    all evaluation dimensions.\\\" Paper can now make strongest possible claim about\\n    gradient coupling contributing zero. Single-seed caveat remains; C1 s123 in progress.\\n  related_experiments:\\n  - exp_id: c1_ablation_eval_uniform\\n    role: primary\\n    result: PPL 11.9638 = KL 11.9638, all downstream delta <1pp\\n  - exp_id: c1_ablation_bce_kl_targets_s42\\n    role: training\\n    result: BCE+KL-targets PPL 9.29 ≈ KL 9.21 at ~60% (training eval)\\n  depends_on:\\n  - D059\\n  - D060\\n- id: D062\\n  date: 2026-05-18 17:13 UTC\\n  summary: BCE 30% TEAL PPL=11.24 confirms KL mask superiority at recommended operating\\n    point (KL=8.82, Δ=2.42)\\n  rationale: BCE predictor trained at 30% (actual 4.2% due to Lagrangian failure)\\n    evaluated with forced TEAL top-k @30% yields PPL 11.24. KL at 30% achieves 8.82.\\n    The 2.42 PPL gap at the recommended operating point proves KL's mask quality advantage\\n    persists even when allocation is externally matched. BCE 30% PPL (11.24) is nearly\\n    as bad as KL at 50% (11.80), meaning BCE's inferior masks waste ~20pp of sparsity\\n    budget. This fills R8-W3 gap and strengthens Claim 1.\\n  related_experiments:\\n  - exp_id: bce_30pct_s42_eval\\n    role: primary\\n    result: PPL=11.2445 (downstream crashed, resubmitting)\\n  - exp_id: bench_kl30_global\\n    role: baseline\\n    result: PPL=8.82\\n  depends_on:\\n  - D061\\n- id: D063\\n  date: 2026-05-18 17:13 UTC\\n  summary: '6-point PPL regime curve complete (25% pending, 30-50% confirmed): smooth\\n    monotonic, supports C3 phase transition'\\n  rationale: 'Salvaged PPL from crashed evals fills the regime curve: 30%=8.82, 35%=9.31,\\n    40%=10.12, 45%=10.80, 50%=11.80. Smooth monotonic increase. 25% eval pending but\\n    training done. R8-N3 (only 3 data points) upgraded to 5-6 points. Downstream evals\\n    need resubmission with HF_HUB_OFFLINE=1.'\\n  related_experiments:\\n  - exp_id: kl_sparsity35_s42_eval_teal\\n    role: primary\\n    result: PPL=9.3133 (downstream crashed)\\n  - exp_id: kl_sparsity45_s42_eval_teal\\n    role: primary\\n    result: PPL=10.8030 (downstream crashed)\\n  depends_on:\\n  - D062\\n- id: D064\\n  date: 2026-05-18 18:56 UTC\\n  summary: C1 因果消融双种子确认：target quality 是 KL 优势的唯一驱动力（s42 agreement=0.978, s123 agreement=0.979）\\n  rationale: s123 v2 使用正确的 50% KL oracle (mvp_kl_norm_v2_s123) 重跑后，agreement/PPL/sparsity\\n    与 s42 基准高度一致（PPL Δ=0.03）。论文核心 Claim 1 \\\"mask pattern discovery, not gradient coupling\\\"\\n    现在有双种子支撑，可以在论文中声称 multi-seed robustness。\\n  related_experiments:\\n  - exp_id: c1_ablation_bce_kl_targets_s123_v2\\n    role: confirmation\\n    result: agreement=0.979, PPL=9.32, sparsity=61.5%\\n  - exp_id: c1_ablation_bce_kl_targets_s42\\n    role: baseline\\n    result: agreement=0.978, PPL=9.29, sparsity=60.9%\\n  depends_on:\\n  - D059\\n  - D061\\n- id: D065\\n  date: 2026-05-18 19:58 UTC\\n  summary: 6-point regime curve 完整（global + uniform 双列），latency benchmark 确认 6-7%\\n    overhead，实验数据收集阶段基本完成，转入论文整合\\n  rationale: PPL 从 25%=8.17 到 50%=11.79 严格单调，downstream 趋势一致。Uniform 略差于 global 符合预期。Latency\\n    benchmark 确认无 sparse kernel 时 predictor 仅增加 6-7% 开销。所有 Round 9 审稿阻塞项已解决（R8-N3\\n    regime curve, R8-W3 BCE downstream, C1 multi-seed）。\\n  related_experiments:\\n  - exp_id: kl_sparsity25_s42_eval_teal\\n    role: regime_curve\\n    result: PPL=8.17\\n  - exp_id: kl_sparsity35_s42_eval_teal_uniform\\n    role: uniform_column\\n    result: PPL=9.44\\n  - exp_id: kl_sparsity25_s42_eval_teal_uniform\\n    role: uniform_column\\n    result: PPL=8.23\\n  - exp_id: wallclock_speedup_30_50\\n    role: latency\\n    result: 6-7% overhead\\n  depends_on:\\n  - D063\\n  - D064\\n- id: D066\\n  date: 2026-05-18 23:12 UTC\\n  summary: 30% global MMLU 矛盾已澄清：s456 此前低 MMLU(27.14%) 来自不同 checkpoint 家族，统一协议后三种子\\n    σ=9.5pp 与论文声称一致，Claim 3 成立\\n  rationale: v3 重跑确认 s123 MMLU=38.07%、s456 MMLU=43.82% 与此前结果完全一致。s42 MMLU=25.27% 是真实现象（global\\n    allocation starve 知识层），非 eval 协议问题。Global σ=9.5pp vs Uniform σ=1.3pp，uniform 降低\\n    7.3× 方差，支撑推荐 30% uniform 作为工作点。\\n  related_experiments:\\n  - exp_id: kl30_s123_global_v3\\n    role: verification\\n    result: PPL=8.97, MMLU=38.07%\\n  - exp_id: kl30_s456_global_v3\\n    role: verification\\n    result: PPL=8.93, MMLU=43.82%\\n  - exp_id: bench_kl30_global\\n    role: baseline\\n    result: PPL=8.98, MMLU=25.27%\\n  depends_on:\\n  - D055\\n  - D056\\n  - D065\\n- id: D067\\n  date: 2026-05-18 23:17 UTC\\n  summary: Dream 分析完成：三档一致暴露 7 个结构性问题，最高价值行动为 C1@30% + narrative restructure + reframe\\n    away from deployment\\n  rationale: 'Dream best=3.5, median=3.0, worst=3.0. 三档一致的结构性问题：(1) 无 wall-clock speedup\\n    但 deployment 定位 (2) 单模型评估+14B矛盾 (3) MaskLLM novelty (4) gradient叙事矛盾 (5) C1在50%做无说服力\\n    (6) 68%divergence缺机制分析 (7) 训练/测试域重叠。Best case 明确给出 acceptance path: C1@30% + cross-model\\n    + reframe → 4.0-4.5。确认行动项：A) C1 at 30% sparsity (需GPU) B) narrative restructure:\\n    lead with mask discovery not gradient coupling C) reframe as analysis paper not\\n    deployment D) 加强MaskLLM differentiation E) 补引用 F) C4 OOD移入正文 G) per-layer divergence分析(需GPU)。观察项：multi-seed\\n    TEAL baseline, BCE stronger oracles, Mistral downstream。'\\n  related_experiments:\\n  - exp_id: dream_20260518T173518\\n    role: dream_simulation\\n    result: best=3.5, median=3.0, worst=3.0\\n  depends_on:\\n  - D065\\n  - D064\\n  - D060\\n- id: D068\\n  date: 2026-05-19 01:12 UTC\\n  summary: C1@30% 因果消融验证成功：所有 downstream Δ ≤ 2pp，\\\"target quality is sole driver\\\" 在推荐工作点成立\\n  rationale: 'C1@30% eval 完成：PPL=9.45 vs KL=8.82 (Δ=0.63), ARC Δ=-0.51pp, Wino Δ=-1.19pp,\\n    MMLU Δ=+1.68pp, GSM8K Δ=+0.23pp。方向混合（2正2负），无系统性退化。Agreement=0.975 与 50% 的 0.978-0.979\\n    一致。PPL gap 比 50% 大（0.63 vs ~0），但 downstream 不敏感，说明差异主要在长尾 token。直接回应 Dream D067\\n    #5：\\\"C1 at 50% where downstream collapses is unpersuasive\\\"。论文应同时展示 50% 和 30% 两个工作点的\\n    C1 对比。'\\n  related_experiments:\\n  - exp_id: c1_ablation_30pct_s42_eval_v2\\n    role: primary\\n    result: PPL=9.45, ARC=40.3%, Wino=67.4%, MMLU=42.3%, GSM8K=7.6%\\n  depends_on:\\n  - D067\\n  - D064\\n- id: D069\\n  date: 2026-05-19 02:51 UTC\\n  summary: Accept 冲刺启动：LLaMA-3-8B 全套 + 推理加速实测 + 加固现有实验\\n  rationale: 用户指令全力冲 Accept (4.0)。Round 10 评分 3.0 (Findings)，主要瓶颈：(1) 单架构覆盖（只有 Qwen-7B\\n    主实验），(2) 无推理加速实测数据。冲刺方案：P0 加 LLaMA-3-8B 第二架构全套（KL/BCE/TEAL + eval + mask divergence），P0\\n    推理加速（sparse kernel wall-clock benchmark），P1 LLaMA-3 C1 ablation。4 GPU × 6 天可行，预计\\n    3-4 天完成实验，留 2 天整合+提交。\\n  related_experiments: []\\n  depends_on:\\n  - D067\\n  - D068\\n- id: D070\\n  date: 2026-05-19 02:59 UTC\\n  summary: Accept 冲刺计划修正：砍 LLaMA-3-8B（同一家族）和 sparse kernel（高风险+叙事矛盾），改为聚焦 Mistral\\n    TEAL baseline + C1 多种子 + 写作质量\\n  rationale: Reviewer 指出主模型是 LLaMA-3.1-8B，加 LLaMA-3-8B 是同一家族，审稿人不认可。sparse kernel\\n    与刚完成的 P2 去部署定位矛盾，且 6 天内从零实现可靠 benchmark 风险过高。真正的关键缺口是 Mistral TEAL 30% downstream\\n    baseline（没有对照，Mistral downstream 数据无法 contextualize）。调整后优先级：P0 Mistral TEAL baseline,\\n    P0 C1 多种子（已在跑），P1 写作整合。\\n  related_experiments:\\n  - exp_id: mistral_kl30_downstream\\n    role: trigger\\n    result: Mistral MMLU=44.04% GSM8K=11.14% 退化严重，需 TEAL baseline 对比\\n  depends_on:\\n  - D069\\n- id: D071\\n  date: 2026-05-19 05:07 UTC\\n  summary: Mistral TEAL baseline 确认 KL cross-arch downstream 优势：ARC +9pp, WG +5.6pp。C1\\n    retrain max Δ=1.70pp。Cross-arch 从弱点变为加分项。\\n  rationale: Mistral TEAL 30% downstream 结果出炉，KL 在 4/5 tasks 上优于 TEAL（ARC +9.0pp,\\n    WG +5.6pp, PPL -1.61, MMLU +0.6pp），仅 GSM8K TEAL 略好（低绝对值区间）。50% TEAL 也崩溃（MMLU≈随机），capacity\\n    cliff 跨架构成立。C1 retrain 使用 kl_30pct oracles 后 max Δ=1.70pp，消除 checkpoint 不一致攻击面。论文\\n    cross-arch claim 可从 PPL-only 升级为 downstream-supported。\\n  related_experiments:\\n  - exp_id: mistral_teal30_downstream\\n    role: key_evidence\\n    result: ARC=41.1% WG=63.5% MMLU=43.5% GSM8K=15.9%\\n  - exp_id: mistral_teal50_downstream\\n    role: supporting\\n    result: MMLU=26.4% GSM8K=3.4% capacity cliff confirmed\\n  - exp_id: eval_c1_retrain_30pct_s123\\n    role: supporting\\n    result: MMLU=39.9% vs KL 39.4% delta=0.48pp\\n  - exp_id: eval_c1_retrain_30pct_s456\\n    role: supporting\\n    result: MMLU=41.0% vs KL 42.0% delta=-0.94pp\\n  depends_on:\\n  - D070\\n- id: D072\\n  date: 2026-05-19 07:18 UTC\\n  summary: 'Round 11 Action Matrix: C1 reframe (mask transferability), Abstract 30%-first,\\n    14B diagnostic analysis, BCE+Gumbel no-penalty experiment'\\n  rationale: 'Round 11 审稿 3.0 Findings。三个 critical: (1) C1 推断逻辑混淆 mask transferability\\n    与 gradient coupling unimportance — reframe 为 \\\"coupled gradients discover superior\\n    masks that transfer to simpler objectives\\\"; (2) 14B MMLU 反转缺 mechanism — 14B mask\\n    divergence 分析显示 layer heterogeneity 2.4x higher (Jaccard std 0.076 vs 0.031),\\n    early-layer convergence zone 提供假说; (3) 49% PPL headline 来自 collapsed regime —\\n    Abstract/Intro 重构以 30% 为主。C1 Table 3 s42 使用旧 oracle 导致 max Δ=7.85pp 异常，排除后 retrained\\n    seeds max Δ=1.18pp。'\\n  related_experiments:\\n  - exp_id: qwen14b_mask_divergence_analysis\\n    role: evidence\\n    result: 14B Jaccard std 0.076 vs 8B 0.031, L4=0.063 convergence zone\\n  - exp_id: teal_28.5pct_sanity\\n    role: sanity_check\\n    result: PPL=10.30, KL still 13% better at matched sparsity\\n  - exp_id: bce_gumbel_no_penalty_s42\\n    role: control\\n    result: running\\n  depends_on:\\n  - D071\\n- id: D073\\n  date: 2026-05-19 08:19 UTC\\n  summary: 'Round 12 Action Matrix: Fix N1/N2 data errors, delete BCE+Comp row, rename\\n    C1 to target-swap, 14B multi-seed, soften taxonomy'\\n  rationale: Round 12 审稿 3.0 Findings。两个 critical 数值错误：(1) C1 50% max Δ=0.59 应为 0.79,\\n    1-seed not 2-seed; (2) Table 2 \\\"BCE+comp\\\" 实际无 compensation（标签虚假），Table 4 BCE+comp\\n    用了 per-token eval 非 TEAL（protocol 不一致）。处理：修正 N1 数字，Table 2 改标签，Table 4 删除 BCE+Comp\\n    行。C1 改名 \\\"Target-Swap Ablation\\\"。14B 补跑 s123+s456（98GB VRAM 可行）。MSE baseline 无现成代码不跑，软化\\n    taxonomy。\\n  related_experiments:\\n  - exp_id: bce_gumbel_no_penalty_s42\\n    role: evidence\\n    result: PPL=32.22, loss function is primary driver\\n  - exp_id: bce_comp_staged_s42\\n    role: problematic\\n    result: per-token PPL=25.44, TEAL PPL=44.54, incompatible with TEAL inference\\n  - exp_id: qwen14b_kl30_s123\\n    role: planned\\n    result: pending\\n  - exp_id: qwen14b_kl30_s456\\n    role: planned\\n    result: pending\\n  depends_on:\\n  - D072\\n\", \"total_chars\": 52291, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "4c90bd0d-645a-450f-b382-9028435a4ebd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[WRITE HANDOFF] 请立即写你的 handoff。  **格式硬约束**: - 整条回复**只能**是 <handoff>...</handoff> 标签包裹 - 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）  **必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:  ### 1. 🔴 硬约束 / 红线   本项目特定的不可…",
+                "leafUuid": "47b10f18-9940-456a-8944-bf8dcb7e3c42",
+                "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699"
+              }
+            }
+          ],
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write handoff documentation",
+                "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699"
+              }
+            }
+          ],
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-19T12:16:08.666Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Fb5ZWReUjHqKjmr49T58T3",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2a66fc18/a037077a-0558-46dc-8f7a-e13f7cd9a699/tool-results/mcp-agent-ml-research-read_project_file-1779192961044.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\ncontent = result['data']['content']\n# Get D070-D073\nlines = content.split('\\n')\n# Find D070+\ncapture = False\noutput = []\nfor line in lines:\n    if '- id: D070' in line or '- id: D071' in line or '- id: D072' in line or '- id: D073' in line:\n        capture = True\n    if capture:\n        output.append(line)\n    if capture and line.strip() == '' and len(output) > 3:\n        pass\nprint('\\n'.join(output[-200:]))\n\" 2>&1 | head -120\n",
+                "description": "Extract D070-D073 decisions"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47b10f18-9940-456a-8944-bf8dcb7e3c42",
+            "isSidechain": false,
+            "requestId": "req_011CbBuopV8L11xbJKCWyNh8",
+            "type": "assistant",
+            "uuid": "ebbc7c07-f093-46a4-a998-5da520e4efb2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NtakwYjtR9G14ohRKJkxcp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 512,
+                "cache_read_input_tokens": 60195,
+                "output_tokens": 454,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 512,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 454,
+                    "cache_read_input_tokens": 60195,
+                    "cache_creation_input_tokens": 512,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 512
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-19T12:16:08.762Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Fb5ZWReUjHqKjmr49T58T3",
+              "type": "tool_result",
+              "content": "- id: D070\n  date: 2026-05-19 02:59 UTC\n  summary: Accept 冲刺计划修正：砍 LLaMA-3-8B（同一家族）和 sparse kernel（高风险+叙事矛盾），改为聚焦 Mistral\n    TEAL baseline + C1 多种子 + 写作质量\n  rationale: Reviewer 指出主模型是 LLaMA-3.1-8B，加 LLaMA-3-8B 是同一家族，审稿人不认可。sparse kernel\n    与刚完成的 P2 去部署定位矛盾，且 6 天内从零实现可靠 benchmark 风险过高。真正的关键缺口是 Mistral TEAL 30% downstream\n    baseline（没有对照，Mistral downstream 数据无法 contextualize）。调整后优先级：P0 Mistral TEAL baseline,\n    P0 C1 多种子（已在跑），P1 写作整合。\n  related_experiments:\n  - exp_id: mistral_kl30_downstream\n    role: trigger\n    result: Mistral MMLU=44.04% GSM8K=11.14% 退化严重，需 TEAL baseline 对比\n  depends_on:\n  - D069\n- id: D071\n  date: 2026-05-19 05:07 UTC\n  summary: Mistral TEAL baseline 确认 KL cross-arch downstream 优势：ARC +9pp, WG +5.6pp。C1\n    retrain max Δ=1.70pp。Cross-arch 从弱点变为加分项。\n  rationale: Mistral TEAL 30% downstream 结果出炉，KL 在 4/5 tasks 上优于 TEAL（ARC +9.0pp,\n    WG +5.6pp, PPL -1.61, MMLU +0.6pp），仅 GSM8K TEAL 略好（低绝对值区间）。50% TEAL 也崩溃（MMLU≈随机），capacity\n    cliff 跨架构成立。C1 retrain 使用 kl_30pct oracles 后 max Δ=1.70pp，消除 checkpoint 不一致攻击面。论文\n    cross-arch claim 可从 PPL-only 升级为 downstream-supported。\n  related_experiments:\n  - exp_id: mistral_teal30_downstream\n    role: key_evidence\n    result: ARC=41.1% WG=63.5% MMLU=43.5% GSM8K=15.9%\n  - exp_id: mistral_teal50_downstream\n    role: supporting\n    result: MMLU=26.4% GSM8K=3.4% capacity cliff confirmed\n  - exp_id: eval_c1_retrain_30pct_s123\n    role: supporting\n    result: MMLU=39.9% vs KL 39.4% delta=0.48pp\n  - exp_id: eval_c1_retrain_30pct_s456\n    role: supporting\n    result: MMLU=41.0% vs KL 42.0% delta=-0.94pp\n  depends_on:\n  - D070\n- id: D072\n  date: 2026-05-19 07:18 UTC\n  summary: 'Round 11 Action Matrix: C1 reframe (mask transferability), Abstract 30%-first,\n    14B diagnostic analysis, BCE+Gumbel no-penalty experiment'\n  rationale: 'Round 11 审稿 3.0 Findings。三个 critical: (1) C1 推断逻辑混淆 mask transferability\n    与 gradient coupling unimportance — reframe 为 \"coupled gradients discover superior\n    masks that transfer to simpler objectives\"; (2) 14B MMLU 反转缺 mechanism — 14B mask\n    divergence 分析显示 layer heterogeneity 2.4x higher (Jaccard std 0.076 vs 0.031),\n    early-layer convergence zone 提供假说; (3) 49% PPL headline 来自 collapsed regime —\n    Abstract/Intro 重构以 30% 为主。C1 Table 3 s42 使用旧 oracle 导致 max Δ=7.85pp 异常，排除后 retrained\n    seeds max Δ=1.18pp。'\n  related_experiments:\n  - exp_id: qwen14b_mask_divergence_analysis\n    role: evidence\n    result: 14B Jaccard std 0.076 vs 8B 0.031, L4=0.063 convergence zone\n  - exp_id: teal_28.5pct_sanity\n    role: sanity_check\n    result: PPL=10.30, KL still 13% better at matched sparsity\n  - exp_id: bce_gumbel_no_penalty_s42\n    role: control\n    result: running\n  depends_on:\n  - D071\n- id: D073\n  date: 2026-05-19 08:19 UTC\n  summary: 'Round 12 Action Matrix: Fix N1/N2 data errors, delete BCE+Comp row, rename\n    C1 to target-swap, 14B multi-seed, soften taxonomy'\n  rationale: Round 12 审稿 3.0 Findings。两个 critical 数值错误：(1) C1 50% max Δ=0.59 应为 0.79,\n    1-seed not 2-seed; (2) Table 2 \"BCE+comp\" 实际无 compensation（标签虚假），Table 4 BCE+comp\n    用了 per-token eval 非 TEAL（protocol 不一致）。处理：修正 N1 数字，Table 2 改标签，Table 4 删除 BCE+Comp\n    行。C1 改名 \"Target-Swap Ablation\"。14B 补跑 s123+s456（98GB VRAM 可行）。MSE baseline 无现成代码不跑，软化\n    taxonomy。\n  related_experiments:\n  - exp_id: bce_gumbel_no_penalty_s42\n    role: evidence\n    result: PPL=32.22, loss function is primary driver\n  - exp_id: bce_comp_staged_s42\n    role: problematic\n    result: per-token PPL=25.44, TEAL PPL=44.54, incompatible with TEAL inference\n  - exp_id: qwen14b_kl30_s123\n    role: planned\n    result: pending\n  - exp_id: qwen14b_kl30_s456\n    role: planned\n    result: pending\n  depends_on:\n  - D072",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ebbc7c07-f093-46a4-a998-5da520e4efb2",
+            "isSidechain": false,
+            "promptId": "1a57bc59-3470-4a5b-abbe-8db034862c22",
+            "type": "user",
+            "uuid": "8e1591bb-d013-4759-ad0c-c0743d5e61af",
+            "toolUseResult": {
+              "stdout": "- id: D070\n  date: 2026-05-19 02:59 UTC\n  summary: Accept 冲刺计划修正：砍 LLaMA-3-8B（同一家族）和 sparse kernel（高风险+叙事矛盾），改为聚焦 Mistral\n    TEAL baseline + C1 多种子 + 写作质量\n  rationale: Reviewer 指出主模型是 LLaMA-3.1-8B，加 LLaMA-3-8B 是同一家族，审稿人不认可。sparse kernel\n    与刚完成的 P2 去部署定位矛盾，且 6 天内从零实现可靠 benchmark 风险过高。真正的关键缺口是 Mistral TEAL 30% downstream\n    baseline（没有对照，Mistral downstream 数据无法 contextualize）。调整后优先级：P0 Mistral TEAL baseline,\n    P0 C1 多种子（已在跑），P1 写作整合。\n  related_experiments:\n  - exp_id: mistral_kl30_downstream\n    role: trigger\n    result: Mistral MMLU=44.04% GSM8K=11.14% 退化严重，需 TEAL baseline 对比\n  depends_on:\n  - D069\n- id: D071\n  date: 2026-05-19 05:07 UTC\n  summary: Mistral TEAL baseline 确认 KL cross-arch downstream 优势：ARC +9pp, WG +5.6pp。C1\n    retrain max Δ=1.70pp。Cross-arch 从弱点变为加分项。\n  rationale: Mistral TEAL 30% downstream 结果出炉，KL 在 4/5 tasks 上优于 TEAL（ARC +9.0pp,\n    WG +5.6pp, PPL -1.61, MMLU +0.6pp），仅 GSM8K TEAL 略好（低绝对值区间）。50% TEAL 也崩溃（MMLU≈随机），capacity\n    cliff 跨架构成立。C1 retrain 使用 kl_30pct oracles 后 max Δ=1.70pp，消除 checkpoint 不一致攻击面。论文\n    cross-arch claim 可从 PPL-only 升级为 downstream-supported。\n  related_experiments:\n  - exp_id: mistral_teal30_downstream\n    role: key_evidence\n    result: ARC=41.1% WG=63.5% MMLU=43.5% GSM8K=15.9%\n  - exp_id: mistral_teal50_downstream\n    role: supporting\n    result: MMLU=26.4% GSM8K=3.4% capacity cliff confirmed\n  - exp_id: eval_c1_retrain_30pct_s123\n    role: supporting\n    result: MMLU=39.9% vs KL 39.4% delta=0.48pp\n  - exp_id: eval_c1_retrain_30pct_s456\n    role: supporting\n    result: MMLU=41.0% vs KL 42.0% delta=-0.94pp\n  depends_on:\n  - D070\n- id: D072\n  date: 2026-05-19 07:18 UTC\n  summary: 'Round 11 Action Matrix: C1 reframe (mask transferability), Abstract 30%-first,\n    14B diagnostic analysis, BCE+Gumbel no-penalty experiment'\n  rationale: 'Round 11 审稿 3.0 Findings。三个 critical: (1) C1 推断逻辑混淆 mask transferability\n    与 gradient coupling unimportance — reframe 为 \"coupled gradients discover superior\n    masks that transfer to simpler objectives\"; (2) 14B MMLU 反转缺 mechanism — 14B mask\n    divergence 分析显示 layer heterogeneity 2.4x higher (Jaccard std 0.076 vs 0.031),\n    early-layer convergence zone 提供假说; (3) 49% PPL headline 来自 collapsed regime —\n    Abstract/Intro 重构以 30% 为主。C1 Table 3 s42 使用旧 oracle 导致 max Δ=7.85pp 异常，排除后 retrained\n    seeds max Δ=1.18pp。'\n  related_experiments:\n  - exp_id: qwen14b_mask_divergence_analysis\n    role: evidence\n    result: 14B Jaccard std 0.076 vs 8B 0.031, L4=0.063 convergence zone\n  - exp_id: teal_28.5pct_sanity\n    role: sanity_check\n    result: PPL=10.30, KL still 13% better at matched sparsity\n  - exp_id: bce_gumbel_no_penalty_s42\n    role: control\n    result: running\n  depends_on:\n  - D071\n- id: D073\n  date: 2026-05-19 08:19 UTC\n  summary: 'Round 12 Action Matrix: Fix N1/N2 data errors, delete BCE+Comp row, rename\n    C1 to target-swap, 14B multi-seed, soften taxonomy'\n  rationale: Round 12 审稿 3.0 Findings。两个 critical 数值错误：(1) C1 50% max Δ=0.59 应为 0.79,\n    1-seed not 2-seed; (2) Table 2 \"BCE+comp\" 实际无 compensation（标签虚假），Table 4 BCE+comp\n    用了 per-token eval 非 TEAL（protocol 不一致）。处理：修正 N1 数字，Table 2 改标签，Table 4 删除 BCE+Comp\n    行。C1 改名 \"Target-Swap Ablation\"。14B 补跑 s123+s456（98GB VRAM 可行）。MSE baseline 无现成代码不跑，软化\n    taxonomy。\n  related_experiments:\n  - exp_id: bce_gumbel_no_penalty_s42\n    role: evidence\n    result: PPL=32.22, loss function is primary driver\n  - exp_id: bce_comp_staged_s42\n    role: problematic\n    result: per-token PPL=25.44, TEAL PPL=44.54, incompatible with TEAL inference\n  - exp_id: qwen14b_kl30_s123\n    role: planned\n    result: pending\n  - exp_id: qwen14b_kl30_s456\n    role: planned\n    result: pending\n  depends_on:\n  - D072",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "ebbc7c07-f093-46a4-a998-5da520e4efb2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-19T12:16:09.357Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019w24TV7E7wcZbAhwgCLQxu",
+              "name": "mcp__agent-ml-research__get_worker_status",
+              "input": {
+                "worker_id": "worker_analysis_flops-overhead-table_20260519T121505",
+                "verbose": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e1591bb-d013-4759-ad0c-c0743d5e61af",
+            "isSidechain": false,
+            "requestId": "req_011CbBuopV8L11xbJKCWyNh8",
+            "type": "assistant",
+            "uuid": "8aacfbdd-eb4a-46c1-8d74-8ce199f5620d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NtakwYjtR9G14ohRKJkxcp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 512,
+                "cache_read_input_tokens": 60195,
+                "output_tokens": 454,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 512,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 454,
+                    "cache_read_input_tokens": 60195,
+                    "cache_creation_input_tokens": 512,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 512
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-19T12:16:09.421Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019w24TV7E7wcZbAhwgCLQxu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_flops-overhead-table_20260519T121505\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"analysis:flops-overhead-table\\\", \\\"project\\\": \\\"distill_sparse_swiglu\\\", \\\"started_at\\\": \\\"2026-05-19T12:15:05.367133+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"Read\\\", \\\"Bash\\\", \\\"Bash\\\", \\\"Bash\\\", \\\"Bash\\\"], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 11}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8aacfbdd-eb4a-46c1-8d74-8ce199f5620d",
+            "isSidechain": false,
+            "promptId": "1a57bc59-3470-4a5b-abbe-8db034862c22",
+            "type": "user",
+            "uuid": "ea275bb6-3c04-4346-9865-041b409e95d2",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_flops-overhead-table_20260519T121505\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"analysis:flops-overhead-table\\\", \\\"project\\\": \\\"distill_sparse_swiglu\\\", \\\"started_at\\\": \\\"2026-05-19T12:15:05.367133+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"Read\\\", \\\"Bash\\\", \\\"Bash\\\", \\\"Bash\\\", \\\"Bash\\\"], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 11}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_flops-overhead-table_20260519T121505\", \"status\": \"running\", \"task_type\": \"analysis:flops-overhead-table\", \"project\": \"distill_sparse_swiglu\", \"started_at\": \"2026-05-19T12:15:05.367133+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"Read\", \"Bash\", \"Bash\", \"Bash\", \"Bash\"], \"last_text\": \"\", \"turn_count\": 11}}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "8aacfbdd-eb4a-46c1-8d74-8ce199f5620d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-19T12:16:12.809Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a comprehensive picture. Let me also check the cron list and the Qwen-14B experiments status to understand the full picture.",
+              "signature": "EsMCClkIDRgCKkB/OFJ3snEaG9Oik8cuUbyzabsuHKpwbV7ulMXpyrT85DWWxrmHDuoSZDKSSq5hCF4m1CsIOcg8PsghuAu583grMg9jbGF1ZGUtb3B1cy00LTY4ABIMsIVs4hebAdERawE3GgxJD2xP37S4cxbEQOgiMI6xm7WwvFkCXuYSSm655CKshdqgISBqPndZuSvG7FUGV8nHghem+3Qbgl2itPei7yqXAae8ZjuzR1s/7VieYnig2MQ8+yt5FVs4AYz5E0N9y1CeDDB/dK3RnRYIaRM8ke+KILKq5vMa4zg1uNsPciIneShg12pUMqFvOzEJnt0YzN9GIAV6w7RdjLWJtfjENPSNs9EMWM32ejcDBeJS218uIkQktfLVDC/ya7hHwGOpCLW6gYHqG5wI/VIfftNGM5HT8HtMTzU9PQsYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea275bb6-3c04-4346-9865-041b409e95d2",
+            "isSidechain": false,
+            "requestId": "req_011CbBupSHAnhzsWTkS5uzYY",
+            "type": "assistant",
+            "uuid": "cda9226c-c44d-4ce9-ae97-3051f0e563a6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CiLEXqaxs16fNEu9ieUoit",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2523,
+                "cache_read_input_tokens": 60707,
+                "output_tokens": 122,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2523,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 122,
+                    "cache_read_input_tokens": 60707,
+                    "cache_creation_input_tokens": 2523,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2523
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-19T12:16:13.054Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UjJm5d3L5kfsLwgWV1ox4S",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:CronList",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cda9226c-c44d-4ce9-ae97-3051f0e563a6",
+            "isSidechain": false,
+            "requestId": "req_011CbBupSHAnhzsWTkS5uzYY",
+            "type": "assistant",
+            "uuid": "ebfc6f83-4333-4d1c-83c9-ab6ead9e1973",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CiLEXqaxs16fNEu9ieUoit",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2523,
+                "cache_read_input_tokens": 60707,
+                "output_tokens": 122,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2523,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 122,
+                    "cache_read_input_tokens": 60707,
+                    "cache_creation_input_tokens": 2523,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2523
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-19T12:16:13.058Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01UjJm5d3L5kfsLwgWV1ox4S",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "CronList"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ebfc6f83-4333-4d1c-83c9-ab6ead9e1973",
+            "isSidechain": false,
+            "promptId": "1a57bc59-3470-4a5b-abbe-8db034862c22",
+            "type": "user",
+            "uuid": "77ef4e8b-7784-4e26-bd82-a9956c41e8f1",
+            "toolUseResult": {
+              "matches": [
+                "CronList"
+              ],
+              "query": "select:CronList",
+              "total_deferred_tools": 82
+            },
+            "sourceToolAssistantUUID": "ebfc6f83-4333-4d1c-83c9-ab6ead9e1973",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-19T12:16:20.676Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A8iZb2WKThB1Gatu1FQdoB",
+              "name": "CronList",
+              "input": {},
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77ef4e8b-7784-4e26-bd82-a9956c41e8f1",
+            "isSidechain": false,
+            "requestId": "req_011CbBupi5SWd1yXdSSaR8Xm",
+            "type": "assistant",
+            "uuid": "4f2c459f-bcf3-4143-8839-34232d834321",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FtAhA9LrfzgX4BhWiAg4kV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 225,
+                "cache_read_input_tokens": 63230,
+                "output_tokens": 355,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 225,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 355,
+                    "cache_read_input_tokens": 63230,
+                    "cache_creation_input_tokens": 225,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 225
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-19T12:16:20.679Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A8iZb2WKThB1Gatu1FQdoB",
+              "type": "tool_result",
+              "content": "No scheduled jobs."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f2c459f-bcf3-4143-8839-34232d834321",
+            "isSidechain": false,
+            "promptId": "1a57bc59-3470-4a5b-abbe-8db034862c22",
+            "type": "user",
+            "uuid": "9b3f47c3-87ed-48d0-baa4-9363ded3b75d",
+            "toolUseResult": {
+              "jobs": []
+            },
+            "sourceToolAssistantUUID": "4f2c459f-bcf3-4143-8839-34232d834321",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-19T12:16:23.741Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VJT7ydqmMcR4rUkYp7FHZw",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2a66fc18/a037077a-0558-46dc-8f7a-e13f7cd9a699/tool-results/mcp-agent-ml-research-read_registry-1779192905693.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Get Qwen-14B experiments\nfor exp_id, e in exps.items():\n    if 'qwen14b' in exp_id:\n        print(f'{exp_id}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\",\\\"\\\")}, server={e.get(\\\"server\\\",\\\"\\\")}, pid={e.get(\\\"pid\\\",\\\"\\\")}')\n\" 2>&1\n",
+                "description": "List all Qwen-14B experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b3f47c3-87ed-48d0-baa4-9363ded3b75d",
+            "isSidechain": false,
+            "requestId": "req_011CbBupi5SWd1yXdSSaR8Xm",
+            "type": "assistant",
+            "uuid": "36a6b7c9-84ec-4e92-ae86-29d968de01b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FtAhA9LrfzgX4BhWiAg4kV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 225,
+                "cache_read_input_tokens": 63230,
+                "output_tokens": 355,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 225,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 355,
+                    "cache_read_input_tokens": 63230,
+                    "cache_creation_input_tokens": 225,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 225
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-19T12:16:23.839Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VJT7ydqmMcR4rUkYp7FHZw",
+              "type": "tool_result",
+              "content": "qwen14b_kl30_s456_eval: status=DONE, conclusion=killed, server=, pid=\nqwen14b_kl30_s123_eval: status=DONE, conclusion=killed, server=, pid=\nqwen14b_kl30_s123_eval_v4: status=RUNNING, conclusion=, server=westd-34887, pid=100832\nqwen14b_kl30_s123_eval_v3: status=DONE, conclusion=failed, server=westd-34887, pid=100585\nqwen14b_kl30_s123_eval_v2: status=DONE, conclusion=failed, server=westd-34887, pid=99904\nqwen14b_kl30_s456_eval_v2: status=RUNNING, conclusion=, server=westd-34887, pid=100060\nqwen14b_kl30_s456: status=ANALYZING, conclusion=success, server=westd-34887, pid=91451\nqwen14b_kl30_s123: status=ANALYZING, conclusion=, server=westd-34887, pid=91294\nqwen14b_mask_divergence_analysis: status=DONE, conclusion=success, server=, pid=\nqwen14b_kl30_uniform_eval_4task: status=DONE, conclusion=negative, server=, pid=\nqwen14b_teal30_uniform_eval_4task: status=DONE, conclusion=success, server=, pid=\nqwen14b_teal30_uniform_eval: status=DONE, conclusion=failed, server=, pid=\nqwen14b_kl30_uniform_eval: status=DONE, conclusion=failed, server=, pid=\nqwen14b_teal30_eval: status=DONE, conclusion=success, server=, pid=\nqwen14b_bce30_s42_eval: status=DONE, conclusion=negative, server=westd-34887, pid=59122\nqwen14b_dense_baseline: status=DONE, conclusion=success, server=, pid=\nqwen14b_kl30_s42_eval: status=DONE, conclusion=success, server=westd-34887, pid=52224\nqwen14b_bce30_s42_v2: status=DONE, conclusion=negative, server=westd-34887, pid=57864\nqwen14b_bce30_s42: status=DONE, conclusion=success, server=westd-34887, pid=55026\nqwen14b_kl30_s42: status=DONE, conclusion=success, server=westd-34887, pid=50349",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "36a6b7c9-84ec-4e92-ae86-29d968de01b3",
+            "isSidechain": false,
+            "promptId": "1a57bc59-3470-4a5b-abbe-8db034862c22",
+            "type": "user",
+            "uuid": "43e7f9b3-a1d3-4d6a-b951-04dd11b8ac89",
+            "toolUseResult": {
+              "stdout": "qwen14b_kl30_s456_eval: status=DONE, conclusion=killed, server=, pid=\nqwen14b_kl30_s123_eval: status=DONE, conclusion=killed, server=, pid=\nqwen14b_kl30_s123_eval_v4: status=RUNNING, conclusion=, server=westd-34887, pid=100832\nqwen14b_kl30_s123_eval_v3: status=DONE, conclusion=failed, server=westd-34887, pid=100585\nqwen14b_kl30_s123_eval_v2: status=DONE, conclusion=failed, server=westd-34887, pid=99904\nqwen14b_kl30_s456_eval_v2: status=RUNNING, conclusion=, server=westd-34887, pid=100060\nqwen14b_kl30_s456: status=ANALYZING, conclusion=success, server=westd-34887, pid=91451\nqwen14b_kl30_s123: status=ANALYZING, conclusion=, server=westd-34887, pid=91294\nqwen14b_mask_divergence_analysis: status=DONE, conclusion=success, server=, pid=\nqwen14b_kl30_uniform_eval_4task: status=DONE, conclusion=negative, server=, pid=\nqwen14b_teal30_uniform_eval_4task: status=DONE, conclusion=success, server=, pid=\nqwen14b_teal30_uniform_eval: status=DONE, conclusion=failed, server=, pid=\nqwen14b_kl30_uniform_eval: status=DONE, conclusion=failed, server=, pid=\nqwen14b_teal30_eval: status=DONE, conclusion=success, server=, pid=\nqwen14b_bce30_s42_eval: status=DONE, conclusion=negative, server=westd-34887, pid=59122\nqwen14b_dense_baseline: status=DONE, conclusion=success, server=, pid=\nqwen14b_kl30_s42_eval: status=DONE, conclusion=success, server=westd-34887, pid=52224\nqwen14b_bce30_s42_v2: status=DONE, conclusion=negative, server=westd-34887, pid=57864\nqwen14b_bce30_s42: status=DONE, conclusion=success, server=westd-34887, pid=55026\nqwen14b_kl30_s42: status=DONE, conclusion=success, server=westd-34887, pid=50349",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "36a6b7c9-84ec-4e92-ae86-29d968de01b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-19T12:16:26.905Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a complete picture. Let me also check the paper files to know the current state of the paper.",
+              "signature": "EqMCClkIDRgCKkDxq46ZTZo2wBypP/qAohBWNua4GeRsulc7uf0uXFhXWCRd7DUrnYnYX17+auSmSLitb+zfuSkBIvQrWgKEBKd8Mg9jbGF1ZGUtb3B1cy00LTY4ABIMNJ0t/AFU9bw6Apl1GgxtwuYkm8Fyo4ixkzAiMAa/JfMdR88aaWc0szrQhorS56YtUm8FuGHCi6rFsZ5eFjbFiDe60/bLkx+Hjt0iXip4vb+6dJm8sDVC16/y+Ck7nG6D5EdbN+yPTulkYKh0ooGmzUqqwChNQFfYHgnIDWRW1/Cr6wdmKalanFi5E+RU93sD6QgB2qGJvHRMU6zvFXDPO9xjnrsGndI8nAXYptrXQeaDHsICY4gjCFNxoTgnPokC/x4fHhgTGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43e7f9b3-a1d3-4d6a-b951-04dd11b8ac89",
+            "isSidechain": false,
+            "requestId": "req_011CbBuqVuyk4P5V6stoHVZg",
+            "type": "assistant",
+            "uuid": "778a2305-2fef-4661-a177-8e83e4e80b81",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016KQnHEjN5RAwRSKJC8JxDB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1072,
+                "cache_read_input_tokens": 63455,
+                "output_tokens": 482,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1072,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 482,
+                    "cache_read_input_tokens": 63455,
+                    "cache_creation_input_tokens": 1072,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1072
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-19T12:16:27.405Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Let me also check the paper tex files status and the current paper compilation state."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "778a2305-2fef-4661-a177-8e83e4e80b81",
+            "isSidechain": false,
+            "requestId": "req_011CbBuqVuyk4P5V6stoHVZg",
+            "type": "assistant",
+            "uuid": "72f92e29-e0f4-470f-bfec-077648768434",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016KQnHEjN5RAwRSKJC8JxDB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1072,
+                "cache_read_input_tokens": 63455,
+                "output_tokens": 482,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1072,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 482,
+                    "cache_read_input_tokens": 63455,
+                    "cache_creation_input_tokens": 1072,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1072
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-19T12:16:28.398Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0182Cg1xjX5NkRBhiRMVmYMD",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/*.tex 2>/dev/null | head -20",
+                "description": "List paper tex files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72f92e29-e0f4-470f-bfec-077648768434",
+            "isSidechain": false,
+            "requestId": "req_011CbBuqVuyk4P5V6stoHVZg",
+            "type": "assistant",
+            "uuid": "d99d059b-41ad-4bac-bd2f-829baf3d37b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016KQnHEjN5RAwRSKJC8JxDB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1072,
+                "cache_read_input_tokens": 63455,
+                "output_tokens": 482,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1072,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 482,
+                    "cache_read_input_tokens": 63455,
+                    "cache_creation_input_tokens": 1072,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1072
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-19T12:16:28.479Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0182Cg1xjX5NkRBhiRMVmYMD",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu  1086 May 19 08:29 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex\n-rw-r--r-- 1 ubuntu ubuntu 20808 May 19 08:29 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex\n-rw-r--r-- 1 ubuntu ubuntu   912 May 19 08:31 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu  3839 May 19 07:11 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/ethics.tex\n-rw-r--r-- 1 ubuntu ubuntu 19180 May 19 08:29 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu  3374 May 19 08:29 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu  2796 May 19 08:29 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex\n-rw-r--r-- 1 ubuntu ubuntu   947 May 18 21:11 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.tex\n-rw-r--r-- 1 ubuntu ubuntu 12008 May 19 08:30 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex\n-rw-r--r-- 1 ubuntu ubuntu  6097 May 19 07:07 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/related_work.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d99d059b-41ad-4bac-bd2f-829baf3d37b1",
+            "isSidechain": false,
+            "promptId": "1a57bc59-3470-4a5b-abbe-8db034862c22",
+            "type": "user",
+            "uuid": "70509206-abf4-4133-a3cb-98cdab47df70",
+            "toolUseResult": {
+              "stdout": "-rw-r--r-- 1 ubuntu ubuntu  1086 May 19 08:29 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex\n-rw-r--r-- 1 ubuntu ubuntu 20808 May 19 08:29 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex\n-rw-r--r-- 1 ubuntu ubuntu   912 May 19 08:31 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu  3839 May 19 07:11 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/ethics.tex\n-rw-r--r-- 1 ubuntu ubuntu 19180 May 19 08:29 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu  3374 May 19 08:29 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu  2796 May 19 08:29 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex\n-rw-r--r-- 1 ubuntu ubuntu   947 May 18 21:11 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.tex\n-rw-r--r-- 1 ubuntu ubuntu 12008 May 19 08:30 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex\n-rw-r--r-- 1 ubuntu ubuntu  6097 May 19 07:07 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/related_work.tex",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "d99d059b-41ad-4bac-bd2f-829baf3d37b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-19T12:16:31.036Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TXdf6WAPigEWZDTQHJ7jX1",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-2a66fc18/a037077a-0558-46dc-8f7a-e13f7cd9a699/tool-results/mcp-agent-ml-research-read_registry-1779192905693.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Get Mistral experiments\nfor exp_id, e in exps.items():\n    if 'mistral' in exp_id:\n        print(f'{exp_id}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\",\\\"\\\")}, metrics={json.dumps(e.get(\\\"metrics\\\",{}))[:150]}')\n\" 2>&1\n",
+                "description": "List all Mistral experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "70509206-abf4-4133-a3cb-98cdab47df70",
+            "isSidechain": false,
+            "requestId": "req_011CbBuqVuyk4P5V6stoHVZg",
+            "type": "assistant",
+            "uuid": "ad944b62-87fa-4799-ae21-67e9b8f34115",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016KQnHEjN5RAwRSKJC8JxDB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1072,
+                "cache_read_input_tokens": 63455,
+                "output_tokens": 482,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1072,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 482,
+                    "cache_read_input_tokens": 63455,
+                    "cache_creation_input_tokens": 1072,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1072
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-19T12:16:31.126Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TXdf6WAPigEWZDTQHJ7jX1",
+              "type": "tool_result",
+              "content": "mistral_dense_hellaswag_piqa: status=DONE, conclusion=success, metrics={\"hellaswag_acc_norm\": 0.832, \"piqa_acc_norm\": 0.8188}\nmistral_kl30_hellaswag_piqa: status=DONE, conclusion=success, metrics={\"hellaswag_acc_norm\": 0.6892, \"piqa_acc_norm\": 0.7519}\nmistral_teal50_downstream: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 18.3061, \"arc_challenge_acc_norm\": 0.2457, \"winogrande_acc\": 0.5091, \"mmlu_acc\": 0.2635, \"gsm8k_exact_match\": 0.0341, \"hellaswag_acc\nmistral_teal30_downstream: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 8.3807, \"arc_challenge_acc_norm\": 0.4113, \"winogrande_acc\": 0.6354, \"mmlu_acc\": 0.4348, \"gsm8k_exact_match\": 0.1592, \"hellaswag_acc_\nmistral_kl30_downstream: status=DONE, conclusion=success, metrics={\"arc_challenge_acc_norm\": 0.5017, \"winogrande_acc\": 0.6914, \"mmlu_acc\": 0.4404, \"gsm8k_exact_match\": 0.1114}\nmistral_teal70_baseline: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 61.716, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"teal_vanilla_70pct\", \"sparsity\": 0.7, \"allocation\": \"uniform\", \"ppl_increase_vs_de\nmistral_teal30_baseline: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 8.3807, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"teal_vanilla_30pct\", \"sparsity\": 0.3, \"allocation\": \"uniform\", \"ppl_increase_vs_de\nmistral_kl70_teal_global: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 13.3254, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_teal_global_70pct\", \"sparsity\": 0.7, \"allocation\": \"uniform\", \"ppl_increase_vs\nmistral_kl50_teal_global: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 8.6489, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_teal_global_50pct\", \"sparsity\": 0.5, \"allocation\": \"uniform\", \"ppl_increase_vs_\nmistral_kl30_teal_global: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 6.7733, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_teal_global_30pct\", \"sparsity\": 0.3, \"allocation\": \"uniform\", \"ppl_increase_vs_\nmistral_kl70_pertoken: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 9.1086, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_pertoken_70pct\", \"sparsity\": 0.7, \"allocation\": \"uniform\", \"ppl_increase_vs_den\nmistral_kl50_pertoken: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 7.2931, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_pertoken_50pct\", \"sparsity\": 0.5, \"allocation\": \"uniform\", \"ppl_increase_vs_den\nmistral_kl30_pertoken: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 6.048, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_pertoken_30pct\", \"sparsity\": 0.3, \"allocation\": \"uniform\", \"ppl_increase_vs_dens\nmistral_dense_ppl: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 5.5238, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"dense\", \"sparsity\": 0}\nlm_eval_mistral_dense: status=DONE, conclusion=success, metrics={\"arc_challenge_acc_norm\": 0.6024, \"winogrande_acc\": 0.7869, \"mmlu_acc\": 0.6244, \"gsm8k_exact_match\": 0.3654, \"model\": \"Mistral-7B-v0.3\", \"condition\":\nlm_eval_mistral_kl_50pct: status=DONE, conclusion=negative, metrics={\"arc_challenge_acc\": 0.2927, \"arc_challenge_acc_norm\": 0.3183, \"arc_challenge_acc_norm_stderr\": 0.0136, \"winogrande_acc\": 0.629, \"winogrande_acc_stde\nmistral_teal50_baseline: status=DONE, conclusion=success, metrics={\"teal_baseline_ppl\": 18.3061, \"dense_ppl\": 5.5238, \"teal_vs_dense_ratio\": 3.31}\nmistral_kl70_s42: status=DONE, conclusion=success, metrics={\"kl_per_token_ppl\": 9.1086, \"kl_teal_global_ppl\": 13.3254, \"teal_baseline_ppl\": 61.716, \"dense_ppl\": 5.5238, \"kl_advantage_ratio\": 6.77, \"final_loss\"\nmistral_kl30_s42: status=DONE, conclusion=success, metrics={\"kl_per_token_ppl\": 6.048, \"kl_teal_global_ppl\": 6.7733, \"teal_baseline_ppl\": 8.3807, \"dense_ppl\": 5.5238, \"kl_advantage_ratio\": 1.386, \"ppl_vs_dense\nbench_mistral_kl50_s42: status=DONE, conclusion=killed, metrics={}\nmistral_kl_s42: status=DONE, conclusion=success, metrics={\"train_final_loss\": 0.2188, \"train_final_kl_raw\": 0.2188, \"train_final_kl_norm\": 0.2188, \"train_final_constraint\": 0, \"train_final_sparsity\": 0.48, \"\nlm_eval_mistral_downstream: status=DONE, conclusion=failed, metrics={}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad944b62-87fa-4799-ae21-67e9b8f34115",
+            "isSidechain": false,
+            "promptId": "1a57bc59-3470-4a5b-abbe-8db034862c22",
+            "type": "user",
+            "uuid": "ef6c9243-e22c-418c-a3fb-b90395125dd1",
+            "toolUseResult": {
+              "stdout": "mistral_dense_hellaswag_piqa: status=DONE, conclusion=success, metrics={\"hellaswag_acc_norm\": 0.832, \"piqa_acc_norm\": 0.8188}\nmistral_kl30_hellaswag_piqa: status=DONE, conclusion=success, metrics={\"hellaswag_acc_norm\": 0.6892, \"piqa_acc_norm\": 0.7519}\nmistral_teal50_downstream: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 18.3061, \"arc_challenge_acc_norm\": 0.2457, \"winogrande_acc\": 0.5091, \"mmlu_acc\": 0.2635, \"gsm8k_exact_match\": 0.0341, \"hellaswag_acc\nmistral_teal30_downstream: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 8.3807, \"arc_challenge_acc_norm\": 0.4113, \"winogrande_acc\": 0.6354, \"mmlu_acc\": 0.4348, \"gsm8k_exact_match\": 0.1592, \"hellaswag_acc_\nmistral_kl30_downstream: status=DONE, conclusion=success, metrics={\"arc_challenge_acc_norm\": 0.5017, \"winogrande_acc\": 0.6914, \"mmlu_acc\": 0.4404, \"gsm8k_exact_match\": 0.1114}\nmistral_teal70_baseline: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 61.716, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"teal_vanilla_70pct\", \"sparsity\": 0.7, \"allocation\": \"uniform\", \"ppl_increase_vs_de\nmistral_teal30_baseline: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 8.3807, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"teal_vanilla_30pct\", \"sparsity\": 0.3, \"allocation\": \"uniform\", \"ppl_increase_vs_de\nmistral_kl70_teal_global: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 13.3254, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_teal_global_70pct\", \"sparsity\": 0.7, \"allocation\": \"uniform\", \"ppl_increase_vs\nmistral_kl50_teal_global: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 8.6489, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_teal_global_50pct\", \"sparsity\": 0.5, \"allocation\": \"uniform\", \"ppl_increase_vs_\nmistral_kl30_teal_global: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 6.7733, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_teal_global_30pct\", \"sparsity\": 0.3, \"allocation\": \"uniform\", \"ppl_increase_vs_\nmistral_kl70_pertoken: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 9.1086, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_pertoken_70pct\", \"sparsity\": 0.7, \"allocation\": \"uniform\", \"ppl_increase_vs_den\nmistral_kl50_pertoken: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 7.2931, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_pertoken_50pct\", \"sparsity\": 0.5, \"allocation\": \"uniform\", \"ppl_increase_vs_den\nmistral_kl30_pertoken: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 6.048, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"kl_pertoken_30pct\", \"sparsity\": 0.3, \"allocation\": \"uniform\", \"ppl_increase_vs_dens\nmistral_dense_ppl: status=DONE, conclusion=success, metrics={\"wikitext2_ppl\": 5.5238, \"model\": \"Mistral-7B-v0.3\", \"condition\": \"dense\", \"sparsity\": 0}\nlm_eval_mistral_dense: status=DONE, conclusion=success, metrics={\"arc_challenge_acc_norm\": 0.6024, \"winogrande_acc\": 0.7869, \"mmlu_acc\": 0.6244, \"gsm8k_exact_match\": 0.3654, \"model\": \"Mistral-7B-v0.3\", \"condition\":\nlm_eval_mistral_kl_50pct: status=DONE, conclusion=negative, metrics={\"arc_challenge_acc\": 0.2927, \"arc_challenge_acc_norm\": 0.3183, \"arc_challenge_acc_norm_stderr\": 0.0136, \"winogrande_acc\": 0.629, \"winogrande_acc_stde\nmistral_teal50_baseline: status=DONE, conclusion=success, metrics={\"teal_baseline_ppl\": 18.3061, \"dense_ppl\": 5.5238, \"teal_vs_dense_ratio\": 3.31}\nmistral_kl70_s42: status=DONE, conclusion=success, metrics={\"kl_per_token_ppl\": 9.1086, \"kl_teal_global_ppl\": 13.3254, \"teal_baseline_ppl\": 61.716, \"dense_ppl\": 5.5238, \"kl_advantage_ratio\": 6.77, \"final_loss\"\nmistral_kl30_s42: status=DONE, conclusion=success, metrics={\"kl_per_token_ppl\": 6.048, \"kl_teal_global_ppl\": 6.7733, \"teal_baseline_ppl\": 8.3807, \"dense_ppl\": 5.5238, \"kl_advantage_ratio\": 1.386, \"ppl_vs_dense\nbench_mistral_kl50_s42: status=DONE, conclusion=killed, metrics={}\nmistral_kl_s42: status=DONE, conclusion=success, metrics={\"train_final_loss\": 0.2188, \"train_final_kl_raw\": 0.2188, \"train_final_kl_norm\": 0.2188, \"train_final_constraint\": 0, \"train_final_sparsity\": 0.48, \"\nlm_eval_mistral_downstream: status=DONE, conclusion=failed, metrics={}",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "ad944b62-87fa-4799-ae21-67e9b8f34115",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/agent_2a66fc18",
+            "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[WRITE HANDOFF] 请立即写你的 handoff。  **格式硬约束**: - 整条回复**只能**是 <handoff>...</handoff> 标签包裹 - 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）  **必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:  ### 1. 🔴 硬约束 / 红线   本项目特定的不可…",
+                "leafUuid": "ef6c9243-e22c-418c-a3fb-b90395125dd1",
+                "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699"
+              }
+            }
+          ],
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write handoff documentation",
+                "sessionId": "a037077a-0558-46dc-8f7a-e13f7cd9a699"
+              }
+            }
+          ],
+          "id": "event-000084"
+        }
+      ]
+    }
+  ]
+}

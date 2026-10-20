@@ -1,0 +1,810 @@
+{
+  "schema_version": "1.0",
+  "id": "202f557a17067768def7",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the web for the paper on \"Regime-Conditional Retrieval\" (arxiv 2604.09019, April 2026). I need to verify: 1. Does",
+  "task_key": "agent-ae15a4c4824a5c36f",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ae15a4c4824a5c36f.jsonl",
+    "occurrence": 1,
+    "bytes": 28869,
+    "sha256": "9dd395a47721d5135b4321a969b47001411e6a711b30dda7c91056a51a31882b"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T16:58:32.198Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the web for the paper on \"Regime-Conditional Retrieval\" (arxiv 2604.09019, April 2026). I need to verify:\n1. Does this paper exist on arXiv?\n2. Does it formalize Q-dominant vs B-dominant retrieval regimes for two-hop QA?\n3. Does it train a binary router?\n4. What are its claimed improvements (+5.6pp on MuSiQue, +5.3pp on HotpotQA)?\n5. Is it limited to binary classification for hop-2 only as claimed?\n\nUse WebSearch and WebFetch to verify. Report specific details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "fc9aef79-ed3e-436e-abbf-266022d190cc",
+            "agentId": "ae15a4c4824a5c36f",
+            "type": "user",
+            "uuid": "65c99d88-bc2d-4906-b440-3b43410ce08f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T16:58:32.199Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "65c99d88-bc2d-4906-b440-3b43410ce08f",
+                "isSidechain": true,
+                "agentId": "ae15a4c4824a5c36f",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "00f55c4d-7a47-4a46-9a51-fb64144a0b86",
+                "timestamp": "2026-05-14T16:58:32.199Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T16:58:35.252Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for this paper using WebSearch and WebFetch. Let me first load those tool schemas."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00f55c4d-7a47-4a46-9a51-fb64144a0b86",
+            "isSidechain": true,
+            "agentId": "ae15a4c4824a5c36f",
+            "requestId": "req_011Cb2pJnJjYTon5MYmcpUoZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "39740680-2fb3-4698-aeb7-82d48b6696bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JSZMt5TgqKr5gLSP3PxzhZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 693,
+                "cache_read_input_tokens": 8223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 693,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T16:58:35.385Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VFaMLbXRpfceoMX9RG6DRz",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39740680-2fb3-4698-aeb7-82d48b6696bd",
+            "isSidechain": true,
+            "agentId": "ae15a4c4824a5c36f",
+            "requestId": "req_011Cb2pJnJjYTon5MYmcpUoZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fa6f5112-3344-44d1-8cc2-0521fa56a3b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JSZMt5TgqKr5gLSP3PxzhZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 693,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 693
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 103,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 693,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 693,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T16:58:35.390Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01VFaMLbXRpfceoMX9RG6DRz",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fa6f5112-3344-44d1-8cc2-0521fa56a3b7",
+            "isSidechain": true,
+            "promptId": "fc9aef79-ed3e-436e-abbf-266022d190cc",
+            "agentId": "ae15a4c4824a5c36f",
+            "type": "user",
+            "uuid": "f36c626c-8a8b-4c0d-98c9-bbbcde7718b9",
+            "sourceToolAssistantUUID": "fa6f5112-3344-44d1-8cc2-0521fa56a3b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T16:58:38.567Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me search for the paper and try to fetch it directly from arXiv."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f36c626c-8a8b-4c0d-98c9-bbbcde7718b9",
+            "isSidechain": true,
+            "agentId": "ae15a4c4824a5c36f",
+            "requestId": "req_011Cb2pK2DtMkBdj1gchWa12",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "97f2d3ff-5342-4da7-8433-ccb677c8ec51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VKYNyXBm8AfN3THZ2SBwbm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1912,
+                "cache_read_input_tokens": 8916,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1912,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T16:58:39.033Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XXhGuj3Nfxj86GkeCz22xq",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2604.09019 Regime-Conditional Retrieval"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "97f2d3ff-5342-4da7-8433-ccb677c8ec51",
+            "isSidechain": true,
+            "agentId": "ae15a4c4824a5c36f",
+            "requestId": "req_011Cb2pK2DtMkBdj1gchWa12",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "98cbaeab-4b7f-4600-9a50-2f9ba19f8b58",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VKYNyXBm8AfN3THZ2SBwbm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1912,
+                "cache_read_input_tokens": 8916,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1912,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T16:58:39.577Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019nXDew2rTJqpDWQF15qaKA",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Regime-Conditional Retrieval\" two-hop QA Q-dominant B-dominant 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98cbaeab-4b7f-4600-9a50-2f9ba19f8b58",
+            "isSidechain": true,
+            "agentId": "ae15a4c4824a5c36f",
+            "requestId": "req_011Cb2pK2DtMkBdj1gchWa12",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8568ce96-54c2-4445-87fe-29280e53a135",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VKYNyXBm8AfN3THZ2SBwbm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1912,
+                "cache_read_input_tokens": 8916,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1912,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T16:58:40.294Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ra9vSLuf3X7aF9yqiXAetH",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2604.09019",
+                "prompt": "Extract the full title, authors, abstract, and any details about: Q-dominant vs B-dominant retrieval regimes, binary router, improvements on MuSiQue and HotpotQA benchmarks, and whether the approach is limited to binary classification for hop-2 only."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8568ce96-54c2-4445-87fe-29280e53a135",
+            "isSidechain": true,
+            "agentId": "ae15a4c4824a5c36f",
+            "requestId": "req_011Cb2pK2DtMkBdj1gchWa12",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "95dc34f6-9fa7-47a5-a692-1294822dc3dc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VKYNyXBm8AfN3THZ2SBwbm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1912,
+                "cache_read_input_tokens": 8916,
+                "output_tokens": 273,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1912
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 273,
+                    "cache_read_input_tokens": 8916,
+                    "cache_creation_input_tokens": 1912,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1912,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T16:58:45.195Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ra9vSLuf3X7aF9yqiXAetH",
+              "type": "tool_result",
+              "content": "# Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA\n\n**Author:** Andre Bacellar\n\n## Abstract Summary\nThe paper addresses two-hop question answering by categorizing queries into distinct regimes. The research formalizes this distinction through theoretical contributions and proposes a practical routing solution.\n\n## Key Distinctions: Q-Dominant vs B-Dominant\n\nThe work divides retrieval into two categories:\n- **Q-dominant:** The second-hop entity appears explicitly within the question itself\n- **B-dominant:** The second-hop entity only surfaces in the bridge passage, not in the original question\n\n## Binary Router Solution\n\nRegimeRouter is described as \"a lightweight binary router that selects between question-only and\" the alternative approach using relation-bearing sentences. The system leverages five text-based features derived from predicate definitions to make routing decisions.\n\n## Performance Improvements\n\nResults across benchmarks show:\n- 2WikiMultiHopQA (training set): +5.6 percentage points\n- MuSiQue (zero-shot transfer): +5.3 percentage points  \n- HotpotQA (zero-shot transfer): +1.1 percentage points (statistically non-significant)\n\n## Scope Limitation\n\nThe approach specifically targets two-hop question answering scenarios and does not address multi-hop questions beyond the two-hop structure."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "95dc34f6-9fa7-47a5-a692-1294822dc3dc",
+            "isSidechain": true,
+            "promptId": "fc9aef79-ed3e-436e-abbf-266022d190cc",
+            "agentId": "ae15a4c4824a5c36f",
+            "type": "user",
+            "uuid": "942765dc-30fa-47d1-8008-6c4f6bfbfac8",
+            "sourceToolAssistantUUID": "95dc34f6-9fa7-47a5-a692-1294822dc3dc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T16:58:47.230Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019nXDew2rTJqpDWQF15qaKA",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Regime-Conditional Retrieval\" two-hop QA Q-dominant B-dominant 2026\"\n\nLinks: [{\"title\":\"Retrieval–Reasoning Processes for Multi-hop Question Answering: A\",\"url\":\"https://arxiv.org/pdf/2601.00536\"},{\"title\":\"Q-RAG: LONG CONTEXT MULTI-STEP RETRIEVAL\",\"url\":\"https://openreview.net/pdf/b0c7546e92d381f99b83a0e93623e007c1088f4e.pdf\"},{\"title\":\"Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends\",\"url\":\"https://arxiv.org/html/2601.00536v1\"},{\"title\":\"[2601.00536] Retrieval--Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends\",\"url\":\"https://arxiv.org/abs/2601.00536\"},{\"title\":\"Scaling Biomedical Knowledge Graph Retrieval for Interpretable\",\"url\":\"https://www.medrxiv.org/content/10.64898/2026.01.12.26343957v1.full.pdf\"},{\"title\":\"RankRAG: Unifying Context Ranking with Retrieval-Augmented Generation in LLMs\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/db93ccb6cf392f352570dd5af0a223d3-Paper-Conference.pdf\"},{\"title\":\"Reinforcement Learning Enhanced Multi-hop Reasoning for Temporal Knowledge\",\"url\":\"https://arxiv.org/pdf/2601.01195\"},{\"title\":\"Deep Retriever: Information Retrieval for Multi-hop Question Answering\",\"url\":\"https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/reports/custom/15744425.pdf\"},{\"title\":\"Generating multi-hop QA and fine-gRAined Difficulty matrix ...\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.236.pdf\"},{\"title\":\"Revisiting Query Variants: The Advantage of Retrieval Over ...\",\"url\":\"https://www.arxiv.org/pdf/2510.02512\"}]\n\nBased on my web search results, I found research related to multi-hop question answering and retrieval systems, but I did not find a specific paper or work titled \"Regime-Conditional Retrieval\" with the exact terms \"two-hop QA,\" \"Q-dominant,\" and \"B-dominant\" that you searched for.\n\nHowever, the search results do contain several highly relevant papers on multi-hop question answering and retrieval systems from 2025-2026:\n\n1. **Retrieval-Reasoning Processes for Multi-hop QA**: A survey that introduces a four-axis framework covering overall execution plan, index structure, next-step control strategies and triggers, and stop/continue criteria.\n\n2. **Q-RAG**: A system evaluated on open-domain multi-hop QA using HotpotQA, Musique, and RULER benchmarks.\n\n3. **Multi-hop QA Evaluation**: Research examining RAG system performance across a 2D difficulty matrix considering both generator-side and retriever-side complexity.\n\nIf you're looking for a specific paper on \"Regime-Conditional Retrieval,\" it's possible that:\n- The paper uses different terminology in its title or abstract\n- It may be a very recent preprint not yet widely indexed\n- The specific terms \"Q-dominant\" and \"B-dominant\" might refer to conditions within the methodology rather than the title\n\nWould you like me to search for more specific information about any of these papers, or do you have additional context about the \"Regime-Conditional Retrieval\" paper you're interested in?\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8568ce96-54c2-4445-87fe-29280e53a135",
+            "isSidechain": true,
+            "promptId": "fc9aef79-ed3e-436e-abbf-266022d190cc",
+            "agentId": "ae15a4c4824a5c36f",
+            "type": "user",
+            "uuid": "34989930-7411-4e70-b9b5-60cebc777f5c",
+            "sourceToolAssistantUUID": "8568ce96-54c2-4445-87fe-29280e53a135",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T16:58:48.131Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XXhGuj3Nfxj86GkeCz22xq",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2604.09019 Regime-Conditional Retrieval\"\n\nLinks: [{\"title\":\"[2604.09019] Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA\",\"url\":\"https://arxiv.org/abs/2604.09019\"},{\"title\":\"Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA\",\"url\":\"https://arxiv.org/html/2604.09019\"},{\"title\":\"Efficient Rationale-based Retrieval: On-policy Distillation from Generative Rerankers based on JEPA\",\"url\":\"https://arxiv.org/html/2604.23336\"},{\"title\":\"Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models\",\"url\":\"https://arxiv.org/html/2601.07372v1\"},{\"title\":\"Conditional Memory via Scalable Lookup: A New Axis of ...\",\"url\":\"https://arxiv.org/pdf/2601.07372\"},{\"title\":\"Bootstrapping Conditional Retrieval for User-to-Item ...\",\"url\":\"https://arxiv.org/pdf/2508.16793\"},{\"title\":\"Entities as Retrieval Signals: A Systematic Study of Coverage, Supervision, and Evaluation in Entity-Oriented Ranking\",\"url\":\"https://arxiv.org/html/2604.05204v1\"},{\"title\":\"PRAG: End-to-End Privacy-Preserving Retrieval-Augmented Generation\",\"url\":\"https://arxiv.org/html/2604.26525\"},{\"title\":\"One Pass, Any Order: Position-Invariant Listwise Reranking for LLM-Based Recommendation\",\"url\":\"https://arxiv.org/html/2604.27599\"},{\"title\":\"A Sanity Check on Composed Image Retrieval\",\"url\":\"https://arxiv.org/html/2604.12904v1\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n## Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA\n\nThe paper addresses two-hop QA retrieval, splitting queries into two regimes determined by whether the hop-2 entity is explicitly named in the question (Q-dominant) or only in the bridge passage (B-dominant).\n\n**Main Contributions:**\n\nThe authors formalize the split with three theorems: (T1) per-query AUC is a monotone function of the cosine separation margin, with R^2 >= 0.90 for six of eight type-encoder pairs; (T2) regime is characterized by two surface-text predicates, with P1 decisive for routing and P2 qualifying the B-dominant case; and (T3) bridge advantage requires the relation-bearing sentence, not entity name alone.\n\n**Proposed Method:**\n\nThe authors propose RegimeRouter, a lightweight binary router that selects between question-only and question-plus-relation-sentence retrieval using five text features derived directly from the predicate definitions.\n\n**Results:**\n\nTrained on 2WikiMultiHopQA and applied zero-shot to MuSiQue and HotpotQA, RegimeRouter achieves +5.6 pp, +5.3 pp, and +1.1 pp R@5 improvement, respectively.\n\nThe paper was authored by Andre Bacellar and was last updated on April 28, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98cbaeab-4b7f-4600-9a50-2f9ba19f8b58",
+            "isSidechain": true,
+            "promptId": "fc9aef79-ed3e-436e-abbf-266022d190cc",
+            "agentId": "ae15a4c4824a5c36f",
+            "type": "user",
+            "uuid": "73b12e24-014a-4ecd-b3dd-ea2cc3b3e57a",
+            "sourceToolAssistantUUID": "98cbaeab-4b7f-4600-9a50-2f9ba19f8b58",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T16:58:50.471Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get more details by fetching the HTML version of the paper for deeper verification."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73b12e24-014a-4ecd-b3dd-ea2cc3b3e57a",
+            "isSidechain": true,
+            "agentId": "ae15a4c4824a5c36f",
+            "requestId": "req_011Cb2pKxSDRDjW21ZhWc8e5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9d8f7726-2818-4973-9873-33a613dfa003",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GA6dd2xso2q7DHEzMzBK9t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1294,
+                "cache_creation_input_tokens": 1145,
+                "cache_read_input_tokens": 10828,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1145,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T16:58:53.610Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NH718fMmUV3J7d1orvmmbV",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2604.09019",
+                "prompt": "Extract detailed information about: 1) The three theorems (T1, T2, T3) and what they formalize. 2) The exact definition of Q-dominant vs B-dominant regimes. 3) The RegimeRouter architecture and whether it is strictly a binary classifier. 4) The exact numerical results on MuSiQue, HotpotQA, and 2WikiMultiHopQA (R@5 improvements). 5) Whether the approach is limited to hop-2 only or extends beyond. 6) Any limitations section discussing the binary/hop-2 restriction. 7) The author(s) and submission date."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d8f7726-2818-4973-9873-33a613dfa003",
+            "isSidechain": true,
+            "agentId": "ae15a4c4824a5c36f",
+            "requestId": "req_011Cb2pKxSDRDjW21ZhWc8e5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0bf7b7a9-bbff-411d-96bd-a7310d678b47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GA6dd2xso2q7DHEzMzBK9t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1294,
+                "cache_creation_input_tokens": 1145,
+                "cache_read_input_tokens": 10828,
+                "output_tokens": 247,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1145
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1294,
+                    "output_tokens": 247,
+                    "cache_read_input_tokens": 10828,
+                    "cache_creation_input_tokens": 1145,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1145,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T16:59:03.122Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NH718fMmUV3J7d1orvmmbV",
+              "type": "tool_result",
+              "content": "# Analysis of \"Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA\"\n\n## 1. The Three Theorems\n\n**Theorem 1 (Separation-AUC Calibration):** Formalizes that per-query AUC follows a monotone relationship with cosine separation margin, approximating the standard normal CDF. Validation achieved R² ≥ 0.90 for six of eight encoder-type combinations.\n\n**Theorem 2 (Regime Decomposition):** Establishes that retrieval regime is determined by two binary predicates (P1 and P2). \"P1 is decisive for routing: ΔS < 0 (Q-dominant) when P1=True; when P1=False, P2=True identifies the B-dominant case.\"\n\n**Theorem 3 (Relational Sentence Sufficiency):** Demonstrates bridge advantage depends specifically on relation-bearing sentences, not entity occurrence alone. Removing this sentence caused performance collapse of \"8.6–14.1 pp (p<0.001).\"\n\n## 2. Regime Definitions\n\n**Q-dominant regime:** \"P1=True (both answer entities appear in the question).\" The question embedding alone ranks gold passages correctly; bridge re-encoding is redundant.\n\n**B-dominant regime:** \"P1=False (the answer entity is not named in the question), P2=True (it is named in the bridge).\" Bridge relation-bearing sentences must supplement question encoding.\n\n## 3. RegimeRouter Architecture\n\nRegimeRouter is a **binary logistic regression classifier** selecting between two retrieval strategies (Q-only vs. Union-based). It uses five surface-text features: comparison word presence, yes/no question structure, proper noun counts, novel entities in bridge, and relation-bearing sentence fraction. A separate sentence selector identifies relation-bearing sentences.\n\n## 4. Numerical Results (R@5)\n\n- **2WikiMultiHopQA (training):** +5.6 pp (p<0.001)\n- **MuSiQue (zero-shot):** +5.3 pp (p=0.002)\n- **HotpotQA (zero-shot):** +1.1 pp (p=0.143, non-significant)\n\n## 5. Scope Limitation: Hop-2 Only\n\nThe approach is strictly limited to two-hop retrieval. The authors note: \"questions are constructed by composing single-hop questions, making P1 and P2 binary and well-defined.\"\n\n## 6. Limitations Section\n\nThe Limitations section explicitly states the theory \"may not directly extend to: (1) questions with implicit rather than explicit compositional structure; (2) multi-hop chains beyond two hops; (3) encoders trained with bridge conditioning.\"\n\n## 7. Author and Submission Date\n\n**Author:** Andre Bacellar (andremi@gmail.com)  \n**arXiv ID:** 2604.09019v2  \n**Submission Date:** April 28, 2026"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0bf7b7a9-bbff-411d-96bd-a7310d678b47",
+            "isSidechain": true,
+            "promptId": "fc9aef79-ed3e-436e-abbf-266022d190cc",
+            "agentId": "ae15a4c4824a5c36f",
+            "type": "user",
+            "uuid": "181800b4-70d8-43ba-a5a6-491a646ab9e3",
+            "sourceToolAssistantUUID": "0bf7b7a9-bbff-411d-96bd-a7310d678b47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T16:59:17.165Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the verified findings for each of your five questions:\n\n---\n\n**1. Does this paper exist on arXiv?**\n\nYes, confirmed. The paper is available at [arxiv.org/abs/2604.09019](https://arxiv.org/abs/2604.09019) with the full title \"Regime-Conditional Retrieval: Theory and a Transferable Router for Two-Hop QA\" by Andre Bacellar. The current version is v2, submitted/updated April 28, 2026.\n\n---\n\n**2. Does it formalize Q-dominant vs B-dominant retrieval regimes for two-hop QA?**\n\nYes, confirmed. The paper formalizes these regimes through three theorems:\n\n- **Theorem 1 (Separation-AUC Calibration):** Per-query AUC is a monotone function of the cosine separation margin, with R-squared >= 0.90 for six of eight encoder-type combinations.\n- **Theorem 2 (Regime Decomposition):** Regime is determined by two binary predicates P1 and P2. P1=True (both answer entities appear in the question) defines the **Q-dominant** case. P1=False and P2=True (the answer entity is named only in the bridge passage, not the question) defines the **B-dominant** case.\n- **Theorem 3 (Relational Sentence Sufficiency):** Bridge advantage depends on relation-bearing sentences specifically, not entity occurrence alone. Removing the relation-bearing sentence collapses performance by 8.6--14.1 pp (p<0.001).\n\n---\n\n**3. Does it train a binary router?**\n\nYes, confirmed. The paper proposes **RegimeRouter**, which is a binary logistic regression classifier. It selects between two retrieval strategies: question-only encoding (for Q-dominant queries) vs. union-based encoding that incorporates relation-bearing sentences from the bridge passage (for B-dominant queries). It uses five surface-text features: comparison word presence, yes/no question structure, proper noun counts, novel entities in bridge, and relation-bearing sentence fraction.\n\n---\n\n**4. What are its claimed improvements?**\n\nThe claimed R@5 improvements are:\n\n| Benchmark | Improvement | Significance |\n|---|---|---|\n| 2WikiMultiHopQA (training set) | **+5.6 pp** | p < 0.001 |\n| MuSiQue (zero-shot transfer) | **+5.3 pp** | p = 0.002 |\n| HotpotQA (zero-shot transfer) | **+1.1 pp** | p = 0.143 (non-significant) |\n\nThe numbers you cited (+5.6 pp on MuSiQue, +5.3 pp on HotpotQA) are **swapped from what the paper actually reports**. The paper claims +5.6 pp on 2WikiMultiHopQA and +5.3 pp on MuSiQue. The HotpotQA improvement is only +1.1 pp and is statistically non-significant.\n\n---\n\n**5. Is it limited to binary classification for hop-2 only?**\n\nYes, confirmed. The approach is strictly limited to two-hop retrieval with a binary regime classification. The paper's Limitations section explicitly states the theory \"may not directly extend to: (1) questions with implicit rather than explicit compositional structure; (2) multi-hop chains beyond two hops; (3) encoders trained with bridge conditioning.\" The binary predicates P1 and P2 are well-defined specifically because two-hop questions are \"constructed by composing single-hop questions.\"\n\n---\n\nSources:\n- [arXiv Abstract: 2604.09019](https://arxiv.org/abs/2604.09019)\n- [arXiv HTML Full Paper: 2604.09019](https://arxiv.org/html/2604.09019)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "181800b4-70d8-43ba-a5a6-491a646ab9e3",
+            "isSidechain": true,
+            "agentId": "ae15a4c4824a5c36f",
+            "requestId": "req_011Cb2pM4W7qgc41kY6nwxmA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a864bb2f-6b48-48a0-bdf8-d5af403b755d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "dc0000b1-7eb7-408f-93e5-2e48a2af8809",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HmSyp1Zbd3UvKDosZYFDEd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2256,
+                "cache_read_input_tokens": 11973,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2256,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-web-for-the-paper-on-regime-conditional-retrieval-arxiv-2604-09019.md"
+}

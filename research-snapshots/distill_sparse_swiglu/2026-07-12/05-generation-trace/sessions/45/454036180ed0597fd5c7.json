@@ -1,0 +1,1623 @@
+{
+  "schema_version": "1.0",
+  "id": "454036180ed0597fd5c7",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In the paper directory at /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/, search",
+  "task_key": "agent-a9cc4d1362dafefa3",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a9cc4d1362dafefa3.jsonl",
+    "occurrence": 1,
+    "bytes": 93589,
+    "sha256": "138b3ef18616e2a5ee0d55b9b6ffaa3b56872f543e77b2768151cb570ab5e880"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 1,
+    "tool_calls": 10,
+    "roles": {
+      "user": 1,
+      "assistant": 10,
+      "tool_call": 10,
+      "tool_result": 10
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T11:49:27.152Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In the paper directory at /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/, search for what baselines are cited and compared against experimentally. \n\nSpecifically:\n1. In experiments.tex, what methods appear in Table 2 (main results table) as baselines?\n2. In related_work.tex, what methods are cited as most closely related (especially MaskLLM, DejaVu, CATS, PowerInfer, FastForward)?\n3. In references.bib, search for: maskllm, dejavu, cats, powerinfer, fastforward, teal, wina, sparseInfer, svdcsp, d2dmoe\n4. What downstream tasks are evaluated? (look for arc, winogrande, mmlu, gsm8k, hellaswag, piqa, boolq in experiments.tex and appendix.tex)\n\nReport what baselines we compare against experimentally vs only cite, and what downstream tasks we cover vs commonly used ones we're missing."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "83c10291-f9f7-46db-8cba-9066d7bf4990",
+            "agentId": "a9cc4d1362dafefa3",
+            "type": "user",
+            "uuid": "be13c0dc-19b7-4b00-a7dd-1a71545d2983",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T11:49:28.839Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you search the paper directory for baseline methods, citations, and downstream tasks. Let me start by exploring the structure and searching the relevant files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be13c0dc-19b7-4b00-a7dd-1a71545d2983",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86AVjjzsnkX3EyPu6Qi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d5f4f3cc-cf27-456a-bd4d-f6febe3a4239",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Jwr2GfQg7aDtyZAiw9VKq7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 35060,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 35060,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T11:49:28.984Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Pr8eo3FQcd2CUr8vPpt5Tb",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/ -type f -name \"*.tex\" -o -name \"*.bib\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5f4f3cc-cf27-456a-bd4d-f6febe3a4239",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86AVjjzsnkX3EyPu6Qi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1a034545-2df7-48c9-95f0-8b3e7b3b68a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Jwr2GfQg7aDtyZAiw9VKq7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 35060,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 139,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 35060
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 139,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 35060,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 35060,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T11:49:29.217Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pr8eo3FQcd2CUr8vPpt5Tb",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/references.bib\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/ethics.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/related_work.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a034545-2df7-48c9-95f0-8b3e7b3b68a7",
+            "isSidechain": true,
+            "promptId": "83c10291-f9f7-46db-8cba-9066d7bf4990",
+            "agentId": "a9cc4d1362dafefa3",
+            "type": "user",
+            "uuid": "2dfb1e0f-311e-44c7-b597-2476a747e948",
+            "sourceToolAssistantUUID": "1a034545-2df7-48c9-95f0-8b3e7b3b68a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T11:49:30.445Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search the key files for baselines and tasks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2dfb1e0f-311e-44c7-b597-2476a747e948",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86AeRd1iPUyyrMFfMaa",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8894e32d-9645-4117-8427-fe12a1785dd2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0179eGZw5tK7QJVm1tJi7SKC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1395,
+                "cache_read_input_tokens": 35060,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1395,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T11:49:30.574Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SPLWQqeVF2UTr7pRGGhoQQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8894e32d-9645-4117-8427-fe12a1785dd2",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86AeRd1iPUyyrMFfMaa",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4c70ac07-1018-4326-a8cf-f4093a1ec54d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0179eGZw5tK7QJVm1tJi7SKC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1395,
+                "cache_read_input_tokens": 35060,
+                "output_tokens": 102,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1395
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 102,
+                    "cache_read_input_tokens": 35060,
+                    "cache_creation_input_tokens": 1395,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1395,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T11:49:30.594Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SPLWQqeVF2UTr7pRGGhoQQ",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\n6\t\\paragraph{Model and Predictor.}\n7\tWe evaluate on LLaMA-3.1-8B~\\cite{grattafiori2024llama3}, which uses SwiGLU FFN blocks~\\cite{shazeer2020glu} with $d_{\\text{model}}=4096$ and $d_{\\text{ff}}=14336$ across 32 layers.\n8\tThe sparsity predictor is a two-layer MLP with 2.37M parameters per layer (75.9M total), implemented as Linear($4096 \\to 128$) + GELU + Linear($128 \\to 14336$), trained to produce per-neuron importance scores that minimize output-distribution divergence under sparsity.\n9\t\n10\t\\paragraph{Training.}\n11\tAll predictors are trained for 1000 steps on WikiText-103 with sequence length 2048 and batch size 4, using AdamW~\\cite{loshchilov2019adamw} with learning rate $1 \\times 10^{-3}$, weight decay $5 \\times 10^{-2}$, and cosine decay.\n12\tThe KL predictor uses Gumbel-Sigmoid relaxation~\\cite{jang2017gumbel} with temperature $\\tau=1.0$ annealed to $0.1$ over training.\n13\t\n14\t\\paragraph{Evaluation.}\n15\tWe report perplexity on WikiText-2~\\cite{merity2017pointer} (seq\\_len=2048) and downstream accuracy on ARC-Challenge (25-shot), WinoGrande (5-shot), MMLU (5-shot), and GSM8K (8-shot).\n16\t\n17\t\\paragraph{Inference Protocol.}\n18\tAt inference, the predictor produces per-neuron scores that are passed to TEAL's global top-$k$ allocation mechanism~\\cite{liu2025teal}, which distributes the sparsity budget across layers non-uniformly.\n19\tWe term this \\textit{predictor-TEAL}: the predictor replaces TEAL's magnitude-based scoring while retaining its allocation strategy.\n20\t\n21\t\\paragraph{Baselines.}\n22\tWe compare against: (1) \\textbf{Vanilla TEAL}~\\cite{liu2025teal}, which uses activation magnitudes directly; (2) \\textbf{BCE predictor}, trained with per-neuron binary cross-entropy loss for 1000 and 2700 steps; (3) \\textbf{Uniform allocation}, which distributes the sparsity budget equally across layers; and (4) \\textbf{WINA}~\\cite{liu2025teal}, an importance-weighted variant.\n23\t\n24\t\n25\t\\subsection{Main Results}\n26\t\n27\tTable~\\ref{tab:main} presents the primary comparison. We recommend uniform allocation for deployment (best downstream preservation); global allocation is analyzed to understand allocation-quality tradeoffs (\\S\\ref{sec:scaling}).\n28\tAt 30\\% sparsity, KL distillation with global TEAL allocation achieves PPL 8.98, reducing TEAL's degradation from dense (10.97 $\\to$ 8.98, an 18\\% improvement). % exp_id: kl_30_global_teal\n29\tUniform allocation at 30\\% recovers MMLU to 40.61\\% (+15.3pp over KL-global's 25.27\\%): global top-$k$ starves late layers (L31 retention 28.4\\%) while uniform guarantees capacity in logit-forming layers (\\S\\ref{sec:scaling}). % exp_id: bench_kl30_uniform\n30\t\n31\tAt 50\\% sparsity, KL distillation over vanilla TEAL widens the PPL advantage: 11.79 vs.\\ 23.31, a 49\\% reduction. % exp_id: bench_kl50_global, bench_teal50\n32\tThe predictor also generalizes to held-out data (C4 validation: 52.5\\% advantage over TEAL; see Appendix~\\ref{app:ood}).\n33\tHowever, all methods exhibit downstream collapse on MMLU (27.89\\% vs.\\ 27.77\\% for global vs.\\ uniform, both $\\approx$ random) and GSM8K ($<$2.2\\%), indicating a capacity-limited regime where no allocation strategy can recover. % exp_id: bench_kl50_global, d030_kl50_uniform\n34\t\n35\t\\begin{table}[t]\n36\t\\centering\n37\t\\caption{Main results on LLaMA-3.1-8B. PPL$\\downarrow$ on WikiText-2; accuracy$\\uparrow$ on downstream tasks. \\textbf{Bold}: best among compensation-free methods per sparsity level. BCE uses a different inference protocol: hard binary masks from the predictor with a learned compensation network (67.2M params) applied post-masking; no TEAL allocation. Results are single-seed except 50\\% uniform (3-seed mean $\\pm$ std: $11.92 \\pm 0.07$; Appendix~\\ref{app:stability}).}\n38\t\\label{tab:main}\n39\t\\resizebox{\\columnwidth}{!}{\n40\t\\begin{tabular}{llccccc}\n41\t\\toprule\n42\tSparsity & Method & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n43\t\\midrule\n44\t0\\% & Dense & 6.12 & 58.28 & 78.06 & 65.27 & 48.75 \\\\\n45\t\\midrule\n46\t\\multirow{3}{*}{30\\%}\n47\t& TEAL vanilla & 10.97 & \\textbf{42.32} & 66.06 & 38.61 & 7.88 \\\\ % exp_id: bench_teal30\n48\t& KL global (Ours) & 8.98 & 39.68 & \\textbf{70.17} & 25.27 & \\textbf{8.79} \\\\ % exp_id: lm_eval_kl_30pct_s42\n49\t& KL uniform & \\textbf{8.82} & 40.78 & 68.59 & \\textbf{40.61} & 7.35 \\\\ % exp_id: bench_kl30_uniform\n50\t\\midrule\n51\t\\multirow{4}{*}{50\\%}\n52\t& TEAL vanilla & 23.31 & 28.41 & 53.04 & \\textbf{28.32} & 1.97 \\\\ % exp_id: bench_teal50\n53\t& KL global (Ours) & \\textbf{11.79} & \\textbf{32.85} & \\textbf{63.46} & 27.89 & 1.29 \\\\ % exp_id: bench_kl50_global\n54\t& KL uniform & 11.96 & 32.76 & 62.90 & 27.77 & \\textbf{2.12} \\\\ % exp_id: d030_kl50_uniform\n55\t& BCE (2700 steps)$^\\ast$ & 27.97 & 23.98 & 50.59 & 30.02 & 4.85 \\\\ % exp_id: eval_bce_v3_s42\n56\t\\bottomrule\n57\t\\end{tabular}}\n58\t\\end{table}\n59\t\n60\t\n61\t\\subsection{Extended Training Analysis}\n62\t\\label{sec:isocompute}\n63\t\n64\tTo test whether BCE simply requires more compute, we train it for 2700 steps (2.71$\\times$ the KL step budget, approximately equal wall-clock time: $\\sim$46 min BCE vs.\\ $\\sim$45 min KL on RTX PRO 6000).\n65\tThe BCE predictor achieves PPL 27.97, still 2.37$\\times$ worse than KL at 1000 steps (PPL 11.79). % exp_id: bce_isocompute_s42\n66\tThe failure is structural, not due to architectural or compute differences: both predictors use identical architectures and TEAL allocation, yet BCE achieves +7pp oracle F1 (0.613 vs.\\ 0.540) with 137\\% worse PPL (27.97 vs.\\ 11.79). KL's near-random precision (0.51) confirms it learns a mask optimized for distributional fidelity rather than magnitude matching. % exp_id: f1_oracle_analysis, bce_isocompute_s42\n67\tFuture work could further isolate coupling effects through MSE on hidden states and per-layer KL ablations.\n68\t\n69\t\n70\t\\subsection{Ablation Studies}\n71\t\n72\tTable~\\ref{tab:ablation} isolates the contribution of each design choice at 50\\% sparsity.\n73\t\n74\t\\begin{table}[t]\n75\t\\centering\n76\t\\caption{Ablation at 50\\% sparsity on LLaMA-3.1-8B (WikiText-2 PPL$\\downarrow$, unified benchmark protocol).}\n77\t\\label{tab:ablation}\n78\t\\small\n79\t\\begin{tabular}{lcc}\n80\t\\toprule\n81\tConfiguration & PPL$\\downarrow$ & $\\Delta$ from Ours \\\\\n82\t\\midrule\n83\t\\multicolumn{3}{l}{\\textit{KL-based variants}} \\\\\n84\tForward KL + Gumbel (Ours) & \\textbf{11.79} & --- \\\\ % exp_id: bench_kl50_global\n85\tJSD (symmetric) + Gumbel & 12.54 & +0.75 \\\\ % exp_id: jsd_ablation_s42\n86\tReverse KL + Gumbel & 12.80 & +1.01 \\\\ % exp_id: reverse_kl_ablation_s42\n87\tForward KL + STE & 15.77 & +3.98 \\\\ % exp_id: ste_baseline_s42\n88\t\\midrule\n89\t\\multicolumn{3}{l}{\\textit{BCE-based variants}} \\\\\n90\tBCE + Compensation (hard mask) & 25.44 & +13.65 \\\\ % exp_id: bce_comp_staged_s42\n91\tBCE (no compensation) & 27.97 & +16.18 \\\\ % exp_id: eval_bce_v3_s42\n92\tBCE + Gumbel + Penalty (no KL) & 38.02 & +26.23 \\\\ % exp_id: bce_gumbel_lagrangian_isolation\n93\t\\bottomrule\n94\t\\end{tabular}\n95\t\\end{table}\n96\t\n97\t\\paragraph{Gumbel vs.\\ STE.}\n98\tReplacing Gumbel-Sigmoid with STE~\\cite{bengio2013ste} degrades PPL from 11.79 to 15.77 (+3.98), accounting for 34.5\\% of the improvement over vanilla TEAL. % exp_id: ste_baseline_s42\n99\t\n100\t\\paragraph{Divergence Direction.}\n101\tForward KL (mode-covering) outperforms JSD (+6.4\\%) and reverse KL (+8.6\\%), consistent with the SNR analysis in \\S\\ref{sec:method:gradient}: complete teacher supervision enables better global allocation learning. % exp_id: jsd_ablation_s42, reverse_kl_ablation_s42\n102\tThis contrasts with MiniLLM~\\cite{gu2024minillm}, which finds reverse KL superior for sequence-level distillation: in generation, mode-seeking prevents low-probability token production, while in mask prediction, mode-covering (forward KL) ensures no important neuron is omitted ($q(x) \\approx 0$ where $p(x) > 0$ is directly penalized).\n103\t\n104\t\\paragraph{SPON Contribution.}\n105\tAdding SPON~\\cite{xu2026spon} bias correction reduces PPL from 12.08 to 11.79 (2.4\\% relative); see \\S\\ref{sec:spon} for decomposition.\\footnote{SPON analysis uses \\texttt{evaluate.py}; main results use the unified benchmark.} % exp_id: spon_2048_s42, mvp_kl_norm_v2_s42\n106\t\n107\t\\paragraph{Loss Function Isolation.}\n108\tBCE with identical Gumbel-Sigmoid and penalty yields PPL 38.02, worse than vanilla BCE (27.97): the penalty interferes with per-neuron optimization without global coordination. % exp_id: bce_gumbel_lagrangian_isolation\n109\tThe loss effect ($\\Delta$PPL=26.23) is $6.6\\times$ the relaxation effect ($\\Delta$PPL=3.98).\n110\t\n111\t\\paragraph{BCE + Compensation.}\n112\tCompensation improves BCE from 27.97 to 25.44 (9.0\\%), still $2.16\\times$ worse than KL. % exp_id: bce_comp_staged_s42\n113\t\n114\t\\paragraph{Hyperparameter Robustness.}\n115\tAppendix~\\ref{app:db_sensitivity} confirms robustness to predictor capacity ($d_b$, $<$3\\%), temperature ($<$1.8\\%), and training steps (saturated by 800). % exp_id: db_sensitivity_sweep, tau_schedule_sweep, training_steps_sweep\n116\t\n117\t\n118\t\\subsection{Sparsity Scaling and Regime Analysis}\n119\t\\label{sec:scaling}\n120\t\n121\tTable~\\ref{tab:scaling} and Figure~\\ref{fig:sparsity_sweep} show PPL as a function of sparsity for the KL predictor under global allocation and vanilla TEAL.\n122\t\n123\t\\begin{figure}[t]\n124\t\\centering\n125\t\\includegraphics[width=\\columnwidth]{fig2_sparsity_sweep.pdf}\n126\t\\caption{Perplexity scaling with sparsity. The KL predictor's advantage grows disproportionately as more neurons are pruned.}\n127\t\\label{fig:sparsity_sweep}\n128\t\\end{figure}\n129\t\n130\t\\begin{table}[t]\n131\t\\centering\n132\t\\caption{PPL scaling with sparsity (WikiText-2). KL advantage grows disproportionately with sparsity.}\n133\t\\label{tab:scaling}\n134\t\\small\n135\t\\begin{tabular}{lccc}\n136\t\\toprule\n137\tSparsity & KL (Ours) & TEAL vanilla & Relative advantage \\\\\n138\t\\midrule\n139\t30\\% & \\textbf{8.98} & 10.97 & 18\\% \\\\ % exp_id: kl_30_global_teal\n140\t50\\% & \\textbf{11.79} & 23.31 & 49\\% \\\\ % exp_id: bench_kl50_global\n141\t70\\% & \\textbf{17.91} & 100.11 & 82\\% \\\\ % exp_id: kl_70_global_teal\n142\t\\bottomrule\n143\t\\end{tabular}\n144\t\\end{table}\n145\t\n146\tThe KL advantage grows from 18\\% at 30\\% to 82\\% at 70\\%, where TEAL collapses (PPL 100.11) while the learned predictor maintains coherent allocation.\n147\tIn absolute terms, KL/Dense degradation is $1.47\\times$ at 30\\%, $1.93\\times$ at 50\\%, and $2.93\\times$ at 70\\%, compared to TEAL/Dense ratios of $1.79\\times$, $3.81\\times$, and $16.4\\times$ respectively.\n148\t\n149\t\\paragraph{Three Operating Regions.}\n150\tTable~\\ref{tab:phase} presents global vs.\\ uniform allocation at three sparsity levels, revealing qualitative shifts in allocation preference. Denser sampling (e.g., 35\\% sparsity) would be needed to precisely locate region boundaries.\n151\t\n152\t\\begin{table}[t]\n153\t\\centering\n154\t\\caption{Allocation analysis: global (TEAL) vs.\\ uniform per-layer allocation across sparsity levels. \\textbf{Bold}: best per column within each sparsity group (compensation-free). Each row uses a predictor trained at the respective sparsity target.}\n155\t\\label{tab:phase}\n156\t\\resizebox{\\columnwidth}{!}{\n157\t\\begin{tabular}{llccccc}\n158\t\\toprule\n159\tSparsity & Allocation & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n160\t\\midrule\n161\t0\\% & Dense & 6.12 & 58.28 & 78.06 & 65.27 & 48.75 \\\\\n162\t\\midrule\n163\t\\multirow{3}{*}{30\\%}\n164\t& TEAL vanilla & 10.97 & \\textbf{42.32} & 66.06 & 38.61 & 7.88 \\\\ % exp_id: bench_teal30\n165\t& KL global & 8.98 & 39.68 & \\textbf{70.17} & 25.27 & \\textbf{8.79} \\\\ % exp_id: lm_eval_kl_30pct_s42\n166\t& KL uniform & \\textbf{8.82} & 40.78 & 68.59 & \\textbf{40.61} & 7.35 \\\\ % exp_id: bench_kl30_uniform\n167\t\\midrule\n168\t\\multirow{2}{*}{40\\%}\n169\t& KL global & 10.12 & 40.96 & 65.35 & \\textbf{38.06} & \\textbf{5.00} \\\\ % exp_id: bench_kl40_global\n170\t& KL uniform & \\textbf{8.36} & \\textbf{41.81} & \\textbf{67.17} & 30.68 & 3.94 \\\\ % exp_id: d030_kl40_uniform\n171\t\\midrule\n172\t\\multirow{3}{*}{50\\%}\n173\t& TEAL vanilla & 23.31 & 28.41 & 53.04 & \\textbf{28.32} & 1.97 \\\\ % exp_id: bench_teal50\n174\t& KL global & \\textbf{11.79} & \\textbf{32.85} & \\textbf{63.46} & 27.89 & 1.29 \\\\ % exp_id: bench_kl50_global\n175\t& KL uniform & 11.96 & 32.76 & 62.90 & 27.77 & \\textbf{2.12} \\\\ % exp_id: d030_kl50_uniform\n176\t\\bottomrule\n177\t\\end{tabular}}\n178\t\\end{table}\n179\t\n180\tThe allocation preference is \\emph{non-monotonic}. We observe three qualitative behaviors at the sampled sparsity levels (7--8B scale):\n181\t\n182\t\\noindent\\textbf{Budget-surplus ($\\leq$30\\%).}\n183\tUniform allocation recovers MMLU from 25.27\\% to 40.61\\% (+15.3pp), comparable to TEAL's 38.61\\%, confirming degradation is attributable to allocation strategy rather than KL training. Global top-$k$ starves late layers (L31: 28.4\\%, std/mean$=$1.89) which siphon disproportionate budget from logit-forming layers. Note: the adaptive controller achieves 28.5\\% actual sparsity at the 30\\% target (5\\% deviation; Appendix~\\ref{app:lagrangian}). % exp_id: bench_kl30_uniform, lm_eval_kl_30pct_s42, bench_teal30\n184\t\n185\t\\noindent\\textbf{Budget-constrained ($\\sim$40\\%).}\n186\tThe preference reverses: global achieves MMLU 38.06\\% vs.\\ uniform's 30.68\\% (+7.4pp). % exp_id: bench_kl40_global, d030_kl40_uniform\n187\tPPL remains low (8.36) but downstream accuracy degrades, confirming PPL is a poor proxy for reasoning.\n188\t\n189\t\\noindent\\textbf{Capacity-limited ($\\geq$50\\%).}\n190\tGlobal/uniform gap vanishes (MMLU 27.89\\% vs.\\ 27.77\\%, both $\\approx$ random). % exp_id: bench_kl50_global, d030_kl50_uniform\n191\tLate-layer starvation persists across levels (L24--31 mean retention: 50.1\\% at 30\\%, 34.2\\% at 50\\%, 22.6\\% at 70\\%; Figure~\\ref{fig:retention}); this boundary is consistent on both 7--8B models (\\S\\ref{sec:cross_arch}).\n192\t\n193\t\\paragraph{Gap Decomposition.}\n194\tDecomposing the Dense$\\to$KL gap under uniform allocation (5.85 PPL): per-token hard mask evaluation (Appendix~\\ref{app:db_sensitivity}, Table~\\ref{tab:db_sensitivity}) yields PPL 9.22, attributing 53\\% of the degradation to predictor approximation (including soft-to-hard discretization) and 47\\% to per-layer budget allocation. % exp_id: db_sensitivity_sweep, bench_kl50_uniform\n195\tEven under global allocation, the learned predictor (11.79) remains $1.98\\times$ better than TEAL's magnitude oracle (23.31), confirming that distributional training captures neuron interactions that magnitude scoring misses.\n196\t\n197\t\n198\t\\subsection{SPON Orthogonality Analysis}\n199\t\\label{sec:spon}\n200\t\n201\tAt 50\\% sparsity, the predictor's hidden-state perturbation (L2=482.65) and SPON's additive correction (L2=76.2, cosine similarity 0.196) are weakly correlated ($R^2$=0.038); SPON yields only 2.4\\% PPL improvement (12.08$\\to$11.79), confirming the KL predictor already captures most recoverable signal. % exp_id: spon_decomposition, spon_2048_s42, mvp_kl_norm_v2_s42\n202\t\n203\t\\paragraph{Cross-Architecture Validation.}\n204\t\\label{sec:cross_arch}\n205\tTable~\\ref{tab:cross_arch} evaluates on Mistral-7B-v0.3~\\cite{jiang2023mistral} (GQA + sliding window, dense PPL 5.52).\n206\t\n207\t\\begin{table}[t]\n208\t\\centering\n209\t\\caption{Cross-architecture comparison (WikiText-2 PPL$\\downarrow$). Adv = TEAL\\,/\\,KL ratio. LLaMA uses global top-$k$; Mistral uses uniform allocation (matched within each architecture).}\n210\t\\label{tab:cross_arch}\n211\t\\small\n212\t\\begin{tabular}{l@{\\hspace{4pt}}cc@{\\hspace{3pt}}c@{\\hspace{6pt}}|@{\\hspace{6pt}}cc@{\\hspace{3pt}}c}\n213\t\\toprule\n214\t & \\multicolumn{3}{c}{Mistral-7B} & \\multicolumn{3}{c}{LLaMA-8B} \\\\\n215\t & KL & TEAL & Adv & KL & TEAL & Adv \\\\\n216\t\\midrule\n217\t30\\% & \\textbf{6.77} & 8.38 & 1.24$\\times$ & \\textbf{8.98} & 10.97 & 1.22$\\times$ \\\\ % exp_id: kl_30_mistral, teal_30_mistral\n218\t50\\% & \\textbf{8.65} & 18.31 & 2.12$\\times$ & \\textbf{11.79} & 23.31 & 1.98$\\times$ \\\\ % exp_id: kl_50_mistral, teal_50_mistral\n219\t70\\% & \\textbf{13.33} & 61.72 & 4.63$\\times$ & \\textbf{17.91} & 100.11 & 5.59$\\times$ \\\\ % exp_id: kl_70_mistral, teal_70_mistral\n220\t\\bottomrule\n221\t\\end{tabular}\n222\t\\end{table}\n223\t\n224\tThe KL advantage ratio (computed within each architecture under matched allocation) is consistent across architectures (within 8\\% at $\\leq$50\\% sparsity), with larger variance at 70\\% (4.63$\\times$ vs.\\ 5.59$\\times$) due to differential baseline collapse.\n225\tConsistent ratios despite Mistral's stronger TEAL baseline (gate distribution favors magnitude pruning) provide preliminary evidence of generality across SwiGLU architectures at the 7--8B scale.\n226\t\n227\t\n228\t\\paragraph{Inference Efficiency.}\n229\tThe pipeline adds 6.4\\% overhead to dense inference (RTX PRO 6000 Blackwell) while removing the compensation network ($-$2.7\\% latency, $-$67.2M params); post-hoc SPON yields $<$3\\% additional gain (\\S\\ref{sec:spon}), suggesting the predictor already internalizes most error-correction signal (Appendix~\\ref{app:latency}).\n230\t\n231\t\\paragraph{Training Stability.}\n232\tThree-seed evaluation (50\\% uniform): PPL $11.92 \\pm 0.07$ (CV$<$1\\%); see Appendix~\\ref{app:stability}.\n233\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c70ac07-1018-4326-a8cf-f4093a1ec54d",
+            "isSidechain": true,
+            "promptId": "83c10291-f9f7-46db-8cba-9066d7bf4990",
+            "agentId": "a9cc4d1362dafefa3",
+            "type": "user",
+            "uuid": "d4b05706-4d42-4685-9d64-18f94c240e02",
+            "sourceToolAssistantUUID": "4c70ac07-1018-4326-a8cf-f4093a1ec54d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T11:49:31.812Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search the related_work.tex file:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d4b05706-4d42-4685-9d64-18f94c240e02",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86AkLKpokZVAVojx38q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8c00afa0-04e6-4e60-b426-23ab0a99b6fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H4rkZpjbF52RghkSzLX8fM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 6884,
+                "cache_read_input_tokens": 36455,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6884,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T11:49:32.473Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AiZwpjNPz7kMzVM21KWR6d",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c00afa0-04e6-4e60-b426-23ab0a99b6fa",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86AkLKpokZVAVojx38q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8adabf96-2d47-48d4-97b7-46f68a508719",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H4rkZpjbF52RghkSzLX8fM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 6884,
+                "cache_read_input_tokens": 36455,
+                "output_tokens": 103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6884
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 103,
+                    "cache_read_input_tokens": 36455,
+                    "cache_creation_input_tokens": 6884,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6884,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T11:49:32.535Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AiZwpjNPz7kMzVM21KWR6d",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\n3\t\\paragraph{Training-Free Activation Sparsity.}\n4\tTEAL~\\cite{liu2025teal} applies global top-$k$ selection by activation magnitude, achieving 40--50\\% sparsity with no training cost.\n5\tCATS~\\cite{lee2024cats} adapts per-layer thresholds for SiLU/SwiGLU activations; R-Sparse~\\cite{zhang2025rsparse} predicts sparsity from rank-aware SVD projections; DIP~\\cite{federici2025dip} combines dynamic input pruning with cache-aware masking; SparseInfer~\\cite{shin2025sparseinfer} predicts activation sparsity patterns from attention outputs without additional training.\n6\tAll training-free methods determine masks from fixed statistics or input-independent criteria, while our predictor generates \\emph{input-dependent} masks trained to minimize output-distribution divergence.\n7\t\n8\t\\paragraph{Predictor-Based Contextual Sparsity.}\n9\tDejaVu~\\cite{liu2023dejavu} introduced learned sparsity predictors trained via BCE to classify each neuron independently.\n10\tShadowLLM~\\cite{akhauri2024shadowllm} uses attention-based routing with per-layer MSE supervision, providing intermediate coupling within each layer but no end-to-end gradient signal.\n11\tFastForward~\\cite{gautam2026fastforward} adds a 67.2M-parameter compensation network using BCE for mask prediction, adding inference latency.\n12\tSVD-CSP~\\cite{serbin2026svdcsp} compresses sparsity predictors via SVD decomposition for reduced predictor overhead.\n13\tPowerInfer~\\cite{song2024powerinfer} exploits power-law activation frequencies for GPU--CPU scheduling.\n14\tMaskLLM~\\cite{fang2024maskllm} also employs learnable masks with Gumbel relaxation and frozen weights, but targets N:M semi-structured \\emph{weight} sparsity (2:4 patterns) via per-group categorical selection (Gumbel-Softmax), producing fixed masks independent of input tokens.\n15\tBoth share the principle of frozen weights + learnable masks + KL training, but solve distinct optimization problems: MaskLLM finds optimal static N:M patterns within fixed groups, while we predict dynamic per-token masks under a global budget constraint.\n16\tThe structural mismatch we characterize (per-neuron gradient decomposition vs.\\ global top-$k$) does not arise in MaskLLM's per-group categorical setting, where N:M patterns eliminate cross-group budget competition.\n17\tAll prior predictor-based methods use decomposed (BCE) or intermediate (MSE) objectives where each neuron's gradient is independent of other mask states.\n18\tOur contribution is primarily empirical: we observe that a coupled KL objective propagates gradients through all downstream layers and quantify when this matters for global allocation quality.\n19\t\n20\t\\paragraph{Static Bias Correction.}\n21\tSPON~\\cite{xu2026spon} learns input-independent bias vectors via closed-form KL minimization per layer, absorbed into weights at deployment.\n22\tOur method is fundamentally different: a per-token contextual predictor trained end-to-end across all layers, producing input-dependent masks.\n23\tSPON solves a static per-layer problem; we solve a global dynamic prediction problem. The two are weakly correlated (cosine similarity 0.196, $R^2$=0.038; \\S\\ref{sec:experiments}).\n24\t\n25\t\\paragraph{Activation Function Engineering.}\n26\tReLU Strikes Back~\\cite{mirzadeh2024relu} replaces SiLU with ReLU for $>$90\\% natural sparsity; TurboSparse~\\cite{song2024turbosparse} and ProSparse~\\cite{song2025prosparse} engineer extreme sparsity through activation modifications; the Sparsing Law~\\cite{luo2024sparsinglaw} formalizes how activation density increases with training compute.\n27\tMiniTron~\\cite{muralidharan2024minitron} combines structured pruning with distillation but modifies architecture permanently.\n28\tAll require retraining or weight modification; our method is a plug-in predictor on \\emph{unmodified} SwiGLU models.\n29\t\n30\t\\paragraph{Weight Pruning, Distillation, and Routing.}\n31\tWanda~\\cite{sun2024wanda} and SparseGPT~\\cite{frantar2023sparsegpt} produce static weight masks; Switch Transformers~\\cite{fedus2022switch} and Mixture-of-Depths~\\cite{raposo2024mod} achieve conditional computation through learned routing.\n32\tKL-based distillation~\\cite{kim2016sequencekd,sanh2019distilbert,gu2024minillm,agarwal2024gkd} trains compact students; SparseLoRA~\\cite{khaki2025sparselora} exploits contextual sparsity for fine-tuning.\n33\tWe apply the KL principle to train a sparsity predictor on unmodified dense models, using Gumbel-Sigmoid sampling~\\cite{maddison2017concrete,louizos2018l0} for differentiable discrete mask optimization.\n34\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8adabf96-2d47-48d4-97b7-46f68a508719",
+            "isSidechain": true,
+            "promptId": "83c10291-f9f7-46db-8cba-9066d7bf4990",
+            "agentId": "a9cc4d1362dafefa3",
+            "type": "user",
+            "uuid": "172d4887-1b8a-47f8-8b5a-4e1fa5d547ba",
+            "sourceToolAssistantUUID": "8adabf96-2d47-48d4-97b7-46f68a508719",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T11:49:33.932Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search the references.bib file for the specific methods:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "172d4887-1b8a-47f8-8b5a-4e1fa5d547ba",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86AtvFtmB68BiarQk6i",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "327d8209-8007-467f-bb27-7878b38b62e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MoqzgPii1LTvRcgUyKif1i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1427,
+                "cache_read_input_tokens": 43339,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1427,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T11:49:34.611Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W77ETCouP3q7HHRmf5XsaS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "327d8209-8007-467f-bb27-7878b38b62e0",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86AtvFtmB68BiarQk6i",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c54c7437-6d53-47de-9e54-1ccd7b221768",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MoqzgPii1LTvRcgUyKif1i",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1427,
+                "cache_read_input_tokens": 43339,
+                "output_tokens": 105,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1427
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 105,
+                    "cache_read_input_tokens": 43339,
+                    "cache_creation_input_tokens": 1427,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1427,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T11:49:34.633Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W77ETCouP3q7HHRmf5XsaS",
+              "type": "tool_result",
+              "content": "1\t% =============================================================================\n2\t% Direction 1: KL distillation for structured/activation sparsity\n3\t% =============================================================================\n4\t\n5\t@inproceedings{fang2024maskllm,\n6\t  title = {MaskLLM: Learnable Semi-Structured Sparsity for Large Language Models},\n7\t  author = {Gongfan Fang and Hongxu Yin and Saurav Muralidharan and Greg Heinrich and Jeff Pool and Jan Kautz and Pavlo Molchanov and Xinchao Wang},\n8\t  year = {2024},\n9\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n10\t  url = {https://arxiv.org/abs/2409.17481},\n11\t}\n12\t\n13\t@inproceedings{xu2026spon,\n14\t  title = {Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models},\n15\t  author = {Haotian Xu and Jiannan Yang and Tian Gao and Tsui-Wei Weng and Tengfei Ma},\n16\t  year = {2025},\n17\t  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},\n18\t  url = {https://arxiv.org/abs/2512.12744},\n19\t}\n20\t\n21\t@inproceedings{muralidharan2024minitron,\n22\t  title = {Compact Language Models via Pruning and Knowledge Distillation},\n23\t  author = {Saurav Muralidharan and Sharath Turuvekere Sreenivas and Raviraj Joshi and Marcin Chochowski and Mostofa Patwary and Mohammad Shoeybi and Bryan Catanzaro and Jan Kautz and Pavlo Molchanov},\n24\t  year = {2024},\n25\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n26\t  url = {https://arxiv.org/abs/2407.14679},\n27\t}\n28\t\n29\t\n30\t% =============================================================================\n31\t% Direction 3: SPON and learnable bias correction for sparsity\n32\t% =============================================================================\n33\t\n34\t@article{gautam2026fastforward,\n35\t  title = {Fast Forward: Accelerating LLM Prefill with Predictive FFN Sparsity},\n36\t  author = {Aayush Gautam and Mukul Gagrani and Junyoung Park and Mingu Lee and Chiris Lott and Narasimha Reddy},\n37\t  year = {2026},\n38\t  journal = {arXiv preprint arXiv:2602.00397},\n39\t  url = {https://arxiv.org/abs/2602.00397},\n40\t}\n41\t\n42\t\n43\t% =============================================================================\n44\t% Direction 4: Predictor-based activation sparsity\n45\t% =============================================================================\n46\t\n47\t@inproceedings{liu2025teal,\n48\t  title = {Training-Free Activation Sparsity in Large Language Models},\n49\t  author = {James Liu and Pragaash Ponnusamy and Tianle Cai and Han Guo and Yoon Kim and Ben Athiwaratkun},\n50\t  year = {2025},\n51\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n52\t  url = {https://arxiv.org/abs/2408.14690},\n53\t}\n54\t\n55\t@inproceedings{liu2023dejavu,\n56\t  title = {Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time},\n57\t  author = {Zichang Liu and Jue Wang and Tri Dao and Tianyi Zhou and Binhang Yuan and Zhao Song and Anshumali Shrivastava and Ce Zhang and Yuandong Tian and Christopher Re and Beidi Chen},\n58\t  year = {2023},\n59\t  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},\n60\t  url = {https://arxiv.org/abs/2310.17157},\n61\t}\n62\t\n63\t@inproceedings{akhauri2024shadowllm,\n64\t  title = {ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models},\n65\t  author = {Yash Akhauri and Ahmed F AbouElhamayed and Jordan Dotzel and Zhiru Zhang and Alexander M Rush and Safeen Huda and Mohamed S Abdelfattah},\n66\t  year = {2024},\n67\t  booktitle = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n68\t  url = {https://arxiv.org/abs/2406.16635},\n69\t}\n70\t\n71\t\n72\t@article{lee2024cats,\n73\t  title = {CATS: Contextually-Aware Thresholding for Sparsity in Large Language Models},\n74\t  author = {Donghyun Lee and Je-Yong Lee and Genghan Zhang and Mo Tiwari and Azalia Mirhoseini},\n75\t  year = {2024},\n76\t  journal = {arXiv preprint arXiv:2404.08763},\n77\t  url = {https://arxiv.org/abs/2404.08763},\n78\t}\n79\t\n80\t@inproceedings{zhang2025rsparse,\n81\t  title = {R-Sparse: Rank-Aware Activation Sparsity for Efficient LLM Inference},\n82\t  author = {Zhenyu Zhang and Zechun Liu and Yuandong Tian and Harshit Khaitan and Zhangyang Wang and Steven Li},\n83\t  year = {2025},\n84\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n85\t  url = {https://arxiv.org/abs/2504.19449},\n86\t}\n87\t\n88\t@inproceedings{federici2025dip,\n89\t  title = {Efficient LLM Inference using Dynamic Input Pruning and Cache-Aware Masking},\n90\t  author = {Marco Federici and Davide Belli and Mart van Baalen and Amir Jalalirad and Andrii Skliar and Bence Major and Markus Nagel and Paul Whatmough},\n91\t  year = {2024},\n92\t  booktitle = {Proceedings of Machine Learning and Systems (MLSys)},\n93\t  url = {https://arxiv.org/abs/2412.01380},\n94\t}\n95\t\n96\t@inproceedings{shin2025sparseinfer,\n97\t  title = {SparseInfer: Training-free Prediction of Activation Sparsity for Fast LLM Inference},\n98\t  author = {Jiho Shin and Hoeseok Yang and Youngmin Yi},\n99\t  year = {2025},\n100\t  booktitle = {Proceedings of the Design, Automation \\& Test in Europe Conference (DATE)},\n101\t  url = {https://arxiv.org/abs/2411.12692},\n102\t}\n103\t\n104\t@article{serbin2026svdcsp,\n105\t  title = {SVD Contextual Sparsity Predictors for Fast LLM Inference},\n106\t  author = {Georgii Serbin and Kirill Koshkin and Zhongao Sun and Anastasiya Bistrigova and C.C. Korikov},\n107\t  year = {2026},\n108\t  journal = {arXiv preprint arXiv:2603.14110},\n109\t  url = {https://arxiv.org/abs/2603.14110},\n110\t}\n111\t\n112\t% =============================================================================\n113\t% Activation function replacement and sparsity enhancement\n114\t% =============================================================================\n115\t\n116\t@inproceedings{mirzadeh2024relu,\n117\t  title = {ReLU Strikes Back: Exploiting Activation Sparsity in Large Language Models},\n118\t  author = {Iman Mirzadeh and Keivan Alizadeh and Sachin Mehta and Carlo C Del Mundo and Oncel Tuzel and Golnoosh Samei and Mohammad Rastegari and Mehrdad Farajtabar},\n119\t  year = {2024},\n120\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n121\t  url = {https://arxiv.org/abs/2310.04564},\n122\t}\n123\t\n124\t@article{song2024turbosparse,\n125\t  title = {Turbo Sparse: Achieving LLM SOTA Performance with Minimal Activated Parameters},\n126\t  author = {Yixin Song and Haotong Xie and Zhengyan Zhang and Bo Wen and Li Ma and Zeyu Mi and Haibo Chen},\n127\t  year = {2024},\n128\t  journal = {arXiv preprint arXiv:2406.05955},\n129\t  url = {https://arxiv.org/abs/2406.05955},\n130\t}\n131\t\n132\t@inproceedings{song2025prosparse,\n133\t  title = {ProSparse: Introducing and Enhancing Intrinsic Activation Sparsity within Large Language Models},\n134\t  author = {Chenyang Song and Xu Han and Zhengyan Zhang and Shengding Hu and Xiyu Shi and Kuai Li and Chen Chen and Zhiyuan Liu and Guangli Li and Tao Yang and Maosong Sun},\n135\t  year = {2025},\n136\t  booktitle = {Proceedings of the International Conference on Computational Linguistics (COLING)},\n137\t  url = {https://arxiv.org/abs/2402.13516},\n138\t}\n139\t\n140\t@article{luo2024sparsinglaw,\n141\t  title = {Sparsing Law: Towards Large Language Models with Greater Activation Sparsity},\n142\t  author = {Yuqi Luo and Chenyang Song and Xu Han and Yingfa Chen and Chaojun Xiao and Xiaojun Meng and Liqun Deng and Jiansheng Wei and Zhiyuan Liu and Maosong Sun},\n143\t  year = {2024},\n144\t  journal = {arXiv preprint arXiv:2411.02335},\n145\t  url = {https://arxiv.org/abs/2411.02335},\n146\t}\n147\t\n148\t\n149\t@inproceedings{song2024powerinfer,\n150\t  title = {PowerInfer: Fast Large Language Model Serving with a Consumer-grade GPU},\n151\t  author = {Yixin Song and Zeyu Mi and Haotong Xie and Haibo Chen},\n152\t  year = {2024},\n153\t  booktitle = {Proceedings of the ACM Symposium on Operating Systems Principles (SOSP)},\n154\t  url = {https://arxiv.org/abs/2312.12456},\n155\t}\n156\t\n157\t\n158\t% =============================================================================\n159\t% KL distillation and knowledge distillation\n160\t% =============================================================================\n161\t\n162\t@inproceedings{kim2016sequencekd,\n163\t  title = {Sequence-Level Knowledge Distillation},\n164\t  author = {Yoon Kim and Alexander M. Rush},\n165\t  year = {2016},\n166\t  booktitle = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n167\t  url = {https://arxiv.org/abs/1606.07947},\n168\t}\n169\t\n170\t@inproceedings{gu2024minillm,\n171\t  title = {MiniLLM: Knowledge Distillation of Large Language Models},\n172\t  author = {Yuxian Gu and Li Dong and Furu Wei and Minlie Huang},\n173\t  year = {2024},\n174\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n175\t  url = {https://openreview.net/forum?id=5h0qf7IBZZ},\n176\t}\n177\t\n178\t@inproceedings{agarwal2024gkd,\n179\t  title = {On-Policy Distillation of Language Models: Learning from Self-Generated Mistakes},\n180\t  author = {Rishabh Agarwal and Nino Vieillard and Yongchao Zhou and Piotr Stanczyk and Sabela Ramos and Matthieu Geist and Olivier Bachem},\n181\t  year = {2024},\n182\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n183\t  url = {https://openreview.net/forum?id=3zKtaqxLhW},\n184\t}\n185\t\n186\t@inproceedings{khaki2025sparselora,\n187\t  title = {SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity},\n188\t  author = {Samir Khaki and Xiuyu Li and Junxian Guo and Ligeng Zhu and Konstantinos N. Plataniotis and Amir Yazdanbakhsh and Kurt Keutzer and Song Han and Zhijian Liu},\n189\t  year = {2025},\n190\t  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},\n191\t  url = {https://proceedings.mlr.press/v267/khaki25a.html},\n192\t}\n193\t\n194\t@article{raposo2024mod,\n195\t  title = {Mixture-of-Depths: Dynamically allocating compute in transformer-based language models},\n196\t  author = {David Raposo and Sam Ritter and Blake Richards and Timothy Lillicrap and Peter Conway Humphreys and Adam Santoro},\n197\t  year = {2024},\n198\t  journal = {arXiv preprint arXiv:2404.02258},\n199\t  url = {https://arxiv.org/abs/2404.02258},\n200\t}\n201\t\n202\t@article{sanh2019distilbert,\n203\t  title = {DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter},\n204\t  author = {Victor Sanh and Lysandre Debut and Julien Chaumond and Thomas Wolf},\n205\t  year = {2019},\n206\t  journal = {arXiv preprint arXiv:1910.01108},\n207\t  url = {https://arxiv.org/abs/1910.01108},\n208\t}\n209\t\n210\t% =============================================================================\n211\t% Weight pruning methods\n212\t% =============================================================================\n213\t\n214\t@inproceedings{sun2024wanda,\n215\t  title = {A Simple and Effective Pruning Approach for Large Language Models},\n216\t  author = {Mingjie Sun and Zhuang Liu and Anna Bair and J. Zico Kolter},\n217\t  year = {2024},\n218\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n219\t  url = {https://arxiv.org/abs/2306.11695},\n220\t}\n221\t\n222\t@inproceedings{frantar2023sparsegpt,\n223\t  title = {SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot},\n224\t  author = {Elias Frantar and Dan Alistarh},\n225\t  year = {2023},\n226\t  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},\n227\t  url = {https://arxiv.org/abs/2301.00774},\n228\t}\n229\t\n230\t% =============================================================================\n231\t% Conditional computation and MoE\n232\t% =============================================================================\n233\t\n234\t@inproceedings{szatkowski2024d2dmoe,\n235\t  title = {Exploiting Activation Sparsity with Dense to Dynamic-$k$ Mixture-of-Experts Conversion},\n236\t  author = {Filip Szatkowski and Bartosz W{\\'o}jcik and Miko{\\l}aj Pi{\\'o}rczy{\\'n}ski and Simone Scardapane},\n237\t  year = {2024},\n238\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n239\t  volume = {37},\n240\t  url = {https://arxiv.org/abs/2310.04361},\n241\t}\n242\t\n243\t@article{fedus2022switch,\n244\t  title = {Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity},\n245\t  author = {William Fedus and Barret Zoph and Noam Shazeer},\n246\t  year = {2022},\n247\t  journal = {Journal of Machine Learning Research},\n248\t  volume = {23},\n249\t  number = {120},\n250\t  pages = {1--40},\n251\t  url = {https://arxiv.org/abs/2101.03961},\n252\t}\n253\t\n254\t% =============================================================================\n255\t% Relaxation methods (Gumbel/Concrete)\n256\t% =============================================================================\n257\t\n258\t@inproceedings{louizos2018l0,\n259\t  title = {Learning Sparse Neural Networks through $L_0$ Regularization},\n260\t  author = {Christos Louizos and Max Welling and Diederik P. Kingma},\n261\t  year = {2018},\n262\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n263\t  url = {https://arxiv.org/abs/1712.01312},\n264\t}\n265\t\n266\t@inproceedings{maddison2017concrete,\n267\t  title = {The Concrete Distribution: A Continuous Relaxation of Discrete Random Variables},\n268\t  author = {Chris J. Maddison and Andriy Mnih and Yee Whye Teh},\n269\t  year = {2017},\n270\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n271\t  url = {https://arxiv.org/abs/1611.00712},\n272\t}\n273\t\n274\t% =============================================================================\n275\t% Foundational references\n276\t% =============================================================================\n277\t\n278\t@article{grattafiori2024llama3,\n279\t  title = {The Llama 3 Herd of Models},\n280\t  author = {Aaron Grattafiori and Abhimanyu Dubey and Abhinav Jauhri and Abhinav Pandey and Abhishek Kadian and Ahmad Al-Dahle and Aieleen Lakber and Aimin Chen and Ait Mokhtar Salma and Ajay Menon},\n281\t  year = {2024},\n282\t  journal = {arXiv preprint arXiv:2407.21783},\n283\t  url = {https://arxiv.org/abs/2407.21783},\n284\t}\n285\t\n286\t@article{jiang2023mistral,\n287\t  title = {Mistral 7B},\n288\t  author = {Albert Q. Jiang and Alexandre Sablayrolles and Arthur Mensch and Chris Bamford and Devendra Singh Chaplot and Diego de las Casas and Florian Bressand and Gianna Lengyel and Guillaume Lample and Lucile Saulnier},\n289\t  year = {2023},\n290\t  journal = {arXiv preprint arXiv:2310.06825},\n291\t  url = {https://arxiv.org/abs/2310.06825},\n292\t}\n293\t\n294\t@inproceedings{jang2017gumbel,\n295\t  title = {Categorical Reparameterization with Gumbel-Softmax},\n296\t  author = {Eric Jang and Shixiang Gu and Ben Poole},\n297\t  year = {2017},\n298\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n299\t  url = {https://arxiv.org/abs/1611.01144},\n300\t}\n301\t\n302\t@article{shazeer2020glu,\n303\t  title = {GLU Variants Improve Transformer},\n304\t  author = {Noam Shazeer},\n305\t  year = {2020},\n306\t  journal = {arXiv preprint arXiv:2002.05202},\n307\t  url = {https://arxiv.org/abs/2002.05202},\n308\t}\n309\t\n310\t@inproceedings{merity2017pointer,\n311\t  title = {Pointer Sentinel Mixture Models},\n312\t  author = {Stephen Merity and Caiming Xiong and James Bradbury and Richard Socher},\n313\t  year = {2017},\n314\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n315\t  url = {https://arxiv.org/abs/1609.07843},\n316\t}\n317\t\n318\t@inproceedings{hinton2015distilling,\n319\t  title = {Distilling the Knowledge in a Neural Network},\n320\t  author = {Geoffrey Hinton and Oriol Vinyals and Jeff Dean},\n321\t  year = {2015},\n322\t  booktitle = {NeurIPS 2014 Deep Learning Workshop},\n323\t  url = {https://arxiv.org/abs/1503.02531},\n324\t}\n325\t\n326\t@article{bengio2013ste,\n327\t  title = {Estimating or Propagating Gradients Through Stochastic Neurons for Conditional Computation},\n328\t  author = {Yoshua Bengio and Nicholas L\\'{e}onard and Aaron Courville},\n329\t  year = {2013},\n330\t  journal = {arXiv preprint arXiv:1308.3432},\n331\t  url = {https://arxiv.org/abs/1308.3432},\n332\t}\n333\t\n334\t@inproceedings{loshchilov2019adamw,\n335\t  title = {Decoupled Weight Decay Regularization},\n336\t  author = {Ilya Loshchilov and Frank Hutter},\n337\t  year = {2019},\n338\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n339\t  url = {https://arxiv.org/abs/1711.05101},\n340\t}\n341\t\n342\t@article{raffel2020c4,\n343\t  title = {Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer},\n344\t  author = {Colin Raffel and Noam Shazeer and Adam Roberts and Katherine Lee and Sharan Narang and Michael Matena and Yanqi Zhou and Wei Li and Peter J. Liu},\n345\t  year = {2020},\n346\t  journal = {Journal of Machine Learning Research},\n347\t  volume = {21},\n348\t  number = {140},\n349\t  pages = {1--67},\n350\t  url = {https://arxiv.org/abs/1910.10683},\n351\t}\n352\t\n353\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c54c7437-6d53-47de-9e54-1ccd7b221768",
+            "isSidechain": true,
+            "promptId": "83c10291-f9f7-46db-8cba-9066d7bf4990",
+            "agentId": "a9cc4d1362dafefa3",
+            "type": "user",
+            "uuid": "6853de19-75f3-4e31-8fa0-68f83d6f5881",
+            "sourceToolAssistantUUID": "c54c7437-6d53-47de-9e54-1ccd7b221768",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T11:49:35.911Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the appendix for additional downstream tasks:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6853de19-75f3-4e31-8fa0-68f83d6f5881",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86B3kpiW4UVQqXKeGnT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "56d339ab-a55f-4fa3-89b5-419f2bf16981",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KzrDoDcDhzBzQtx9Ma7L4p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 6157,
+                "cache_read_input_tokens": 44766,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6157,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T11:49:37.061Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A2KqhuMMTKjmDyTZ8mxas4",
+              "name": "Bash",
+              "input": {
+                "command": "grep -i -E \"(arc|winogrande|mmlu|gsm8k|hellaswag|piqa|boolq)\" /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex | head -30"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56d339ab-a55f-4fa3-89b5-419f2bf16981",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86B3kpiW4UVQqXKeGnT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "814df0af-849d-4c77-bf5d-7c3af376970c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KzrDoDcDhzBzQtx9Ma7L4p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 6157,
+                "cache_read_input_tokens": 44766,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6157,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T11:49:37.132Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A2KqhuMMTKjmDyTZ8mxas4",
+              "type": "tool_result",
+              "content": "Downstream metrics are similarly stable: ARC-c $33.8 \\pm 1.2$\\%, WinoGrande $62.9 \\pm 0.1$\\%, MMLU $28.0 \\pm 0.6$\\%, GSM8K $2.2 \\pm 0.1$\\%.\nThe low variance indicates that the KL training landscape is well-conditioned for this predictor architecture, with low sensitivity to initialization.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "814df0af-849d-4c77-bf5d-7c3af376970c",
+            "isSidechain": true,
+            "promptId": "83c10291-f9f7-46db-8cba-9066d7bf4990",
+            "agentId": "a9cc4d1362dafefa3",
+            "type": "user",
+            "uuid": "77b8c9fb-c832-45f4-bfc2-c2248a6d539f",
+            "sourceToolAssistantUUID": "814df0af-849d-4c77-bf5d-7c3af376970c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T11:49:39.106Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for more details about what tasks are evaluated:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77b8c9fb-c832-45f4-bfc2-c2248a6d539f",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86BEYxYqTPc5kZpAjDu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1ae080e8-ea9d-4015-b540-6e6a26530905",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01N58CQJHJPxH1SeDGabpWi2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 50923,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 258,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T11:49:39.626Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JMn2LJospw3WBbFsc19kaX",
+              "name": "Bash",
+              "input": {
+                "command": "grep -i \"downstream\\|task\\|benchmark\\|evaluation\" /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex | head -15"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ae080e8-ea9d-4015-b540-6e6a26530905",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86BEYxYqTPc5kZpAjDu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "93d1ccb0-daa4-4b4a-9cca-a2b2586e5e6c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01N58CQJHJPxH1SeDGabpWi2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 50923,
+                "output_tokens": 119,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 258
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 119,
+                    "cache_read_input_tokens": 50923,
+                    "cache_creation_input_tokens": 258,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 258,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T11:49:39.742Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JMn2LJospw3WBbFsc19kaX",
+              "type": "tool_result",
+              "content": "\\paragraph{Evaluation.}\nWe report perplexity on WikiText-2~\\cite{merity2017pointer} (seq\\_len=2048) and downstream accuracy on ARC-Challenge (25-shot), WinoGrande (5-shot), MMLU (5-shot), and GSM8K (8-shot).\nTable~\\ref{tab:main} presents the primary comparison. We recommend uniform allocation for deployment (best downstream preservation); global allocation is analyzed to understand allocation-quality tradeoffs (\\S\\ref{sec:scaling}).\nHowever, all methods exhibit downstream collapse on MMLU (27.89\\% vs.\\ 27.77\\% for global vs.\\ uniform, both $\\approx$ random) and GSM8K ($<$2.2\\%), indicating a capacity-limited regime where no allocation strategy can recover. % exp_id: bench_kl50_global, d030_kl50_uniform\n\\caption{Main results on LLaMA-3.1-8B. PPL$\\downarrow$ on WikiText-2; accuracy$\\uparrow$ on downstream tasks. \\textbf{Bold}: best among compensation-free methods per sparsity level. BCE uses a different inference protocol: hard binary masks from the predictor with a learned compensation network (67.2M params) applied post-masking; no TEAL allocation. Results are single-seed except 50\\% uniform (3-seed mean $\\pm$ std: $11.92 \\pm 0.07$; Appendix~\\ref{app:stability}).}\n\\caption{Ablation at 50\\% sparsity on LLaMA-3.1-8B (WikiText-2 PPL$\\downarrow$, unified benchmark protocol).}\nAdding SPON~\\cite{xu2026spon} bias correction reduces PPL from 12.08 to 11.79 (2.4\\% relative); see \\S\\ref{sec:spon} for decomposition.\\footnote{SPON analysis uses \\texttt{evaluate.py}; main results use the unified benchmark.} % exp_id: spon_2048_s42, mvp_kl_norm_v2_s42\nPPL remains low (8.36) but downstream accuracy degrades, confirming PPL is a poor proxy for reasoning.\nDecomposing the Dense$\\to$KL gap under uniform allocation (5.85 PPL): per-token hard mask evaluation (Appendix~\\ref{app:db_sensitivity}, Table~\\ref{tab:db_sensitivity}) yields PPL 9.22, attributing 53\\% of the degradation to predictor approximation (including soft-to-hard discretization) and 47\\% to per-layer budget allocation. % exp_id: db_sensitivity_sweep, bench_kl50_uniform\nThree-seed evaluation (50\\% uniform): PPL $11.92 \\pm 0.07$ (CV$<$1\\%); see Appendix~\\ref{app:stability}.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93d1ccb0-daa4-4b4a-9cca-a2b2586e5e6c",
+            "isSidechain": true,
+            "promptId": "83c10291-f9f7-46db-8cba-9066d7bf4990",
+            "agentId": "a9cc4d1362dafefa3",
+            "type": "user",
+            "uuid": "b5f18eff-9611-4933-8440-3c69ab571e8b",
+            "sourceToolAssistantUUID": "93d1ccb0-daa4-4b4a-9cca-a2b2586e5e6c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T11:49:40.692Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also check the appendix more comprehensively:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5f18eff-9611-4933-8440-3c69ab571e8b",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86BRVXTuAHDdfYjNj3L",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "58a9d547-a368-471a-bbc3-5cafeba5ad46",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0152wsRtmNrBWHN81B2cQLVA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 840,
+                "cache_read_input_tokens": 51181,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 840,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T11:49:41.195Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011jr3XtCUT5KdjEToU3TgCj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "58a9d547-a368-471a-bbc3-5cafeba5ad46",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86BRVXTuAHDdfYjNj3L",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "71a6195e-3006-4903-8af8-b6a297f74340",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0152wsRtmNrBWHN81B2cQLVA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 840,
+                "cache_read_input_tokens": 51181,
+                "output_tokens": 119,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 840
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 119,
+                    "cache_read_input_tokens": 51181,
+                    "cache_creation_input_tokens": 840,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 840,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T11:49:41.207Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011jr3XtCUT5KdjEToU3TgCj",
+              "type": "tool_result",
+              "content": "1\t\\appendix\n2\t\n3\t\\section{Inference Efficiency}\n4\t\\label{app:latency}\n5\t\n6\tTable~\\ref{tab:latency} reports inference throughput on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (batch size 1, sequence length 2048, fp16, averaged over 100 forward passes).\n7\t\n8\t\\begin{table}[h]\n9\t\\centering\n10\t\\caption{Inference latency on LLaMA-3.1-8B (RTX PRO 6000 Blackwell, batch=1, seq=2048, fp16, 100 forward passes). Overhead is relative to dense inference.}\n11\t\\label{tab:latency}\n12\t\\small\n13\t\\begin{tabular}{llcccc}\n14\t\\toprule\n15\tMethod & Sparsity & ms/fwd & tok/s & Overhead \\\\\n16\t\\midrule\n17\tDense & 0\\% & 119.11$\\pm$0.57 & 17{,}195 & --- \\\\\n18\t\\midrule\n19\tKL predictor-only & 30\\% & 126.64$\\pm$0.70 & 16{,}172 & +6.3\\% \\\\ % exp_id: latency_bench\n20\tKL predictor-only & 50\\% & 126.78$\\pm$0.31 & 16{,}154 & +6.4\\% \\\\ % exp_id: latency_bench\n21\t\\midrule\n22\tPredictor + compensation & 30\\% & 129.94$\\pm$0.75 & 15{,}761 & +9.1\\% \\\\ % exp_id: latency_bench\n23\tPredictor + compensation & 50\\% & 129.71$\\pm$0.53 & 15{,}789 & +8.9\\% \\\\ % exp_id: latency_bench\n24\t\\bottomrule\n25\t\\end{tabular}\n26\t\\end{table}\n27\t\n28\tThe full KL-sparse pipeline adds 6.4\\% overhead to dense inference (126.78 vs.\\ 119.11\\,ms/forward), of which the predictor's 32-layer forward pass contributes 3.17\\,ms (2.7\\%); the remainder arises from mask application and sparse FFN indexing.\n29\tEliminating the compensation network saves an additional $\\sim$2.7\\% latency overhead and 67.2M parameters (the per-layer GEMV required for output rescaling), confirming that KL distillation provides both quality and efficiency advantages over BCE-based approaches.\n30\tThe overhead is near-identical at 30\\% and 50\\% sparsity because the predictor runs the same computation regardless of target sparsity; only the top-$k$ threshold changes.\n31\t\n32\tNote that the current implementation uses unstructured element-wise masks, which do not translate to wall-clock speedup without sparse kernel support.\n33\tThe pipeline adds $\\sim$6.4\\% overhead; net acceleration requires kernel-level sparse computation optimizations (e.g., Triton block-sparse, cuSPARSE) that are beyond the scope of this work.\n34\tOur contribution is prediction quality and inference simplification (removing the compensation network), not end-to-end latency reduction.\n35\t\n36\t\n37\t\\section{Predictor Bottleneck Sensitivity}\n38\t\\label{app:db_sensitivity}\n39\t\n40\tTable~\\ref{tab:db_sensitivity} reports the effect of predictor bottleneck dimension $d_b$ on PPL at 50\\% sparsity under both TEAL global allocation (the paper's primary inference protocol) and per-token evaluation.\n41\t\n42\t\\begin{table}[h]\n43\t\\centering\n44\t\\caption{Predictor bottleneck sensitivity at 50\\% sparsity (WikiText-2 PPL$\\downarrow$). TEAL global is the primary inference protocol; per-token shown for reference.}\n45\t\\label{tab:db_sensitivity}\n46\t\\small\n47\t\\begin{tabular}{lcccc}\n48\t\\toprule\n49\t$d_b$ & Params & TEAL global & $\\Delta$ & Per-token \\\\\n50\t\\midrule\n51\t64 & 38.2M (0.48\\%) & 12.076 & +0.9\\% & 10.16 \\\\ % exp_id: db_sensitivity_sweep\n52\t128 & 75.9M (0.95\\%) & 11.963 & --- & 9.218 \\\\ % exp_id: db_sensitivity_sweep\n53\t256 & 151.5M (1.89\\%) & 12.105 & +1.2\\% & 8.586 \\\\ % exp_id: db_sensitivity_sweep\n54\t512 & 302.5M (3.77\\%) & 12.315 & +2.9\\% & 7.93 \\\\ % exp_id: db_sensitivity_sweep\n55\t\\bottomrule\n56\t\\end{tabular}\n57\t\\end{table}\n58\t\n59\tUnder TEAL global allocation, increasing $d_b$ beyond 128 provides no benefit (PPL slightly worsens), while per-token evaluation shows monotonic improvement (10.16$\\to$7.93).\n60\tThis divergence indicates that the global top-$k$ allocation mechanism, not predictor capacity, is the binding constraint: additional predictor capacity produces better per-neuron scores, but the global ranking and budget distribution cannot exploit them.\n61\tThe $d_b{=}128$ configuration (75.9M params, $<$1\\% of base model) is therefore optimal for the TEAL inference protocol.\n62\t\n63\t\\subsection{Temperature Schedule Sensitivity}\n64\t\\label{app:tau_sensitivity}\n65\t\n66\t\\begin{table}[h]\n67\t\\centering\n68\t\\caption{Temperature schedule sensitivity at 50\\% sparsity (WikiText-2 PPL$\\downarrow$, TEAL global).}\n69\t\\label{tab:tau_sensitivity}\n70\t\\small\n71\t\\begin{tabular}{lc}\n72\t\\toprule\n73\t$\\tau$ Schedule & PPL$\\downarrow$ \\\\\n74\t\\midrule\n75\tFixed $\\tau{=}0.5$ & \\textbf{11.861} \\\\ % exp_id: tau_schedule_sweep\n76\tLinear $1.0 \\to 0.1$ (default) & 11.963 \\\\ % exp_id: tau_schedule_sweep\n77\tFixed $\\tau{=}0.1$ & 12.072 \\\\ % exp_id: tau_schedule_sweep\n78\t\\bottomrule\n79\t\\end{tabular}\n80\t\\end{table}\n81\t\n82\tTemperature schedule has minimal impact ($<$1.8\\% PPL variation).\n83\tThe linear annealing default is a conservative choice; even removing annealing entirely (fixed $\\tau{=}0.5$) yields comparable performance.\n84\t\n85\t\\subsection{Training Convergence}\n86\t\\label{app:training_convergence}\n87\t\n88\t\\begin{table}[h]\n89\t\\centering\n90\t\\caption{Training convergence at 50\\% sparsity (WikiText-2 PPL$\\downarrow$, TEAL global).}\n91\t\\label{tab:training_convergence}\n92\t\\small\n93\t\\begin{tabular}{cc}\n94\t\\toprule\n95\tSteps & PPL$\\downarrow$ \\\\\n96\t\\midrule\n97\t200 & 15.158 \\\\ % exp_id: training_steps_sweep\n98\t400 & 12.538 \\\\ % exp_id: training_steps_sweep\n99\t600 & 12.046 \\\\ % exp_id: training_steps_sweep\n100\t800 & 11.907 \\\\ % exp_id: training_steps_sweep"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "71a6195e-3006-4903-8af8-b6a297f74340",
+            "isSidechain": true,
+            "promptId": "83c10291-f9f7-46db-8cba-9066d7bf4990",
+            "agentId": "a9cc4d1362dafefa3",
+            "type": "user",
+            "uuid": "f0a827e5-dbff-4c0a-8452-bbd4875e80e4",
+            "sourceToolAssistantUUID": "71a6195e-3006-4903-8af8-b6a297f74340",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T11:49:42.457Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for Table 2 in experiments.tex to see the exact baseline comparisons:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0a827e5-dbff-4c0a-8452-bbd4875e80e4",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86BXjpJTityVnV8d5aL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "28f105f2-c302-4140-8e9e-81a2f5d68667",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LfUMJXhSVX65Zm7sCMvnbb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 2141,
+                "cache_read_input_tokens": 52021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2141,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T11:49:43.415Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eb2n7cJY1PXTNH1oUMCfkT",
+              "name": "Bash",
+              "input": {
+                "command": "grep -A 20 \"tab:main\" /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex | head -30"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "28f105f2-c302-4140-8e9e-81a2f5d68667",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86BXjpJTityVnV8d5aL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3af8ebf0-3738-4a2d-bd4f-3c3e8fd46c2b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LfUMJXhSVX65Zm7sCMvnbb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 2141,
+                "cache_read_input_tokens": 52021,
+                "output_tokens": 124,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2141
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 124,
+                    "cache_read_input_tokens": 52021,
+                    "cache_creation_input_tokens": 2141,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2141,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T11:49:43.511Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Eb2n7cJY1PXTNH1oUMCfkT",
+              "type": "tool_result",
+              "content": "Table~\\ref{tab:main} presents the primary comparison. We recommend uniform allocation for deployment (best downstream preservation); global allocation is analyzed to understand allocation-quality tradeoffs (\\S\\ref{sec:scaling}).\nAt 30\\% sparsity, KL distillation with global TEAL allocation achieves PPL 8.98, reducing TEAL's degradation from dense (10.97 $\\to$ 8.98, an 18\\% improvement). % exp_id: kl_30_global_teal\nUniform allocation at 30\\% recovers MMLU to 40.61\\% (+15.3pp over KL-global's 25.27\\%): global top-$k$ starves late layers (L31 retention 28.4\\%) while uniform guarantees capacity in logit-forming layers (\\S\\ref{sec:scaling}). % exp_id: bench_kl30_uniform\n\nAt 50\\% sparsity, KL distillation over vanilla TEAL widens the PPL advantage: 11.79 vs.\\ 23.31, a 49\\% reduction. % exp_id: bench_kl50_global, bench_teal50\nThe predictor also generalizes to held-out data (C4 validation: 52.5\\% advantage over TEAL; see Appendix~\\ref{app:ood}).\nHowever, all methods exhibit downstream collapse on MMLU (27.89\\% vs.\\ 27.77\\% for global vs.\\ uniform, both $\\approx$ random) and GSM8K ($<$2.2\\%), indicating a capacity-limited regime where no allocation strategy can recover. % exp_id: bench_kl50_global, d030_kl50_uniform\n\n\\begin{table}[t]\n\\centering\n\\caption{Main results on LLaMA-3.1-8B. PPL$\\downarrow$ on WikiText-2; accuracy$\\uparrow$ on downstream tasks. \\textbf{Bold}: best among compensation-free methods per sparsity level. BCE uses a different inference protocol: hard binary masks from the predictor with a learned compensation network (67.2M params) applied post-masking; no TEAL allocation. Results are single-seed except 50\\% uniform (3-seed mean $\\pm$ std: $11.92 \\pm 0.07$; Appendix~\\ref{app:stability}).}\n\\label{tab:main}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{llccccc}\n\\toprule\nSparsity & Method & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n\\midrule\n0\\% & Dense & 6.12 & 58.28 & 78.06 & 65.27 & 48.75 \\\\\n\\midrule\n\\multirow{3}{*}{30\\%}\n& TEAL vanilla & 10.97 & \\textbf{42.32} & 66.06 & 38.61 & 7.88 \\\\ % exp_id: bench_teal30\n& KL global (Ours) & 8.98 & 39.68 & \\textbf{70.17} & 25.27 & \\textbf{8.79} \\\\ % exp_id: lm_eval_kl_30pct_s42\n& KL uniform & \\textbf{8.82} & 40.78 & 68.59 & \\textbf{40.61} & 7.35 \\\\ % exp_id: bench_kl30_uniform\n\\midrule\n\\multirow{4}{*}{50\\%}\n& TEAL vanilla & 23.31 & 28.41 & 53.04 & \\textbf{28.32} & 1.97 \\\\ % exp_id: bench_teal50\n& KL global (Ours) & \\textbf{11.79} & \\textbf{32.85} & \\textbf{63.46} & 27.89 & 1.29 \\\\ % exp_id: bench_kl50_global\n& KL uniform & 11.96 & 32.76 & 62.90 & 27.77 & \\textbf{2.12} \\\\ % exp_id: d030_kl50_uniform\n& BCE (2700 steps)$^\\ast$ & 27.97 & 23.98 & 50.59 & 30.02 & 4.85 \\\\ % exp_id: eval_bce_v3_s42\n\\bottomrule",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3af8ebf0-3738-4a2d-bd4f-3c3e8fd46c2b",
+            "isSidechain": true,
+            "promptId": "83c10291-f9f7-46db-8cba-9066d7bf4990",
+            "agentId": "a9cc4d1362dafefa3",
+            "type": "user",
+            "uuid": "fa4c41fe-7a2f-4201-a160-3d662d5f8b82",
+            "sourceToolAssistantUUID": "3af8ebf0-3738-4a2d-bd4f-3c3e8fd46c2b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T11:49:45.034Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me compile a comprehensive summary of my findings. Let me double-check what methods are mentioned as citations vs experimental comparisons:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fa4c41fe-7a2f-4201-a160-3d662d5f8b82",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86BhbQGvRCnMrQyeJHc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5fe5e037-2e15-4609-ba2d-760fd39ef6f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WM4HtFhLSGgX5pFJrQA9VL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1274,
+                "cache_read_input_tokens": 54162,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1274,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T11:49:46.094Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JnkWr1t6DgLW3mhJ7TqDUN",
+              "name": "Bash",
+              "input": {
+                "command": "grep -i \"maskllm\\|dejavu\\|cats\\|powerinfer\\|fastforward\" /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5fe5e037-2e15-4609-ba2d-760fd39ef6f9",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86BhbQGvRCnMrQyeJHc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "de0f4d44-2000-4b84-9059-aebff1ff2101",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WM4HtFhLSGgX5pFJrQA9VL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1274,
+                "cache_read_input_tokens": 54162,
+                "output_tokens": 141,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1274
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 141,
+                    "cache_read_input_tokens": 54162,
+                    "cache_creation_input_tokens": 1274,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1274,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T11:49:46.147Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JnkWr1t6DgLW3mhJ7TqDUN",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de0f4d44-2000-4b84-9059-aebff1ff2101",
+            "isSidechain": true,
+            "promptId": "83c10291-f9f7-46db-8cba-9066d7bf4990",
+            "agentId": "a9cc4d1362dafefa3",
+            "type": "user",
+            "uuid": "180e1238-de72-4a11-a44d-cfd0583a38a6",
+            "sourceToolAssistantUUID": "de0f4d44-2000-4b84-9059-aebff1ff2101",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T11:49:47.408Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BmK5eNHyvKSgQ9cg27Tcc1",
+              "name": "Bash",
+              "input": {
+                "command": "grep -i \"maskllm\\|dejavu\\|cats\\|powerinfer\\|fastforward\" /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "180e1238-de72-4a11-a44d-cfd0583a38a6",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86BtrKJwE4GYk3QL62A",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ca717f62-a8fc-4cc2-9cec-691b48dff9b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YPCz2EdjjD5YTrWpizmkCP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 160,
+                "cache_read_input_tokens": 55436,
+                "output_tokens": 113,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 160
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 113,
+                    "cache_read_input_tokens": 55436,
+                    "cache_creation_input_tokens": 160,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 160,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T11:49:47.461Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BmK5eNHyvKSgQ9cg27Tcc1",
+              "type": "tool_result",
+              "content": "CATS~\\cite{lee2024cats} adapts per-layer thresholds for SiLU/SwiGLU activations; R-Sparse~\\cite{zhang2025rsparse} predicts sparsity from rank-aware SVD projections; DIP~\\cite{federici2025dip} combines dynamic input pruning with cache-aware masking; SparseInfer~\\cite{shin2025sparseinfer} predicts activation sparsity patterns from attention outputs without additional training.\nDejaVu~\\cite{liu2023dejavu} introduced learned sparsity predictors trained via BCE to classify each neuron independently.\nFastForward~\\cite{gautam2026fastforward} adds a 67.2M-parameter compensation network using BCE for mask prediction, adding inference latency.\nPowerInfer~\\cite{song2024powerinfer} exploits power-law activation frequencies for GPU--CPU scheduling.\nMaskLLM~\\cite{fang2024maskllm} also employs learnable masks with Gumbel relaxation and frozen weights, but targets N:M semi-structured \\emph{weight} sparsity (2:4 patterns) via per-group categorical selection (Gumbel-Softmax), producing fixed masks independent of input tokens.\nBoth share the principle of frozen weights + learnable masks + KL training, but solve distinct optimization problems: MaskLLM finds optimal static N:M patterns within fixed groups, while we predict dynamic per-token masks under a global budget constraint.\nThe structural mismatch we characterize (per-neuron gradient decomposition vs.\\ global top-$k$) does not arise in MaskLLM's per-group categorical setting, where N:M patterns eliminate cross-group budget competition.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca717f62-a8fc-4cc2-9cec-691b48dff9b9",
+            "isSidechain": true,
+            "promptId": "83c10291-f9f7-46db-8cba-9066d7bf4990",
+            "agentId": "a9cc4d1362dafefa3",
+            "type": "user",
+            "uuid": "d46c831e-469b-4420-8159-7fd0915cba5b",
+            "sourceToolAssistantUUID": "ca717f62-a8fc-4cc2-9cec-691b48dff9b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T11:49:59.331Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent. Now I have all the information I need. Let me compile my report.\n\n## Summary: Baselines and Downstream Tasks in distill_sparse_swiglu Paper\n\n### 1. **Baselines in Table 2 (Main Results)**\n\nThe paper's main experimental comparison (Table 2 / `tab:main` in experiments.tex) includes:\n\n**Experimentally Compared Against:**\n- **TEAL vanilla** (baseline at 30% and 50% sparsity) - the primary baseline\n- **KL global (Ours)** - the paper's proposed method\n- **KL uniform** - allocation variant of the proposed method\n- **BCE (2700 steps)** - alternative training approach with compensation network (only at 50% sparsity)\n- **Dense** (0% sparsity) - upper bound reference\n\nSo the paper directly compares against only **TEAL** as the main competing method, plus a **BCE** variant at one sparsity level.\n\n### 2. **Methods Cited in Related Work (Not Experimentally Compared)**\n\nIn `related_work.tex`, the following methods are cited as related but **NOT experimentally compared**:\n\n**Training-Free Activation Sparsity:**\n- **CATS** (lee2024cats) - contextually-aware thresholding for SwiGLU\n- R-Sparse - rank-aware SVD projections  \n- DIP - dynamic input pruning + cache-aware masking\n- SparseInfer - training-free prediction from attention outputs\n\n**Predictor-Based Contextual Sparsity:**\n- **DejaVu** (liu2023dejavu) - BCE-based learned predictor (foundational prior work)\n- **FastForward** (gautam2026fastforward) - compensation network + BCE + 67.2M params overhead\n- **MaskLLM** (fang2024maskllm) - learnable masks with Gumbel + KL training (but for weight sparsity, not activation)\n- ShadowLLM - attention-based routing with per-layer MSE supervision\n- **SVD-CSP** (serbin2026svdcsp) - SVD compression of sparsity predictors\n- **PowerInfer** (song2024powerinfer) - power-law activation exploitation for GPU-CPU scheduling\n\n**Activation Function Engineering:**\n- SPON (xu2026spon) - static per-layer bias correction (analyzed in paper, not a baseline)\n- ReLU Strikes Back, TurboSparse, ProSparse\n\n**Others:**\n- Weight pruning (Wanda, SparseGPT), conditional computation (Switch Transformers, Mixture-of-Depths)\n\n### 3. **Downstream Tasks Evaluated**\n\nThe paper evaluates on **4 downstream tasks**:\n- **ARC-Challenge** (25-shot)\n- **WinoGrande** (5-shot)  \n- **MMLU** (5-shot)\n- **GSM8K** (8-shot)\n\n**Common benchmarks NOT included:**\n- HellaSwag\n- PIQA\n- BoolQ\n\n### 4. **Key Findings**\n\n| Finding | Detail |\n|---------|--------|\n| **Experimental vs. Cited** | Only TEAL is experimentally compared; 8+ related methods (DejaVu, CATS, MaskLLM, FastForward, PowerInfer, SVD-CSP, SparseInfer, DIP) are cited but not benchmarked |\n| **Gap in Comparisons** | No experimental comparison with other learned predictor baselines like DejaVu or FastForward, which are the most directly related methods |\n| **Task Coverage** | Limited to 4 reasoning/knowledge tasks; missing commonsense (HellaSwag, PIQA) and factual (BoolQ) benchmarks |\n| **Models Tested** | LLaMA-3.1-8B and Mistral-7B only; no 70B models or other architectures |\n| **Why Limited Comparisons** | Related work notes that competing methods use different objectives (BCE vs. KL) or target different problems (weight vs. activation sparsity; training-free vs. learned) |\n\n### 5. **Reference Entries Present**\n\nAll requested references are present in `references.bib`:\n- ✓ maskllm (fang2024maskllm)\n- ✓ dejavu (liu2023dejavu) \n- ✓ cats (lee2024cats)\n- ✓ powerinfer (song2024powerinfer)\n- ✓ fastforward (gautam2026fastforward)\n- ✓ teal (liu2025teal)\n- ✓ wina (referenced in experiments.tex as variant, liu2025teal)\n- ✓ sparseInfer (shin2025sparseinfer)\n- ✓ svdcsp (serbin2026svdcsp)\n- ✓ d2dmoe (szatkowski2024d2dmoe)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d46c831e-469b-4420-8159-7fd0915cba5b",
+            "isSidechain": true,
+            "agentId": "a9cc4d1362dafefa3",
+            "requestId": "req_011Cb86BzUQRcdJ6KLW4PRba",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ba258f7d-1d18-467b-a386-d7af585ddd46",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/.claude/sessions/director_b05a67f7",
+            "sessionId": "cc7425e6-7062-479d-9699-e7d854e6065f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "fancy-prancing-candle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Hhg4N9JwjMxJPCfEPS3m9L",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 530,
+                "cache_read_input_tokens": 55596,
+                "output_tokens": 1200,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 530
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 1200,
+                    "cache_read_input_tokens": 55596,
+                    "cache_creation_input_tokens": 530,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 530,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-the-paper-directory-at-home-ubuntu-agent-ml-research-idea-gen-0509-14-proje.md"
+}

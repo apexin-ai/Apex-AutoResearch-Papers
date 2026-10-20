@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "5a971c3239954969f9dd",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 执行项目轨迹扫描，将报告写入 /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/scan_reports/layer2_20260",
+  "task_key": "00445ce4-2412-491f-b662-409e12bd6b4b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/00445ce4-2412-491f-b662-409e12bd6b4b.jsonl",
+    "occurrence": 1,
+    "bytes": 1049233,
+    "sha256": "c12abf22fa95d8e8ed1e7c83d2bf44c37895fcffbb3d89ffaf35b1ef27bae49d"
+  },
+  "statistics": {
+    "messages": 207,
+    "user_turns": 1,
+    "tool_calls": 79,
+    "roles": {
+      "record": 35,
+      "user": 1,
+      "assistant": 13,
+      "tool_call": 79,
+      "tool_result": 79
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5a971c3239954969f9dd-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 205,
+      "chunks": [
+        {
+          "path": "5a971c3239954969f9dd-part-0001.json",
+          "message_count": 92
+        },
+        {
+          "path": "5a971c3239954969f9dd-part-0002.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-home-ubuntu-agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu.md"
+}

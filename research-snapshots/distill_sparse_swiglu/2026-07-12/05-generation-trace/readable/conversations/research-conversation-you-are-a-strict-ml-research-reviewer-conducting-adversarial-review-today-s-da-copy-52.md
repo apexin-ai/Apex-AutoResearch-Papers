@@ -1,0 +1,2568 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-13 (UTC).** Your job: indep
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-2/0525d9e9-fe7e-4027-a76e-c873be061569.jsonl`
+- **Structured JSON:** [`91f9fd78973317bfa58e.json`](../../sessions/91/91f9fd78973317bfa58e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-13T17:23:30.733Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T17:23:30.733Z",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-13 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).\nDirection：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 4/10)\n{\n  \"title\": \"When Does Proprioception Help Score Demonstrations? Information-Theoretic Bounds for Multimodal Demo Curation\",\n  \"core_problem\": \"Given an offline demonstration dataset for VLA training, when does incorporating proprioceptive signals into progress-based demonstration scoring provably improve curation quality — and by how much? Specifically, can we derive tight, non-trivial bounds on the ranking error reduction from multimodal scoring, with practical diagnostics that predict improvement without running the full pipeline?\",\n  \"opportunity\": \"Vision-only demo curation methods (GVL, TOPReward, SCIZOR) estimate progress exclusively from images and degrade on low-VOC tasks (GVL: open-drawer VOC 0.09, remove-gears 0.19). Multimodal methods exist but lack theoretical grounding: GR-RL (arXiv 2512.01801) fuses vision + proprioception via offline RL Q-values but was evaluated on a single task with no analysis of when fusion helps; Demo-SCORE (RSS 2025) trains a proprioceptive MLP but requires online rollouts. Meanwhile, He et al. (JMLR 2024) provide a general information-theoretic framework for modality selection in classification/regression via submodular maximization — but demo curation is a RANKING problem (correctly ordering transitions by advantage), not a prediction problem, and submodularity results do not directly apply to ranking objectives. The 'When Would Vision-Proprioception Policy Fail' paper (arXiv 2602.12032) shows modality importance is phase-dependent for POLICY learning but does not address SCORING. The gap: no existing work provides (a) tight bounds on ranking error reduction from multimodal scoring specific to the demo curation setting, (b) analysis of HOW the advantage distribution interacts with modality noise to create non-linear improvement regimes, or (c) practical diagnostics (computable without ground truth) that predict when multimodal scoring is worth the overhead.\",\n  \"landscape\": \"**Vision-only curation**: GVL (Ma et al., ICLR 2025 Spotlight) uses VLM temporal ordering → per-frame progress → advantage-weighted BC. VOC metric quantifies visual observability. Degrades on low-VOC tasks. TOPReward (Feb 2026) extracts progress from VLM token logits (0.947 VOC on open-source models) — vision-only. SCIZOR (ICRA 2026) uses self-supervised temporal distance for binary filtering — vision-only.\\n\\n**Multimodal curation (no theory)**: GR-RL (arXiv 2512.01801) trains TD3+BC critic on RGB + proprioception + language, filters by Q-value drop. Single-task evaluation (shoe lacing, 83.3%), expensive offline RL, no theoretical analysis. Demo-SCORE (Chen et al., RSS 2025) trains proprioceptive MLP for demo quality classification (15–35% improvement on ALOHA). Requires online rollouts — inapplicable offline.\\n\\n**General modality selection theory**: He et al. (JMLR 2024) 'Efficient Modality Selection in Multimodal Learning' defines modality utility as I(S;Y) for classification (cross-entropy) and Var(E[Y|S]) for regression (quadratic loss), proves approximate submodularity, and derives greedy selection with (1−1/e−ε) approximation guarantee. KEY LIMITATION for our setting: their utility function is prediction loss, not ranking accuracy. Demo curation requires correctly ranking transitions by advantage sign — a fundamentally different objective where submodularity does not hold.\\n\\n**Vision-proprioception analysis**: 'When Would Vision-Proprioception Policy Fail' (arXiv 2602.12032, NeurIPS 2025) shows proprioception dominates during continuous motion phases while vision is critical for target localization transitions. Proposes GAP algorithm for phase-aware gradient modulation. Analyzes POLICY learning, not scoring/curation — complementary to our work.\\n\\n**Proprioceptive quality metrics**: Sakr et al. (ACM T-HRI 2025) define 10 trajectory-level metrics (jerk, smoothness, manipulability) predicting 70–89% of success variance. RS-CL (arXiv 2510.01711) uses proprioceptive distances in InfoNCE for VLA representation regularization.\\n\\n**Other curation**: QoQ (Mar 2026) — influence functions, 30% real-robot improvement. CUPID (CoRL 2025) — trajectory-level influence functions. DataMIL (May 2025) — datamodels for policy-driven selection. RINSE (ICML 2025) — smoothness metrics.\\n\\n**Key gap**: The demo curation literature has 9+ methods but NO theoretical framework specific to the ranking objective. He et al.'s general modality selection theory does not cover ranking. No work connects the noise structure of visual/proprioceptive progress estimation to ranking error or provides task-level diagnostics predicting multimodal benefit.\",\n  \"approach\": \"We propose a theory-centered framework analyzing when multimodal (visual + proprioceptive) progress scoring provably improves demonstration ranking for VLA curation, with a lightweight method to validate the theory empirically.\\n\\n**(1) Theoretical Framework: Noise-Model Analysis of Multimodal Advantage Ranking**\\n\\nWe model progress estimation as noisy observation of a latent progress signal P*(t). The visual estimator produces P̂_vis(t) = P*(t) + η_vis(t) with noise variance σ²_vis, and the proprioceptive estimator produces P̂_prop(t) = P*(t) + η_prop(t) with variance σ²_prop. The advantage estimate is Â(t) = P̂(t+1) − P̂(t), and the ranking error is ε_rank = P(sgn(Â) ≠ sgn(A*)).\\n\\n**Theorem 1 (Fano-type lower bound on ranking error).** For any estimator using modality set M, the ranking error satisfies: ε_rank(M) ≥ H(sgn(A*)|M) / (1 + log 2), derived from Fano's inequality applied to the binary ranking decision. This lower bound is tight under Gaussian noise.\\n\\n**Theorem 2 (Multimodal ranking improvement — exact form).** Under Gaussian noise, the ranking error for modality set M with noise variance σ² is: ε_rank = E_δ[Φ(−|δ|/√(2σ²))], where δ ~ F is the true advantage distribution and Φ is the standard normal CDF. The multimodal improvement is: Δε = E_δ[Φ(−|δ|/√(2σ²_vis)) − Φ(−|δ|/√(2σ²_mm))], where σ²_mm = (1/σ²_vis + 1/σ²_prop)⁻¹ under conditional independence V ⊥ S | P*. This is NOT a restatement of mutual information reduction — the improvement depends non-linearly on the advantage distribution F through the CDF Φ, producing the amplification effect below.\\n\\n**Theorem 3 (Amplification effect).** When the advantage distribution F has density f(0) > 0 near zero: Δε ≥ f(0)·(σ_vis − σ_mm)·√(2/π) + O((σ_vis − σ_mm)²). This predicts that multimodal scoring helps MOST on tasks with many near-zero-advantage transitions (smooth demonstrations with gradual progress) — a non-obvious, empirically testable prediction beyond 'proprioception helps when vision is noisy.' Tasks with sparse, large advantages (sharp phase transitions) benefit less.\\n\\n**Theorem 4 (Relaxation for dependent modalities).** When V and S are NOT conditionally independent given P* (e.g., wrist-mounted cameras where arm pose affects visual observation): σ²_mm = (1/σ²_vis + 1/σ²_prop − 2ρ_cond/(σ_vis·σ_prop))⁻¹, where ρ_cond = corr(η_vis, η_prop | P*) is the conditional noise correlation. Multimodal scoring still helps when ρ_cond < min(σ_prop/σ_vis, σ_vis/σ_prop) — a concrete, verifiable condition. This addresses the wrist-camera concern: high ρ_cond reduces but does not eliminate the benefit.\\n\\n**Theorem 5 (Finite-sample ranking consistency).** With N trajectories of length T, the empirical ranking accuracy of a contrastive progress estimator converges: |ε̂_rank − ε_rank| ≤ O(√(log(NT)/(NT))) with high probability, independent of observation dimensionality (via contrastive learning's implicit dimensionality reduction).\\n\\n**Practical diagnostics (no ground truth needed):** VOC (GVL's metric) inversely tracks σ²_vis. We introduce POC (Proprioceptive Ordering Consistency) as the rank correlation between proprioception-only progress estimates and temporal ordering — inversely tracks σ²_prop. The conditional correlation ρ_cond is estimated as the correlation between vision-only and proprioception-only progress residuals. Together, (VOC, POC, ρ_cond) predict multimodal improvement via Theorems 2–4 without running the full curation pipeline.\\n\\n**Differentiation from He et al. (JMLR 2024):** (i) They optimize prediction loss (cross-entropy/MSE); we optimize ranking accuracy (sign of advantage). (ii) Their submodularity guarantee does not apply to ranking objectives. (iii) Our bounds depend on the advantage distribution shape f(δ), yielding the amplification effect absent from their framework. (iv) We provide tightness under Gaussian noise; they provide approximation ratios. (v) Our diagnostics (VOC, POC, ρ_cond) are specific to demo curation; their Shapley values are general-purpose.\\n\\n**(2) Lightweight Proof-of-Concept Method**\\nTo validate the theory empirically, we implement a simple multimodal contrastive progress encoder: frozen vision backbone + proprioceptive MLP (standard dual-stream per HPT, no architectural novelty). Trained with temporal contrastive loss on demonstration data only — no online rollouts (unlike Demo-SCORE), no offline RL (unlike GR-RL). Per-transition advantages A_t = p_{t+1} − p_t applied as AWR weights exp(A_t/τ) to BC loss on OpenVLA-OFT.\\n\\n**(3) Empirical Validation (Theory-Driven)**\\n\\n**Benchmarks:** (a) LIBERO (simulation, 4 suites × 10 tasks = 40 tasks; proprioception: 7 joint positions + 7 velocities + gripper). We compute VOC for ALL 40 LIBERO tasks — a novel characterization not done in prior work. (b) For tasks where all LIBERO VOC values are high (>0.5), we create controlled low-VOC variants by masking the third-person camera and adding partial occlusion to the wrist camera, producing a continuous VOC spectrum for testing. (c) REASSEMBLE subset (contact-rich assembly/disassembly with force-torque; naturally low VOC due to tight-tolerance insertion tasks).\\n\\n**Baselines (reduced for feasibility):** Unweighted BC, GVL (vision-only AWR), vision-only MAS (ablation — isolates proprioceptive contribution), proprioception-only MAS (ablation — tests necessity of fusion).\\n\\n**Key experiments:** (i) Compute VOC and POC for every task. (ii) Run all methods; plot MAS improvement over GVL vs. theoretically predicted improvement from (VOC, POC, ρ_cond). If the theory is correct, these should be strongly correlated (predicted R² > 0.7). (iii) Validate amplification effect: stratify tasks by advantage distribution shape f(0) and confirm that smooth-progress tasks show larger multimodal gains. (iv) Validate Theorem 4: compare wrist-camera-only vs. third-person-camera tasks to test the conditional dependence prediction.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~150h A100-80GB (contrastive encoder training ~15h; OpenVLA-OFT fine-tuning ~8h/run × 12 runs for 4 conditions × 3 seeds; VOC/POC computation ~10h; evaluation ~20h)\",\n      \"gpu_utilization\": \"High (~70%); theory is pen-and-paper, GPU used continuously for experiments\",\n      \"timeline\": \"16 days (CoRL 2026 deadline: May 29)\",\n      \"team\": \"1–2 researchers (one lead on theory + experiments, one optional for parallel writing)\",\n      \"estimated_gpu_cost\": \"$225–300 (150h × $1.50–2.00/hr)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~200h A100-80GB (additional occlusion variants, REASSEMBLE subset, sensitivity analysis)\",\n      \"gpu_utilization\": \"High (~65%); human reviews theoretical derivations and VOC-stratified plots daily\",\n      \"timeline\": \"16 days\",\n      \"team\": \"1 researcher, ~2–3h/day on theory derivations + result analysis\",\n      \"claude_api_cost\": \"$80–150 (~800–1500 Opus turns for derivation checking, code generation, figure generation)\",\n      \"estimated_gpu_cost\": \"$300–400 (200h × $1.50–2.00/hr)\",\n      \"risk_note\": \"Main risk: LIBERO may have uniformly high VOC, requiring camera-occlusion variants. Mitigated by creating controlled variants + using REASSEMBLE for naturally low-VOC tasks.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~300h A100-80GB (full LIBERO 40-task sweep, REASSEMBLE evaluation, occlusion variants, ablation sweeps)\",\n      \"gpu_utilization\": \"Near-zero idle (<10%); agent chains experiments continuously\",\n      \"timeline\": \"10–12 days with 2× A100 parallelism\",\n      \"team\": \"0 (initial setup: provide LIBERO env, OpenVLA checkpoint, contrastive encoder scaffold)\",\n      \"claude_api_cost\": \"$200–350 (~2000–3500 Opus turns for implementation, experiment orchestration, paper drafting)\",\n      \"estimated_gpu_cost\": \"$450–600 (300h × $1.50–2.00/hr)\",\n      \"speed_bottleneck\": \"VOC computation on 40 LIBERO tasks requires running VLM inference — ~10h with batching\",\n      \"risk_note\": \"Risk that Gaussian noise model is too simple for real progress estimation noise. Agent should compute Q-Q plots of empirical residuals against Gaussian to validate.\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract deadline: May 26, 2026; paper deadline: May 29, 2026) — PRIMARY TARGET: theory-centered paper with simulation validation, CoRL explicitly lists 'theoretical foundations of robot learning' as topic of interest\",\n    \"NeurIPS 2026 Workshop on Robot Learning (deadline ~Sep 2026) — BACKUP: if CoRL deadline is missed, submit extended version\"\n  ],\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"GVL: Vision Language Models are In-Context Value Learners (Ma et al., ICLR 2025 Spotlight, arXiv 2411.04549) — VOC metric, vision-only advantage-weighted curation\",\n    \"TOPReward: Token Probabilities as Hidden Zero-Shot Rewards for Robotics (arXiv 2602.19313, Feb 2026) — vision-only VLM-logit progress\",\n    \"He et al., Efficient Modality Selection in Multimodal Learning (JMLR 2024) — general information-theoretic modality selection with submodularity; our key differentiation target (ranking vs prediction)\",\n    \"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation (arXiv 2512.01801) — multimodal offline RL scoring, single task, no theory\",\n    \"Demo-SCORE: Curating Demonstrations using Online Experience (Chen et al., RSS 2025, arXiv 2503.03707) — proprioceptive classifier, requires online rollouts\",\n    \"When Would Vision-Proprioception Policies Fail in Robotic Manipulation? (arXiv 2602.12032, Feb 2026) — phase-aware modality importance for policy learning; complements our scoring analysis\",\n    \"Consistency Matters: Defining Demonstration Data Quality Metrics (Sakr et al., ACM T-HRI 2025, arXiv 2412.14309) — proprioceptive quality metrics\",\n    \"SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning (ICRA 2026)\",\n    \"Quality over Quantity (QoQ): Demonstration Curation via Influence Functions (arXiv 2603.09056, Mar 2026)\",\n    \"REASSEMBLE: A Multimodal Dataset for Contact-rich Robotic Assembly and Disassembly (arXiv 2502.05086, Feb 2025) — low-VOC benchmark with proprioception + force-torque\",\n    \"HPT: Scaling Proprioceptive-Visual Learning with Heterogeneous Pre-trained Transformers (Wang et al., NeurIPS 2024) — dual-stream architecture prior art\",\n    \"RS-CL: Contrastive Representation Regularization for VLA Models (arXiv 2510.01711) — proprioceptive distances in contrastive learning\",\n    \"OpenVLA: An Open-Source Vision-Language-Action Model (ICML 2025)\",\n    \"OpenGVL: Benchmarking Visual Temporal Progress for Data Curation (arXiv 2509.17321, Sep 2025)\",\n    \"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning (Liu et al., NeurIPS 2023)\",\n    \"Fano's Inequality and its generalizations (Fano 1961; Sason & Verdú 2016) — theoretical foundation for ranking error bounds\",\n    \"Advantage-Weighted Regression: Simple and Scalable Off-Policy RL (Peng et al., ICLR 2020)\",\n    \"Contrastive Learning as Goal-Conditioned RL (Eysenbach et al., NeurIPS 2022)\",\n    \"CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)\",\n    \"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (arXiv 2505.09603, May 2025)\"\n  ],\n  \"description\": \"We present an information-theoretic analysis of when multimodal (visual + proprioceptive) progress scoring provably improves demonstration ranking for VLA curation — a question unanswered by prior methods that either use vision-only scoring (GVL, TOPReward, SCIZOR) or apply multimodal scoring without theoretical justification (GR-RL, Demo-SCORE). Our primary contribution is a theoretical framework grounded in Fano's inequality and Gaussian noise models that yields five results: (1) a tight lower bound on ranking error from any single-modality scorer; (2) an exact characterization of multimodal improvement as a function of noise variance and the advantage distribution; (3) an amplification effect showing multimodal scoring helps most on smooth-progress tasks where advantages concentrate near zero — a non-obvious prediction beyond 'proprioception helps when vision is noisy'; (4) a relaxed bound for conditionally dependent modalities (addressing the wrist-camera concern) with a concrete condition for when fusion still helps; (5) a finite-sample consistency bound for contrastive progress estimators. We differentiate from He et al.'s (JMLR 2024) general modality selection framework by analyzing ranking rather than prediction — their submodularity results do not apply, and our bounds depend on the advantage distribution shape, producing the amplification effect absent from their framework. We introduce three practical diagnostics — VOC, POC (Proprioceptive Ordering Consistency), and conditional noise correlation ρ — that predict multimodal benefit without running the full pipeline. A lightweight contrastive encoder (no online rollouts, no offline RL) validates the theory on LIBERO (40 tasks with VOC/POC characterization — novel) and REASSEMBLE (contact-rich, naturally low-VOC tasks). Targeted at CoRL 2026 (paper deadline May 29, 2026). Estimated compute: 150–300 A100-hours.\",\n  \"project_name\": \"multimodal_adv_scoring\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL NOVELTY FLAW: GVL (Ma et al., ICLR 2025 Spotlight, arXiv 2411.04549) already implements self-supervised advantage-weighted regression for behavioral cloning. GVL uses VLM-derived task progress values to compute per-transition advantages (v_{k+1} - v_k), then weights BC loss via exp(τ·advantage)·log π(a|o) — this is exactly the AWR pipeline STAS proposes. The claimed gap that 'no existing method combines self-supervised value learning with continuous advantage weighting for VLA training' is factually wrong.\", \"MISSED COMPETING WORK: TOPReward (arXiv 2602.19313, Feb 2026) extracts zero-shot task progress rewards from VLM token logits and applies them for advantage-weighted BC, achieving 0.947 VOC across 130+ tasks. This is another self-supervised AWR approach not cited in the proposal.\", \"MISSED COMPETING WORK: VACO (ICLR 2025) uses a meta-scoring network with bi-level optimization to learn per-sample weights for value-aligned behavioral cloning — addressing the same core problem of weighting BC samples by quality.\", \"MISSED COMPETING WORK: QoQ (arXiv 2603.09056, Mar 2026) uses influence functions for continuous per-sample scoring of robot demonstrations, achieving 30% real-robot improvement over baselines — another continuous (non-binary) scoring method.\", \"The claimed advantage of VIP+IQL over GVL's VLM-based approach is not established. GVL already works zero-shot on 300+ tasks without task-specific training, while VIP+IQL requires training both a contrastive encoder and a value function per task/domain. The proposed method may actually be LESS general.\", \"GVL's acknowledged limitations (camera-dependent, noisy on low-VOC tasks) suggest that the field already knows where advantage-weighted BC breaks down. STAS doesn't address these known failure modes — it just swaps the value estimation mechanism.\", \"The CoRL deadline (May 29) is only 16 days away, leaving essentially no time to implement a 3-stage pipeline, run experiments on 3 benchmarks with 5+ baselines, AND write a paper. This is a severe feasibility concern for this specific venue.\", \"The proposal doesn't explain why VIP+IQL advantages would be better than GVL's simpler VLM-based advantages. IQL is known to suffer from value overestimation in out-of-distribution regions, and the bootstrapped VIP rewards may propagate noise through TD learning.\"]\nFeedback: The idea's core contribution — self-supervised advantage-weighted BC for demo curation — is already published (GVL, ICLR 2025 Spotlight). To differentiate, the generator MUST:\n\n1. **Acknowledge and position against GVL, TOPReward, and VACO** — these are the real baselines, not just SCIZOR/RINSE.\n\n2. **Identify a genuine gap in GVL**: GVL's VLM-based values fail when visual information is insufficient (their own Table 3 shows degradation on low-VOC tasks). A legitimate angle would be: VIP+IQL can learn from proprioceptive state (not just images), and IQL's value decomposition offers theoretically grounded advantage estimation vs GVL's heuristic v_{k+1}-v_k. Formalize this as the contribution.\n\n3. **Reframe the novelty**: Instead of 'first to do self-supervised AWR for demo curation' (false), frame it as 'principled offline RL value decomposition with self-supervised dense rewards vs zero-shot VLM heuristic values.' Show theoretically or empirically that IQL's Q-V decomposition produces better advantages than GVL's consecutive-frame difference.\n\n4. **Add GVL and TOPReward as primary baselines**: The current baselines (SCIZOR, RINSE, CUPID) are not the closest competitors. GVL+AWR is the real baseline to beat.\n\n5. **Consider dropping CoRL 2026 as primary target**: With 16 days left, implementing VIP+IQL+VLA and running comprehensive experiments is extremely risky. ICRA 2027 (Sep 16 deadline) is more realistic.\n\n6. **Address IQL's known failure modes**: IQL with bootstrapped (potentially noisy) VIP rewards may amplify errors through TD learning. Discuss or mitigate this risk explicitly.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL: GR-RL (arXiv 2512.01801) already performs multimodal (RGB + proprioceptive state + language) transition-level scoring for demo curation using offline RL Q-values. The proposal cites this paper in its references but does NOT discuss it in the landscape analysis, claiming 'no existing method fuses proprioceptive state signals into the value/advantage estimation pipeline for demo curation.' This claim is factually incorrect.\", \"CRITICAL: Demo-SCORE (Chen et al., RSS 2025, arXiv 2503.03707) — from Chelsea Finn's group — uses ONLY proprioceptive state (joint positions) with a tiny 2-layer MLP (8 hidden units) for demo curation and achieves 15-35% improvement. Not cited at all. This challenges the fundamental premise: if a trivial proprioceptive-only classifier works this well, why is an elaborate multimodal contrastive encoder needed?\", \"MISSING CITATION: RS-CL (arXiv 2510.01711) uses proprioceptive state distances as soft weights in InfoNCE contrastive loss during VLA training — the same contrastive + proprioceptive combination MAS proposes, just for representation regularization rather than scoring.\", \"MISSING CITATION: Consistency Matters (Sakr et al., ACM T-HRI 2025, arXiv 2412.14309) defines 10 proprioceptive metrics for demo quality (jerk, manipulability, torque effort, smoothness) that predict 70-89% of task success. The 'proprioceptive quality bonus' in MAS (joint smoothness, grasp stability) substantially overlaps with these established metrics.\", \"ARCHITECTURE NOT NOVEL: The dual-stream architecture (frozen vision encoder + proprioceptive MLP + cross-attention fusion) is standard — HPT (NeurIPS 2024) uses an identical design. The proposal should not present this as a contribution.\", \"THEORETICAL CONTRIBUTION UNDERSPECIFIED: The 'bound on advantage estimation error as a function of VOC and proprioceptive informativeness' is the most potentially novel component, but it receives only one sentence of description. Without even a sketch of the bound's form or key assumptions, reviewers cannot assess its significance.\", \"ABLATION GAP: No ablation comparing MAS against proprioceptive-only scoring (like Demo-SCORE's approach). Without this, the value of the multimodal fusion — the core contribution — cannot be established. The ablation 'vision-only MAS vs multimodal MAS' only tests one direction.\", \"BASELINE BURDEN: With GR-RL and Demo-SCORE added, the baseline set grows to 8 methods (GVL, TOPReward, SCIZOR, QoQ, RINSE, Demo-SCORE, GR-RL, unweighted BC). Reproducing all of these, especially GR-RL's offline RL pipeline, substantially increases the experimental effort.\"]\nFeedback: The idea has improved significantly from Round 1 by properly positioning against GVL/TOPReward and acknowledging the AWR framework as prior art. However, two critical gaps remain:\n\n**1. Acknowledge GR-RL as the true closest competitor.** You cite it in references but suppress its multimodal scoring contribution in the landscape. GR-RL's Q_φ(o_t, l, s_t, a_t) already fuses vision + proprioception for transition-level curation. Your contribution must be framed against this, not against vision-only methods. The honest framing is: 'GR-RL uses offline-RL Q-values for multimodal scoring but was only evaluated on a single task (shoe lacing) with no theoretical analysis; MAS provides a contrastive-learning alternative with theoretical guarantees on when multimodal scoring helps.'\n\n**2. Add Demo-SCORE as a critical baseline and ablation.** Demo-SCORE (RSS 2025, Finn lab) shows a 2-layer MLP on joint positions alone achieves 15-35% improvement. If MAS cannot substantially outperform this trivial baseline, the complex multimodal encoder is unjustified. Add a 'proprioceptive-only scoring' ablation alongside your existing 'vision-only MAS' ablation to establish the necessity of fusion.\n\n**3. Elevate the theoretical contribution.** The formal bound on advantage estimation error is your most defensible novelty — GR-RL has no theory, Demo-SCORE has no theory. Provide at least a sketch: What form does the bound take? Under what assumptions? Does it predict the VOC threshold below which proprioception dominates? This should be promoted from a side contribution to a co-equal contribution.\n\n**4. Narrow the evaluation focus.** With 8 baselines across 3 benchmarks, the experimental plan is overextended. Focus on (a) contact-rich / low-VOC task subsets where the hypothesis is strongest, and (b) head-to-head comparisons with GR-RL and Demo-SCORE. Drop some weaker baselines (RINSE is a workshop paper; VACO is for locomotion).\n\n**5. Cite RS-CL and Consistency Matters.** RS-CL's use of proprioceptive distances in InfoNCE and Consistency Matters' 10 proprioceptive quality metrics are directly relevant — citing them strengthens your positioning rather than weakening it.\n\n**6. Drop CoRL 2026 entirely.** With 16 days and this many baselines, it is not feasible. Committing to ICRA 2027 as the sole target allows proper experimental work.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"CRITICAL VENUE MISMATCH: User explicitly requested CoRL 2026 (abstract deadline May 26, paper deadline May 29 — 13 and 16 days away). The idea targets ICRA 2027 (deadline not yet announced, estimated ~Sep 2026) and RSS 2027 (~Jan 2027). This directly violates the user's stated requirement. The user's direction explicitly noted that a theory-heavy paper without real-robot experiments is acceptable ('如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的'), and CoRL 2026 lists 'Theoretical foundations of robot learning' as a topic of interest. A theory-focused submission with LIBERO simulation validation could potentially meet the CoRL deadline.\", \"THEORETICAL BOUND MAY BE NEAR-TAUTOLOGICAL: The bound |Â_mm - A*| ≤ ε_vis·(1−β) where β = I(P*;S|V)/H(P*|V) essentially states 'multimodal estimation error is reduced proportionally to the fraction of progress information that proprioception provides beyond vision.' This is close to restating the definition of conditional mutual information as an error reduction factor. For this to be a meaningful contribution, the paper needs: (a) conditions under which the bound is TIGHT (not just an upper bound), (b) a non-trivial derivation path (what assumptions make this non-obvious?), and (c) comparison with the general modality selection framework of He et al. (JMLR 2024) which already provides information-theoretic utility functions for multimodal learning.\", \"MISSING CITATION: He et al., 'Efficient Modality Selection in Multimodal Learning' (JMLR 2024) provides a general theoretical framework for quantifying modality utility using mutual information with submodularity guarantees. This is directly relevant to MAS's theoretical contribution about 'when does proprioception help' and should be cited and differentiated against.\", \"CONDITIONAL INDEPENDENCE ASSUMPTION (V ⊥ S | P*) IS PROBLEMATIC: In manipulation tasks with wrist-mounted cameras, visual observations are directly determined by arm configuration (proprioception). In visual servoing tasks, the gripper's position relative to the object is observable both visually and proprioceptively. The paper acknowledges this but offers no mitigation strategy. Reviewers at a top venue will press hard on this.\", \"CROWDED COMPETITIVE LANDSCAPE RISK: With 9+ active demo curation methods published in 2025-2026 (GVL, TOPReward, SCIZOR, QoQ, CUPID, DataMIL, RINSE, Demo-SCORE, GR-RL), the incremental contribution of 'yet another curation method with a theoretical twist' may face skepticism. The paper needs the theory to be genuinely deep (not just a clean bound) or the empirical gains to be dramatic.\", \"LIBERO LOW-VOC TASK IDENTIFICATION IS UNDERSPECIFIED: The paper plans to use LIBERO (10 tasks spanning high-to-low VOC) but doesn't identify which LIBERO tasks have genuinely low VOC. Standard LIBERO tasks (e.g., open drawer, pick up, stack) are generally visually observable. The proposal needs to either (a) verify that LIBERO actually contains low-VOC tasks where the hypothesis is testable, or (b) create modified versions with reduced visual observability.\"]\nFeedback: The idea has improved substantially from Rounds 1-2 — the landscape analysis is now comprehensive and honest, and the three contributions are well-articulated. However, three critical issues must be addressed:\n\n**1. Address the venue mismatch (HIGHEST PRIORITY).** You must either (a) commit to CoRL 2026 with a narrowed, theory-heavy scope — the user explicitly said a theory-grounded filtering method without real-robot experiments is acceptable, and CoRL welcomes theoretical foundations — or (b) provide a compelling justification for why ICRA 2027 is necessary despite the user's explicit CoRL 2026 request. For a CoRL-targeted version: center the paper on the theoretical framework + POC metric + VOC-stratified empirical validation on LIBERO only (drop OXE, drop GR-RL reproduction, reduce baselines to GVL + TOPReward + Demo-SCORE + unweighted BC). This is achievable in 16 days with a focused scope.\n\n**2. Deepen the theoretical contribution.** The current bound is too simple to carry a theory-heavy paper. You need: (a) Derive conditions under which the bound is tight, not just an upper bound. (b) Provide a finite-sample version of the bound that connects to practical estimator variance. (c) Cite and differentiate from He et al. (JMLR 2024) 'Efficient Modality Selection in Multimodal Learning' which provides a general information-theoretic modality utility framework. (d) Address the conditional independence violation: derive what happens when V and S are NOT conditionally independent given P* — can you provide a relaxed bound with a correction term? This would significantly strengthen the theory.\n\n**3. Validate the low-VOC hypothesis on LIBERO.** Before committing to LIBERO as the primary benchmark, compute VOC for each LIBERO task using GVL's published code. If no LIBERO task has genuinely low VOC (< 0.3), either (a) create modified LIBERO variants with occluded cameras or reduced visual observability, or (b) use a different benchmark that naturally contains low-VOC tasks (e.g., contact-rich assembly tasks from REASSEMBLE or FurnitureBench).\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T17:23:30.738Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-13T17:23:30.738Z",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569"
+}
+```
+
+---
+
+## Round 1
+
+30 recorded events
+
+### User
+
+_source line 3 · 2026-05-13T17:23:30.779Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-13 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).
+Direction：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 4/10)
+{
+  "title": "When Does Proprioception Help Score Demonstrations? Information-Theoretic Bounds for Multimodal Demo Curation",
+  "core_problem": "Given an offline demonstration dataset for VLA training, when does incorporating proprioceptive signals into progress-based demonstration scoring provably improve curation quality — and by how much? Specifically, can we derive tight, non-trivial bounds on the ranking error reduction from multimodal scoring, with practical diagnostics that predict improvement without running the full pipeline?",
+  "opportunity": "Vision-only demo curation methods (GVL, TOPReward, SCIZOR) estimate progress exclusively from images and degrade on low-VOC tasks (GVL: open-drawer VOC 0.09, remove-gears 0.19). Multimodal methods exist but lack theoretical grounding: GR-RL (arXiv 2512.01801) fuses vision + proprioception via offline RL Q-values but was evaluated on a single task with no analysis of when fusion helps; Demo-SCORE (RSS 2025) trains a proprioceptive MLP but requires online rollouts. Meanwhile, He et al. (JMLR 2024) provide a general information-theoretic framework for modality selection in classification/regression via submodular maximization — but demo curation is a RANKING problem (correctly ordering transitions by advantage), not a prediction problem, and submodularity results do not directly apply to ranking objectives. The 'When Would Vision-Proprioception Policy Fail' paper (arXiv 2602.12032) shows modality importance is phase-dependent for POLICY learning but does not address SCORING. The gap: no existing work provides (a) tight bounds on ranking error reduction from multimodal scoring specific to the demo curation setting, (b) analysis of HOW the advantage distribution interacts with modality noise to create non-linear improvement regimes, or (c) practical diagnostics (computable without ground truth) that predict when multimodal scoring is worth the overhead.",
+  "landscape": "**Vision-only curation**: GVL (Ma et al., ICLR 2025 Spotlight) uses VLM temporal ordering → per-frame progress → advantage-weighted BC. VOC metric quantifies visual observability. Degrades on low-VOC tasks. TOPReward (Feb 2026) extracts progress from VLM token logits (0.947 VOC on open-source models) — vision-only. SCIZOR (ICRA 2026) uses self-supervised temporal distance for binary filtering — vision-only.\n\n**Multimodal curation (no theory)**: GR-RL (arXiv 2512.01801) trains TD3+BC critic on RGB + proprioception + language, filters by Q-value drop. Single-task evaluation (shoe lacing, 83.3%), expensive offline RL, no theoretical analysis. Demo-SCORE (Chen et al., RSS 2025) trains proprioceptive MLP for demo quality classification (15–35% improvement on ALOHA). Requires online rollouts — inapplicable offline.\n\n**General modality selection theory**: He et al. (JMLR 2024) 'Efficient Modality Selection in Multimodal Learning' defines modality utility as I(S;Y) for classification (cross-entropy) and Var(E[Y|S]) for regression (quadratic loss), proves approximate submodularity, and derives greedy selection with (1−1/e−ε) approximation guarantee. KEY LIMITATION for our setting: their utility function is prediction loss, not ranking accuracy. Demo curation requires correctly ranking transitions by advantage sign — a fundamentally different objective where submodularity does not hold.\n\n**Vision-proprioception analysis**: 'When Would Vision-Proprioception Policy Fail' (arXiv 2602.12032, NeurIPS 2025) shows proprioception dominates during continuous motion phases while vision is critical for target localization transitions. Proposes GAP algorithm for phase-aware gradient modulation. Analyzes POLICY learning, not scoring/curation — complementary to our work.\n\n**Proprioceptive quality metrics**: Sakr et al. (ACM T-HRI 2025) define 10 trajectory-level metrics (jerk, smoothness, manipulability) predicting 70–89% of success variance. RS-CL (arXiv 2510.01711) uses proprioceptive distances in InfoNCE for VLA representation regularization.\n\n**Other curation**: QoQ (Mar 2026) — influence functions, 30% real-robot improvement. CUPID (CoRL 2025) — trajectory-level influence functions. DataMIL (May 2025) — datamodels for policy-driven selection. RINSE (ICML 2025) — smoothness metrics.\n\n**Key gap**: The demo curation literature has 9+ methods but NO theoretical framework specific to the ranking objective. He et al.'s general modality selection theory does not cover ranking. No work connects the noise structure of visual/proprioceptive progress estimation to ranking error or provides task-level diagnostics predicting multimodal benefit.",
+  "approach": "We propose a theory-centered framework analyzing when multimodal (visual + proprioceptive) progress scoring provably improves demonstration ranking for VLA curation, with a lightweight method to validate the theory empirically.\n\n**(1) Theoretical Framework: Noise-Model Analysis of Multimodal Advantage Ranking**\n\nWe model progress estimation as noisy observation of a latent progress signal P*(t). The visual estimator produces P̂_vis(t) = P*(t) + η_vis(t) with noise variance σ²_vis, and the proprioceptive estimator produces P̂_prop(t) = P*(t) + η_prop(t) with variance σ²_prop. The advantage estimate is Â(t) = P̂(t+1) − P̂(t), and the ranking error is ε_rank = P(sgn(Â) ≠ sgn(A*)).\n\n**Theorem 1 (Fano-type lower bound on ranking error).** For any estimator using modality set M, the ranking error satisfies: ε_rank(M) ≥ H(sgn(A*)|M) / (1 + log 2), derived from Fano's inequality applied to the binary ranking decision. This lower bound is tight under Gaussian noise.\n\n**Theorem 2 (Multimodal ranking improvement — exact form).** Under Gaussian noise, the ranking error for modality set M with noise variance σ² is: ε_rank = E_δ[Φ(−|δ|/√(2σ²))], where δ ~ F is the true advantage distribution and Φ is the standard normal CDF. The multimodal improvement is: Δε = E_δ[Φ(−|δ|/√(2σ²_vis)) − Φ(−|δ|/√(2σ²_mm))], where σ²_mm = (1/σ²_vis + 1/σ²_prop)⁻¹ under conditional independence V ⊥ S | P*. This is NOT a restatement of mutual information reduction — the improvement depends non-linearly on the advantage distribution F through the CDF Φ, producing the amplification effect below.\n\n**Theorem 3 (Amplification effect).** When the advantage distribution F has density f(0) > 0 near zero: Δε ≥ f(0)·(σ_vis − σ_mm)·√(2/π) + O((σ_vis − σ_mm)²). This predicts that multimodal scoring helps MOST on tasks with many near-zero-advantage transitions (smooth demonstrations with gradual progress) — a non-obvious, empirically testable prediction beyond 'proprioception helps when vision is noisy.' Tasks with sparse, large advantages (sharp phase transitions) benefit less.\n\n**Theorem 4 (Relaxation for dependent modalities).** When V and S are NOT conditionally independent given P* (e.g., wrist-mounted cameras where arm pose affects visual observation): σ²_mm = (1/σ²_vis + 1/σ²_prop − 2ρ_cond/(σ_vis·σ_prop))⁻¹, where ρ_cond = corr(η_vis, η_prop | P*) is the conditional noise correlation. Multimodal scoring still helps when ρ_cond < min(σ_prop/σ_vis, σ_vis/σ_prop) — a concrete, verifiable condition. This addresses the wrist-camera concern: high ρ_cond reduces but does not eliminate the benefit.\n\n**Theorem 5 (Finite-sample ranking consistency).** With N trajectories of length T, the empirical ranking accuracy of a contrastive progress estimator converges: |ε̂_rank − ε_rank| ≤ O(√(log(NT)/(NT))) with high probability, independent of observation dimensionality (via contrastive learning's implicit dimensionality reduction).\n\n**Practical diagnostics (no ground truth needed):** VOC (GVL's metric) inversely tracks σ²_vis. We introduce POC (Proprioceptive Ordering Consistency) as the rank correlation between proprioception-only progress estimates and temporal ordering — inversely tracks σ²_prop. The conditional correlation ρ_cond is estimated as the correlation between vision-only and proprioception-only progress residuals. Together, (VOC, POC, ρ_cond) predict multimodal improvement via Theorems 2–4 without running the full curation pipeline.\n\n**Differentiation from He et al. (JMLR 2024):** (i) They optimize prediction loss (cross-entropy/MSE); we optimize ranking accuracy (sign of advantage). (ii) Their submodularity guarantee does not apply to ranking objectives. (iii) Our bounds depend on the advantage distribution shape f(δ), yielding the amplification effect absent from their framework. (iv) We provide tightness under Gaussian noise; they provide approximation ratios. (v) Our diagnostics (VOC, POC, ρ_cond) are specific to demo curation; their Shapley values are general-purpose.\n\n**(2) Lightweight Proof-of-Concept Method**\nTo validate the theory empirically, we implement a simple multimodal contrastive progress encoder: frozen vision backbone + proprioceptive MLP (standard dual-stream per HPT, no architectural novelty). Trained with temporal contrastive loss on demonstration data only — no online rollouts (unlike Demo-SCORE), no offline RL (unlike GR-RL). Per-transition advantages A_t = p_{t+1} − p_t applied as AWR weights exp(A_t/τ) to BC loss on OpenVLA-OFT.\n\n**(3) Empirical Validation (Theory-Driven)**\n\n**Benchmarks:** (a) LIBERO (simulation, 4 suites × 10 tasks = 40 tasks; proprioception: 7 joint positions + 7 velocities + gripper). We compute VOC for ALL 40 LIBERO tasks — a novel characterization not done in prior work. (b) For tasks where all LIBERO VOC values are high (>0.5), we create controlled low-VOC variants by masking the third-person camera and adding partial occlusion to the wrist camera, producing a continuous VOC spectrum for testing. (c) REASSEMBLE subset (contact-rich assembly/disassembly with force-torque; naturally low VOC due to tight-tolerance insertion tasks).\n\n**Baselines (reduced for feasibility):** Unweighted BC, GVL (vision-only AWR), vision-only MAS (ablation — isolates proprioceptive contribution), proprioception-only MAS (ablation — tests necessity of fusion).\n\n**Key experiments:** (i) Compute VOC and POC for every task. (ii) Run all methods; plot MAS improvement over GVL vs. theoretically predicted improvement from (VOC, POC, ρ_cond). If the theory is correct, these should be strongly correlated (predicted R² > 0.7). (iii) Validate amplification effect: stratify tasks by advantage distribution shape f(0) and confirm that smooth-progress tasks show larger multimodal gains. (iv) Validate Theorem 4: compare wrist-camera-only vs. third-person-camera tasks to test the conditional dependence prediction.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~150h A100-80GB (contrastive encoder training ~15h; OpenVLA-OFT fine-tuning ~8h/run × 12 runs for 4 conditions × 3 seeds; VOC/POC computation ~10h; evaluation ~20h)",
+      "gpu_utilization": "High (~70%); theory is pen-and-paper, GPU used continuously for experiments",
+      "timeline": "16 days (CoRL 2026 deadline: May 29)",
+      "team": "1–2 researchers (one lead on theory + experiments, one optional for parallel writing)",
+      "estimated_gpu_cost": "$225–300 (150h × $1.50–2.00/hr)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~200h A100-80GB (additional occlusion variants, REASSEMBLE subset, sensitivity analysis)",
+      "gpu_utilization": "High (~65%); human reviews theoretical derivations and VOC-stratified plots daily",
+      "timeline": "16 days",
+      "team": "1 researcher, ~2–3h/day on theory derivations + result analysis",
+      "claude_api_cost": "$80–150 (~800–1500 Opus turns for derivation checking, code generation, figure generation)",
+      "estimated_gpu_cost": "$300–400 (200h × $1.50–2.00/hr)",
+      "risk_note": "Main risk: LIBERO may have uniformly high VOC, requiring camera-occlusion variants. Mitigated by creating controlled variants + using REASSEMBLE for naturally low-VOC tasks."
+    },
+    "auto_research": {
+      "gpu_hours": "~300h A100-80GB (full LIBERO 40-task sweep, REASSEMBLE evaluation, occlusion variants, ablation sweeps)",
+      "gpu_utilization": "Near-zero idle (<10%); agent chains experiments continuously",
+      "timeline": "10–12 days with 2× A100 parallelism",
+      "team": "0 (initial setup: provide LIBERO env, OpenVLA checkpoint, contrastive encoder scaffold)",
+      "claude_api_cost": "$200–350 (~2000–3500 Opus turns for implementation, experiment orchestration, paper drafting)",
+      "estimated_gpu_cost": "$450–600 (300h × $1.50–2.00/hr)",
+      "speed_bottleneck": "VOC computation on 40 LIBERO tasks requires running VLM inference — ~10h with batching",
+      "risk_note": "Risk that Gaussian noise model is too simple for real progress estimation noise. Agent should compute Q-Q plots of empirical residuals against Gaussian to validate."
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (abstract deadline: May 26, 2026; paper deadline: May 29, 2026) — PRIMARY TARGET: theory-centered paper with simulation validation, CoRL explicitly lists 'theoretical foundations of robot learning' as topic of interest",
+    "NeurIPS 2026 Workshop on Robot Learning (deadline ~Sep 2026) — BACKUP: if CoRL deadline is missed, submit extended version"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "GVL: Vision Language Models are In-Context Value Learners (Ma et al., ICLR 2025 Spotlight, arXiv 2411.04549) — VOC metric, vision-only advantage-weighted curation",
+    "TOPReward: Token Probabilities as Hidden Zero-Shot Rewards for Robotics (arXiv 2602.19313, Feb 2026) — vision-only VLM-logit progress",
+    "He et al., Efficient Modality Selection in Multimodal Learning (JMLR 2024) — general information-theoretic modality selection with submodularity; our key differentiation target (ranking vs prediction)",
+    "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation (arXiv 2512.01801) — multimodal offline RL scoring, single task, no theory",
+    "Demo-SCORE: Curating Demonstrations using Online Experience (Chen et al., RSS 2025, arXiv 2503.03707) — proprioceptive classifier, requires online rollouts",
+    "When Would Vision-Proprioception Policies Fail in Robotic Manipulation? (arXiv 2602.12032, Feb 2026) — phase-aware modality importance for policy learning; complements our scoring analysis",
+    "Consistency Matters: Defining Demonstration Data Quality Metrics (Sakr et al., ACM T-HRI 2025, arXiv 2412.14309) — proprioceptive quality metrics",
+    "SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning (ICRA 2026)",
+    "Quality over Quantity (QoQ): Demonstration Curation via Influence Functions (arXiv 2603.09056, Mar 2026)",
+    "REASSEMBLE: A Multimodal Dataset for Contact-rich Robotic Assembly and Disassembly (arXiv 2502.05086, Feb 2025) — low-VOC benchmark with proprioception + force-torque",
+    "HPT: Scaling Proprioceptive-Visual Learning with Heterogeneous Pre-trained Transformers (Wang et al., NeurIPS 2024) — dual-stream architecture prior art",
+    "RS-CL: Contrastive Representation Regularization for VLA Models (arXiv 2510.01711) — proprioceptive distances in contrastive learning",
+    "OpenVLA: An Open-Source Vision-Language-Action Model (ICML 2025)",
+    "OpenGVL: Benchmarking Visual Temporal Progress for Data Curation (arXiv 2509.17321, Sep 2025)",
+    "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning (Liu et al., NeurIPS 2023)",
+    "Fano's Inequality and its generalizations (Fano 1961; Sason & Verdú 2016) — theoretical foundation for ranking error bounds",
+    "Advantage-Weighted Regression: Simple and Scalable Off-Policy RL (Peng et al., ICLR 2020)",
+    "Contrastive Learning as Goal-Conditioned RL (Eysenbach et al., NeurIPS 2022)",
+    "CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)",
+    "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (arXiv 2505.09603, May 2025)"
+  ],
+  "description": "We present an information-theoretic analysis of when multimodal (visual + proprioceptive) progress scoring provably improves demonstration ranking for VLA curation — a question unanswered by prior methods that either use vision-only scoring (GVL, TOPReward, SCIZOR) or apply multimodal scoring without theoretical justification (GR-RL, Demo-SCORE). Our primary contribution is a theoretical framework grounded in Fano's inequality and Gaussian noise models that yields five results: (1) a tight lower bound on ranking error from any single-modality scorer; (2) an exact characterization of multimodal improvement as a function of noise variance and the advantage distribution; (3) an amplification effect showing multimodal scoring helps most on smooth-progress tasks where advantages concentrate near zero — a non-obvious prediction beyond 'proprioception helps when vision is noisy'; (4) a relaxed bound for conditionally dependent modalities (addressing the wrist-camera concern) with a concrete condition for when fusion still helps; (5) a finite-sample consistency bound for contrastive progress estimators. We differentiate from He et al.'s (JMLR 2024) general modality selection framework by analyzing ranking rather than prediction — their submodularity results do not apply, and our bounds depend on the advantage distribution shape, producing the amplification effect absent from their framework. We introduce three practical diagnostics — VOC, POC (Proprioceptive Ordering Consistency), and conditional noise correlation ρ — that predict multimodal benefit without running the full pipeline. A lightweight contrastive encoder (no online rollouts, no offline RL) validates the theory on LIBERO (40 tasks with VOC/POC characterization — novel) and REASSEMBLE (contact-rich, naturally low-VOC tasks). Targeted at CoRL 2026 (paper deadline May 29, 2026). Estimated compute: 150–300 A100-hours.",
+  "project_name": "multimodal_adv_scoring",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL NOVELTY FLAW: GVL (Ma et al., ICLR 2025 Spotlight, arXiv 2411.04549) already implements self-supervised advantage-weighted regression for behavioral cloning. GVL uses VLM-derived task progress values to compute per-transition advantages (v_{k+1} - v_k), then weights BC loss via exp(τ·advantage)·log π(a|o) — this is exactly the AWR pipeline STAS proposes. The claimed gap that 'no existing method combines self-supervised value learning with continuous advantage weighting for VLA training' is factually wrong.", "MISSED COMPETING WORK: TOPReward (arXiv 2602.19313, Feb 2026) extracts zero-shot task progress rewards from VLM token logits and applies them for advantage-weighted BC, achieving 0.947 VOC across 130+ tasks. This is another self-supervised AWR approach not cited in the proposal.", "MISSED COMPETING WORK: VACO (ICLR 2025) uses a meta-scoring network with bi-level optimization to learn per-sample weights for value-aligned behavioral cloning — addressing the same core problem of weighting BC samples by quality.", "MISSED COMPETING WORK: QoQ (arXiv 2603.09056, Mar 2026) uses influence functions for continuous per-sample scoring of robot demonstrations, achieving 30% real-robot improvement over baselines — another continuous (non-binary) scoring method.", "The claimed advantage of VIP+IQL over GVL's VLM-based approach is not established. GVL already works zero-shot on 300+ tasks without task-specific training, while VIP+IQL requires training both a contrastive encoder and a value function per task/domain. The proposed method may actually be LESS general.", "GVL's acknowledged limitations (camera-dependent, noisy on low-VOC tasks) suggest that the field already knows where advantage-weighted BC breaks down. STAS doesn't address these known failure modes — it just swaps the value estimation mechanism.", "The CoRL deadline (May 29) is only 16 days away, leaving essentially no time to implement a 3-stage pipeline, run experiments on 3 benchmarks with 5+ baselines, AND write a paper. This is a severe feasibility concern for this specific venue.", "The proposal doesn't explain why VIP+IQL advantages would be better than GVL's simpler VLM-based advantages. IQL is known to suffer from value overestimation in out-of-distribution regions, and the bootstrapped VIP rewards may propagate noise through TD learning."]
+Feedback: The idea's core contribution — self-supervised advantage-weighted BC for demo curation — is already published (GVL, ICLR 2025 Spotlight). To differentiate, the generator MUST:
+
+1. **Acknowledge and position against GVL, TOPReward, and VACO** — these are the real baselines, not just SCIZOR/RINSE.
+
+2. **Identify a genuine gap in GVL**: GVL's VLM-based values fail when visual information is insufficient (their own Table 3 shows degradation on low-VOC tasks). A legitimate angle would be: VIP+IQL can learn from proprioceptive state (not just images), and IQL's value decomposition offers theoretically grounded advantage estimation vs GVL's heuristic v_{k+1}-v_k. Formalize this as the contribution.
+
+3. **Reframe the novelty**: Instead of 'first to do self-supervised AWR for demo curation' (false), frame it as 'principled offline RL value decomposition with self-supervised dense rewards vs zero-shot VLM heuristic values.' Show theoretically or empirically that IQL's Q-V decomposition produces better advantages than GVL's consecutive-frame difference.
+
+4. **Add GVL and TOPReward as primary baselines**: The current baselines (SCIZOR, RINSE, CUPID) are not the closest competitors. GVL+AWR is the real baseline to beat.
+
+5. **Consider dropping CoRL 2026 as primary target**: With 16 days left, implementing VIP+IQL+VLA and running comprehensive experiments is extremely risky. ICRA 2027 (Sep 16 deadline) is more realistic.
+
+6. **Address IQL's known failure modes**: IQL with bootstrapped (potentially noisy) VIP rewards may amplify errors through TD learning. Discuss or mitigate this risk explicitly.
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL: GR-RL (arXiv 2512.01801) already performs multimodal (RGB + proprioceptive state + language) transition-level scoring for demo curation using offline RL Q-values. The proposal cites this paper in its references but does NOT discuss it in the landscape analysis, claiming 'no existing method fuses proprioceptive state signals into the value/advantage estimation pipeline for demo curation.' This claim is factually incorrect.", "CRITICAL: Demo-SCORE (Chen et al., RSS 2025, arXiv 2503.03707) — from Chelsea Finn's group — uses ONLY proprioceptive state (joint positions) with a tiny 2-layer MLP (8 hidden units) for demo curation and achieves 15-35% improvement. Not cited at all. This challenges the fundamental premise: if a trivial proprioceptive-only classifier works this well, why is an elaborate multimodal contrastive encoder needed?", "MISSING CITATION: RS-CL (arXiv 2510.01711) uses proprioceptive state distances as soft weights in InfoNCE contrastive loss during VLA training — the same contrastive + proprioceptive combination MAS proposes, just for representation regularization rather than scoring.", "MISSING CITATION: Consistency Matters (Sakr et al., ACM T-HRI 2025, arXiv 2412.14309) defines 10 proprioceptive metrics for demo quality (jerk, manipulability, torque effort, smoothness) that predict 70-89% of task success. The 'proprioceptive quality bonus' in MAS (joint smoothness, grasp stability) substantially overlaps with these established metrics.", "ARCHITECTURE NOT NOVEL: The dual-stream architecture (frozen vision encoder + proprioceptive MLP + cross-attention fusion) is standard — HPT (NeurIPS 2024) uses an identical design. The proposal should not present this as a contribution.", "THEORETICAL CONTRIBUTION UNDERSPECIFIED: The 'bound on advantage estimation error as a function of VOC and proprioceptive informativeness' is the most potentially novel component, but it receives only one sentence of description. Without even a sketch of the bound's form or key assumptions, reviewers cannot assess its significance.", "ABLATION GAP: No ablation comparing MAS against proprioceptive-only scoring (like Demo-SCORE's approach). Without this, the value of the multimodal fusion — the core contribution — cannot be established. The ablation 'vision-only MAS vs multimodal MAS' only tests one direction.", "BASELINE BURDEN: With GR-RL and Demo-SCORE added, the baseline set grows to 8 methods (GVL, TOPReward, SCIZOR, QoQ, RINSE, Demo-SCORE, GR-RL, unweighted BC). Reproducing all of these, especially GR-RL's offline RL pipeline, substantially increases the experimental effort."]
+Feedback: The idea has improved significantly from Round 1 by properly positioning against GVL/TOPReward and acknowledging the AWR framework as prior art. However, two critical gaps remain:
+
+**1. Acknowledge GR-RL as the true closest competitor.** You cite it in references but suppress its multimodal scoring contribution in the landscape. GR-RL's Q_φ(o_t, l, s_t, a_t) already fuses vision + proprioception for transition-level curation. Your contribution must be framed against this, not against vision-only methods. The honest framing is: 'GR-RL uses offline-RL Q-values for multimodal scoring but was only evaluated on a single task (shoe lacing) with no theoretical analysis; MAS provides a contrastive-learning alternative with theoretical guarantees on when multimodal scoring helps.'
+
+**2. Add Demo-SCORE as a critical baseline and ablation.** Demo-SCORE (RSS 2025, Finn lab) shows a 2-layer MLP on joint positions alone achieves 15-35% improvement. If MAS cannot substantially outperform this trivial baseline, the complex multimodal encoder is unjustified. Add a 'proprioceptive-only scoring' ablation alongside your existing 'vision-only MAS' ablation to establish the necessity of fusion.
+
+**3. Elevate the theoretical contribution.** The formal bound on advantage estimation error is your most defensible novelty — GR-RL has no theory, Demo-SCORE has no theory. Provide at least a sketch: What form does the bound take? Under what assumptions? Does it predict the VOC threshold below which proprioception dominates? This should be promoted from a side contribution to a co-equal contribution.
+
+**4. Narrow the evaluation focus.** With 8 baselines across 3 benchmarks, the experimental plan is overextended. Focus on (a) contact-rich / low-VOC task subsets where the hypothesis is strongest, and (b) head-to-head comparisons with GR-RL and Demo-SCORE. Drop some weaker baselines (RINSE is a workshop paper; VACO is for locomotion).
+
+**5. Cite RS-CL and Consistency Matters.** RS-CL's use of proprioceptive distances in InfoNCE and Consistency Matters' 10 proprioceptive quality metrics are directly relevant — citing them strengthens your positioning rather than weakening it.
+
+**6. Drop CoRL 2026 entirely.** With 16 days and this many baselines, it is not feasible. Committing to ICRA 2027 as the sole target allows proper experimental work.
+
+### Round 3 review
+Verdict: revise
+Issues: ["CRITICAL VENUE MISMATCH: User explicitly requested CoRL 2026 (abstract deadline May 26, paper deadline May 29 — 13 and 16 days away). The idea targets ICRA 2027 (deadline not yet announced, estimated ~Sep 2026) and RSS 2027 (~Jan 2027). This directly violates the user's stated requirement. The user's direction explicitly noted that a theory-heavy paper without real-robot experiments is acceptable ('如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的'), and CoRL 2026 lists 'Theoretical foundations of robot learning' as a topic of interest. A theory-focused submission with LIBERO simulation validation could potentially meet the CoRL deadline.", "THEORETICAL BOUND MAY BE NEAR-TAUTOLOGICAL: The bound |Â_mm - A*| ≤ ε_vis·(1−β) where β = I(P*;S|V)/H(P*|V) essentially states 'multimodal estimation error is reduced proportionally to the fraction of progress information that proprioception provides beyond vision.' This is close to restating the definition of conditional mutual information as an error reduction factor. For this to be a meaningful contribution, the paper needs: (a) conditions under which the bound is TIGHT (not just an upper bound), (b) a non-trivial derivation path (what assumptions make this non-obvious?), and (c) comparison with the general modality selection framework of He et al. (JMLR 2024) which already provides information-theoretic utility functions for multimodal learning.", "MISSING CITATION: He et al., 'Efficient Modality Selection in Multimodal Learning' (JMLR 2024) provides a general theoretical framework for quantifying modality utility using mutual information with submodularity guarantees. This is directly relevant to MAS's theoretical contribution about 'when does proprioception help' and should be cited and differentiated against.", "CONDITIONAL INDEPENDENCE ASSUMPTION (V ⊥ S | P*) IS PROBLEMATIC: In manipulation tasks with wrist-mounted cameras, visual observations are directly determined by arm configuration (proprioception). In visual servoing tasks, the gripper's position relative to the object is observable both visually and proprioceptively. The paper acknowledges this but offers no mitigation strategy. Reviewers at a top venue will press hard on this.", "CROWDED COMPETITIVE LANDSCAPE RISK: With 9+ active demo curation methods published in 2025-2026 (GVL, TOPReward, SCIZOR, QoQ, CUPID, DataMIL, RINSE, Demo-SCORE, GR-RL), the incremental contribution of 'yet another curation method with a theoretical twist' may face skepticism. The paper needs the theory to be genuinely deep (not just a clean bound) or the empirical gains to be dramatic.", "LIBERO LOW-VOC TASK IDENTIFICATION IS UNDERSPECIFIED: The paper plans to use LIBERO (10 tasks spanning high-to-low VOC) but doesn't identify which LIBERO tasks have genuinely low VOC. Standard LIBERO tasks (e.g., open drawer, pick up, stack) are generally visually observable. The proposal needs to either (a) verify that LIBERO actually contains low-VOC tasks where the hypothesis is testable, or (b) create modified versions with reduced visual observability."]
+Feedback: The idea has improved substantially from Rounds 1-2 — the landscape analysis is now comprehensive and honest, and the three contributions are well-articulated. However, three critical issues must be addressed:
+
+**1. Address the venue mismatch (HIGHEST PRIORITY).** You must either (a) commit to CoRL 2026 with a narrowed, theory-heavy scope — the user explicitly said a theory-grounded filtering method without real-robot experiments is acceptable, and CoRL welcomes theoretical foundations — or (b) provide a compelling justification for why ICRA 2027 is necessary despite the user's explicit CoRL 2026 request. For a CoRL-targeted version: center the paper on the theoretical framework + POC metric + VOC-stratified empirical validation on LIBERO only (drop OXE, drop GR-RL reproduction, reduce baselines to GVL + TOPReward + Demo-SCORE + unweighted BC). This is achievable in 16 days with a focused scope.
+
+**2. Deepen the theoretical contribution.** The current bound is too simple to carry a theory-heavy paper. You need: (a) Derive conditions under which the bound is tight, not just an upper bound. (b) Provide a finite-sample version of the bound that connects to practical estimator variance. (c) Cite and differentiate from He et al. (JMLR 2024) 'Efficient Modality Selection in Multimodal Learning' which provides a general information-theoretic modality utility framework. (d) Address the conditional independence violation: derive what happens when V and S are NOT conditionally independent given P* — can you provide a relaxed bound with a correction term? This would significantly strengthen the theory.
+
+**3. Validate the low-VOC hypothesis on LIBERO.** Before committing to LIBERO as the primary benchmark, compute VOC for each LIBERO task using GVL's published code. If no LIBERO task has genuinely low VOC (< 0.3), either (a) create modified LIBERO variants with occluded cameras or reduced visual observability, or (b) use a different benchmark that naturally contains low-VOC tasks (e.g., contact-rich assembly tasks from REASSEMBLE or FurnitureBench).
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "e4227f8e-b015-45cc-9a19-d9d9011fba01",
+  "type": "user",
+  "uuid": "6fb15cbe-e002-4778-a266-e7caa24f067f",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-13T17:23:30.776Z_
+
+```json
+{
+  "parentUuid": "6fb15cbe-e002-4778-a266-e7caa24f067f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "b5b1fa08-1fd1-471b-9ec4-f3b1e12c3f53",
+  "timestamp": "2026-05-13T17:23:30.776Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-13T17:23:30.776Z_
+
+```json
+{
+  "parentUuid": "b5b1fa08-1fd1-471b-9ec4-f3b1e12c3f53",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "bdc346ad-1520-447a-bba9-2bc9a4dcb25d",
+  "timestamp": "2026-05-13T17:23:30.776Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "bdc346ad-1520-447a-bba9-2bc9a4dcb25d",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify multimodal demo curation bounds for CoRL 2026",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-13T17:23:38.734Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this Round 4 submission. The idea has evolved significantly from the original STAS proposal through MAS to now a theory-centered paper about information-theoretic bounds for multimodal demo curation. Let me verify the key claims independently.
+
+Key things to verify:
+1. Whether the theoretical framework is genuinely novel vs. straightforward statistics
+2. Whether He et al. (JMLR 2024) is properly differentiated
+3. Whether the CoRL 2026 venue is now properly targeted
+4. Whether the competitive landscape is complete
+
+
+5. Whether the theoretical claims hold up under scrutiny
+6. Whether we can realistically hit the CoRL deadline
+
+Now I'm searching through the relevant literature to assess these points.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bdc346ad-1520-447a-bba9-2bc9a4dcb25d",
+  "isSidechain": false,
+  "requestId": "req_011CazxQLfiYts53G7Qgyy4C",
+  "type": "assistant",
+  "uuid": "91f8d0a9-4d2f-4814-a46a-d61eaa112e30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015SMFpgo1vWAiY72znksQdC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17888,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1512,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 17888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-13T17:23:38.926Z_
+
+I'll conduct an independent, thorough review of this Round 4 submission. Let me verify the key claims, check for missing competitors, and assess the theoretical contribution.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "91f8d0a9-4d2f-4814-a46a-d61eaa112e30",
+  "isSidechain": false,
+  "requestId": "req_011CazxQLfiYts53G7Qgyy4C",
+  "type": "assistant",
+  "uuid": "8408577f-461d-445c-b8f8-7c1bc53693de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015SMFpgo1vWAiY72znksQdC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17888,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1512,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 17888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T17:23:44.323Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01SWhoPEFtP4RW29aV4HpwYF`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify He et al JMLR 2024",
+  "prompt": "Search for and verify the paper \"He et al., Efficient Modality Selection in Multimodal Learning, JMLR 2024\". I need to know:\n1. Does this paper actually exist? What is its exact title, authors, and venue?\n2. What is its theoretical framework — does it use mutual information, submodularity?\n3. Does it address ranking objectives or only prediction (classification/regression)?\n4. How would it relate to a paper proposing information-theoretic bounds for ranking error in demonstration curation for robot learning?\n\nUse WebSearch to find this paper, then use WebFetch to read its abstract and key sections if possible. Report your findings in detail."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8408577f-461d-445c-b8f8-7c1bc53693de",
+  "isSidechain": false,
+  "requestId": "req_011CazxQLfiYts53G7Qgyy4C",
+  "type": "assistant",
+  "uuid": "2b83aa8a-5516-4c15-b650-de63fac9ebf3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015SMFpgo1vWAiY72znksQdC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17888,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1512,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 17888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-13T17:23:49.582Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01YRtDiu9HRSW7BzESeVGi2Q`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search GR-RL multimodal scoring",
+  "prompt": "Search for the paper \"GR-RL\" (arXiv 2512.01801) about multimodal demonstration scoring for robot learning. I need to verify:\n1. Does this paper exist? What is its full title and authors?\n2. Does it fuse vision + proprioception for demonstration scoring/curation?\n3. Does it provide any theoretical analysis of when multimodal scoring helps?\n4. What tasks was it evaluated on?\n\nAlso search for \"Demo-SCORE\" (Chen et al., RSS 2025, arXiv 2503.03707) — a proprioceptive demo curation method. Verify:\n1. Does it exist?\n2. Does it use only proprioceptive state?\n3. Does it require online rollouts?\n\nUse WebSearch with queries like \"GR-RL arXiv 2512.01801 robot manipulation\" and \"Demo-SCORE RSS 2025 demonstration curation\". Try WebFetch on arxiv pages if available."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b83aa8a-5516-4c15-b650-de63fac9ebf3",
+  "isSidechain": false,
+  "requestId": "req_011CazxQLfiYts53G7Qgyy4C",
+  "type": "assistant",
+  "uuid": "ebfcd7b8-5d0c-4f03-b573-b47a2fc9fc12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015SMFpgo1vWAiY72znksQdC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17888,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1512,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 17888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-13T17:24:00.673Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01CdiDTaRf557t3w3UscdoM3`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search ranking theory information theory",
+  "prompt": "I'm reviewing a paper that claims to provide \"information-theoretic bounds on ranking error from multimodal scoring\" using Fano's inequality. The key claim is that ranking (correctly determining the sign of an advantage) is fundamentally different from prediction (minimizing MSE or cross-entropy), and that existing modality selection theory (which uses submodularity for prediction loss) doesn't apply to ranking.\n\nSearch for:\n1. \"Fano's inequality ranking\" or \"Fano inequality binary classification\" — is applying Fano's inequality to binary sign classification (which is what ranking the sign of an advantage really is) a well-known technique?\n2. \"information theoretic bounds ranking error\" — are there existing results on this?\n3. \"Gaussian noise ranking error\" — the paper claims ranking error under Gaussian noise is ε_rank = E_δ[Φ(−|δ|/√(2σ²))]. Is this just a standard result from signal detection theory (e.g., detection of signal in Gaussian noise)?\n4. \"multimodal fusion Gaussian noise optimal combining\" — is the result that σ²_mm = (1/σ²_vis + 1/σ²_prop)⁻¹ just the standard inverse-variance weighting from statistics?\n\nThe key question: Is the theoretical \"contribution\" just repackaging well-known results from signal detection theory and classical statistics into a robotics context? Or is there genuine theoretical novelty?\n\nUse WebSearch with multiple query variations. Report your findings in detail."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ebfcd7b8-5d0c-4f03-b573-b47a2fc9fc12",
+  "isSidechain": false,
+  "requestId": "req_011CazxQLfiYts53G7Qgyy4C",
+  "type": "assistant",
+  "uuid": "497b76ae-c778-48d0-91a8-d181267e723c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015SMFpgo1vWAiY72znksQdC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17888,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1512,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 17888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-13T17:24:07.361Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01A5FYQfYuF8tzd5pB39Sgxf`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search CoRL 2026 deadline + competing work",
+  "prompt": "Search for the following:\n\n1. \"CoRL 2026 deadline\" or \"CoRL 2026 call for papers\" — verify the submission deadlines. The claim is abstract deadline May 26, 2026 and paper deadline May 29, 2026.\n\n2. Search for recent (2025-2026) papers on \"demonstration curation theory\" or \"data quality theory robot learning\" or \"information theoretic robot imitation learning\" — are there any theory-heavy papers in this space that might overlap?\n\n3. Search for \"multimodal demonstration curation ranking\" or \"proprioception scoring demonstration quality\" — any papers combining proprioceptive signals with theoretical analysis for demo curation?\n\n4. Search for \"advantage distribution demo curation\" or \"transition advantage scoring robot\" — any work that analyzes the advantage distribution shape for curation?\n\n5. Search for \"VOC visual observability consistency\" GVL — verify this metric exists and check if anyone has done VOC analysis across LIBERO's full 40-task suite.\n\nUse WebSearch with multiple queries. Report all findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "497b76ae-c778-48d0-91a8-d181267e723c",
+  "isSidechain": false,
+  "requestId": "req_011CazxQLfiYts53G7Qgyy4C",
+  "type": "assistant",
+  "uuid": "5c3b2f5c-df7a-4f7e-a11d-76a0904dfaaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015SMFpgo1vWAiY72znksQdC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17888,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1512,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 17888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T17:25:08.084Z_
+
+<details><summary>↩ Tool result · `toolu_01YRtDiu9HRSW7BzESeVGi2Q`</summary>
+
+```text
+Now I have comprehensive information on both papers. Here is my full report:
+
+---
+
+## Paper 1: GR-RL (arXiv 2512.01801)
+
+**Does it exist?** Yes.
+
+**Full title:** "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation"
+
+**Authors:** Yunfei Li, Xiao Ma, Jiafeng Xu, Yu Cui, Zhongren Cui, Zhigang Han, Liqun Huang, Tao Kong, Yuxiao Liu, Hao Niu, Wanli Peng, Jingchao Qiao, Zeyu Ren, Haixin Shi, Zhi Su, Jiawen Tian, Yuyang Xiao, Shenyu Zhang, Liwei Zheng, Hang Li, Yonghui Wu
+
+**Does it fuse vision + proprioception for demonstration scoring/curation?** Partially, but not in the way described in your query. GR-RL is **not** a "multimodal demonstration scoring" paper in the sense of a dedicated scoring framework that fuses vision and proprioception. What it does is train an offline RL critic (Q-function) that takes as input visual observations (three RGB camera views), proprioceptive state, and language instructions. This critic is then used to compute a progress score for filtering out suboptimal transitions from demonstrations. So vision and proprioception do feed into the scoring mechanism, but the paper's primary contribution is a multi-stage pipeline for turning a generalist VLA policy into a specialist for dexterous manipulation -- demonstration filtering is one component, not the central contribution.
+
+**Does it provide theoretical analysis of when multimodal scoring helps?** No. There is no theoretical analysis, no theorems, no formal bounds, and no formal justification for why multimodal inputs improve demonstration curation. All evidence is purely empirical.
+
+**What tasks was it evaluated on?** Only a single task: **autonomous shoe lacing** (threading shoelaces through multiple eyelets), achieving an 83.3% success rate. No other tasks or environments were evaluated.
+
+---
+
+## Paper 2: Demo-SCORE (arXiv 2503.03707)
+
+**Does it exist?** Yes.
+
+**Full title:** "Curating Demonstrations using Online Experience" (the method is named Demo-SCORE)
+
+**Authors:** Annie S. Chen, Alec M. Lessing, Yuejiang Liu, Chelsea Finn
+
+**Published at RSS 2025?** Yes -- confirmed. It appears in the [RSS 2025 program](https://roboticsconference.org/program/papers/71/).
+
+**Does it use only proprioceptive state?** Yes. The paper explicitly states the classifier input consists of "the proprioceptive state s_t" with a binary output label. While vision (RGB cameras) is collected as part of the observation for policy training, the quality-scoring classifier itself operates on proprioceptive features only.
+
+**Does it require online rollouts?** Yes. This is fundamental to the method. Demo-SCORE works by: (1) training an initial policy on all demonstrations, (2) generating rollouts from that policy at multiple checkpoints, (3) training a success/failure classifier on those rollouts, and (4) using that classifier to score and filter the original demonstrations. Online rollout collection cannot be eliminated from this pipeline.
+
+**Evaluation tasks:**
+- **Simulated:** Square peg insertion (Robosuite), bimanual peg insertion (simulated ALOHA)
+- **Real-world ALOHA tasks:** Spoon placement in cupholder, chocolate bar transfer between plates, sharpie pickup, strawberry pickup from clutter, jellybean cup task (5 subtasks)
+
+---
+
+## Key Takeaways
+
+- **GR-RL** is not primarily a "multimodal demonstration scoring" paper. It is a pipeline for specializing VLA policies for dexterous manipulation, with demonstration filtering as one component. Describing it as a paper "about multimodal demonstration scoring for robot learning" would be a mischaracterization of its focus.
+- **Demo-SCORE** matches the description well: it is a demonstration curation method that uses proprioceptive state for scoring and requires online rollouts.
+- Neither paper provides theoretical analysis of multimodal scoring benefits.
+
+Sources:
+- [GR-RL arXiv page](https://arxiv.org/abs/2512.01801)
+- [GR-RL full HTML](https://arxiv.org/html/2512.01801)
+- [Demo-SCORE arXiv page](https://arxiv.org/abs/2503.03707)
+- [Demo-SCORE at RSS 2025](https://roboticsconference.org/program/papers/71/)
+- [Demo-SCORE project page](https://anniesch.github.io/demo-score/)
+
+agentId: a6649762f9a2ea094 (use SendMessage with to: 'a6649762f9a2ea094' to continue this agent)
+&lt;usage>total_tokens: 16832
+tool_uses: 8
+duration_ms: 78499&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ebfcd7b8-5d0c-4f03-b573-b47a2fc9fc12",
+  "isSidechain": false,
+  "promptId": "e4227f8e-b015-45cc-9a19-d9d9011fba01",
+  "type": "user",
+  "uuid": "13d2ac5e-e108-4cae-b8c9-1a10810a80d5",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for the paper \"GR-RL\" (arXiv 2512.01801) about multimodal demonstration scoring for robot learning. I need to verify:\n1. Does this paper exist? What is its full title and authors?\n2. Does it fuse vision + proprioception for demonstration scoring/curation?\n3. Does it provide any theoretical analysis of when multimodal scoring helps?\n4. What tasks was it evaluated on?\n\nAlso search for \"Demo-SCORE\" (Chen et al., RSS 2025, arXiv 2503.03707) — a proprioceptive demo curation method. Verify:\n1. Does it exist?\n2. Does it use only proprioceptive state?\n3. Does it require online rollouts?\n\nUse WebSearch with queries like \"GR-RL arXiv 2512.01801 robot manipulation\" and \"Demo-SCORE RSS 2025 demonstration curation\". Try WebFetch on arxiv pages if available.",
+    "agentId": "a6649762f9a2ea094",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive information on both papers. Here is my full report:\n\n---\n\n## Paper 1: GR-RL (arXiv 2512.01801)\n\n**Does it exist?** Yes.\n\n**Full title:** \"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation\"\n\n**Authors:** Yunfei Li, Xiao Ma, Jiafeng Xu, Yu Cui, Zhongren Cui, Zhigang Han, Liqun Huang, Tao Kong, Yuxiao Liu, Hao Niu, Wanli Peng, Jingchao Qiao, Zeyu Ren, Haixin Shi, Zhi Su, Jiawen Tian, Yuyang Xiao, Shenyu Zhang, Liwei Zheng, Hang Li, Yonghui Wu\n\n**Does it fuse vision + proprioception for demonstration scoring/curation?** Partially, but not in the way described in your query. GR-RL is **not** a \"multimodal demonstration scoring\" paper in the sense of a dedicated scoring framework that fuses vision and proprioception. What it does is train an offline RL critic (Q-function) that takes as input visual observations (three RGB camera views), proprioceptive state, and language instructions. This critic is then used to compute a progress score for filtering out suboptimal transitions from demonstrations. So vision and proprioception do feed into the scoring mechanism, but the paper's primary contribution is a multi-stage pipeline for turning a generalist VLA policy into a specialist for dexterous manipulation -- demonstration filtering is one component, not the central contribution.\n\n**Does it provide theoretical analysis of when multimodal scoring helps?** No. There is no theoretical analysis, no theorems, no formal bounds, and no formal justification for why multimodal inputs improve demonstration curation. All evidence is purely empirical.\n\n**What tasks was it evaluated on?** Only a single task: **autonomous shoe lacing** (threading shoelaces through multiple eyelets), achieving an 83.3% success rate. No other tasks or environments were evaluated.\n\n---\n\n## Paper 2: Demo-SCORE (arXiv 2503.03707)\n\n**Does it exist?** Yes.\n\n**Full title:** \"Curating Demonstrations using Online Experience\" (the method is named Demo-SCORE)\n\n**Authors:** Annie S. Chen, Alec M. Lessing, Yuejiang Liu, Chelsea Finn\n\n**Published at RSS 2025?** Yes -- confirmed. It appears in the [RSS 2025 program](https://roboticsconference.org/program/papers/71/).\n\n**Does it use only proprioceptive state?** Yes. The paper explicitly states the classifier input consists of \"the proprioceptive state s_t\" with a binary output label. While vision (RGB cameras) is collected as part of the observation for policy training, the quality-scoring classifier itself operates on proprioceptive features only.\n\n**Does it require online rollouts?** Yes. This is fundamental to the method. Demo-SCORE works by: (1) training an initial policy on all demonstrations, (2) generating rollouts from that policy at multiple checkpoints, (3) training a success/failure classifier on those rollouts, and (4) using that classifier to score and filter the original demonstrations. Online rollout collection cannot be eliminated from this pipeline.\n\n**Evaluation tasks:**\n- **Simulated:** Square peg insertion (Robosuite), bimanual peg insertion (simulated ALOHA)\n- **Real-world ALOHA tasks:** Spoon placement in cupholder, chocolate bar transfer between plates, sharpie pickup, strawberry pickup from clutter, jellybean cup task (5 subtasks)\n\n---\n\n## Key Takeaways\n\n- **GR-RL** is not primarily a \"multimodal demonstration scoring\" paper. It is a pipeline for specializing VLA policies for dexterous manipulation, with demonstration filtering as one component. Describing it as a paper \"about multimodal demonstration scoring for robot learning\" would be a mischaracterization of its focus.\n- **Demo-SCORE** matches the description well: it is a demonstration curation method that uses proprioceptive state for scoring and requires online rollouts.\n- Neither paper provides theoretical analysis of multimodal scoring benefits.\n\nSources:\n- [GR-RL arXiv page](https://arxiv.org/abs/2512.01801)\n- [GR-RL full HTML](https://arxiv.org/html/2512.01801)\n- [Demo-SCORE arXiv page](https://arxiv.org/abs/2503.03707)\n- [Demo-SCORE at RSS 2025](https://roboticsconference.org/program/papers/71/)\n- [Demo-SCORE project page](https://anniesch.github.io/demo-score/)"
+      }
+    ],
+    "totalDurationMs": 78499,
+    "totalTokens": 16832,
+    "totalToolUseCount": 8,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 14963,
+      "output_tokens": 1143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 725
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1143,
+          "cache_read_input_tokens": 14963,
+          "cache_creation_input_tokens": 725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 725,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 8
+    }
+  },
+  "sourceToolAssistantUUID": "ebfcd7b8-5d0c-4f03-b573-b47a2fc9fc12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-13T17:25:56.084Z_
+
+<details><summary>↩ Tool result · `toolu_01A5FYQfYuF8tzd5pB39Sgxf`</summary>
+
+```text
+Here are the consolidated findings across all five search areas:
+
+---
+
+## 1. CoRL 2026 Deadlines
+
+The claim of **abstract deadline May 26, 2026** and **paper deadline May 29, 2026** appears to be **correct** based on the official CoRL website and the HuggingFace AI-deadlines tracker. The official deadlines are:
+
+- **Abstract submission**: May 26, 2026, 11:59 UTC
+- **Paper submission**: May 29, 2026, 11:59 UTC
+
+One source mentions May 25/May 28, but the primary official sources (corl.org call for papers and OpenReview) list May 26/May 29. The conference is November 9-12, 2026 in Austin, Texas. Page limit is 8 pages (excluding acknowledgments, references, and appendix). Submissions go through OpenReview.
+
+Sources:
+- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [CoRL 2026 Conference | OpenReview](https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference)
+- [HuggingFace AI-Deadlines CoRL 2026 update](https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf)
+
+---
+
+## 2. Theory-Heavy Papers on Demonstration Curation (2025-2026)
+
+Several relevant papers exist in this space, though none appear to be deeply "pure theory" papers -- they are more empirically grounded with theoretical motivation:
+
+- **DemInf (RSS 2025)** -- "Robot Data Curation with Mutual Information Estimators" by Joey Hejna, Suvir Mirchandani, Ashwin Balakrishna, Annie Xie, et al. This is the most information-theoretic paper in the space. It uses mutual information between states and actions (I(S;A)) as a proxy for demonstration quality, with k-nearest neighbor MI estimators on VAE embeddings. It achieves 5-10% improvement on RoboMimic and shows gains on real ALOHA and Franka hardware. Published at RSS 2025.
+
+- **NeurIPS 2025 Tutorial: "Foundations of Imitation Learning"** by Dylan Foster et al. -- a tutorial presenting imitation learning as a unifying theoretical framework, though not specifically about curation.
+
+No paper was found that provides a comprehensive information-theoretic *theory* (e.g., formal bounds, sample complexity, or a full theoretical framework) specifically for demonstration curation. DemInf is the closest but is primarily empirical with MI as a heuristic rather than deriving formal guarantees.
+
+Sources:
+- [Robot Data Curation with Mutual Information Estimators (RSS 2025)](https://roboticsconference.org/program/papers/23/)
+- [arXiv: 2502.08623](https://arxiv.org/abs/2502.08623)
+- [NeurIPS 2025 Tutorial: Foundations of Imitation Learning](https://dylanfoster.net/il-tutorial/)
+
+---
+
+## 3. Multimodal Demonstration Curation with Proprioceptive Signals
+
+**No paper was found that specifically combines proprioceptive signal analysis with theoretical curation frameworks for demonstration ranking.** However, several related works exist:
+
+- **"Consistency Matters" (arXiv 2412.14309)** -- defines demonstration data quality metrics across both Cartesian and joint-space characteristics, measuring consistency for quality assessment. This is the closest to using proprioceptive/joint-space signals for quality scoring, but it is primarily a metrics paper, not a theoretical analysis framework.
+
+- **SCIZOR (ICRA 2026)** -- uses transition-level curation with a self-supervised task progress predictor and deduplication on joint state-action representations. It uses temporal discounting to propagate suboptimality evidence backward in time. Average improvement of 15.4% across benchmarks. Outperforms DemInf by 19.2% on the Sirius-Fleet dataset.
+
+- **Quality over Quantity / QoQ (arXiv 2603.09056)** -- defines quality as the contribution of each sample to reducing loss on validation demonstrations, using influence functions. Implements maximum influence across validation samples and trajectory-wise aggregation.
+
+- Multimodal datasets like **M2RL** and **REASSEMBLE** capture proprioception, force/torque, and multi-view RGB, but no paper was found that specifically uses proprioceptive modalities in a theoretical ranking/curation framework.
+
+Sources:
+- [Consistency Matters (arXiv 2412.14309)](https://arxiv.org/html/2412.14309)
+- [SCIZOR (arXiv 2505.22626)](https://arxiv.org/abs/2505.22626)
+- [Quality over Quantity (arXiv 2603.09056)](https://arxiv.org/abs/2603.09056)
+
+---
+
+## 4. Advantage Distribution Analysis for Demo Curation
+
+**No paper was found that specifically analyzes the shape of the advantage distribution (e.g., skewness, modality, heavy tails) as a theoretical tool for curation decisions.** However, several papers operate in adjacent territory:
+
+- **CUPID (CoRL 2025)** -- "Curating Data your Robot Loves with Influence Functions." This is the most relevant. It shows that a demonstration's influence on expected return **decomposes into a tractable sum over state-action transitions**, approximated via a REINFORCE-style estimator. This is essentially computing per-transition "advantage-like" influence scores, though the paper frames it through influence functions rather than explicitly through advantage distributions. Training with <33% curated data yields SOTA diffusion policies on RoboMimic. Code available at [github.com/agiachris/cupid](https://github.com/agiachris/cupid).
+
+- **SCIZOR** -- performs transition-level suboptimality detection using self-supervised task progress estimation, which implicitly identifies transitions with negative "advantage" (i.e., transitions that reduce task progress). It uses temporal discounting to propagate this backward.
+
+- **DataMIL (2025)** -- uses "datamodels" to reason end-to-end about which data points improve task success. Validated on 60+ simulation and real-world tasks including Open X-Embodiment datasets.
+
+- **"Advantage-Aware Policy Optimization for Offline RL" (arXiv 2403.07262)** -- works with advantage distributions but is focused on offline RL policy optimization, not demonstration curation.
+
+The gap: nobody has published a paper that explicitly characterizes the *distribution* of advantages across demonstrations (e.g., analyzing whether heavy-tailed advantage distributions indicate certain dataset properties, or using distributional statistics of advantages as curation criteria).
+
+Sources:
+- [CUPID (arXiv 2506.19121)](https://arxiv.org/abs/2506.19121)
+- [CUPID project page](https://cupid-curation.github.io/)
+- [DataMIL (arXiv 2505.09603)](https://arxiv.org/abs/2505.09603)
+- [Advantage-Aware Policy Optimization (arXiv 2403.07262)](https://arxiv.org/html/2403.07262v1)
+
+---
+
+## 5. VOC / Visual Observability Consistency and GVL on LIBERO
+
+**VOC exists but stands for "Value-Order Correlation," not "Visual Observability Consistency."** Here are the facts:
+
+- **GVL (Generative Value Learning)** -- "Vision Language Models are In-Context Value Learners" (arXiv 2411.04549). Uses VLMs to zero-shot predict task progress from visual observations. Applications include dataset filtering, success detection, and policy learning.
+
+- **OpenGVL** -- "Benchmarking Visual Temporal Progress for Data Curation" (arXiv 2509.17321). Builds on GVL to create a comprehensive benchmark. Evaluates VLMs on temporal task progress estimation across robotic and human embodiments.
+
+- **VOC (Value-Order Correlation)** -- a metric introduced in the GVL/OpenGVL line of work. It computes the **rank correlation (Spearman or Kendall) between VLM-predicted task progress values and the chronological frame order** of an expert video. Ranges from -1 to 1, where 1 indicates perfect temporal alignment. It is used to assess whether a VLM can distinguish temporal progress, and low VOC scores can flag dataset quality issues (unclear instructions, occluded sensors, failed demonstrations).
+
+- **LIBERO coverage**: LIBERO has multiple suites -- LIBERO-Spatial (10 tasks), LIBERO-Object (10 tasks), LIBERO-Goal (10 tasks), and LIBERO-Long (10 tasks), totaling 40 tasks in the standard suite (plus LIBERO-100 with 100 tasks). OpenGVL includes LIBERO in its benchmark, but **no evidence was found of a published systematic per-task VOC analysis across all 40 LIBERO tasks**. The OpenGVL paper and repository evaluate on LIBERO datasets, but the published results appear to be aggregate or on selected subsets rather than a comprehensive 40-task breakdown.
+
+Sources:
+- [OpenGVL paper (arXiv 2509.17321)](https://arxiv.org/abs/2509.17321)
+- [OpenGVL HTML version](https://arxiv.org/html/2509.17321)
+- [GVL paper (arXiv 2411.04549)](https://arxiv.org/html/2411.04549)
+- [GVL project page](https://generative-value-learning.github.io/)
+- [OpenGVL GitHub](https://github.com/budzianowski/opengvl)
+- [OpenGVL HuggingFace Space](https://huggingface.co/spaces/OpenGVL/OpenGVL)
+
+---
+
+## Summary of Key Gaps Identified
+
+1. **No pure theory paper** exists providing formal information-theoretic bounds or sample complexity analysis specifically for demonstration curation in robot learning. DemInf (RSS 2025) is the closest but is primarily empirical.
+2. **No paper combines proprioceptive signal analysis with a theoretical curation framework.** "Consistency Matters" is closest but stays at the metrics level.
+3. **No paper analyzes the shape/distribution of advantages** as a theoretical tool for curation. CUPID decomposes influence into per-transition sums (advantage-adjacent), but does not study the distributional properties.
+4. **VOC is "Value-Order Correlation," not "Visual Observability Consistency."** No full 40-task LIBERO VOC breakdown has been published.
+5. The **CoRL 2026 deadlines** (abstract May 26, paper May 29) are confirmed.
+
+agentId: afe2ccbe325b30545 (use SendMessage with to: 'afe2ccbe325b30545' to continue this agent)
+&lt;usage>total_tokens: 25040
+tool_uses: 14
+duration_ms: 108719&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c3b2f5c-df7a-4f7e-a11d-76a0904dfaaa",
+  "isSidechain": false,
+  "promptId": "e4227f8e-b015-45cc-9a19-d9d9011fba01",
+  "type": "user",
+  "uuid": "7e7765c6-8f08-4cca-8eaf-fb40a4f750ac",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for the following:\n\n1. \"CoRL 2026 deadline\" or \"CoRL 2026 call for papers\" — verify the submission deadlines. The claim is abstract deadline May 26, 2026 and paper deadline May 29, 2026.\n\n2. Search for recent (2025-2026) papers on \"demonstration curation theory\" or \"data quality theory robot learning\" or \"information theoretic robot imitation learning\" — are there any theory-heavy papers in this space that might overlap?\n\n3. Search for \"multimodal demonstration curation ranking\" or \"proprioception scoring demonstration quality\" — any papers combining proprioceptive signals with theoretical analysis for demo curation?\n\n4. Search for \"advantage distribution demo curation\" or \"transition advantage scoring robot\" — any work that analyzes the advantage distribution shape for curation?\n\n5. Search for \"VOC visual observability consistency\" GVL — verify this metric exists and check if anyone has done VOC analysis across LIBERO's full 40-task suite.\n\nUse WebSearch with multiple queries. Report all findings.",
+    "agentId": "afe2ccbe325b30545",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are the consolidated findings across all five search areas:\n\n---\n\n## 1. CoRL 2026 Deadlines\n\nThe claim of **abstract deadline May 26, 2026** and **paper deadline May 29, 2026** appears to be **correct** based on the official CoRL website and the HuggingFace AI-deadlines tracker. The official deadlines are:\n\n- **Abstract submission**: May 26, 2026, 11:59 UTC\n- **Paper submission**: May 29, 2026, 11:59 UTC\n\nOne source mentions May 25/May 28, but the primary official sources (corl.org call for papers and OpenReview) list May 26/May 29. The conference is November 9-12, 2026 in Austin, Texas. Page limit is 8 pages (excluding acknowledgments, references, and appendix). Submissions go through OpenReview.\n\nSources:\n- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [CoRL 2026 Conference | OpenReview](https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference)\n- [HuggingFace AI-Deadlines CoRL 2026 update](https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf)\n\n---\n\n## 2. Theory-Heavy Papers on Demonstration Curation (2025-2026)\n\nSeveral relevant papers exist in this space, though none appear to be deeply \"pure theory\" papers -- they are more empirically grounded with theoretical motivation:\n\n- **DemInf (RSS 2025)** -- \"Robot Data Curation with Mutual Information Estimators\" by Joey Hejna, Suvir Mirchandani, Ashwin Balakrishna, Annie Xie, et al. This is the most information-theoretic paper in the space. It uses mutual information between states and actions (I(S;A)) as a proxy for demonstration quality, with k-nearest neighbor MI estimators on VAE embeddings. It achieves 5-10% improvement on RoboMimic and shows gains on real ALOHA and Franka hardware. Published at RSS 2025.\n\n- **NeurIPS 2025 Tutorial: \"Foundations of Imitation Learning\"** by Dylan Foster et al. -- a tutorial presenting imitation learning as a unifying theoretical framework, though not specifically about curation.\n\nNo paper was found that provides a comprehensive information-theoretic *theory* (e.g., formal bounds, sample complexity, or a full theoretical framework) specifically for demonstration curation. DemInf is the closest but is primarily empirical with MI as a heuristic rather than deriving formal guarantees.\n\nSources:\n- [Robot Data Curation with Mutual Information Estimators (RSS 2025)](https://roboticsconference.org/program/papers/23/)\n- [arXiv: 2502.08623](https://arxiv.org/abs/2502.08623)\n- [NeurIPS 2025 Tutorial: Foundations of Imitation Learning](https://dylanfoster.net/il-tutorial/)\n\n---\n\n## 3. Multimodal Demonstration Curation with Proprioceptive Signals\n\n**No paper was found that specifically combines proprioceptive signal analysis with theoretical curation frameworks for demonstration ranking.** However, several related works exist:\n\n- **\"Consistency Matters\" (arXiv 2412.14309)** -- defines demonstration data quality metrics across both Cartesian and joint-space characteristics, measuring consistency for quality assessment. This is the closest to using proprioceptive/joint-space signals for quality scoring, but it is primarily a metrics paper, not a theoretical analysis framework.\n\n- **SCIZOR (ICRA 2026)** -- uses transition-level curation with a self-supervised task progress predictor and deduplication on joint state-action representations. It uses temporal discounting to propagate suboptimality evidence backward in time. Average improvement of 15.4% across benchmarks. Outperforms DemInf by 19.2% on the Sirius-Fleet dataset.\n\n- **Quality over Quantity / QoQ (arXiv 2603.09056)** -- defines quality as the contribution of each sample to reducing loss on validation demonstrations, using influence functions. Implements maximum influence across validation samples and trajectory-wise aggregation.\n\n- Multimodal datasets like **M2RL** and **REASSEMBLE** capture proprioception, force/torque, and multi-view RGB, but no paper was found that specifically uses proprioceptive modalities in a theoretical ranking/curation framework.\n\nSources:\n- [Consistency Matters (arXiv 2412.14309)](https://arxiv.org/html/2412.14309)\n- [SCIZOR (arXiv 2505.22626)](https://arxiv.org/abs/2505.22626)\n- [Quality over Quantity (arXiv 2603.09056)](https://arxiv.org/abs/2603.09056)\n\n---\n\n## 4. Advantage Distribution Analysis for Demo Curation\n\n**No paper was found that specifically analyzes the shape of the advantage distribution (e.g., skewness, modality, heavy tails) as a theoretical tool for curation decisions.** However, several papers operate in adjacent territory:\n\n- **CUPID (CoRL 2025)** -- \"Curating Data your Robot Loves with Influence Functions.\" This is the most relevant. It shows that a demonstration's influence on expected return **decomposes into a tractable sum over state-action transitions**, approximated via a REINFORCE-style estimator. This is essentially computing per-transition \"advantage-like\" influence scores, though the paper frames it through influence functions rather than explicitly through advantage distributions. Training with <33% curated data yields SOTA diffusion policies on RoboMimic. Code available at [github.com/agiachris/cupid](https://github.com/agiachris/cupid).\n\n- **SCIZOR** -- performs transition-level suboptimality detection using self-supervised task progress estimation, which implicitly identifies transitions with negative \"advantage\" (i.e., transitions that reduce task progress). It uses temporal discounting to propagate this backward.\n\n- **DataMIL (2025)** -- uses \"datamodels\" to reason end-to-end about which data points improve task success. Validated on 60+ simulation and real-world tasks including Open X-Embodiment datasets.\n\n- **\"Advantage-Aware Policy Optimization for Offline RL\" (arXiv 2403.07262)** -- works with advantage distributions but is focused on offline RL policy optimization, not demonstration curation.\n\nThe gap: nobody has published a paper that explicitly characterizes the *distribution* of advantages across demonstrations (e.g., analyzing whether heavy-tailed advantage distributions indicate certain dataset properties, or using distributional statistics of advantages as curation criteria).\n\nSources:\n- [CUPID (arXiv 2506.19121)](https://arxiv.org/abs/2506.19121)\n- [CUPID project page](https://cupid-curation.github.io/)\n- [DataMIL (arXiv 2505.09603)](https://arxiv.org/abs/2505.09603)\n- [Advantage-Aware Policy Optimization (arXiv 2403.07262)](https://arxiv.org/html/2403.07262v1)\n\n---\n\n## 5. VOC / Visual Observability Consistency and GVL on LIBERO\n\n**VOC exists but stands for \"Value-Order Correlation,\" not \"Visual Observability Consistency.\"** Here are the facts:\n\n- **GVL (Generative Value Learning)** -- \"Vision Language Models are In-Context Value Learners\" (arXiv 2411.04549). Uses VLMs to zero-shot predict task progress from visual observations. Applications include dataset filtering, success detection, and policy learning.\n\n- **OpenGVL** -- \"Benchmarking Visual Temporal Progress for Data Curation\" (arXiv 2509.17321). Builds on GVL to create a comprehensive benchmark. Evaluates VLMs on temporal task progress estimation across robotic and human embodiments.\n\n- **VOC (Value-Order Correlation)** -- a metric introduced in the GVL/OpenGVL line of work. It computes the **rank correlation (Spearman or Kendall) between VLM-predicted task progress values and the chronological frame order** of an expert video. Ranges from -1 to 1, where 1 indicates perfect temporal alignment. It is used to assess whether a VLM can distinguish temporal progress, and low VOC scores can flag dataset quality issues (unclear instructions, occluded sensors, failed demonstrations).\n\n- **LIBERO coverage**: LIBERO has multiple suites -- LIBERO-Spatial (10 tasks), LIBERO-Object (10 tasks), LIBERO-Goal (10 tasks), and LIBERO-Long (10 tasks), totaling 40 tasks in the standard suite (plus LIBERO-100 with 100 tasks). OpenGVL includes LIBERO in its benchmark, but **no evidence was found of a published systematic per-task VOC analysis across all 40 LIBERO tasks**. The OpenGVL paper and repository evaluate on LIBERO datasets, but the published results appear to be aggregate or on selected subsets rather than a comprehensive 40-task breakdown.\n\nSources:\n- [OpenGVL paper (arXiv 2509.17321)](https://arxiv.org/abs/2509.17321)\n- [OpenGVL HTML version](https://arxiv.org/html/2509.17321)\n- [GVL paper (arXiv 2411.04549)](https://arxiv.org/html/2411.04549)\n- [GVL project page](https://generative-value-learning.github.io/)\n- [OpenGVL GitHub](https://github.com/budzianowski/opengvl)\n- [OpenGVL HuggingFace Space](https://huggingface.co/spaces/OpenGVL/OpenGVL)\n\n---\n\n## Summary of Key Gaps Identified\n\n1. **No pure theory paper** exists providing formal information-theoretic bounds or sample complexity analysis specifically for demonstration curation in robot learning. DemInf (RSS 2025) is the closest but is primarily empirical.\n2. **No paper combines proprioceptive signal analysis with a theoretical curation framework.** \"Consistency Matters\" is closest but stays at the metrics level.\n3. **No paper analyzes the shape/distribution of advantages** as a theoretical tool for curation. CUPID decomposes influence into per-transition sums (advantage-adjacent), but does not study the distributional properties.\n4. **VOC is \"Value-Order Correlation,\" not \"Visual Observability Consistency.\"** No full 40-task LIBERO VOC breakdown has been published.\n5. The **CoRL 2026 deadlines** (abstract May 26, paper May 29) are confirmed."
+      }
+    ],
+    "totalDurationMs": 108719,
+    "totalTokens": 25040,
+    "totalToolUseCount": 14,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3992,
+      "cache_read_input_tokens": 18388,
+      "output_tokens": 2659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3992
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2659,
+          "cache_read_input_tokens": 18388,
+          "cache_creation_input_tokens": 3992,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3992,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 14
+    }
+  },
+  "sourceToolAssistantUUID": "5c3b2f5c-df7a-4f7e-a11d-76a0904dfaaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "7e7765c6-8f08-4cca-8eaf-fb40a4f750ac",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify multimodal demo curation bounds for CoRL 2026",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569"
+}
+```
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T17:26:04.654Z_
+
+<details><summary>↩ Tool result · `toolu_01SWhoPEFtP4RW29aV4HpwYF`</summary>
+
+```text
+Now I have comprehensive information. Let me compile my detailed findings.
+
+---
+
+Here are my detailed findings on all four questions:
+
+## 1. Does this paper exist? Exact title, authors, and venue?
+
+**Yes, the paper exists and is confirmed.** The exact details are:
+
+- **Title:** "Efficient Modality Selection in Multimodal Learning"
+- **Authors:** Yifei He, Runxiang Cheng, Gargi Balasubramaniam, Yao-Hung Hubert Tsai, Han Zhao
+- **Venue:** Journal of Machine Learning Research (JMLR), Volume 25, Issue 47, Pages 1--39, 2024
+- **URL:** https://jmlr.org/papers/v25/23-0439.html
+
+This is the extended journal version of an earlier conference paper titled "Greedy Modality Selection via Approximate Submodular Maximization" by the same group (with slightly different author ordering), published at UAI 2022 (arXiv: 2210.12562).
+
+## 2. Theoretical Framework -- Mutual Information, Submodularity?
+
+**Yes, it uses both mutual information and submodularity.** The theoretical framework works as follows:
+
+- The paper defines a **generic utility function** that quantifies the learning benefit of selecting a modality (or subset of modalities).
+- **For classification with cross-entropy loss:** the utility function manifests as **Shannon mutual information** I(S; Y) between the selected modality set S and the target Y. The paper shows that I(S; Y) is monotonically non-decreasing over the set of input modalities.
+- **For regression with quadratic (MSE) loss:** the utility function manifests as the **variance of the conditional expectation** of Y given the modality, i.e., Var(E[Y | S]).
+- In both settings, the utility function exhibits **approximate submodularity**, enabling the use of a **greedy modality selection algorithm** with a provable optimality guarantee (the classic (1 - 1/e) approximation ratio for submodular maximization under cardinality constraints).
+- The paper also connects **Shapley values** from cooperative game theory / feature importance scoring to modality selection, providing an efficient way to compute the marginal contribution of each individual modality.
+- Dependence assumptions are introduced to flexibly model the heterogeneous structure of multimodal data.
+
+## 3. Does it address ranking objectives, or only prediction (classification/regression)?
+
+**The paper addresses only classification and regression -- it does NOT address ranking objectives.** Specifically:
+
+- The two formal settings analyzed are: (a) classification with cross-entropy loss, and (b) regression with quadratic/MSE loss.
+- There is **no treatment of ranking losses** (e.g., pairwise ranking loss, NDCG, listwise losses), **no learning-to-rank formulation**, and **no preference-based or pairwise comparison objectives**.
+- The utility functions derived (Shannon mutual information for classification, variance of conditional expectation for regression) are specific to these two loss functions and do not generalize directly to ranking settings.
+- The experiments use classification and regression tasks on synthetic (Patch-MNIST) and real-world (PEMS-SF traffic flow, CMU-MOSI sentiment) datasets -- none involve ranking.
+
+## 4. How would it relate to a paper proposing information-theoretic bounds for ranking error in demonstration curation for robot learning?
+
+This is an interesting question about conceptual connections. Here is how the He et al. paper relates -- and where it falls short -- for such a hypothetical paper:
+
+**Conceptual parallels (useful as related work):**
+- **Submodular selection framework:** He et al.'s core idea -- that selecting an informative subset of inputs can be formulated as submodular maximization with approximation guarantees -- is directly analogous to demonstration curation. Instead of selecting modalities, one could frame selecting demonstrations as a submodular optimization problem.
+- **Information-theoretic utility:** The use of mutual information I(S; Y) as the utility function for measuring how informative a subset is could inspire an analogous formulation where Y is a reward or policy quality measure, and S is a subset of demonstrations.
+- **Shapley value connections:** The connection to Shapley values for computing individual contributions maps well onto the problem of assessing individual demonstration quality, similar to influence-function-based approaches (e.g., the "Quality over Quantity" paper from arXiv 2603.09056 which uses influence functions for demonstration curation in robot learning).
+
+**Key gaps / limitations for a ranking-focused robot learning paper:**
+- **No ranking theory:** He et al. provides no results for ranking losses. A paper on ranking error bounds for demonstration curation would need to develop new theory -- the mutual information and submodularity results do not directly transfer to ranking objectives (e.g., pairwise or listwise ranking losses have different structural properties).
+- **No sequential/policy setting:** He et al. considers i.i.d. supervised learning (classification/regression). Robot learning from demonstrations involves sequential decision-making, distribution shift, and policy-level evaluation -- none of which are addressed.
+- **Different "selection" granularity:** He et al. selects among modalities (types of data, e.g., audio vs. video vs. text). Demonstration curation selects among data instances (individual demonstrations). These are structurally different problems, though the mathematical tools may overlap.
+
+**How to position it in related work:** A paper on information-theoretic bounds for ranking error in demonstration curation could cite He et al. as evidence that: (1) submodular maximization provides tractable algorithms for data selection problems with optimality guarantees, and (2) mutual information serves as a natural utility measure for quantifying the informativeness of data subsets. However, the hypothetical paper would need to make novel contributions in extending these ideas to ranking objectives and to the demonstration/imitation learning setting, which He et al. does not cover.
+
+Sources:
+- [Efficient Modality Selection in Multimodal Learning (JMLR page)](https://jmlr.org/papers/v25/23-0439.html)
+- [Efficient Modality Selection in Multimodal Learning (PDF)](https://www.jmlr.org/papers/volume25/23-0439/23-0439.pdf)
+- [Greedy Modality Selection via Approximate Submodular Maximization (arXiv)](https://arxiv.org/abs/2210.12562)
+- [Greedy Modality Selection via Approximate Submodular Maximization (UAI 2022)](https://proceedings.mlr.press/v180/cheng22a.html)
+- [JMLR announcement on X/Twitter](https://x.com/JmlrOrg/status/1767657167190933840)
+- [Quality over Quantity: Demonstration Curation via Influence Functions (arXiv)](https://arxiv.org/abs/2603.09056)
+
+agentId: a2a37f3b8ac03d6e4 (use SendMessage with to: 'a2a37f3b8ac03d6e4' to continue this agent)
+&lt;usage>total_tokens: 22846
+tool_uses: 17
+duration_ms: 140323&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b83aa8a-5516-4c15-b650-de63fac9ebf3",
+  "isSidechain": false,
+  "promptId": "e4227f8e-b015-45cc-9a19-d9d9011fba01",
+  "type": "user",
+  "uuid": "5a484641-16fe-4320-95c0-a7b17f4d7ad6",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for and verify the paper \"He et al., Efficient Modality Selection in Multimodal Learning, JMLR 2024\". I need to know:\n1. Does this paper actually exist? What is its exact title, authors, and venue?\n2. What is its theoretical framework — does it use mutual information, submodularity?\n3. Does it address ranking objectives or only prediction (classification/regression)?\n4. How would it relate to a paper proposing information-theoretic bounds for ranking error in demonstration curation for robot learning?\n\nUse WebSearch to find this paper, then use WebFetch to read its abstract and key sections if possible. Report your findings in detail.",
+    "agentId": "a2a37f3b8ac03d6e4",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive information. Let me compile my detailed findings.\n\n---\n\nHere are my detailed findings on all four questions:\n\n## 1. Does this paper exist? Exact title, authors, and venue?\n\n**Yes, the paper exists and is confirmed.** The exact details are:\n\n- **Title:** \"Efficient Modality Selection in Multimodal Learning\"\n- **Authors:** Yifei He, Runxiang Cheng, Gargi Balasubramaniam, Yao-Hung Hubert Tsai, Han Zhao\n- **Venue:** Journal of Machine Learning Research (JMLR), Volume 25, Issue 47, Pages 1--39, 2024\n- **URL:** https://jmlr.org/papers/v25/23-0439.html\n\nThis is the extended journal version of an earlier conference paper titled \"Greedy Modality Selection via Approximate Submodular Maximization\" by the same group (with slightly different author ordering), published at UAI 2022 (arXiv: 2210.12562).\n\n## 2. Theoretical Framework -- Mutual Information, Submodularity?\n\n**Yes, it uses both mutual information and submodularity.** The theoretical framework works as follows:\n\n- The paper defines a **generic utility function** that quantifies the learning benefit of selecting a modality (or subset of modalities).\n- **For classification with cross-entropy loss:** the utility function manifests as **Shannon mutual information** I(S; Y) between the selected modality set S and the target Y. The paper shows that I(S; Y) is monotonically non-decreasing over the set of input modalities.\n- **For regression with quadratic (MSE) loss:** the utility function manifests as the **variance of the conditional expectation** of Y given the modality, i.e., Var(E[Y | S]).\n- In both settings, the utility function exhibits **approximate submodularity**, enabling the use of a **greedy modality selection algorithm** with a provable optimality guarantee (the classic (1 - 1/e) approximation ratio for submodular maximization under cardinality constraints).\n- The paper also connects **Shapley values** from cooperative game theory / feature importance scoring to modality selection, providing an efficient way to compute the marginal contribution of each individual modality.\n- Dependence assumptions are introduced to flexibly model the heterogeneous structure of multimodal data.\n\n## 3. Does it address ranking objectives, or only prediction (classification/regression)?\n\n**The paper addresses only classification and regression -- it does NOT address ranking objectives.** Specifically:\n\n- The two formal settings analyzed are: (a) classification with cross-entropy loss, and (b) regression with quadratic/MSE loss.\n- There is **no treatment of ranking losses** (e.g., pairwise ranking loss, NDCG, listwise losses), **no learning-to-rank formulation**, and **no preference-based or pairwise comparison objectives**.\n- The utility functions derived (Shannon mutual information for classification, variance of conditional expectation for regression) are specific to these two loss functions and do not generalize directly to ranking settings.\n- The experiments use classification and regression tasks on synthetic (Patch-MNIST) and real-world (PEMS-SF traffic flow, CMU-MOSI sentiment) datasets -- none involve ranking.\n\n## 4. How would it relate to a paper proposing information-theoretic bounds for ranking error in demonstration curation for robot learning?\n\nThis is an interesting question about conceptual connections. Here is how the He et al. paper relates -- and where it falls short -- for such a hypothetical paper:\n\n**Conceptual parallels (useful as related work):**\n- **Submodular selection framework:** He et al.'s core idea -- that selecting an informative subset of inputs can be formulated as submodular maximization with approximation guarantees -- is directly analogous to demonstration curation. Instead of selecting modalities, one could frame selecting demonstrations as a submodular optimization problem.\n- **Information-theoretic utility:** The use of mutual information I(S; Y) as the utility function for measuring how informative a subset is could inspire an analogous formulation where Y is a reward or policy quality measure, and S is a subset of demonstrations.\n- **Shapley value connections:** The connection to Shapley values for computing individual contributions maps well onto the problem of assessing individual demonstration quality, similar to influence-function-based approaches (e.g., the \"Quality over Quantity\" paper from arXiv 2603.09056 which uses influence functions for demonstration curation in robot learning).\n\n**Key gaps / limitations for a ranking-focused robot learning paper:**\n- **No ranking theory:** He et al. provides no results for ranking losses. A paper on ranking error bounds for demonstration curation would need to develop new theory -- the mutual information and submodularity results do not directly transfer to ranking objectives (e.g., pairwise or listwise ranking losses have different structural properties).\n- **No sequential/policy setting:** He et al. considers i.i.d. supervised learning (classification/regression). Robot learning from demonstrations involves sequential decision-making, distribution shift, and policy-level evaluation -- none of which are addressed.\n- **Different \"selection\" granularity:** He et al. selects among modalities (types of data, e.g., audio vs. video vs. text). Demonstration curation selects among data instances (individual demonstrations). These are structurally different problems, though the mathematical tools may overlap.\n\n**How to position it in related work:** A paper on information-theoretic bounds for ranking error in demonstration curation could cite He et al. as evidence that: (1) submodular maximization provides tractable algorithms for data selection problems with optimality guarantees, and (2) mutual information serves as a natural utility measure for quantifying the informativeness of data subsets. However, the hypothetical paper would need to make novel contributions in extending these ideas to ranking objectives and to the demonstration/imitation learning setting, which He et al. does not cover.\n\nSources:\n- [Efficient Modality Selection in Multimodal Learning (JMLR page)](https://jmlr.org/papers/v25/23-0439.html)\n- [Efficient Modality Selection in Multimodal Learning (PDF)](https://www.jmlr.org/papers/volume25/23-0439/23-0439.pdf)\n- [Greedy Modality Selection via Approximate Submodular Maximization (arXiv)](https://arxiv.org/abs/2210.12562)\n- [Greedy Modality Selection via Approximate Submodular Maximization (UAI 2022)](https://proceedings.mlr.press/v180/cheng22a.html)\n- [JMLR announcement on X/Twitter](https://x.com/JmlrOrg/status/1767657167190933840)\n- [Quality over Quantity: Demonstration Curation via Influence Functions (arXiv)](https://arxiv.org/abs/2603.09056)"
+      }
+    ],
+    "totalDurationMs": 140323,
+    "totalTokens": 22846,
+    "totalToolUseCount": 17,
+    "usage": {
+      "input_tokens": 292,
+      "cache_creation_input_tokens": 992,
+      "cache_read_input_tokens": 19939,
+      "output_tokens": 1623,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 992
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 292,
+          "output_tokens": 1623,
+          "cache_read_input_tokens": 19939,
+          "cache_creation_input_tokens": 992,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 992,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 17
+    }
+  },
+  "sourceToolAssistantUUID": "2b83aa8a-5516-4c15-b650-de63fac9ebf3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T17:26:35.328Z_
+
+<details><summary>↩ Tool result · `toolu_01CdiDTaRf557t3w3UscdoM3`</summary>
+
+```text
+Now I have enough information to provide a thorough assessment. Here is my detailed analysis:
+
+---
+
+## Assessment: Is the Paper's Theoretical Contribution Novel or Repackaged?
+
+Based on extensive searching across multiple query variations, my assessment is that the paper's theoretical "contribution" is **largely a repackaging of well-known, classical results** from signal detection theory, estimation theory, and psychometrics, applied to a robotics context. Here is the detailed breakdown for each claim:
+
+---
+
+### 1. Applying Fano's Inequality to Binary Sign Classification (Ranking)
+
+**Verdict: Well-known technique, not novel.**
+
+Fano's inequality bounding the probability of error in terms of mutual information is one of the most fundamental results in information theory, dating to Fano's 1961 textbook. Its application to binary classification error bounds is **textbook material** -- it provides a lower bound on the Bayes error rate and is the basis of the widely-used Infomax principle. The paper by Zhao et al. (JMLR 2013), "[Beyond Fano's Inequality](https://jmlr.csail.mit.edu/papers/volume14/zhao13a/zhao13a.pdf)," already extends Fano's inequality to broader classification metrics (F-score, BER, cost-sensitive risk). An "[Introductory Guide to Fano's Inequality with Applications in Statistical Estimation](https://arxiv.org/pdf/1901.00555)" (2019) explicitly surveys its use across statistical estimation problems.
+
+Applying Fano's inequality to "determine the sign of an advantage" is simply applying it to a binary hypothesis test -- which is the *most basic* application of the inequality. There is nothing fundamentally new about framing ranking-as-sign-detection and then invoking Fano.
+
+---
+
+### 2. Information-Theoretic Bounds on Ranking Error
+
+**Verdict: Existing literature is extensive.**
+
+There is a substantial body of work on information-theoretic bounds for ranking from pairwise comparisons. Key papers include:
+
+- Shah & Wainwright, "[Simple, Robust and Optimal Ranking from Pairwise Comparisons](https://jmlr.org/papers/volume18/16-206/16-206.pdf)" (JMLR 2017) -- derives information-theoretic lower bounds on ranking from noisy pairwise comparisons, matched by achievable algorithms.
+- The Bradley-Terry-Luce (BTL) model literature has Bayesian and minimax lower bounds on ranking risk (e.g., "[Lower Bounds on the Bayes Risk of the Bayesian BTL Model](https://arxiv.org/pdf/1709.09676)").
+- Information-theoretic sample complexity bounds for top-k ranking, full ranking, and partial ranking have been derived with sharp constants.
+
+The claim that ranking is "fundamentally different from prediction" is valid in a loose sense (ranking cares about ordinal relationships, not pointwise accuracy), but this distinction is already well-established in the learning-to-rank literature and is not a new theoretical insight.
+
+---
+
+### 3. The Ranking Error Formula: epsilon_rank = E_delta[Phi(-|delta|/sqrt(2*sigma^2))]
+
+**Verdict: This is a standard result from signal detection theory / Thurstone's model, dating to 1927.**
+
+This formula is essentially the probability of incorrectly determining the sign of a difference (delta) between two items when observations are corrupted by Gaussian noise with variance sigma^2. This is:
+
+- **Thurstone's Law of Comparative Judgment (1927)**: Thurstone's Case V model gives the probability of correctly ranking two items as Phi(delta / (sigma * sqrt(2))), where Phi is the standard normal CDF. The error probability is therefore Phi(-delta / (sigma * sqrt(2))) = Q(delta / (sigma * sqrt(2))). This is exactly what the paper claims as its "ranking error bound."
+
+- **Binary hypothesis testing in Gaussian noise**: In signal detection theory, the error probability for detecting which of two hypotheses is true when the signal difference is delta and noise is Gaussian with variance sigma^2 is Q(delta / (2*sigma)) or equivalently Phi(-|delta| / sqrt(2*sigma^2)), depending on the specific parameterization. This is the most elementary result in detection theory -- see any textbook (Kay, "Detection Theory"; Van Trees, "Detection, Estimation, and Modulation Theory"; Poor, "Introduction to Signal Detection and Estimation").
+
+- **d-prime (d')**: In psychophysics and signal detection theory, the discriminability index d' = delta/sigma directly determines error probability through the Q-function/Phi. This has been standard since the 1950s-60s.
+
+The expectation over delta (averaging over the distribution of true advantages) is a straightforward extension. There is **no theoretical novelty** in this formula.
+
+---
+
+### 4. The Multimodal Fusion Result: sigma^2_mm = (1/sigma^2_vis + 1/sigma^2_prop)^(-1)
+
+**Verdict: This is the most classical result in statistics and signal processing -- inverse-variance weighting.**
+
+This is literally:
+
+- **Inverse-variance weighting** (a textbook result in statistics, meta-analysis, and estimation theory): When combining independent unbiased Gaussian estimates, the minimum-variance unbiased estimator weights each estimate proportional to the inverse of its variance. The combined variance is (sum of 1/sigma_i^2)^(-1). This is the [harmonic mean of variances](https://en.wikipedia.org/wiki/Inverse-variance_weighting), known for centuries.
+
+- **Maximum Ratio Combining (MRC)** in wireless communications: The optimal linear combining of signals from multiple diversity branches in AWGN, which weights each branch proportionally to its SNR. The resulting SNR is the sum of individual SNRs, which is equivalent to the inverse-variance formula.
+
+- **Kalman filter measurement update**: When fusing two independent Gaussian measurements, the posterior precision equals the sum of precisions. This is the most basic property of conjugate Gaussian inference.
+
+- **Fisher information additivity**: For independent observations, Fisher information is additive, and the Cramer-Rao bound gives minimum variance = 1/(sum of Fisher informations) = 1/(sum of 1/sigma_i^2).
+
+There is **zero novelty** in this result.
+
+---
+
+### 5. The Claim that Submodularity (for Prediction) Doesn't Apply to Ranking
+
+**Verdict: Potentially the most interesting claim, but needs scrutiny.**
+
+The paper "[Greedy Modality Selection via Approximate Submodular Maximization](https://proceedings.mlr.press/v180/cheng22a/cheng22a.pdf)" (Cheng et al., 2022) and related work ([Efficient Modality Selection in Multimodal Learning](https://www.jmlr.org/papers/volume25/23-0439/23-0439.pdf), JMLR 2024) show that under cross-entropy loss, the utility of modality selection manifests as Shannon mutual information, which is approximately submodular. This enables greedy algorithms with approximation guarantees.
+
+The claim that this submodularity does not extend to ranking loss could be a valid observation, but:
+- It is not deeply surprising, since ranking losses (0-1 loss on sign, or pairwise losses) are generally non-smooth and non-decomposable, which are known barriers to submodularity.
+- Whether this observation alone constitutes a "theoretical contribution" is debatable -- it is more of a negative observation ("this known technique doesn't directly apply here") than a positive new result.
+
+---
+
+### Overall Assessment
+
+**The paper's theoretical "contributions" appear to be a repackaging of classical results:**
+
+| Claimed Contribution | Actual Origin | Novelty |
+|---|---|---|
+| Fano's inequality for ranking error | Fano (1961), textbook | None |
+| Ranking error formula with Phi | Thurstone (1927), signal detection theory (1950s) | None |
+| Inverse-variance optimal fusion | Classical statistics, MRC, Kalman filtering | None |
+| Ranking != prediction | Learning-to-rank literature (2000s+) | Minimal |
+| Submodularity doesn't apply to ranking | Potentially valid observation | Modest at best |
+
+The **potential value** of such a paper lies not in the theoretical results themselves (which are all well-known) but in:
+1. Whether the **synthesis** -- connecting these classical results specifically to the robotics multimodal scoring context -- provides useful practical insights
+2. Whether there are **experimental contributions** that demonstrate the practical implications
+3. Whether the framing helps the robotics community recognize that modality selection for ranking requires different tools than modality selection for prediction
+
+But from a pure theory standpoint, there does not appear to be genuine theoretical novelty. The results are applications of Thurstone (1927), Fano (1961), and inverse-variance weighting to a specific problem domain.
+
+---
+
+Sources:
+- [Fano's Inequality - Wikipedia](https://en.wikipedia.org/wiki/Fano's_inequality)
+- [Beyond Fano's Inequality (Zhao et al., JMLR 2013)](https://jmlr.csail.mit.edu/papers/volume14/zhao13a/zhao13a.pdf)
+- [An Introductory Guide to Fano's Inequality (2019)](https://arxiv.org/pdf/1901.00555)
+- [Simple, Robust and Optimal Ranking from Pairwise Comparisons (Shah & Wainwright, JMLR 2017)](https://jmlr.org/papers/volume18/16-206/16-206.pdf)
+- [Lower Bounds on the Bayes Risk of the Bayesian BTL Model](https://arxiv.org/pdf/1709.09676)
+- [Greedy Modality Selection via Approximate Submodular Maximization (Cheng et al., 2022)](https://proceedings.mlr.press/v180/cheng22a/cheng22a.pdf)
+- [Efficient Modality Selection in Multimodal Learning (JMLR 2024)](https://www.jmlr.org/papers/volume25/23-0439/23-0439.pdf)
+- [Inverse-Variance Weighting - Wikipedia](https://en.wikipedia.org/wiki/Inverse-variance_weighting)
+- [Maximal-Ratio Combining - Wikipedia](https://en.wikipedia.org/wiki/Maximal-ratio_combining)
+- [Thurstone's Law of Comparative Judgment (1927)](https://parsmodir.com/wp-content/uploads/2013/02/thurstone1927.pdf)
+- [Law of Comparative Judgment - Wikipedia](https://en.wikipedia.org/wiki/Law_of_comparative_judgment)
+- [Q-Function - Wikipedia](https://en.wikipedia.org/wiki/Q-function)
+- [Introduction to Detection Theory (Kay)](https://www.ece.iastate.edu/~namrata/EE527_Spring08/l5.pdf)
+- [Noisy Nonreciprocal Pairwise Comparisons (2024)](https://arxiv.org/html/2604.04588)
+- [Sensor Fusion - Wikipedia](https://en.wikipedia.org/wiki/Sensor_fusion)
+- [Error Probability Analysis of Binary Detection (CUHK)](https://www.ee.cuhk.edu.hk/~wkma/eleg2310/handouts/12-biterr.pdf)
+- [Bayes Error Rate - Wikipedia](https://en.wikipedia.org/wiki/Bayes_error_rate)
+
+agentId: a324cc140e062fcb8 (use SendMessage with to: 'a324cc140e062fcb8' to continue this agent)
+&lt;usage>total_tokens: 34571
+tool_uses: 24
+duration_ms: 154651&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "497b76ae-c778-48d0-91a8-d181267e723c",
+  "isSidechain": false,
+  "promptId": "e4227f8e-b015-45cc-9a19-d9d9011fba01",
+  "type": "user",
+  "uuid": "9e20699c-6c70-47bb-896f-5bd8733cd365",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I'm reviewing a paper that claims to provide \"information-theoretic bounds on ranking error from multimodal scoring\" using Fano's inequality. The key claim is that ranking (correctly determining the sign of an advantage) is fundamentally different from prediction (minimizing MSE or cross-entropy), and that existing modality selection theory (which uses submodularity for prediction loss) doesn't apply to ranking.\n\nSearch for:\n1. \"Fano's inequality ranking\" or \"Fano inequality binary classification\" — is applying Fano's inequality to binary sign classification (which is what ranking the sign of an advantage really is) a well-known technique?\n2. \"information theoretic bounds ranking error\" — are there existing results on this?\n3. \"Gaussian noise ranking error\" — the paper claims ranking error under Gaussian noise is ε_rank = E_δ[Φ(−|δ|/√(2σ²))]. Is this just a standard result from signal detection theory (e.g., detection of signal in Gaussian noise)?\n4. \"multimodal fusion Gaussian noise optimal combining\" — is the result that σ²_mm = (1/σ²_vis + 1/σ²_prop)⁻¹ just the standard inverse-variance weighting from statistics?\n\nThe key question: Is the theoretical \"contribution\" just repackaging well-known results from signal detection theory and classical statistics into a robotics context? Or is there genuine theoretical novelty?\n\nUse WebSearch with multiple query variations. Report your findings in detail.",
+    "agentId": "a324cc140e062fcb8",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have enough information to provide a thorough assessment. Here is my detailed analysis:\n\n---\n\n## Assessment: Is the Paper's Theoretical Contribution Novel or Repackaged?\n\nBased on extensive searching across multiple query variations, my assessment is that the paper's theoretical \"contribution\" is **largely a repackaging of well-known, classical results** from signal detection theory, estimation theory, and psychometrics, applied to a robotics context. Here is the detailed breakdown for each claim:\n\n---\n\n### 1. Applying Fano's Inequality to Binary Sign Classification (Ranking)\n\n**Verdict: Well-known technique, not novel.**\n\nFano's inequality bounding the probability of error in terms of mutual information is one of the most fundamental results in information theory, dating to Fano's 1961 textbook. Its application to binary classification error bounds is **textbook material** -- it provides a lower bound on the Bayes error rate and is the basis of the widely-used Infomax principle. The paper by Zhao et al. (JMLR 2013), \"[Beyond Fano's Inequality](https://jmlr.csail.mit.edu/papers/volume14/zhao13a/zhao13a.pdf),\" already extends Fano's inequality to broader classification metrics (F-score, BER, cost-sensitive risk). An \"[Introductory Guide to Fano's Inequality with Applications in Statistical Estimation](https://arxiv.org/pdf/1901.00555)\" (2019) explicitly surveys its use across statistical estimation problems.\n\nApplying Fano's inequality to \"determine the sign of an advantage\" is simply applying it to a binary hypothesis test -- which is the *most basic* application of the inequality. There is nothing fundamentally new about framing ranking-as-sign-detection and then invoking Fano.\n\n---\n\n### 2. Information-Theoretic Bounds on Ranking Error\n\n**Verdict: Existing literature is extensive.**\n\nThere is a substantial body of work on information-theoretic bounds for ranking from pairwise comparisons. Key papers include:\n\n- Shah & Wainwright, \"[Simple, Robust and Optimal Ranking from Pairwise Comparisons](https://jmlr.org/papers/volume18/16-206/16-206.pdf)\" (JMLR 2017) -- derives information-theoretic lower bounds on ranking from noisy pairwise comparisons, matched by achievable algorithms.\n- The Bradley-Terry-Luce (BTL) model literature has Bayesian and minimax lower bounds on ranking risk (e.g., \"[Lower Bounds on the Bayes Risk of the Bayesian BTL Model](https://arxiv.org/pdf/1709.09676)\").\n- Information-theoretic sample complexity bounds for top-k ranking, full ranking, and partial ranking have been derived with sharp constants.\n\nThe claim that ranking is \"fundamentally different from prediction\" is valid in a loose sense (ranking cares about ordinal relationships, not pointwise accuracy), but this distinction is already well-established in the learning-to-rank literature and is not a new theoretical insight.\n\n---\n\n### 3. The Ranking Error Formula: epsilon_rank = E_delta[Phi(-|delta|/sqrt(2*sigma^2))]\n\n**Verdict: This is a standard result from signal detection theory / Thurstone's model, dating to 1927.**\n\nThis formula is essentially the probability of incorrectly determining the sign of a difference (delta) between two items when observations are corrupted by Gaussian noise with variance sigma^2. This is:\n\n- **Thurstone's Law of Comparative Judgment (1927)**: Thurstone's Case V model gives the probability of correctly ranking two items as Phi(delta / (sigma * sqrt(2))), where Phi is the standard normal CDF. The error probability is therefore Phi(-delta / (sigma * sqrt(2))) = Q(delta / (sigma * sqrt(2))). This is exactly what the paper claims as its \"ranking error bound.\"\n\n- **Binary hypothesis testing in Gaussian noise**: In signal detection theory, the error probability for detecting which of two hypotheses is true when the signal difference is delta and noise is Gaussian with variance sigma^2 is Q(delta / (2*sigma)) or equivalently Phi(-|delta| / sqrt(2*sigma^2)), depending on the specific parameterization. This is the most elementary result in detection theory -- see any textbook (Kay, \"Detection Theory\"; Van Trees, \"Detection, Estimation, and Modulation Theory\"; Poor, \"Introduction to Signal Detection and Estimation\").\n\n- **d-prime (d')**: In psychophysics and signal detection theory, the discriminability index d' = delta/sigma directly determines error probability through the Q-function/Phi. This has been standard since the 1950s-60s.\n\nThe expectation over delta (averaging over the distribution of true advantages) is a straightforward extension. There is **no theoretical novelty** in this formula.\n\n---\n\n### 4. The Multimodal Fusion Result: sigma^2_mm = (1/sigma^2_vis + 1/sigma^2_prop)^(-1)\n\n**Verdict: This is the most classical result in statistics and signal processing -- inverse-variance weighting.**\n\nThis is literally:\n\n- **Inverse-variance weighting** (a textbook result in statistics, meta-analysis, and estimation theory): When combining independent unbiased Gaussian estimates, the minimum-variance unbiased estimator weights each estimate proportional to the inverse of its variance. The combined variance is (sum of 1/sigma_i^2)^(-1). This is the [harmonic mean of variances](https://en.wikipedia.org/wiki/Inverse-variance_weighting), known for centuries.\n\n- **Maximum Ratio Combining (MRC)** in wireless communications: The optimal linear combining of signals from multiple diversity branches in AWGN, which weights each branch proportionally to its SNR. The resulting SNR is the sum of individual SNRs, which is equivalent to the inverse-variance formula.\n\n- **Kalman filter measurement update**: When fusing two independent Gaussian measurements, the posterior precision equals the sum of precisions. This is the most basic property of conjugate Gaussian inference.\n\n- **Fisher information additivity**: For independent observations, Fisher information is additive, and the Cramer-Rao bound gives minimum variance = 1/(sum of Fisher informations) = 1/(sum of 1/sigma_i^2).\n\nThere is **zero novelty** in this result.\n\n---\n\n### 5. The Claim that Submodularity (for Prediction) Doesn't Apply to Ranking\n\n**Verdict: Potentially the most interesting claim, but needs scrutiny.**\n\nThe paper \"[Greedy Modality Selection via Approximate Submodular Maximization](https://proceedings.mlr.press/v180/cheng22a/cheng22a.pdf)\" (Cheng et al., 2022) and related work ([Efficient Modality Selection in Multimodal Learning](https://www.jmlr.org/papers/volume25/23-0439/23-0439.pdf), JMLR 2024) show that under cross-entropy loss, the utility of modality selection manifests as Shannon mutual information, which is approximately submodular. This enables greedy algorithms with approximation guarantees.\n\nThe claim that this submodularity does not extend to ranking loss could be a valid observation, but:\n- It is not deeply surprising, since ranking losses (0-1 loss on sign, or pairwise losses) are generally non-smooth and non-decomposable, which are known barriers to submodularity.\n- Whether this observation alone constitutes a \"theoretical contribution\" is debatable -- it is more of a negative observation (\"this known technique doesn't directly apply here\") than a positive new result.\n\n---\n\n### Overall Assessment\n\n**The paper's theoretical \"contributions\" appear to be a repackaging of classical results:**\n\n| Claimed Contribution | Actual Origin | Novelty |\n|---|---|---|\n| Fano's inequality for ranking error | Fano (1961), textbook | None |\n| Ranking error formula with Phi | Thurstone (1927), signal detection theory (1950s) | None |\n| Inverse-variance optimal fusion | Classical statistics, MRC, Kalman filtering | None |\n| Ranking != prediction | Learning-to-rank literature (2000s+) | Minimal |\n| Submodularity doesn't apply to ranking | Potentially valid observation | Modest at best |\n\nThe **potential value** of such a paper lies not in the theoretical results themselves (which are all well-known) but in:\n1. Whether the **synthesis** -- connecting these classical results specifically to the robotics multimodal scoring context -- provides useful practical insights\n2. Whether there are **experimental contributions** that demonstrate the practical implications\n3. Whether the framing helps the robotics community recognize that modality selection for ranking requires different tools than modality selection for prediction\n\nBut from a pure theory standpoint, there does not appear to be genuine theoretical novelty. The results are applications of Thurstone (1927), Fano (1961), and inverse-variance weighting to a specific problem domain.\n\n---\n\nSources:\n- [Fano's Inequality - Wikipedia](https://en.wikipedia.org/wiki/Fano's_inequality)\n- [Beyond Fano's Inequality (Zhao et al., JMLR 2013)](https://jmlr.csail.mit.edu/papers/volume14/zhao13a/zhao13a.pdf)\n- [An Introductory Guide to Fano's Inequality (2019)](https://arxiv.org/pdf/1901.00555)\n- [Simple, Robust and Optimal Ranking from Pairwise Comparisons (Shah & Wainwright, JMLR 2017)](https://jmlr.org/papers/volume18/16-206/16-206.pdf)\n- [Lower Bounds on the Bayes Risk of the Bayesian BTL Model](https://arxiv.org/pdf/1709.09676)\n- [Greedy Modality Selection via Approximate Submodular Maximization (Cheng et al., 2022)](https://proceedings.mlr.press/v180/cheng22a/cheng22a.pdf)\n- [Efficient Modality Selection in Multimodal Learning (JMLR 2024)](https://www.jmlr.org/papers/volume25/23-0439/23-0439.pdf)\n- [Inverse-Variance Weighting - Wikipedia](https://en.wikipedia.org/wiki/Inverse-variance_weighting)\n- [Maximal-Ratio Combining - Wikipedia](https://en.wikipedia.org/wiki/Maximal-ratio_combining)\n- [Thurstone's Law of Comparative Judgment (1927)](https://parsmodir.com/wp-content/uploads/2013/02/thurstone1927.pdf)\n- [Law of Comparative Judgment - Wikipedia](https://en.wikipedia.org/wiki/Law_of_comparative_judgment)\n- [Q-Function - Wikipedia](https://en.wikipedia.org/wiki/Q-function)\n- [Introduction to Detection Theory (Kay)](https://www.ece.iastate.edu/~namrata/EE527_Spring08/l5.pdf)\n- [Noisy Nonreciprocal Pairwise Comparisons (2024)](https://arxiv.org/html/2604.04588)\n- [Sensor Fusion - Wikipedia](https://en.wikipedia.org/wiki/Sensor_fusion)\n- [Error Probability Analysis of Binary Detection (CUHK)](https://www.ee.cuhk.edu.hk/~wkma/eleg2310/handouts/12-biterr.pdf)\n- [Bayes Error Rate - Wikipedia](https://en.wikipedia.org/wiki/Bayes_error_rate)"
+      }
+    ],
+    "totalDurationMs": 154651,
+    "totalTokens": 34571,
+    "totalToolUseCount": 24,
+    "usage": {
+      "input_tokens": 814,
+      "cache_creation_input_tokens": 1035,
+      "cache_read_input_tokens": 29947,
+      "output_tokens": 2775,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1035
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 814,
+          "output_tokens": 2775,
+          "cache_read_input_tokens": 29947,
+          "cache_creation_input_tokens": 1035,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1035,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 24
+    }
+  },
+  "sourceToolAssistantUUID": "497b76ae-c778-48d0-91a8-d181267e723c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "9e20699c-6c70-47bb-896f-5bd8733cd365",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify multimodal demo curation bounds for CoRL 2026",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-13T17:26:47.702Z_
+
+Now let me search for one more critical piece — the DemInf paper (RSS 2025) which uses mutual information for demo curation, and check for any other concurrent work I may have missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e20699c-6c70-47bb-896f-5bd8733cd365",
+  "isSidechain": false,
+  "requestId": "req_011CazxdwN9MYZBgbZtpWKv7",
+  "type": "assistant",
+  "uuid": "2f475318-efce-467f-a682-8d7fc24dae9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RB6rPVpfpmqyUNEAQVKXHQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2758,
+      "cache_creation_input_tokens": 7350,
+      "cache_read_input_tokens": 29729,
+      "output_tokens": 655,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7350,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2758,
+          "output_tokens": 655,
+          "cache_read_input_tokens": 29729,
+          "cache_creation_input_tokens": 7350,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7350
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-13T17:26:56.682Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_018qpNi8n1xHroLyu33NEm5u`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify DemInf and Thurstone connection",
+  "prompt": "I need to verify two things:\n\n1. Search for \"DemInf\" or \"Robot Data Curation with Mutual Information Estimators\" (RSS 2025, arXiv 2502.08623). This paper by Hejna et al. uses mutual information I(S;A) for demonstration curation. I need to understand:\n   - How does it use information theory for curation?\n   - Does it provide formal bounds or is it heuristic?\n   - How does it relate to a proposed paper about \"information-theoretic bounds for multimodal demonstration ranking\"?\n\n2. Search for \"Thurstone model ranking robot\" or \"signal detection theory ranking learning\" — I want to verify whether anyone has already applied Thurstone's model / signal detection theory to the problem of scoring demonstrations in robot learning. Also try \"noisy comparison ranking machine learning\" to see if there's standard ML work that already covers the proposed theoretical results.\n\n3. Also search for \"When Would Vision-Proprioception Policy Fail\" (arXiv 2602.12032) — verify this paper exists and what it actually does.\n\nUse WebSearch and WebFetch as needed. Report findings concisely."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f475318-efce-467f-a682-8d7fc24dae9a",
+  "isSidechain": false,
+  "requestId": "req_011CazxdwN9MYZBgbZtpWKv7",
+  "type": "assistant",
+  "uuid": "2e196435-725a-4358-a909-defcac64f9dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RB6rPVpfpmqyUNEAQVKXHQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2758,
+      "cache_creation_input_tokens": 7350,
+      "cache_read_input_tokens": 29729,
+      "output_tokens": 655,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7350,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2758,
+          "output_tokens": 655,
+          "cache_read_input_tokens": 29729,
+          "cache_creation_input_tokens": 7350,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7350
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-13T17:27:01.250Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01AUs4JZn2MN38myx36LMod3`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search REASSEMBLE and LIBERO VOC",
+  "prompt": "Search for:\n\n1. \"REASSEMBLE dataset\" (arXiv 2502.05086) — a multimodal dataset for contact-rich robotic assembly. Verify it exists and whether it includes proprioception and force-torque data. Is it publicly available?\n\n2. \"LIBERO benchmark low VOC tasks\" or \"LIBERO visual observability\" — are there any published analyses of which LIBERO tasks have low visual observability? Do LIBERO tasks generally have high or low VOC (Value-Order Correlation)?\n\n3. \"multimodal contrastive learning progress estimation robot\" — any work that trains contrastive encoders on vision + proprioception for task progress estimation?\n\nUse WebSearch. Report findings concisely."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e196435-725a-4358-a909-defcac64f9dd",
+  "isSidechain": false,
+  "requestId": "req_011CazxdwN9MYZBgbZtpWKv7",
+  "type": "assistant",
+  "uuid": "57c27794-c60d-4877-9eb6-0277529ec9ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RB6rPVpfpmqyUNEAQVKXHQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2758,
+      "cache_creation_input_tokens": 7350,
+      "cache_read_input_tokens": 29729,
+      "output_tokens": 655,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7350,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2758,
+          "output_tokens": 655,
+          "cache_read_input_tokens": 29729,
+          "cache_creation_input_tokens": 7350,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7350
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-13T17:28:45.660Z_
+
+<details><summary>↩ Tool result · `toolu_01AUs4JZn2MN38myx36LMod3`</summary>
+
+```text
+Here are the findings for all three queries:
+
+---
+
+## 1. REASSEMBLE Dataset (arXiv 2502.05086)
+
+**Confirmed to exist.** REASSEMBLE (Robotic assEmbly disASSEMBLy datasEt) is a multimodal dataset for contact-rich robotic assembly and disassembly from TU Wien's Autonomous Systems Lab.
+
+**Modalities -- Yes, it includes both proprioception and force-torque data.** The full sensor suite is:
+- Robot proprioception
+- Multi-view RGB cameras
+- Force & torque sensors
+- Microphones
+- Event cameras
+
+The dataset is built around the NIST Assembly Task Board 1 benchmark, covers 4 actions (pick, insert, remove, place) across 17 objects, and contains 4,551 demonstrations (4,035 successful), totaling 781 minutes. It also provides hierarchical action segmentation labels.
+
+**Publicly available -- Yes.** The dataset can be downloaded from Google Drive, with code and tooling on GitHub at [TUWIEN-ASL/REASSEMBLE](https://github.com/TUWIEN-ASL/REASSEMBLE). The project page is at [tuwien-asl.github.io/REASSEMBLE_page](https://tuwien-asl.github.io/REASSEMBLE_page/), and the data record is also archived at [researchdata.tuwien.ac.at](https://researchdata.tuwien.ac.at/records/0ewrv-8cb44).
+
+---
+
+## 2. LIBERO Benchmark and VOC / Visual Observability
+
+**No published analysis of "low visual observability" specific to LIBERO tasks was found.** The term "visual observability coefficient" does not appear as an established metric in the LIBERO literature.
+
+However, the concept you may be referring to -- **Value-Order Correlation (VOC)** -- does exist as a distinct metric introduced by Ma et al. in the **Generative Value Learning (GVL)** paper (arXiv 2411.04549). VOC measures the rank correlation between predicted value scores and chronological order in expert demonstration videos, ranging from -1 to 1. A high VOC means visual progress is easy to track from video frames alone; a low VOC suggests the task's progress is not well-captured visually (i.e., low visual observability).
+
+The **OpenGVL benchmark** (arXiv 2509.17321) subsequently built a comprehensive evaluation framework around VOC for benchmarking VLMs on temporal progress prediction. However, searches did not surface a specific published analysis breaking down which individual LIBERO tasks have high vs. low VOC. The OpenGVL benchmark evaluates across diverse manipulation datasets, but LIBERO-specific VOC breakdowns were not found in publicly available materials.
+
+In general, many LIBERO tasks involve visually salient pick-and-place style manipulation where progress is reasonably observable from images, but contact-rich or occluded sub-tasks could plausibly have lower VOC. No paper explicitly categorizes LIBERO tasks by this dimension.
+
+---
+
+## 3. Multimodal Contrastive Learning for Progress Estimation (Vision + Proprioception)
+
+Several relevant lines of work exist, though no single paper precisely matches "contrastive encoder on vision + proprioception for task progress estimation":
+
+- **CLASS (Contrastive Learning via Action Sequence Supervision)** -- CoRL 2025, Lee et al. Uses supervised contrastive learning with soft InfoNCE loss and DTW-based action sequence similarity to learn behavioral representations from demonstrations. It learns representations from vision that capture task structure, though it uses action sequences (not proprioception directly) as the supervision signal. [Paper](https://arxiv.org/abs/2508.01600) | [Project page](https://class-robot.github.io/)
+
+- **PvP (Proprioceptive-Privileged Contrastive Representations)** -- arXiv 2512.13093. Uses contrastive learning to learn compact, task-relevant latent representations from proprioception specifically, enabling more data-efficient humanoid robot learning. This is proprioception-focused but uses contrastive methods for representation learning.
+
+- **Scaling Proprioceptive-Visual Learning (HPT)** -- NeurIPS 2024. Heterogeneous Pre-trained Transformers use embodiment-specific tokenizers to align camera views and proprioception inputs, learning joint representations across modalities.
+
+- **Multimodal Information Bottleneck** -- arXiv 2410.17551. Uses reconstruction loss for proprioception and contrastive loss for images, with InfoNCE encouraging single-modality representations to align with joint representations.
+
+- **GVL (Generative Value Learning)** -- arXiv 2411.04549. Uses VLMs (not traditional contrastive learning) to predict task progress from visual observations, introducing the VOC metric. This is vision-only and uses in-context learning rather than contrastive encoders.
+
+The closest match to your query is the **Multimodal Information Bottleneck** work, which explicitly trains contrastive objectives on vision while fusing with proprioception for joint representations, though its primary framing is deep reinforcement learning rather than explicit "progress estimation."
+
+---
+
+Sources:
+- [REASSEMBLE paper (arXiv 2502.05086)](https://arxiv.org/abs/2502.05086)
+- [REASSEMBLE GitHub](https://github.com/TUWIEN-ASL/REASSEMBLE)
+- [REASSEMBLE project page](https://tuwien-asl.github.io/REASSEMBLE_page/)
+- [REASSEMBLE data record (TU Wien)](https://researchdata.tuwien.ac.at/records/0ewrv-8cb44)
+- [GVL: Vision Language Models are In-Context Value Learners](https://arxiv.org/html/2411.04549)
+- [GVL project page](https://generative-value-learning.github.io/)
+- [OpenGVL benchmark (arXiv 2509.17321)](https://arxiv.org/abs/2509.17321)
+- [OpenGVL GitHub](https://github.com/budzianowski/opengvl)
+- [LIBERO benchmark (NeurIPS 2023)](https://papers.neurips.cc/paper_files/paper/2023/file/8c3c666820ea055a77726d66fc7d447f-Paper-Datasets_and_Benchmarks.pdf)
+- [LIBERO-Plus (arXiv 2510.13626)](https://arxiv.org/abs/2510.13626)
+- [CLASS: Contrastive Learning via Action Sequence Supervision (CoRL 2025)](https://arxiv.org/abs/2508.01600)
+- [PvP: Proprioceptive-Privileged Contrastive Representations](https://arxiv.org/abs/2512.13093)
+- [Scaling Proprioceptive-Visual Learning (NeurIPS 2024)](https://proceedings.neurips.cc/paper_files/paper/2024/file/e0f393e7980a24fd12fa6f15adfa25fb-Paper-Conference.pdf)
+- [Multimodal Information Bottleneck (arXiv 2410.17551)](https://arxiv.org/pdf/2410.17551)
+
+agentId: aabaffd40f980f5d0 (use SendMessage with to: 'aabaffd40f980f5d0' to continue this agent)
+&lt;usage>total_tokens: 21164
+tool_uses: 10
+duration_ms: 104407&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "57c27794-c60d-4877-9eb6-0277529ec9ef",
+  "isSidechain": false,
+  "promptId": "e4227f8e-b015-45cc-9a19-d9d9011fba01",
+  "type": "user",
+  "uuid": "c1311faf-4cab-4b3c-b399-48493fdb8477",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for:\n\n1. \"REASSEMBLE dataset\" (arXiv 2502.05086) — a multimodal dataset for contact-rich robotic assembly. Verify it exists and whether it includes proprioception and force-torque data. Is it publicly available?\n\n2. \"LIBERO benchmark low VOC tasks\" or \"LIBERO visual observability\" — are there any published analyses of which LIBERO tasks have low visual observability? Do LIBERO tasks generally have high or low VOC (Value-Order Correlation)?\n\n3. \"multimodal contrastive learning progress estimation robot\" — any work that trains contrastive encoders on vision + proprioception for task progress estimation?\n\nUse WebSearch. Report findings concisely.",
+    "agentId": "aabaffd40f980f5d0",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are the findings for all three queries:\n\n---\n\n## 1. REASSEMBLE Dataset (arXiv 2502.05086)\n\n**Confirmed to exist.** REASSEMBLE (Robotic assEmbly disASSEMBLy datasEt) is a multimodal dataset for contact-rich robotic assembly and disassembly from TU Wien's Autonomous Systems Lab.\n\n**Modalities -- Yes, it includes both proprioception and force-torque data.** The full sensor suite is:\n- Robot proprioception\n- Multi-view RGB cameras\n- Force & torque sensors\n- Microphones\n- Event cameras\n\nThe dataset is built around the NIST Assembly Task Board 1 benchmark, covers 4 actions (pick, insert, remove, place) across 17 objects, and contains 4,551 demonstrations (4,035 successful), totaling 781 minutes. It also provides hierarchical action segmentation labels.\n\n**Publicly available -- Yes.** The dataset can be downloaded from Google Drive, with code and tooling on GitHub at [TUWIEN-ASL/REASSEMBLE](https://github.com/TUWIEN-ASL/REASSEMBLE). The project page is at [tuwien-asl.github.io/REASSEMBLE_page](https://tuwien-asl.github.io/REASSEMBLE_page/), and the data record is also archived at [researchdata.tuwien.ac.at](https://researchdata.tuwien.ac.at/records/0ewrv-8cb44).\n\n---\n\n## 2. LIBERO Benchmark and VOC / Visual Observability\n\n**No published analysis of \"low visual observability\" specific to LIBERO tasks was found.** The term \"visual observability coefficient\" does not appear as an established metric in the LIBERO literature.\n\nHowever, the concept you may be referring to -- **Value-Order Correlation (VOC)** -- does exist as a distinct metric introduced by Ma et al. in the **Generative Value Learning (GVL)** paper (arXiv 2411.04549). VOC measures the rank correlation between predicted value scores and chronological order in expert demonstration videos, ranging from -1 to 1. A high VOC means visual progress is easy to track from video frames alone; a low VOC suggests the task's progress is not well-captured visually (i.e., low visual observability).\n\nThe **OpenGVL benchmark** (arXiv 2509.17321) subsequently built a comprehensive evaluation framework around VOC for benchmarking VLMs on temporal progress prediction. However, searches did not surface a specific published analysis breaking down which individual LIBERO tasks have high vs. low VOC. The OpenGVL benchmark evaluates across diverse manipulation datasets, but LIBERO-specific VOC breakdowns were not found in publicly available materials.\n\nIn general, many LIBERO tasks involve visually salient pick-and-place style manipulation where progress is reasonably observable from images, but contact-rich or occluded sub-tasks could plausibly have lower VOC. No paper explicitly categorizes LIBERO tasks by this dimension.\n\n---\n\n## 3. Multimodal Contrastive Learning for Progress Estimation (Vision + Proprioception)\n\nSeveral relevant lines of work exist, though no single paper precisely matches \"contrastive encoder on vision + proprioception for task progress estimation\":\n\n- **CLASS (Contrastive Learning via Action Sequence Supervision)** -- CoRL 2025, Lee et al. Uses supervised contrastive learning with soft InfoNCE loss and DTW-based action sequence similarity to learn behavioral representations from demonstrations. It learns representations from vision that capture task structure, though it uses action sequences (not proprioception directly) as the supervision signal. [Paper](https://arxiv.org/abs/2508.01600) | [Project page](https://class-robot.github.io/)\n\n- **PvP (Proprioceptive-Privileged Contrastive Representations)** -- arXiv 2512.13093. Uses contrastive learning to learn compact, task-relevant latent representations from proprioception specifically, enabling more data-efficient humanoid robot learning. This is proprioception-focused but uses contrastive methods for representation learning.\n\n- **Scaling Proprioceptive-Visual Learning (HPT)** -- NeurIPS 2024. Heterogeneous Pre-trained Transformers use embodiment-specific tokenizers to align camera views and proprioception inputs, learning joint representations across modalities.\n\n- **Multimodal Information Bottleneck** -- arXiv 2410.17551. Uses reconstruction loss for proprioception and contrastive loss for images, with InfoNCE encouraging single-modality representations to align with joint representations.\n\n- **GVL (Generative Value Learning)** -- arXiv 2411.04549. Uses VLMs (not traditional contrastive learning) to predict task progress from visual observations, introducing the VOC metric. This is vision-only and uses in-context learning rather than contrastive encoders.\n\nThe closest match to your query is the **Multimodal Information Bottleneck** work, which explicitly trains contrastive objectives on vision while fusing with proprioception for joint representations, though its primary framing is deep reinforcement learning rather than explicit \"progress estimation.\"\n\n---\n\nSources:\n- [REASSEMBLE paper (arXiv 2502.05086)](https://arxiv.org/abs/2502.05086)\n- [REASSEMBLE GitHub](https://github.com/TUWIEN-ASL/REASSEMBLE)\n- [REASSEMBLE project page](https://tuwien-asl.github.io/REASSEMBLE_page/)\n- [REASSEMBLE data record (TU Wien)](https://researchdata.tuwien.ac.at/records/0ewrv-8cb44)\n- [GVL: Vision Language Models are In-Context Value Learners](https://arxiv.org/html/2411.04549)\n- [GVL project page](https://generative-value-learning.github.io/)\n- [OpenGVL benchmark (arXiv 2509.17321)](https://arxiv.org/abs/2509.17321)\n- [OpenGVL GitHub](https://github.com/budzianowski/opengvl)\n- [LIBERO benchmark (NeurIPS 2023)](https://papers.neurips.cc/paper_files/paper/2023/file/8c3c666820ea055a77726d66fc7d447f-Paper-Datasets_and_Benchmarks.pdf)\n- [LIBERO-Plus (arXiv 2510.13626)](https://arxiv.org/abs/2510.13626)\n- [CLASS: Contrastive Learning via Action Sequence Supervision (CoRL 2025)](https://arxiv.org/abs/2508.01600)\n- [PvP: Proprioceptive-Privileged Contrastive Representations](https://arxiv.org/abs/2512.13093)\n- [Scaling Proprioceptive-Visual Learning (NeurIPS 2024)](https://proceedings.neurips.cc/paper_files/paper/2024/file/e0f393e7980a24fd12fa6f15adfa25fb-Paper-Conference.pdf)\n- [Multimodal Information Bottleneck (arXiv 2410.17551)](https://arxiv.org/pdf/2410.17551)"
+      }
+    ],
+    "totalDurationMs": 104407,
+    "totalTokens": 21164,
+    "totalToolUseCount": 10,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 907,
+      "cache_read_input_tokens": 18503,
+      "output_tokens": 1753,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 907
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1753,
+          "cache_read_input_tokens": 18503,
+          "cache_creation_input_tokens": 907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 907,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 10
+    }
+  },
+  "sourceToolAssistantUUID": "57c27794-c60d-4877-9eb6-0277529ec9ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T17:28:49.233Z_
+
+<details><summary>↩ Tool result · `toolu_018qpNi8n1xHroLyu33NEm5u`</summary>
+
+```text
+Here are my consolidated findings across all three queries:
+
+---
+
+## 1. DemInf (arXiv 2502.08623) -- Robot Data Curation with Mutual Information Estimators
+
+**Paper confirmed.** By Joey Hejna et al., accepted at RSS 2025.
+
+**How it uses information theory for curation:**
+- It scores each demonstration by its average contribution to the dataset-wide mutual information I(S;A).
+- The per-trajectory score is: S(tau) = (1/T) sum_t I_hat(s_t, a_t; D_N), where the contribution of each (s,a) pair is estimated via the KSG k-nearest-neighbor MI estimator applied to VAE-learned latent representations.
+- The MI decomposes into two desirable properties: maximizing H(A) (action diversity / coverage) and minimizing H(A|S) (predictability / low noise). Demonstrations with high MI have both diverse state coverage and consistent, predictable actions.
+- Filtering is done by ranking trajectories by this score and keeping the top subset.
+
+**Formal bounds: None.** The paper is primarily empirical/heuristic. It provides no novel sample complexity bounds, PAC guarantees, or information-theoretic lower bounds. It references Belkhale et al.'s existing bound linking imitation learning error to policy divergence but derives no new theory. The authors explicitly note they work with "relative ordering of mutual information estimates rather than their absolute values."
+
+**Relation to a proposed "information-theoretic bounds for multimodal demonstration ranking" paper:** DemInf occupies adjacent territory -- it uses MI as a heuristic quality score but does not provide formal bounds on when or why MI-based ranking is optimal, nor does it address multimodal ranking in a formal sense. A paper providing rigorous information-theoretic bounds (e.g., sample complexity of correctly ranking demonstrations, or proving that MI-based ranking is near-optimal under certain noise models) would be complementary to and distinct from DemInf.
+
+---
+
+## 2. Thurstone/Signal Detection Theory for Demonstration Scoring
+
+**Finding: No one has directly applied Thurstone's model or signal detection theory to the specific problem of scoring/ranking demonstrations in robot learning.**
+
+- The **Bradley-Terry model** (logistic variant of Thurstone) is well-known in RLHF/preference learning (e.g., Christiano et al. 2017 "Deep RL from Human Preferences"), where it models pairwise human preferences over trajectories. However, this is used for **reward learning from human feedback**, not for unsupervised demonstration quality scoring.
+- Tucker et al. (2020) used a Thurstonian model for reward inference from exploratory demonstrations, but this is for preference elicitation, not automated quality scoring.
+- The **noisy comparison ranking** literature in ML/TCS is well-developed: Falahatgar et al. (ICML 2017) provide optimal O(n/eps^2) comparison bounds for maximum selection; Braverman & Mossel give optimal O(n log n) bounds for noisy sorting. These provide the theoretical foundations that could underpin a Thurstone-based demonstration ranking framework, but **no one has bridged this to robot demonstration curation specifically**.
+
+**Bottom line:** Applying Thurstone/SDT models with formal ranking bounds to demonstration quality scoring in robot learning appears to be a genuine gap in the literature. The theoretical machinery exists in the noisy comparison ranking community, and the practical need exists in robot learning, but no published work connects the two.
+
+---
+
+## 3. "When Would Vision-Proprioception Policy Fail" (arXiv 2602.12032)
+
+**Paper confirmed.** Full title: "When would Vision-Proprioception Policies Fail in Robotic Manipulation?" by Jingxian Lu, Wenke Xia, Yuxuan Wu, Zhiwu Lu, and Di Hu. **Accepted at ICLR 2026.**
+
+Note the arXiv ID `2602.12032` -- the `26` prefix indicates a February 2026 submission, which is consistent with ICLR 2026 acceptance.
+
+**What it does:**
+- Identifies that during "motion-transition phases" (sub-phases requiring target localization), vision-proprioception policies fail because proprioceptive signals dominate optimization (faster loss reduction), suppressing visual modality learning.
+- Proposes **GAP (Gradient Adjustment with Phase-guidance)**: uses proprioception to estimate when motion-transition phases occur, then adaptively reduces proprioception's gradient magnitude during those phases to let vision contribute.
+- Validated on simulated and real-world tasks, single-arm and dual-arm setups, compatible with both conventional and VLA models.
+
+This paper is about training dynamics of multimodal policies, not about demonstration ranking or curation.
+
+---
+
+Sources:
+- [DemInf paper (arXiv)](https://arxiv.org/abs/2502.08623)
+- [DemInf HTML version](https://arxiv.org/html/2502.08623v1)
+- [DemInf at RSS 2025](https://roboticsconference.org/program/papers/23/)
+- [DemInf GitHub](https://github.com/jhejna/demonstration-information)
+- [Vision-Proprioception paper (arXiv)](https://arxiv.org/abs/2602.12032)
+- [Vision-Proprioception at OpenReview/ICLR 2026](https://openreview.net/forum?id=Nbj1GFCKB3)
+- [Falahatgar et al. -- Maximum Selection and Ranking under Noisy Comparisons (ICML 2017)](https://proceedings.mlr.press/v70/falahatgar17a.html)
+- [Active Learning for Top-K Rank Aggregation from Noisy Comparisons (ICML 2017)](https://proceedings.mlr.press/v70/mohajer17a.html)
+- [Optimal Bounds for Noisy Sorting](https://arxiv.org/pdf/2302.12440)
+- [Principled RLHF from Pairwise or K-wise Comparisons](https://arxiv.org/html/2301.11270v5)
+- [Deep RL from Human Preferences (Christiano et al.)](https://arxiv.org/pdf/1706.03741)
+- [Learning rewards from exploratory demonstrations using probabilistic temporal ranking](https://link.springer.com/article/10.1007/s10514-023-10120-w)
+- [Multimodal Perception Sample Complexity in Imitation Learning](https://arxiv.org/html/2508.05077v1)
+- [Bradley-Terry model recent advances](https://arxiv.org/html/2601.14727v2)
+
+agentId: a06dc91f5b44b5168 (use SendMessage with to: 'a06dc91f5b44b5168' to continue this agent)
+&lt;usage>total_tokens: 22501
+tool_uses: 13
+duration_ms: 112547&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2e196435-725a-4358-a909-defcac64f9dd",
+  "isSidechain": false,
+  "promptId": "e4227f8e-b015-45cc-9a19-d9d9011fba01",
+  "type": "user",
+  "uuid": "8f179810-3dc5-4c09-8351-baedcf49a6b8",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify two things:\n\n1. Search for \"DemInf\" or \"Robot Data Curation with Mutual Information Estimators\" (RSS 2025, arXiv 2502.08623). This paper by Hejna et al. uses mutual information I(S;A) for demonstration curation. I need to understand:\n   - How does it use information theory for curation?\n   - Does it provide formal bounds or is it heuristic?\n   - How does it relate to a proposed paper about \"information-theoretic bounds for multimodal demonstration ranking\"?\n\n2. Search for \"Thurstone model ranking robot\" or \"signal detection theory ranking learning\" — I want to verify whether anyone has already applied Thurstone's model / signal detection theory to the problem of scoring demonstrations in robot learning. Also try \"noisy comparison ranking machine learning\" to see if there's standard ML work that already covers the proposed theoretical results.\n\n3. Also search for \"When Would Vision-Proprioception Policy Fail\" (arXiv 2602.12032) — verify this paper exists and what it actually does.\n\nUse WebSearch and WebFetch as needed. Report findings concisely.",
+    "agentId": "a06dc91f5b44b5168",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are my consolidated findings across all three queries:\n\n---\n\n## 1. DemInf (arXiv 2502.08623) -- Robot Data Curation with Mutual Information Estimators\n\n**Paper confirmed.** By Joey Hejna et al., accepted at RSS 2025.\n\n**How it uses information theory for curation:**\n- It scores each demonstration by its average contribution to the dataset-wide mutual information I(S;A).\n- The per-trajectory score is: S(tau) = (1/T) sum_t I_hat(s_t, a_t; D_N), where the contribution of each (s,a) pair is estimated via the KSG k-nearest-neighbor MI estimator applied to VAE-learned latent representations.\n- The MI decomposes into two desirable properties: maximizing H(A) (action diversity / coverage) and minimizing H(A|S) (predictability / low noise). Demonstrations with high MI have both diverse state coverage and consistent, predictable actions.\n- Filtering is done by ranking trajectories by this score and keeping the top subset.\n\n**Formal bounds: None.** The paper is primarily empirical/heuristic. It provides no novel sample complexity bounds, PAC guarantees, or information-theoretic lower bounds. It references Belkhale et al.'s existing bound linking imitation learning error to policy divergence but derives no new theory. The authors explicitly note they work with \"relative ordering of mutual information estimates rather than their absolute values.\"\n\n**Relation to a proposed \"information-theoretic bounds for multimodal demonstration ranking\" paper:** DemInf occupies adjacent territory -- it uses MI as a heuristic quality score but does not provide formal bounds on when or why MI-based ranking is optimal, nor does it address multimodal ranking in a formal sense. A paper providing rigorous information-theoretic bounds (e.g., sample complexity of correctly ranking demonstrations, or proving that MI-based ranking is near-optimal under certain noise models) would be complementary to and distinct from DemInf.\n\n---\n\n## 2. Thurstone/Signal Detection Theory for Demonstration Scoring\n\n**Finding: No one has directly applied Thurstone's model or signal detection theory to the specific problem of scoring/ranking demonstrations in robot learning.**\n\n- The **Bradley-Terry model** (logistic variant of Thurstone) is well-known in RLHF/preference learning (e.g., Christiano et al. 2017 \"Deep RL from Human Preferences\"), where it models pairwise human preferences over trajectories. However, this is used for **reward learning from human feedback**, not for unsupervised demonstration quality scoring.\n- Tucker et al. (2020) used a Thurstonian model for reward inference from exploratory demonstrations, but this is for preference elicitation, not automated quality scoring.\n- The **noisy comparison ranking** literature in ML/TCS is well-developed: Falahatgar et al. (ICML 2017) provide optimal O(n/eps^2) comparison bounds for maximum selection; Braverman & Mossel give optimal O(n log n) bounds for noisy sorting. These provide the theoretical foundations that could underpin a Thurstone-based demonstration ranking framework, but **no one has bridged this to robot demonstration curation specifically**.\n\n**Bottom line:** Applying Thurstone/SDT models with formal ranking bounds to demonstration quality scoring in robot learning appears to be a genuine gap in the literature. The theoretical machinery exists in the noisy comparison ranking community, and the practical need exists in robot learning, but no published work connects the two.\n\n---\n\n## 3. \"When Would Vision-Proprioception Policy Fail\" (arXiv 2602.12032)\n\n**Paper confirmed.** Full title: \"When would Vision-Proprioception Policies Fail in Robotic Manipulation?\" by Jingxian Lu, Wenke Xia, Yuxuan Wu, Zhiwu Lu, and Di Hu. **Accepted at ICLR 2026.**\n\nNote the arXiv ID `2602.12032` -- the `26` prefix indicates a February 2026 submission, which is consistent with ICLR 2026 acceptance.\n\n**What it does:**\n- Identifies that during \"motion-transition phases\" (sub-phases requiring target localization), vision-proprioception policies fail because proprioceptive signals dominate optimization (faster loss reduction), suppressing visual modality learning.\n- Proposes **GAP (Gradient Adjustment with Phase-guidance)**: uses proprioception to estimate when motion-transition phases occur, then adaptively reduces proprioception's gradient magnitude during those phases to let vision contribute.\n- Validated on simulated and real-world tasks, single-arm and dual-arm setups, compatible with both conventional and VLA models.\n\nThis paper is about training dynamics of multimodal policies, not about demonstration ranking or curation.\n\n---\n\nSources:\n- [DemInf paper (arXiv)](https://arxiv.org/abs/2502.08623)\n- [DemInf HTML version](https://arxiv.org/html/2502.08623v1)\n- [DemInf at RSS 2025](https://roboticsconference.org/program/papers/23/)\n- [DemInf GitHub](https://github.com/jhejna/demonstration-information)\n- [Vision-Proprioception paper (arXiv)](https://arxiv.org/abs/2602.12032)\n- [Vision-Proprioception at OpenReview/ICLR 2026](https://openreview.net/forum?id=Nbj1GFCKB3)\n- [Falahatgar et al. -- Maximum Selection and Ranking under Noisy Comparisons (ICML 2017)](https://proceedings.mlr.press/v70/falahatgar17a.html)\n- [Active Learning for Top-K Rank Aggregation from Noisy Comparisons (ICML 2017)](https://proceedings.mlr.press/v70/mohajer17a.html)\n- [Optimal Bounds for Noisy Sorting](https://arxiv.org/pdf/2302.12440)\n- [Principled RLHF from Pairwise or K-wise Comparisons](https://arxiv.org/html/2301.11270v5)\n- [Deep RL from Human Preferences (Christiano et al.)](https://arxiv.org/pdf/1706.03741)\n- [Learning rewards from exploratory demonstrations using probabilistic temporal ranking](https://link.springer.com/article/10.1007/s10514-023-10120-w)\n- [Multimodal Perception Sample Complexity in Imitation Learning](https://arxiv.org/html/2508.05077v1)\n- [Bradley-Terry model recent advances](https://arxiv.org/html/2601.14727v2)"
+      }
+    ],
+    "totalDurationMs": 112547,
+    "totalTokens": 22501,
+    "totalToolUseCount": 13,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2427,
+      "cache_read_input_tokens": 18459,
+      "output_tokens": 1614,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2427
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1614,
+          "cache_read_input_tokens": 18459,
+          "cache_creation_input_tokens": 2427,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2427,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 13
+    }
+  },
+  "sourceToolAssistantUUID": "2e196435-725a-4358-a909-defcac64f9dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "8f179810-3dc5-4c09-8351-baedcf49a6b8",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify multimodal demo curation bounds for CoRL 2026",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569"
+}
+```
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-13T17:29:50.130Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive information to form my review. Let me synthesize all findings:
+
+## Key Findings
+
+### 1. CoRL 2026 Venue
+- Deadlines confirmed: Abstract May 26, Paper May 29. This is 13 and 16 days from now (May 13).
+- The idea now targets CoRL 2026 as primary — good, addresses the user's requirement.
+
+### 2. Theoretical Novelty Assessment (CRITICAL)
+My agent's deep investigation reveals that the five "theorems" are largely repackaging of classical results:
+
+
+The core theoretical contributions turn out to be well-established foundations rather than novel advances. Theorem 1 applies Fano's inequality to binary classification in a standard way, Theorem 2 reproduces Thurstone's Law of Comparative Judgment from 1927, and the inverse-variance weighting formula is a fundamental result from estimation theory that's been standard for decades.
+
+The amplification effect in Theorem 3 is just a Taylor expansion around zero combined with the fact that the Gaussian CDF has maximum slope there—which is fairly obvious to anyone with statistics background. Theorem 4 handles dependent modalities by adding correlation terms to inverse-variance weighting, which mirrors standard approaches in Kalman filtering. Theorem 5 provides a finite-sample consistency bound using uniform convergence.
+
+But here's what matters: while each piece is classical, the specific combination of these results applied to demonstration curation for robot learning appears to be novel. The noisy comparison ranking literature hasn't connected these dots in this way before.
+
+Now I'm looking at the competitive landscape to understand where this work sits. DemInf from RSS 2025 is the most direct competitor—it uses mutual information for demo curation but provides no formal bounds, and notably the proposal doesn't even cite it. GR-RL and Demo-SCORE both exist but lack either theory or the multimodal approach. He et al. from JMLR 2024 is prediction-focused rather than ranking-focused, so the differentiation there holds up.
+
+There's also a terminology issue I'm noticing—the proposal refers to VOC as "Visual Observability Consistency" when it actually stands for "Value-Order Correlation" according to the GVL paper. And looking at the timeline, there are only 13 days to the abstract and 16 to the full paper, with the theoretical work being pen-and-paper proofs that need to be completed.
+
+The experimental side is demanding too—computing VOC and POC metrics across 40 LIBERO tasks, training a contrastive encoder, and fine-tuning OpenVLA-OFT would require around 96 GPU hours across multiple runs. The 150 A100 hours budgeted seems tight but workable given the user's flexibility on skipping real robot validation.
+
+One more concern: the "amplification effect" in Theorem 3 about multimodal scoring performing best on smooth-progress tasks isn't actually novel—it's a straightforward consequence of how the Gaussian CDF behaves, where the standard normal PDF peaks at zero. When advantages are near zero, reducing variance has the strongest effect on the cumulative distribution function. Presenting this as non-obvious seems like an overstatement.
+
+The core question becomes whether this clears the bar for CoRL. The theory itself looks like a direct application of classical signal detection theory and inverse-variance weighting, which a seasoned reviewer would likely recognize as incremental. But the practical contribution—developing VOC and POC diagnostics and validating them across LIBERO's full task suite—could be genuinely valuable if framed honestly as bringing established statistical methods to a robotics problem rather than claiming novel theoretical insights.
+
+The main issues are that the five theorems are really just applications of well-known results, there's a critical missing citation in DemInf from RSS 2025, the "amplification effect" follows straightforwardly from basic statistics, and the terminology around VOC might be inaccurate. The conditional independence assumption is acknowledged but the relaxation in Theorem 4 is also standard correlated measurement fusion. With a 16-day timeline, this is tight even for a theory paper, so the verdict hinges on whether the practical diagnostics and empirical validation on 40 tasks can carry the contribution.
+
+Looking at the scores: novelty is really a 3 because while the individual results are known, applying them to demo curation is genuinely new, but the paper oversells these as theorems rather than applications. Feasibility is 3—tight but doable for a theory-focused paper with reasonable GPU estimates. Clarity is strong at 4 with well-structured theorems and a clear experimental plan. Impact lands at 3 because the practical diagnostics are useful but the theoretical results are too elementary to drive significant impact.
+
+The core tension is whether CoRL values papers that apply established theory to new domains with practical payoff, or if they expect deeper theoretical contributions.  My honest assessment is that this paper oversells its novelty—the theorems are classical applications, not original results—so I should score accordingly: novelty at 2, feasibility at 3, clarity at 4, and impact at 3, averaging to a revise. Given this is round 4 of 10, I need to be direct about the fundamental gap between what the paper claims and what it actually delivers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f179810-3dc5-4c09-8351-baedcf49a6b8",
+  "isSidechain": false,
+  "requestId": "req_011CazxooqEmmGFhB6maYiUU",
+  "type": "assistant",
+  "uuid": "f0a2bbb3-337e-42fc-b219-bbf5066c28d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kNiKobALPq8cKJHNSfiMG",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1856,
+      "cache_creation_input_tokens": 5129,
+      "cache_read_input_tokens": 37079,
+      "output_tokens": 4719,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5129,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1856,
+          "output_tokens": 4719,
+          "cache_read_input_tokens": 37079,
+          "cache_creation_input_tokens": 5129,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5129
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-13T17:30:45.462Z_
+
+Now I have comprehensive evidence to assess this submission. Let me synthesize my findings.
+
+## Key findings from independent verification:
+
+**1. Theoretical "novelty" is the central problem.** My investigation reveals that all five theorems are direct applications of well-known classical results:
+- **Theorem 2** (ranking error formula) is exactly **Thurstone's Law of Comparative Judgment (1927)** — the error probability for determining the sign of a difference in Gaussian noise. This is 99-year-old psychometrics.
+- **The inverse-variance formula** σ²_mm = (1/σ²_vis + 1/σ²_prop)⁻¹ is the most basic result in estimation theory (Kalman filter, maximum ratio combining, Fisher information additivity).
+- **Theorem 3** ("amplification effect") is just a Taylor expansion of the Gaussian CDF at zero — the "non-obvious" prediction that small advantages are most affected by noise reduction is obvious to anyone who knows that Φ'(0) is the maximum of the standard normal PDF.
+- **Theorem 4** (correlated modalities) is standard correlated measurement fusion.
+- **Theorem 1** (Fano's inequality applied to binary sign) is textbook.
+
+**2. Critical missing citation: DemInf (RSS 2025).** Hejna et al., "Robot Data Curation with Mutual Information Estimators" (arXiv 2502.08623), uses I(S;A) as a quality score for demonstration curation. This is the closest information-theoretic work in the demo curation space and is NOT cited in the proposal.
+
+**3. The gap IS real.** Despite the individual results being classical, no published work has formally connected noisy comparison ranking theory to multimodal demonstration curation. DemInf uses MI heuristically with no formal bounds. The application synthesis is genuinely new — but the paper frames it as novel theory rather than novel application.
+
+**4. CoRL deadlines confirmed** (abstract May 26, paper May 29). Venue targeting now matches user requirements.
+
+**5. REASSEMBLE confirmed** publicly available with proprioception + force-torque. LIBERO VOC breakdown across 40 tasks has NOT been published — this is a legitimate novel empirical contribution.
+
+**6. VOC terminology note:** VOC stands for "Value-Order Correlation" (not "Visual Observability Consistency" as the proposal sometimes implies).
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 2, "rationale": "All five theorems are direct applications of classical results: Theorem 2 is Thurstone's Law of Comparative Judgment (1927), the inverse-variance formula is textbook estimation theory, and Theorem 3's 'amplification effect' is a trivial Taylor expansion of the Gaussian CDF. The synthesis for demo curation is new but the paper frames these as novel theorems rather than novel applications, which will not survive expert review."},
+    "feasibility": {"score": 3, "rationale": "16 days for a theory-focused paper with LIBERO simulation validation is tight but possible. However, the claim that proving five formal theorems is 'pen-and-paper' understates the effort of writing rigorous proofs, and the LIBERO low-VOC hypothesis is unvalidated — standard LIBERO tasks may all have high VOC, requiring the camera-occlusion workaround which adds implementation time."},
+    "clarity": {"score": 4, "rationale": "The problem framing, landscape analysis, and theorem statements are well-articulated. The differentiation from He et al. (JMLR 2024) is clearly argued and valid (ranking vs. prediction). The experimental plan with VOC-stratified validation is well-designed."},
+    "impact": {"score": 3, "rationale": "The practical diagnostics (VOC, POC, ρ_cond) are genuinely useful for practitioners deciding whether to invest in multimodal curation. However, the theoretical depth is insufficient for lasting impact — a reviewer from information theory or statistics will immediately recognize the results as elementary, and the robotics community may not value formalism that doesn't yield substantially better empirical results."}
+  },
+  "issues": [
+    "CRITICAL — THEORETICAL NOVELTY IS OVERSTATED: Theorem 2 (ε_rank = E_δ[Φ(−|δ|/√(2σ²))]) is Thurstone's Law of Comparative Judgment (1927). The inverse-variance fusion formula σ²_mm = (1/σ²_vis + 1/σ²_prop)⁻¹ is the most basic result in estimation theory (known for centuries). Theorem 3's 'amplification effect' is a first-order Taylor expansion of Φ around zero — the fact that Φ'(x) peaks at x=0 is obvious, not 'non-obvious.' Theorem 4 is standard correlated measurement fusion. Theorem 5 is a routine uniform convergence bound. Presenting these as novel 'theorems' will be immediately flagged by any reviewer with statistics or information theory training.",
+    "CRITICAL — MISSING CITATION: DemInf (Hejna et al., RSS 2025, arXiv 2502.08623) uses mutual information I(S;A) for demonstration curation with KSG estimators on VAE embeddings. This is the closest information-theoretic work in demo curation and is not cited. Any reviewer familiar with RSS 2025 will notice this omission.",
+    "THEORETICAL DEPTH INSUFFICIENT FOR A 'THEORY-CENTERED' PAPER: The five theorems, once recognized as classical, reduce to 'what happens when you apply inverse-variance weighting to a Thurstone model.' A CoRL theory paper needs either (a) genuinely novel mathematical results (e.g., non-Gaussian noise models, non-independent transitions, finite-sample minimax bounds à la Shah & Wainwright JMLR 2017), or (b) surprising empirical predictions that classical theory alone would not suggest. Currently, neither is present.",
+    "THE 'AMPLIFICATION EFFECT' IS TRIVIALLY OBVIOUS: Claiming that 'multimodal scoring helps MOST on tasks with many near-zero-advantage transitions' is a direct consequence of the Gaussian CDF having maximum gradient at zero. This is not a 'non-obvious, empirically testable prediction beyond proprioception helps when vision is noisy' — it IS the same statement in different notation. A reviewer will see through this immediately.",
+    "CONDITIONAL INDEPENDENCE ASSUMPTION NOT ADEQUATELY ADDRESSED: Theorem 4 adds a correlation correction term, but this is still standard correlated Gaussian fusion. The real challenge — that in wrist-camera setups, arm pose CAUSALLY determines the visual observation, creating a structural (not just correlational) dependency — is not addressed. A structural causal model or factor-graph approach would be needed for a genuine theoretical contribution here.",
+    "VOC TERMINOLOGY: The proposal implicitly treats VOC as 'Visual Observability Consistency' but the actual GVL/OpenGVL metric is 'Value-Order Correlation.' This suggests the proposal may not have carefully read the source papers.",
+    "LIBERO LOW-VOC ASSUMPTION REMAINS UNVALIDATED: The proposal plans camera-occlusion variants as a fallback but does not verify whether any natural LIBERO task has low VOC. If all 40 tasks have VOC > 0.5, the core hypothesis (multimodal scoring helps on low-VOC tasks) cannot be tested on unmodified LIBERO, weakening the empirical contribution."
+  ],
+  "feedback": "The idea has a legitimate practical contribution buried under overstated theoretical claims. Here is how to save it:\n\n**1. REFRAME THE PAPER HONESTLY (HIGHEST PRIORITY).** Do NOT present Thurstone's model and inverse-variance weighting as novel theorems. Instead, frame the paper as: 'We show that classical results from signal detection theory (Thurstone 1927) and optimal estimation provide surprisingly precise predictions for when multimodal demo curation helps — predictions that existing heuristic methods (GVL, DemInf, GR-RL) cannot make.' This is a legitimate framing: 'known theory, new application, strong empirical validation.' Claiming novelty for 99-year-old results is not.\n\n**2. ADD GENUINELY NOVEL THEORY to justify a theory-centered paper.** Options:\n   (a) **Non-Gaussian noise analysis**: Real progress estimation noise is NOT Gaussian — VLMs produce discrete, heavy-tailed errors. Derive bounds under sub-Gaussian or heavy-tailed noise (e.g., using Hoeffding/Bernstein instead of Gaussian CDF). Show that the Gaussian model is a lower bound on actual improvement.\n   (b) **Sequential dependence**: Transitions within a trajectory are NOT independent — progress estimates are temporally correlated. Extend the ranking error bound to account for Markovian noise structure. This would be genuinely novel.\n   (c) **Minimax ranking bounds**: Following Shah & Wainwright (JMLR 2017), derive minimax-optimal sample complexity for ranking demonstrations by advantage under multimodal noise. This would connect to the active literature on noisy comparison ranking.\n   (d) **Structural causal model for modality dependence**: Instead of the correlation coefficient ρ_cond, model the causal structure (arm pose → camera view) and derive bounds that are invariant to the causal mechanism.\n\n**3. CITE DemInf (RSS 2025).** Add Hejna et al. to the landscape as the closest information-theoretic work. Position against it: 'DemInf uses MI heuristically for trajectory-level scoring without formal guarantees; we provide transition-level ranking bounds with practical diagnostics.'\n\n**4. ELEVATE THE EMPIRICAL CONTRIBUTION.** The 40-task LIBERO VOC/POC characterization IS novel and useful. Make this a co-equal contribution: 'We provide the first systematic analysis of visual and proprioceptive observability across 40 LIBERO tasks, revealing [X surprising findings].' This is valuable independent of the theory.\n\n**5. VALIDATE LIBERO VOC NOW.** Before committing to this paper, run GVL's published code on a few LIBERO tasks to verify the VOC range. If all tasks have VOC > 0.5, you need the camera-occlusion variants — budget this implementation time into the 16-day plan.\n\n**6. FIX VOC TERMINOLOGY.** VOC = Value-Order Correlation, not Visual Observability Consistency. Use the correct term.",
+  "reason": "The five theorems are direct applications of Thurstone (1927) and inverse-variance weighting — presenting 99-year-old results as novel will not survive expert review. The practical diagnostics and LIBERO characterization are valuable but insufficient alone for a theory-centered paper without genuinely novel mathematical results."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0a2bbb3-337e-42fc-b219-bbf5066c28d5",
+  "isSidechain": false,
+  "requestId": "req_011CazxooqEmmGFhB6maYiUU",
+  "type": "assistant",
+  "uuid": "fb218a0f-b7a3-453a-923b-f86f02c5551f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kNiKobALPq8cKJHNSfiMG",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1856,
+      "cache_creation_input_tokens": 5129,
+      "cache_read_input_tokens": 37079,
+      "output_tokens": 4719,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5129,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1856,
+          "output_tokens": 4719,
+          "cache_read_input_tokens": 37079,
+          "cache_creation_input_tokens": 5129,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5129
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "fb218a0f-b7a3-453a-923b-f86f02c5551f",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify multimodal demo curation bounds for CoRL 2026",
+  "sessionId": "0525d9e9-fe7e-4027-a76e-c873be061569"
+}
+```
+
+---

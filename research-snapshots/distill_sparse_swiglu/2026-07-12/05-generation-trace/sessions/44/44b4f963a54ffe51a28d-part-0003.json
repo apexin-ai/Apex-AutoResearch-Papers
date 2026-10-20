@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "session_id": "44b4f963a54ffe51a28d",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 91,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Round 1 审稿请求]: 你负责**新颖性 + 完整性**的审查。  ## Venue 信息 - **目标会议**: EMNLP 2026 (via ACL Rolling Review, May cycle) - **截止日期**: 2026-05-25 - **页数限制**: Long paper ≤8 页正文 + unlimited references + appendix - **…",
+                "leafUuid": "7bd39476-1d9e-4731-9c4b-578676d5e563",
+                "sessionId": "1b48e2fa-cc40-4a86-b7f0-336df813d341"
+              }
+            }
+          ],
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review sparse SwiGLU distillation paper for EMNLP 2026",
+                "sessionId": "1b48e2fa-cc40-4a86-b7f0-336df813d341"
+              }
+            }
+          ],
+          "id": "event-000092"
+        }
+      ]
+    }
+  ]
+}

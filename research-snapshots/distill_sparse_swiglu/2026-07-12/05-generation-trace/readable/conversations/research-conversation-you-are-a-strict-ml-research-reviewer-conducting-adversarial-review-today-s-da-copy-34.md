@@ -1,0 +1,8333 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-13 (UTC).** Your job: indep
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 114
+- **Recorded user turns:** 1
+- **Tool calls:** 33
+- **Original source:** `logs/chats/exported-trajectories/account-2/a8359be3-a786-4bbe-a3c4-b37f01482e86.jsonl`
+- **Structured JSON:** [`a361934a010ad3179b70.json`](../../sessions/a3/a361934a010ad3179b70.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-13T09:38:50.069Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T09:38:50.069Z",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-13 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).\nDirection：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 2/10)\n{\n  \"title\": \"OT-Consensus: Distributional Trajectory Scoring via Optimal Transport for Demonstration Quality Filtering\",\n  \"core_problem\": \"How to identify noisy/outlier demonstrations in a principled, policy-agnostic way that naturally handles multimodal demonstration distributions (multiple valid strategies) without requiring validation sets, evaluation rollouts, or policy training?\",\n  \"opportunity\": \"The robot demonstration curation landscape has rapidly matured (CUPID, DataMIL, DemInf, SCIZOR, QoQ, RINSE — all published 2025-2026), but a clear methodological gap persists: existing methods are either policy-dependent (CUPID, QoQ, DataMIL require training or rolling out a policy), require labeled validation data (QoQ), or are policy-agnostic but lack explicit multimodal handling (DemInf scores global MI, RINSE assumes smoothness universally). No existing method provides a unified, policy-agnostic framework that simultaneously discovers multiple valid strategy modes and scores demonstrations relative to mode-specific consensus with distributional guarantees. Optimal transport provides the mathematical apparatus — Wasserstein distances define a principled metric on trajectory distributions, barycenters yield noise-robust consensus references, and recent robust barycenter theory (arXiv 2026) provides consistency guarantees. OT has been applied to reward labeling (OTR, TemporalOT) and cross-domain imitation (GWIL) but never to intra-dataset quality scoring. This fills the gap identified in the ICLR 2026 VLA blog of lacking 'good methods to quantify data quality' with a method that complements rather than competes with policy-dependent approaches — OT-Consensus can serve as a pre-training filter before any policy-dependent method is applied.\",\n  \"landscape\": \"The demonstration curation field has consolidated around three paradigms, each with distinct tradeoffs:\\n\\n**Policy-dependent methods** (require training or evaluating a policy):\\n- CUPID (CoRL 2025): Influence functions on expected return from closed-loop rollouts. Achieves SOTA on RoboMimic with <33% curated data. Limitation: requires evaluation rollouts and a trained policy, making it architecture-specific and compute-intensive for iterative curation.\\n- QoQ (arXiv Mar 2026): Influence functions on validation loss with trajectory-level aggregation. Up to 23.2% improvement on RoboMimic. Limitation: requires a validation set of known-good demos, O(n²) scaling.\\n- DataMIL (May 2025, UT Austin): Datamodels paradigm for end-to-end policy-driven selection. 10% boost on MetaWorld 50 tasks, validated on Open X-Embodiment. Limitation: requires multiple policy retrainings to build the datamodel, expensive at scale.\\n\\n**Policy-agnostic feature-based methods** (no policy training needed):\\n- DemInf (RSS 2025): k-NN mutual information estimators on VAE embeddings. Unsupervised, 5-10% on RoboMimic. Limitation: MI measures statistical dependency, not distributional consensus — does not explicitly discover or handle multiple valid strategy modes.\\n- RINSE (ICML 2025): Spectral Arc Length (SAL) and Trajectory-Envelope Distance (TED) smoothness metrics. 16-20% gains with data subset. Limitation: assumes smoothness universally correlates with quality, fails for tasks where jerky/rapid motions are optimal strategy.\\n- SCIZOR (ICRA 2026): Self-supervised progress prediction + visual-action clustering for dedup. 15.4% average improvement. Limitation: heuristic progress signal, no theoretical guarantees, cannot distinguish noise from valid diversity.\\n- Consistency Matters (ACM THRI 2024): Geometric consistency metrics predicting success with 76-91% accuracy. Limitation: limited to geometric properties without distributional analysis.\\n\\n**OT in imitation learning** (applied to reward/imitation, never intra-dataset quality):\\n- OTR (ICLR 2023): OT alignment between offline trajectories and expert demos for reward labeling.\\n- Temporal OT Reward (NeurIPS 2024): Extends OTR with temporal ordering constraints.\\n- GWIL (ICLR 2022): Gromov-Wasserstein for cross-domain imitation.\\n\\n**Gap**: No method combines policy-agnostic operation, explicit multimodal strategy discovery, distributional quality scoring, and theoretical guarantees in a unified framework. OT-Consensus fills this gap by treating each trajectory as a distribution and leveraging Wasserstein geometry for consensus-based scoring.\",\n  \"approach\": \"**Trajectory representation**: Each demonstration τ of length T is represented as a discrete probability measure μ_τ = (1/T) Σ_t δ_{(s_t, a_t, t/T)} over state-action-time tuples, where time is normalized to [0,1].\\n\\n**Ground cost metric design**: The cost between two state-action-time tuples is a weighted combination of component-wise normalized squared distances:\\n  c((s₁,a₁,t₁), (s₂,a₂,t₂)) = w_pos·‖ψ(pos₁) - ψ(pos₂)‖² + w_rot·d_rot(rot₁,rot₂)² + w_grip·(g₁-g₂)² + w_act·‖ψ(a₁) - ψ(a₂)‖² + w_t·(t₁-t₂)²\\nwhere ψ denotes z-score normalization per dimension, d_rot is geodesic distance for orientations, and component weights {w_*} are set to equal after normalization by default with sensitivity analysis over weight ratios reported as an ablation. For high-dimensional observation spaces (e.g., visual features), we apply PCA to reduce to 16-32D before computing costs, mitigating the curse of dimensionality for OT convergence.\\n\\n**Scalable OT computation (two-tier)**:\\n- Tier 1 — Exact (datasets ≤500 demos): Pairwise W2 distances via entropy-regularized Sinkhorn (POT/geomloss). For RoboMimic (300 demos, T≈200): 300²/2 = 45K Sinkhorn solves × ~5ms each on GPU ≈ 4 minutes wall-clock. For LIBERO (50 demos/task): 1225 pairs ≈ 6 seconds/task. Exact computation is tractable at target benchmark scales.\\n- Tier 2 — Amortized (datasets >500 demos or for rapid iteration): Train a Wasserstein Wormhole encoder (Haviv et al., ICML 2024) on the trajectory distribution dataset, mapping each μ_τ to a fixed-dimensional embedding where Euclidean distances approximate W2 distances. Pairwise distances become O(N²) vector operations (milliseconds). Wormhole decoders also enable barycenter estimation directly in embedding space. Alternative: sliced Wasserstein distances (O(N²·K·T log T) with K projection directions) as a simpler fallback.\\n\\n**Mode discovery and scoring**: Perform k-Wasserstein-barycenter clustering in transport space (or embedding space under Tier 2), where k is selected via silhouette analysis. This is explicitly a mode identification step — our contribution is that mode discovery and quality scoring are unified within one OT framework rather than requiring separate pipelines. Each trajectory is scored by its W2-distance to its assigned cluster's robust barycenter, computed using the iterative reweighting scheme of Le Gouic et al. (2026). Trajectories with scores exceeding an adaptive threshold (based on the intra-cluster score distribution) are flagged as outliers.\\n\\n**Theoretical analysis**: We contribute a novel application of existing robust Wasserstein barycenter theory to trajectory quality scoring — not new theory per se, but a non-trivial problem formulation that inherits provable guarantees. Specifically, under an ε-contamination noise model (a fraction ε of demonstrations are drawn from an arbitrary noise distribution), we instantiate the consistency and breakdown-point results of robust Wasserstein barycenters (Le Gouic et al., 2026; Nietert et al., 2022) to derive: (1) a bound on the false-positive rate for outlier detection as a function of ε and the separation between clean and noise distributions, and (2) consistency of the estimated barycenter as the number of clean demonstrations grows. These inherited guarantees are actionable: they tell practitioners what outlier detection accuracy to expect given estimated noise levels, which no competing method provides.\\n\\n**Evaluation**: Fine-tune OpenVLA-OFT (7B, LoRA) and SmolVLA (450M, full) on filtered vs. unfiltered subsets of RoboMimic (Lift, Can, Square, Transport) and LIBERO-10. Compare against 6 baselines: CUPID, DemInf, SCIZOR, RINSE + unfiltered + random-subset controls. QoQ and DataMIL are discussed in related work (QoQ requires a validation set violating our problem setting; DataMIL requires policy retraining). Metrics: task success rate (primary), sample efficiency curves, and correlation between OT-scores and human quality ratings where available. Ablations: ground cost weight sensitivity, k selection, regularization strength ε, PCA dimensionality, Tier 1 vs Tier 2 scaling.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~1800h A100 (OT pipeline: ~50h; OpenVLA-OFT LoRA fine-tuning: 6 baselines+ours+unfiltered × 2 benchmarks × ~15h = 240h; OpenVLA-OFT full fine-tuning for final results: 4 runs × 250h = 1000h; SmolVLA: 16 runs × 4h = 64h; evaluation rollouts: ~100h; ablations: ~200h; Wormhole training: ~50h; buffer: ~100h)\",\n      \"gpu_utilization\": \"~45% — significant idle time during OT pipeline development, cost metric design iteration, and barycenter convergence debugging\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers (1 lead with OT/robotics background, 1 optional for running VLA fine-tuning experiments in parallel)\",\n      \"estimated_gpu_cost\": \"$2,700 (1800h × $1.50/h A100)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~1600h A100 (agent handles OT pipeline, hyperparameter sweeps, and VLA orchestration; reduced idle time)\",\n      \"gpu_utilization\": \"~80% — agent queues experiments with minimal gaps; human reviews experiment designs and theoretical derivations\",\n      \"timeline\": \"6-10 weeks\",\n      \"team\": \"1 researcher, ~30-45min/day for approving experiment plans, reviewing OT convergence, and verifying theoretical instantiation\",\n      \"claude_api_cost\": \"$200-400\",\n      \"estimated_gpu_cost\": \"$2,400 (1600h × $1.50/h)\",\n      \"risk_note\": \"Instantiating robust barycenter theory for trajectory noise models requires careful mathematical reasoning; agent can draft but human must verify\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~2500h A100 (3-4x more ablations: full sweep over cost weights, k values, regularization, PCA dims, scaling tier comparison; additional baselines)\",\n      \"gpu_utilization\": \"~90% — agent queues experiments back-to-back with parallel ablation runs\",\n      \"timeline\": \"2-4 weeks with 4+ concurrent A100 GPUs\",\n      \"team\": \"0 (initial setup: dataset paths, GPU access, simulation environments for LIBERO rollouts)\",\n      \"claude_api_cost\": \"$400-800\",\n      \"estimated_gpu_cost\": \"$3,750 (2500h × $1.50/h)\",\n      \"speed_bottleneck\": \"GPU count — OpenVLA-OFT full fine-tuning (8 A100s, 1-2 days per run) serializes if fewer GPUs available. LIBERO simulation rollouts are CPU-bound.\",\n      \"risk_note\": \"Automated agents may over-explore OT hyperparameters without converging on theoretically motivated choices; theoretical derivations require human verification\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (deadline expected July-August 2026 — realistic primary target, ~2.5-3 months)\",\n    \"ICLR 2027 (deadline ~September-October 2026 — comfortable timeline for thorough evaluation)\",\n    \"CoRL 2027 (deadline ~May 2027 — fallback if additional experiments needed)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)\",\n    \"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (arXiv 2025, UT Austin)\",\n    \"Robot Data Curation with Mutual Information Estimators — DemInf (RSS 2025)\",\n    \"SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026)\",\n    \"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning (arXiv 2026)\",\n    \"Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning — RINSE (ICML 2025)\",\n    \"Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration (ACM THRI 2024)\",\n    \"Optimal Transport for Offline Imitation Learning — OTR (ICLR 2023)\",\n    \"Robot Policy Learning with Temporal Optimal Transport Reward (NeurIPS 2024)\",\n    \"Cross-Domain Imitation Learning via Optimal Transport — GWIL (ICLR 2022)\",\n    \"Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformers (ICML 2024)\",\n    \"Barycenters in the Wasserstein Space (SIAM J. Math. Anal. 2011)\",\n    \"Robust Wasserstein Barycenter (arXiv 2026)\",\n    \"Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024)\",\n    \"Lightspeed Geometric Dataset Distance via Sliced Optimal Transport (ICLR 2025)\"\n  ],\n  \"description\": \"We propose OT-Consensus, a policy-agnostic method for scoring demonstration quality in robot learning datasets using optimal transport. Each trajectory is represented as a discrete measure over state-action-time tuples, and pairwise Wasserstein-2 distances capture distributional similarity via an explicitly designed ground cost metric that handles heterogeneous observation/action components through per-group normalization and weighted combination (position, orientation, gripper, action, time), with PCA dimensionality reduction to mitigate the curse of dimensionality. Computation scales via a two-tier approach: exact Sinkhorn for datasets up to ~500 demonstrations (tractable — 300 RoboMimic demos require ~4 minutes on GPU), and amortized Wasserstein Wormhole embeddings (ICML 2024) for larger datasets where Euclidean distances in embedding space approximate W2 distances in O(N) time. To handle multimodal demonstration distributions, we perform k-Wasserstein-barycenter clustering — an explicit mode identification step — then score each demonstration by its W2-distance from its cluster's robust barycenter. Our key contribution is unifying mode discovery and quality scoring within one OT framework, rather than requiring separate pipelines as in SCIZOR (progress + dedup) or sequential mode-then-score approaches. Unlike policy-dependent methods (CUPID, QoQ, DataMIL), OT-Consensus requires no policy training, evaluation rollouts, or validation set. Unlike DemInf's global MI scoring, it explicitly handles multiple valid strategies. Unlike RINSE's smoothness assumption, it accommodates any trajectory geometry. We provide theoretical analysis as a novel application — not new theory — of robust Wasserstein barycenter results (Le Gouic et al. 2026; Nietert et al. 2022), instantiating consistency and breakdown-point guarantees for trajectory outlier detection under ε-contamination noise models. Evaluation fine-tunes OpenVLA-OFT (7B, LoRA) and SmolVLA (450M) on filtered subsets of RoboMimic and LIBERO-10, comparing against CUPID, DemInf, SCIZOR, RINSE, and unfiltered baselines. Estimated compute: ~1800 A100-hours for full evaluation. OT-Consensus can also serve as a complementary pre-filter before policy-dependent methods like CUPID, as a pipeline combination experiment. All building blocks exist: POT/geomloss for OT, Wasserstein Wormhole code for scaling, public baselines with code (CUPID, DemInf, SCIZOR on GitHub), and open-source VLA models. Primary target: AAAI 2027 (deadline ~August 2026).\",\n  \"project_name\": \"ot_traj_consensus\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL: Generator missed 3 major competing works that must be cited and compared against: (1) CUPID (CoRL 2025) — influence functions for robot data curation with strong empirical results, (2) DataMIL (May 2025, UT Austin) — policy-driven data selection validated on 60+ tasks including Open X-Embodiment, (3) DemInf (RSS 2025) — mutual information estimators for demo quality, 5-10% improvement on RoboMimic. All three are published at top robotics venues and directly compete with the proposed approach.\", \"Computational scalability is not adequately addressed: pairwise W2 distances require O(N²) Sinkhorn solves, each O(T² log T) per trajectory pair; Wasserstein barycenters are NP-hard in general and suffer a curse of dimensionality (exponential in state-action-time dimensionality). For datasets with thousands of demonstrations and high-dimensional robot states, this could be prohibitively expensive.\", \"GPU cost estimates are significantly underestimated: OpenVLA-OFT fine-tuning alone requires 8 A100s for 1-2 days (~192-384 A100h per run). With 4+ baselines (SCIZOR, QoQ, RINSE, unfiltered) × 2 models (OpenVLA-OFT, SmolVLA) × 2 benchmarks (RoboMimic, LIBERO) × multiple ablations, realistic compute is likely 1500-2500 A100h, not 400h.\", \"The claim 'naturally distinguishes noise from valid strategic diversity without separate mode identification steps' is misleading — k-Wasserstein-barycenter clustering IS a mode identification/discovery step. The approach does require choosing k (number of strategy modes) and running a clustering algorithm, which is precisely 'separate mode identification.'\", \"The theoretical contribution (provable outlier detection bounds under epsilon-contamination) assembles existing results from Robust Wasserstein Barycenter theory (arXiv Mar 2026) and Outlier-Robust OT (Mukherjee et al. 2021, Nietert et al. 2022) rather than deriving fundamentally new theory. This should be positioned as a novel application of existing theory, not as a theoretical contribution per se.\", \"CoRL 2026 timeline (17 days to abstract, 20 days to paper) is unrealistic for a from-scratch project. The user's requirement specifically targets CoRL 2026, but the proposal's own venue list relegates it to a stretch goal. AAAI 2027 and ICLR 2027 are more realistic but the user explicitly asked for CoRL 2026.\", \"No discussion of how the ground cost metric in state-action-time space should be designed — this is a critical design choice that significantly affects OT distances and is non-trivial for heterogeneous robot observation/action spaces (joint angles, gripper states, visual features have very different scales and semantics).\"]\nFeedback: To bring this to CoRL-acceptable quality, the Generator should: (1) **Add all missing baselines**: CUPID, DataMIL, and DemInf must be included in the landscape and experimental comparisons — these are published at CoRL 2025 and RSS 2025 and will be known to reviewers. (2) **Address computational scaling**: Propose concrete solutions — e.g., approximate OT via Wasserstein Wormhole embeddings for O(N) amortized distance computation, sliced Wasserstein distances instead of full W2, or subsampling strategies. Provide explicit complexity analysis for realistic dataset sizes (e.g., RoboMimic has ~200-300 demos per task, LIBERO has ~50 demos per task — compute actual wall-clock estimates). (3) **Fix the cost estimate**: Recalculate GPU hours accounting for VLA fine-tuning across all baseline conditions. Realistic estimates should be 1500-2500h A100 for manual mode, not 400h. (4) **Reframe theoretical contribution honestly**: Position as 'novel application of robust OT theory to trajectory quality scoring' rather than implying new theory. (5) **Design the ground cost metric explicitly**: Propose how to handle heterogeneous state-action-time dimensions (normalization, learned embeddings, or task-specific cost functions). (6) **Drop the misleading 'no mode identification' claim**: The k-barycenter clustering IS mode identification; instead, emphasize the advantage is that mode identification and quality scoring are unified in one principled OT framework. (7) **For CoRL 2026 feasibility**: The user should assess whether they already have partial implementation/results; if starting from scratch, target AAAI 2027 instead and be upfront about this.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T09:38:50.075Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-13T09:38:50.075Z",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+## Round 1
+
+112 recorded events
+
+### User
+
+_source line 3 · 2026-05-13T09:38:50.122Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-13 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).
+Direction：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 2/10)
+{
+  "title": "OT-Consensus: Distributional Trajectory Scoring via Optimal Transport for Demonstration Quality Filtering",
+  "core_problem": "How to identify noisy/outlier demonstrations in a principled, policy-agnostic way that naturally handles multimodal demonstration distributions (multiple valid strategies) without requiring validation sets, evaluation rollouts, or policy training?",
+  "opportunity": "The robot demonstration curation landscape has rapidly matured (CUPID, DataMIL, DemInf, SCIZOR, QoQ, RINSE — all published 2025-2026), but a clear methodological gap persists: existing methods are either policy-dependent (CUPID, QoQ, DataMIL require training or rolling out a policy), require labeled validation data (QoQ), or are policy-agnostic but lack explicit multimodal handling (DemInf scores global MI, RINSE assumes smoothness universally). No existing method provides a unified, policy-agnostic framework that simultaneously discovers multiple valid strategy modes and scores demonstrations relative to mode-specific consensus with distributional guarantees. Optimal transport provides the mathematical apparatus — Wasserstein distances define a principled metric on trajectory distributions, barycenters yield noise-robust consensus references, and recent robust barycenter theory (arXiv 2026) provides consistency guarantees. OT has been applied to reward labeling (OTR, TemporalOT) and cross-domain imitation (GWIL) but never to intra-dataset quality scoring. This fills the gap identified in the ICLR 2026 VLA blog of lacking 'good methods to quantify data quality' with a method that complements rather than competes with policy-dependent approaches — OT-Consensus can serve as a pre-training filter before any policy-dependent method is applied.",
+  "landscape": "The demonstration curation field has consolidated around three paradigms, each with distinct tradeoffs:\n\n**Policy-dependent methods** (require training or evaluating a policy):\n- CUPID (CoRL 2025): Influence functions on expected return from closed-loop rollouts. Achieves SOTA on RoboMimic with <33% curated data. Limitation: requires evaluation rollouts and a trained policy, making it architecture-specific and compute-intensive for iterative curation.\n- QoQ (arXiv Mar 2026): Influence functions on validation loss with trajectory-level aggregation. Up to 23.2% improvement on RoboMimic. Limitation: requires a validation set of known-good demos, O(n²) scaling.\n- DataMIL (May 2025, UT Austin): Datamodels paradigm for end-to-end policy-driven selection. 10% boost on MetaWorld 50 tasks, validated on Open X-Embodiment. Limitation: requires multiple policy retrainings to build the datamodel, expensive at scale.\n\n**Policy-agnostic feature-based methods** (no policy training needed):\n- DemInf (RSS 2025): k-NN mutual information estimators on VAE embeddings. Unsupervised, 5-10% on RoboMimic. Limitation: MI measures statistical dependency, not distributional consensus — does not explicitly discover or handle multiple valid strategy modes.\n- RINSE (ICML 2025): Spectral Arc Length (SAL) and Trajectory-Envelope Distance (TED) smoothness metrics. 16-20% gains with data subset. Limitation: assumes smoothness universally correlates with quality, fails for tasks where jerky/rapid motions are optimal strategy.\n- SCIZOR (ICRA 2026): Self-supervised progress prediction + visual-action clustering for dedup. 15.4% average improvement. Limitation: heuristic progress signal, no theoretical guarantees, cannot distinguish noise from valid diversity.\n- Consistency Matters (ACM THRI 2024): Geometric consistency metrics predicting success with 76-91% accuracy. Limitation: limited to geometric properties without distributional analysis.\n\n**OT in imitation learning** (applied to reward/imitation, never intra-dataset quality):\n- OTR (ICLR 2023): OT alignment between offline trajectories and expert demos for reward labeling.\n- Temporal OT Reward (NeurIPS 2024): Extends OTR with temporal ordering constraints.\n- GWIL (ICLR 2022): Gromov-Wasserstein for cross-domain imitation.\n\n**Gap**: No method combines policy-agnostic operation, explicit multimodal strategy discovery, distributional quality scoring, and theoretical guarantees in a unified framework. OT-Consensus fills this gap by treating each trajectory as a distribution and leveraging Wasserstein geometry for consensus-based scoring.",
+  "approach": "**Trajectory representation**: Each demonstration τ of length T is represented as a discrete probability measure μ_τ = (1/T) Σ_t δ_{(s_t, a_t, t/T)} over state-action-time tuples, where time is normalized to [0,1].\n\n**Ground cost metric design**: The cost between two state-action-time tuples is a weighted combination of component-wise normalized squared distances:\n  c((s₁,a₁,t₁), (s₂,a₂,t₂)) = w_pos·‖ψ(pos₁) - ψ(pos₂)‖² + w_rot·d_rot(rot₁,rot₂)² + w_grip·(g₁-g₂)² + w_act·‖ψ(a₁) - ψ(a₂)‖² + w_t·(t₁-t₂)²\nwhere ψ denotes z-score normalization per dimension, d_rot is geodesic distance for orientations, and component weights {w_*} are set to equal after normalization by default with sensitivity analysis over weight ratios reported as an ablation. For high-dimensional observation spaces (e.g., visual features), we apply PCA to reduce to 16-32D before computing costs, mitigating the curse of dimensionality for OT convergence.\n\n**Scalable OT computation (two-tier)**:\n- Tier 1 — Exact (datasets ≤500 demos): Pairwise W2 distances via entropy-regularized Sinkhorn (POT/geomloss). For RoboMimic (300 demos, T≈200): 300²/2 = 45K Sinkhorn solves × ~5ms each on GPU ≈ 4 minutes wall-clock. For LIBERO (50 demos/task): 1225 pairs ≈ 6 seconds/task. Exact computation is tractable at target benchmark scales.\n- Tier 2 — Amortized (datasets >500 demos or for rapid iteration): Train a Wasserstein Wormhole encoder (Haviv et al., ICML 2024) on the trajectory distribution dataset, mapping each μ_τ to a fixed-dimensional embedding where Euclidean distances approximate W2 distances. Pairwise distances become O(N²) vector operations (milliseconds). Wormhole decoders also enable barycenter estimation directly in embedding space. Alternative: sliced Wasserstein distances (O(N²·K·T log T) with K projection directions) as a simpler fallback.\n\n**Mode discovery and scoring**: Perform k-Wasserstein-barycenter clustering in transport space (or embedding space under Tier 2), where k is selected via silhouette analysis. This is explicitly a mode identification step — our contribution is that mode discovery and quality scoring are unified within one OT framework rather than requiring separate pipelines. Each trajectory is scored by its W2-distance to its assigned cluster's robust barycenter, computed using the iterative reweighting scheme of Le Gouic et al. (2026). Trajectories with scores exceeding an adaptive threshold (based on the intra-cluster score distribution) are flagged as outliers.\n\n**Theoretical analysis**: We contribute a novel application of existing robust Wasserstein barycenter theory to trajectory quality scoring — not new theory per se, but a non-trivial problem formulation that inherits provable guarantees. Specifically, under an ε-contamination noise model (a fraction ε of demonstrations are drawn from an arbitrary noise distribution), we instantiate the consistency and breakdown-point results of robust Wasserstein barycenters (Le Gouic et al., 2026; Nietert et al., 2022) to derive: (1) a bound on the false-positive rate for outlier detection as a function of ε and the separation between clean and noise distributions, and (2) consistency of the estimated barycenter as the number of clean demonstrations grows. These inherited guarantees are actionable: they tell practitioners what outlier detection accuracy to expect given estimated noise levels, which no competing method provides.\n\n**Evaluation**: Fine-tune OpenVLA-OFT (7B, LoRA) and SmolVLA (450M, full) on filtered vs. unfiltered subsets of RoboMimic (Lift, Can, Square, Transport) and LIBERO-10. Compare against 6 baselines: CUPID, DemInf, SCIZOR, RINSE + unfiltered + random-subset controls. QoQ and DataMIL are discussed in related work (QoQ requires a validation set violating our problem setting; DataMIL requires policy retraining). Metrics: task success rate (primary), sample efficiency curves, and correlation between OT-scores and human quality ratings where available. Ablations: ground cost weight sensitivity, k selection, regularization strength ε, PCA dimensionality, Tier 1 vs Tier 2 scaling.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~1800h A100 (OT pipeline: ~50h; OpenVLA-OFT LoRA fine-tuning: 6 baselines+ours+unfiltered × 2 benchmarks × ~15h = 240h; OpenVLA-OFT full fine-tuning for final results: 4 runs × 250h = 1000h; SmolVLA: 16 runs × 4h = 64h; evaluation rollouts: ~100h; ablations: ~200h; Wormhole training: ~50h; buffer: ~100h)",
+      "gpu_utilization": "~45% — significant idle time during OT pipeline development, cost metric design iteration, and barycenter convergence debugging",
+      "timeline": "3-4 months",
+      "team": "1-2 researchers (1 lead with OT/robotics background, 1 optional for running VLA fine-tuning experiments in parallel)",
+      "estimated_gpu_cost": "$2,700 (1800h × $1.50/h A100)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~1600h A100 (agent handles OT pipeline, hyperparameter sweeps, and VLA orchestration; reduced idle time)",
+      "gpu_utilization": "~80% — agent queues experiments with minimal gaps; human reviews experiment designs and theoretical derivations",
+      "timeline": "6-10 weeks",
+      "team": "1 researcher, ~30-45min/day for approving experiment plans, reviewing OT convergence, and verifying theoretical instantiation",
+      "claude_api_cost": "$200-400",
+      "estimated_gpu_cost": "$2,400 (1600h × $1.50/h)",
+      "risk_note": "Instantiating robust barycenter theory for trajectory noise models requires careful mathematical reasoning; agent can draft but human must verify"
+    },
+    "auto_research": {
+      "gpu_hours": "~2500h A100 (3-4x more ablations: full sweep over cost weights, k values, regularization, PCA dims, scaling tier comparison; additional baselines)",
+      "gpu_utilization": "~90% — agent queues experiments back-to-back with parallel ablation runs",
+      "timeline": "2-4 weeks with 4+ concurrent A100 GPUs",
+      "team": "0 (initial setup: dataset paths, GPU access, simulation environments for LIBERO rollouts)",
+      "claude_api_cost": "$400-800",
+      "estimated_gpu_cost": "$3,750 (2500h × $1.50/h)",
+      "speed_bottleneck": "GPU count — OpenVLA-OFT full fine-tuning (8 A100s, 1-2 days per run) serializes if fewer GPUs available. LIBERO simulation rollouts are CPU-bound.",
+      "risk_note": "Automated agents may over-explore OT hyperparameters without converging on theoretically motivated choices; theoretical derivations require human verification"
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (deadline expected July-August 2026 — realistic primary target, ~2.5-3 months)",
+    "ICLR 2027 (deadline ~September-October 2026 — comfortable timeline for thorough evaluation)",
+    "CoRL 2027 (deadline ~May 2027 — fallback if additional experiments needed)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)",
+    "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (arXiv 2025, UT Austin)",
+    "Robot Data Curation with Mutual Information Estimators — DemInf (RSS 2025)",
+    "SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026)",
+    "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning (arXiv 2026)",
+    "Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning — RINSE (ICML 2025)",
+    "Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration (ACM THRI 2024)",
+    "Optimal Transport for Offline Imitation Learning — OTR (ICLR 2023)",
+    "Robot Policy Learning with Temporal Optimal Transport Reward (NeurIPS 2024)",
+    "Cross-Domain Imitation Learning via Optimal Transport — GWIL (ICLR 2022)",
+    "Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformers (ICML 2024)",
+    "Barycenters in the Wasserstein Space (SIAM J. Math. Anal. 2011)",
+    "Robust Wasserstein Barycenter (arXiv 2026)",
+    "Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024)",
+    "Lightspeed Geometric Dataset Distance via Sliced Optimal Transport (ICLR 2025)"
+  ],
+  "description": "We propose OT-Consensus, a policy-agnostic method for scoring demonstration quality in robot learning datasets using optimal transport. Each trajectory is represented as a discrete measure over state-action-time tuples, and pairwise Wasserstein-2 distances capture distributional similarity via an explicitly designed ground cost metric that handles heterogeneous observation/action components through per-group normalization and weighted combination (position, orientation, gripper, action, time), with PCA dimensionality reduction to mitigate the curse of dimensionality. Computation scales via a two-tier approach: exact Sinkhorn for datasets up to ~500 demonstrations (tractable — 300 RoboMimic demos require ~4 minutes on GPU), and amortized Wasserstein Wormhole embeddings (ICML 2024) for larger datasets where Euclidean distances in embedding space approximate W2 distances in O(N) time. To handle multimodal demonstration distributions, we perform k-Wasserstein-barycenter clustering — an explicit mode identification step — then score each demonstration by its W2-distance from its cluster's robust barycenter. Our key contribution is unifying mode discovery and quality scoring within one OT framework, rather than requiring separate pipelines as in SCIZOR (progress + dedup) or sequential mode-then-score approaches. Unlike policy-dependent methods (CUPID, QoQ, DataMIL), OT-Consensus requires no policy training, evaluation rollouts, or validation set. Unlike DemInf's global MI scoring, it explicitly handles multiple valid strategies. Unlike RINSE's smoothness assumption, it accommodates any trajectory geometry. We provide theoretical analysis as a novel application — not new theory — of robust Wasserstein barycenter results (Le Gouic et al. 2026; Nietert et al. 2022), instantiating consistency and breakdown-point guarantees for trajectory outlier detection under ε-contamination noise models. Evaluation fine-tunes OpenVLA-OFT (7B, LoRA) and SmolVLA (450M) on filtered subsets of RoboMimic and LIBERO-10, comparing against CUPID, DemInf, SCIZOR, RINSE, and unfiltered baselines. Estimated compute: ~1800 A100-hours for full evaluation. OT-Consensus can also serve as a complementary pre-filter before policy-dependent methods like CUPID, as a pipeline combination experiment. All building blocks exist: POT/geomloss for OT, Wasserstein Wormhole code for scaling, public baselines with code (CUPID, DemInf, SCIZOR on GitHub), and open-source VLA models. Primary target: AAAI 2027 (deadline ~August 2026).",
+  "project_name": "ot_traj_consensus",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL: Generator missed 3 major competing works that must be cited and compared against: (1) CUPID (CoRL 2025) — influence functions for robot data curation with strong empirical results, (2) DataMIL (May 2025, UT Austin) — policy-driven data selection validated on 60+ tasks including Open X-Embodiment, (3) DemInf (RSS 2025) — mutual information estimators for demo quality, 5-10% improvement on RoboMimic. All three are published at top robotics venues and directly compete with the proposed approach.", "Computational scalability is not adequately addressed: pairwise W2 distances require O(N²) Sinkhorn solves, each O(T² log T) per trajectory pair; Wasserstein barycenters are NP-hard in general and suffer a curse of dimensionality (exponential in state-action-time dimensionality). For datasets with thousands of demonstrations and high-dimensional robot states, this could be prohibitively expensive.", "GPU cost estimates are significantly underestimated: OpenVLA-OFT fine-tuning alone requires 8 A100s for 1-2 days (~192-384 A100h per run). With 4+ baselines (SCIZOR, QoQ, RINSE, unfiltered) × 2 models (OpenVLA-OFT, SmolVLA) × 2 benchmarks (RoboMimic, LIBERO) × multiple ablations, realistic compute is likely 1500-2500 A100h, not 400h.", "The claim 'naturally distinguishes noise from valid strategic diversity without separate mode identification steps' is misleading — k-Wasserstein-barycenter clustering IS a mode identification/discovery step. The approach does require choosing k (number of strategy modes) and running a clustering algorithm, which is precisely 'separate mode identification.'", "The theoretical contribution (provable outlier detection bounds under epsilon-contamination) assembles existing results from Robust Wasserstein Barycenter theory (arXiv Mar 2026) and Outlier-Robust OT (Mukherjee et al. 2021, Nietert et al. 2022) rather than deriving fundamentally new theory. This should be positioned as a novel application of existing theory, not as a theoretical contribution per se.", "CoRL 2026 timeline (17 days to abstract, 20 days to paper) is unrealistic for a from-scratch project. The user's requirement specifically targets CoRL 2026, but the proposal's own venue list relegates it to a stretch goal. AAAI 2027 and ICLR 2027 are more realistic but the user explicitly asked for CoRL 2026.", "No discussion of how the ground cost metric in state-action-time space should be designed — this is a critical design choice that significantly affects OT distances and is non-trivial for heterogeneous robot observation/action spaces (joint angles, gripper states, visual features have very different scales and semantics)."]
+Feedback: To bring this to CoRL-acceptable quality, the Generator should: (1) **Add all missing baselines**: CUPID, DataMIL, and DemInf must be included in the landscape and experimental comparisons — these are published at CoRL 2025 and RSS 2025 and will be known to reviewers. (2) **Address computational scaling**: Propose concrete solutions — e.g., approximate OT via Wasserstein Wormhole embeddings for O(N) amortized distance computation, sliced Wasserstein distances instead of full W2, or subsampling strategies. Provide explicit complexity analysis for realistic dataset sizes (e.g., RoboMimic has ~200-300 demos per task, LIBERO has ~50 demos per task — compute actual wall-clock estimates). (3) **Fix the cost estimate**: Recalculate GPU hours accounting for VLA fine-tuning across all baseline conditions. Realistic estimates should be 1500-2500h A100 for manual mode, not 400h. (4) **Reframe theoretical contribution honestly**: Position as 'novel application of robust OT theory to trajectory quality scoring' rather than implying new theory. (5) **Design the ground cost metric explicitly**: Propose how to handle heterogeneous state-action-time dimensions (normalization, learned embeddings, or task-specific cost functions). (6) **Drop the misleading 'no mode identification' claim**: The k-barycenter clustering IS mode identification; instead, emphasize the advantage is that mode identification and quality scoring are unified in one principled OT framework. (7) **For CoRL 2026 feasibility**: The user should assess whether they already have partial implementation/results; if starting from scratch, target AAAI 2027 instead and be upfront about this.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "0812c09a-cc90-42e2-b900-72733b418e34",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-13T09:38:50.119Z_
+
+```json
+{
+  "parentUuid": "0812c09a-cc90-42e2-b900-72733b418e34",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "405e0e28-8cc2-4616-9a0d-9be033b7ef09",
+  "timestamp": "2026-05-13T09:38:50.119Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-13T09:38:50.119Z_
+
+```json
+{
+  "parentUuid": "405e0e28-8cc2-4616-9a0d-9be033b7ef09",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "f27ed21d-3025-48db-8525-80f2e475e4ac",
+  "timestamp": "2026-05-13T09:38:50.119Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f27ed21d-3025-48db-8525-80f2e475e4ac",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify OT-Consensus for CoRL robustness",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-13T09:38:58.768Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea as a strict ML research reviewer. I need to independently verify claims, check for competing work, assess novelty, feasibility, and overall quality. Let me start by searching for the key claims and competing works.
+
+Let me plan my searches:
+
+1. Verify the competing works mentioned (CUPID, DataMIL, DemInf, SCIZOR, QoQ, RINSE)
+2. Check for any additional competing works the generator may have missed
+3. Verify OT-related claims (Wasserstein Wormhole, robust barycenters)
+
+
+4. Look up the CoRL 2026 submission deadline and search for concurrent work on optimal transport applied to demonstration quality assessment
+5. Validate whether there's actually a meaningful gap in the literature that this work addresses
+
+Let me run these searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f27ed21d-3025-48db-8525-80f2e475e4ac",
+  "isSidechain": false,
+  "requestId": "req_011CazLy8n5NYpyNH7t6bQrE",
+  "type": "assistant",
+  "uuid": "e3e5971b-8d3f-473b-aea1-71292f5b907e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0142d4rUVNRQnx77EnhEis9x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14408,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-13T09:38:58.778Z_
+
+I'll conduct a thorough independent review of this idea. Let me start by verifying claims and searching for competing work across multiple dimensions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3e5971b-8d3f-473b-aea1-71292f5b907e",
+  "isSidechain": false,
+  "requestId": "req_011CazLy8n5NYpyNH7t6bQrE",
+  "type": "assistant",
+  "uuid": "0c056b6f-4cba-43ee-bf9e-3e80efe4d169",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0142d4rUVNRQnx77EnhEis9x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14408,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T09:38:59.170Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MbtuXBefQaEte12Kx3Mk2B`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c056b6f-4cba-43ee-bf9e-3e80efe4d169",
+  "isSidechain": false,
+  "requestId": "req_011CazLy8n5NYpyNH7t6bQrE",
+  "type": "assistant",
+  "uuid": "75e16c68-e0e1-4b6c-912c-c071886f8e7d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0142d4rUVNRQnx77EnhEis9x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14408,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T09:38:59.178Z_
+
+<details><summary>↩ Tool result · `toolu_01MbtuXBefQaEte12Kx3Mk2B`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "75e16c68-e0e1-4b6c-912c-c071886f8e7d",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "cf05175d-b979-4e5d-825c-17a812d70a3a",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "75e16c68-e0e1-4b6c-912c-c071886f8e7d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-13T09:39:02.629Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by searching for the key competing works and verifying the claims. I'll run multiple searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf05175d-b979-4e5d-825c-17a812d70a3a",
+  "isSidechain": false,
+  "requestId": "req_011CazLyoWUxkJCaa8zT6mJz",
+  "type": "assistant",
+  "uuid": "a3ba5568-3773-47d9-9978-56811f0f060b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BwgQXDhcTCo9UTyKPimh2y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1320,
+      "cache_read_input_tokens": 26249,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1320,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 26249,
+          "cache_creation_input_tokens": 1320,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1320
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-13T09:39:03.580Z_
+
+Starting my independent review. Let me search for competing works, verify claims, and check for anything the generator may have missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3ba5568-3773-47d9-9978-56811f0f060b",
+  "isSidechain": false,
+  "requestId": "req_011CazLyoWUxkJCaa8zT6mJz",
+  "type": "assistant",
+  "uuid": "d5017e94-659c-4b73-9094-79f7ba024897",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BwgQXDhcTCo9UTyKPimh2y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1320,
+      "cache_read_input_tokens": 26249,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1320,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 26249,
+          "cache_creation_input_tokens": 1320,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1320
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-13T09:39:04.059Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014DCa6Ai87Mnsv53zNtMFdq`</summary>
+
+```json
+{
+  "query": "CoRL 2026 submission deadline Austin"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5017e94-659c-4b73-9094-79f7ba024897",
+  "isSidechain": false,
+  "requestId": "req_011CazLyoWUxkJCaa8zT6mJz",
+  "type": "assistant",
+  "uuid": "723b02f5-358a-44e7-b979-01e6664cf225",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BwgQXDhcTCo9UTyKPimh2y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1320,
+      "cache_read_input_tokens": 26249,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1320,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 26249,
+          "cache_creation_input_tokens": 1320,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1320
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T09:39:05.002Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WAr5vxWSSfqDe6FGV5cudU`</summary>
+
+```json
+{
+  "query": "CUPID curating data robot influence functions CoRL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "723b02f5-358a-44e7-b979-01e6664cf225",
+  "isSidechain": false,
+  "requestId": "req_011CazLyoWUxkJCaa8zT6mJz",
+  "type": "assistant",
+  "uuid": "bf28fda2-85bf-47ff-8e6c-1cba140ee214",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BwgQXDhcTCo9UTyKPimh2y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1320,
+      "cache_read_input_tokens": 26249,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1320,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 26249,
+          "cache_creation_input_tokens": 1320,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1320
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T09:39:05.959Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R4mbw5LYV1hbNZHcdf3dJP`</summary>
+
+```json
+{
+  "query": "optimal transport demonstration quality filtering robot learning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf28fda2-85bf-47ff-8e6c-1cba140ee214",
+  "isSidechain": false,
+  "requestId": "req_011CazLyoWUxkJCaa8zT6mJz",
+  "type": "assistant",
+  "uuid": "5a08b442-cc5f-4eea-866f-47f62c128ca0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BwgQXDhcTCo9UTyKPimh2y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1320,
+      "cache_read_input_tokens": 26249,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1320,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 26249,
+          "cache_creation_input_tokens": 1320,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1320
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-13T09:39:06.109Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011kw2EDun3sDJC1TkRXnWhv`</summary>
+
+```json
+{
+  "query": "demonstration curation robot imitation learning data quality 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a08b442-cc5f-4eea-866f-47f62c128ca0",
+  "isSidechain": false,
+  "requestId": "req_011CazLyoWUxkJCaa8zT6mJz",
+  "type": "assistant",
+  "uuid": "504595dc-a8dc-4d9d-bccb-b9be9b5634bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BwgQXDhcTCo9UTyKPimh2y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1320,
+      "cache_read_input_tokens": 26249,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1320,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 26249,
+          "cache_creation_input_tokens": 1320,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1320
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T09:39:08.669Z_
+
+<details><summary>↩ Tool result · `toolu_014DCa6Ai87Mnsv53zNtMFdq`</summary>
+
+```text
+Web search results for query: "CoRL 2026 submission deadline Austin"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz","url":"https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"}]
+
+Based on the search results, here are the submission deadlines for CoRL 2026 in Austin:
+
+**Abstract submission deadline:** May 26, 2026 11:59 UTC
+
+**Paper submission deadline:** May 29, 2026 11:59 UTC
+
+**Conference dates:** November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701
+
+The deadlines are final, and accommodations cannot be made for missing the abstract deadline or paper deadline. Papers may be submitted through OpenReview.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "723b02f5-358a-44e7-b979-01e6664cf225",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "a6edbd23-73db-4bbc-98c1-ba94c6719682",
+  "toolUseResult": {
+    "query": "CoRL 2026 submission deadline Austin",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017jofu3csawLgoBvXau38ed",
+        "content": [
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz",
+            "url": "https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          }
+        ]
+      },
+      "Based on the search results, here are the submission deadlines for CoRL 2026 in Austin:\n\n**Abstract submission deadline:** May 26, 2026 11:59 UTC\n\n**Paper submission deadline:** May 29, 2026 11:59 UTC\n\n**Conference dates:** November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701\n\nThe deadlines are final, and accommodations cannot be made for missing the abstract deadline or paper deadline. Papers may be submitted through OpenReview."
+    ],
+    "durationSeconds": 4.605444226999998
+  },
+  "sourceToolAssistantUUID": "723b02f5-358a-44e7-b979-01e6664cf225",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T09:39:10.252Z_
+
+<details><summary>↩ Tool result · `toolu_01WAr5vxWSSfqDe6FGV5cudU`</summary>
+
+```text
+Web search results for query: "CUPID curating data robot influence functions CoRL 2025"
+
+Links: [{"title":"GitHub - agiachris/cupid: Official repository for \"CUPID: Curating Data your Robot Loves with Influence Functions,\" accepted to CoRL 2025. · GitHub","url":"https://github.com/agiachris/cupid"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions | OpenReview","url":"https://openreview.net/forum?id=TqevdDMqrK"},{"title":"[2506.19121] CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/abs/2506.19121"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://cupid-curation.github.io/"},{"title":"[2506.19121v2] CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/abs/2506.19121v2"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/html/2506.19121v1"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://proceedings.mlr.press/v305/agia25a.html"},{"title":"[PDF] CUPID: Curating Data your Robot Loves with Influence Functions | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CUPID:-Curating-Data-your-Robot-Loves-with-Agia-Sinha/666481cd9e72de8e90e3dd12fb826338f5ce17f0"},{"title":"Robotics Jun 2025","url":"https://www.arxiv.org/list/cs.RO/2025-06?skip=425&show=500"},{"title":"CUPID: Robot Data Curation via Influence Functions","url":"https://www.emergentmind.com/papers/2506.19121"}]
+
+Based on the search results, I found comprehensive information about CUPID:
+
+## CUPID: Curating Data your Robot Loves with Influence Functions
+
+CUPID is a paper accepted to CoRL 2025, authored by Christopher Agia, Rohan Sinha, Jingyun Yang, Rika Antonova, Marco Pavone, Haruki Nishimura, Masha Itkina, and Jeannette Bohg.
+
+### Overview
+
+CUPID is inspired by the theory of influence functions and, given a set of evaluation rollouts, estimates the influence of a training demonstration on the policy's expected return, enabling ranking and selection of demonstrations according to their impact on the policy's closed-loop performance.
+
+### Key Applications
+
+CUPID curates data by filtering out training demonstrations that harmed the policy's performance and subselecting newly collected trajectories that will most help improve the policy.
+
+### Results
+
+Training with less than 33% of curated data can yield state-of-the-art diffusion policies on the simulated RoboMimic benchmark, with similar gains observed in hardware. Hardware experiments show that the method can identify robust strategies under distribution shift, isolate spurious correlations, and even enhance the post-training of generalist robot policies.
+
+### Resources
+
+The official code repository is available on GitHub, and a project page with videos and code is available at cupid-curation.github.io.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf28fda2-85bf-47ff-8e6c-1cba140ee214",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "84c963b9-b29c-4a63-81e5-c08b2c872c53",
+  "toolUseResult": {
+    "query": "CUPID curating data robot influence functions CoRL 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016HC6eDhuCJDrS8UMdxXFNe",
+        "content": [
+          {
+            "title": "GitHub - agiachris/cupid: Official repository for \"CUPID: Curating Data your Robot Loves with Influence Functions,\" accepted to CoRL 2025. · GitHub",
+            "url": "https://github.com/agiachris/cupid"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions | OpenReview",
+            "url": "https://openreview.net/forum?id=TqevdDMqrK"
+          },
+          {
+            "title": "[2506.19121] CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/abs/2506.19121"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://cupid-curation.github.io/"
+          },
+          {
+            "title": "[2506.19121v2] CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/abs/2506.19121v2"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/html/2506.19121v1"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://proceedings.mlr.press/v305/agia25a.html"
+          },
+          {
+            "title": "[PDF] CUPID: Curating Data your Robot Loves with Influence Functions | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CUPID:-Curating-Data-your-Robot-Loves-with-Agia-Sinha/666481cd9e72de8e90e3dd12fb826338f5ce17f0"
+          },
+          {
+            "title": "Robotics Jun 2025",
+            "url": "https://www.arxiv.org/list/cs.RO/2025-06?skip=425&show=500"
+          },
+          {
+            "title": "CUPID: Robot Data Curation via Influence Functions",
+            "url": "https://www.emergentmind.com/papers/2506.19121"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about CUPID:\n\n## CUPID: Curating Data your Robot Loves with Influence Functions\n\nCUPID is a paper accepted to CoRL 2025, authored by Christopher Agia, Rohan Sinha, Jingyun Yang, Rika Antonova, Marco Pavone, Haruki Nishimura, Masha Itkina, and Jeannette Bohg.\n\n### Overview\n\nCUPID is inspired by the theory of influence functions and, given a set of evaluation rollouts, estimates the influence of a training demonstration on the policy's expected return, enabling ranking and selection of demonstrations according to their impact on the policy's closed-loop performance.\n\n### Key Applications\n\nCUPID curates data by filtering out training demonstrations that harmed the policy's performance and subselecting newly collected trajectories that will most help improve the policy.\n\n### Results\n\nTraining with less than 33% of curated data can yield state-of-the-art diffusion policies on the simulated RoboMimic benchmark, with similar gains observed in hardware. Hardware experiments show that the method can identify robust strategies under distribution shift, isolate spurious correlations, and even enhance the post-training of generalist robot policies.\n\n### Resources\n\nThe official code repository is available on GitHub, and a project page with videos and code is available at cupid-curation.github.io."
+    ],
+    "durationSeconds": 5.247729661999999
+  },
+  "sourceToolAssistantUUID": "bf28fda2-85bf-47ff-8e6c-1cba140ee214",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-13T09:39:12.601Z_
+
+<details><summary>↩ Tool result · `toolu_01R4mbw5LYV1hbNZHcdf3dJP`</summary>
+
+```text
+Web search results for query: "optimal transport demonstration quality filtering robot learning 2025 2026"
+
+Links: [{"title":"Watch and Match: Supercharging Imitation with Regularized Optimal Transport","url":"https://rot-robot.github.io/"},{"title":"Optimal Transport for Offline Imitation Learning | OpenReview","url":"https://openreview.net/forum?id=MhuFzFsrfvH"},{"title":"Watch and Match: Supercharging Imitation with Regularized Optimal Transport | OpenReview","url":"https://openreview.net/forum?id=ZUtgUA0Fuwd"},{"title":"Optimal Transport Perturbations for Safe Reinforcement Learning with Robustness Guarantees | OpenReview","url":"https://openreview.net/forum?id=cgSXpAR4Gl"},{"title":"A Survey on Optimal Transport for Machine Learning: Theory and Applications | IEEE Journals & Magazine | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/10877795/"},{"title":"Optimal Transport and Machine Learning 2023","url":"https://otmlworkshop.github.io/"},{"title":"Track: Oral 2E Optimal Transport","url":"https://icml.cc/virtual/2025/session/46903"},{"title":"Published as a conference paper at ICLR 2023 OPTIMAL TRANSPORT FOR OFFLINE","url":"https://openreview.net/pdf?id=MhuFzFsrfvH"},{"title":"Rémi Flamary / Optimal Transport for Machine Learning tutorial","url":"https://remi.flamary.com/cours/tuto_otml.html"},{"title":"Optimal Transport and Machine Learning","url":"https://neurips.cc/virtual/2023/workshop/66521"}]
+
+I found several relevant research papers on optimal transport in robot learning. Here are the key findings:
+
+## Recent Work on Optimal Transport and Robot Learning
+
+Regularized Optimal Transport (ROT) is a new imitation learning algorithm that builds on recent advances in optimal transport based trajectory-matching. The key technical insight is that adaptively combining trajectory-matching rewards with behavior cloning can significantly accelerate imitation even with only a few demonstrations.
+
+The experiments on 20 visual control tasks across the DeepMind Control Suite, the OpenAI Robotics Suite, and the Meta-World Benchmark demonstrate an average of 7.8× faster imitation to reach 90% of expert performance compared to prior state-of-the-art methods. On real-world robotic manipulation, with just one demonstration and an hour of online training, ROT achieves an average success rate of 90.1% across 14 tasks.
+
+## Demonstration Quality Filtering
+
+Optimal Transport Relabeling (OTR) is an imitation learning algorithm that can automatically relabel offline data of mixed and unknown quality with rewards from a few good demonstrations. On D4RL benchmarks, OTR with a single demonstration can consistently match the performance of offline RL with ground-truth rewards.
+
+## Broader Context
+
+Over the last decade, optimal transport has evolved from a prize-winning research area in pure mathematics to a recurring theme across many areas of machine learning, with advancements in OT theory, computation, and statistics fueling breakthroughs in applications from single-cell genomics to generative modeling.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a08b442-cc5f-4eea-866f-47f62c128ca0",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "bd2f3d6a-5762-45c7-ab48-f76704838d66",
+  "toolUseResult": {
+    "query": "optimal transport demonstration quality filtering robot learning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015euZGcb3KoTevTUtJ2co8b",
+        "content": [
+          {
+            "title": "Watch and Match: Supercharging Imitation with Regularized Optimal Transport",
+            "url": "https://rot-robot.github.io/"
+          },
+          {
+            "title": "Optimal Transport for Offline Imitation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=MhuFzFsrfvH"
+          },
+          {
+            "title": "Watch and Match: Supercharging Imitation with Regularized Optimal Transport | OpenReview",
+            "url": "https://openreview.net/forum?id=ZUtgUA0Fuwd"
+          },
+          {
+            "title": "Optimal Transport Perturbations for Safe Reinforcement Learning with Robustness Guarantees | OpenReview",
+            "url": "https://openreview.net/forum?id=cgSXpAR4Gl"
+          },
+          {
+            "title": "A Survey on Optimal Transport for Machine Learning: Theory and Applications | IEEE Journals & Magazine | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/10877795/"
+          },
+          {
+            "title": "Optimal Transport and Machine Learning 2023",
+            "url": "https://otmlworkshop.github.io/"
+          },
+          {
+            "title": "Track: Oral 2E Optimal Transport",
+            "url": "https://icml.cc/virtual/2025/session/46903"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2023 OPTIMAL TRANSPORT FOR OFFLINE",
+            "url": "https://openreview.net/pdf?id=MhuFzFsrfvH"
+          },
+          {
+            "title": "Rémi Flamary / Optimal Transport for Machine Learning tutorial",
+            "url": "https://remi.flamary.com/cours/tuto_otml.html"
+          },
+          {
+            "title": "Optimal Transport and Machine Learning",
+            "url": "https://neurips.cc/virtual/2023/workshop/66521"
+          }
+        ]
+      },
+      "I found several relevant research papers on optimal transport in robot learning. Here are the key findings:\n\n## Recent Work on Optimal Transport and Robot Learning\n\nRegularized Optimal Transport (ROT) is a new imitation learning algorithm that builds on recent advances in optimal transport based trajectory-matching. The key technical insight is that adaptively combining trajectory-matching rewards with behavior cloning can significantly accelerate imitation even with only a few demonstrations.\n\nThe experiments on 20 visual control tasks across the DeepMind Control Suite, the OpenAI Robotics Suite, and the Meta-World Benchmark demonstrate an average of 7.8× faster imitation to reach 90% of expert performance compared to prior state-of-the-art methods. On real-world robotic manipulation, with just one demonstration and an hour of online training, ROT achieves an average success rate of 90.1% across 14 tasks.\n\n## Demonstration Quality Filtering\n\nOptimal Transport Relabeling (OTR) is an imitation learning algorithm that can automatically relabel offline data of mixed and unknown quality with rewards from a few good demonstrations. On D4RL benchmarks, OTR with a single demonstration can consistently match the performance of offline RL with ground-truth rewards.\n\n## Broader Context\n\nOver the last decade, optimal transport has evolved from a prize-winning research area in pure mathematics to a recurring theme across many areas of machine learning, with advancements in OT theory, computation, and statistics fueling breakthroughs in applications from single-cell genomics to generative modeling."
+    ],
+    "durationSeconds": 6.639240957000002
+  },
+  "sourceToolAssistantUUID": "5a08b442-cc5f-4eea-866f-47f62c128ca0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T09:39:14.098Z_
+
+<details><summary>↩ Tool result · `toolu_011kw2EDun3sDJC1TkRXnWhv`</summary>
+
+```text
+Web search results for query: "demonstration curation robot imitation learning data quality 2026"
+
+Links: [{"title":"[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/abs/2603.09056"},{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"Robot Data Curation with Mutual Information Estimators · Robotics: Science and Systems","url":"https://roboticsconference.org/program/papers/23/"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/html/2506.19121"},{"title":"Data Quality in Imitation Learning | OpenReview","url":"https://openreview.net/forum?id=FwmvbuDiMk"},{"title":"[2306.02437] Data Quality in Imitation Learning","url":"https://arxiv.org/abs/2306.02437"},{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v2"},{"title":"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/html/2505.09603"},{"title":"Curating Demonstrations using Online Experience","url":"https://arxiv.org/html/2503.03707"}]
+
+I found comprehensive research on demonstration curation for robot imitation learning with a focus on data quality in 2026. Here are the key findings:
+
+## Recent Work on Demonstration Curation (2026)
+
+The quality of demonstration data, often collected through human teleoperation, remains a critical bottleneck for effective data-driven robot learning, as human errors, operational constraints, and teleoperator variability introduce noise and suboptimal behaviors, making data curation essential yet largely manual and heuristic-driven.
+
+### Quality over Quantity (QoQ) Approach
+
+A recent approach proposes Quality over Quantity (QoQ), a grounded and systematic approach to identifying high-quality data by defining data quality as the contribution of each training sample to reducing loss on validation demonstrations. To efficiently estimate this contribution, researchers leverage influence functions, which quantify the impact of individual training samples on model performance.
+
+### Other Notable Methods
+
+Several complementary approaches have been developed:
+
+- **CUPID**: A data curation method that uses influence functions to measure the causal impact of a demonstration on the policy's closed-loop performance.
+
+- **Scizor**: A self-supervised data curation method that reduces dataset size by filtering out suboptimal and redundant state-action pairs, using a self-supervised task progress predictor to identify frames that do not demonstrate meaningful progress toward the task goal.
+
+- **DataMIL**: A method that trains a data-quality estimator using a tractable objective: validation loss.
+
+- **DemInf**: A method that motivates mutual information as a useful basis for measuring the quality of individual demonstrations, instantiating mutual information estimators as a way to rank and select demonstrations.
+
+These approaches collectively represent significant progress in automating and improving robot learning data quality through principled curation methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "504595dc-a8dc-4d9d-bccb-b9be9b5634bf",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "a98a2c8f-e9e9-416f-a3ff-4218fbacf644",
+  "toolUseResult": {
+    "query": "demonstration curation robot imitation learning data quality 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CZzbUN9MU7LKzKDT6SXbaj",
+        "content": [
+          {
+            "title": "[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/abs/2603.09056"
+          },
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/program/papers/23/"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/html/2506.19121"
+          },
+          {
+            "title": "Data Quality in Imitation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=FwmvbuDiMk"
+          },
+          {
+            "title": "[2306.02437] Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/abs/2306.02437"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/html/2502.08623"
+          },
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v2"
+          },
+          {
+            "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/html/2505.09603"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience",
+            "url": "https://arxiv.org/html/2503.03707"
+          }
+        ]
+      },
+      "I found comprehensive research on demonstration curation for robot imitation learning with a focus on data quality in 2026. Here are the key findings:\n\n## Recent Work on Demonstration Curation (2026)\n\nThe quality of demonstration data, often collected through human teleoperation, remains a critical bottleneck for effective data-driven robot learning, as human errors, operational constraints, and teleoperator variability introduce noise and suboptimal behaviors, making data curation essential yet largely manual and heuristic-driven.\n\n### Quality over Quantity (QoQ) Approach\n\nA recent approach proposes Quality over Quantity (QoQ), a grounded and systematic approach to identifying high-quality data by defining data quality as the contribution of each training sample to reducing loss on validation demonstrations. To efficiently estimate this contribution, researchers leverage influence functions, which quantify the impact of individual training samples on model performance.\n\n### Other Notable Methods\n\nSeveral complementary approaches have been developed:\n\n- **CUPID**: A data curation method that uses influence functions to measure the causal impact of a demonstration on the policy's closed-loop performance.\n\n- **Scizor**: A self-supervised data curation method that reduces dataset size by filtering out suboptimal and redundant state-action pairs, using a self-supervised task progress predictor to identify frames that do not demonstrate meaningful progress toward the task goal.\n\n- **DataMIL**: A method that trains a data-quality estimator using a tractable objective: validation loss.\n\n- **DemInf**: A method that motivates mutual information as a useful basis for measuring the quality of individual demonstrations, instantiating mutual information estimators as a way to rank and select demonstrations.\n\nThese approaches collectively represent significant progress in automating and improving robot learning data quality through principled curation methods."
+    ],
+    "durationSeconds": 7.985996164
+  },
+  "sourceToolAssistantUUID": "504595dc-a8dc-4d9d-bccb-b9be9b5634bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "a98a2c8f-e9e9-416f-a3ff-4218fbacf644",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify OT-Consensus for CoRL robustness",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-13T09:39:27.117Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've confirmed:
+1. CoRL 2026 deadlines: Abstract May 26, Paper May 29 - matches the user's claim
+2. CUPID is real and published at CoRL 2025
+3. QoQ, SCIZOR, DataMIL, DemInf are all real papers
+4. The landscape is well-characterized
+
+Now let me search for more specific things:
+- Whether anyone has already applied OT to intra-dataset demonstration quality scoring
+- RINSE paper verification
+- Robust Wasserstein barycenter 2026
+- Wasserstein Wormhole verification
+
+
+- Any concurrent work on OT-based demo curation
+- Whether the "gap" really exists
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a98a2c8f-e9e9-416f-a3ff-4218fbacf644",
+  "isSidechain": false,
+  "requestId": "req_011CazLzu7722NVT2i6zamn6",
+  "type": "assistant",
+  "uuid": "9bb87958-dab0-4e45-b707-d9a819dbcc9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLMNte1vkAUwUU3bkfRkUT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3429,
+      "cache_read_input_tokens": 27569,
+      "output_tokens": 407,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 407,
+          "cache_read_input_tokens": 27569,
+          "cache_creation_input_tokens": 3429,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3429
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T09:39:27.123Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JTGLwQYA4RSND7c8awkHRc`</summary>
+
+```json
+{
+  "query": "RINSE smoothness metrics imitation learning data quality ICML 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bb87958-dab0-4e45-b707-d9a819dbcc9b",
+  "isSidechain": false,
+  "requestId": "req_011CazLzu7722NVT2i6zamn6",
+  "type": "assistant",
+  "uuid": "c817336e-a17d-4336-ab98-e04eb2af5870",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLMNte1vkAUwUU3bkfRkUT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3429,
+      "cache_read_input_tokens": 27569,
+      "output_tokens": 407,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 407,
+          "cache_read_input_tokens": 27569,
+          "cache_creation_input_tokens": 3429,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3429
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-13T09:39:27.632Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VDFou8s81Dvb1nhpEaZY7U`</summary>
+
+```json
+{
+  "query": "Wasserstein barycenter trajectory clustering outlier detection 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c817336e-a17d-4336-ab98-e04eb2af5870",
+  "isSidechain": false,
+  "requestId": "req_011CazLzu7722NVT2i6zamn6",
+  "type": "assistant",
+  "uuid": "9162a108-060c-43b4-8b72-d214d3375356",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLMNte1vkAUwUU3bkfRkUT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3429,
+      "cache_read_input_tokens": 27569,
+      "output_tokens": 407,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 407,
+          "cache_read_input_tokens": 27569,
+          "cache_creation_input_tokens": 3429,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3429
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-13T09:39:28.583Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DhkTmUZRtuovC1u1eePjMq`</summary>
+
+```json
+{
+  "query": "SCIZOR self-supervised data curation imitation learning ICRA 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9162a108-060c-43b4-8b72-d214d3375356",
+  "isSidechain": false,
+  "requestId": "req_011CazLzu7722NVT2i6zamn6",
+  "type": "assistant",
+  "uuid": "b89de516-8c5d-492e-a134-1591d4efb6b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLMNte1vkAUwUU3bkfRkUT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3429,
+      "cache_read_input_tokens": 27569,
+      "output_tokens": 407,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 407,
+          "cache_read_input_tokens": 27569,
+          "cache_creation_input_tokens": 3429,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3429
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-13T09:39:29.052Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ed4oPc91we8CgoFFq15Zjh`</summary>
+
+```json
+{
+  "query": "optimal transport trajectory scoring policy-agnostic demonstration filtering 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b89de516-8c5d-492e-a134-1591d4efb6b5",
+  "isSidechain": false,
+  "requestId": "req_011CazLzu7722NVT2i6zamn6",
+  "type": "assistant",
+  "uuid": "90f2487e-f4c6-48ec-9b8d-a9218894baf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLMNte1vkAUwUU3bkfRkUT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3429,
+      "cache_read_input_tokens": 27569,
+      "output_tokens": 407,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 407,
+          "cache_read_input_tokens": 27569,
+          "cache_creation_input_tokens": 3429,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3429
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-13T09:39:34.675Z_
+
+<details><summary>↩ Tool result · `toolu_01Ed4oPc91we8CgoFFq15Zjh`</summary>
+
+```text
+Web search results for query: "optimal transport trajectory scoring policy-agnostic demonstration filtering 2025 2026 arxiv"
+
+Links: [{"title":"[2406.07475] Partially Observed Trajectory Inference using Optimal Transport and a Dynamics Prior","url":"https://arxiv.org/abs/2406.07475"},{"title":"Partially Observed Trajectory Inference using Optimal Transport and a Dynamics Prior","url":"https://arxiv.org/html/2406.07475"},{"title":"A Survey on Algorithmic Developments in Optimal Transport Problem with Applications","url":"https://arxiv.org/html/2501.06247v1"},{"title":"GitHub - zezhishao/DailyArXiv: Daily ArXiv Papers. · GitHub","url":"https://github.com/zezhishao/DailyArXiv"},{"title":"Recent Advances in Optimal Transport for Machine Learning","url":"https://arxiv.org/html/2306.16156"},{"title":"Trajectory Prediction for Autonomous Driving: Progress, Limitations, and Future Directions","url":"https://arxiv.org/html/2503.03262v1"},{"title":"Transfer Learning of Multiobjective Indirect Low-Thrust Trajectories Using Diffusion Models and Markov Chain Monte Carlo This paper extends material previously presented at the AIAA SciTech 2026 Forum as Gradient-Informed Monte Carlo Fine-Tuning of Diffusion Models for Low-Thrust Trajectory Design and at the AAS/AIAA Astrodynamics Specialist Conference 2025 in Boston, MA as Self-Supervised Diffusion Model Fine-Tuning for Costate Initialization Using Markov Chain Monte Carlo.","url":"https://arxiv.org/html/2605.09125"},{"title":"[2601.07144] Optimal Transport under Group Fairness Constraints","url":"https://arxiv.org/abs/2601.07144"},{"title":"Methodology Jun 2025","url":"https://arxiv.org/list/stat.ME/2025-06?skip=350&show=25"},{"title":"Machine Learning Jan 2025","url":"https://arxiv.org/list/cs.LG/2025-01?skip=525&show=2000"}]
+
+Based on the web search results, I found several papers related to optimal transport and trajectory analysis from 2025-2026 on arXiv, but I did not find a specific paper that exactly matches the query about "optimal transport trajectory scoring policy-agnostic demonstration filtering."
+
+The search returned papers on related topics including:
+
+1. "Partially Observed Trajectory Inference using Optimal Transport and a Dynamics Prior" (arXiv:2406.07475), with recent updates in February 2025, which deals with trajectory inference using optimal transport methods.
+
+2. A survey on "Algorithmic Developments in Optimal Transport Problem with Applications" that examines optimal transport as a framework for quantifying differences between distributions.
+
+3. A paper on "Trajectory Prediction for Autonomous Driving" that reviews trajectory prediction methods and devises a taxonomy for classifying existing solutions.
+
+The specific combination of terms you're searching for (particularly "policy-agnostic demonstration filtering" with optimal transport trajectory scoring) doesn't appear in these results. You may want to try a more specific arXiv search directly, or refine the query to focus on particular authors or specific paper identifiers if you know them.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "90f2487e-f4c6-48ec-9b8d-a9218894baf5",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "4ed0a489-7db0-447e-860b-1905bd8e6c61",
+  "toolUseResult": {
+    "query": "optimal transport trajectory scoring policy-agnostic demonstration filtering 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01D23z2W9Ae9tYCvHyy7n8MQ",
+        "content": [
+          {
+            "title": "[2406.07475] Partially Observed Trajectory Inference using Optimal Transport and a Dynamics Prior",
+            "url": "https://arxiv.org/abs/2406.07475"
+          },
+          {
+            "title": "Partially Observed Trajectory Inference using Optimal Transport and a Dynamics Prior",
+            "url": "https://arxiv.org/html/2406.07475"
+          },
+          {
+            "title": "A Survey on Algorithmic Developments in Optimal Transport Problem with Applications",
+            "url": "https://arxiv.org/html/2501.06247v1"
+          },
+          {
+            "title": "GitHub - zezhishao/DailyArXiv: Daily ArXiv Papers. · GitHub",
+            "url": "https://github.com/zezhishao/DailyArXiv"
+          },
+          {
+            "title": "Recent Advances in Optimal Transport for Machine Learning",
+            "url": "https://arxiv.org/html/2306.16156"
+          },
+          {
+            "title": "Trajectory Prediction for Autonomous Driving: Progress, Limitations, and Future Directions",
+            "url": "https://arxiv.org/html/2503.03262v1"
+          },
+          {
+            "title": "Transfer Learning of Multiobjective Indirect Low-Thrust Trajectories Using Diffusion Models and Markov Chain Monte Carlo This paper extends material previously presented at the AIAA SciTech 2026 Forum as Gradient-Informed Monte Carlo Fine-Tuning of Diffusion Models for Low-Thrust Trajectory Design and at the AAS/AIAA Astrodynamics Specialist Conference 2025 in Boston, MA as Self-Supervised Diffusion Model Fine-Tuning for Costate Initialization Using Markov Chain Monte Carlo.",
+            "url": "https://arxiv.org/html/2605.09125"
+          },
+          {
+            "title": "[2601.07144] Optimal Transport under Group Fairness Constraints",
+            "url": "https://arxiv.org/abs/2601.07144"
+          },
+          {
+            "title": "Methodology Jun 2025",
+            "url": "https://arxiv.org/list/stat.ME/2025-06?skip=350&show=25"
+          },
+          {
+            "title": "Machine Learning Jan 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-01?skip=525&show=2000"
+          }
+        ]
+      },
+      "Based on the web search results, I found several papers related to optimal transport and trajectory analysis from 2025-2026 on arXiv, but I did not find a specific paper that exactly matches the query about \"optimal transport trajectory scoring policy-agnostic demonstration filtering.\"\n\nThe search returned papers on related topics including:\n\n1. \"Partially Observed Trajectory Inference using Optimal Transport and a Dynamics Prior\" (arXiv:2406.07475), with recent updates in February 2025, which deals with trajectory inference using optimal transport methods.\n\n2. A survey on \"Algorithmic Developments in Optimal Transport Problem with Applications\" that examines optimal transport as a framework for quantifying differences between distributions.\n\n3. A paper on \"Trajectory Prediction for Autonomous Driving\" that reviews trajectory prediction methods and devises a taxonomy for classifying existing solutions.\n\nThe specific combination of terms you're searching for (particularly \"policy-agnostic demonstration filtering\" with optimal transport trajectory scoring) doesn't appear in these results. You may want to try a more specific arXiv search directly, or refine the query to focus on particular authors or specific paper identifiers if you know them."
+    ],
+    "durationSeconds": 5.618920084000004
+  },
+  "sourceToolAssistantUUID": "90f2487e-f4c6-48ec-9b8d-a9218894baf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-13T09:39:35.591Z_
+
+<details><summary>↩ Tool result · `toolu_01DhkTmUZRtuovC1u1eePjMq`</summary>
+
+```text
+Web search results for query: "SCIZOR self-supervised data curation imitation learning ICRA 2026"
+
+Links: [{"title":"SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning","url":"https://ut-austin-rpl.github.io/SCIZOR/"},{"title":"[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/abs/2505.22626"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v2"},{"title":"Huihan Liu on X: \"Our data curation work SCIZOR is accepted to ICRA 2026! Check out this self-supervised data curation approach that removes suboptimal and duplicated data for large-scale imitation learning, led by @YZ_Franklin @yuqi_xie5\" / X","url":"https://x.com/huihan_liu/status/2017698931493195899"},{"title":"SCIZOR: A Self-Supervised Approach to Data Curation for ...","url":"https://openreview.net/pdf?id=Wo8eEdFUDF"},{"title":"GitHub - UT-Austin-RPL/SCIZOR · GitHub","url":"https://github.com/UT-Austin-RPL/SCIZOR"},{"title":"(PDF) SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://www.researchgate.net/publication/392167457_SCIZOR_A_Self-Supervised_Approach_to_Data_Curation_for_Large-Scale_Imitation_Learning"},{"title":"Copyright by Yuqi Xie 2025 1","url":"https://repositories.lib.utexas.edu/bitstreams/d8256e22-405e-4881-87d8-ca3f8008345e/download"},{"title":"Publications – UT Austin Robot Perception and Learning Lab","url":"https://rpl.cs.utexas.edu/publications/"},{"title":"[Literature Review] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://www.themoonlight.io/en/review/scizor-a-self-supervised-approach-to-data-curation-for-large-scale-imitation-learning"}]
+
+I found comprehensive information about SCIZOR. Here's a summary of the research:
+
+## SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning
+
+SCIZOR is a paper accepted to the 2026 IEEE International Conference on Robotics and Automation (ICRA).
+
+### Overview
+SCIZOR is a self-supervised data curation framework that filters out low-quality state-action pairs to improve the performance of imitation learning policies. SCIZOR targets two complementary sources of low-quality data: suboptimal data, which hinder learning with undesirable actions, and redundant data, which dilute training with repetitive patterns.
+
+### Key Components
+The framework has two main filtering mechanisms:
+
+1. **Suboptimal Data Detection**: A progress-prediction model flags and removes frames that fail to make meaningful task progress, without needing reward signals.
+
+2. **Redundancy Removal**: Joint visual-action embeddings are clustered to detect and discard look-alike segments, ensuring diversity.
+
+### Performance Results
+SCIZOR improves policy performance across diverse large-scale imitation learning benchmarks, showing on average 15.4% improvement. SCIZOR yielded absolute gains of 5.4% on RoboMimic, 8.1% on OXEMagic, and 32.9% on Sirius-Fleet.
+
+### Authors
+The paper is authored by Yu Zhang, Yuqi Xie, Huihan Liu, Rutav Shah, Michael Wan, Linxi Fan, and Yuke Zhu.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b89de516-8c5d-492e-a134-1591d4efb6b5",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "5baec215-df85-4854-a71f-84fc2d601066",
+  "toolUseResult": {
+    "query": "SCIZOR self-supervised data curation imitation learning ICRA 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H4yDjUQsyBBsk8Gf6ikEY4",
+        "content": [
+          {
+            "title": "SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning",
+            "url": "https://ut-austin-rpl.github.io/SCIZOR/"
+          },
+          {
+            "title": "[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/abs/2505.22626"
+          },
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v2"
+          },
+          {
+            "title": "Huihan Liu on X: \"Our data curation work SCIZOR is accepted to ICRA 2026! Check out this self-supervised data curation approach that removes suboptimal and duplicated data for large-scale imitation learning, led by @YZ_Franklin @yuqi_xie5\" / X",
+            "url": "https://x.com/huihan_liu/status/2017698931493195899"
+          },
+          {
+            "title": "SCIZOR: A Self-Supervised Approach to Data Curation for ...",
+            "url": "https://openreview.net/pdf?id=Wo8eEdFUDF"
+          },
+          {
+            "title": "GitHub - UT-Austin-RPL/SCIZOR · GitHub",
+            "url": "https://github.com/UT-Austin-RPL/SCIZOR"
+          },
+          {
+            "title": "(PDF) SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://www.researchgate.net/publication/392167457_SCIZOR_A_Self-Supervised_Approach_to_Data_Curation_for_Large-Scale_Imitation_Learning"
+          },
+          {
+            "title": "Copyright by Yuqi Xie 2025 1",
+            "url": "https://repositories.lib.utexas.edu/bitstreams/d8256e22-405e-4881-87d8-ca3f8008345e/download"
+          },
+          {
+            "title": "Publications – UT Austin Robot Perception and Learning Lab",
+            "url": "https://rpl.cs.utexas.edu/publications/"
+          },
+          {
+            "title": "[Literature Review] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://www.themoonlight.io/en/review/scizor-a-self-supervised-approach-to-data-curation-for-large-scale-imitation-learning"
+          }
+        ]
+      },
+      "I found comprehensive information about SCIZOR. Here's a summary of the research:\n\n## SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning\n\nSCIZOR is a paper accepted to the 2026 IEEE International Conference on Robotics and Automation (ICRA).\n\n### Overview\nSCIZOR is a self-supervised data curation framework that filters out low-quality state-action pairs to improve the performance of imitation learning policies. SCIZOR targets two complementary sources of low-quality data: suboptimal data, which hinder learning with undesirable actions, and redundant data, which dilute training with repetitive patterns.\n\n### Key Components\nThe framework has two main filtering mechanisms:\n\n1. **Suboptimal Data Detection**: A progress-prediction model flags and removes frames that fail to make meaningful task progress, without needing reward signals.\n\n2. **Redundancy Removal**: Joint visual-action embeddings are clustered to detect and discard look-alike segments, ensuring diversity.\n\n### Performance Results\nSCIZOR improves policy performance across diverse large-scale imitation learning benchmarks, showing on average 15.4% improvement. SCIZOR yielded absolute gains of 5.4% on RoboMimic, 8.1% on OXEMagic, and 32.9% on Sirius-Fleet.\n\n### Authors\nThe paper is authored by Yu Zhang, Yuqi Xie, Huihan Liu, Rutav Shah, Michael Wan, Linxi Fan, and Yuke Zhu."
+    ],
+    "durationSeconds": 7.004859626000005
+  },
+  "sourceToolAssistantUUID": "b89de516-8c5d-492e-a134-1591d4efb6b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T09:39:36.037Z_
+
+<details><summary>↩ Tool result · `toolu_01VDFou8s81Dvb1nhpEaZY7U`</summary>
+
+```text
+Web search results for query: "Wasserstein barycenter trajectory clustering outlier detection 2025 2026"
+
+Links: [{"title":"Approximate Algorithms For 𝑘-Sparse Wasserstein Barycenter With Outliers","url":"https://arxiv.org/html/2404.13401"},{"title":"Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers","url":"https://www.ijcai.org/proceedings/2024/0588.pdf"},{"title":"[2404.13401] Approximate Algorithms For $k$-Sparse Wasserstein Barycenter With Outliers","url":"https://arxiv.org/abs/2404.13401"},{"title":"Dynamical Wasserstein Barycenters for Time-series Modeling | OpenReview","url":"https://openreview.net/forum?id=QE_h_FgqdEu"},{"title":"Barycenters in the Wasserstein Space | SIAM Journal on Mathematical Analysis","url":"https://epubs.siam.org/doi/10.1137/100805741"},{"title":"Clustering-Based Trajectory Outlier Detection","url":"https://thesai.org/Publications/ViewPaper?Volume=11&Issue=5&Code=IJACSA&SerialNo=20"},{"title":"Simple approximative algorithms for free-support Wasserstein barycenters | Computational Optimization and Applications | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10589-023-00458-3"},{"title":"Group detection in energy commodity markets through manifold-informed Wasserstein barycenter | Quality & Quantity | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11135-025-02147-1"},{"title":"Fast Computation of Wasserstein Barycenters | Request PDF","url":"https://www.researchgate.net/publication/257836724_Fast_Computation_of_Wasserstein_Barycenters"},{"title":"(PDF) Fast Discrete Distribution Clustering Using Wasserstein Barycenter With Sparse Support","url":"https://www.researchgate.net/publication/312928481_Fast_Discrete_Distribution_Clustering_Using_Wasserstein_Barycenter_With_Sparse_Support"}]
+
+Based on the search results, here are the key findings related to your query about Wasserstein barycenter, trajectory clustering, and outlier detection from recent literature:
+
+## Wasserstein Barycenter with Outliers
+
+Wasserstein Barycenter (WB) is one of the most fundamental optimization problems in optimal transportation, where given a set of distributions, the goal is to find a new distribution that minimizes the average Wasserstein distance to them. 
+
+Recent work has specifically addressed the challenge of outliers in this setting. The k-sparse WB problem in the presence of outliers is a more practical setting since real-world data often contains noise, and existing WB algorithms cannot be directly extended to handle the case with outliers.
+
+## Trajectory Clustering and Outlier Detection
+
+Mining trajectory data and especially outlier detection in trajectory data is an attractive and challenging topic that has fascinated many researchers. One approach is clustering-based detection, where trajectories are partitioned into line segments and summarized, then a clustering method is used to detect the cluster with the smallest number of segments and identify sub-trajectory outliers.
+
+## Recent Applications (2025-2026)
+
+Recent work has extended these concepts to time-series and dynamic applications. A dynamical Wasserstein barycentric model assumes each pure state generates data from a multivariate normal distribution, and characterizes transitions between states via displacement-interpolation specified by the Wasserstein barycenter, with the system state represented by a barycentric weight vector that evolves over time.
+
+Additionally, recent approaches adapt alternative fixed-point methods to compute barycenter diagrams for generic transportation costs that are robust to outliers, with applications to clustering and dictionary encoding.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9162a108-060c-43b4-8b72-d214d3375356",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "c048e845-cd0d-4205-859b-e6b7acd2be1c",
+  "toolUseResult": {
+    "query": "Wasserstein barycenter trajectory clustering outlier detection 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H75mvNdWPfZSUrDVoEhohe",
+        "content": [
+          {
+            "title": "Approximate Algorithms For 𝑘-Sparse Wasserstein Barycenter With Outliers",
+            "url": "https://arxiv.org/html/2404.13401"
+          },
+          {
+            "title": "Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers",
+            "url": "https://www.ijcai.org/proceedings/2024/0588.pdf"
+          },
+          {
+            "title": "[2404.13401] Approximate Algorithms For $k$-Sparse Wasserstein Barycenter With Outliers",
+            "url": "https://arxiv.org/abs/2404.13401"
+          },
+          {
+            "title": "Dynamical Wasserstein Barycenters for Time-series Modeling | OpenReview",
+            "url": "https://openreview.net/forum?id=QE_h_FgqdEu"
+          },
+          {
+            "title": "Barycenters in the Wasserstein Space | SIAM Journal on Mathematical Analysis",
+            "url": "https://epubs.siam.org/doi/10.1137/100805741"
+          },
+          {
+            "title": "Clustering-Based Trajectory Outlier Detection",
+            "url": "https://thesai.org/Publications/ViewPaper?Volume=11&Issue=5&Code=IJACSA&SerialNo=20"
+          },
+          {
+            "title": "Simple approximative algorithms for free-support Wasserstein barycenters | Computational Optimization and Applications | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10589-023-00458-3"
+          },
+          {
+            "title": "Group detection in energy commodity markets through manifold-informed Wasserstein barycenter | Quality & Quantity | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11135-025-02147-1"
+          },
+          {
+            "title": "Fast Computation of Wasserstein Barycenters | Request PDF",
+            "url": "https://www.researchgate.net/publication/257836724_Fast_Computation_of_Wasserstein_Barycenters"
+          },
+          {
+            "title": "(PDF) Fast Discrete Distribution Clustering Using Wasserstein Barycenter With Sparse Support",
+            "url": "https://www.researchgate.net/publication/312928481_Fast_Discrete_Distribution_Clustering_Using_Wasserstein_Barycenter_With_Sparse_Support"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to your query about Wasserstein barycenter, trajectory clustering, and outlier detection from recent literature:\n\n## Wasserstein Barycenter with Outliers\n\nWasserstein Barycenter (WB) is one of the most fundamental optimization problems in optimal transportation, where given a set of distributions, the goal is to find a new distribution that minimizes the average Wasserstein distance to them. \n\nRecent work has specifically addressed the challenge of outliers in this setting. The k-sparse WB problem in the presence of outliers is a more practical setting since real-world data often contains noise, and existing WB algorithms cannot be directly extended to handle the case with outliers.\n\n## Trajectory Clustering and Outlier Detection\n\nMining trajectory data and especially outlier detection in trajectory data is an attractive and challenging topic that has fascinated many researchers. One approach is clustering-based detection, where trajectories are partitioned into line segments and summarized, then a clustering method is used to detect the cluster with the smallest number of segments and identify sub-trajectory outliers.\n\n## Recent Applications (2025-2026)\n\nRecent work has extended these concepts to time-series and dynamic applications. A dynamical Wasserstein barycentric model assumes each pure state generates data from a multivariate normal distribution, and characterizes transitions between states via displacement-interpolation specified by the Wasserstein barycenter, with the system state represented by a barycentric weight vector that evolves over time.\n\nAdditionally, recent approaches adapt alternative fixed-point methods to compute barycenter diagrams for generic transportation costs that are robust to outliers, with applications to clustering and dictionary encoding."
+    ],
+    "durationSeconds": 8.375787692999998
+  },
+  "sourceToolAssistantUUID": "9162a108-060c-43b4-8b72-d214d3375356",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-13T09:39:36.333Z_
+
+<details><summary>↩ Tool result · `toolu_01JTGLwQYA4RSND7c8awkHRc`</summary>
+
+```text
+Web search results for query: "RINSE smoothness metrics imitation learning data quality ICML 2025"
+
+Links: [{"title":"ICML Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://icml.cc/virtual/2025/48703"},{"title":"Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://arxiv.org/html/2604.23000"},{"title":"Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://escholarship.org/uc/item/7d43m7q3"},{"title":"[2604.23000] Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://arxiv.org/abs/2604.23000"},{"title":"ICML.2025 | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/ICML.2025"},{"title":"[2306.02437] Data Quality in Imitation Learning","url":"https://arxiv.org/abs/2306.02437"},{"title":"ICLR 2025 Papers","url":"https://iclr.cc/virtual/2025/papers.html"},{"title":"ICML 2025 Papers","url":"https://icml.cc/virtual/2025/papers.html"},{"title":"Downloads 2025","url":"https://icml.cc/Downloads/2025"},{"title":"GitHub - TobyLeelsz/iqmpc: Official code implementation of ICML 2025 paper: Reward-free World Models for Online Imitation Learning · GitHub","url":"https://github.com/TobyLeelsz/iqmpc"}]
+
+Based on the search results, here's what I found about RINSE and smoothness metrics for imitation learning at ICML 2025:
+
+## RINSE: Smoothness-Driven Metrics for Data Quality in Imitation Learning
+
+RINSE (Ranking and INdexing Smooth Examples) is a lightweight framework for scoring demonstrations based on trajectory smoothness that is policy-architecture-agnostic and operates on trajectory data alone, with TED additionally using a phase-boundary/contact signal.
+
+### Key Methodology
+
+RINSE uses two complementary metrics: Spectral Arc Length (SAL), a spectral measure of frequency-domain regularity, and Trajectory-Envelope Distance (TED), a spatial measure of contact-aware geometric deviation. The approach is grounded in motor control theory: skilled human movements are smooth because the motor system minimizes jerk and effort, and smoothness serves as a principled proxy for demonstration quality.
+
+### Performance Results
+
+On RoboMimic benchmarks, SAL filtering achieves 16% higher success using one-sixth of the data. On real-world manipulation, TED filtering achieves 20% improvement with half the data. Additionally, as a retrieval-stage filter within STRAP on LIBERO-10, RINSE re-ranking improves mean success by 5.6%, and as soft weights in Re-Mix domain reweighting, RINSE scores produce domain allocations highly correlated with the learned Re-Mix allocations.
+
+This work addresses a key challenge in imitation learning: real-world datasets contain trajectories of varying quality due to operator skill differences, teleoperation artifacts, and procedural inconsistencies, yet standard BC treats all demonstrations equally, and existing curation methods require costly policy training in the loop or manual annotation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c817336e-a17d-4336-ab98-e04eb2af5870",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "eadaebcd-1c18-4d7e-873b-664414cc1dee",
+  "toolUseResult": {
+    "query": "RINSE smoothness metrics imitation learning data quality ICML 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KttG8ooMeffjiFUjyc8YQS",
+        "content": [
+          {
+            "title": "ICML Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://icml.cc/virtual/2025/48703"
+          },
+          {
+            "title": "Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/html/2604.23000"
+          },
+          {
+            "title": "Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://escholarship.org/uc/item/7d43m7q3"
+          },
+          {
+            "title": "[2604.23000] Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/abs/2604.23000"
+          },
+          {
+            "title": "ICML.2025 | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/ICML.2025"
+          },
+          {
+            "title": "[2306.02437] Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/abs/2306.02437"
+          },
+          {
+            "title": "ICLR 2025 Papers",
+            "url": "https://iclr.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "ICML 2025 Papers",
+            "url": "https://icml.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "Downloads 2025",
+            "url": "https://icml.cc/Downloads/2025"
+          },
+          {
+            "title": "GitHub - TobyLeelsz/iqmpc: Official code implementation of ICML 2025 paper: Reward-free World Models for Online Imitation Learning · GitHub",
+            "url": "https://github.com/TobyLeelsz/iqmpc"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about RINSE and smoothness metrics for imitation learning at ICML 2025:\n\n## RINSE: Smoothness-Driven Metrics for Data Quality in Imitation Learning\n\nRINSE (Ranking and INdexing Smooth Examples) is a lightweight framework for scoring demonstrations based on trajectory smoothness that is policy-architecture-agnostic and operates on trajectory data alone, with TED additionally using a phase-boundary/contact signal.\n\n### Key Methodology\n\nRINSE uses two complementary metrics: Spectral Arc Length (SAL), a spectral measure of frequency-domain regularity, and Trajectory-Envelope Distance (TED), a spatial measure of contact-aware geometric deviation. The approach is grounded in motor control theory: skilled human movements are smooth because the motor system minimizes jerk and effort, and smoothness serves as a principled proxy for demonstration quality.\n\n### Performance Results\n\nOn RoboMimic benchmarks, SAL filtering achieves 16% higher success using one-sixth of the data. On real-world manipulation, TED filtering achieves 20% improvement with half the data. Additionally, as a retrieval-stage filter within STRAP on LIBERO-10, RINSE re-ranking improves mean success by 5.6%, and as soft weights in Re-Mix domain reweighting, RINSE scores produce domain allocations highly correlated with the learned Re-Mix allocations.\n\nThis work addresses a key challenge in imitation learning: real-world datasets contain trajectories of varying quality due to operator skill differences, teleoperation artifacts, and procedural inconsistencies, yet standard BC treats all demonstrations equally, and existing curation methods require costly policy training in the loop or manual annotation."
+    ],
+    "durationSeconds": 9.206023385
+  },
+  "sourceToolAssistantUUID": "c817336e-a17d-4336-ab98-e04eb2af5870",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-13T09:39:36.338Z_
+
+```json
+{
+  "parentUuid": "eadaebcd-1c18-4d7e-873b-664414cc1dee",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7248e339-aba7-4efb-ada2-c5faa6231f21",
+  "timestamp": "2026-05-13T09:39:36.338Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "7248e339-aba7-4efb-ada2-c5faa6231f21",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify OT-Consensus for CoRL robustness",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-13T09:39:42.520Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me now:
+1. Verify the "Robust Wasserstein Barycenter" (arXiv 2026) paper
+2. Check for Wasserstein Wormhole (ICML 2024)
+3. Search for any concurrent work using OT specifically for demo quality
+4. Check DemInf more closely
+5. Search for "curating demonstrations using online experience" which showed up earlier
+6. Check if anyone has done multimodal trajectory clustering with OT
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7248e339-aba7-4efb-ada2-c5faa6231f21",
+  "isSidechain": false,
+  "requestId": "req_011CazM2YCKJnSB5nivsmvpx",
+  "type": "assistant",
+  "uuid": "1eac21ed-643f-4cb1-8552-3ac9e50a6973",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bEpexpQKRmBHjG6H76p5F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2864,
+      "cache_creation_input_tokens": 1383,
+      "cache_read_input_tokens": 30998,
+      "output_tokens": 352,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1383,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2864,
+          "output_tokens": 352,
+          "cache_read_input_tokens": 30998,
+          "cache_creation_input_tokens": 1383,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1383
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-13T09:39:43.145Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FYXeJw6c6jrsPmGGLKhict`</summary>
+
+```json
+{
+  "query": "robust Wasserstein barycenter arxiv 2026 Le Gouic consistency"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1eac21ed-643f-4cb1-8552-3ac9e50a6973",
+  "isSidechain": false,
+  "requestId": "req_011CazM2YCKJnSB5nivsmvpx",
+  "type": "assistant",
+  "uuid": "883be309-a009-4ec5-a65f-588b4468de32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bEpexpQKRmBHjG6H76p5F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2864,
+      "cache_creation_input_tokens": 1383,
+      "cache_read_input_tokens": 30998,
+      "output_tokens": 352,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1383,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2864,
+          "output_tokens": 352,
+          "cache_read_input_tokens": 30998,
+          "cache_creation_input_tokens": 1383,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1383
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-13T09:39:43.512Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N8Giuu8PpHt2jKg97GdKXD`</summary>
+
+```json
+{
+  "query": "Wasserstein Wormhole scalable optimal transport transformers ICML 2024 Haviv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "883be309-a009-4ec5-a65f-588b4468de32",
+  "isSidechain": false,
+  "requestId": "req_011CazM2YCKJnSB5nivsmvpx",
+  "type": "assistant",
+  "uuid": "203c11ae-f452-4f29-94c1-59ab8b174e24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bEpexpQKRmBHjG6H76p5F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2864,
+      "cache_creation_input_tokens": 1383,
+      "cache_read_input_tokens": 30998,
+      "output_tokens": 352,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1383,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2864,
+          "output_tokens": 352,
+          "cache_read_input_tokens": 30998,
+          "cache_creation_input_tokens": 1383,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1383
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-13T09:39:44.521Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VGeBLsuFH1kunHViYgtPff`</summary>
+
+```json
+{
+  "query": "\"curating demonstrations using online experience\" robot learning 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "203c11ae-f452-4f29-94c1-59ab8b174e24",
+  "isSidechain": false,
+  "requestId": "req_011CazM2YCKJnSB5nivsmvpx",
+  "type": "assistant",
+  "uuid": "ef7f96bf-ec20-4963-af2a-8b8c29780b87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bEpexpQKRmBHjG6H76p5F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2864,
+      "cache_creation_input_tokens": 1383,
+      "cache_read_input_tokens": 30998,
+      "output_tokens": 352,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1383,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2864,
+          "output_tokens": 352,
+          "cache_read_input_tokens": 30998,
+          "cache_creation_input_tokens": 1383,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1383
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-13T09:39:45.073Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Sw8MJUy5s67WuhcaBfMHdR`</summary>
+
+```json
+{
+  "query": "DataMIL selecting data robot imitation learning datamodels 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef7f96bf-ec20-4963-af2a-8b8c29780b87",
+  "isSidechain": false,
+  "requestId": "req_011CazM2YCKJnSB5nivsmvpx",
+  "type": "assistant",
+  "uuid": "5b0c3722-4a27-4132-83d7-32950f56454a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bEpexpQKRmBHjG6H76p5F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2864,
+      "cache_creation_input_tokens": 1383,
+      "cache_read_input_tokens": 30998,
+      "output_tokens": 352,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1383,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2864,
+          "output_tokens": 352,
+          "cache_read_input_tokens": 30998,
+          "cache_creation_input_tokens": 1383,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1383
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-13T09:39:49.688Z_
+
+<details><summary>↩ Tool result · `toolu_01FYXeJw6c6jrsPmGGLKhict`</summary>
+
+```text
+Web search results for query: "robust Wasserstein barycenter arxiv 2026 Le Gouic consistency"
+
+Links: [{"title":"Robust Wasserstein barycenter","url":"https://arxiv.org/html/2603.07563"},{"title":"[1506.04153] Existence and Consistency of Wasserstein Barycenters","url":"https://arxiv.org/abs/1506.04153"},{"title":"Adapted Wasserstein Barycenters of Gaussian Processes","url":"https://arxiv.org/html/2604.22453"},{"title":"Robust Barycenter Estimation using Semi-Unbalanced Neural Optimal Transport","url":"https://arxiv.org/html/2410.03974v1"},{"title":"[2605.06518] Absolute continuity of generalized Wasserstein barycenters of finitely many measures","url":"https://arxiv.org/abs/2605.06518"},{"title":"Wasserstein Distributionally Robust Optimization with Wasserstein Barycenters","url":"https://arxiv.org/pdf/2203.12136"},{"title":"Sampling From the Wasserstein Barycenter Chiheb Daaloul 1 Thibaut Le Gouic 2","url":"https://arxiv.org/pdf/2105.01706"},{"title":"On Robust Wasserstein Barycenter: The Model and Algorithm","url":"https://arxiv.org/html/2312.15762"},{"title":"[2603.07563] Robust Wasserstein barycenter","url":"https://arxiv.org/abs/2603.07563"},{"title":"[2312.15762] On Robust Wasserstein Barycenter: The Model and Algorithm","url":"https://arxiv.org/abs/2312.15762"}]
+
+Based on the search results, I found highly relevant information about robust Wasserstein barycenters and Le Gouic's work on consistency. Here's what I found:
+
+## Key Findings
+
+Le Gouic establishes the existence and consistency of the p-Wasserstein barycenter, thereby providing a rigorous theoretical foundation for its application.
+
+The most recent work on this topic is a 2026 arXiv paper on robust Wasserstein barycenters. The classical Wasserstein barycenter exhibits fundamental issues: it requires finite first or second moments of the distributions and is sensitive to outliers and contaminations. The paper addresses this fundamental limitation of the classical Wasserstein barycenter—its sensitivity to outliers and its reliance on finite first/second moment assumptions.
+
+To overcome these issues, a robust Wasserstein barycenter (RWB) is proposed based on a recent concept of robust optimal transport, and theoretical guarantees, including existence and consistency, are established for the proposed RWB.
+
+The paper provides extensive numerical validation: Through extensive numerical experiments on both simulated and real-world data—including image processing and financial time series analysis—the RWB exhibits superior robustness compared to the classical Wasserstein barycenter.
+
+The arXiv paper (2603.07563) was published on March 8, 2026, and directly addresses the theoretical guarantees for robust Wasserstein barycenters building on Le Gouic's foundational work on consistency.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "883be309-a009-4ec5-a65f-588b4468de32",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "d0fe2d56-f254-4101-80a2-51adfa7af68b",
+  "toolUseResult": {
+    "query": "robust Wasserstein barycenter arxiv 2026 Le Gouic consistency",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UDc7CSvYqeTYpr7NwYNC6N",
+        "content": [
+          {
+            "title": "Robust Wasserstein barycenter",
+            "url": "https://arxiv.org/html/2603.07563"
+          },
+          {
+            "title": "[1506.04153] Existence and Consistency of Wasserstein Barycenters",
+            "url": "https://arxiv.org/abs/1506.04153"
+          },
+          {
+            "title": "Adapted Wasserstein Barycenters of Gaussian Processes",
+            "url": "https://arxiv.org/html/2604.22453"
+          },
+          {
+            "title": "Robust Barycenter Estimation using Semi-Unbalanced Neural Optimal Transport",
+            "url": "https://arxiv.org/html/2410.03974v1"
+          },
+          {
+            "title": "[2605.06518] Absolute continuity of generalized Wasserstein barycenters of finitely many measures",
+            "url": "https://arxiv.org/abs/2605.06518"
+          },
+          {
+            "title": "Wasserstein Distributionally Robust Optimization with Wasserstein Barycenters",
+            "url": "https://arxiv.org/pdf/2203.12136"
+          },
+          {
+            "title": "Sampling From the Wasserstein Barycenter Chiheb Daaloul 1 Thibaut Le Gouic 2",
+            "url": "https://arxiv.org/pdf/2105.01706"
+          },
+          {
+            "title": "On Robust Wasserstein Barycenter: The Model and Algorithm",
+            "url": "https://arxiv.org/html/2312.15762"
+          },
+          {
+            "title": "[2603.07563] Robust Wasserstein barycenter",
+            "url": "https://arxiv.org/abs/2603.07563"
+          },
+          {
+            "title": "[2312.15762] On Robust Wasserstein Barycenter: The Model and Algorithm",
+            "url": "https://arxiv.org/abs/2312.15762"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant information about robust Wasserstein barycenters and Le Gouic's work on consistency. Here's what I found:\n\n## Key Findings\n\nLe Gouic establishes the existence and consistency of the p-Wasserstein barycenter, thereby providing a rigorous theoretical foundation for its application.\n\nThe most recent work on this topic is a 2026 arXiv paper on robust Wasserstein barycenters. The classical Wasserstein barycenter exhibits fundamental issues: it requires finite first or second moments of the distributions and is sensitive to outliers and contaminations. The paper addresses this fundamental limitation of the classical Wasserstein barycenter—its sensitivity to outliers and its reliance on finite first/second moment assumptions.\n\nTo overcome these issues, a robust Wasserstein barycenter (RWB) is proposed based on a recent concept of robust optimal transport, and theoretical guarantees, including existence and consistency, are established for the proposed RWB.\n\nThe paper provides extensive numerical validation: Through extensive numerical experiments on both simulated and real-world data—including image processing and financial time series analysis—the RWB exhibits superior robustness compared to the classical Wasserstein barycenter.\n\nThe arXiv paper (2603.07563) was published on March 8, 2026, and directly addresses the theoretical guarantees for robust Wasserstein barycenters building on Le Gouic's foundational work on consistency."
+    ],
+    "durationSeconds": 6.538130678000002
+  },
+  "sourceToolAssistantUUID": "883be309-a009-4ec5-a65f-588b4468de32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-13T09:39:50.154Z_
+
+<details><summary>↩ Tool result · `toolu_01N8Giuu8PpHt2jKg97GdKXD`</summary>
+
+```text
+Web search results for query: "Wasserstein Wormhole scalable optimal transport transformers ICML 2024 Haviv"
+
+Links: [{"title":"[2404.09411] Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformers","url":"https://arxiv.org/abs/2404.09411"},{"title":"Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformer","url":"https://proceedings.mlr.press/v235/haviv24a.html"},{"title":"Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformer | OpenReview","url":"https://openreview.net/forum?id=Su0qe33cWA"},{"title":"Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformers - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11142316/"},{"title":"ICML Poster Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformer","url":"https://icml.cc/virtual/2024/poster/33987"},{"title":"Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformers","url":"https://arxiv.org/html/2404.09411v1"},{"title":"Wasserstein Wormhole - Scalable Optimal Transport ...","url":"https://icml.cc/media/icml-2024/Slides/33987.pdf"},{"title":"Wasserstein wormhole: scalable optimal transport distance ...","url":"https://dl.acm.org/doi/10.5555/3692070.3692778"},{"title":"Wasserstein Flow Matching: Generative Modeling Over Families of Distributions","url":"https://arxiv.org/html/2411.00698v2"},{"title":"(PDF) Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformers","url":"https://www.researchgate.net/publication/381118159_Wasserstein_Wormhole_Scalable_Optimal_Transport_Distance_with_Transformers"}]
+
+Based on the search results, here's what I found about the paper:
+
+## Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformers
+
+The paper was published at the Proceedings of the 41st International Conference on Machine Learning (ICML 2024) by Doron Haviv, Russell Zhang Kunes, Thomas Dougherty, Cassandra Burdziak, Tal Nawy, Anna Gilbert, and Dana Pe'Er.
+
+### Main Contribution
+
+The paper presents Wasserstein Wormhole, a transformer-based autoencoder that embeds empirical distributions into a latent space wherein Euclidean distances approximate OT distances. 
+
+### Problem and Solution
+
+Optimal transport (OT) and the related Wasserstein metric are powerful and ubiquitous tools for comparing distributions. However, computing pairwise Wasserstein distances rapidly becomes intractable as cohort size grows. Empirically, distances between Wormhole embeddings closely match Wasserstein distances, enabling linear time computation of OT distances.
+
+### Key Features
+
+Along with an encoder that maps distributions to embeddings, Wasserstein Wormhole includes a decoder that maps embeddings back to distributions, allowing for operations in the embedding space to generalize to OT spaces, such as Wasserstein barycenter estimation and OT interpolation.
+
+### Applications
+
+By lending scalability and interpretability to OT approaches, Wasserstein Wormhole unlocks new avenues for data analysis in the fields of computational geometry and single-cell biology.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "203c11ae-f452-4f29-94c1-59ab8b174e24",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "c7a1bdf8-d004-4916-ac7c-b46a9272cf79",
+  "toolUseResult": {
+    "query": "Wasserstein Wormhole scalable optimal transport transformers ICML 2024 Haviv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LM8LWFJDjiuDnd4gUwEJsr",
+        "content": [
+          {
+            "title": "[2404.09411] Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformers",
+            "url": "https://arxiv.org/abs/2404.09411"
+          },
+          {
+            "title": "Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformer",
+            "url": "https://proceedings.mlr.press/v235/haviv24a.html"
+          },
+          {
+            "title": "Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformer | OpenReview",
+            "url": "https://openreview.net/forum?id=Su0qe33cWA"
+          },
+          {
+            "title": "Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformers - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11142316/"
+          },
+          {
+            "title": "ICML Poster Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformer",
+            "url": "https://icml.cc/virtual/2024/poster/33987"
+          },
+          {
+            "title": "Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformers",
+            "url": "https://arxiv.org/html/2404.09411v1"
+          },
+          {
+            "title": "Wasserstein Wormhole - Scalable Optimal Transport ...",
+            "url": "https://icml.cc/media/icml-2024/Slides/33987.pdf"
+          },
+          {
+            "title": "Wasserstein wormhole: scalable optimal transport distance ...",
+            "url": "https://dl.acm.org/doi/10.5555/3692070.3692778"
+          },
+          {
+            "title": "Wasserstein Flow Matching: Generative Modeling Over Families of Distributions",
+            "url": "https://arxiv.org/html/2411.00698v2"
+          },
+          {
+            "title": "(PDF) Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformers",
+            "url": "https://www.researchgate.net/publication/381118159_Wasserstein_Wormhole_Scalable_Optimal_Transport_Distance_with_Transformers"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper:\n\n## Wasserstein Wormhole: Scalable Optimal Transport Distance with Transformers\n\nThe paper was published at the Proceedings of the 41st International Conference on Machine Learning (ICML 2024) by Doron Haviv, Russell Zhang Kunes, Thomas Dougherty, Cassandra Burdziak, Tal Nawy, Anna Gilbert, and Dana Pe'Er.\n\n### Main Contribution\n\nThe paper presents Wasserstein Wormhole, a transformer-based autoencoder that embeds empirical distributions into a latent space wherein Euclidean distances approximate OT distances. \n\n### Problem and Solution\n\nOptimal transport (OT) and the related Wasserstein metric are powerful and ubiquitous tools for comparing distributions. However, computing pairwise Wasserstein distances rapidly becomes intractable as cohort size grows. Empirically, distances between Wormhole embeddings closely match Wasserstein distances, enabling linear time computation of OT distances.\n\n### Key Features\n\nAlong with an encoder that maps distributions to embeddings, Wasserstein Wormhole includes a decoder that maps embeddings back to distributions, allowing for operations in the embedding space to generalize to OT spaces, such as Wasserstein barycenter estimation and OT interpolation.\n\n### Applications\n\nBy lending scalability and interpretability to OT approaches, Wasserstein Wormhole unlocks new avenues for data analysis in the fields of computational geometry and single-cell biology."
+    ],
+    "durationSeconds": 6.636934103
+  },
+  "sourceToolAssistantUUID": "203c11ae-f452-4f29-94c1-59ab8b174e24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-13T09:39:52.549Z_
+
+<details><summary>↩ Tool result · `toolu_01VGeBLsuFH1kunHViYgtPff`</summary>
+
+```text
+Web search results for query: ""curating demonstrations using online experience" robot learning 2025"
+
+Links: [{"title":"[2503.03707] Curating Demonstrations using Online Experience","url":"https://arxiv.org/abs/2503.03707"},{"title":"Curating Demonstrations using Online Experience · Robotics: Science and Systems","url":"https://roboticsconference.org/program/papers/71/"},{"title":"Curating Demonstrations using Online Experience","url":"https://arxiv.org/html/2503.03707v2"},{"title":"[PDF] Curating Demonstrations using Online Experience | Semantic Scholar","url":"https://www.semanticscholar.org/paper/776c9466ece2a34832d4ebef206fa5c2e9855b39"},{"title":"Curating Demonstrations using Online Experience","url":"https://www.researchgate.net/publication/395366581_Curating_Demonstrations_using_Online_Experience"},{"title":"Curating Demonstrations using Online Experience | alphaXiv","url":"https://www.alphaxiv.org/en/overview/2503.03707"},{"title":"Curating Demonstrations using Online Experience","url":"https://www.roboticsproceedings.org/rss21/p071.pdf"},{"title":"[Literature Review] Curating Demonstrations using Online Experience","url":"https://www.themoonlight.io/en/review/curating-demonstrations-using-online-experience"},{"title":"DemoSpeedup: Accelerating Visuomotor Policies via Entropy-Guided Demonstration Acceleration","url":"https://arxiv.org/html/2506.05064v2"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://cupid-curation.github.io/"}]
+
+Based on the search results, here's what I found about "Curating Demonstrations using Online Experience" in robot learning:
+
+## Overview
+
+The paper addresses the problem that many robot demonstration datasets contain heterogeneous demonstrations of varying quality, which may benefit policy pre-training but can hinder robot performance when used with a final imitation learning objective.
+
+## Demo-SCORE Method
+
+The researchers propose for robots to self-curate based on online robot experience (Demo-SCORE). More specifically, they train and cross-validate a classifier to discern successful policy roll-outs from unsuccessful ones and use the classifier to filter heterogeneous demonstration datasets.
+
+## Key Results
+
+Experiments in simulation and the real world show that Demo-SCORE can effectively identify suboptimal demonstrations without manual curation. Notably, Demo-SCORE achieves over 15-35% higher absolute success rate in the resulting policy compared to the base policy trained with all original demonstrations.
+
+## The Problem Motivation
+
+Some strategies in demonstration data may be less reliable than others or may be underrepresented in the data, leading to poor performance when such strategies are sampled at test time, and such unreliable or underrepresented strategies can be difficult even for people to discern, making manual curation time-consuming and costly.
+
+This research was published in 2025 and presented at Robotics: Science and Systems conference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef7f96bf-ec20-4963-af2a-8b8c29780b87",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "e18822cf-2ccd-4790-abde-34b097a20750",
+  "toolUseResult": {
+    "query": "\"curating demonstrations using online experience\" robot learning 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015KJ9U6RAhvAqgEPG9WqXPz",
+        "content": [
+          {
+            "title": "[2503.03707] Curating Demonstrations using Online Experience",
+            "url": "https://arxiv.org/abs/2503.03707"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/program/papers/71/"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience",
+            "url": "https://arxiv.org/html/2503.03707v2"
+          },
+          {
+            "title": "[PDF] Curating Demonstrations using Online Experience | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/776c9466ece2a34832d4ebef206fa5c2e9855b39"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience",
+            "url": "https://www.researchgate.net/publication/395366581_Curating_Demonstrations_using_Online_Experience"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience | alphaXiv",
+            "url": "https://www.alphaxiv.org/en/overview/2503.03707"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience",
+            "url": "https://www.roboticsproceedings.org/rss21/p071.pdf"
+          },
+          {
+            "title": "[Literature Review] Curating Demonstrations using Online Experience",
+            "url": "https://www.themoonlight.io/en/review/curating-demonstrations-using-online-experience"
+          },
+          {
+            "title": "DemoSpeedup: Accelerating Visuomotor Policies via Entropy-Guided Demonstration Acceleration",
+            "url": "https://arxiv.org/html/2506.05064v2"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://cupid-curation.github.io/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about \"Curating Demonstrations using Online Experience\" in robot learning:\n\n## Overview\n\nThe paper addresses the problem that many robot demonstration datasets contain heterogeneous demonstrations of varying quality, which may benefit policy pre-training but can hinder robot performance when used with a final imitation learning objective.\n\n## Demo-SCORE Method\n\nThe researchers propose for robots to self-curate based on online robot experience (Demo-SCORE). More specifically, they train and cross-validate a classifier to discern successful policy roll-outs from unsuccessful ones and use the classifier to filter heterogeneous demonstration datasets.\n\n## Key Results\n\nExperiments in simulation and the real world show that Demo-SCORE can effectively identify suboptimal demonstrations without manual curation. Notably, Demo-SCORE achieves over 15-35% higher absolute success rate in the resulting policy compared to the base policy trained with all original demonstrations.\n\n## The Problem Motivation\n\nSome strategies in demonstration data may be less reliable than others or may be underrepresented in the data, leading to poor performance when such strategies are sampled at test time, and such unreliable or underrepresented strategies can be difficult even for people to discern, making manual curation time-consuming and costly.\n\nThis research was published in 2025 and presented at Robotics: Science and Systems conference."
+    ],
+    "durationSeconds": 8.022417010999998
+  },
+  "sourceToolAssistantUUID": "ef7f96bf-ec20-4963-af2a-8b8c29780b87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-13T09:39:53.531Z_
+
+<details><summary>↩ Tool result · `toolu_01Sw8MJUy5s67WuhcaBfMHdR`</summary>
+
+```text
+Web search results for query: "DataMIL selecting data robot imitation learning datamodels 2025"
+
+Links: [{"title":"[2505.09603] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/abs/2505.09603"},{"title":"GitHub - UT-Austin-RobIn/datamil: Code release for -- DataMIL: Selecting Data for Robot Imitation Learning with Datamodels · GitHub","url":"https://github.com/UT-Austin-RobIn/datamil"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://robin-lab.cs.utexas.edu/datamodels4imitation/"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with ...","url":"https://arxiv.org/pdf/2505.09603"},{"title":"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/html/2505.09603"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels | OpenReview","url":"https://openreview.net/forum?id=AcTsKglDdh"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://openreview.net/pdf/d1836285b655f13b1f86918922a074b725fa137b.pdf"},{"title":"DATAMIL: SELECTING DATA FOR ROBOT IMITATION ...","url":"https://openreview.net/pdf/82e6c304571ad1e85b44780f29e82e7042b2743f.pdf"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"[Literature Review] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://www.themoonlight.io/en/review/datamil-selecting-data-for-robot-imitation-learning-with-datamodels"}]
+
+Based on the search results, I found comprehensive information about DataMIL. Here's what the research shows:
+
+## Overview
+
+DataMIL is a policy-driven data selection framework built on the datamodels paradigm that reasons about data selection in an end-to-end manner, using the policy itself to identify which data points will most improve performance.
+
+## Problem Being Addressed
+
+While the robotics community has amassed large and diverse datasets to train generalist robot policies, these policies often underperform on individual, specialized tasks. Combining task-specific data with carefully curated subsets of large prior datasets via co-training can produce better specialized policies, but selecting data naively may actually harm downstream performance.
+
+## Key Approach
+
+DataMIL trains a data-quality estimator using a tractable objective: validation loss. This objective retains sufficient correlations to the true objective (trained policy performance), allowing datamodels to predict data influence without requiring expensive real-world rollouts.
+
+Unlike standard practices that filter data using human notions of quality (e.g., based on semantic or visual similarity), DataMIL directly optimizes data selection for task success, allowing selection of data that enhance the policy while dropping data that degrade it.
+
+## Results
+
+Across the 50 tasks in MetaWorld, DataMIL shows a 10% performance boost compared to state-of-the-art baselines. DataMIL demonstrates effectiveness on 60+ simulation and real world tasks, including selecting relevant data from Open X-Embodiment datasets.
+
+The paper was published in May 2025 and is available on arXiv (2505.09603) with code released on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b0c3722-4a27-4132-83d7-32950f56454a",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "3f65fa1b-c8e4-4fc3-bd83-707502649960",
+  "toolUseResult": {
+    "query": "DataMIL selecting data robot imitation learning datamodels 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BmhHbnXnkPsSF7kyy8MjFo",
+        "content": [
+          {
+            "title": "[2505.09603] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/abs/2505.09603"
+          },
+          {
+            "title": "GitHub - UT-Austin-RobIn/datamil: Code release for -- DataMIL: Selecting Data for Robot Imitation Learning with Datamodels · GitHub",
+            "url": "https://github.com/UT-Austin-RobIn/datamil"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://robin-lab.cs.utexas.edu/datamodels4imitation/"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with ...",
+            "url": "https://arxiv.org/pdf/2505.09603"
+          },
+          {
+            "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/html/2505.09603"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels | OpenReview",
+            "url": "https://openreview.net/forum?id=AcTsKglDdh"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://openreview.net/pdf/d1836285b655f13b1f86918922a074b725fa137b.pdf"
+          },
+          {
+            "title": "DATAMIL: SELECTING DATA FOR ROBOT IMITATION ...",
+            "url": "https://openreview.net/pdf/82e6c304571ad1e85b44780f29e82e7042b2743f.pdf"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          },
+          {
+            "title": "[Literature Review] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://www.themoonlight.io/en/review/datamil-selecting-data-for-robot-imitation-learning-with-datamodels"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about DataMIL. Here's what the research shows:\n\n## Overview\n\nDataMIL is a policy-driven data selection framework built on the datamodels paradigm that reasons about data selection in an end-to-end manner, using the policy itself to identify which data points will most improve performance.\n\n## Problem Being Addressed\n\nWhile the robotics community has amassed large and diverse datasets to train generalist robot policies, these policies often underperform on individual, specialized tasks. Combining task-specific data with carefully curated subsets of large prior datasets via co-training can produce better specialized policies, but selecting data naively may actually harm downstream performance.\n\n## Key Approach\n\nDataMIL trains a data-quality estimator using a tractable objective: validation loss. This objective retains sufficient correlations to the true objective (trained policy performance), allowing datamodels to predict data influence without requiring expensive real-world rollouts.\n\nUnlike standard practices that filter data using human notions of quality (e.g., based on semantic or visual similarity), DataMIL directly optimizes data selection for task success, allowing selection of data that enhance the policy while dropping data that degrade it.\n\n## Results\n\nAcross the 50 tasks in MetaWorld, DataMIL shows a 10% performance boost compared to state-of-the-art baselines. DataMIL demonstrates effectiveness on 60+ simulation and real world tasks, including selecting relevant data from Open X-Embodiment datasets.\n\nThe paper was published in May 2025 and is available on arXiv (2505.09603) with code released on GitHub."
+    ],
+    "durationSeconds": 8.451109792999995
+  },
+  "sourceToolAssistantUUID": "5b0c3722-4a27-4132-83d7-32950f56454a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3f65fa1b-c8e4-4fc3-bd83-707502649960",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify OT-Consensus for CoRL robustness",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-13T09:39:59.618Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found another competing work: Demo-SCORE (RSS 2025) - "Curating Demonstrations using Online Experience." This is a policy-dependent approach but it's directly in the demo curation space. The generator didn't mention it. Let me check if this is a significant oversight.
+
+Let me now do deeper searches:
+1. Check if there's any work combining OT with demo curation (the specific gap the paper claims)
+2. Look for concurrent work on multimodal trajectory clustering
+3. Check for issues with the proposed approach
+4. Verify the claim about OpenVLA-OFT training costs
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f65fa1b-c8e4-4fc3-bd83-707502649960",
+  "isSidechain": false,
+  "requestId": "req_011CazM3ohkPSimvjSsiWmnS",
+  "type": "assistant",
+  "uuid": "cfc8595d-1d59-4462-b4ee-cfca6db5f797",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhxVDDonZ2NwDzVvm6bP5f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6756,
+      "cache_read_input_tokens": 32381,
+      "output_tokens": 365,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6756,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 365,
+          "cache_read_input_tokens": 32381,
+          "cache_creation_input_tokens": 6756,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6756
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-13T09:40:00.594Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0118QfaqdSPnSNBVJmAUvJFt`</summary>
+
+```json
+{
+  "query": "Wasserstein distance trajectory quality assessment imitation learning outlier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cfc8595d-1d59-4462-b4ee-cfca6db5f797",
+  "isSidechain": false,
+  "requestId": "req_011CazM3ohkPSimvjSsiWmnS",
+  "type": "assistant",
+  "uuid": "c31a22f5-0733-4aee-a1b2-15da1473541c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhxVDDonZ2NwDzVvm6bP5f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6756,
+      "cache_read_input_tokens": 32381,
+      "output_tokens": 365,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6756,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 365,
+          "cache_read_input_tokens": 32381,
+          "cache_creation_input_tokens": 6756,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6756
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-13T09:40:01.667Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VHp1DvVCbSfuTyueEFBu3i`</summary>
+
+```json
+{
+  "query": "OpenVLA-OFT fine-tuning compute cost A100 GPU hours 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c31a22f5-0733-4aee-a1b2-15da1473541c",
+  "isSidechain": false,
+  "requestId": "req_011CazM3ohkPSimvjSsiWmnS",
+  "type": "assistant",
+  "uuid": "748c946c-8a03-46b2-b918-47c9662aa47d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhxVDDonZ2NwDzVvm6bP5f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6756,
+      "cache_read_input_tokens": 32381,
+      "output_tokens": 365,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6756,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 365,
+          "cache_read_input_tokens": 32381,
+          "cache_creation_input_tokens": 6756,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6756
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-13T09:40:02.135Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S9tRExrRNrm4sz9WJ79hcY`</summary>
+
+```json
+{
+  "query": "Demo-SCORE curating demonstrations online experience RSS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "748c946c-8a03-46b2-b918-47c9662aa47d",
+  "isSidechain": false,
+  "requestId": "req_011CazM3ohkPSimvjSsiWmnS",
+  "type": "assistant",
+  "uuid": "5fb58b4d-11b7-49ab-8d95-4506efac54b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhxVDDonZ2NwDzVvm6bP5f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6756,
+      "cache_read_input_tokens": 32381,
+      "output_tokens": 365,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6756,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 365,
+          "cache_read_input_tokens": 32381,
+          "cache_creation_input_tokens": 6756,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6756
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-13T09:40:02.541Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T8p9TWJ682hxtwd6ik8k6Z`</summary>
+
+```json
+{
+  "query": "multimodal demonstration distribution robot learning strategy diversity clustering 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5fb58b4d-11b7-49ab-8d95-4506efac54b1",
+  "isSidechain": false,
+  "requestId": "req_011CazM3ohkPSimvjSsiWmnS",
+  "type": "assistant",
+  "uuid": "a6492c06-53d6-47ca-892b-fb2110cad60d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhxVDDonZ2NwDzVvm6bP5f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6756,
+      "cache_read_input_tokens": 32381,
+      "output_tokens": 365,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6756,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 365,
+          "cache_read_input_tokens": 32381,
+          "cache_creation_input_tokens": 6756,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6756
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-13T09:40:08.110Z_
+
+<details><summary>↩ Tool result · `toolu_01VHp1DvVCbSfuTyueEFBu3i`</summary>
+
+```text
+Web search results for query: "OpenVLA-OFT fine-tuning compute cost A100 GPU hours 2025"
+
+Links: [{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://openvla-oft.github.io/"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/html/2406.09246v3"},{"title":"GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub","url":"https://github.com/moojink/openvla-oft"},{"title":"NVIDIA A100 GPU Price Guide (2025) - Cloud Rental & ...","url":"https://jarvislabs.ai/ai-faqs/nvidia-a100-gpu-price"},{"title":"OpenVLA Review | gracefullight.dev","url":"https://gracefullight.dev/en/2025/08/29/open-vla-review/"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"},{"title":"openvla/README.md at main · openvla/openvla","url":"https://github.com/openvla/openvla/blob/main/README.md"},{"title":"OpenVLA is an open-source generalist robotics model | VentureBeat","url":"https://venturebeat.com/ai/openvla-is-an-open-source-generalist-robotics-model"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://openvla.github.io/"}]
+
+Based on the search results, here's what I found regarding OpenVLA-OFT fine-tuning compute costs with A100 GPUs:
+
+## OpenVLA-OFT Fine-Tuning Compute Requirements
+
+**For OpenVLA-OFT (the newer optimized recipe):**
+
+Each OpenVLA-OFT training job used 8 A100 or H100 GPUs with 80 GB memory and trained for 50K to 150K gradient steps, depending on the fine-tuning dataset size, which took 1-2 days.
+
+**For Standard OpenVLA Fine-Tuning:**
+
+Full fine-tuning runs of OpenVLA used 8 A100 GPUs for 5-15 hours per task (depending on the dataset size) to achieve high performance.
+
+**With LoRA (Parameter-Efficient Fine-Tuning):**
+
+With LoRA, OpenVLA can be fine-tuned on a new task within 10-15 hours on a single A100 GPU – an 8x reduction in compute compared to full fine-tuning.
+
+## Summary
+
+- **OpenVLA-OFT**: 8 A100 GPUs for 1-2 days (approximately 192-384 A100-hours total)
+- **Full Fine-Tuning**: 8 A100 GPUs for 5-15 hours (40-120 A100-hours total)
+- **LoRA Fine-Tuning**: 1 A100 GPU for 10-15 hours (10-15 A100-hours)
+
+The compute costs vary based on dataset size and specific configuration parameters like number of input images and action dimensions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "748c946c-8a03-46b2-b918-47c9662aa47d",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "a8404ae9-b934-48c8-bc93-15f03e843aa4",
+  "toolUseResult": {
+    "query": "OpenVLA-OFT fine-tuning compute cost A100 GPU hours 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0173ccCs7fdeqADuRYVfGvh9",
+        "content": [
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/openvla/openvla"
+          },
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/html/2406.09246v3"
+          },
+          {
+            "title": "GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub",
+            "url": "https://github.com/moojink/openvla-oft"
+          },
+          {
+            "title": "NVIDIA A100 GPU Price Guide (2025) - Cloud Rental & ...",
+            "url": "https://jarvislabs.ai/ai-faqs/nvidia-a100-gpu-price"
+          },
+          {
+            "title": "OpenVLA Review | gracefullight.dev",
+            "url": "https://gracefullight.dev/en/2025/08/29/open-vla-review/"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          },
+          {
+            "title": "openvla/README.md at main · openvla/openvla",
+            "url": "https://github.com/openvla/openvla/blob/main/README.md"
+          },
+          {
+            "title": "OpenVLA is an open-source generalist robotics model | VentureBeat",
+            "url": "https://venturebeat.com/ai/openvla-is-an-open-source-generalist-robotics-model"
+          },
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://openvla.github.io/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding OpenVLA-OFT fine-tuning compute costs with A100 GPUs:\n\n## OpenVLA-OFT Fine-Tuning Compute Requirements\n\n**For OpenVLA-OFT (the newer optimized recipe):**\n\nEach OpenVLA-OFT training job used 8 A100 or H100 GPUs with 80 GB memory and trained for 50K to 150K gradient steps, depending on the fine-tuning dataset size, which took 1-2 days.\n\n**For Standard OpenVLA Fine-Tuning:**\n\nFull fine-tuning runs of OpenVLA used 8 A100 GPUs for 5-15 hours per task (depending on the dataset size) to achieve high performance.\n\n**With LoRA (Parameter-Efficient Fine-Tuning):**\n\nWith LoRA, OpenVLA can be fine-tuned on a new task within 10-15 hours on a single A100 GPU – an 8x reduction in compute compared to full fine-tuning.\n\n## Summary\n\n- **OpenVLA-OFT**: 8 A100 GPUs for 1-2 days (approximately 192-384 A100-hours total)\n- **Full Fine-Tuning**: 8 A100 GPUs for 5-15 hours (40-120 A100-hours total)\n- **LoRA Fine-Tuning**: 1 A100 GPU for 10-15 hours (10-15 A100-hours)\n\nThe compute costs vary based on dataset size and specific configuration parameters like number of input images and action dimensions."
+    ],
+    "durationSeconds": 6.438955505999998
+  },
+  "sourceToolAssistantUUID": "748c946c-8a03-46b2-b918-47c9662aa47d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-13T09:40:08.131Z_
+
+<details><summary>↩ Tool result · `toolu_0118QfaqdSPnSNBVJmAUvJFt`</summary>
+
+```text
+Web search results for query: "Wasserstein distance trajectory quality assessment imitation learning outlier"
+
+Links: [{"title":"Wasserstein Distance guided Adversarial Imitation Learning with","url":"https://arxiv.org/pdf/2006.03503"},{"title":"Latent Wasserstein Adversarial Imitation Learning","url":"https://arxiv.org/html/2603.05440"},{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf?id=CiEOW1CdKc"},{"title":"Cross-Domain Imitation Learning via Optimal Transport","url":"https://arxiv.org/html/2110.03684"},{"title":"Adversarial Imitation Learning Based on Weighted Wasserstein Distance | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-95-1233-1_6"},{"title":"Wasserstein Adversarial Imitation Learning Huang Xiao Huang.Xiao@de.bosch.com","url":"https://arxiv.org/pdf/1906.08113"},{"title":"[Quick Review] Primal Wasserstein Imitation Learning","url":"https://liner.com/review/primal-wasserstein-imitation-learning"},{"title":"Primal Wasserstein Imitation Learning","url":"https://inria.hal.science/hal-03162526/document"},{"title":"Primal Wasserstein Imitation Learning | Request PDF","url":"https://www.researchgate.net/publication/342026666_Primal_Wasserstein_Imitation_Learning"},{"title":"Primal Wasserstein Imitation Learning | OpenReview","url":"https://openreview.net/forum?id=TtYSU29zgR"}]
+
+Based on the search results, here's what I found about Wasserstein distance, trajectory quality assessment, imitation learning, and outlier detection:
+
+## Key Findings
+
+**Wasserstein Distance in Imitation Learning:**
+
+The Wasserstein distance is widely adopted in imitation and reinforcement learning because it provides a geometry-aware measure between policy occupancies with more informative learning signals.
+
+**Trajectory Quality Assessment:**
+
+Several approaches use Wasserstein distance for assessing and comparing trajectories:
+
+1. The method uses the true Wasserstein distance to compare expert and agent behavior, offering a robust measure of similarity beyond traditional performance proxies.
+
+2. The ICVF latent space captures a dynamics-aware ground metric even if only a small amount of (possibly low-quality) state-only data is available; this is a first direct remedy for the known geometric limitations of the Euclidean distance in prior Wasserstein occupancy matching methods.
+
+**Outlier/Data Quality Handling:**
+
+A new adversarial imitation learning algorithm based on Weighted Wasserstein distance (WWDAIL) employs an enhanced proximal optimization strategy to improve the efficiency and stability of parameter updates. This suggests methods are being developed to handle varying data quality in trajectory datasets.
+
+**Cross-Domain Applications:**
+
+Gromov-Wasserstein Imitation Learning (GWIL) is a method for cross-domain imitation that uses the Gromov-Wasserstein distance to align and compare states between the different spaces of the agents.
+
+The research shows that Wasserstein distance provides a principled way to measure trajectory quality and assess whether an agent's behavior matches expert demonstrations, with emerging methods to handle data quality variations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c31a22f5-0733-4aee-a1b2-15da1473541c",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "e5ec2ee9-0171-4ed9-a3a8-d9f3f98eec1a",
+  "toolUseResult": {
+    "query": "Wasserstein distance trajectory quality assessment imitation learning outlier",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Swxqqkb8myadfcDhjqYmaE",
+        "content": [
+          {
+            "title": "Wasserstein Distance guided Adversarial Imitation Learning with",
+            "url": "https://arxiv.org/pdf/2006.03503"
+          },
+          {
+            "title": "Latent Wasserstein Adversarial Imitation Learning",
+            "url": "https://arxiv.org/html/2603.05440"
+          },
+          {
+            "title": "000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019",
+            "url": "https://openreview.net/pdf?id=CiEOW1CdKc"
+          },
+          {
+            "title": "Cross-Domain Imitation Learning via Optimal Transport",
+            "url": "https://arxiv.org/html/2110.03684"
+          },
+          {
+            "title": "Adversarial Imitation Learning Based on Weighted Wasserstein Distance | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-95-1233-1_6"
+          },
+          {
+            "title": "Wasserstein Adversarial Imitation Learning Huang Xiao Huang.Xiao@de.bosch.com",
+            "url": "https://arxiv.org/pdf/1906.08113"
+          },
+          {
+            "title": "[Quick Review] Primal Wasserstein Imitation Learning",
+            "url": "https://liner.com/review/primal-wasserstein-imitation-learning"
+          },
+          {
+            "title": "Primal Wasserstein Imitation Learning",
+            "url": "https://inria.hal.science/hal-03162526/document"
+          },
+          {
+            "title": "Primal Wasserstein Imitation Learning | Request PDF",
+            "url": "https://www.researchgate.net/publication/342026666_Primal_Wasserstein_Imitation_Learning"
+          },
+          {
+            "title": "Primal Wasserstein Imitation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=TtYSU29zgR"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Wasserstein distance, trajectory quality assessment, imitation learning, and outlier detection:\n\n## Key Findings\n\n**Wasserstein Distance in Imitation Learning:**\n\nThe Wasserstein distance is widely adopted in imitation and reinforcement learning because it provides a geometry-aware measure between policy occupancies with more informative learning signals.\n\n**Trajectory Quality Assessment:**\n\nSeveral approaches use Wasserstein distance for assessing and comparing trajectories:\n\n1. The method uses the true Wasserstein distance to compare expert and agent behavior, offering a robust measure of similarity beyond traditional performance proxies.\n\n2. The ICVF latent space captures a dynamics-aware ground metric even if only a small amount of (possibly low-quality) state-only data is available; this is a first direct remedy for the known geometric limitations of the Euclidean distance in prior Wasserstein occupancy matching methods.\n\n**Outlier/Data Quality Handling:**\n\nA new adversarial imitation learning algorithm based on Weighted Wasserstein distance (WWDAIL) employs an enhanced proximal optimization strategy to improve the efficiency and stability of parameter updates. This suggests methods are being developed to handle varying data quality in trajectory datasets.\n\n**Cross-Domain Applications:**\n\nGromov-Wasserstein Imitation Learning (GWIL) is a method for cross-domain imitation that uses the Gromov-Wasserstein distance to align and compare states between the different spaces of the agents.\n\nThe research shows that Wasserstein distance provides a principled way to measure trajectory quality and assess whether an agent's behavior matches expert demonstrations, with emerging methods to handle data quality variations."
+    ],
+    "durationSeconds": 7.533242503000001
+  },
+  "sourceToolAssistantUUID": "c31a22f5-0733-4aee-a1b2-15da1473541c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-13T09:40:08.934Z_
+
+<details><summary>↩ Tool result · `toolu_01S9tRExrRNrm4sz9WJ79hcY`</summary>
+
+```text
+Web search results for query: "Demo-SCORE curating demonstrations online experience RSS 2025"
+
+Links: [{"title":"[2503.03707] Curating Demonstrations using Online Experience","url":"https://arxiv.org/abs/2503.03707"},{"title":"Curating Demonstrations using Online Experience · Robotics: Science and Systems","url":"https://roboticsconference.org/program/papers/71/"},{"title":"Demo-SCORE: Curating Demonstrations using Online Experience","url":"https://anniesch.github.io/demo-score/"},{"title":"Curating Demonstrations using Online Experience","url":"https://arxiv.org/html/2503.03707v1"},{"title":"[PDF] Curating Demonstrations using Online Experience | Semantic Scholar","url":"https://www.semanticscholar.org/paper/776c9466ece2a34832d4ebef206fa5c2e9855b39"},{"title":"Curating Demonstrations using Online Experience","url":"https://www.researchgate.net/publication/395366581_Curating_Demonstrations_using_Online_Experience"},{"title":"Illustration of Demo-SCORE. Our method self-curates demonstrations... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/llustration-of-Demo-SCORE-Our-method-self-curates-demonstrations-through-online-robot_fig2_389617044"},{"title":"Curating Demonstrations using Online Experience","url":"https://www.roboticsproceedings.org/rss21/p071.pdf"},{"title":"[Literature Review] Curating Demonstrations using Online Experience","url":"https://www.themoonlight.io/en/review/curating-demonstrations-using-online-experience"},{"title":"Curating Demonstrations using Online Experience | alphaXiv","url":"https://www.alphaxiv.org/en/overview/2503.03707"}]
+
+Based on the search results, I found comprehensive information about Demo-SCORE and the related research paper.
+
+## Overview
+
+Demo-SCORE is a method for robots to self-curate based on online robot experience. The paper "Curating Demonstrations using Online Experience" by Annie S. Chen, Alec M. Lessing, Yuejiang Liu, and Chelsea Finn proposes this method aimed at improving robotic learning from heterogeneous demonstration datasets.
+
+## The Problem
+
+Many robot demonstration datasets contain heterogeneous demonstrations of varying quality. This heterogeneity may benefit policy pre-training, but can hinder robot performance when used with a final imitation learning objective. In particular, some strategies in the data may be less reliable than others or may be underrepresented in the data, leading to poor performance when such strategies are sampled at test time.
+
+## The Method
+
+The approach trains and cross-validates a classifier to discern successful policy roll-outs from unsuccessful ones and uses the classifier to filter heterogeneous demonstration datasets. The method self-curates demonstrations through online robot experience in four steps: (i) train a policy on the full demonstration set; (ii) evaluate the policy by generating rollouts with different checkpoints; (iii) use these rollouts to train and cross-validate a classifier that distinguishes between success and failure trajectories; (iv) filter out unreliable demonstrations based on the learned classifier.
+
+## Results
+
+Experiments in simulation and the real world show that Demo-SCORE can effectively identify suboptimal demonstrations without manual curation. Notably, Demo-SCORE achieves over 15-35% higher absolute success rate in the resulting policy compared to the base policy trained with all original demonstrations.
+
+## Publication
+
+The paper was published at Robotics: Science and Systems XXI in June 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5fb58b4d-11b7-49ab-8d95-4506efac54b1",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "2ccae694-0f00-4c15-be51-539c6d7a9eb1",
+  "toolUseResult": {
+    "query": "Demo-SCORE curating demonstrations online experience RSS 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0133vqFvkpRqxo9yfsd5n5pA",
+        "content": [
+          {
+            "title": "[2503.03707] Curating Demonstrations using Online Experience",
+            "url": "https://arxiv.org/abs/2503.03707"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/program/papers/71/"
+          },
+          {
+            "title": "Demo-SCORE: Curating Demonstrations using Online Experience",
+            "url": "https://anniesch.github.io/demo-score/"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience",
+            "url": "https://arxiv.org/html/2503.03707v1"
+          },
+          {
+            "title": "[PDF] Curating Demonstrations using Online Experience | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/776c9466ece2a34832d4ebef206fa5c2e9855b39"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience",
+            "url": "https://www.researchgate.net/publication/395366581_Curating_Demonstrations_using_Online_Experience"
+          },
+          {
+            "title": "Illustration of Demo-SCORE. Our method self-curates demonstrations... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/llustration-of-Demo-SCORE-Our-method-self-curates-demonstrations-through-online-robot_fig2_389617044"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience",
+            "url": "https://www.roboticsproceedings.org/rss21/p071.pdf"
+          },
+          {
+            "title": "[Literature Review] Curating Demonstrations using Online Experience",
+            "url": "https://www.themoonlight.io/en/review/curating-demonstrations-using-online-experience"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience | alphaXiv",
+            "url": "https://www.alphaxiv.org/en/overview/2503.03707"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about Demo-SCORE and the related research paper.\n\n## Overview\n\nDemo-SCORE is a method for robots to self-curate based on online robot experience. The paper \"Curating Demonstrations using Online Experience\" by Annie S. Chen, Alec M. Lessing, Yuejiang Liu, and Chelsea Finn proposes this method aimed at improving robotic learning from heterogeneous demonstration datasets.\n\n## The Problem\n\nMany robot demonstration datasets contain heterogeneous demonstrations of varying quality. This heterogeneity may benefit policy pre-training, but can hinder robot performance when used with a final imitation learning objective. In particular, some strategies in the data may be less reliable than others or may be underrepresented in the data, leading to poor performance when such strategies are sampled at test time.\n\n## The Method\n\nThe approach trains and cross-validates a classifier to discern successful policy roll-outs from unsuccessful ones and uses the classifier to filter heterogeneous demonstration datasets. The method self-curates demonstrations through online robot experience in four steps: (i) train a policy on the full demonstration set; (ii) evaluate the policy by generating rollouts with different checkpoints; (iii) use these rollouts to train and cross-validate a classifier that distinguishes between success and failure trajectories; (iv) filter out unreliable demonstrations based on the learned classifier.\n\n## Results\n\nExperiments in simulation and the real world show that Demo-SCORE can effectively identify suboptimal demonstrations without manual curation. Notably, Demo-SCORE achieves over 15-35% higher absolute success rate in the resulting policy compared to the base policy trained with all original demonstrations.\n\n## Publication\n\nThe paper was published at Robotics: Science and Systems XXI in June 2025."
+    ],
+    "durationSeconds": 6.794525886000003
+  },
+  "sourceToolAssistantUUID": "5fb58b4d-11b7-49ab-8d95-4506efac54b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-13T09:40:10.839Z_
+
+<details><summary>↩ Tool result · `toolu_01T8p9TWJ682hxtwd6ik8k6Z`</summary>
+
+```text
+Web search results for query: "multimodal demonstration distribution robot learning strategy diversity clustering 2025 2026"
+
+Links: [{"title":"World Model for Robot Learning: A Comprehensive Survey","url":"https://arxiv.org/html/2605.00080v1"},{"title":"Frontiers | Diffusion models for robotic manipulation: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"},{"title":"Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12757213/"},{"title":"Deep Generative Models in Robotics: A Survey on Learning from Multimodal Demonstrations","url":"https://arxiv.org/html/2408.04380v1"},{"title":"Frontiers | The power of combined modalities in interactive robot learning","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1598968/full"},{"title":"TYPE Review PUBLISHED 22 August 2025 DOI 10.3389/frobt.2025.1604472 OPEN ACCESS","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1604472/pdf"},{"title":"A review on multimodal communications for human-robot collaboration in 5G: from visual to tactile","url":"https://www.oaepublish.com/articles/ir.2025.30"},{"title":"An Overview of Robot Embodied Intelligence Based on Multimodal Models: Tasks, Models, and System Schemes - Cong - 2025 - International Journal of Intelligent Systems - Wiley Online Library","url":"https://onlinelibrary.wiley.com/doi/10.1155/int/5124400"},{"title":"Advancements in multimodal differential evolution: a comprehensive review and future perspectives | Artificial Intelligence Review | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10462-025-11314-7"},{"title":"Frontiers | Multimodal perception-driven decision-making for human-robot interaction: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1604472/full"}]
+
+Based on the search results, here's a summary of recent developments in multimodal demonstration distribution, robot learning strategies, diversity, and clustering (2025-2026):
+
+## Key Research Areas
+
+**Multimodal Learning in Robot Demonstrations:**
+
+Recent visuomotor policies have increasingly adopted generative models to address the inherent multi-modality of human demonstrations, with approaches like Diffusion Policy capturing the full action distribution using diffusion models and flow matching.
+
+**Vision-Language-Action Policies:**
+
+Recent Vision-Language-Action (VLA) policies aim to unify perception, language understanding, and control by mapping multimodal observations directly to robot actions, promising broad task generalization and flexible instruction following. However, purely reactive VLA policies remain limited in complex physical environments, where they often struggle with long-horizon reasoning, temporal credit assignment, and robustness under compounding errors.
+
+**Handling Demonstration Diversity:**
+
+Different demonstrators may have different skill levels, preferences, and strategies for accomplishing the same task, resulting in a wide range of approaches encapsulated in the dataset. The diversity of approaches for modeling multi-modal action distributions reflects the complexity of contact-rich manipulation tasks.
+
+**Clustering and Distributed Strategies:**
+
+Recent approaches incorporate various strategies such as niching, clustering, and dynamic population adaptations to enhance performance in multimodal settings.
+
+The research landscape shows increasing focus on handling the inherent multimodality and diversity in robot learning from demonstrations, with emphasis on generative models and large-scale foundation models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a6492c06-53d6-47ca-892b-fb2110cad60d",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "4ba6d505-ef57-46c7-a1b9-d2323be30397",
+  "toolUseResult": {
+    "query": "multimodal demonstration distribution robot learning strategy diversity clustering 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UvSSPbf5G9sMUVnoatSnaj",
+        "content": [
+          {
+            "title": "World Model for Robot Learning: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2605.00080v1"
+          },
+          {
+            "title": "Frontiers | Diffusion models for robotic manipulation: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"
+          },
+          {
+            "title": "Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12757213/"
+          },
+          {
+            "title": "Deep Generative Models in Robotics: A Survey on Learning from Multimodal Demonstrations",
+            "url": "https://arxiv.org/html/2408.04380v1"
+          },
+          {
+            "title": "Frontiers | The power of combined modalities in interactive robot learning",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1598968/full"
+          },
+          {
+            "title": "TYPE Review PUBLISHED 22 August 2025 DOI 10.3389/frobt.2025.1604472 OPEN ACCESS",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1604472/pdf"
+          },
+          {
+            "title": "A review on multimodal communications for human-robot collaboration in 5G: from visual to tactile",
+            "url": "https://www.oaepublish.com/articles/ir.2025.30"
+          },
+          {
+            "title": "An Overview of Robot Embodied Intelligence Based on Multimodal Models: Tasks, Models, and System Schemes - Cong - 2025 - International Journal of Intelligent Systems - Wiley Online Library",
+            "url": "https://onlinelibrary.wiley.com/doi/10.1155/int/5124400"
+          },
+          {
+            "title": "Advancements in multimodal differential evolution: a comprehensive review and future perspectives | Artificial Intelligence Review | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10462-025-11314-7"
+          },
+          {
+            "title": "Frontiers | Multimodal perception-driven decision-making for human-robot interaction: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1604472/full"
+          }
+        ]
+      },
+      "Based on the search results, here's a summary of recent developments in multimodal demonstration distribution, robot learning strategies, diversity, and clustering (2025-2026):\n\n## Key Research Areas\n\n**Multimodal Learning in Robot Demonstrations:**\n\nRecent visuomotor policies have increasingly adopted generative models to address the inherent multi-modality of human demonstrations, with approaches like Diffusion Policy capturing the full action distribution using diffusion models and flow matching.\n\n**Vision-Language-Action Policies:**\n\nRecent Vision-Language-Action (VLA) policies aim to unify perception, language understanding, and control by mapping multimodal observations directly to robot actions, promising broad task generalization and flexible instruction following. However, purely reactive VLA policies remain limited in complex physical environments, where they often struggle with long-horizon reasoning, temporal credit assignment, and robustness under compounding errors.\n\n**Handling Demonstration Diversity:**\n\nDifferent demonstrators may have different skill levels, preferences, and strategies for accomplishing the same task, resulting in a wide range of approaches encapsulated in the dataset. The diversity of approaches for modeling multi-modal action distributions reflects the complexity of contact-rich manipulation tasks.\n\n**Clustering and Distributed Strategies:**\n\nRecent approaches incorporate various strategies such as niching, clustering, and dynamic population adaptations to enhance performance in multimodal settings.\n\nThe research landscape shows increasing focus on handling the inherent multimodality and diversity in robot learning from demonstrations, with emphasis on generative models and large-scale foundation models."
+    ],
+    "durationSeconds": 8.295909516
+  },
+  "sourceToolAssistantUUID": "a6492c06-53d6-47ca-892b-fb2110cad60d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4ba6d505-ef57-46c7-a1b9-d2323be30397",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify OT-Consensus for CoRL robustness",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-13T09:40:23.754Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings so far. Let me note:
+
+1. Demo-SCORE (RSS 2025) - another competing work the generator missed. It's policy-dependent (requires online rollouts), but it's in the same demo curation space.
+2. OpenVLA-OFT costs: 8 A100s for 1-2 days (192-384 A100h per run). With LoRA, 10-15 A100h on 1 GPU. The generator's estimate of 15h per LoRA run seems reasonable, and 250h for full fine-tuning per run is within range of the high end.
+
+
+3. Robust Wasserstein Barycenter and Wasserstein Wormhole both check out as real papers.
+
+Now I need to verify whether optimal transport for intra-dataset quality scoring in robot demos is actually a gap, dig into the Nietert et al. 2022 work on outlier-robust OT, search for recent work combining OT with data curation for robot learning, and track down the "Consistency Matters" paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ba6d505-ef57-46c7-a1b9-d2323be30397",
+  "isSidechain": false,
+  "requestId": "req_011CazM55gxYybRPAQcewVi8",
+  "type": "assistant",
+  "uuid": "9cae6979-6c5a-47b8-9256-6305700d2c61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JvXhw82bXEMhxNmB2teBzc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4047,
+      "cache_read_input_tokens": 39137,
+      "output_tokens": 468,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4047,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 468,
+          "cache_read_input_tokens": 39137,
+          "cache_creation_input_tokens": 4047,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4047
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-13T09:40:23.765Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MVdN8i1Kvpc51dt2m8aV7D`</summary>
+
+```json
+{
+  "query": "Nietert outlier robust optimal transport 2022 breakdown point contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9cae6979-6c5a-47b8-9256-6305700d2c61",
+  "isSidechain": false,
+  "requestId": "req_011CazM55gxYybRPAQcewVi8",
+  "type": "assistant",
+  "uuid": "3371034b-a9e9-4ef8-852b-bfafd74f2f34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JvXhw82bXEMhxNmB2teBzc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4047,
+      "cache_read_input_tokens": 39137,
+      "output_tokens": 468,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4047,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 468,
+          "cache_read_input_tokens": 39137,
+          "cache_creation_input_tokens": 4047,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4047
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-13T09:40:23.771Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018nYFihLFmWQudBt6dZeaNT`</summary>
+
+```json
+{
+  "query": "\"data quality\" \"VLA\" quantify filter demonstrations 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3371034b-a9e9-4ef8-852b-bfafd74f2f34",
+  "isSidechain": false,
+  "requestId": "req_011CazM55gxYybRPAQcewVi8",
+  "type": "assistant",
+  "uuid": "6796b881-748c-493d-90ef-1e3c58d602a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JvXhw82bXEMhxNmB2teBzc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4047,
+      "cache_read_input_tokens": 39137,
+      "output_tokens": 468,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4047,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 468,
+          "cache_read_input_tokens": 39137,
+          "cache_creation_input_tokens": 4047,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4047
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-13T09:40:24.269Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0141VWv7c8VxUSR11qa9kDX9`</summary>
+
+```json
+{
+  "query": "trajectory distributional distance scoring data curation robotics Wasserstein 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6796b881-748c-493d-90ef-1e3c58d602a1",
+  "isSidechain": false,
+  "requestId": "req_011CazM55gxYybRPAQcewVi8",
+  "type": "assistant",
+  "uuid": "a9d54bed-c60d-4bd2-b15c-e0e2dc1ed02f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JvXhw82bXEMhxNmB2teBzc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4047,
+      "cache_read_input_tokens": 39137,
+      "output_tokens": 468,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4047,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 468,
+          "cache_read_input_tokens": 39137,
+          "cache_creation_input_tokens": 4047,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4047
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-13T09:40:29.525Z_
+
+<details><summary>↩ Tool result · `toolu_0141VWv7c8VxUSR11qa9kDX9`</summary>
+
+```text
+Web search results for query: "trajectory distributional distance scoring data curation robotics Wasserstein 2025 2026"
+
+Links: [{"title":"ICRA 2025 Publication Round-Up | RAI Institute","url":"https://rai-inst.com/resources/blog/icra-2025-publication-round-up/"},{"title":"Dataset Distillation via the Wasserstein Metric","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Liu_Dataset_Distillation_via_the_Wasserstein_Metric_ICCV_2025_paper.pdf"},{"title":"Machine Learning Jul 2025","url":"https://www.arxiv.org/list/cs.LG/2025-07?skip=425&show=1000"},{"title":"Wasserstein Distributionally Robust Optimization: Theory and Applications in Machine Learning | Operations Research & Management Science in the Age of Analytics | Tutorials in OR","url":"https://pubsonline.informs.org/doi/10.1287/educ.2019.0198"},{"title":"Distributionally Robust Optimization Daniel Kuhn","url":"https://optimization-online.org/wp-content/uploads/2024/11/DRO-1.pdf"},{"title":"Data-driven distributionally robust MPC using the Wasserstein metric","url":"https://arxiv.org/pdf/2105.08414"},{"title":"Statistical Aspects of Wasserstein Distances","url":"https://arxiv.org/pdf/1806.05500"},{"title":"A General Wasserstein Framework for Data-driven Distributionally Robust Optimization: Tractability and Applications by Jonathan Yu-Meng Li, Tiantian Mao :: SSRN","url":"https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID4168264_code2594059.pdf?abstractid=4168264&mirid=1"},{"title":"Robot Data Curation with Mutual Information Estimators · Robotics: Science and Systems","url":"https://roboticsconference.org/program/papers/23/"},{"title":"NeurIPS Poster Energy-Based Sliced Wasserstein Distance","url":"https://neurips.cc/virtual/2023/poster/70138"}]
+
+Based on the search results, I found relevant information connecting these topics:
+
+Researchers have used Wasserstein Distance and Maximum Mean Discrepancy to quantify the distributional dissimilarity of data collected on hardware and in simulation, demonstrating the application of Wasserstein distance metrics in robotics research as a method for data curation and evaluation.
+
+The search results also reveal several related areas of research:
+
+1. **Dataset Distillation with Wasserstein Metrics**: Using the Wasserstein metric has been shown to outperform all previous dataset distillation methods, including MMD-based methods.
+
+2. **Distributional Robust Optimization**: Wasserstein distances have been applied in distributionally robust optimization approaches, which relates to how data distributions are handled and optimized.
+
+3. **Robotics Data Curation**: The performance of imitation learning policies often depends on the datasets they are trained on, and investment in data collection for robotics has grown across both industrial and academic labs.
+
+These results show active research in 2025-2026 combining Wasserstein distance metrics with data curation approaches, particularly in robotics and machine learning contexts.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9d54bed-c60d-4bd2-b15c-e0e2dc1ed02f",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "d44edd5e-2229-4647-9cda-f8347a6e4df5",
+  "toolUseResult": {
+    "query": "trajectory distributional distance scoring data curation robotics Wasserstein 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013rgHJV3k32s3s8eoUpNqja",
+        "content": [
+          {
+            "title": "ICRA 2025 Publication Round-Up | RAI Institute",
+            "url": "https://rai-inst.com/resources/blog/icra-2025-publication-round-up/"
+          },
+          {
+            "title": "Dataset Distillation via the Wasserstein Metric",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Liu_Dataset_Distillation_via_the_Wasserstein_Metric_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "Machine Learning Jul 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-07?skip=425&show=1000"
+          },
+          {
+            "title": "Wasserstein Distributionally Robust Optimization: Theory and Applications in Machine Learning | Operations Research & Management Science in the Age of Analytics | Tutorials in OR",
+            "url": "https://pubsonline.informs.org/doi/10.1287/educ.2019.0198"
+          },
+          {
+            "title": "Distributionally Robust Optimization Daniel Kuhn",
+            "url": "https://optimization-online.org/wp-content/uploads/2024/11/DRO-1.pdf"
+          },
+          {
+            "title": "Data-driven distributionally robust MPC using the Wasserstein metric",
+            "url": "https://arxiv.org/pdf/2105.08414"
+          },
+          {
+            "title": "Statistical Aspects of Wasserstein Distances",
+            "url": "https://arxiv.org/pdf/1806.05500"
+          },
+          {
+            "title": "A General Wasserstein Framework for Data-driven Distributionally Robust Optimization: Tractability and Applications by Jonathan Yu-Meng Li, Tiantian Mao :: SSRN",
+            "url": "https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID4168264_code2594059.pdf?abstractid=4168264&mirid=1"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/program/papers/23/"
+          },
+          {
+            "title": "NeurIPS Poster Energy-Based Sliced Wasserstein Distance",
+            "url": "https://neurips.cc/virtual/2023/poster/70138"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information connecting these topics:\n\nResearchers have used Wasserstein Distance and Maximum Mean Discrepancy to quantify the distributional dissimilarity of data collected on hardware and in simulation, demonstrating the application of Wasserstein distance metrics in robotics research as a method for data curation and evaluation.\n\nThe search results also reveal several related areas of research:\n\n1. **Dataset Distillation with Wasserstein Metrics**: Using the Wasserstein metric has been shown to outperform all previous dataset distillation methods, including MMD-based methods.\n\n2. **Distributional Robust Optimization**: Wasserstein distances have been applied in distributionally robust optimization approaches, which relates to how data distributions are handled and optimized.\n\n3. **Robotics Data Curation**: The performance of imitation learning policies often depends on the datasets they are trained on, and investment in data collection for robotics has grown across both industrial and academic labs.\n\nThese results show active research in 2025-2026 combining Wasserstein distance metrics with data curation approaches, particularly in robotics and machine learning contexts."
+    ],
+    "durationSeconds": 5.252263422000004
+  },
+  "sourceToolAssistantUUID": "a9d54bed-c60d-4bd2-b15c-e0e2dc1ed02f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-13T09:40:29.860Z_
+
+<details><summary>↩ Tool result · `toolu_01MVdN8i1Kvpc51dt2m8aV7D`</summary>
+
+```text
+Web search results for query: "Nietert outlier robust optimal transport 2022 breakdown point contamination"
+
+Links: [{"title":"[2111.01361] Outlier-Robust Optimal Transport: Duality, Structure, and Statistical Analysis","url":"https://arxiv.org/abs/2111.01361"},{"title":"Outlier-Robust Optimal Transport: Duality, Structure, and Statistical Analysis","url":"https://proceedings.mlr.press/v151/nietert22a.html"},{"title":"Automatic Outlier Rectification via Optimal Transport","url":"https://arxiv.org/html/2403.14067v2"},{"title":"Outlier Robust Optimal Transport | OpenReview","url":"https://openreview.net/forum?id=vrCiOrqgl3B"},{"title":"Talk Information 03/24/2022 | FIND","url":"https://find.engineering.cornell.edu/talk-information-03-24-2022/"},{"title":"Sloan Nietert, Rachel Cummings, Ziv Goldfeld · Outlier-Robust Optimal Transport: Structure, Duality, and Statistical Analysis","url":"https://slideslive.com/38980830/outlierrobust-optimal-transport-structure-duality-and-statistical-analysis"},{"title":"[2012.07363] Outlier-Robust Optimal Transport","url":"https://arxiv.org/abs/2012.07363"},{"title":"[PDF] Outlier-Robust Optimal Transport | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Outlier-Robust-Optimal-Transport-Mukherjee-Guha/fe843e91fa9e6d89d9797e3c2272ecdbe50cc0a3"},{"title":"GitHub - sbnietert/robust-OT","url":"https://github.com/sbnietert/robust-OT"},{"title":"Outlier-Robust Optimal Transport - MIT-IBM Watson AI Lab","url":"https://mitibmwatsonailab.mit.edu/research/blog/outlier-robust-optimal-transport/"}]
+
+I found relevant results for your search. Here's what I found about the Nietert et al. paper on outlier-robust optimal transport:
+
+The paper "Outlier-Robust Optimal Transport: Duality, Structure, and Statistical Analysis" was published by Sloan Nietert, Ziv Goldfeld, and Rachel Cummings in the Proceedings of The 25th International Conference on Artificial Intelligence and Statistics (PMLR 151) in 2022.
+
+**Main Contributions:**
+
+The authors propose a new outlier-robust Wasserstein distance W_p^ε which allows for ε outlier mass to be removed from each contaminated distribution, and under standard moment assumptions, it is shown to be minimax optimal for robust estimation under the Huber ε-contamination model.
+
+The paper includes a thorough theoretical study encompassing robustness guarantees, characterization of optimal perturbations, regularity, duality, and statistical estimation, with a simple dual form that can be implemented via an elementary modification to standard, duality-based OT solvers.
+
+**Applications:**
+
+The framework is illustrated through applications to generative modeling with contaminated datasets.
+
+The paper addresses a key limitation: Wasserstein distances are sensitive to outliers in the considered distributions, which hinders applicability in practice.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3371034b-a9e9-4ef8-852b-bfafd74f2f34",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "a646ab15-501c-42c9-887f-a99897f5e6f1",
+  "toolUseResult": {
+    "query": "Nietert outlier robust optimal transport 2022 breakdown point contamination",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018LZ5kyWnVMBNgFTJAJYY6R",
+        "content": [
+          {
+            "title": "[2111.01361] Outlier-Robust Optimal Transport: Duality, Structure, and Statistical Analysis",
+            "url": "https://arxiv.org/abs/2111.01361"
+          },
+          {
+            "title": "Outlier-Robust Optimal Transport: Duality, Structure, and Statistical Analysis",
+            "url": "https://proceedings.mlr.press/v151/nietert22a.html"
+          },
+          {
+            "title": "Automatic Outlier Rectification via Optimal Transport",
+            "url": "https://arxiv.org/html/2403.14067v2"
+          },
+          {
+            "title": "Outlier Robust Optimal Transport | OpenReview",
+            "url": "https://openreview.net/forum?id=vrCiOrqgl3B"
+          },
+          {
+            "title": "Talk Information 03/24/2022 | FIND",
+            "url": "https://find.engineering.cornell.edu/talk-information-03-24-2022/"
+          },
+          {
+            "title": "Sloan Nietert, Rachel Cummings, Ziv Goldfeld · Outlier-Robust Optimal Transport: Structure, Duality, and Statistical Analysis",
+            "url": "https://slideslive.com/38980830/outlierrobust-optimal-transport-structure-duality-and-statistical-analysis"
+          },
+          {
+            "title": "[2012.07363] Outlier-Robust Optimal Transport",
+            "url": "https://arxiv.org/abs/2012.07363"
+          },
+          {
+            "title": "[PDF] Outlier-Robust Optimal Transport | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Outlier-Robust-Optimal-Transport-Mukherjee-Guha/fe843e91fa9e6d89d9797e3c2272ecdbe50cc0a3"
+          },
+          {
+            "title": "GitHub - sbnietert/robust-OT",
+            "url": "https://github.com/sbnietert/robust-OT"
+          },
+          {
+            "title": "Outlier-Robust Optimal Transport - MIT-IBM Watson AI Lab",
+            "url": "https://mitibmwatsonailab.mit.edu/research/blog/outlier-robust-optimal-transport/"
+          }
+        ]
+      },
+      "I found relevant results for your search. Here's what I found about the Nietert et al. paper on outlier-robust optimal transport:\n\nThe paper \"Outlier-Robust Optimal Transport: Duality, Structure, and Statistical Analysis\" was published by Sloan Nietert, Ziv Goldfeld, and Rachel Cummings in the Proceedings of The 25th International Conference on Artificial Intelligence and Statistics (PMLR 151) in 2022.\n\n**Main Contributions:**\n\nThe authors propose a new outlier-robust Wasserstein distance W_p^ε which allows for ε outlier mass to be removed from each contaminated distribution, and under standard moment assumptions, it is shown to be minimax optimal for robust estimation under the Huber ε-contamination model.\n\nThe paper includes a thorough theoretical study encompassing robustness guarantees, characterization of optimal perturbations, regularity, duality, and statistical estimation, with a simple dual form that can be implemented via an elementary modification to standard, duality-based OT solvers.\n\n**Applications:**\n\nThe framework is illustrated through applications to generative modeling with contaminated datasets.\n\nThe paper addresses a key limitation: Wasserstein distances are sensitive to outliers in the considered distributions, which hinders applicability in practice."
+    ],
+    "durationSeconds": 6.090840661000009
+  },
+  "sourceToolAssistantUUID": "3371034b-a9e9-4ef8-852b-bfafd74f2f34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-13T09:40:32.773Z_
+
+<details><summary>↩ Tool result · `toolu_018nYFihLFmWQudBt6dZeaNT`</summary>
+
+```text
+Web search results for query: ""data quality" "VLA" quantify filter demonstrations 2026"
+
+Links: [{"title":"Humanoid Robot Training Data: Deployment Guide 2026 | Shaip","url":"https://www.shaip.com/blog/humanoid-robot-training-data-what-teams-need-before-deployment/"},{"title":"Vision-Language-Action (VLA) Guide for 2026","url":"https://hyscaler.com/insights/vision-language-action-vla-guide/"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"VLA Model Training Data: Architectures, Needs & Challenges","url":"https://macgence.com/blog/vla-model-training-data"},{"title":"Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | OpenReview","url":"https://openreview.net/forum?id=eUGoqrZ6Ea"},{"title":"Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S1566253525011248"},{"title":"Vision-Language-Action (VLA) Models for Robotics","url":"https://blog.roboflow.com/vision-language-action-models/"},{"title":"VLA Models: Why Data-Centric AI Unlocks Next-Gen Robotics","url":"https://voxel51.com/blog/vla-models-data-centric-ai-robotics"},{"title":"Vision-Language-Action in Robotics: A Survey of Datasets, Benchmarks, and Data Engines","url":"https://arxiv.org/html/2604.23001v1"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"}]
+
+I've performed the web search with your query. Here are the results related to "data quality," "VLA," quantify, filter, and demonstrations in 2026:
+
+## Key Findings
+
+The search results primarily focus on **Vision-Language-Action (VLA) models for robotics** and the critical role of **data quality** in their training:
+
+### Data Quality in VLA Training
+
+Human demonstrations must be carefully annotated, edge cases deliberately sought, and data quality rigorously validated, with scaling data collection while maintaining quality presenting logistical challenges.
+
+### Data Quality Challenges
+
+Data scarcity remains the primary bottleneck for VLA models, as no amount of architectural innovation overcomes the fundamental constraint of limited, low-quality training data. Additionally, over 50% of simulations end up unusable due to corrupted sensor data, wasting millions in compute costs before a single VLA model trains.
+
+### Data Quality Infrastructure
+
+FiftyOne Physical AI Workbench addresses this by ensuring data quality before reconstruction begins, and this data-first approach directly addresses VLA model bottlenecks by expanding limited robot demonstration data through validated synthetic generation, maintaining temporal alignment and multimodal fusion requirements, and enabling cross-domain utilization while preserving data quality standards.
+
+### Quantifying Performance
+
+Maps 26 major VLA datasets using a framework based on task difficulty and modality richness, and proposes the VLA Fusion Evaluation Benchmark to quantify fusion efficiency and alignment.
+
+The search results emphasize that in 2026, data quality validation and quantification methods are becoming increasingly important for successful VLA model deployment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6796b881-748c-493d-90ef-1e3c58d602a1",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "3b5b801f-0e20-40e8-80ae-f20f72e4aa88",
+  "toolUseResult": {
+    "query": "\"data quality\" \"VLA\" quantify filter demonstrations 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FaoH7GJmXZxffAKL6Nv5h2",
+        "content": [
+          {
+            "title": "Humanoid Robot Training Data: Deployment Guide 2026 | Shaip",
+            "url": "https://www.shaip.com/blog/humanoid-robot-training-data-what-teams-need-before-deployment/"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Guide for 2026",
+            "url": "https://hyscaler.com/insights/vision-language-action-vla-guide/"
+          },
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/openvla/openvla"
+          },
+          {
+            "title": "VLA Model Training Data: Architectures, Needs & Challenges",
+            "url": "https://macgence.com/blog/vla-model-training-data"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | OpenReview",
+            "url": "https://openreview.net/forum?id=eUGoqrZ6Ea"
+          },
+          {
+            "title": "Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S1566253525011248"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Models for Robotics",
+            "url": "https://blog.roboflow.com/vision-language-action-models/"
+          },
+          {
+            "title": "VLA Models: Why Data-Centric AI Unlocks Next-Gen Robotics",
+            "url": "https://voxel51.com/blog/vla-models-data-centric-ai-robotics"
+          },
+          {
+            "title": "Vision-Language-Action in Robotics: A Survey of Datasets, Benchmarks, and Data Engines",
+            "url": "https://arxiv.org/html/2604.23001v1"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          }
+        ]
+      },
+      "I've performed the web search with your query. Here are the results related to \"data quality,\" \"VLA,\" quantify, filter, and demonstrations in 2026:\n\n## Key Findings\n\nThe search results primarily focus on **Vision-Language-Action (VLA) models for robotics** and the critical role of **data quality** in their training:\n\n### Data Quality in VLA Training\n\nHuman demonstrations must be carefully annotated, edge cases deliberately sought, and data quality rigorously validated, with scaling data collection while maintaining quality presenting logistical challenges.\n\n### Data Quality Challenges\n\nData scarcity remains the primary bottleneck for VLA models, as no amount of architectural innovation overcomes the fundamental constraint of limited, low-quality training data. Additionally, over 50% of simulations end up unusable due to corrupted sensor data, wasting millions in compute costs before a single VLA model trains.\n\n### Data Quality Infrastructure\n\nFiftyOne Physical AI Workbench addresses this by ensuring data quality before reconstruction begins, and this data-first approach directly addresses VLA model bottlenecks by expanding limited robot demonstration data through validated synthetic generation, maintaining temporal alignment and multimodal fusion requirements, and enabling cross-domain utilization while preserving data quality standards.\n\n### Quantifying Performance\n\nMaps 26 major VLA datasets using a framework based on task difficulty and modality richness, and proposes the VLA Fusion Evaluation Benchmark to quantify fusion efficiency and alignment.\n\nThe search results emphasize that in 2026, data quality validation and quantification methods are becoming increasingly important for successful VLA model deployment."
+    ],
+    "durationSeconds": 8.999996247000002
+  },
+  "sourceToolAssistantUUID": "6796b881-748c-493d-90ef-1e3c58d602a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65 · 2026-05-13T09:40:32.776Z_
+
+```json
+{
+  "parentUuid": "3b5b801f-0e20-40e8-80ae-f20f72e4aa88",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1892a3ac-391a-48d0-9f21-52a3386ee613",
+  "timestamp": "2026-05-13T09:40:32.776Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-13T09:40:39.160Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me now do a few more targeted searches:
+1. Check for any very recent (2026) work specifically using OT for filtering demonstration data
+2. Check whether the ICLR 2026 VLA blog exists and mentions "data quality"
+3. Check the "Consistency Matters" paper
+4. Look for k-Wasserstein-barycenter clustering specifically
+5. Search for related work the generator might have missed using different keywords
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1892a3ac-391a-48d0-9f21-52a3386ee613",
+  "isSidechain": false,
+  "requestId": "req_011CazM6hSJd6fYKMx2iLUQB",
+  "type": "assistant",
+  "uuid": "3b68e539-32db-4263-8f51-517ace9ed398",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015522arf9hQMYXov5Ux6zw5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 863,
+      "cache_creation_input_tokens": 2348,
+      "cache_read_input_tokens": 43184,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2348,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 863,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 43184,
+          "cache_creation_input_tokens": 2348,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2348
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-13T09:40:39.658Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PnNGJmaymBi2TkF15upw4N`</summary>
+
+```json
+{
+  "query": "ICLR 2026 VLA blog data quality quantify methods robotics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b68e539-32db-4263-8f51-517ace9ed398",
+  "isSidechain": false,
+  "requestId": "req_011CazM6hSJd6fYKMx2iLUQB",
+  "type": "assistant",
+  "uuid": "e5fc266a-983d-4b65-b938-cc6ac5e20ee6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015522arf9hQMYXov5Ux6zw5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 863,
+      "cache_creation_input_tokens": 2348,
+      "cache_read_input_tokens": 43184,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2348,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 863,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 43184,
+          "cache_creation_input_tokens": 2348,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2348
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-13T09:40:40.607Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VCCYGxvyK2Cb19R3QDf4qB`</summary>
+
+```json
+{
+  "query": "\"Consistency Matters\" demonstration data quality metrics robot learning ACM THRI 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5fc266a-983d-4b65-b938-cc6ac5e20ee6",
+  "isSidechain": false,
+  "requestId": "req_011CazM6hSJd6fYKMx2iLUQB",
+  "type": "assistant",
+  "uuid": "e7dd600e-4eba-4449-86fd-95eb07529f16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015522arf9hQMYXov5Ux6zw5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 863,
+      "cache_creation_input_tokens": 2348,
+      "cache_read_input_tokens": 43184,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2348,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 863,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 43184,
+          "cache_creation_input_tokens": 2348,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2348
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-13T09:40:41.110Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XMQJcbmL4wVtFvYm2BBAku`</summary>
+
+```json
+{
+  "query": "DemInf robot data curation mutual information estimators RSS 2025 results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7dd600e-4eba-4449-86fd-95eb07529f16",
+  "isSidechain": false,
+  "requestId": "req_011CazM6hSJd6fYKMx2iLUQB",
+  "type": "assistant",
+  "uuid": "03bdd637-3565-4ded-be72-6da3dd6f6634",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015522arf9hQMYXov5Ux6zw5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 863,
+      "cache_creation_input_tokens": 2348,
+      "cache_read_input_tokens": 43184,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2348,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 863,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 43184,
+          "cache_creation_input_tokens": 2348,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2348
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "03bdd637-3565-4ded-be72-6da3dd6f6634",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify OT-Consensus for CoRL robustness",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-13T09:40:46.850Z_
+
+<details><summary>↩ Tool result · `toolu_01PnNGJmaymBi2TkF15upw4N`</summary>
+
+```text
+Web search results for query: "ICLR 2026 VLA blog data quality quantify methods robotics"
+
+Links: [{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop","url":"https://icra2026vlapipeline.github.io/"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2602.10109"},{"title":"Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | OpenReview","url":"https://openreview.net/forum?id=xqRD4LLY5M"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"},{"title":"ICRA 2026 Workshop: VLA Pipelines for Real Robot Systems","url":"https://www.linkedin.com/posts/junjungoal_from-data-to-decisions-vla-pipelines-for-activity-7426285548333453312-m_hV"},{"title":"Generative Models for Robot Learning","url":"https://iclr.cc/virtual/2025/workshop/23977"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S1566253525011248"},{"title":"VLA Models: Why Data-Centric AI Unlocks Next-Gen Robotics","url":"https://voxel51.com/blog/vla-models-data-centric-ai-robotics"}]
+
+Based on the web search results, here's what I found related to ICLR 2026 VLA research, data quality, and robotics methods:
+
+## Key Findings
+
+**VLA Research Overview at ICLR 2026:**
+There was a comprehensive analysis of 164 Vision-Language-Action (VLA) model submissions at ICLR 2026, with trends in discrete diffusion VLAs, reasoning models, and benchmarks (LIBERO, CALVIN, SIMPLER).
+
+**Data Quality Quantification Methods:**
+One notable paper introduced Projection-Space Similarity (PSS), a method to quantify the alignment between the optimization dynamics of the multimodal grounding objective and the action policy objective. The core idea is to compare the gradients induced by each objective on a shared set of model parameters.
+
+**Data-Centric Approaches:**
+A recent framework called Probe, Learn, Distill (PLD), improves VLAs through residual reinforcement learning and distribution-aware data collection. The results show that residual policy probing and distribution-aware replay are key to collecting deployment-aligned data.
+
+**Data Quality Challenges:**
+The research community has identified significant data quality issues: Over 50% of simulations end up unusable due to corrupted sensor data, wasting millions in compute costs. Additionally, most pipelines lack rigorous data curation, principled training regimes, and standardized evaluation, leading to inconsistent performance and safety concerns on physical robots.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e5fc266a-983d-4b65-b938-cc6ac5e20ee6",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "51788c3e-1b27-4955-a64f-0e8098142063",
+  "toolUseResult": {
+    "query": "ICLR 2026 VLA blog data quality quantify methods robotics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TEnfZjdaGtByRJo9SJqQRN",
+        "content": [
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop",
+            "url": "https://icra2026vlapipeline.github.io/"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2602.10109"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | OpenReview",
+            "url": "https://openreview.net/forum?id=xqRD4LLY5M"
+          },
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          },
+          {
+            "title": "ICRA 2026 Workshop: VLA Pipelines for Real Robot Systems",
+            "url": "https://www.linkedin.com/posts/junjungoal_from-data-to-decisions-vla-pipelines-for-activity-7426285548333453312-m_hV"
+          },
+          {
+            "title": "Generative Models for Robot Learning",
+            "url": "https://iclr.cc/virtual/2025/workshop/23977"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S1566253525011248"
+          },
+          {
+            "title": "VLA Models: Why Data-Centric AI Unlocks Next-Gen Robotics",
+            "url": "https://voxel51.com/blog/vla-models-data-centric-ai-robotics"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found related to ICLR 2026 VLA research, data quality, and robotics methods:\n\n## Key Findings\n\n**VLA Research Overview at ICLR 2026:**\nThere was a comprehensive analysis of 164 Vision-Language-Action (VLA) model submissions at ICLR 2026, with trends in discrete diffusion VLAs, reasoning models, and benchmarks (LIBERO, CALVIN, SIMPLER).\n\n**Data Quality Quantification Methods:**\nOne notable paper introduced Projection-Space Similarity (PSS), a method to quantify the alignment between the optimization dynamics of the multimodal grounding objective and the action policy objective. The core idea is to compare the gradients induced by each objective on a shared set of model parameters.\n\n**Data-Centric Approaches:**\nA recent framework called Probe, Learn, Distill (PLD), improves VLAs through residual reinforcement learning and distribution-aware data collection. The results show that residual policy probing and distribution-aware replay are key to collecting deployment-aligned data.\n\n**Data Quality Challenges:**\nThe research community has identified significant data quality issues: Over 50% of simulations end up unusable due to corrupted sensor data, wasting millions in compute costs. Additionally, most pipelines lack rigorous data curation, principled training regimes, and standardized evaluation, leading to inconsistent performance and safety concerns on physical robots."
+    ],
+    "durationSeconds": 7.186532034999996
+  },
+  "sourceToolAssistantUUID": "e5fc266a-983d-4b65-b938-cc6ac5e20ee6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-13T09:40:47.439Z_
+
+<details><summary>↩ Tool result · `toolu_01VCCYGxvyK2Cb19R3QDf4qB`</summary>
+
+```text
+Web search results for query: ""Consistency Matters" demonstration data quality metrics robot learning ACM THRI 2024"
+
+Links: [{"title":"Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration","url":"https://arxiv.org/html/2412.14309v1"},{"title":"(PDF) Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration","url":"https://www.researchgate.net/publication/387222678_Consistency_Matters_Defining_Demonstration_Data_Quality_Metrics_in_Robot_Learning_from_Demonstration"},{"title":"Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration | ACM Transactions on Human-Robot Interaction","url":"https://dl.acm.org/doi/full/10.1145/3773904?af=R"},{"title":"Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration | Request PDF","url":"https://www.researchgate.net/publication/396997300_Consistency_Matters_Defining_Demonstration_Data_Quality_Metrics_in_Robot_Learning_from_Demonstration"},{"title":"[2412.14309] Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration","url":"https://arxiv.org/abs/2412.14309"},{"title":"Quantifying Demonstration Quality for Robot Learning and Generalization","url":"https://arxiv.org/pdf/2203.13843"},{"title":"Robotics Dec 2024","url":"https://arxiv.org/list/cs.RO/2024-12?skip=350&show=500"},{"title":"Anomaly-based Assessment of Semantic Consistency: Design and Evaluation of a Novel Probability-based Metric in Cooperation with a German Car Manufacturer | Journal of Data and Information Quality","url":"https://dl.acm.org/doi/10.1145/3732783"},{"title":"THRI: Vol 13, No 3","url":"https://dl.acm.org/toc/thri/2024/13/3"},{"title":"THRI: Vol 13, No 1 - ACM Digital Library","url":"https://dl.acm.org/toc/thri/2024/13/1"}]
+
+I found comprehensive information about the "Consistency Matters" paper. Here are the key findings:
+
+## Paper Overview
+
+"Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration" was published in the Transactions on Human-Robot Interaction (THRI).
+
+## Main Contribution
+
+The paper introduces task-agnostic metrics to assess consistency in demonstration data, focusing on motion characteristics in both Cartesian and joint-space dimensions. The proposed measures provide an intuitive, practical way to assess demonstration data quality before training, without requiring expert data or algorithm-specific modifications, addressing a critical gap in robot learning from demonstration by formalizing consistency metrics.
+
+## Research Validation
+
+The approach was validated with two user studies involving participants with diverse levels of robotics expertise—the first study (N = 24) had users teach a PR2 robot to perform a button-pressing task, while the second study (N = 30) had participants train a UR5 robot on a pick-and-place task.
+
+## Key Results
+
+Demonstration consistency significantly impacts success rates in both learning and generalization, with 70% and 89% of task success rates in the two studies predicted using the consistency metrics, and the metrics estimate generalized performance success rates with 76% and 91% accuracy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e7dd600e-4eba-4449-86fd-95eb07529f16",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "e731e831-d2ea-4a68-b204-1f58be7951f0",
+  "toolUseResult": {
+    "query": "\"Consistency Matters\" demonstration data quality metrics robot learning ACM THRI 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01U8tfoY3Not7TCGW9vE1kRX",
+        "content": [
+          {
+            "title": "Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration",
+            "url": "https://arxiv.org/html/2412.14309v1"
+          },
+          {
+            "title": "(PDF) Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration",
+            "url": "https://www.researchgate.net/publication/387222678_Consistency_Matters_Defining_Demonstration_Data_Quality_Metrics_in_Robot_Learning_from_Demonstration"
+          },
+          {
+            "title": "Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration | ACM Transactions on Human-Robot Interaction",
+            "url": "https://dl.acm.org/doi/full/10.1145/3773904?af=R"
+          },
+          {
+            "title": "Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration | Request PDF",
+            "url": "https://www.researchgate.net/publication/396997300_Consistency_Matters_Defining_Demonstration_Data_Quality_Metrics_in_Robot_Learning_from_Demonstration"
+          },
+          {
+            "title": "[2412.14309] Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration",
+            "url": "https://arxiv.org/abs/2412.14309"
+          },
+          {
+            "title": "Quantifying Demonstration Quality for Robot Learning and Generalization",
+            "url": "https://arxiv.org/pdf/2203.13843"
+          },
+          {
+            "title": "Robotics Dec 2024",
+            "url": "https://arxiv.org/list/cs.RO/2024-12?skip=350&show=500"
+          },
+          {
+            "title": "Anomaly-based Assessment of Semantic Consistency: Design and Evaluation of a Novel Probability-based Metric in Cooperation with a German Car Manufacturer | Journal of Data and Information Quality",
+            "url": "https://dl.acm.org/doi/10.1145/3732783"
+          },
+          {
+            "title": "THRI: Vol 13, No 3",
+            "url": "https://dl.acm.org/toc/thri/2024/13/3"
+          },
+          {
+            "title": "THRI: Vol 13, No 1 - ACM Digital Library",
+            "url": "https://dl.acm.org/toc/thri/2024/13/1"
+          }
+        ]
+      },
+      "I found comprehensive information about the \"Consistency Matters\" paper. Here are the key findings:\n\n## Paper Overview\n\n\"Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration\" was published in the Transactions on Human-Robot Interaction (THRI).\n\n## Main Contribution\n\nThe paper introduces task-agnostic metrics to assess consistency in demonstration data, focusing on motion characteristics in both Cartesian and joint-space dimensions. The proposed measures provide an intuitive, practical way to assess demonstration data quality before training, without requiring expert data or algorithm-specific modifications, addressing a critical gap in robot learning from demonstration by formalizing consistency metrics.\n\n## Research Validation\n\nThe approach was validated with two user studies involving participants with diverse levels of robotics expertise—the first study (N = 24) had users teach a PR2 robot to perform a button-pressing task, while the second study (N = 30) had participants train a UR5 robot on a pick-and-place task.\n\n## Key Results\n\nDemonstration consistency significantly impacts success rates in both learning and generalization, with 70% and 89% of task success rates in the two studies predicted using the consistency metrics, and the metrics estimate generalized performance success rates with 76% and 91% accuracy."
+    ],
+    "durationSeconds": 6.8287235800000055
+  },
+  "sourceToolAssistantUUID": "e7dd600e-4eba-4449-86fd-95eb07529f16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-13T09:40:48.333Z_
+
+<details><summary>↩ Tool result · `toolu_01XMQJcbmL4wVtFvYm2BBAku`</summary>
+
+```text
+Web search results for query: "DemInf robot data curation mutual information estimators RSS 2025 results"
+
+Links: [{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623v2"},{"title":"Robot Data Curation with Mutual Information Estimators | alphaXiv","url":"https://www.alphaxiv.org/overview/2502.08623v3"},{"title":"[2502.08623] Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/abs/2502.08623"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v1"},{"title":"Robot Data Curation with Mutual Information Estimators · Robotics: Science and Systems","url":"https://roboticsconference.org/program/papers/23/"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://cupid-curation.github.io/"},{"title":"GitHub - jhejna/demonstration-information: Code for the paper Robot Data Curation with Mutual Information Estimators","url":"https://github.com/jhejna/demonstration-information"},{"title":"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/html/2505.09603"},{"title":"[PDF] Robot Data Curation with Mutual Information Estimators | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Robot-Data-Curation-with-Mutual-Information-Hejna-Mirchandani/37cb83dc757f483cfd389c8709b4aee389da8dc6"},{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"}]
+
+Based on the search results, here's what I found about the DemInf robot data curation research:
+
+## Overview
+
+DemInf (Demonstration Information Estimation) is an unsupervised method for curating robot demonstration datasets by using mutual information between states and actions as a proxy for data quality. Researchers from Google DeepMind Robotics and Stanford University developed DemInf.
+
+## Key Results
+
+The approach consistently identifies high-quality demonstrations, leading to up to 10% improved success rates for downstream behavior cloning policies on various robot tasks. More specifically, on RoboMimic tasks, DemInf-filtered data results in 5-10% improvements in success rates compared to training on all available data.
+
+Real-world experiments on ALOHA and Franka systems confirm these improvements translate to physical robot performance.
+
+## Methodology
+
+The method proposes Demonstration Information Estimation (DemInf) for computationally estimating mutual information. The approach estimates the average contribution of a trajectory towards the mutual information between states and actions in the entire dataset, which captures both the entropy of the marginal action distribution and the state-conditioned action entropy.
+
+## Paper Status
+
+The paper appears to be accepted at RSS (Robotics: Science and Systems) 2025, as indicated by the official conference program listing the work with authors Joey Hejna, Suvir Mirchandani, Ashwin Balakrishna, Annie Xie, Ayzaan Wahid, Jonathan Tompson, Pannag R. Sanketi, Dhruv Shah, Coline Devin, and Dorsa Sadigh.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03bdd637-3565-4ded-be72-6da3dd6f6634",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "e4037907-9c28-49be-83a0-e2d71d4f85c0",
+  "toolUseResult": {
+    "query": "DemInf robot data curation mutual information estimators RSS 2025 results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ta2sfBTQi6Y7jEoQ7HgjTd",
+        "content": [
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/html/2502.08623v2"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2502.08623v3"
+          },
+          {
+            "title": "[2502.08623] Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/abs/2502.08623"
+          },
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v1"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/program/papers/23/"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://cupid-curation.github.io/"
+          },
+          {
+            "title": "GitHub - jhejna/demonstration-information: Code for the paper Robot Data Curation with Mutual Information Estimators",
+            "url": "https://github.com/jhejna/demonstration-information"
+          },
+          {
+            "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/html/2505.09603"
+          },
+          {
+            "title": "[PDF] Robot Data Curation with Mutual Information Estimators | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Robot-Data-Curation-with-Mutual-Information-Hejna-Mirchandani/37cb83dc757f483cfd389c8709b4aee389da8dc6"
+          },
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the DemInf robot data curation research:\n\n## Overview\n\nDemInf (Demonstration Information Estimation) is an unsupervised method for curating robot demonstration datasets by using mutual information between states and actions as a proxy for data quality. Researchers from Google DeepMind Robotics and Stanford University developed DemInf.\n\n## Key Results\n\nThe approach consistently identifies high-quality demonstrations, leading to up to 10% improved success rates for downstream behavior cloning policies on various robot tasks. More specifically, on RoboMimic tasks, DemInf-filtered data results in 5-10% improvements in success rates compared to training on all available data.\n\nReal-world experiments on ALOHA and Franka systems confirm these improvements translate to physical robot performance.\n\n## Methodology\n\nThe method proposes Demonstration Information Estimation (DemInf) for computationally estimating mutual information. The approach estimates the average contribution of a trajectory towards the mutual information between states and actions in the entire dataset, which captures both the entropy of the marginal action distribution and the state-conditioned action entropy.\n\n## Paper Status\n\nThe paper appears to be accepted at RSS (Robotics: Science and Systems) 2025, as indicated by the official conference program listing the work with authors Joey Hejna, Suvir Mirchandani, Ashwin Balakrishna, Annie Xie, Ayzaan Wahid, Jonathan Tompson, Pannag R. Sanketi, Dhruv Shah, Coline Devin, and Dorsa Sadigh."
+    ],
+    "durationSeconds": 7.219993505999999
+  },
+  "sourceToolAssistantUUID": "03bdd637-3565-4ded-be72-6da3dd6f6634",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-13T09:40:52.274Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now check one more critical thing - the ICLR 2026 blog about VLA and data quality. Let me fetch that blog post to verify the claim about "lacking good methods to quantify data quality."
+
+Also let me look for more concurrent or competitive work that might have been missed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4037907-9c28-49be-83a0-e2d71d4f85c0",
+  "isSidechain": false,
+  "requestId": "req_011CazM7r1GrFTX39bREMV2Y",
+  "type": "assistant",
+  "uuid": "3a3202f2-81d7-4edd-992b-18569c44025d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7La8qMfBNcsnHxeuz7Vvm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3809,
+      "cache_read_input_tokens": 45532,
+      "output_tokens": 341,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3809,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 341,
+          "cache_read_input_tokens": 45532,
+          "cache_creation_input_tokens": 3809,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3809
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-13T09:40:53.216Z_
+
+Let me fetch the ICLR 2026 VLA blog post and look for any additional concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a3202f2-81d7-4edd-992b-18569c44025d",
+  "isSidechain": false,
+  "requestId": "req_011CazM7r1GrFTX39bREMV2Y",
+  "type": "assistant",
+  "uuid": "af7dcf42-84ae-4ec6-b58f-164d4a5cc7a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7La8qMfBNcsnHxeuz7Vvm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3809,
+      "cache_read_input_tokens": 45532,
+      "output_tokens": 341,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3809,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 341,
+          "cache_read_input_tokens": 45532,
+          "cache_creation_input_tokens": 3809,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3809
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-13T09:40:57.985Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016WXuWcdZxrLoUHQqf9VktL`</summary>
+
+```json
+{
+  "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html",
+  "prompt": "Does this blog post mention data quality, data curation, or the need for better methods to quantify data quality for VLA models? Extract any relevant quotes about data quality challenges."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af7dcf42-84ae-4ec6-b58f-164d4a5cc7a3",
+  "isSidechain": false,
+  "requestId": "req_011CazM7r1GrFTX39bREMV2Y",
+  "type": "assistant",
+  "uuid": "0a0015b9-5c28-401f-84e6-f8f083f2454b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7La8qMfBNcsnHxeuz7Vvm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3809,
+      "cache_read_input_tokens": 45532,
+      "output_tokens": 341,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3809,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 341,
+          "cache_read_input_tokens": 45532,
+          "cache_creation_input_tokens": 3809,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3809
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-13T09:40:58.111Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ShxMoS39LJLgb51M8wsA5g`</summary>
+
+```json
+{
+  "query": "experience replay buffer data filtering scoring reinforcement learning robot demonstration quality 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a0015b9-5c28-401f-84e6-f8f083f2454b",
+  "isSidechain": false,
+  "requestId": "req_011CazM7r1GrFTX39bREMV2Y",
+  "type": "assistant",
+  "uuid": "7ec198ea-e4ad-4a1b-8893-95e1ccc1846a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7La8qMfBNcsnHxeuz7Vvm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3809,
+      "cache_read_input_tokens": 45532,
+      "output_tokens": 341,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3809,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 341,
+          "cache_read_input_tokens": 45532,
+          "cache_creation_input_tokens": 3809,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3809
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-13T09:40:58.220Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Jq2bk5HrMxvLN6mksUF3zz`</summary>
+
+```json
+{
+  "query": "DemoDICE DemoSpeedup demonstration filtering weighting imitation learning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ec198ea-e4ad-4a1b-8893-95e1ccc1846a",
+  "isSidechain": false,
+  "requestId": "req_011CazM7r1GrFTX39bREMV2Y",
+  "type": "assistant",
+  "uuid": "21c14392-54e1-4199-99dc-c25ff75d8800",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7La8qMfBNcsnHxeuz7Vvm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3809,
+      "cache_read_input_tokens": 45532,
+      "output_tokens": 341,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3809,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 341,
+          "cache_read_input_tokens": 45532,
+          "cache_creation_input_tokens": 3809,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3809
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-13T09:41:01.401Z_
+
+<details><summary>↩ Tool result · `toolu_016WXuWcdZxrLoUHQqf9VktL`</summary>
+
+```text
+# Data Quality in VLA Research
+
+Yes, the blog post explicitly addresses data quality concerns. Here are the relevant excerpts:
+
+**Direct mention in the summary section:**
+
+"It's an open secret that OXE is mostly low-quality data, yet we still lack good methods to quantify data quality in imitation learning."
+
+**Context from the underrepresented problems section:**
+
+The author identifies data quality as a critical but overlooked area, noting that "surprisingly few ICLR 2026 submissions focused on data collection and curation" despite its importance for VLA performance. The post emphasizes that understanding how to curate high-quality datasets remains "one of the most crucial unsolved problems in VLA research."
+
+The author also references this gap earlier when discussing reasoning VLAs, mentioning that "a major bottleneck is the limited availability of diverse training data" and that labeling large-scale sources remains challenging.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a0015b9-5c28-401f-84e6-f8f083f2454b",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "4f356b05-8043-443e-b73b-f8e21cde029c",
+  "toolUseResult": {
+    "bytes": 62688,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Data Quality in VLA Research\n\nYes, the blog post explicitly addresses data quality concerns. Here are the relevant excerpts:\n\n**Direct mention in the summary section:**\n\n\"It's an open secret that OXE is mostly low-quality data, yet we still lack good methods to quantify data quality in imitation learning.\"\n\n**Context from the underrepresented problems section:**\n\nThe author identifies data quality as a critical but overlooked area, noting that \"surprisingly few ICLR 2026 submissions focused on data collection and curation\" despite its importance for VLA performance. The post emphasizes that understanding how to curate high-quality datasets remains \"one of the most crucial unsolved problems in VLA research.\"\n\nThe author also references this gap earlier when discussing reasoning VLAs, mentioning that \"a major bottleneck is the limited availability of diverse training data\" and that labeling large-scale sources remains challenging.",
+    "durationMs": 3412,
+    "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+  },
+  "sourceToolAssistantUUID": "0a0015b9-5c28-401f-84e6-f8f083f2454b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-13T09:41:04.718Z_
+
+<details><summary>↩ Tool result · `toolu_01Jq2bk5HrMxvLN6mksUF3zz`</summary>
+
+```text
+Web search results for query: "DemoDICE DemoSpeedup demonstration filtering weighting imitation learning 2025 2026"
+
+Links: [{"title":"DemoDICE: Offline Imitation Learning with Supplementary Imperfect Demonstrations | OpenReview","url":"https://openreview.net/forum?id=BrPdX1bDZkQ"},{"title":"DemoSpeedup","url":"https://demospeedup.github.io/"},{"title":"(PDF) DEMODICE: OFFLINE IMITATION LEARNING WITH SUPPLEMENTARY IMPERFECT DEMONSTRATIONS","url":"https://www.researchgate.net/publication/375086450_DEMODICE_OFFLINE_IMITATION_LEARNING_WITH_SUPPLEMENTARY_IMPERFECT_DEMONSTRATIONS"},{"title":"DemoSpeedup: Accelerating Visuomotor Policies via Entropy-Guided Demonstration Acceleration | OpenReview","url":"https://openreview.net/forum?id=Tl7girqoLi"},{"title":"DEMODICE: OFFLINE IMITATION LEARNING WITH ...","url":"https://openreview.net/pdf?id=BrPdX1bDZkQ"},{"title":"DSpace at KOASAS: DemoDICE: Offline Imitation Learning with Supplementary Imperfect Demonstrations","url":"https://koasas.kaist.ac.kr/handle/10203/299707"},{"title":"ICLR Poster DemoDICE: Offline Imitation Learning with Supplementary Imperfect Demonstrations","url":"https://iclr.cc/virtual/2022/poster/6025"},{"title":"DemoSpeedup: Accelerating Visuomotor Policies via Entropy-Guided Demonstration Acceleration","url":"https://arxiv.org/html/2506.05064"},{"title":"DemoSpeedup: Accelerating Visuomotor Policies via Entropy-Guided Demonstration Acceleration | Request PDF","url":"https://www.researchgate.net/publication/392466961_DemoSpeedup_Accelerating_Visuomotor_Policies_via_Entropy-Guided_Demonstration_Acceleration"},{"title":"[Literature Review] DemoSpeedup: Accelerating Visuomotor Policies via Entropy-Guided Demonstration Acceleration","url":"https://www.themoonlight.io/en/review/demospeedup-accelerating-visuomotor-policies-via-entropy-guided-demonstration-acceleration"}]
+
+Based on the search results, here's information about DemoDICE and DemoSpeedup:
+
+## DemoDICE
+
+DemoDICE addresses offline imitation learning, which aims to mimic the expert's behavior from its demonstration without further interaction with the environment. The approach assumes additional demonstration data of unknown degrees of optimality called imperfect demonstrations, and effectively utilizes them by matching the stationary distribution of a policy with experts' distribution while penalizing its deviation from the overall demonstrations.
+
+Compared with recent IL algorithms that adopt adversarial minimax training objectives, DemoDICE substantially stabilizes the overall learning process by reducing minimax optimization to a direct convex optimization in a principled manner.
+
+## DemoSpeedup
+
+DemoSpeedup is a self-supervised method to accelerate visuomotor policy execution via entropy-guided demonstration acceleration. It trains a generative policy on normal-speed demonstrations to serve as a per-frame action entropy estimator. Frames with lower action entropy estimates call for more consistent policy behaviors indicating higher-precision operations, while frames with higher entropy estimates correspond to more casual sections that can be more safely accelerated. Demonstrations are segmented according to estimated entropy and accelerated by down-sampling at rates that increase with entropy values.
+
+Trained with the speedup demonstrations, the resulting policies execute up to 3 times faster while maintaining task completion performance.
+
+Both represent recent advances in imitation learning for robotics, with DemoDICE focusing on handling imperfect demonstration data and DemoSpeedup addressing execution speed optimization in robotic manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21c14392-54e1-4199-99dc-c25ff75d8800",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "8dc28548-8901-4402-872b-a8ad0cda86ff",
+  "toolUseResult": {
+    "query": "DemoDICE DemoSpeedup demonstration filtering weighting imitation learning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WSMfzXcKKRcCVVNnNxccPp",
+        "content": [
+          {
+            "title": "DemoDICE: Offline Imitation Learning with Supplementary Imperfect Demonstrations | OpenReview",
+            "url": "https://openreview.net/forum?id=BrPdX1bDZkQ"
+          },
+          {
+            "title": "DemoSpeedup",
+            "url": "https://demospeedup.github.io/"
+          },
+          {
+            "title": "(PDF) DEMODICE: OFFLINE IMITATION LEARNING WITH SUPPLEMENTARY IMPERFECT DEMONSTRATIONS",
+            "url": "https://www.researchgate.net/publication/375086450_DEMODICE_OFFLINE_IMITATION_LEARNING_WITH_SUPPLEMENTARY_IMPERFECT_DEMONSTRATIONS"
+          },
+          {
+            "title": "DemoSpeedup: Accelerating Visuomotor Policies via Entropy-Guided Demonstration Acceleration | OpenReview",
+            "url": "https://openreview.net/forum?id=Tl7girqoLi"
+          },
+          {
+            "title": "DEMODICE: OFFLINE IMITATION LEARNING WITH ...",
+            "url": "https://openreview.net/pdf?id=BrPdX1bDZkQ"
+          },
+          {
+            "title": "DSpace at KOASAS: DemoDICE: Offline Imitation Learning with Supplementary Imperfect Demonstrations",
+            "url": "https://koasas.kaist.ac.kr/handle/10203/299707"
+          },
+          {
+            "title": "ICLR Poster DemoDICE: Offline Imitation Learning with Supplementary Imperfect Demonstrations",
+            "url": "https://iclr.cc/virtual/2022/poster/6025"
+          },
+          {
+            "title": "DemoSpeedup: Accelerating Visuomotor Policies via Entropy-Guided Demonstration Acceleration",
+            "url": "https://arxiv.org/html/2506.05064"
+          },
+          {
+            "title": "DemoSpeedup: Accelerating Visuomotor Policies via Entropy-Guided Demonstration Acceleration | Request PDF",
+            "url": "https://www.researchgate.net/publication/392466961_DemoSpeedup_Accelerating_Visuomotor_Policies_via_Entropy-Guided_Demonstration_Acceleration"
+          },
+          {
+            "title": "[Literature Review] DemoSpeedup: Accelerating Visuomotor Policies via Entropy-Guided Demonstration Acceleration",
+            "url": "https://www.themoonlight.io/en/review/demospeedup-accelerating-visuomotor-policies-via-entropy-guided-demonstration-acceleration"
+          }
+        ]
+      },
+      "Based on the search results, here's information about DemoDICE and DemoSpeedup:\n\n## DemoDICE\n\nDemoDICE addresses offline imitation learning, which aims to mimic the expert's behavior from its demonstration without further interaction with the environment. The approach assumes additional demonstration data of unknown degrees of optimality called imperfect demonstrations, and effectively utilizes them by matching the stationary distribution of a policy with experts' distribution while penalizing its deviation from the overall demonstrations.\n\nCompared with recent IL algorithms that adopt adversarial minimax training objectives, DemoDICE substantially stabilizes the overall learning process by reducing minimax optimization to a direct convex optimization in a principled manner.\n\n## DemoSpeedup\n\nDemoSpeedup is a self-supervised method to accelerate visuomotor policy execution via entropy-guided demonstration acceleration. It trains a generative policy on normal-speed demonstrations to serve as a per-frame action entropy estimator. Frames with lower action entropy estimates call for more consistent policy behaviors indicating higher-precision operations, while frames with higher entropy estimates correspond to more casual sections that can be more safely accelerated. Demonstrations are segmented according to estimated entropy and accelerated by down-sampling at rates that increase with entropy values.\n\nTrained with the speedup demonstrations, the resulting policies execute up to 3 times faster while maintaining task completion performance.\n\nBoth represent recent advances in imitation learning for robotics, with DemoDICE focusing on handling imperfect demonstration data and DemoSpeedup addressing execution speed optimization in robotic manipulation tasks."
+    ],
+    "durationSeconds": 6.494495307999983
+  },
+  "sourceToolAssistantUUID": "21c14392-54e1-4199-99dc-c25ff75d8800",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "8dc28548-8901-4402-872b-a8ad0cda86ff",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify OT-Consensus for CoRL robustness",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-13T09:41:06.631Z_
+
+<details><summary>↩ Tool result · `toolu_01ShxMoS39LJLgb51M8wsA5g`</summary>
+
+```text
+Web search results for query: "experience replay buffer data filtering scoring reinforcement learning robot demonstration quality 2025 2026"
+
+Links: [{"title":"Relevant Experiences in Replay Buffer Giang Dao and Minwoo Lee","url":"https://webpages.charlotte.edu/mlee173/pdfs/adprl19a.pdf"},{"title":"[2006.09939] Forgetful Experience Replay in Hierarchical Reinforcement Learning from Demonstrations","url":"https://arxiv.org/abs/2006.09939"},{"title":"Efficient hindsight reinforcement learning using demonstrations for robotic tasks with sparse rewards - Guoyu Zuo, Qishen Zhao, Jiahao Lu, Jiangeng Li, 2020","url":"https://journals.sagepub.com/doi/full/10.1177/1729881419898342"},{"title":"Deep Reinforcement Learning with Experience Replay | by Hey Amit | Medium","url":"https://medium.com/@heyamit10/deep-reinforcement-learning-with-experience-replay-1222ea711897"},{"title":"Accelerating Deep Reinforcement Learning Using Human Demonstration Data Based on Dual Replay Buffer Management and Online Frame Skipping | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/8679366/"},{"title":"Forgetful Experience Replay in Hierarchical Reinforcement Learning from Demonstrations - ADS","url":"https://ui.adsabs.harvard.edu/abs/2020arXiv200609939S/abstract"},{"title":"Map-based experience replay: a memory-efficient solution to catastrophic forgetting in reinforcement learning - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10333526/"},{"title":"Robust experience replay sampling for multi-agent reinforcement learning - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0167865521003986"},{"title":"Experience Replay with Random Reshuffling","url":"https://arxiv.org/html/2503.02269v1"},{"title":"Experience Replay in Reinforcement Learning","url":"https://www.emergentmind.com/topics/experience-replay"}]
+
+I've performed the web search for your query on experience replay buffer, data filtering, scoring, reinforcement learning, and robot demonstrations. Here are the key findings:
+
+## Key Research Areas and Methods
+
+**Experience Replay Fundamentals:**
+Experience replay is a core mechanism in off-policy reinforcement learning that enables agents to leverage past transitions for improved data efficiency, decorrelation of updates, and stabilization of function approximation by storing agent-environment transitions in a finite-capacity buffer, from which mini-batches are sampled—typically uniformly but often via parameterized prioritization schemes—allowing algorithms like Deep Q-Networks to reuse each collected datapoint for multiple updates, break sequential correlation, and more effectively propagate reward signals.
+
+**Data Filtering and Sampling Strategies:**
+Not all samples should be equally weighted, so random sampling is inadequate; filtering techniques are proposed to discover samples rich in useful information by computing similarity scores to choose which data samples are suitable for agents' parameters improvement.
+
+**Handling Demonstration Quality:**
+Forgetful experience replay (ForgER) effectively handles errors in expert data and reduces quality losses when adapting action space and states representation to the agent's capabilities, allowing agents to use low-quality demonstrations in complex vision-based environments with multiple related goals.
+
+**Dual Buffer Management for Demonstrations:**
+Human demonstration data plays an important role in accelerating deep reinforcement learning, but most approaches assume sufficient high-quality demonstration data when in reality expert demonstration data is always limited, so a novel deep reinforcement learning approach with dual replay buffer management has been proposed for human demonstration data sampling.
+
+**Recent Advances (2025-2026):**
+For uniform and prioritized experience replay, random reshuffling approaches (RR-C and RR-M) have been developed that provide modest but consistent performance improvements across different deep RL algorithms including DQN, C51, and DDQN+LAP on Atari benchmarks.
+
+Dynamic Experience Replay (DER) augments the buffer with successful agent episodes injected akin to demonstrations, yielding large speedups in robot assembly control tasks, especially when no human demonstrations are available.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7ec198ea-e4ad-4a1b-8893-95e1ccc1846a",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "b6afe974-e84a-4d37-99a1-046da079d508",
+  "toolUseResult": {
+    "query": "experience replay buffer data filtering scoring reinforcement learning robot demonstration quality 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RPEYZ5VDchcMf6SQmezHdt",
+        "content": [
+          {
+            "title": "Relevant Experiences in Replay Buffer Giang Dao and Minwoo Lee",
+            "url": "https://webpages.charlotte.edu/mlee173/pdfs/adprl19a.pdf"
+          },
+          {
+            "title": "[2006.09939] Forgetful Experience Replay in Hierarchical Reinforcement Learning from Demonstrations",
+            "url": "https://arxiv.org/abs/2006.09939"
+          },
+          {
+            "title": "Efficient hindsight reinforcement learning using demonstrations for robotic tasks with sparse rewards - Guoyu Zuo, Qishen Zhao, Jiahao Lu, Jiangeng Li, 2020",
+            "url": "https://journals.sagepub.com/doi/full/10.1177/1729881419898342"
+          },
+          {
+            "title": "Deep Reinforcement Learning with Experience Replay | by Hey Amit | Medium",
+            "url": "https://medium.com/@heyamit10/deep-reinforcement-learning-with-experience-replay-1222ea711897"
+          },
+          {
+            "title": "Accelerating Deep Reinforcement Learning Using Human Demonstration Data Based on Dual Replay Buffer Management and Online Frame Skipping | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/8679366/"
+          },
+          {
+            "title": "Forgetful Experience Replay in Hierarchical Reinforcement Learning from Demonstrations - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2020arXiv200609939S/abstract"
+          },
+          {
+            "title": "Map-based experience replay: a memory-efficient solution to catastrophic forgetting in reinforcement learning - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10333526/"
+          },
+          {
+            "title": "Robust experience replay sampling for multi-agent reinforcement learning - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0167865521003986"
+          },
+          {
+            "title": "Experience Replay with Random Reshuffling",
+            "url": "https://arxiv.org/html/2503.02269v1"
+          },
+          {
+            "title": "Experience Replay in Reinforcement Learning",
+            "url": "https://www.emergentmind.com/topics/experience-replay"
+          }
+        ]
+      },
+      "I've performed the web search for your query on experience replay buffer, data filtering, scoring, reinforcement learning, and robot demonstrations. Here are the key findings:\n\n## Key Research Areas and Methods\n\n**Experience Replay Fundamentals:**\nExperience replay is a core mechanism in off-policy reinforcement learning that enables agents to leverage past transitions for improved data efficiency, decorrelation of updates, and stabilization of function approximation by storing agent-environment transitions in a finite-capacity buffer, from which mini-batches are sampled—typically uniformly but often via parameterized prioritization schemes—allowing algorithms like Deep Q-Networks to reuse each collected datapoint for multiple updates, break sequential correlation, and more effectively propagate reward signals.\n\n**Data Filtering and Sampling Strategies:**\nNot all samples should be equally weighted, so random sampling is inadequate; filtering techniques are proposed to discover samples rich in useful information by computing similarity scores to choose which data samples are suitable for agents' parameters improvement.\n\n**Handling Demonstration Quality:**\nForgetful experience replay (ForgER) effectively handles errors in expert data and reduces quality losses when adapting action space and states representation to the agent's capabilities, allowing agents to use low-quality demonstrations in complex vision-based environments with multiple related goals.\n\n**Dual Buffer Management for Demonstrations:**\nHuman demonstration data plays an important role in accelerating deep reinforcement learning, but most approaches assume sufficient high-quality demonstration data when in reality expert demonstration data is always limited, so a novel deep reinforcement learning approach with dual replay buffer management has been proposed for human demonstration data sampling.\n\n**Recent Advances (2025-2026):**\nFor uniform and prioritized experience replay, random reshuffling approaches (RR-C and RR-M) have been developed that provide modest but consistent performance improvements across different deep RL algorithms including DQN, C51, and DDQN+LAP on Atari benchmarks.\n\nDynamic Experience Replay (DER) augments the buffer with successful agent episodes injected akin to demonstrations, yielding large speedups in robot assembly control tasks, especially when no human demonstrations are available."
+    ],
+    "durationSeconds": 8.517158937999993
+  },
+  "sourceToolAssistantUUID": "7ec198ea-e4ad-4a1b-8893-95e1ccc1846a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-13T09:42:29.715Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings:
+
+1. The ICLR 2026 VLA blog post by Moritz Reuss DOES mention data quality as a critical gap: "It's an open secret that OXE is mostly low-quality data, yet we still lack good methods to quantify data quality in imitation learning." This validates the generator's claim.
+
+2. DemoSpeedup (ICRA 2026 or similar) - uses entropy-based approach to accelerate demonstrations. This is tangentially related but focuses on speed rather than quality.
+
+3. DemoDICE (ICLR 2022) - handles imperfect demonstrations in offline IL. This is related but different from the proposed approach.
+
+
+4. Looking at what's been addressed in the revision, the main improvements include adding the missing baseline methods, implementing a practical two-tier computational strategy, and properly framing the theoretical contributions as a novel application rather than claiming entirely new theory.
+
+5. But there are still some critical gaps: the venue choice doesn't match what was requested—the proposal targets AAAI 2027 when CoRL 2026 was explicitly asked for, and there's a missing competing work in Demo-SCORE from RSS 2025 that operates in the same demo curation space, even though it requires online rollouts. The novelty argument also needs scrutiny since the core components—using Wasserstein distances for trajectory comparison and robust Wasserstein barycenters—are already established techniques from prior work like OTR and GWIL.
+
+6. The multimodal handling through k-Wasserstein-barycenter clustering introduces practical challenges: determining the right number of clusters k is non-trivial for real demo datasets where the number of valid strategies isn't always clear, and the computational cost of clustering in Wasserstein space becomes prohibitive even with acceleration methods.
+
+Now I'm checking the computational costs across the different model training approaches. The LoRA fine-tuning estimates look consistent—around 240 hours total across all conditions and benchmarks. Full fine-tuning on OpenVLA is more expensive at roughly 1000 hours across the runs, while SmolVLA's smaller size keeps it manageable at 64 hours. Let me verify the OT-related costs as well.
+
+For the feasibility side, the PCA dimensionality reduction down to 16-32 dimensions should handle the curse of dimensionality effectively. The ground cost metric relies on z-score normalization and equal weighting by default, though they're planning ablations to test sensitivity to these choices. The Sinkhorn solver timing for RoboMimic looks reasonable too—around 4 minutes for 45K solves on GPU.
+
+On the gap validity front, the blog post acknowledges that quantifying data quality in imitation learning remains an open problem, and the field seems to be converging on some approaches.
+
+The real issue is the venue mismatch—the user asked for CoRL 2026 with an abstract deadline in 17 days, but the proposal targets AAAI 2027 instead, which is a significant departure from what was requested.
+
+Looking at the user's actual direction more carefully, they're suggesting a different approach entirely: handle noise in real-world data collection by using an experience replay buffer with RL-inspired scoring and filtering of redundant actions, and they'd accept a theoretically-grounded filtering method even without real robot validation.
+
+The proposal I'm evaluating uses optimal transport theory for consensus rather than RL-inspired scoring, which is a meaningful shift from what they described. Though they did mention that a theoretically-sound filtering approach would be acceptable, the OT method doesn't directly address the redundant action filtering they emphasized. I should check whether the OT-consensus approach actually handles the redundancy problem they're concerned about.
+
+Looking at the feasibility and novelty more carefully: the approach combines existing tools in a fairly standard pipeline, so the novelty is moderate at best—maybe 3 out of 5. The computational requirements are realistic with current hardware, and all the necessary libraries and code are available, making a 3-4 month timeline for AAAI 2027 plausible. The main question is whether this level of novelty and the theoretical contribution are sufficient for the venue.
+
+On impact, the field is becoming saturated with demonstration curation methods, and while the policy-agnostic multimodal angle is useful, it's somewhat niche. Existing approaches like DemInf already handle policy-agnostic scenarios reasonably well, so the real question is whether OT-based scoring provides a meaningful performance advantage over simpler baselines. Weighing everything together—novelty at 3/5, feasibility at 3/5, clarity at 4/5, and impact at 3/5—I'm looking at an average around 3.25, which falls short of the 4.0 bar needed for acceptance.
+
+The core problems are stark: the CoRL 2026 deadline is completely unrealistic given the 17-day timeline, while the proposal targets AAAI 2027 instead. Demo-SCORE from RSS 2025 isn't even cited. The approach essentially combines existing optimal transport tools rather than introducing novel methodology, which blurs the line between a clever application and an actual contribution. The multimodal advantage over DemInf remains theoretical without empirical evidence that DemInf actually struggles where this method succeeds. And critically, the RL-inspired scoring element the user wanted—something around experience replay—seems to have gotten lost in the proposal.
+
+But stepping back, even if we ignore the deadline mismatch, the competitive landscape is brutal. There are already eight methods published or forthcoming in the last two years—CUPID, DataMIL, DemInf, SCIZOR, QoQ, RINSE, Demo-SCORE, and Consistency Matters. Adding another policy-agnostic approach without a clear empirical edge feels incremental in a saturated space.
+
+The theoretical contribution—robust Wasserstein barycenter guarantees—is the real strength here, but it's framed as applying existing theory rather than developing new theory. Top-tier reviewers would push back on that distinction. And empirically, while comparing against six baselines on RoboMimic is solid, the field has already exhausted that benchmark's novelty value.
+
+To make this work, I'd need either genuinely new OT theory tailored to trajectory outlier detection, or a compelling empirical story showing where existing methods systematically fail and this approach succeeds.
+
+My final assessment: this needs revision. The work has improved substantially, but the CoRL 2026 deadline is unrealistic, the novelty feels incremental in a saturated space, and the case for OT-based scoring over existing policy-agnostic methods like DemInf or RINSE isn't convincing enough. The pre-filter angle with CUPID is promising but underdeveloped. I'm settling on a 3/5 for novelty—the application is interesting but the methodology is largely recombining existing pieces.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6afe974-e84a-4d37-99a1-046da079d508",
+  "isSidechain": false,
+  "requestId": "req_011CazM9CEDexvBTjX8V8XDw",
+  "type": "assistant",
+  "uuid": "09c544ee-0f87-4c3c-a632-a7861e185093",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WBP79Xm3fro3Xz5n2u91FJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1003,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 49341,
+      "output_tokens": 3317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1619,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1003,
+          "output_tokens": 3317,
+          "cache_read_input_tokens": 49341,
+          "cache_creation_input_tokens": 1619,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1619
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86 · 2026-05-13T09:42:30.169Z_
+
+Now let me check for additional missing work and verify the practical concerns.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09c544ee-0f87-4c3c-a632-a7861e185093",
+  "isSidechain": false,
+  "requestId": "req_011CazM9CEDexvBTjX8V8XDw",
+  "type": "assistant",
+  "uuid": "0905b977-0813-40d9-8319-b12cea72a1a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WBP79Xm3fro3Xz5n2u91FJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1003,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 49341,
+      "output_tokens": 3317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1619,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1003,
+          "output_tokens": 3317,
+          "cache_read_input_tokens": 49341,
+          "cache_creation_input_tokens": 1619,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1619
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-13T09:42:30.771Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SfP6P4kjRRcmdp1AKrNURh`</summary>
+
+```json
+{
+  "query": "site:arxiv.org optimal transport data selection curation imitation learning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0905b977-0813-40d9-8319-b12cea72a1a3",
+  "isSidechain": false,
+  "requestId": "req_011CazM9CEDexvBTjX8V8XDw",
+  "type": "assistant",
+  "uuid": "c76b494e-7c22-4a60-862e-7a46d8ce2b34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WBP79Xm3fro3Xz5n2u91FJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1003,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 49341,
+      "output_tokens": 3317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1619,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1003,
+          "output_tokens": 3317,
+          "cache_read_input_tokens": 49341,
+          "cache_creation_input_tokens": 1619,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1619
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-13T09:42:31.234Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016gA6fYwJ4a9uW8ooKfRmnm`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline abstract paper expected"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c76b494e-7c22-4a60-862e-7a46d8ce2b34",
+  "isSidechain": false,
+  "requestId": "req_011CazM9CEDexvBTjX8V8XDw",
+  "type": "assistant",
+  "uuid": "b223a7f8-2be3-4db6-a9bb-92b4b1efab8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WBP79Xm3fro3Xz5n2u91FJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1003,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 49341,
+      "output_tokens": 3317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1619,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1003,
+          "output_tokens": 3317,
+          "cache_read_input_tokens": 49341,
+          "cache_creation_input_tokens": 1619,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1619
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-13T09:42:32.074Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015XbcKTEr95Vp4JWoDCwNb5`</summary>
+
+```json
+{
+  "query": "Sinkhorn divergence GPU trajectory comparison computational cost milliseconds 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b223a7f8-2be3-4db6-a9bb-92b4b1efab8e",
+  "isSidechain": false,
+  "requestId": "req_011CazM9CEDexvBTjX8V8XDw",
+  "type": "assistant",
+  "uuid": "54968702-ee30-4a6b-9d92-c22aecb461e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WBP79Xm3fro3Xz5n2u91FJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1003,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 49341,
+      "output_tokens": 3317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1619,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1003,
+          "output_tokens": 3317,
+          "cache_read_input_tokens": 49341,
+          "cache_creation_input_tokens": 1619,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1619
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "54968702-ee30-4a6b-9d92-c22aecb461e5",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify OT-Consensus for CoRL robustness",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-13T09:42:36.223Z_
+
+<details><summary>↩ Tool result · `toolu_016gA6fYwJ4a9uW8ooKfRmnm`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline abstract paper expected"
+
+Links: [{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"},{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"},{"title":"The 40th Annual AAAI Conference on Artificial Intelligence","url":"https://aaai.org/conference/aaai/aaai-26/"},{"title":"AAAI-26 Student Abstract and Poster Program: Call for Proposals - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/student-abstract-and-poster-program-call/"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"}]
+
+Based on the search results, here's what I found regarding AAAI 2027:
+
+The AAAI 2027 paper submission deadline and abstract deadline are currently listed as TBD (To Be Determined). The conference is scheduled for February 16-23, 2027.
+
+As of late March 2026, no deadlines have been announced yet for AAAI 2027. However, based on historical patterns, many conferences have an abstract deadline approximately one week before the full paper deadline.
+
+For reference, the current AAAI-26 (2026) conference had abstracts due July 25, 2025 and full papers due August 1, 2025.
+
+To get the most up-to-date information about AAAI 2027 submission deadlines, I recommend checking the official AAAI website at aaai.org directly, as they typically announce these dates closer to the submission period.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b223a7f8-2be3-4db6-a9bb-92b4b1efab8e",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "dfda7ac1-3b56-494a-be07-bd0b637b44c1",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline abstract paper expected",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WCPJFzCqC3hEXxzLFRL1Rz",
+        "content": [
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          },
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          },
+          {
+            "title": "The 40th Annual AAAI Conference on Artificial Intelligence",
+            "url": "https://aaai.org/conference/aaai/aaai-26/"
+          },
+          {
+            "title": "AAAI-26 Student Abstract and Poster Program: Call for Proposals - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/student-abstract-and-poster-program-call/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding AAAI 2027:\n\nThe AAAI 2027 paper submission deadline and abstract deadline are currently listed as TBD (To Be Determined). The conference is scheduled for February 16-23, 2027.\n\nAs of late March 2026, no deadlines have been announced yet for AAAI 2027. However, based on historical patterns, many conferences have an abstract deadline approximately one week before the full paper deadline.\n\nFor reference, the current AAAI-26 (2026) conference had abstracts due July 25, 2025 and full papers due August 1, 2025.\n\nTo get the most up-to-date information about AAAI 2027 submission deadlines, I recommend checking the official AAAI website at aaai.org directly, as they typically announce these dates closer to the submission period."
+    ],
+    "durationSeconds": 4.985568182999995
+  },
+  "sourceToolAssistantUUID": "b223a7f8-2be3-4db6-a9bb-92b4b1efab8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-13T09:42:39.372Z_
+
+<details><summary>↩ Tool result · `toolu_015XbcKTEr95Vp4JWoDCwNb5`</summary>
+
+```text
+Web search results for query: "Sinkhorn divergence GPU trajectory comparison computational cost milliseconds 2024 2025"
+
+Links: [{"title":"Scalable Coverage Trajectory Synthesis on GPUs as Statistical Inference","url":"https://arxiv.org/html/2511.11514v1"},{"title":"Generative Adversarial Learning of Sinkhorn Algorithm ...","url":"https://arxiv.org/pdf/2212.00133"},{"title":"Learning Generative Models with Sinkhorn Divergences","url":"https://www.emergentmind.com/papers/1706.00292"},{"title":"[1706.00292] Learning Generative Models with Sinkhorn Divergences","url":"https://arxiv.org/abs/1706.00292"},{"title":"[2006.07057] Linear Time Sinkhorn Divergences using Positive Features","url":"https://arxiv.org/abs/2006.07057"},{"title":"Learning Generative Models with Sinkhorn Divergences","url":"https://proceedings.mlr.press/v84/genevay18a.html"},{"title":"Sinkhorn Treatment Effects: A Causal Optimal Transport Measure","url":"https://arxiv.org/html/2605.08485"},{"title":"Coreset selection for the Sinkhorn divergence and generic smooth divergences","url":"https://arxiv.org/html/2504.20194"},{"title":"Hilbert Sinkhorn Divergence for Optimal Transport Qian Li1* Zhichao Wang 2*†","url":"https://openaccess.thecvf.com/content/CVPR2021/papers/Li_Hilbert_Sinkhorn_Divergence_for_Optimal_Transport_CVPR_2021_paper.pdf"},{"title":"Sinkhorn-Approximated Losses","url":"https://www.emergentmind.com/topics/sinkhorn-approximated-losses"}]
+
+Based on the web search results, here are the findings related to Sinkhorn divergence, GPU computation, and trajectory comparison:
+
+## Key Findings
+
+**GPU-Accelerated Trajectory Computation (2025)**
+
+A recent study designed benchmarks to evaluate the computational efficiency of flow matching formulas with and without GPU parallelization, implementing methods for both Stein variational gradient flow and Sinkhorn divergence gradient flow.
+
+When comparing methods on CPU and GPU, the flow matching method with GPU parallelization exhibits better scalability across different time horizons, significantly outperforming other methods at longer time horizons. The benchmark varied the number of time steps of the planning horizon from 100 to 1000 with an interval of 100, and from 1000 to 10000 with an interval of 1000.
+
+**Computational Advantages of Sinkhorn Divergences**
+
+The evaluation of flow vector fields for both Stein variational gradient flow and Sinkhorn divergence gradient flow can be significantly accelerated through parallelization, especially on GPUs and for long-horizon trajectories.
+
+GPU-enabled automatic differentiation facilitates efficient computation of Sinkhorn iterations, with GPU implementations using automatic differentiation revealing substantial improvements in computational efficiency.
+
+While the search results show ongoing research into GPU acceleration of Sinkhorn divergence methods for trajectory analysis, specific millisecond-level computational cost comparisons for 2024-2025 were not directly found in the results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54968702-ee30-4a6b-9d92-c22aecb461e5",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "097425b2-625c-49e4-97b2-495c9a637891",
+  "toolUseResult": {
+    "query": "Sinkhorn divergence GPU trajectory comparison computational cost milliseconds 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JiWgXTZbgZrcYqEU7rFxYX",
+        "content": [
+          {
+            "title": "Scalable Coverage Trajectory Synthesis on GPUs as Statistical Inference",
+            "url": "https://arxiv.org/html/2511.11514v1"
+          },
+          {
+            "title": "Generative Adversarial Learning of Sinkhorn Algorithm ...",
+            "url": "https://arxiv.org/pdf/2212.00133"
+          },
+          {
+            "title": "Learning Generative Models with Sinkhorn Divergences",
+            "url": "https://www.emergentmind.com/papers/1706.00292"
+          },
+          {
+            "title": "[1706.00292] Learning Generative Models with Sinkhorn Divergences",
+            "url": "https://arxiv.org/abs/1706.00292"
+          },
+          {
+            "title": "[2006.07057] Linear Time Sinkhorn Divergences using Positive Features",
+            "url": "https://arxiv.org/abs/2006.07057"
+          },
+          {
+            "title": "Learning Generative Models with Sinkhorn Divergences",
+            "url": "https://proceedings.mlr.press/v84/genevay18a.html"
+          },
+          {
+            "title": "Sinkhorn Treatment Effects: A Causal Optimal Transport Measure",
+            "url": "https://arxiv.org/html/2605.08485"
+          },
+          {
+            "title": "Coreset selection for the Sinkhorn divergence and generic smooth divergences",
+            "url": "https://arxiv.org/html/2504.20194"
+          },
+          {
+            "title": "Hilbert Sinkhorn Divergence for Optimal Transport Qian Li1* Zhichao Wang 2*†",
+            "url": "https://openaccess.thecvf.com/content/CVPR2021/papers/Li_Hilbert_Sinkhorn_Divergence_for_Optimal_Transport_CVPR_2021_paper.pdf"
+          },
+          {
+            "title": "Sinkhorn-Approximated Losses",
+            "url": "https://www.emergentmind.com/topics/sinkhorn-approximated-losses"
+          }
+        ]
+      },
+      "Based on the web search results, here are the findings related to Sinkhorn divergence, GPU computation, and trajectory comparison:\n\n## Key Findings\n\n**GPU-Accelerated Trajectory Computation (2025)**\n\nA recent study designed benchmarks to evaluate the computational efficiency of flow matching formulas with and without GPU parallelization, implementing methods for both Stein variational gradient flow and Sinkhorn divergence gradient flow.\n\nWhen comparing methods on CPU and GPU, the flow matching method with GPU parallelization exhibits better scalability across different time horizons, significantly outperforming other methods at longer time horizons. The benchmark varied the number of time steps of the planning horizon from 100 to 1000 with an interval of 100, and from 1000 to 10000 with an interval of 1000.\n\n**Computational Advantages of Sinkhorn Divergences**\n\nThe evaluation of flow vector fields for both Stein variational gradient flow and Sinkhorn divergence gradient flow can be significantly accelerated through parallelization, especially on GPUs and for long-horizon trajectories.\n\nGPU-enabled automatic differentiation facilitates efficient computation of Sinkhorn iterations, with GPU implementations using automatic differentiation revealing substantial improvements in computational efficiency.\n\nWhile the search results show ongoing research into GPU acceleration of Sinkhorn divergence methods for trajectory analysis, specific millisecond-level computational cost comparisons for 2024-2025 were not directly found in the results."
+    ],
+    "durationSeconds": 7.296161407000007
+  },
+  "sourceToolAssistantUUID": "54968702-ee30-4a6b-9d92-c22aecb461e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-13T09:42:40.196Z_
+
+<details><summary>↩ Tool result · `toolu_01SfP6P4kjRRcmdp1AKrNURh`</summary>
+
+```text
+Web search results for query: "site:arxiv.org optimal transport data selection curation imitation learning 2026"
+
+Links: [{"title":"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/html/2505.09603"},{"title":"[2310.01632] Imitation Learning from Observation through Optimal Transport","url":"https://arxiv.org/abs/2310.01632"},{"title":"Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning","url":"https://arxiv.org/html/2408.14037"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/html/2506.19121"},{"title":"[2110.03684] Cross-Domain Imitation Learning via Optimal Transport","url":"https://arxiv.org/abs/2110.03684"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v1"},{"title":"[2310.01632v2] Imitation Learning from Observation through Optimal Transport","url":"https://arxiv.org/abs/2310.01632v2"},{"title":"[2303.13971] Optimal Transport for Offline Imitation Learning","url":"https://arxiv.org/abs/2303.13971"},{"title":"[2402.13037] Align Your Intents: Offline Imitation Learning via Optimal Transport","url":"https://arxiv.org/abs/2402.13037"},{"title":"[2307.10810] On Combining Expert Demonstrations in Imitation Learning via Optimal Transport","url":"https://arxiv.org/abs/2307.10810"}]
+
+I found several relevant papers on arXiv related to optimal transport, data selection/curation, and imitation learning. Here are the search results:
+
+## Key Papers Found:
+
+1. **DataMIL: Selecting Data for Robot Imitation Learning with Datamodels** (2025)
+   Introduces DataMIL, a policy-driven data selection framework built on the datamodels paradigm that reasons about data selection in an end-to-end manner, using the policy itself to identify which data points will most improve performance.
+
+2. **Imitation Learning from Observation through Optimal Transport** (2024)
+   Re-examines optimal transport for imitation learning, in which a reward is generated based on the Wasserstein distance between the state trajectories of the learner and expert.
+
+3. **Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning** (2024)
+   Proposes Re-weighing Robotic Dataset Mixtures with Minimax Optimization (Re-Mix), which instantiates the data curation problem as a min-max optimization, where a policy minimizes its excess behavior cloning loss over a reference model subject to learned domain mixture weights.
+
+4. **CUPID: Curating Data your Robot Loves with Influence Functions** (2025)
+   Proposes Cupid, a robot data curation method based on a novel influence function-theoretic formulation for imitation learning policies that estimates the influence of each training demonstration on the policy's expected return.
+
+5. **Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning** (2025)
+   Introduces Scizor, a self-supervised data curation method that filters suboptimal and redundant state-action pairs, combining a task progress predictor to remove suboptimal frames with a similarity-based deduplication module.
+
+6. **Cross-Domain Imitation Learning via Optimal Transport** (2026)
+   Studies how to leverage expert demonstrations of one agent to train an imitation agent with a different embodiment or morphology.
+
+7. **Optimal Transport for Offline Imitation Learning** (2023)
+   Introduces Optimal Transport Reward labeling (OTR), which uses optimal transport to compute an optimal alignment between an unlabeled trajectory in the dataset and an expert demonstration to obtain a similarity measure that can be interpreted as a reward.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c76b494e-7c22-4a60-862e-7a46d8ce2b34",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "34f49110-2376-4898-a21f-93ba134da541",
+  "toolUseResult": {
+    "query": "site:arxiv.org optimal transport data selection curation imitation learning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014XavUCrzeJZGjfnwELqagB",
+        "content": [
+          {
+            "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/html/2505.09603"
+          },
+          {
+            "title": "[2310.01632] Imitation Learning from Observation through Optimal Transport",
+            "url": "https://arxiv.org/abs/2310.01632"
+          },
+          {
+            "title": "Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2408.14037"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/html/2506.19121"
+          },
+          {
+            "title": "[2110.03684] Cross-Domain Imitation Learning via Optimal Transport",
+            "url": "https://arxiv.org/abs/2110.03684"
+          },
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v1"
+          },
+          {
+            "title": "[2310.01632v2] Imitation Learning from Observation through Optimal Transport",
+            "url": "https://arxiv.org/abs/2310.01632v2"
+          },
+          {
+            "title": "[2303.13971] Optimal Transport for Offline Imitation Learning",
+            "url": "https://arxiv.org/abs/2303.13971"
+          },
+          {
+            "title": "[2402.13037] Align Your Intents: Offline Imitation Learning via Optimal Transport",
+            "url": "https://arxiv.org/abs/2402.13037"
+          },
+          {
+            "title": "[2307.10810] On Combining Expert Demonstrations in Imitation Learning via Optimal Transport",
+            "url": "https://arxiv.org/abs/2307.10810"
+          }
+        ]
+      },
+      "I found several relevant papers on arXiv related to optimal transport, data selection/curation, and imitation learning. Here are the search results:\n\n## Key Papers Found:\n\n1. **DataMIL: Selecting Data for Robot Imitation Learning with Datamodels** (2025)\n   Introduces DataMIL, a policy-driven data selection framework built on the datamodels paradigm that reasons about data selection in an end-to-end manner, using the policy itself to identify which data points will most improve performance.\n\n2. **Imitation Learning from Observation through Optimal Transport** (2024)\n   Re-examines optimal transport for imitation learning, in which a reward is generated based on the Wasserstein distance between the state trajectories of the learner and expert.\n\n3. **Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning** (2024)\n   Proposes Re-weighing Robotic Dataset Mixtures with Minimax Optimization (Re-Mix), which instantiates the data curation problem as a min-max optimization, where a policy minimizes its excess behavior cloning loss over a reference model subject to learned domain mixture weights.\n\n4. **CUPID: Curating Data your Robot Loves with Influence Functions** (2025)\n   Proposes Cupid, a robot data curation method based on a novel influence function-theoretic formulation for imitation learning policies that estimates the influence of each training demonstration on the policy's expected return.\n\n5. **Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning** (2025)\n   Introduces Scizor, a self-supervised data curation method that filters suboptimal and redundant state-action pairs, combining a task progress predictor to remove suboptimal frames with a similarity-based deduplication module.\n\n6. **Cross-Domain Imitation Learning via Optimal Transport** (2026)\n   Studies how to leverage expert demonstrations of one agent to train an imitation agent with a different embodiment or morphology.\n\n7. **Optimal Transport for Offline Imitation Learning** (2023)\n   Introduces Optimal Transport Reward labeling (OTR), which uses optimal transport to compute an optimal alignment between an unlabeled trajectory in the dataset and an expert demonstration to obtain a similarity measure that can be interpreted as a reward."
+    ],
+    "durationSeconds": 9.417965119
+  },
+  "sourceToolAssistantUUID": "c76b494e-7c22-4a60-862e-7a46d8ce2b34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 95 · 2026-05-13T09:42:40.203Z_
+
+```json
+{
+  "parentUuid": "34f49110-2376-4898-a21f-93ba134da541",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "fd7c292f-9ee1-430c-9263-193129caccf0",
+  "timestamp": "2026-05-13T09:42:40.203Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 96 · 2026-05-13T09:42:45.303Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me also check one more thing - the "On Combining Expert Demonstrations in Imitation Learning via Optimal Transport" paper from 2023, which appeared in my search results and could be a close competitor.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd7c292f-9ee1-430c-9263-193129caccf0",
+  "isSidechain": false,
+  "requestId": "req_011CazMG6WNvjo5PaiD9YjjQ",
+  "type": "assistant",
+  "uuid": "4c244334-cf5c-4518-9642-7fb7fa2fb600",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LVsK2McWPAHCyWyax5PoUN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1663,
+      "cache_creation_input_tokens": 5454,
+      "cache_read_input_tokens": 50960,
+      "output_tokens": 190,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5454,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1663,
+          "output_tokens": 190,
+          "cache_read_input_tokens": 50960,
+          "cache_creation_input_tokens": 5454,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5454
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-13T09:42:45.621Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PHGv1ohq5qSC8pieX2gkNJ`</summary>
+
+```json
+{
+  "query": "\"combining expert demonstrations imitation learning optimal transport\" arxiv 2307.10810"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c244334-cf5c-4518-9642-7fb7fa2fb600",
+  "isSidechain": false,
+  "requestId": "req_011CazMG6WNvjo5PaiD9YjjQ",
+  "type": "assistant",
+  "uuid": "db24bc61-2fe1-4c4a-ad84-79ceb9b390cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LVsK2McWPAHCyWyax5PoUN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1663,
+      "cache_creation_input_tokens": 5454,
+      "cache_read_input_tokens": 50960,
+      "output_tokens": 190,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5454,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1663,
+          "output_tokens": 190,
+          "cache_read_input_tokens": 50960,
+          "cache_creation_input_tokens": 5454,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5454
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-13T09:42:46.131Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017QtnQhm87mMZJpYnp7dJnK`</summary>
+
+```json
+{
+  "query": "\"Align Your Intents\" offline imitation learning optimal transport 2024 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db24bc61-2fe1-4c4a-ad84-79ceb9b390cb",
+  "isSidechain": false,
+  "requestId": "req_011CazMG6WNvjo5PaiD9YjjQ",
+  "type": "assistant",
+  "uuid": "fdae927b-f7b9-443b-b3bb-75f83b04a058",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LVsK2McWPAHCyWyax5PoUN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1663,
+      "cache_creation_input_tokens": 5454,
+      "cache_read_input_tokens": 50960,
+      "output_tokens": 190,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5454,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1663,
+          "output_tokens": 190,
+          "cache_read_input_tokens": 50960,
+          "cache_creation_input_tokens": 5454,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5454
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-13T09:42:50.737Z_
+
+<details><summary>↩ Tool result · `toolu_01PHGv1ohq5qSC8pieX2gkNJ`</summary>
+
+```text
+Web search results for query: ""combining expert demonstrations imitation learning optimal transport" arxiv 2307.10810"
+
+Links: [{"title":"[2307.10810] On Combining Expert Demonstrations in Imitation Learning via Optimal Transport","url":"https://arxiv.org/abs/2307.10810"},{"title":"On Combining Expert Demonstrations in Imitation Learning via Optimal Transport - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230710810S/abstract"},{"title":"(PDF) On Combining Expert Demonstrations in Imitation Learning via Optimal Transport","url":"https://www.researchgate.net/publication/372488146_On_Combining_Expert_Demonstrations_in_Imitation_Learning_via_Optimal_Transport"},{"title":"Cross-Domain Imitation Learning via Optimal Transport","url":"https://arxiv.org/html/2110.03684"},{"title":"Align Your Intents: Offline Imitation Learning via Optimal Transport","url":"https://arxiv.org/html/2402.13037v2"},{"title":"[2110.03684] Cross-Domain Imitation Learning via Optimal Transport","url":"https://arxiv.org/abs/2110.03684"},{"title":"Zero-Shot Offline Imitation Learning via Optimal Transport","url":"https://arxiv.org/html/2410.08751v1"},{"title":"Cross-Domain Imitation Learning via Optimal Transport | OpenReview","url":"https://openreview.net/forum?id=xP3cPq2hQC"},{"title":"Learning What to Do and What Not To Do: Offline Imitation from Expert and Undesirable Demonstrations","url":"https://arxiv.org/html/2505.21182"},{"title":"[2103.05910v1] Learning from Imperfect Demonstrations from Agents with Varying Dynamics","url":"https://arxiv.org/abs/2103.05910v1"}]
+
+I found the paper! Here are the key details about arxiv 2307.10810:
+
+**Paper Title:** On Combining Expert Demonstrations in Imitation Learning via Optimal Transport
+
+**Authors:** Ilana Sebag, Samuel Cohen, Marc Peter Deisenroth
+
+**Submission Date:** 20 Jul 2023
+
+**Main Problem:** The problem of how to optimally combine multiple expert demonstrations has not been widely studied. The standard method is to simply concatenate state (-action) trajectories, which is problematic when trajectories are multi-modal.
+
+**Approach:** The work studies an alternative way to deal with multiple expert demonstrations by using multi-marginal optimal transport tools.
+
+**Key Concepts:** Optimal transport methods have been widely used in imitation learning as they provide ways to measure meaningful distances between agent and expert trajectories.
+
+The paper is available on arXiv at https://arxiv.org/abs/2307.10810
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db24bc61-2fe1-4c4a-ad84-79ceb9b390cb",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "66b637a3-cc6b-41e7-af78-8c05c3463795",
+  "toolUseResult": {
+    "query": "\"combining expert demonstrations imitation learning optimal transport\" arxiv 2307.10810",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PtyAGd1dkP3axrQfWn7jFu",
+        "content": [
+          {
+            "title": "[2307.10810] On Combining Expert Demonstrations in Imitation Learning via Optimal Transport",
+            "url": "https://arxiv.org/abs/2307.10810"
+          },
+          {
+            "title": "On Combining Expert Demonstrations in Imitation Learning via Optimal Transport - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv230710810S/abstract"
+          },
+          {
+            "title": "(PDF) On Combining Expert Demonstrations in Imitation Learning via Optimal Transport",
+            "url": "https://www.researchgate.net/publication/372488146_On_Combining_Expert_Demonstrations_in_Imitation_Learning_via_Optimal_Transport"
+          },
+          {
+            "title": "Cross-Domain Imitation Learning via Optimal Transport",
+            "url": "https://arxiv.org/html/2110.03684"
+          },
+          {
+            "title": "Align Your Intents: Offline Imitation Learning via Optimal Transport",
+            "url": "https://arxiv.org/html/2402.13037v2"
+          },
+          {
+            "title": "[2110.03684] Cross-Domain Imitation Learning via Optimal Transport",
+            "url": "https://arxiv.org/abs/2110.03684"
+          },
+          {
+            "title": "Zero-Shot Offline Imitation Learning via Optimal Transport",
+            "url": "https://arxiv.org/html/2410.08751v1"
+          },
+          {
+            "title": "Cross-Domain Imitation Learning via Optimal Transport | OpenReview",
+            "url": "https://openreview.net/forum?id=xP3cPq2hQC"
+          },
+          {
+            "title": "Learning What to Do and What Not To Do: Offline Imitation from Expert and Undesirable Demonstrations",
+            "url": "https://arxiv.org/html/2505.21182"
+          },
+          {
+            "title": "[2103.05910v1] Learning from Imperfect Demonstrations from Agents with Varying Dynamics",
+            "url": "https://arxiv.org/abs/2103.05910v1"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about arxiv 2307.10810:\n\n**Paper Title:** On Combining Expert Demonstrations in Imitation Learning via Optimal Transport\n\n**Authors:** Ilana Sebag, Samuel Cohen, Marc Peter Deisenroth\n\n**Submission Date:** 20 Jul 2023\n\n**Main Problem:** The problem of how to optimally combine multiple expert demonstrations has not been widely studied. The standard method is to simply concatenate state (-action) trajectories, which is problematic when trajectories are multi-modal.\n\n**Approach:** The work studies an alternative way to deal with multiple expert demonstrations by using multi-marginal optimal transport tools.\n\n**Key Concepts:** Optimal transport methods have been widely used in imitation learning as they provide ways to measure meaningful distances between agent and expert trajectories.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2307.10810"
+    ],
+    "durationSeconds": 5.11099601599999
+  },
+  "sourceToolAssistantUUID": "db24bc61-2fe1-4c4a-ad84-79ceb9b390cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-13T09:42:54.585Z_
+
+<details><summary>↩ Tool result · `toolu_017QtnQhm87mMZJpYnp7dJnK`</summary>
+
+```text
+Web search results for query: ""Align Your Intents" offline imitation learning optimal transport 2024 arxiv"
+
+Links: [{"title":"[2402.13037] Align Your Intents: Offline Imitation Learning via Optimal Transport","url":"https://arxiv.org/abs/2402.13037"},{"title":"Align Your Intents: Offline Imitation Learning via Optimal Transport","url":"https://arxiv.org/html/2402.13037v1"},{"title":"[PDF] Align Your Intents: Offline Imitation Learning via Optimal Transport | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Align-Your-Intents:-Offline-Imitation-Learning-via-Bobrin-Buzun/e5528761d075bb831d92f475cd53ffcc9b511975"},{"title":"Align Your Intents: Offline Imitation Learning via Optimal Transport | OpenReview","url":"https://openreview.net/forum?id=9TL99KnTv5"},{"title":"ALIGN YOUR INTENTS: OFFLINE IMITATION LEARNING","url":"https://openreview.net/pdf?id=9TL99KnTv5"},{"title":"HOTA: Hamiltonian framework for Optimal Transport Advection","url":"https://arxiv.org/html/2507.17513v1"},{"title":"Artificial Intelligence Feb 2024","url":"https://www.arxiv.org/list/cs.AI/2024-02?skip=1950&show=25"},{"title":"GitHub - martius-lab/zilot: Code for Paper: Zero-Shot Offline Imitation Learning via Optimal Transport · GitHub","url":"https://github.com/martius-lab/zilot"},{"title":"Zero-Shot Offline Imitation Learning via Optimal Transport","url":"https://arxiv.org/html/2410.08751v3"},{"title":"Is Optimal Transport Necessary for Inverse Reinforcement ...","url":"https://www.arxiv.org/pdf/2506.06793"}]
+
+I found the paper "Align Your Intents: Offline Imitation Learning via Optimal Transport" on arXiv. Here are the key details:
+
+**Paper Information:**
+- Title: Align Your Intents: Offline Imitation Learning via Optimal Transport
+- arXiv ID: 2402.13037, first published February 20, 2024
+- **Authors:** Maksim Bobrin, Nazar Buzun, Dmitrii Krylov, and Dmitry V. Dylov
+
+**Method Overview:**
+The method, called AILOT (Aligned Imitation Learning via Optimal Transport), involves a special representation of states in the form of intents that incorporate pairwise spatial distances within the data. An intrinsic reward function is defined via optimal transport distance between the expert's and the agent's trajectories.
+
+**Key Contribution:**
+The paper shows that an imitating agent can still learn desired behavior merely from observing the expert, despite the absence of explicit rewards or action labels.
+
+**Results:**
+AILOT outperforms state-of-the-art offline imitation learning algorithms on D4RL benchmarks and improves the performance of other offline RL algorithms by dense reward relabelling in sparse-reward tasks.
+
+The paper is available on arXiv at https://arxiv.org/abs/2402.13037
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fdae927b-f7b9-443b-b3bb-75f83b04a058",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "bb9b23fb-5aa5-4aad-a8e7-b2f013924b12",
+  "toolUseResult": {
+    "query": "\"Align Your Intents\" offline imitation learning optimal transport 2024 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DByVU6eTUhHNREKcjrNpcp",
+        "content": [
+          {
+            "title": "[2402.13037] Align Your Intents: Offline Imitation Learning via Optimal Transport",
+            "url": "https://arxiv.org/abs/2402.13037"
+          },
+          {
+            "title": "Align Your Intents: Offline Imitation Learning via Optimal Transport",
+            "url": "https://arxiv.org/html/2402.13037v1"
+          },
+          {
+            "title": "[PDF] Align Your Intents: Offline Imitation Learning via Optimal Transport | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Align-Your-Intents:-Offline-Imitation-Learning-via-Bobrin-Buzun/e5528761d075bb831d92f475cd53ffcc9b511975"
+          },
+          {
+            "title": "Align Your Intents: Offline Imitation Learning via Optimal Transport | OpenReview",
+            "url": "https://openreview.net/forum?id=9TL99KnTv5"
+          },
+          {
+            "title": "ALIGN YOUR INTENTS: OFFLINE IMITATION LEARNING",
+            "url": "https://openreview.net/pdf?id=9TL99KnTv5"
+          },
+          {
+            "title": "HOTA: Hamiltonian framework for Optimal Transport Advection",
+            "url": "https://arxiv.org/html/2507.17513v1"
+          },
+          {
+            "title": "Artificial Intelligence Feb 2024",
+            "url": "https://www.arxiv.org/list/cs.AI/2024-02?skip=1950&show=25"
+          },
+          {
+            "title": "GitHub - martius-lab/zilot: Code for Paper: Zero-Shot Offline Imitation Learning via Optimal Transport · GitHub",
+            "url": "https://github.com/martius-lab/zilot"
+          },
+          {
+            "title": "Zero-Shot Offline Imitation Learning via Optimal Transport",
+            "url": "https://arxiv.org/html/2410.08751v3"
+          },
+          {
+            "title": "Is Optimal Transport Necessary for Inverse Reinforcement ...",
+            "url": "https://www.arxiv.org/pdf/2506.06793"
+          }
+        ]
+      },
+      "I found the paper \"Align Your Intents: Offline Imitation Learning via Optimal Transport\" on arXiv. Here are the key details:\n\n**Paper Information:**\n- Title: Align Your Intents: Offline Imitation Learning via Optimal Transport\n- arXiv ID: 2402.13037, first published February 20, 2024\n- **Authors:** Maksim Bobrin, Nazar Buzun, Dmitrii Krylov, and Dmitry V. Dylov\n\n**Method Overview:**\nThe method, called AILOT (Aligned Imitation Learning via Optimal Transport), involves a special representation of states in the form of intents that incorporate pairwise spatial distances within the data. An intrinsic reward function is defined via optimal transport distance between the expert's and the agent's trajectories.\n\n**Key Contribution:**\nThe paper shows that an imitating agent can still learn desired behavior merely from observing the expert, despite the absence of explicit rewards or action labels.\n\n**Results:**\nAILOT outperforms state-of-the-art offline imitation learning algorithms on D4RL benchmarks and improves the performance of other offline RL algorithms by dense reward relabelling in sparse-reward tasks.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2402.13037"
+    ],
+    "durationSeconds": 8.451079320999998
+  },
+  "sourceToolAssistantUUID": "fdae927b-f7b9-443b-b3bb-75f83b04a058",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 101_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "bb9b23fb-5aa5-4aad-a8e7-b2f013924b12",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 102_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify OT-Consensus for CoRL robustness",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Assistant
+
+_source line 103 · 2026-05-13T09:43:28.320Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very important! I found two additional related works that the generator missed:
+
+1. **"On Combining Expert Demonstrations in Imitation Learning via Optimal Transport" (Sebag et al., 2023)** - This paper studies using multi-marginal OT to combine multiple expert demonstrations, explicitly addressing multimodal trajectories. This is conceptually close to OT-Consensus's handling of multimodal demonstrations.
+
+2. **"Align Your Intents: Offline Imitation Learning via Optimal Transport" (AILOT, 2024)** - Uses OT distance between trajectories as a reward signal. 
+
+While AILOT tackles a different problem—reward labeling in offline imitation learning rather than quality filtering—it still leverages the same OT-on-trajectories machinery, suggesting this isn't entirely novel ground. These findings indicate that applying optimal transport to trajectory data is fairly well-established, which does somewhat diminish OT-Consensus's originality.
+
+I've now verified the key references: CUPID was indeed published at CoRL 2025, and DataMIL appeared on arXiv in May 2025. Let me pull together my final assessment. I'm also noting a few key competing works that should be cited—Demo-SCORE for self-curation approaches, Sebag et al.'s optimal transport method for multimodal demonstrations, and Re-Mix for data mixture optimization. The ICLR 2026 VLA blog post validates the data quality gap the paper addresses.
+
+That said, the landscape is shifting fast—over 8 methods published between 2024 and 2026 are already tackling pieces of this problem, so the specific gap around policy-agnostic multimodal learning with guarantees is closing. CoRL 2026 isn't feasible given the May 29 deadline is only 17 days away and starting from scratch, though the generator's pivot to AAAI 2027 contradicts what the user actually wants. For compute, manual mode needs roughly 1800 GPU hours, while the LoRA and full fine-tuning approaches for OpenVLA come in around 240 and 1000 hours respectively, which aligns with the realistic estimates.
+
+The real issues are that CoRL 2026 is off the table entirely, Demo-SCORE from RSS 2025 got overlooked in the landscape review, and optimal transport on trajectories is already well-trodden ground—the novelty would only be in applying it to quality scoring rather than inventing new OT machinery. With 8+ recent methods flooding the space, proposing yet another scoring approach feels incremental, especially since the theoretical contribution is borrowed rather than original. There's also a mismatch: the user wanted RL-inspired scoring but the proposal leans on OT theory instead. Novelty scores around 3/5 because the application is fresh but the methodology is just combining existing pieces in an already crowded field, and feasibility is also 3/5 since it's technically doable but can't hit the CoRL deadline.
+
+Clarity comes in at 4/5 with well-structured formulations and a thorough landscape, but impact lands at 3/5 because the advantage over existing methods like DemInf or RINSE remains unclear without actual empirical validation. That averages to 3.25, so the proposal needs revision. Now I'm putting together the final JSON summary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb9b23fb-5aa5-4aad-a8e7-b2f013924b12",
+  "isSidechain": false,
+  "requestId": "req_011CazMH9zFp9qfpbCqSVqSg",
+  "type": "assistant",
+  "uuid": "303ad19c-6874-4054-840b-87b817cd52b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JiYapBW1VTs8eHcfXJYNo1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3444,
+      "cache_read_input_tokens": 56414,
+      "output_tokens": 1433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3444,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1433,
+          "cache_read_input_tokens": 56414,
+          "cache_creation_input_tokens": 3444,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3444
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 104 · 2026-05-13T09:43:28.322Z_
+
+Now let me fetch one more key paper to understand the competitive landscape in OT + demonstrations.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "303ad19c-6874-4054-840b-87b817cd52b4",
+  "isSidechain": false,
+  "requestId": "req_011CazMH9zFp9qfpbCqSVqSg",
+  "type": "assistant",
+  "uuid": "3ea65b91-1bd1-4535-8b3d-f59a5206866e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JiYapBW1VTs8eHcfXJYNo1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3444,
+      "cache_read_input_tokens": 56414,
+      "output_tokens": 1433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3444,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1433,
+          "cache_read_input_tokens": 56414,
+          "cache_creation_input_tokens": 3444,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3444
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-13T09:43:29.897Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Rb8u4ra8DJXGqLTzf8FyZg`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2307.10810",
+  "prompt": "Extract the abstract and key contribution of this paper. Does it use optimal transport to handle multimodal demonstrations? How does it relate to using OT for demonstration quality scoring?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ea65b91-1bd1-4535-8b3d-f59a5206866e",
+  "isSidechain": false,
+  "requestId": "req_011CazMH9zFp9qfpbCqSVqSg",
+  "type": "assistant",
+  "uuid": "7038239a-cf67-4aaf-9891-6e1fc591db53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JiYapBW1VTs8eHcfXJYNo1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3444,
+      "cache_read_input_tokens": 56414,
+      "output_tokens": 1433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3444,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1433,
+          "cache_read_input_tokens": 56414,
+          "cache_creation_input_tokens": 3444,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3444
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-13T09:43:30.374Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Lm6UJAFYQVX8AcQM1YzJQN`</summary>
+
+```json
+{
+  "query": "\"Re-Mix\" optimizing data mixtures large scale imitation learning domain reweighting 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7038239a-cf67-4aaf-9891-6e1fc591db53",
+  "isSidechain": false,
+  "requestId": "req_011CazMH9zFp9qfpbCqSVqSg",
+  "type": "assistant",
+  "uuid": "d4872114-546b-472b-95c5-f331ca92fe25",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JiYapBW1VTs8eHcfXJYNo1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3444,
+      "cache_read_input_tokens": 56414,
+      "output_tokens": 1433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3444,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1433,
+          "cache_read_input_tokens": 56414,
+          "cache_creation_input_tokens": 3444,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3444
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-13T09:43:34.046Z_
+
+<details><summary>↩ Tool result · `toolu_01Rb8u4ra8DJXGqLTzf8FyZg`</summary>
+
+```text
+# Paper Analysis: Optimal Transport for Combining Expert Demonstrations
+
+## Abstract Summary
+The paper addresses combining multiple expert demonstrations in imitation learning. The researchers propose using "a multi-marginal optimal transport distance" to better handle diverse trajectory combinations, rather than the standard approach of simple concatenation.
+
+## Key Contribution
+Their primary contribution is a geometric method for merging demonstrations that respects the structure of multimodal data. As stated, they aim to provide "a more sensible geometric average of the demonstrations" when experts exhibit diverse behaviors.
+
+## Multimodal Demonstration Handling
+Yes, the paper directly addresses multimodal demonstrations. The authors note that simple concatenation "is problematic when trajectories are multi-modal," motivating their optimal transport-based alternative.
+
+## Relation to Quality Scoring
+The paper does **not** address demonstration quality scoring. Instead, it focuses exclusively on the **combination problem**—how to optimally merge multiple demonstrations regardless of their quality. Their approach treats all provided demonstrations as valid and seeks to create a coherent geometric average of them using OT methods.
+
+The emphasis is on geometric fusion rather than filtering or evaluating individual demonstration quality.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7038239a-cf67-4aaf-9891-6e1fc591db53",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "402c6689-3bf3-43a3-a7c8-993b0a932b57",
+  "toolUseResult": {
+    "bytes": 46315,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis: Optimal Transport for Combining Expert Demonstrations\n\n## Abstract Summary\nThe paper addresses combining multiple expert demonstrations in imitation learning. The researchers propose using \"a multi-marginal optimal transport distance\" to better handle diverse trajectory combinations, rather than the standard approach of simple concatenation.\n\n## Key Contribution\nTheir primary contribution is a geometric method for merging demonstrations that respects the structure of multimodal data. As stated, they aim to provide \"a more sensible geometric average of the demonstrations\" when experts exhibit diverse behaviors.\n\n## Multimodal Demonstration Handling\nYes, the paper directly addresses multimodal demonstrations. The authors note that simple concatenation \"is problematic when trajectories are multi-modal,\" motivating their optimal transport-based alternative.\n\n## Relation to Quality Scoring\nThe paper does **not** address demonstration quality scoring. Instead, it focuses exclusively on the **combination problem**—how to optimally merge multiple demonstrations regardless of their quality. Their approach treats all provided demonstrations as valid and seeks to create a coherent geometric average of them using OT methods.\n\nThe emphasis is on geometric fusion rather than filtering or evaluating individual demonstration quality.",
+    "durationMs": 4144,
+    "url": "https://arxiv.org/abs/2307.10810"
+  },
+  "sourceToolAssistantUUID": "7038239a-cf67-4aaf-9891-6e1fc591db53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-13T09:43:37.481Z_
+
+<details><summary>↩ Tool result · `toolu_01Lm6UJAFYQVX8AcQM1YzJQN`</summary>
+
+```text
+Web search results for query: ""Re-Mix" optimizing data mixtures large scale imitation learning domain reweighting 2024"
+
+Links: [{"title":"ReMix: Optimizing Data Mixtures for Large Scale Imitation Learning | OpenReview","url":"https://openreview.net/forum?id=fIj88Tn3fc"},{"title":"[2408.14037] Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning","url":"https://arxiv.org/abs/2408.14037"},{"title":"Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning","url":"https://arxiv.org/html/2408.14037v1"},{"title":"[PDF] Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/de3dfd3075597c5f46d423d2c7f1bb95b456d0f8"},{"title":"Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240814037H/abstract"},{"title":"ReMix: Optimizing Data Mixtures for Large Scale Imitation Learning","url":"https://proceedings.mlr.press/v270/hejna25a.html"},{"title":"ReMix: Optimizing Data Mixtures for Large Scale Imitation ...","url":"https://hai.stanford.edu/research/remix-optimizing-data-mixtures-for-large-scale-imitation-learning"},{"title":"Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning | alphaXiv","url":"https://www.alphaxiv.org/abs/2408.14037"},{"title":"Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/re-mix-optimizing-data-mixtures-large-scale"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v1"}]
+
+I found comprehensive information about Re-Mix. Here's a summary of the research:
+
+## Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning
+
+Re-Mix investigates how to weigh different subsets or "domains" of robotics datasets during pre-training to maximize worst-case performance across all possible downstream domains using distributionally robust optimization (DRO).
+
+### Key Motivation
+
+Increasingly large robotics datasets are being collected to train larger foundation models in robotics. However, despite the fact that data selection has been of utmost importance to scaling in vision and natural language processing (NLP), little work in robotics has questioned what data such models should actually be trained on.
+
+### Technical Approach
+
+Standard DRO methods are hard to apply out of the box in robotics due to varying action spaces and dynamics across robots. Re-Mix employs early stopping and action normalization and discretization to counteract these issues.
+
+### Performance Results
+
+Domain weights learned by Re-Mix outperform uniform weights by 38% on average and outperform human-selected weights by 32% on datasets used to train existing generalist robot policies, specifically the RT-X models.
+
+### Experimental Evaluation
+
+Re-Mix was evaluated by using it to automatically optimize the training data mixture for the Bridge V2 dataset and the OpenX-based dataset used to train RT-X. The paper was initially posted to arXiv in August 2024 and later appeared in the Proceedings of the 8th Conference on Robot Learning in 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d4872114-546b-472b-95c5-f331ca92fe25",
+  "isSidechain": false,
+  "promptId": "b29a7290-6065-4bdf-93eb-7bb0aeb84ae6",
+  "type": "user",
+  "uuid": "1e3a5f88-5963-45c8-9c76-923327e5158b",
+  "toolUseResult": {
+    "query": "\"Re-Mix\" optimizing data mixtures large scale imitation learning domain reweighting 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016k7yP67WodMeYeHV77sEtV",
+        "content": [
+          {
+            "title": "ReMix: Optimizing Data Mixtures for Large Scale Imitation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=fIj88Tn3fc"
+          },
+          {
+            "title": "[2408.14037] Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning",
+            "url": "https://arxiv.org/abs/2408.14037"
+          },
+          {
+            "title": "Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2408.14037v1"
+          },
+          {
+            "title": "[PDF] Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/de3dfd3075597c5f46d423d2c7f1bb95b456d0f8"
+          },
+          {
+            "title": "Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240814037H/abstract"
+          },
+          {
+            "title": "ReMix: Optimizing Data Mixtures for Large Scale Imitation Learning",
+            "url": "https://proceedings.mlr.press/v270/hejna25a.html"
+          },
+          {
+            "title": "ReMix: Optimizing Data Mixtures for Large Scale Imitation ...",
+            "url": "https://hai.stanford.edu/research/remix-optimizing-data-mixtures-for-large-scale-imitation-learning"
+          },
+          {
+            "title": "Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2408.14037"
+          },
+          {
+            "title": "Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/re-mix-optimizing-data-mixtures-large-scale"
+          },
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v1"
+          }
+        ]
+      },
+      "I found comprehensive information about Re-Mix. Here's a summary of the research:\n\n## Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning\n\nRe-Mix investigates how to weigh different subsets or \"domains\" of robotics datasets during pre-training to maximize worst-case performance across all possible downstream domains using distributionally robust optimization (DRO).\n\n### Key Motivation\n\nIncreasingly large robotics datasets are being collected to train larger foundation models in robotics. However, despite the fact that data selection has been of utmost importance to scaling in vision and natural language processing (NLP), little work in robotics has questioned what data such models should actually be trained on.\n\n### Technical Approach\n\nStandard DRO methods are hard to apply out of the box in robotics due to varying action spaces and dynamics across robots. Re-Mix employs early stopping and action normalization and discretization to counteract these issues.\n\n### Performance Results\n\nDomain weights learned by Re-Mix outperform uniform weights by 38% on average and outperform human-selected weights by 32% on datasets used to train existing generalist robot policies, specifically the RT-X models.\n\n### Experimental Evaluation\n\nRe-Mix was evaluated by using it to automatically optimize the training data mixture for the Bridge V2 dataset and the OpenX-based dataset used to train RT-X. The paper was initially posted to arXiv in August 2024 and later appeared in the Proceedings of the 8th Conference on Robot Learning in 2025."
+    ],
+    "durationSeconds": 7.102166178000044
+  },
+  "sourceToolAssistantUUID": "d4872114-546b-472b-95c5-f331ca92fe25",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109 · 2026-05-13T09:43:55.794Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me compile my final review.
+
+Key findings:
+1. **Sebag et al. (2023)** uses multi-marginal OT specifically for handling multimodal demonstrations — this is close to OT-Consensus's multimodal handling but doesn't do quality scoring. Still should be cited.
+2. **Re-Mix (CoRL 2025)** — data mixture optimization for large-scale IL, related but domain-level not trajectory-level.
+3. **Demo-SCORE (RSS 2025)** — directly competes in the demo curation space, missed by generator.
+
+
+4. **CoRL 2026 deadline impossible** — fundamental mismatch with user requirements.
+5. **Novelty concerns in crowded field** — 8+ methods in 2024-2026, OT machinery is well-explored.
+6. **Theoretical contribution is inherited** — honest but weakens the paper.
+7. **Advantage over DemInf unclear** — both policy-agnostic approaches need clearer differentiation.
+
+Generating the final review JSON...
+
+Now I'm weighing whether this warrants a revise or pass verdict. For it to pass, the work would need a novel theoretical insight beyond applying existing OT machinery, clear empirical evidence showing where OT-Consensus outperforms DemInf or RINSE, an achievable deadline, and a complete related work section. The proposal has made real progress but the core gap remains narrow, the methodology feels like combining existing tools rather than introducing something fundamentally new, and the CoRL timeline is simply infeasible. I'm settling on revise with concrete guidance on what would push this toward acceptance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e3a5f88-5963-45c8-9c76-923327e5158b",
+  "isSidechain": false,
+  "requestId": "req_011CazMLK9WAaSgVgrDYJYdR",
+  "type": "assistant",
+  "uuid": "1116168e-d2cd-4a6a-bf8d-884837af5c3b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S2air6UHCy9B34eT8pnH6Z",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2647,
+      "cache_read_input_tokens": 59858,
+      "output_tokens": 2566,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2647,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2566,
+          "cache_read_input_tokens": 59858,
+          "cache_creation_input_tokens": 2647,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2647
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110 · 2026-05-13T09:44:46.361Z_
+
+I now have a comprehensive picture. Here is my independent assessment.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {
+      "score": 3,
+      "rationale": "The application of OT to intra-dataset demo quality scoring is novel, but the methodology assembles well-explored building blocks (Sinkhorn distances, k-means-style clustering, robust barycenters). OT on trajectories is heavily explored (OTR, GWIL, AILOT, Sebag et al. 2023 multi-marginal OT for multimodal demos). The theoretical contribution is honestly labeled as 'novel application of existing theory,' which is appropriate but also means the novelty is primarily in problem formulation, not methodology — a risky position in a crowded 2025-2026 curation field with 8+ published methods."
+    },
+    "feasibility": {
+      "score": 3,
+      "rationale": "All building blocks exist and cost estimates (~1800h A100) are now realistic. But CoRL 2026 (user's explicit target, 17 days to abstract) is completely infeasible; AAAI 2027 (~July-August 2026 deadline) is achievable from scratch in ~3 months. This is a fundamental mismatch with user requirements. The two-tier scaling approach is sound, though Wasserstein Wormhole training on trajectory distributions (not point clouds as in the original paper) is an unvalidated adaptation."
+    },
+    "clarity": {
+      "score": 4,
+      "rationale": "The proposal is well-structured with explicit mathematical formulations, clear positioning relative to competitors, honest framing of theoretical contribution, and a comprehensive evaluation plan. The ground cost metric design is now explicit. Landscape analysis is thorough."
+    },
+    "impact": {
+      "score": 3,
+      "rationale": "The demo curation field has become extremely crowded (CUPID, DataMIL, DemInf, SCIZOR, QoQ, RINSE, Demo-SCORE, Consistency Matters — all 2024-2026). The advantage over DemInf (the closest policy-agnostic competitor, 5-10% on RoboMimic) is theoretical but undemonstrated. The 'complementary pre-filter' story is promising but needs empirical validation. Unless OT-Consensus demonstrably outperforms or complements existing methods on multimodal tasks, the contribution risks being incremental."
+    }
+  },
+  "issues": [
+    "CRITICAL — CoRL 2026 venue mismatch: The user explicitly targets CoRL 2026 (abstract deadline May 26, 17 days away). The proposal honestly pivots to AAAI 2027 (~August 2026 deadline), but this directly contradicts the user's stated requirement. The user should be explicitly informed that CoRL 2026 is infeasible from scratch.",
+    "Missing competing work — Demo-SCORE (RSS 2025, Chen et al.): Self-curation method using online rollout classifiers to filter heterogeneous demos, achieving 15-35% improvement. Policy-dependent but directly in the demo curation space and published at a top robotics venue. Must be cited and positioned against.",
+    "Missing related work — Sebag et al. (arXiv 2307.10810, 2023): 'On Combining Expert Demonstrations via Optimal Transport' uses multi-marginal OT specifically to handle multimodal demonstration distributions. While it targets combination not quality scoring, it directly precedents OT-Consensus's use of OT for multimodal demo handling, reducing the novelty claim.",
+    "Novelty pressure in extremely crowded field: With 8+ demo curation methods published in 2024-2026, reviewers at AAAI/ICLR will scrutinize what OT-Consensus adds beyond DemInf (also policy-agnostic, also uses information-theoretic scoring, 5-10% on RoboMimic). The multimodal handling advantage needs concrete empirical evidence, not just theoretical argument.",
+    "Wasserstein Wormhole adaptation unvalidated: The Wormhole model (ICML 2024) was designed for point cloud distributions (single-cell biology), not state-action-time trajectory distributions with heterogeneous components (positions, rotations, gripper states). Training Wormhole on this novel domain may require significant adaptation and there's no guarantee the learned embeddings will preserve W2 structure for trajectory data.",
+    "Theoretical contribution remains thin for top venues: Instantiating existing robust barycenter results (Le Gouic et al. 2026; Nietert et al. 2022) for trajectory noise models is honest but reviewers may view this as 'plugging in known results' rather than a theoretical contribution. Consider whether deriving tighter, trajectory-specific bounds (e.g., exploiting temporal structure) could strengthen this.",
+    "Partial mismatch with user's RL-inspired direction: The user specifically mentioned borrowing RL ideas (experience replay buffer, using data itself to score actions). OT-Consensus uses distributional geometry rather than RL-inspired scoring. While the user acknowledged theoretical approaches are acceptable, the connection to the RL scoring intuition could be made more explicit.",
+    "Missing Re-Mix (CoRL 2025) from landscape: Re-Mix optimizes data mixtures for large-scale IL via DRO, outperforming uniform weights by 38%. It operates at domain-level not trajectory-level, but is highly relevant as a data-centric approach to IL quality and should be cited."
+  ],
+  "feedback": "The proposal has improved substantially from Round 1 — cost estimates are realistic, the landscape is comprehensive, the theoretical contribution is honestly framed, and the ground cost metric is explicit. However, several issues prevent a pass:\n\n**Priority fixes:**\n\n1. **Address the CoRL 2026 impossibility directly**: State upfront that CoRL 2026 is infeasible from scratch. If the user has partial implementation or prior codebase, assess what can realistically be done in 17 days. Otherwise, confirm AAAI 2027 as the target and explain why.\n\n2. **Add Demo-SCORE, Sebag et al. 2023, and Re-Mix to the landscape**: Demo-SCORE (RSS 2025) is a direct competitor. Sebag et al. (2023) precedents OT for multimodal demos. Re-Mix (CoRL 2025) is a key data-centric IL work. All must be cited.\n\n3. **Strengthen the empirical differentiation story**: The biggest risk is 'why OT-Consensus over DemInf?' — both are policy-agnostic and evaluate on RoboMimic. Propose specific multimodal evaluation scenarios (e.g., tasks where demonstrations contain 2+ valid strategies like left-hand vs. right-hand grasps) where DemInf's global MI scoring would conflate valid diversity with noise, while OT-Consensus's mode-specific scoring would preserve it. This is the paper's strongest selling point and needs concrete experimental design.\n\n4. **Validate or scope Wasserstein Wormhole adaptation**: Acknowledge that applying Wormhole to trajectory distributions (heterogeneous state-action-time spaces) is a novel adaptation that may require architecture modifications. Consider sliced Wasserstein as a simpler, more reliable Tier 2 fallback and position Wormhole as optional.\n\n5. **Consider strengthening the theoretical contribution**: Instead of purely instantiating existing results, consider whether temporal structure in trajectories enables tighter outlier detection bounds (e.g., exploiting the Markov structure of sequential state-action pairs). Even a modest trajectory-specific result would elevate the theory from 'application' to 'contribution.'\n\n6. **Make the RL connection explicit**: Frame OT-based scoring as a principled formalization of the intuition behind experience replay prioritization — trajectories that are distributionally close to the consensus (barycenter) can be viewed as 'high-priority' experiences, while outliers are 'low-priority' ones to be downweighted. This connects to the user's original RL direction.\n\n**What's working well:** Comprehensive baseline comparison (6 methods), two-tier scaling, honest theoretical framing, explicit ground cost design, realistic cost estimates. The pre-filter pipeline idea (OT-Consensus → CUPID) is a compelling practical contribution that should be emphasized.",
+  "reason": "Solid methodological assembly in a critically crowded field (8+ methods, 2024-2026); cannot meet user's CoRL 2026 deadline; novelty, impact, and differentiation from DemInf need strengthening to reach top-venue threshold."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1116168e-d2cd-4a6a-bf8d-884837af5c3b",
+  "isSidechain": false,
+  "requestId": "req_011CazMLK9WAaSgVgrDYJYdR",
+  "type": "assistant",
+  "uuid": "68bb3f44-e299-4b39-925b-64f530f43612",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S2air6UHCy9B34eT8pnH6Z",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2647,
+      "cache_read_input_tokens": 59858,
+      "output_tokens": 2566,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2647,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2566,
+          "cache_read_input_tokens": 59858,
+          "cache_creation_input_tokens": 2647,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2647
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 111_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "68bb3f44-e299-4b39-925b-64f530f43612",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 112_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify OT-Consensus for CoRL robustness",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 113_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "68bb3f44-e299-4b39-925b-64f530f43612",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 114_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify OT-Consensus for CoRL robustness",
+  "sessionId": "a8359be3-a786-4bbe-a3c4-b37f01482e86"
+}
+```
+
+---

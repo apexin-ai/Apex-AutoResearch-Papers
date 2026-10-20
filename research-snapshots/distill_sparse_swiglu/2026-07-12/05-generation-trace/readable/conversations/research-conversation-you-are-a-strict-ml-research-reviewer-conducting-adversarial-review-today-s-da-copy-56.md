@@ -1,0 +1,11845 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-13 (UTC).** Your job: indep
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 165
+- **Recorded user turns:** 1
+- **Tool calls:** 53
+- **Original source:** `logs/chats/exported-trajectories/account-2/ce540991-92c8-4cd4-b2b7-3c86dfc7bf03.jsonl`
+- **Structured JSON:** [`805fd4a2171dfc4b8d68.json`](../../sessions/80/805fd4a2171dfc4b8d68.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-13T18:02:57.765Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T18:02:57.765Z",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-13 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).\nDirection：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 5/10)\n{\n  \"title\": \"Chunk-Decomposed Adaptive Prioritization for VLA Supervised Fine-Tuning\",\n  \"core_problem\": \"Can we exploit the temporal structure of action-chunk prediction losses — which reveals *why* each demonstration transition is hard, not just *how* hard it is — to design a VLA-specific adaptive prioritization mechanism for SFT that overcomes the known failure modes of scalar-loss prioritized sampling in supervised regression (Pan et al., UAI 2022) and outperforms both generic loss-based sampling and existing adaptive scalar-MSE reweighting (AdaMix)?\",\n  \"opportunity\": \"Every existing demonstration curation method (SCIZOR, CUPID, DataMIL, DemInf, RINSE) operates as a static filter-then-train preprocessing step, while every existing online prioritization method treats the training loss as a scalar priority signal — even when applied to sequential predictions. This includes AdaMix (EMMA, 2025), the most relevant prior work, which adaptively reweights VLA training samples based on aggregated MSE over action chunks, trajectory smoothness, and joint angle constraints — but reduces the chunk prediction loss to a single scalar before reweighting. VLA models with action chunking produce a uniquely structured loss signal: for each transition, the model predicts K future actions [a_1, ..., a_K], yielding a per-position loss vector [l_1, ..., l_K] that encodes *temporal prediction quality*. This vector is discarded when aggregated into a scalar mean loss. Yet it carries critical information: a transition where the first actions are correct but the chunk diverges mid-way (high temporal divergence) represents a temporal coherence challenge — the model has learned the local dynamics but fails to propagate them forward. A transition where all K actions are uniformly wrong (low temporal divergence, high aggregate) represents a fundamental perception or grounding failure. These require fundamentally different amounts of training focus, and the optimal treatment shifts during training: early on, most chunks are uniformly wrong; as training progresses, the model learns initial actions first and temporal coherence becomes the dominant bottleneck. This structured evolution has no analogue in LLM token prediction and cannot be captured by scalar prioritization.\\n\\nCritically, Pan et al. (UAI 2022) proved that error-based prioritized sampling for MSE minimization is mathematically equivalent to uniform sampling with a cubic power loss, and empirically showed that standard PER can perform worse than uniform sampling in supervised regression — which is precisely what VLA SFT is. This foundational concern applies to ALL scalar-loss prioritization methods for VLA SFT, including AdaMix's scalar-MSE reweighting and standard PER/OHEM applied to aggregated chunk loss. Pan's equivalence theorem (Theorem 1) requires that priority is a monotonic function of scalar prediction error magnitude: q(x,y;θ) = |f_θ(x)−y| / Σ|f_θ(x_i)−y_i|. CDAP's temporal decomposition breaks this equivalence because the priority depends on two independent signals — aggregate difficulty μ and temporal divergence δ — where δ is NOT a function of μ. Two transitions with identical aggregate loss μ but different temporal divergence δ receive different priorities under CDAP but identical priorities under scalar PER. This means CDAP's priority function p(i) = (μ_i + ε)^{α_μ} · (1 + γ · δ_i)^{α_δ} · c_i cannot be expressed as g(|error_i|) for any monotonic function g, and therefore cannot be reduced to an implicit scalar loss modification via Fujimoto et al.'s (NeurIPS 2020) equivalence framework. The temporal component captures *structural* information about prediction quality degradation that is orthogonal to error magnitude — this is precisely the type of signal that scalar-loss methods, including PER's cubic-power equivalent, cannot express.\\n\\nThe second VLA-specific opportunity is task phase structure: robot manipulation has identifiable critical phases (approach → grasp → transport → place) marked by gripper state transitions. Contact-phase transitions are brief but disproportionately important for task success, as shown empirically by DAM-VLA's asymmetric Gaussian weighting. However, both DAM-VLA (fixed Gaussian) and AdaMix (uniform across phases) apply the same weighting scheme to all transitions regardless of task phase. An adaptive mechanism that identifies which specific contact-phase transitions the current policy still struggles with would be more sample-efficient.\\n\\nThe parallel to recent work in LLM SFT is instructive: Token Cleaning (ICML 2025) showed that sub-sample-level (token-level) quality varies significantly within samples for LLM SFT, and that filtering at the token level outperforms sample-level filtering. The 'Token Priority' framework (arXiv:2602.01227) formalizes SFT as distribution reshaping via token-level priority, arguing that fine-grained autoregressive generation supervised by coarse signals suffers from a fundamental granularity mismatch. CDAP applies the analogous insight to VLA SFT: position-level difficulty varies within action chunks, and prioritizing at the chunk-decomposed level outperforms sample-level scalar reweighting — but in a continuous action space with temporal structure rather than discrete tokens.\\n\\nNo existing work uses the *empirical intra-chunk temporal loss profile* as a *data-driven adaptive* priority signal for VLA training data selection. DAM-VLA applies fixed positional weighting within chunks (exponential decay w_j = γ^j, γ=0.8) — a predetermined form of intra-chunk structure that does not adapt to individual transition difficulty or evolve with training. AdaMix reweights samples adaptively but uses scalar-aggregated MSE; Token Cleaning uses sub-sample structure but in discrete LLM token spaces. CDAP fills this specific intersection: adaptive online prioritization that decomposes the continuous action-chunk loss into temporal components capturing *why* transitions are hard, while addressing the known failure modes of scalar PER in supervised settings through temporal decomposition that breaks the scalar-error equivalence.\",\n  \"landscape\": \"**Static demonstration curation (the dominant paradigm):** SCIZOR (ICRA 2026, arXiv:2505.22626) uses self-supervised progress prediction to filter suboptimal/redundant transitions, achieving 32.9% gains on Sirius-Fleet and 5.4% on RoboMimic. CUPID (CoRL 2025) and QoQ (arXiv 2026) use influence functions to score demonstrations. DataMIL (ICLR 2026) trains datamodels to predict which data subsets improve success. DemInf (RSS 2025) estimates mutual information for quality scoring. RINSE (ICML 2025 Workshop — DataWorld, arXiv:2604.23000) proposes smoothness-based metrics (Spectral Arc Length + Trajectory-Envelope Distance), achieving 16% higher success with 1/6 data on RoboMimic and 20% improvement with half data on real-world manipulation. Re-Mix (CoRL 2024) optimizes domain-level data mixtures via DRO. All operate as filter-then-train pipelines: the curation is fixed before training begins.\\n\\n**Adaptive sample reweighting for VLA SFT (most direct competitor):** EMMA/AdaMix (arXiv:2509.22407, Sep 2025, revised Mar 2026) introduces a hard-sample-aware training strategy for VLA models that adaptively reweights samples during SFT based on three metrics: (1) Action Prediction Error — MSE aggregated over the full action chunk: r_i^MSE = -(1/L) Σ ||â_{i+t} - a_{i+t}||²₂, (2) Trajectory Smoothness — second-order joint angle differences penalizing abrupt actions, and (3) Joint Angle Limitation — binary safety constraint. These are min-max normalized and combined via arithmetic mean into a composite score s_i, with sampling probability p(i) ∝ γ + λ·(1 − s_i). Built on the π₀ backbone, AdaMix achieves 13% improvement over uniform sampling on real-world tasks. The paper was submitted to ICLR 2026 but withdrawn; it remains an arXiv preprint. **Critical differentiation from CDAP:** AdaMix computes MSE *aggregated over the full action chunk* (scalar), then reweights — it does not decompose per-position losses within the chunk. Its trajectory smoothness metric operates on ground-truth joint angles, not on the model's prediction quality at each temporal position. CDAP's temporal divergence δ_i captures a fundamentally different signal: how the *model's prediction quality degrades* over the chunk horizon, which is invisible to aggregated MSE. A chunk where positions 1-4 are correct and positions 5-8 diverge has the same aggregated MSE as a chunk where all positions have moderate error, but represents a qualitatively different learning challenge. Crucially, AdaMix's scalar-aggregated MSE priority falls squarely within Pan et al.'s equivalence framework — it is a monotonic function of scalar error — while CDAP's multi-component priority does not.\\n\\n**PER limitations in supervised regression (foundational concern):** Pan et al. (UAI 2022, arXiv:2007.09569) proved that error-based prioritized sampling for MSE minimization is mathematically equivalent to uniform sampling with a cubic power loss: c·𝔼_{(x,y)~q}[∇_θ(1/2)(f_θ(x)−y)²] = 𝔼_{(x,y)~uniform}[∇_θ(1/3)|f_θ(x)−y|³], where q(x,y;θ) ∝ |f_θ(x)−y|. They identified two practical limitations — outdated priorities and insufficient coverage — and showed PER can perform significantly worse than uniform sampling in supervised regression when priorities become stale. Fujimoto et al. (NeurIPS 2020, arXiv:2007.06049) generalized this, showing that any non-uniform sampling can be re-expressed as a uniformly-sampled modified loss with equivalent expected gradients (the LAP/PAL framework). **These results pose a fundamental challenge to any scalar-loss prioritization applied to VLA SFT.** CDAP addresses this in two ways: (1) the temporal divergence component δ introduces structural information orthogonal to scalar error magnitude, breaking the monotonic-priority assumption underlying Pan's equivalence — the priority function p(i) depends on the *shape* of the loss vector, not just its magnitude; (2) the freshness-aware age decay and adaptive coverage mixing directly address Pan's two identified failure modes (stale priorities and insufficient coverage). The ablation α_δ=0 (scalar PER) vs. full CDAP (with temporal decomposition) empirically tests whether the structural signal overcomes PER's supervised-learning limitations.\\n\\n**Online Hard Example Mining (the 10-year-old precursor):** OHEM (Shrivastava et al., CVPR 2016) selects the highest-loss examples in each mini-batch for gradient updates in object detection. Focal Loss (Lin et al., ICCV 2017) down-weights easy examples via a modulating factor. Both use scalar loss magnitude as the difficulty signal and operate within-batch without cross-batch priority tracking. CDAP differs in three ways: (1) uses chunk-decomposed loss structure, not scalar magnitude; (2) maintains a persistent priority buffer with IS correction for across-batch prioritization; (3) adapts priorities online as the policy evolves.\\n\\n**Prioritized Experience Replay (PER) and its descendants:** Schaul et al. (ICLR 2016) introduced sum-tree priority buffers with IS correction for RL. OPER (TNNLS 2024) applies PER to offline RL including BC on D4RL — but computes priorities statically via a decoupled two-stage procedure requiring reward signals. AFBC (arXiv 2021) uses advantage estimates for BC prioritization — also reward-dependent and static. Freshness-Aware PER (arXiv April 2026) successfully extends PER to billion-parameter LLM/VLM RL training with exponential age decay addressing priority staleness — but exclusively targets reward-dependent RL post-training. None of these decompose the loss signal by temporal structure within action chunks.\\n\\n**Adaptive importance weighting for SFT (iw-SFT):** iw-SFT (arXiv 2507.12856) establishes that SFT on curated data maximizes a lower bound on the RL objective and introduces adaptive importance weights via policy ratios with EMA-tracked reference parameters (θ_q = αθ_q + (1−α)θ). Evaluates on D4RL locomotion, Ant-maze, and Franka Kitchen. **Critical differentiation:** iw-SFT's importance weights are *policy ratios* — they measure how far the current policy has drifted from the reference distribution. In continuous VLA action spaces (7-DoF or higher), policy ratios via Gaussian likelihoods are numerically unstable and dominated by minor mean shifts in low-variance dimensions. CDAP's chunk-decomposed loss directly measures *where and why* the policy fails, providing a more informative and stable signal in high-dimensional continuous action spaces.\\n\\n**Sub-sample-level data selection for LLM SFT:** Token Cleaning (ICML 2025, arXiv:2502.01968) investigates token quality from a noisy-label perspective and proposes token-level data selection for LLM SFT by examining the influence of model updates on each token, then applying threshold-based separation. This is the closest *conceptual* parallel to CDAP in the LLM domain: both move beyond sample-level to sub-sample-level quality assessment during SFT. 'Token Priority' (arXiv:2602.01227, Feb 2026) formalizes SFT as distribution reshaping via token-level priority, advocating Token Priority as the essential bridge between coarse supervision signals and fine-grained autoregressive generation, categorizing methods into Positive Priority (noise filtration) and Signed Priority (toxic unlearning). This framework directly supports CDAP's premise: the granularity mismatch between sample-level supervision and sub-sample-level generation quality exists in VLA SFT as well, manifesting as the discrepancy between scalar-aggregated chunk loss and position-level prediction quality. ProFit (arXiv:2601.09195) selectively masks low-probability tokens during LLM SFT. PEAR (arXiv:2602.01058) uses IS reweighting at token/block/sequence level. PBS (arXiv:2602.17066) predicts per-sample loss from static token features. SuRe (arXiv:2511.22367) uses sequence-level NLL surprise for prioritized replay. All target discrete token prediction in LLMs and have no mechanism for handling continuous action chunks or temporal prediction quality degradation.\\n\\n**VLA-specific loss weighting:** DAM-VLA (arXiv:2603.00926, March 2026) introduces dual-scale action weighting: trajectory-level asymmetric Gaussian weights centered on gripper state transitions (σ_l=6, σ_r=2) and chunk-level exponential decay (w^a_j = γ^j, γ=0.8). The chunk-level exponential decay IS a form of intra-chunk loss decomposition — it applies position-dependent weights within action chunks during training. However, DAM-VLA applies *fixed, predetermined, universal* loss weights: every transition receives the same exponential decay regardless of whether the model's actual per-position loss profile follows this pattern. A transition where the model already predicts later positions well receives the same positional weighting as one where later positions diverge — the weighting does not reflect the model's empirical prediction quality. CDAP uses the *empirical* per-position loss profile as a *data-driven adaptive* priority that evolves with the policy: the weights change as the model learns, and different transitions receive different effective prioritization based on their actual temporal loss structure.\\n\\n**VLA action chunk analysis at inference time:** 'VLA Knows Its Limits' (arXiv:2602.21445, Feb 2026) reveals that intra-chunk actions attend invariantly to vision-language tokens and prediction quality degrades systematically with temporal distance, with 'action sinks' at initial and terminal positions. AutoHorizon dynamically estimates execution horizons from attention patterns. VGAS (arXiv:2602.07399, Feb 2026) introduces Q-Chunk-Former for value-guided action-chunk selection at inference time. Both support CDAP's premise that intra-chunk temporal structure is informative, but address inference-time execution, not training-time data prioritization.\\n\\n**Gap:** No existing work uses the *empirical intra-chunk temporal loss profile* as a *data-driven adaptive* priority signal for VLA SFT. Static curation methods (SCIZOR, RINSE) ignore training dynamics. Scalar-loss adaptive methods (AdaMix, OHEM, PER, iw-SFT) discard the temporal structure within chunks and fall within Pan et al.'s scalar-error equivalence framework — AdaMix is the closest, performing adaptive reweighting during VLA SFT, but aggregates chunk MSE into a scalar before reweighting. Fixed-weighting methods (DAM-VLA) apply predetermined positional weights that don't adapt to individual transition difficulty or training dynamics. LLM sub-sample methods (Token Cleaning, Token Priority, ProFit, PEAR, PBS) don't handle continuous action chunks. Inference-time chunk analysis methods (VGAS, AutoHorizon) don't address training-time prioritization. CDAP fills this intersection while directly addressing PER's known failure modes in supervised settings through temporal decomposition that breaks the scalar-error equivalence.\",\n  \"approach\": \"We propose CDAP (Chunk-Decomposed Adaptive Prioritization), replacing scalar loss-based sampling with a VLA-specific priority signal that exploits the temporal structure of action-chunk prediction losses during SFT. CDAP requires no auxiliary model, no reward annotations, and adds <3% compute overhead. Crucially, CDAP's multi-component priority breaks the scalar-PER equivalence identified by Pan et al. (UAI 2022), providing a principled mechanism for prioritized sampling to succeed in the supervised regression setting of VLA SFT where scalar PER is known to fail.\\n\\n**1. Chunk Temporal Profile (CTP) — the VLA-specific priority signal:**\\nDuring VLA SFT with action chunking (chunk size K), each transition i produces per-position L1 losses [l_{i,1}, ..., l_{i,K}] from the predicted vs. ground-truth action chunk. Instead of discarding this structure into a scalar mean (as AdaMix does with MSE), CDAP computes a two-component priority:\\n\\n(a) *Aggregate difficulty*: μ_i = (1/K) Σ_k l_{i,k} — overall prediction quality, analogous to AdaMix's aggregated MSE and standard loss-based priority.\\n\\n(b) *Temporal divergence*: δ_i = (1/(K−1)) Σ_{k=1}^{K−1} ReLU(l_{i,k+1} − l_{i,k}) — average positive slope of per-position losses, measuring how much prediction quality degrades over the chunk horizon. High δ_i indicates a temporal coherence challenge (initial actions correct, chunk diverges mid-way); low δ_i with high μ_i indicates a fundamental perception/grounding failure.\\n\\n**Why this breaks Pan et al.'s equivalence:** Pan's Theorem 1 establishes that PER with priority q ∝ |error| applied to MSE loss produces gradients equivalent to uniform sampling on cubic power loss |error|³. This equivalence requires that priority is a monotonic function of scalar error magnitude. CDAP's priority p(i) depends on BOTH μ_i AND δ_i, where δ_i is not a function of μ_i — two transitions with identical aggregate loss can have different temporal divergence. Therefore p(i) cannot be expressed as g(|error_i|) for any monotonic g, and the cubic-loss reduction does not apply. The temporal component captures the *shape* of the loss vector, not just its magnitude — a qualitatively different signal that scalar loss reweighting (whether explicit via PER or implicit via modified loss functions) cannot express.\\n\\nWe also study alternative temporal metrics: loss variance within chunk (Var(l_{i,1}, ..., l_{i,K})), loss range (max − min), and Spearman correlation between position index and loss. The ablation identifies which temporal metric best captures learning-relevant structure.\\n\\n**2. Contact-Phase Aware Weighting:**\\nGripper state transitions (open→close, close→open) are identified directly from demonstration data (no model needed). Transitions within a window w of a gripper state change receive a multiplicative contact-phase boost: c_i = 1 + η if transition i is within w steps of a gripper transition, else c_i = 1. This is grounded in DAM-VLA's empirical finding that contact phases are critical for manipulation success, but unlike DAM-VLA's fixed Gaussian or AdaMix's phase-agnostic reweighting, CDAP combines this with adaptive difficulty-based selection: among all contact-phase transitions, CDAP prioritizes those the current policy still finds hard.\\n\\n**3. Priority Function and Sampling:**\\nThe composite priority for transition i is:\\n  p(i) = (μ_i + ε)^{α_μ} · (1 + γ · δ_i)^{α_δ} · c_i\\n\\nwhere α_μ controls aggregate-loss prioritization strength, α_δ controls temporal-divergence prioritization strength, and γ scales the divergence contribution. Setting α_δ = 0 recovers scalar-loss PER (OHEM+IS) — which by Pan et al.'s theorem is equivalent to implicit cubic-loss training — enabling clean ablation against AdaMix's scalar approach and direct empirical testing of whether temporal decomposition overcomes PER's supervised-learning limitations. Transitions are sampled from a sum-tree buffer with probability proportional to p(i).\\n\\n**4. Importance-Sampling Correction:**\\nFollowing Schaul et al. and iw-SFT's theoretical framework, apply capped IS weights w_i = (N · p(i)/Σp)^{−β} with β annealed from β_0 to 1.0 over training. This ensures unbiased gradient estimates while maintaining the theoretical link to RL objective bounds established by iw-SFT. The key distinction: iw-SFT's weights correct for the ratio between behavior and current policy distributions (policy-ratio-based), while CDAP's weights correct for the ratio between the adaptive chunk-decomposed priority distribution and the uniform distribution (loss-structure-based). Both are valid IS schemes with different inductive biases.\\n\\n**5. Freshness-Aware Age Decay (addressing Pan et al.'s stale-priority limitation):**\\nAdopt Freshness-Aware PER's exponential age decay: p_eff(i) = p(i) · exp(−λ · age_i), where age_i counts steps since transition i was last sampled. This directly addresses the first of Pan et al.'s two identified failure modes: outdated priorities. In VLA SFT, per-position loss profiles shift significantly during training (from flat to monotonically increasing, per our Hypothesis 1), making priority staleness a concrete concern that age decay mitigates.\\n\\n**6. Coverage-Guaranteed Mixing (addressing Pan et al.'s coverage limitation):**\\nWith probability ε_mix, sample uniformly to ensure buffer coverage — directly addressing Pan et al.'s second identified failure mode: insufficient coverage of the sample space. We set ε_mix adaptively: ε_mix = max(ε_min, 1 − coverage_t) where coverage_t is the current fraction of transitions sampled at least once. For typical VLA SFT regimes (N≈50K-100K transitions, T≈50K-150K gradient steps, batch size B=128-256), total samples drawn = B×T ≈ 6.4M-38.4M, giving an expected 64-384 samples per transition under uniform sampling. Even with heavy prioritization (effective α close to 1), the ε_mix mechanism with ε_min=0.1 guarantees that at least 10% of sampling budget is uniform, ensuring coverage_T > 1 − exp(−0.1·B·T/N) > 99.9% for these parameter regimes. We quantify coverage empirically for all methods in the evaluation.\\n\\nPriorities are updated lazily when sampled (loss is computed anyway for gradient updates, and the per-position losses [l_{i,1}, ..., l_{i,K}] are available at zero additional cost from the chunk prediction).\\n\\n**7. Empirical Hypotheses and Analysis:**\\nWe formulate testable hypotheses motivated by the structure of action-chunk prediction, and provide the first systematic empirical investigation:\\n\\n(a) *Hypothesis 1 — Temporal profile evolution*: Under VLA SFT with action chunking of size K, the per-position loss profile [l_1(θ), ..., l_K(θ)] evolves from approximately flat (all positions equally hard early in training) to monotonically increasing (initial positions learned first, later positions remain hard). The rate of this transition depends on the temporal correlation structure of the demonstration data. We test this hypothesis by tracking per-position loss profiles across training for different transition types (contact vs. free-space, smooth vs. non-smooth demonstrations).\\n\\n(b) *Hypothesis 2 — Temporal divergence informativeness (make-or-break test)*: Transitions with similar aggregate difficulty μ but different temporal divergence δ have different downstream impact on task success, i.e., δ carries learning-relevant information beyond what μ captures. We test this by partitioning transitions into (μ, δ) bins and measuring per-bin gradient utility (cosine similarity with the full-data gradient). If this hypothesis fails, CDAP reduces to scalar PER and Pan et al.'s negative result applies.\\n\\n(c) *Hypothesis 3 — Temporal decomposition breaks PER's supervised-learning failure*: Full CDAP (α_δ > 0) outperforms scalar PER (α_δ = 0) in VLA SFT success rate. By Pan et al.'s analysis, scalar PER is equivalent to implicit cubic-loss training and may not help (or may hurt) in supervised regression. If full CDAP outperforms scalar PER, it empirically demonstrates that the temporal structural signal overcomes PER's known supervised-learning limitations — because the priority function is no longer reducible to a monotonic function of scalar error.\\n\\n(d) *Variance reduction analysis*: For transitions exhibiting high temporal divergence (δ_i >> 0), we empirically measure whether gradient variance under chunk-decomposed prioritization is lower than under scalar-loss prioritization, and by how much.\\n\\n(e) *Contact-phase sample complexity*: We empirically measure whether contact-phase boosted sampling reduces the number of gradient steps to reach a given contact-phase loss threshold compared to uniform and scalar-adaptive sampling.\\n\\n**8. Implementation on OpenVLA-OFT:**\\nIntegrate CDAP into the OpenVLA-OFT fine-tuning pipeline. The per-position losses are already computed during the L1 regression forward pass for each action chunk — CDAP's CTP computation (mean + temporal divergence) adds only K floating-point operations per transition, truly negligible overhead. The sum-tree priority buffer replaces the uniform DataLoader sampler. Implementation is ~150 lines of code.\\n\\n**9. Evaluation — Benchmarks (scoped for CoRL 2026):**\\nFor the CoRL submission (abstract May 26, paper May 28 EOD / May 29 11:59 UTC), we scope to two benchmarks: (a) RoboMimic multi-human (MH): explicit mixed-quality operators, well-established, fast iteration. (b) SimplerEnv: VLA-specific evaluation with Google Robot and WidowX environments. Additional benchmarks (Sirius-Fleet real-world mixed-quality fleet data, OXE subsets) are reserved for camera-ready or follow-up.\\n\\n**10. Evaluation — Baselines:**\\n(a) Uniform sampling (OpenVLA-OFT default). (b) SCIZOR (static progress-based filtering, ICRA 2026). (c) RINSE (static smoothness-based filtering, ICML 2025 Workshop). (d) AdaMix (adaptive scalar-MSE + smoothness + joint limits reweighting during VLA SFT, EMMA arXiv 2025 — most direct competitor). (e) Scalar-loss PER (α_δ=0 ablation of CDAP — equivalent to OHEM + IS correction + age decay, and by Pan et al., equivalent to implicit cubic-loss training; isolates temporal decomposition's value vs. all scalar-loss adaptive methods). (f) SCIZOR→CDAP and RINSE→CDAP (adaptive on top of static, demonstrating complementary benefit).\\n\\nThe ablation path cleanly isolates CDAP's contribution and directly tests whether temporal decomposition overcomes PER's supervised-learning failure: Uniform → AdaMix (scalar adaptive, external baseline) → Scalar PER+IS (α_δ=0, our framework without temporal component — equivalent to cubic-loss training by Pan et al.) → Full CDAP (with temporal decomposition). If scalar PER+IS ≈ AdaMix, the frameworks are equivalent modulo IS correction and age decay. If full CDAP > scalar PER+IS, temporal decomposition adds value beyond scalar reweighting and overcomes PER's supervised-learning limitations. If scalar PER+IS ≤ Uniform (Pan et al.'s prediction), but full CDAP > Uniform, this is the strongest validation: it demonstrates that temporal structure provides information that scalar prioritization provably cannot.\\n\\n**11. Evaluation — Key Analyses (VLA-specific empirical contributions):**\\n(a) *Temporal loss profile evolution*: Visualize how the intra-chunk loss profile [l_1, ..., l_K] evolves during training across different types of transitions (contact vs. free-space, successful vs. failed demonstrations). This is the first systematic study of how per-position action chunk losses evolve during VLA SFT — the empirical investigation itself is a contribution regardless of whether CDAP outperforms all baselines.\\n(b) *Loss rank decorrelation*: Measure Spearman correlation between initial and final per-transition loss rankings, and separately for aggregate difficulty μ and temporal divergence δ, to quantify how much the optimal data distribution shifts and whether the shift is captured by scalar vs. decomposed priorities.\\n(c) *Buffer coverage analysis*: Track the fraction of transitions sampled at least once during training under different prioritization schemes (uniform, scalar PER, CDAP, AdaMix), directly addressing Pan et al.'s coverage concern and validating the ε_mix mechanism. Report coverage curves and compute effective sample size ratio for each method.\\n(d) *Temporal divergence vs. aggregate difficulty decomposition*: Show that transitions with similar μ but different δ have different downstream impact on task success, validating the information content of the temporal profile beyond what scalar priority captures.\\n(e) *Pan et al. equivalence test*: Explicitly compare scalar PER (α_δ=0) vs. uniform with cubic power loss (|error|³) to empirically verify Pan's equivalence in the VLA SFT setting, then show that full CDAP diverges from both.\\n(f) *Ablation over α_μ, α_δ, γ, η, w, λ, ε_mix, β schedule*.\\n(g) *Compute overhead profiling* at VLA scale (expected: <3% wall-clock, <1% GPU).\\n(h) *Pre-pilot on RoboMimic-MH*: Before committing to the full experimental pipeline, run a small-scale pilot comparing uniform vs. scalar PER (α_δ=0) vs. full CDAP on RoboMimic-MH to validate that δ carries learning-relevant signal. This de-risks the main experimental investment and directly tests Hypothesis 3.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~350h A100-80GB (~5 baselines × 15h + ~5 method runs × 20h + ~8 ablations × 10h + ~25h analysis/visualization + ~15h AdaMix reimplementation, scoped to 2 benchmarks)\",\n      \"gpu_utilization\": \"~30-40% effective utilization; GPUs idle during implementation, debugging, and analysis\",\n      \"timeline\": \"2-3 months\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"~$525 at ~$1.50/hr\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~450h A100-80GB (agent explores hyperparameter configurations and temporal metric variants; human gates benchmark selection and analysis framing; includes AdaMix reimplementation and pilot study; scoped to 2 benchmarks for CoRL)\",\n      \"gpu_utilization\": \"~65-75% utilization; agent queues experiments overnight, human reviews results and approves next batch\",\n      \"timeline\": \"10-14 days (tight for CoRL abstract May 26, paper May 28 EOD)\",\n      \"team\": \"1 researcher, ~45min/day check-in\",\n      \"claude_api_cost\": \"$100-200 (600-1200 turns: code generation, experiment orchestration, result analysis)\",\n      \"estimated_gpu_cost\": \"~$675 at ~$1.50/hr\",\n      \"risk_note\": \"Primary risk is that α_δ ablation shows temporal decomposition adds minimal value over scalar PER — which would confirm Pan et al.'s prediction that PER in supervised settings reduces to implicit loss modification. RoboMimic-MH pilot (first 1-2 days) de-risks this before full commitment. Secondary risk: timeline extremely tight with 13 days to abstract.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~600-800h A100-80GB (comprehensive exploration of temporal metrics, hyperparameters, Pan et al. equivalence testing; scoped to 2 benchmarks for CoRL, with Sirius-Fleet and OXE for camera-ready)\",\n      \"gpu_utilization\": \"~90-95% utilization; agent runs 24/7\",\n      \"timeline\": \"8-12 days with 8× A100 cluster\",\n      \"team\": \"0 (initial setup and final review only)\",\n      \"claude_api_cost\": \"$200-400 (1200-2400 turns for code, orchestration, ablation design, paper drafting)\",\n      \"estimated_gpu_cost\": \"~$1,050 at ~$1.50/hr\",\n      \"speed_bottleneck\": \"GPU cluster availability for 7B model fine-tuning; SimplerEnv evaluation rollouts\",\n      \"risk_note\": \"Timeline feasible for CoRL 2026 with 2-benchmark scope. Day 1-2: implement CDAP + pilot on RoboMimic-MH. Day 3-4: reimplement AdaMix + run baselines. Day 5-8: full comparison + ablations on RoboMimic-MH + SimplerEnv. Day 9-12: analysis + writing. Pilot must confirm δ signal by Day 2 to justify proceeding.\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract deadline: May 26, 2026 11:59 UTC; paper deadline: May 28, 2026 EOD Thursday per Instruction for Authors / May 29, 2026 11:59 UTC per OpenReview — use conservative May 28 EOD for planning; 2 benchmarks for submission, additional for camera-ready)\",\n    \"AAAI 2027 (deadline: expected ~Aug 2026; full 4-benchmark evaluation)\",\n    \"ICRA 2027 (deadline: expected ~Sep 2026)\",\n    \"ICLR 2027 (deadline: expected ~Sep-Oct 2026)\"\n  ],\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"Understanding and Mitigating the Limitations of Prioritized Experience Replay (Pan et al., UAI 2022, arXiv:2007.09569) — PER ≡ cubic-loss in supervised regression; CDAP's temporal decomposition breaks this equivalence\",\n    \"An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay (Fujimoto et al., NeurIPS 2020, arXiv:2007.06049) — general loss-sampling equivalence framework (LAP/PAL)\",\n    \"Online Hard Example Mining (Shrivastava et al., CVPR 2016)\",\n    \"Focal Loss for Dense Object Detection (Lin et al., ICCV 2017)\",\n    \"Prioritized Experience Replay (Schaul et al., ICLR 2016)\",\n    \"OPER: Decoupled Prioritized Resampling for Offline RL (Yue et al., TNNLS 2024, arXiv:2306.05412)\",\n    \"A Closer Look at Advantage-Filtered Behavioral Cloning in High-Noise Datasets (arXiv:2110.04698, 2021)\",\n    \"Supervised Fine Tuning on Curated Data is Reinforcement Learning (iw-SFT, arXiv:2507.12856, 2025)\",\n    \"SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026, arXiv:2505.22626)\",\n    \"CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)\",\n    \"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (ICLR 2026)\",\n    \"DemInf: Robot Data Curation with Mutual Information Estimators (RSS 2025)\",\n    \"RINSE: Learning from the Best — Smoothness-Driven Metrics for Data Quality in Imitation Learning (ICML 2025 Workshop — DataWorld, arXiv:2604.23000)\",\n    \"Quality over Quantity: Demonstration Curation via Influence Functions (QoQ, arXiv 2026)\",\n    \"EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer (arXiv:2509.22407, Sep 2025, revised Mar 2026) — introduces AdaMix adaptive sample reweighting for VLA SFT\",\n    \"Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning (ICML 2025, arXiv:2502.01968)\",\n    \"Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority (arXiv:2602.01227, Feb 2026) — formalizes SFT as distribution reshaping via token-level priority\",\n    \"SuRe: Surprise-Driven Prioritised Replay for Continual LLM Learning (arXiv:2511.22367, 2025)\",\n    \"ProFit: Probability-Guided Token Selection for SFT (arXiv:2601.09195, Jan 2026)\",\n    \"PEAR: Good SFT Optimizes for SFT, Better SFT Prepares for RL (arXiv:2602.01058, Feb 2026)\",\n    \"PBS: Predictive Batch Scheduling for LLM Training (arXiv:2602.17066, Feb 2026)\",\n    \"Freshness-Aware Prioritized Experience Replay for LLM/VLM RL (arXiv:2604.16918, April 2026)\",\n    \"Prioritized Replay for RL Post-training (arXiv:2601.02648, Jan 2026)\",\n    \"DAM-VLA: Dynamic Action Model-Based VLA Framework (arXiv:2603.00926, March 2026) — fixed chunk-level exponential decay w_j=γ^j\",\n    \"VLA Knows Its Limits (arXiv:2602.21445, Feb 2026)\",\n    \"VGAS: Value-Guided Action-Chunk Selection for Few-Shot VLA Adaptation (arXiv:2602.07399, Feb 2026)\",\n    \"Leave No Observation Behind: Real-time Correction for VLA Action Chunks (arXiv:2509.23224, 2025)\",\n    \"CAPS: Context-Aware Priority Sampling for Enhanced Imitation Learning (ICRA 2025, arXiv:2503.01650)\",\n    \"OpenVLA-OFT: Fine-Tuning Vision-Language-Action Models (arXiv:2502.19645, 2025)\",\n    \"PLD: Self-Improving VLA Models via Residual RL (ICLR 2026)\",\n    \"ExpReS-VLA: Specializing VLA Models Through Experience Replay (arXiv:2511.06202, 2025)\",\n    \"Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning (CoRL 2024)\",\n    \"GREATS: Online Selection of High-Quality Data for LLM Training (NeurIPS 2024)\",\n    \"Open X-Embodiment: Robotic Learning Datasets and RT-X Models (arXiv 2023)\"\n  ],\n  \"description\": \"We propose CDAP (Chunk-Decomposed Adaptive Prioritization) for VLA model SFT, exploiting a VLA-specific signal that existing adaptive methods discard: the temporal structure of per-position losses within action chunks. VLA models with action chunking predict K future actions per transition, producing a loss vector [l_1, ..., l_K] that encodes temporal prediction quality — high temporal divergence (early actions correct, chunk diverges mid-way) indicates temporal coherence challenges, while uniformly high loss indicates perception/grounding failure. CDAP uses a two-component priority: aggregate difficulty (standard) and temporal divergence (VLA-specific), combined with contact-phase-aware weighting that boosts transitions near gripper state changes.\\n\\nCritically, Pan et al. (UAI 2022) proved that scalar-error PER in supervised regression is equivalent to implicit cubic-loss training and can perform worse than uniform sampling — a foundational concern for all scalar-loss prioritization in VLA SFT, including AdaMix. CDAP addresses this directly: the temporal divergence component δ is not a function of aggregate error μ, so the priority function cannot be reduced to a monotonic function of scalar error, breaking Pan's equivalence. The ablation path Uniform → Scalar PER (α_δ=0, equivalent to cubic-loss by Pan's theorem) → Full CDAP (with δ) directly tests whether temporal decomposition overcomes PER's supervised-learning failure mode. If scalar PER ≤ Uniform but full CDAP > Uniform, this provides the strongest validation.\\n\\nNo existing work uses the empirical intra-chunk temporal loss profile as a data-driven adaptive priority signal. DAM-VLA applies fixed positional exponential decay (w_j=γ^j) — predetermined, not data-driven. AdaMix uses scalar-aggregated MSE. Token Cleaning (ICML 2025) and Token Priority (arXiv:2602.01227) address token-level quality in LLM SFT. CDAP fills this intersection in continuous action spaces with temporal structure. The first systematic empirical characterization of how intra-chunk loss profiles evolve during VLA SFT is itself a contribution. Evaluated on RoboMimic-MH and SimplerEnv (scoped for CoRL 2026, with Sirius-Fleet and OXE for camera-ready) against baselines including SCIZOR, RINSE, AdaMix, and scalar PER. A RoboMimic-MH pilot is recommended first to validate that δ carries signal beyond μ before full commitment.\",\n  \"project_name\": \"chunk_decomposed_priority_vla\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING RELATED WORK: OPER (Decoupled Prioritized Resampling for Offline RL, arXiv:2306.05412, TNNLS) directly applies TD-error-based prioritized resampling to behavioral cloning — this is the closest prior work and is completely unacknowledged. AFBC (arXiv:2110.04698) repurposes PER for BC in noisy datasets. Goal-Conditioned BC with Prioritized Sampling (IEEE 2021) applies prioritized sampling to goal-conditioned BC. ExpReS-VLA (arXiv:2511.06202) uses prioritized replay buffer for VLA fine-tuning.\", \"CRITICAL FEASIBILITY: Goal-conditioned value function training via hindsight relabeling in offline settings is known to be unstable. GoFAR (NeurIPS 2022) explicitly showed that 'hindsight relabeling involves sensitive hyperparameter tuning that cannot be easily performed offline' and proposed avoiding value function estimation entirely. GCSL (ICLR 2022) similarly avoids value estimation for stability. The proposal assumes a stable V(s,g) can be trained on demonstrations — this is an untested and potentially unsound assumption.\", \"LIBERO SATURATION: OpenVLA-OFT achieves 97.1% average on LIBERO-4. Pi0.5 achieves 97.5%. There is virtually no headroom for improvement. LIBERO-Plus (arXiv:2510.13626) shows VLAs drop from 95% to <30% under perturbations, but this tests robustness to environmental variations, not data quality. The paper needs benchmarks where data quality is the actual bottleneck.\", \"MISSING RELATED WORK (non-critical): DemInf (RSS 2025, MI-based curation), Re-Mix (CoRL 2024, data mixture optimization via DRO), DMDR (TNNLS 2025, diffusion-based noisy demo restoration). Also, iw-SFT (arXiv:2507.12856) establishes that SFT on curated data optimizes an RL objective bound — this theoretical insight partially subsumes APER's claimed theoretical contribution.\", \"VENUE DEADLINE ERROR: CoRL 2026 paper deadline is May 28, 2026 AoE (Thursday), not May 29 as stated. The official CoRL site explicitly emphasizes 'the paper submission deadline is Thursday (5/28) EOD rather than Friday.'\", \"COMPUTE OVERHEAD UNDERESTIMATED: Maintaining a goal-conditioned value function, periodically retraining it, and recomputing TD errors over the full demonstration buffer during VLA-scale fine-tuning is significantly more than ~5% overhead. A 7B VLA model's forward pass is already expensive; adding value function training + full-buffer TD recomputation every K steps could easily be 15-30%.\", \"DataMIL venue is ICLR 2026 Poster (not arXiv 2025 as cited). QoQ appears to be ICRA 2026 (not arXiv 2026). OpenVLA-OFT may no longer be SOTA — Pi0.5 and SimpleVLA-RL have matched or exceeded it.\", \"TIMELINE RISK: 15 days to abstract deadline and 18 days to paper deadline. Implementing a stable goal-conditioned value function, integrating it with OpenVLA-OFT training, running 5+ baselines + ablations on LIBERO/RoboMimic/OXE, and writing the paper is extremely ambitious even for auto-research mode.\"]\nFeedback: The core direction (adaptive vs. static data curation during VLA training) addresses a real gap, but the specific instantiation via TD-error PER has serious problems. To make this viable for CoRL 2026:\n\n1. **Acknowledge and differentiate from OPER, AFBC, and ExpReS-VLA.** OPER is the most direct threat — it already uses TD-error-based prioritized resampling for BC. You must clearly articulate what APER adds beyond OPER applied to VLA-scale training. The novelty claim needs complete rewriting.\n\n2. **Replace the goal-conditioned value function with a more stable priority signal.** The V(s,g) + hindsight relabeling approach has documented instability in offline settings. Consider alternatives: (a) SCIZOR-style progress prediction as a priority signal (but updated periodically), (b) policy loss/gradient magnitude as priority (no auxiliary model needed), (c) embedding-space surprise via the VLA's own representations. These avoid the known instability of offline value function estimation.\n\n3. **Choose benchmarks where data quality is the bottleneck.** Drop LIBERO (saturated at 97%). Use: RoboMimic multi-human (explicitly has mixed-quality operators), OXE subsets with known quality variation, or Sirius-Fleet (where SCIZOR showed 32.9% gains). The evaluation must demonstrate improvement ON TOP of static filtering (SCIZOR → APER), not just vs. uniform sampling.\n\n4. **Quantify the adaptive advantage formally.** When does adaptive prioritization provably outperform static filtering? A theoretical analysis showing conditions under which adaptive > static (e.g., when the optimal data distribution is non-stationary w.r.t. policy parameters) would significantly strengthen the contribution and address the 'why not just filter once' concern.\n\n5. **Be honest about compute overhead.** Profile the actual cost of priority recomputation at VLA scale. If it's 15-30%, the value proposition weakens substantially — why not just run SCIZOR and train 15% longer?\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL — UNDERSTATED OVERLAP WITH iw-SFT: The iw-SFT paper (arXiv:2507.12856) already implements adaptive importance weights with time-lagged EMA (θ_q = αθ_q + (1−α)θ) that track the evolving policy during SFT training, with IS correction and per-step clipping. It also evaluates on D4RL and Franka Kitchen manipulation tasks. APER's claimed theoretical contribution — that adaptive IS weights yield tighter bounds than static — is already the core result of iw-SFT ('As q(τ) → p(τ;θ) we have J_iw-SFT(θ) → J(θ)'). The differentiation from iw-SFT needs to be much clearer: what exactly does APER's loss-driven priority add beyond iw-SFT's policy-ratio-driven adaptive weights?\", \"MISSING COMPETING WORKS — SuRe (arXiv:2511.22367): Surprise-Driven Prioritised Replay for Continual LLM Learning uses NLL/loss-based priority scoring for replay buffer management in LLM training. This is conceptually very close to APER — both use the model's own prediction loss as a priority signal for data selection during training. Must be discussed.\", \"MISSING COMPETING WORKS — ProFit (arXiv:2601.09195, Jan 2026): Probability-Guided Token Selection for SFT selectively masks low-probability tokens during SFT training, achieving 3-10% gains. PEAR (arXiv:2602.01058, Feb 2026): Importance sampling reweighting at token/block/sequence level for SFT. PBS (arXiv:2602.17066, Feb 2026): Online loss prediction for batch scheduling in LLM training. All three perform online, loss/probability-based data prioritization during SFT — overlapping with APER's core contribution.\", \"WEAK THEORETICAL NOVELTY: The formal analysis described (gap bounded by cumulative KL divergence, Lipschitz continuity implies adaptive reduces KL, adaptive outperforms static when loss rankings change) consists of straightforward applications of known results. The condition 'adaptive strictly outperforms static when per-transition loss rankings change during training' is near-tautological — of course static is suboptimal when the optimal distribution changes. This does not constitute a novel theoretical contribution for a top venue.\", \"OHEM PRIOR ART: Online Hard Example Mining (Shrivastava et al., CVPR 2016) is the 10-year-old technique of sampling based on current loss magnitude during training. APER is essentially OHEM applied to VLA SFT with PER's sum-tree data structure and IS correction. This connection should be explicitly discussed and differentiated from.\", \"MISSING RECENT WORK — RINSE (arXiv:2604.23000, April 2026): 'Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning' proposes smoothness-based quality metrics for IL demonstration curation, achieving 16% higher success with 1/6 of data on RoboMimic. This is a very recent static curation baseline that should be included.\", \"VENUE DEADLINE CLARIFICATION: CoRL 2026 official Instruction for Authors explicitly states 'the paper submission deadline is Thursday (5/28) EOD rather than Friday.' The HuggingFace tracker shows May 29 at 11:59 UTC, which is effectively May 28 EOD US time. The idea correctly notes May 28 but inconsistently also says May 29 in some places.\", \"LAZY PRIORITY STALENESS RISK: With lazy updates (only recomputing priorities when sampled), most transitions' priorities become stale. The ε_mix=0.05 uniform mixing only refreshes 5% of samples per step. With large demonstration datasets (100K+ transitions), most transitions will never be resampled during training, keeping permanently stale priorities. The freshness decay helps but only penalizes, never refreshes actual loss values. This needs analysis — what fraction of the buffer actually gets resampled during typical VLA fine-tuning?\"]\nFeedback: The Round 2 revision addressed Round 1's most critical issue (unstable value function) by switching to loss-driven priorities, which is a much cleaner approach. However, the novelty bar remains unmet for CoRL 2026. The core problem: APER combines known components (OHEM-style loss sampling + PER sum-tree + IS correction from Schaul et al. + freshness decay from FreshPER + theoretical framing from iw-SFT) without adding a genuinely new idea. To reach CoRL quality:\n\n1. **Differentiate sharply from iw-SFT.** iw-SFT already has adaptive IS weights tracking the policy during SFT. APER uses loss magnitude as priority while iw-SFT uses policy ratio — argue why loss-magnitude priorities are better (e.g., loss captures multi-modal difficulty that policy ratios miss in VLA action spaces). Ideally prove this formally.\n\n2. **Add VLA-specific novelty.** Generic PER applied to VLA is engineering. What about VLA-specific signals? E.g., action chunk consistency (some transitions have high loss because the chunk prediction diverges mid-chunk), visual attention entropy (high-attention transitions may be more informative), or multi-modal loss decomposition (separate vision/language/action loss components and prioritize by the bottleneck modality). These would make the contribution VLA-specific rather than a generic application.\n\n3. **Acknowledge and position against LLM SFT data selection work.** SuRe, ProFit, PEAR, PBS all perform online/loss-based data prioritization during LLM training. APER must explain why the VLA setting is different enough to warrant a separate contribution (e.g., continuous action spaces, multi-modal inputs, demonstration quality heterogeneity).\n\n4. **Strengthen the theoretical contribution.** The current analysis (KL divergence bounds, Lipschitz conditions) is textbook. Consider: (a) proving convergence rate improvements specific to multi-modal action distributions, (b) analyzing how action chunking interacts with per-transition priorities, or (c) providing sample complexity bounds showing adaptive PER needs fewer demonstrations to reach a given success rate.\n\n5. **Add RINSE (April 2026) as a baseline.** It's the most recent static curation method and directly competes on RoboMimic.\n\n6. **Quantify the staleness problem.** Run a simple analysis: during VLA fine-tuning with N transitions, what fraction of transitions are sampled at least once? How quickly do loss rankings decorrelate? This empirical characterization would strengthen the motivation.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING RELATED WORK — EMMA/AdaMix (arXiv:2509.22407, Sep 2025, revised Mar 2026): EMMA introduces AdaMix, a hard-sample-aware training strategy for VLA models that adaptively reweights samples during training based on three metrics: Action Prediction Error (MSE over action chunks), Trajectory Smoothness, and Joint Angle Limitation. AdaMix achieves 17% improvement over fixed-ratio mixing during VLA SFT. This is the closest existing work to CDAP in the VLA training space — it already performs online adaptive sample reweighting during VLA SFT using action prediction loss. The key difference is that AdaMix uses aggregated MSE over the full chunk while CDAP decomposes per-position losses, but this differentiation MUST be explicitly discussed. AdaMix should also be added as a baseline.\", \"MISSING RELATED WORK — Token Cleaning (arXiv:2502.01968, ICML 2025): Fine-grained token-level data selection for LLM SFT using influence of model updates on each token. Conceptually parallel to CDAP's per-position loss analysis — both move beyond sample-level to sub-sample-level quality assessment during SFT. Should be discussed in the LLM SFT landscape section.\", \"MISSING RELATED WORK — VGAS (arXiv:2602.07399, Feb 2026): Value-Guided Action-Chunk Selection for Few-Shot VLA Adaptation. Uses Q-Chunk-Former to evaluate and select action chunks at inference time. While inference-time (not training-time), it represents another work that analyzes action chunk quality at a fine-grained level.\", \"VENUE DEADLINE INACCURACY: The idea states 'abstract deadline: May 25, 2026' in the target_venues field — the actual CoRL 2026 abstract deadline is May 26, 2026 at 11:59 UTC. The paper deadline ambiguity (May 28 EOD Thursday vs. May 29 at 11:59 UTC) persists across sources; the idea should cite the conservative date (May 28 EOD).\", \"THEORETICAL CLAIMS OVERSTATED: The 'temporal profile evolution theorem' claims that per-position loss profiles evolve from flat to monotonically increasing 'under standard smoothness assumptions.' This is plausible but unproven — it's an empirical hypothesis, not a theorem. Calling it a theorem without proof or stating the exact assumptions risks reviewer pushback. The variance reduction result (chunk-decomposed prioritization reduces variance for heterogeneous chunks) is straightforward and adds limited theoretical novelty. The contact-phase sample complexity bound is a simple calculation, not a deep result.\", \"EMPIRICAL VALIDATION RISK: The entire contribution rests on the hypothesis that temporal divergence δ captures learning-relevant structure that scalar loss μ misses. If α_δ=0 (scalar PER ablation) performs comparably to full CDAP, the VLA-specific novelty collapses to engineering. This is the paper's make-or-break experiment and is currently untested.\", \"RINSE VENUE: The idea cites RINSE as 'arXiv April 2026' but it appears to be accepted at ICML 2025 (confirmed at icml.cc/virtual/2025/48703). This should be corrected.\", \"CAPS VENUE: CAPS (arXiv:2503.01650) is listed as a reference but was accepted at ICRA 2025 (not 2026). While not discussed in the landscape, if cited it should have the correct venue.\"]\nFeedback: Round 3 represents substantial improvement — the pivot from TD-error value functions (Round 1) through scalar loss prioritization (Round 2) to chunk-decomposed temporal profiles is the right direction. The CTP signal is genuinely novel. To reach CoRL quality:\n\n1. **CRITICAL: Add EMMA/AdaMix as related work AND baseline.** EMMA (arXiv:2509.22407) already performs online adaptive sample reweighting during VLA SFT using action prediction MSE. This is your most direct competitor. Differentiation: AdaMix uses aggregated MSE (scalar), CDAP decomposes per-position losses to capture *why* a transition is hard (temporal coherence vs. perception failure). Add AdaMix as baseline (e) between RINSE and scalar-loss PER: 'AdaMix (adaptive scalar-MSE reweighting during VLA SFT, EMMA 2025).' The ablation path becomes: Uniform → AdaMix (scalar adaptive) → Scalar-PER+IS (your α_δ=0 ablation) → full CDAP (temporal decomposition). This progression cleanly isolates CDAP's contribution.\n\n2. **Downgrade theoretical claims to hypotheses.** Present the temporal profile evolution as 'Hypothesis 1' to be validated empirically, not 'Theorem 1.' This is more honest and actually makes the empirical analysis contribution stronger — you're the first to systematically test this hypothesis. CoRL reviewers will appreciate intellectual honesty over inflated theory.\n\n3. **Strengthen the empirical contribution framing.** The first systematic analysis of how intra-chunk temporal loss profiles evolve during VLA SFT is genuinely valuable regardless of whether CDAP outperforms baselines. Frame it as: 'We provide the first empirical characterization of temporal loss profile evolution during VLA SFT, revealing [finding]. CDAP is a practical method motivated by this analysis.' This makes the paper valuable even if gains are modest.\n\n4. **Add Token Cleaning (ICML 2025) to LLM SFT landscape.** It's the closest LLM analogue — moving from sample-level to sub-sample-level (token-level) quality assessment during SFT. The parallel strengthens your positioning: 'Just as Token Cleaning reveals that token-level quality varies within samples for LLM SFT, we show that position-level difficulty varies within action chunks for VLA SFT.'\n\n5. **Fix venue citations.** RINSE → ICML 2025 (not just arXiv). CAPS → ICRA 2025. CoRL abstract deadline → May 26 (not May 25).\n\n6. **Design the α_δ ablation carefully.** The scalar PER (α_δ=0) vs. full CDAP comparison is the single most important experiment. If δ doesn't help, the paper doesn't work. Consider pre-running a small-scale pilot on RoboMimic-MH before committing to the full experimental pipeline.\n\n### Round 4 review\nVerdict: revise\nIssues: [\"CRITICAL — PER FAILURE IN SUPERVISED LEARNING UNADDRESSED: Pan et al. (UAI 2022, 'Understanding and Mitigating the Limitations of Prioritized Replay') proved that error-based prioritized sampling for MSE minimization is mathematically equivalent to uniform sampling with a cubic power loss, and empirically showed PER performs WORSE than uniform in supervised regression. VLA fine-tuning is supervised L1/L2 regression. CDAP must directly address this foundational concern — why would chunk-decomposed PER succeed where standard PER demonstrably fails in supervised settings? The temporal decomposition may break this equivalence (because δ captures structure beyond loss magnitude), but this argument is not made.\", \"VENUE CITATION ERRORS: (1) RINSE (arXiv:2604.23000) was presented at the 'DataWorld: Unifying Data Curation Frameworks Across Domains' WORKSHOP at ICML 2025, NOT the main conference. Citing it as 'ICML 2025' without 'Workshop' is misleading. (2) Token Cleaning (arXiv:2502.01968) appears in ICML 2025 virtual site as a Poster (icml.cc/virtual/2025/poster/43777), not a Spotlight as claimed.\", \"MISSING DISCUSSION OF DAM-VLA AS PARTIAL PRIOR: DAM-VLA applies position-dependent exponential decay weighting within action chunks during training — this IS a form of intra-chunk loss decomposition, albeit with fixed (not data-driven) weights. The landscape discusses DAM-VLA but the novelty claim 'no existing work exploits the intra-chunk temporal loss profile' is too strong. A more defensible claim: 'no existing work uses the EMPIRICAL intra-chunk loss profile as a DATA-DRIVEN priority signal.'\", \"INSUFFICIENT DIFFERENTIATION FROM IMPLICIT LOSS REWEIGHTING: Pan et al. showed PER implicitly changes the effective loss function rather than improving optimization. CDAP's IS correction addresses the bias but doesn't address the coverage problem — high-priority transitions are oversampled, leaving low-priority transitions undertrained. The ε_mix uniform mixing partially addresses this, but with large datasets (100K+ transitions) and short VLA fine-tuning runs (50K-150K steps per OpenVLA-OFT), most transitions may never be resampled even once. The coverage analysis promised in the evaluation section should quantify this.\", \"TIMELINE RISK ELEVATED: 13 days to abstract deadline, 15 days to paper deadline. The pipeline requires: (1) implement CDAP (~2 days), (2) reimplement AdaMix (~2-3 days, no public code), (3) run RoboMimic-MH pilot (~1-2 days), (4) run 8 baselines + ablations on 4 benchmarks (~5-7 days), (5) analysis + writing (~3-5 days). Even with 8× A100 cluster running 24/7, this is extremely tight. Recommend scoping down to 2 benchmarks (RoboMimic-MH + SimplerEnv) for CoRL submission with remaining benchmarks for camera-ready.\", \"MISSING RELATED WORK (minor): 'Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority' (arXiv:2602.01227, Feb 2026) formalizes SFT as distribution reshaping via token-level priority, directly relevant to CDAP's framing. Should be discussed alongside Token Cleaning, ProFit, PEAR.\"]\nFeedback: The idea has matured well through 4 rounds — the temporal divergence signal δ is the right VLA-specific contribution, and the landscape/experimental design are strong. Three things will elevate this to CoRL quality:\n\n1. **ADDRESS PER-IN-SUPERVISED-LEARNING FAILURE HEAD-ON.** This is the most important remaining gap. Pan et al. (UAI 2022) showed PER ≡ implicit loss reweighting and fails in supervised regression. You must argue why CDAP is different. The key argument: Pan's equivalence holds for scalar-loss PER, but CDAP's temporal decomposition captures *structural* information (why a transition is hard, not just how hard) that scalar reweighting cannot express. Specifically, two transitions with identical aggregate loss μ but different δ receive different priorities under CDAP but identical priorities under scalar PER — this breaks the cubic-power-loss equivalence. Make this argument explicit and test it empirically: if CDAP with δ outperforms scalar PER (α_δ=0), it validates that the structural signal overcomes PER's supervised-learning limitations.\n\n2. **TIGHTEN THE NOVELTY CLAIM.** Change 'no existing work exploits the intra-chunk temporal loss profile' to 'no existing work uses the empirical intra-chunk loss profile as a data-driven adaptive priority signal.' This honestly acknowledges DAM-VLA's fixed positional weighting while maintaining CDAP's clear differentiation.\n\n3. **SCOPE DOWN FOR CoRL.** With 13 days to abstract, prioritize: (a) RoboMimic-MH pilot first (validates δ signal in 1-2 days), (b) if positive, run full comparison on RoboMimic-MH + SimplerEnv only, (c) add Sirius-Fleet and OXE for camera-ready. Four benchmarks × 8 baselines in 15 days is unrealistic.\n\n4. **Fix venue citations.** RINSE → 'ICML 2025 Workshop (DataWorld)'. Token Cleaning → 'ICML 2025'. Drop the 'Spotlight' claim unless verified independently.\n\n5. **Add Pan et al. (UAI 2022) to the landscape** under 'Online Hard Example Mining' or as a new subsection on PER limitations. Position CDAP as addressing PER's known failure modes in supervised settings through temporal decomposition.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T18:02:57.770Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-13T18:02:57.770Z",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+## Round 1
+
+163 recorded events
+
+### User
+
+_source line 3 · 2026-05-13T18:02:57.805Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-13 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).
+Direction：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 5/10)
+{
+  "title": "Chunk-Decomposed Adaptive Prioritization for VLA Supervised Fine-Tuning",
+  "core_problem": "Can we exploit the temporal structure of action-chunk prediction losses — which reveals *why* each demonstration transition is hard, not just *how* hard it is — to design a VLA-specific adaptive prioritization mechanism for SFT that overcomes the known failure modes of scalar-loss prioritized sampling in supervised regression (Pan et al., UAI 2022) and outperforms both generic loss-based sampling and existing adaptive scalar-MSE reweighting (AdaMix)?",
+  "opportunity": "Every existing demonstration curation method (SCIZOR, CUPID, DataMIL, DemInf, RINSE) operates as a static filter-then-train preprocessing step, while every existing online prioritization method treats the training loss as a scalar priority signal — even when applied to sequential predictions. This includes AdaMix (EMMA, 2025), the most relevant prior work, which adaptively reweights VLA training samples based on aggregated MSE over action chunks, trajectory smoothness, and joint angle constraints — but reduces the chunk prediction loss to a single scalar before reweighting. VLA models with action chunking produce a uniquely structured loss signal: for each transition, the model predicts K future actions [a_1, ..., a_K], yielding a per-position loss vector [l_1, ..., l_K] that encodes *temporal prediction quality*. This vector is discarded when aggregated into a scalar mean loss. Yet it carries critical information: a transition where the first actions are correct but the chunk diverges mid-way (high temporal divergence) represents a temporal coherence challenge — the model has learned the local dynamics but fails to propagate them forward. A transition where all K actions are uniformly wrong (low temporal divergence, high aggregate) represents a fundamental perception or grounding failure. These require fundamentally different amounts of training focus, and the optimal treatment shifts during training: early on, most chunks are uniformly wrong; as training progresses, the model learns initial actions first and temporal coherence becomes the dominant bottleneck. This structured evolution has no analogue in LLM token prediction and cannot be captured by scalar prioritization.\n\nCritically, Pan et al. (UAI 2022) proved that error-based prioritized sampling for MSE minimization is mathematically equivalent to uniform sampling with a cubic power loss, and empirically showed that standard PER can perform worse than uniform sampling in supervised regression — which is precisely what VLA SFT is. This foundational concern applies to ALL scalar-loss prioritization methods for VLA SFT, including AdaMix's scalar-MSE reweighting and standard PER/OHEM applied to aggregated chunk loss. Pan's equivalence theorem (Theorem 1) requires that priority is a monotonic function of scalar prediction error magnitude: q(x,y;θ) = |f_θ(x)−y| / Σ|f_θ(x_i)−y_i|. CDAP's temporal decomposition breaks this equivalence because the priority depends on two independent signals — aggregate difficulty μ and temporal divergence δ — where δ is NOT a function of μ. Two transitions with identical aggregate loss μ but different temporal divergence δ receive different priorities under CDAP but identical priorities under scalar PER. This means CDAP's priority function p(i) = (μ_i + ε)^{α_μ} · (1 + γ · δ_i)^{α_δ} · c_i cannot be expressed as g(|error_i|) for any monotonic function g, and therefore cannot be reduced to an implicit scalar loss modification via Fujimoto et al.'s (NeurIPS 2020) equivalence framework. The temporal component captures *structural* information about prediction quality degradation that is orthogonal to error magnitude — this is precisely the type of signal that scalar-loss methods, including PER's cubic-power equivalent, cannot express.\n\nThe second VLA-specific opportunity is task phase structure: robot manipulation has identifiable critical phases (approach → grasp → transport → place) marked by gripper state transitions. Contact-phase transitions are brief but disproportionately important for task success, as shown empirically by DAM-VLA's asymmetric Gaussian weighting. However, both DAM-VLA (fixed Gaussian) and AdaMix (uniform across phases) apply the same weighting scheme to all transitions regardless of task phase. An adaptive mechanism that identifies which specific contact-phase transitions the current policy still struggles with would be more sample-efficient.\n\nThe parallel to recent work in LLM SFT is instructive: Token Cleaning (ICML 2025) showed that sub-sample-level (token-level) quality varies significantly within samples for LLM SFT, and that filtering at the token level outperforms sample-level filtering. The 'Token Priority' framework (arXiv:2602.01227) formalizes SFT as distribution reshaping via token-level priority, arguing that fine-grained autoregressive generation supervised by coarse signals suffers from a fundamental granularity mismatch. CDAP applies the analogous insight to VLA SFT: position-level difficulty varies within action chunks, and prioritizing at the chunk-decomposed level outperforms sample-level scalar reweighting — but in a continuous action space with temporal structure rather than discrete tokens.\n\nNo existing work uses the *empirical intra-chunk temporal loss profile* as a *data-driven adaptive* priority signal for VLA training data selection. DAM-VLA applies fixed positional weighting within chunks (exponential decay w_j = γ^j, γ=0.8) — a predetermined form of intra-chunk structure that does not adapt to individual transition difficulty or evolve with training. AdaMix reweights samples adaptively but uses scalar-aggregated MSE; Token Cleaning uses sub-sample structure but in discrete LLM token spaces. CDAP fills this specific intersection: adaptive online prioritization that decomposes the continuous action-chunk loss into temporal components capturing *why* transitions are hard, while addressing the known failure modes of scalar PER in supervised settings through temporal decomposition that breaks the scalar-error equivalence.",
+  "landscape": "**Static demonstration curation (the dominant paradigm):** SCIZOR (ICRA 2026, arXiv:2505.22626) uses self-supervised progress prediction to filter suboptimal/redundant transitions, achieving 32.9% gains on Sirius-Fleet and 5.4% on RoboMimic. CUPID (CoRL 2025) and QoQ (arXiv 2026) use influence functions to score demonstrations. DataMIL (ICLR 2026) trains datamodels to predict which data subsets improve success. DemInf (RSS 2025) estimates mutual information for quality scoring. RINSE (ICML 2025 Workshop — DataWorld, arXiv:2604.23000) proposes smoothness-based metrics (Spectral Arc Length + Trajectory-Envelope Distance), achieving 16% higher success with 1/6 data on RoboMimic and 20% improvement with half data on real-world manipulation. Re-Mix (CoRL 2024) optimizes domain-level data mixtures via DRO. All operate as filter-then-train pipelines: the curation is fixed before training begins.\n\n**Adaptive sample reweighting for VLA SFT (most direct competitor):** EMMA/AdaMix (arXiv:2509.22407, Sep 2025, revised Mar 2026) introduces a hard-sample-aware training strategy for VLA models that adaptively reweights samples during SFT based on three metrics: (1) Action Prediction Error — MSE aggregated over the full action chunk: r_i^MSE = -(1/L) Σ ||â_{i+t} - a_{i+t}||²₂, (2) Trajectory Smoothness — second-order joint angle differences penalizing abrupt actions, and (3) Joint Angle Limitation — binary safety constraint. These are min-max normalized and combined via arithmetic mean into a composite score s_i, with sampling probability p(i) ∝ γ + λ·(1 − s_i). Built on the π₀ backbone, AdaMix achieves 13% improvement over uniform sampling on real-world tasks. The paper was submitted to ICLR 2026 but withdrawn; it remains an arXiv preprint. **Critical differentiation from CDAP:** AdaMix computes MSE *aggregated over the full action chunk* (scalar), then reweights — it does not decompose per-position losses within the chunk. Its trajectory smoothness metric operates on ground-truth joint angles, not on the model's prediction quality at each temporal position. CDAP's temporal divergence δ_i captures a fundamentally different signal: how the *model's prediction quality degrades* over the chunk horizon, which is invisible to aggregated MSE. A chunk where positions 1-4 are correct and positions 5-8 diverge has the same aggregated MSE as a chunk where all positions have moderate error, but represents a qualitatively different learning challenge. Crucially, AdaMix's scalar-aggregated MSE priority falls squarely within Pan et al.'s equivalence framework — it is a monotonic function of scalar error — while CDAP's multi-component priority does not.\n\n**PER limitations in supervised regression (foundational concern):** Pan et al. (UAI 2022, arXiv:2007.09569) proved that error-based prioritized sampling for MSE minimization is mathematically equivalent to uniform sampling with a cubic power loss: c·𝔼_{(x,y)~q}[∇_θ(1/2)(f_θ(x)−y)²] = 𝔼_{(x,y)~uniform}[∇_θ(1/3)|f_θ(x)−y|³], where q(x,y;θ) ∝ |f_θ(x)−y|. They identified two practical limitations — outdated priorities and insufficient coverage — and showed PER can perform significantly worse than uniform sampling in supervised regression when priorities become stale. Fujimoto et al. (NeurIPS 2020, arXiv:2007.06049) generalized this, showing that any non-uniform sampling can be re-expressed as a uniformly-sampled modified loss with equivalent expected gradients (the LAP/PAL framework). **These results pose a fundamental challenge to any scalar-loss prioritization applied to VLA SFT.** CDAP addresses this in two ways: (1) the temporal divergence component δ introduces structural information orthogonal to scalar error magnitude, breaking the monotonic-priority assumption underlying Pan's equivalence — the priority function p(i) depends on the *shape* of the loss vector, not just its magnitude; (2) the freshness-aware age decay and adaptive coverage mixing directly address Pan's two identified failure modes (stale priorities and insufficient coverage). The ablation α_δ=0 (scalar PER) vs. full CDAP (with temporal decomposition) empirically tests whether the structural signal overcomes PER's supervised-learning limitations.\n\n**Online Hard Example Mining (the 10-year-old precursor):** OHEM (Shrivastava et al., CVPR 2016) selects the highest-loss examples in each mini-batch for gradient updates in object detection. Focal Loss (Lin et al., ICCV 2017) down-weights easy examples via a modulating factor. Both use scalar loss magnitude as the difficulty signal and operate within-batch without cross-batch priority tracking. CDAP differs in three ways: (1) uses chunk-decomposed loss structure, not scalar magnitude; (2) maintains a persistent priority buffer with IS correction for across-batch prioritization; (3) adapts priorities online as the policy evolves.\n\n**Prioritized Experience Replay (PER) and its descendants:** Schaul et al. (ICLR 2016) introduced sum-tree priority buffers with IS correction for RL. OPER (TNNLS 2024) applies PER to offline RL including BC on D4RL — but computes priorities statically via a decoupled two-stage procedure requiring reward signals. AFBC (arXiv 2021) uses advantage estimates for BC prioritization — also reward-dependent and static. Freshness-Aware PER (arXiv April 2026) successfully extends PER to billion-parameter LLM/VLM RL training with exponential age decay addressing priority staleness — but exclusively targets reward-dependent RL post-training. None of these decompose the loss signal by temporal structure within action chunks.\n\n**Adaptive importance weighting for SFT (iw-SFT):** iw-SFT (arXiv 2507.12856) establishes that SFT on curated data maximizes a lower bound on the RL objective and introduces adaptive importance weights via policy ratios with EMA-tracked reference parameters (θ_q = αθ_q + (1−α)θ). Evaluates on D4RL locomotion, Ant-maze, and Franka Kitchen. **Critical differentiation:** iw-SFT's importance weights are *policy ratios* — they measure how far the current policy has drifted from the reference distribution. In continuous VLA action spaces (7-DoF or higher), policy ratios via Gaussian likelihoods are numerically unstable and dominated by minor mean shifts in low-variance dimensions. CDAP's chunk-decomposed loss directly measures *where and why* the policy fails, providing a more informative and stable signal in high-dimensional continuous action spaces.\n\n**Sub-sample-level data selection for LLM SFT:** Token Cleaning (ICML 2025, arXiv:2502.01968) investigates token quality from a noisy-label perspective and proposes token-level data selection for LLM SFT by examining the influence of model updates on each token, then applying threshold-based separation. This is the closest *conceptual* parallel to CDAP in the LLM domain: both move beyond sample-level to sub-sample-level quality assessment during SFT. 'Token Priority' (arXiv:2602.01227, Feb 2026) formalizes SFT as distribution reshaping via token-level priority, advocating Token Priority as the essential bridge between coarse supervision signals and fine-grained autoregressive generation, categorizing methods into Positive Priority (noise filtration) and Signed Priority (toxic unlearning). This framework directly supports CDAP's premise: the granularity mismatch between sample-level supervision and sub-sample-level generation quality exists in VLA SFT as well, manifesting as the discrepancy between scalar-aggregated chunk loss and position-level prediction quality. ProFit (arXiv:2601.09195) selectively masks low-probability tokens during LLM SFT. PEAR (arXiv:2602.01058) uses IS reweighting at token/block/sequence level. PBS (arXiv:2602.17066) predicts per-sample loss from static token features. SuRe (arXiv:2511.22367) uses sequence-level NLL surprise for prioritized replay. All target discrete token prediction in LLMs and have no mechanism for handling continuous action chunks or temporal prediction quality degradation.\n\n**VLA-specific loss weighting:** DAM-VLA (arXiv:2603.00926, March 2026) introduces dual-scale action weighting: trajectory-level asymmetric Gaussian weights centered on gripper state transitions (σ_l=6, σ_r=2) and chunk-level exponential decay (w^a_j = γ^j, γ=0.8). The chunk-level exponential decay IS a form of intra-chunk loss decomposition — it applies position-dependent weights within action chunks during training. However, DAM-VLA applies *fixed, predetermined, universal* loss weights: every transition receives the same exponential decay regardless of whether the model's actual per-position loss profile follows this pattern. A transition where the model already predicts later positions well receives the same positional weighting as one where later positions diverge — the weighting does not reflect the model's empirical prediction quality. CDAP uses the *empirical* per-position loss profile as a *data-driven adaptive* priority that evolves with the policy: the weights change as the model learns, and different transitions receive different effective prioritization based on their actual temporal loss structure.\n\n**VLA action chunk analysis at inference time:** 'VLA Knows Its Limits' (arXiv:2602.21445, Feb 2026) reveals that intra-chunk actions attend invariantly to vision-language tokens and prediction quality degrades systematically with temporal distance, with 'action sinks' at initial and terminal positions. AutoHorizon dynamically estimates execution horizons from attention patterns. VGAS (arXiv:2602.07399, Feb 2026) introduces Q-Chunk-Former for value-guided action-chunk selection at inference time. Both support CDAP's premise that intra-chunk temporal structure is informative, but address inference-time execution, not training-time data prioritization.\n\n**Gap:** No existing work uses the *empirical intra-chunk temporal loss profile* as a *data-driven adaptive* priority signal for VLA SFT. Static curation methods (SCIZOR, RINSE) ignore training dynamics. Scalar-loss adaptive methods (AdaMix, OHEM, PER, iw-SFT) discard the temporal structure within chunks and fall within Pan et al.'s scalar-error equivalence framework — AdaMix is the closest, performing adaptive reweighting during VLA SFT, but aggregates chunk MSE into a scalar before reweighting. Fixed-weighting methods (DAM-VLA) apply predetermined positional weights that don't adapt to individual transition difficulty or training dynamics. LLM sub-sample methods (Token Cleaning, Token Priority, ProFit, PEAR, PBS) don't handle continuous action chunks. Inference-time chunk analysis methods (VGAS, AutoHorizon) don't address training-time prioritization. CDAP fills this intersection while directly addressing PER's known failure modes in supervised settings through temporal decomposition that breaks the scalar-error equivalence.",
+  "approach": "We propose CDAP (Chunk-Decomposed Adaptive Prioritization), replacing scalar loss-based sampling with a VLA-specific priority signal that exploits the temporal structure of action-chunk prediction losses during SFT. CDAP requires no auxiliary model, no reward annotations, and adds <3% compute overhead. Crucially, CDAP's multi-component priority breaks the scalar-PER equivalence identified by Pan et al. (UAI 2022), providing a principled mechanism for prioritized sampling to succeed in the supervised regression setting of VLA SFT where scalar PER is known to fail.\n\n**1. Chunk Temporal Profile (CTP) — the VLA-specific priority signal:**\nDuring VLA SFT with action chunking (chunk size K), each transition i produces per-position L1 losses [l_{i,1}, ..., l_{i,K}] from the predicted vs. ground-truth action chunk. Instead of discarding this structure into a scalar mean (as AdaMix does with MSE), CDAP computes a two-component priority:\n\n(a) *Aggregate difficulty*: μ_i = (1/K) Σ_k l_{i,k} — overall prediction quality, analogous to AdaMix's aggregated MSE and standard loss-based priority.\n\n(b) *Temporal divergence*: δ_i = (1/(K−1)) Σ_{k=1}^{K−1} ReLU(l_{i,k+1} − l_{i,k}) — average positive slope of per-position losses, measuring how much prediction quality degrades over the chunk horizon. High δ_i indicates a temporal coherence challenge (initial actions correct, chunk diverges mid-way); low δ_i with high μ_i indicates a fundamental perception/grounding failure.\n\n**Why this breaks Pan et al.'s equivalence:** Pan's Theorem 1 establishes that PER with priority q ∝ |error| applied to MSE loss produces gradients equivalent to uniform sampling on cubic power loss |error|³. This equivalence requires that priority is a monotonic function of scalar error magnitude. CDAP's priority p(i) depends on BOTH μ_i AND δ_i, where δ_i is not a function of μ_i — two transitions with identical aggregate loss can have different temporal divergence. Therefore p(i) cannot be expressed as g(|error_i|) for any monotonic g, and the cubic-loss reduction does not apply. The temporal component captures the *shape* of the loss vector, not just its magnitude — a qualitatively different signal that scalar loss reweighting (whether explicit via PER or implicit via modified loss functions) cannot express.\n\nWe also study alternative temporal metrics: loss variance within chunk (Var(l_{i,1}, ..., l_{i,K})), loss range (max − min), and Spearman correlation between position index and loss. The ablation identifies which temporal metric best captures learning-relevant structure.\n\n**2. Contact-Phase Aware Weighting:**\nGripper state transitions (open→close, close→open) are identified directly from demonstration data (no model needed). Transitions within a window w of a gripper state change receive a multiplicative contact-phase boost: c_i = 1 + η if transition i is within w steps of a gripper transition, else c_i = 1. This is grounded in DAM-VLA's empirical finding that contact phases are critical for manipulation success, but unlike DAM-VLA's fixed Gaussian or AdaMix's phase-agnostic reweighting, CDAP combines this with adaptive difficulty-based selection: among all contact-phase transitions, CDAP prioritizes those the current policy still finds hard.\n\n**3. Priority Function and Sampling:**\nThe composite priority for transition i is:\n  p(i) = (μ_i + ε)^{α_μ} · (1 + γ · δ_i)^{α_δ} · c_i\n\nwhere α_μ controls aggregate-loss prioritization strength, α_δ controls temporal-divergence prioritization strength, and γ scales the divergence contribution. Setting α_δ = 0 recovers scalar-loss PER (OHEM+IS) — which by Pan et al.'s theorem is equivalent to implicit cubic-loss training — enabling clean ablation against AdaMix's scalar approach and direct empirical testing of whether temporal decomposition overcomes PER's supervised-learning limitations. Transitions are sampled from a sum-tree buffer with probability proportional to p(i).\n\n**4. Importance-Sampling Correction:**\nFollowing Schaul et al. and iw-SFT's theoretical framework, apply capped IS weights w_i = (N · p(i)/Σp)^{−β} with β annealed from β_0 to 1.0 over training. This ensures unbiased gradient estimates while maintaining the theoretical link to RL objective bounds established by iw-SFT. The key distinction: iw-SFT's weights correct for the ratio between behavior and current policy distributions (policy-ratio-based), while CDAP's weights correct for the ratio between the adaptive chunk-decomposed priority distribution and the uniform distribution (loss-structure-based). Both are valid IS schemes with different inductive biases.\n\n**5. Freshness-Aware Age Decay (addressing Pan et al.'s stale-priority limitation):**\nAdopt Freshness-Aware PER's exponential age decay: p_eff(i) = p(i) · exp(−λ · age_i), where age_i counts steps since transition i was last sampled. This directly addresses the first of Pan et al.'s two identified failure modes: outdated priorities. In VLA SFT, per-position loss profiles shift significantly during training (from flat to monotonically increasing, per our Hypothesis 1), making priority staleness a concrete concern that age decay mitigates.\n\n**6. Coverage-Guaranteed Mixing (addressing Pan et al.'s coverage limitation):**\nWith probability ε_mix, sample uniformly to ensure buffer coverage — directly addressing Pan et al.'s second identified failure mode: insufficient coverage of the sample space. We set ε_mix adaptively: ε_mix = max(ε_min, 1 − coverage_t) where coverage_t is the current fraction of transitions sampled at least once. For typical VLA SFT regimes (N≈50K-100K transitions, T≈50K-150K gradient steps, batch size B=128-256), total samples drawn = B×T ≈ 6.4M-38.4M, giving an expected 64-384 samples per transition under uniform sampling. Even with heavy prioritization (effective α close to 1), the ε_mix mechanism with ε_min=0.1 guarantees that at least 10% of sampling budget is uniform, ensuring coverage_T > 1 − exp(−0.1·B·T/N) > 99.9% for these parameter regimes. We quantify coverage empirically for all methods in the evaluation.\n\nPriorities are updated lazily when sampled (loss is computed anyway for gradient updates, and the per-position losses [l_{i,1}, ..., l_{i,K}] are available at zero additional cost from the chunk prediction).\n\n**7. Empirical Hypotheses and Analysis:**\nWe formulate testable hypotheses motivated by the structure of action-chunk prediction, and provide the first systematic empirical investigation:\n\n(a) *Hypothesis 1 — Temporal profile evolution*: Under VLA SFT with action chunking of size K, the per-position loss profile [l_1(θ), ..., l_K(θ)] evolves from approximately flat (all positions equally hard early in training) to monotonically increasing (initial positions learned first, later positions remain hard). The rate of this transition depends on the temporal correlation structure of the demonstration data. We test this hypothesis by tracking per-position loss profiles across training for different transition types (contact vs. free-space, smooth vs. non-smooth demonstrations).\n\n(b) *Hypothesis 2 — Temporal divergence informativeness (make-or-break test)*: Transitions with similar aggregate difficulty μ but different temporal divergence δ have different downstream impact on task success, i.e., δ carries learning-relevant information beyond what μ captures. We test this by partitioning transitions into (μ, δ) bins and measuring per-bin gradient utility (cosine similarity with the full-data gradient). If this hypothesis fails, CDAP reduces to scalar PER and Pan et al.'s negative result applies.\n\n(c) *Hypothesis 3 — Temporal decomposition breaks PER's supervised-learning failure*: Full CDAP (α_δ > 0) outperforms scalar PER (α_δ = 0) in VLA SFT success rate. By Pan et al.'s analysis, scalar PER is equivalent to implicit cubic-loss training and may not help (or may hurt) in supervised regression. If full CDAP outperforms scalar PER, it empirically demonstrates that the temporal structural signal overcomes PER's known supervised-learning limitations — because the priority function is no longer reducible to a monotonic function of scalar error.\n\n(d) *Variance reduction analysis*: For transitions exhibiting high temporal divergence (δ_i >> 0), we empirically measure whether gradient variance under chunk-decomposed prioritization is lower than under scalar-loss prioritization, and by how much.\n\n(e) *Contact-phase sample complexity*: We empirically measure whether contact-phase boosted sampling reduces the number of gradient steps to reach a given contact-phase loss threshold compared to uniform and scalar-adaptive sampling.\n\n**8. Implementation on OpenVLA-OFT:**\nIntegrate CDAP into the OpenVLA-OFT fine-tuning pipeline. The per-position losses are already computed during the L1 regression forward pass for each action chunk — CDAP's CTP computation (mean + temporal divergence) adds only K floating-point operations per transition, truly negligible overhead. The sum-tree priority buffer replaces the uniform DataLoader sampler. Implementation is ~150 lines of code.\n\n**9. Evaluation — Benchmarks (scoped for CoRL 2026):**\nFor the CoRL submission (abstract May 26, paper May 28 EOD / May 29 11:59 UTC), we scope to two benchmarks: (a) RoboMimic multi-human (MH): explicit mixed-quality operators, well-established, fast iteration. (b) SimplerEnv: VLA-specific evaluation with Google Robot and WidowX environments. Additional benchmarks (Sirius-Fleet real-world mixed-quality fleet data, OXE subsets) are reserved for camera-ready or follow-up.\n\n**10. Evaluation — Baselines:**\n(a) Uniform sampling (OpenVLA-OFT default). (b) SCIZOR (static progress-based filtering, ICRA 2026). (c) RINSE (static smoothness-based filtering, ICML 2025 Workshop). (d) AdaMix (adaptive scalar-MSE + smoothness + joint limits reweighting during VLA SFT, EMMA arXiv 2025 — most direct competitor). (e) Scalar-loss PER (α_δ=0 ablation of CDAP — equivalent to OHEM + IS correction + age decay, and by Pan et al., equivalent to implicit cubic-loss training; isolates temporal decomposition's value vs. all scalar-loss adaptive methods). (f) SCIZOR→CDAP and RINSE→CDAP (adaptive on top of static, demonstrating complementary benefit).\n\nThe ablation path cleanly isolates CDAP's contribution and directly tests whether temporal decomposition overcomes PER's supervised-learning failure: Uniform → AdaMix (scalar adaptive, external baseline) → Scalar PER+IS (α_δ=0, our framework without temporal component — equivalent to cubic-loss training by Pan et al.) → Full CDAP (with temporal decomposition). If scalar PER+IS ≈ AdaMix, the frameworks are equivalent modulo IS correction and age decay. If full CDAP > scalar PER+IS, temporal decomposition adds value beyond scalar reweighting and overcomes PER's supervised-learning limitations. If scalar PER+IS ≤ Uniform (Pan et al.'s prediction), but full CDAP > Uniform, this is the strongest validation: it demonstrates that temporal structure provides information that scalar prioritization provably cannot.\n\n**11. Evaluation — Key Analyses (VLA-specific empirical contributions):**\n(a) *Temporal loss profile evolution*: Visualize how the intra-chunk loss profile [l_1, ..., l_K] evolves during training across different types of transitions (contact vs. free-space, successful vs. failed demonstrations). This is the first systematic study of how per-position action chunk losses evolve during VLA SFT — the empirical investigation itself is a contribution regardless of whether CDAP outperforms all baselines.\n(b) *Loss rank decorrelation*: Measure Spearman correlation between initial and final per-transition loss rankings, and separately for aggregate difficulty μ and temporal divergence δ, to quantify how much the optimal data distribution shifts and whether the shift is captured by scalar vs. decomposed priorities.\n(c) *Buffer coverage analysis*: Track the fraction of transitions sampled at least once during training under different prioritization schemes (uniform, scalar PER, CDAP, AdaMix), directly addressing Pan et al.'s coverage concern and validating the ε_mix mechanism. Report coverage curves and compute effective sample size ratio for each method.\n(d) *Temporal divergence vs. aggregate difficulty decomposition*: Show that transitions with similar μ but different δ have different downstream impact on task success, validating the information content of the temporal profile beyond what scalar priority captures.\n(e) *Pan et al. equivalence test*: Explicitly compare scalar PER (α_δ=0) vs. uniform with cubic power loss (|error|³) to empirically verify Pan's equivalence in the VLA SFT setting, then show that full CDAP diverges from both.\n(f) *Ablation over α_μ, α_δ, γ, η, w, λ, ε_mix, β schedule*.\n(g) *Compute overhead profiling* at VLA scale (expected: <3% wall-clock, <1% GPU).\n(h) *Pre-pilot on RoboMimic-MH*: Before committing to the full experimental pipeline, run a small-scale pilot comparing uniform vs. scalar PER (α_δ=0) vs. full CDAP on RoboMimic-MH to validate that δ carries learning-relevant signal. This de-risks the main experimental investment and directly tests Hypothesis 3.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~350h A100-80GB (~5 baselines × 15h + ~5 method runs × 20h + ~8 ablations × 10h + ~25h analysis/visualization + ~15h AdaMix reimplementation, scoped to 2 benchmarks)",
+      "gpu_utilization": "~30-40% effective utilization; GPUs idle during implementation, debugging, and analysis",
+      "timeline": "2-3 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "~$525 at ~$1.50/hr"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~450h A100-80GB (agent explores hyperparameter configurations and temporal metric variants; human gates benchmark selection and analysis framing; includes AdaMix reimplementation and pilot study; scoped to 2 benchmarks for CoRL)",
+      "gpu_utilization": "~65-75% utilization; agent queues experiments overnight, human reviews results and approves next batch",
+      "timeline": "10-14 days (tight for CoRL abstract May 26, paper May 28 EOD)",
+      "team": "1 researcher, ~45min/day check-in",
+      "claude_api_cost": "$100-200 (600-1200 turns: code generation, experiment orchestration, result analysis)",
+      "estimated_gpu_cost": "~$675 at ~$1.50/hr",
+      "risk_note": "Primary risk is that α_δ ablation shows temporal decomposition adds minimal value over scalar PER — which would confirm Pan et al.'s prediction that PER in supervised settings reduces to implicit loss modification. RoboMimic-MH pilot (first 1-2 days) de-risks this before full commitment. Secondary risk: timeline extremely tight with 13 days to abstract."
+    },
+    "auto_research": {
+      "gpu_hours": "~600-800h A100-80GB (comprehensive exploration of temporal metrics, hyperparameters, Pan et al. equivalence testing; scoped to 2 benchmarks for CoRL, with Sirius-Fleet and OXE for camera-ready)",
+      "gpu_utilization": "~90-95% utilization; agent runs 24/7",
+      "timeline": "8-12 days with 8× A100 cluster",
+      "team": "0 (initial setup and final review only)",
+      "claude_api_cost": "$200-400 (1200-2400 turns for code, orchestration, ablation design, paper drafting)",
+      "estimated_gpu_cost": "~$1,050 at ~$1.50/hr",
+      "speed_bottleneck": "GPU cluster availability for 7B model fine-tuning; SimplerEnv evaluation rollouts",
+      "risk_note": "Timeline feasible for CoRL 2026 with 2-benchmark scope. Day 1-2: implement CDAP + pilot on RoboMimic-MH. Day 3-4: reimplement AdaMix + run baselines. Day 5-8: full comparison + ablations on RoboMimic-MH + SimplerEnv. Day 9-12: analysis + writing. Pilot must confirm δ signal by Day 2 to justify proceeding."
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (abstract deadline: May 26, 2026 11:59 UTC; paper deadline: May 28, 2026 EOD Thursday per Instruction for Authors / May 29, 2026 11:59 UTC per OpenReview — use conservative May 28 EOD for planning; 2 benchmarks for submission, additional for camera-ready)",
+    "AAAI 2027 (deadline: expected ~Aug 2026; full 4-benchmark evaluation)",
+    "ICRA 2027 (deadline: expected ~Sep 2026)",
+    "ICLR 2027 (deadline: expected ~Sep-Oct 2026)"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "Understanding and Mitigating the Limitations of Prioritized Experience Replay (Pan et al., UAI 2022, arXiv:2007.09569) — PER ≡ cubic-loss in supervised regression; CDAP's temporal decomposition breaks this equivalence",
+    "An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay (Fujimoto et al., NeurIPS 2020, arXiv:2007.06049) — general loss-sampling equivalence framework (LAP/PAL)",
+    "Online Hard Example Mining (Shrivastava et al., CVPR 2016)",
+    "Focal Loss for Dense Object Detection (Lin et al., ICCV 2017)",
+    "Prioritized Experience Replay (Schaul et al., ICLR 2016)",
+    "OPER: Decoupled Prioritized Resampling for Offline RL (Yue et al., TNNLS 2024, arXiv:2306.05412)",
+    "A Closer Look at Advantage-Filtered Behavioral Cloning in High-Noise Datasets (arXiv:2110.04698, 2021)",
+    "Supervised Fine Tuning on Curated Data is Reinforcement Learning (iw-SFT, arXiv:2507.12856, 2025)",
+    "SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026, arXiv:2505.22626)",
+    "CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)",
+    "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (ICLR 2026)",
+    "DemInf: Robot Data Curation with Mutual Information Estimators (RSS 2025)",
+    "RINSE: Learning from the Best — Smoothness-Driven Metrics for Data Quality in Imitation Learning (ICML 2025 Workshop — DataWorld, arXiv:2604.23000)",
+    "Quality over Quantity: Demonstration Curation via Influence Functions (QoQ, arXiv 2026)",
+    "EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer (arXiv:2509.22407, Sep 2025, revised Mar 2026) — introduces AdaMix adaptive sample reweighting for VLA SFT",
+    "Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning (ICML 2025, arXiv:2502.01968)",
+    "Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority (arXiv:2602.01227, Feb 2026) — formalizes SFT as distribution reshaping via token-level priority",
+    "SuRe: Surprise-Driven Prioritised Replay for Continual LLM Learning (arXiv:2511.22367, 2025)",
+    "ProFit: Probability-Guided Token Selection for SFT (arXiv:2601.09195, Jan 2026)",
+    "PEAR: Good SFT Optimizes for SFT, Better SFT Prepares for RL (arXiv:2602.01058, Feb 2026)",
+    "PBS: Predictive Batch Scheduling for LLM Training (arXiv:2602.17066, Feb 2026)",
+    "Freshness-Aware Prioritized Experience Replay for LLM/VLM RL (arXiv:2604.16918, April 2026)",
+    "Prioritized Replay for RL Post-training (arXiv:2601.02648, Jan 2026)",
+    "DAM-VLA: Dynamic Action Model-Based VLA Framework (arXiv:2603.00926, March 2026) — fixed chunk-level exponential decay w_j=γ^j",
+    "VLA Knows Its Limits (arXiv:2602.21445, Feb 2026)",
+    "VGAS: Value-Guided Action-Chunk Selection for Few-Shot VLA Adaptation (arXiv:2602.07399, Feb 2026)",
+    "Leave No Observation Behind: Real-time Correction for VLA Action Chunks (arXiv:2509.23224, 2025)",
+    "CAPS: Context-Aware Priority Sampling for Enhanced Imitation Learning (ICRA 2025, arXiv:2503.01650)",
+    "OpenVLA-OFT: Fine-Tuning Vision-Language-Action Models (arXiv:2502.19645, 2025)",
+    "PLD: Self-Improving VLA Models via Residual RL (ICLR 2026)",
+    "ExpReS-VLA: Specializing VLA Models Through Experience Replay (arXiv:2511.06202, 2025)",
+    "Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning (CoRL 2024)",
+    "GREATS: Online Selection of High-Quality Data for LLM Training (NeurIPS 2024)",
+    "Open X-Embodiment: Robotic Learning Datasets and RT-X Models (arXiv 2023)"
+  ],
+  "description": "We propose CDAP (Chunk-Decomposed Adaptive Prioritization) for VLA model SFT, exploiting a VLA-specific signal that existing adaptive methods discard: the temporal structure of per-position losses within action chunks. VLA models with action chunking predict K future actions per transition, producing a loss vector [l_1, ..., l_K] that encodes temporal prediction quality — high temporal divergence (early actions correct, chunk diverges mid-way) indicates temporal coherence challenges, while uniformly high loss indicates perception/grounding failure. CDAP uses a two-component priority: aggregate difficulty (standard) and temporal divergence (VLA-specific), combined with contact-phase-aware weighting that boosts transitions near gripper state changes.\n\nCritically, Pan et al. (UAI 2022) proved that scalar-error PER in supervised regression is equivalent to implicit cubic-loss training and can perform worse than uniform sampling — a foundational concern for all scalar-loss prioritization in VLA SFT, including AdaMix. CDAP addresses this directly: the temporal divergence component δ is not a function of aggregate error μ, so the priority function cannot be reduced to a monotonic function of scalar error, breaking Pan's equivalence. The ablation path Uniform → Scalar PER (α_δ=0, equivalent to cubic-loss by Pan's theorem) → Full CDAP (with δ) directly tests whether temporal decomposition overcomes PER's supervised-learning failure mode. If scalar PER ≤ Uniform but full CDAP > Uniform, this provides the strongest validation.\n\nNo existing work uses the empirical intra-chunk temporal loss profile as a data-driven adaptive priority signal. DAM-VLA applies fixed positional exponential decay (w_j=γ^j) — predetermined, not data-driven. AdaMix uses scalar-aggregated MSE. Token Cleaning (ICML 2025) and Token Priority (arXiv:2602.01227) address token-level quality in LLM SFT. CDAP fills this intersection in continuous action spaces with temporal structure. The first systematic empirical characterization of how intra-chunk loss profiles evolve during VLA SFT is itself a contribution. Evaluated on RoboMimic-MH and SimplerEnv (scoped for CoRL 2026, with Sirius-Fleet and OXE for camera-ready) against baselines including SCIZOR, RINSE, AdaMix, and scalar PER. A RoboMimic-MH pilot is recommended first to validate that δ carries signal beyond μ before full commitment.",
+  "project_name": "chunk_decomposed_priority_vla",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL MISSING RELATED WORK: OPER (Decoupled Prioritized Resampling for Offline RL, arXiv:2306.05412, TNNLS) directly applies TD-error-based prioritized resampling to behavioral cloning — this is the closest prior work and is completely unacknowledged. AFBC (arXiv:2110.04698) repurposes PER for BC in noisy datasets. Goal-Conditioned BC with Prioritized Sampling (IEEE 2021) applies prioritized sampling to goal-conditioned BC. ExpReS-VLA (arXiv:2511.06202) uses prioritized replay buffer for VLA fine-tuning.", "CRITICAL FEASIBILITY: Goal-conditioned value function training via hindsight relabeling in offline settings is known to be unstable. GoFAR (NeurIPS 2022) explicitly showed that 'hindsight relabeling involves sensitive hyperparameter tuning that cannot be easily performed offline' and proposed avoiding value function estimation entirely. GCSL (ICLR 2022) similarly avoids value estimation for stability. The proposal assumes a stable V(s,g) can be trained on demonstrations — this is an untested and potentially unsound assumption.", "LIBERO SATURATION: OpenVLA-OFT achieves 97.1% average on LIBERO-4. Pi0.5 achieves 97.5%. There is virtually no headroom for improvement. LIBERO-Plus (arXiv:2510.13626) shows VLAs drop from 95% to <30% under perturbations, but this tests robustness to environmental variations, not data quality. The paper needs benchmarks where data quality is the actual bottleneck.", "MISSING RELATED WORK (non-critical): DemInf (RSS 2025, MI-based curation), Re-Mix (CoRL 2024, data mixture optimization via DRO), DMDR (TNNLS 2025, diffusion-based noisy demo restoration). Also, iw-SFT (arXiv:2507.12856) establishes that SFT on curated data optimizes an RL objective bound — this theoretical insight partially subsumes APER's claimed theoretical contribution.", "VENUE DEADLINE ERROR: CoRL 2026 paper deadline is May 28, 2026 AoE (Thursday), not May 29 as stated. The official CoRL site explicitly emphasizes 'the paper submission deadline is Thursday (5/28) EOD rather than Friday.'", "COMPUTE OVERHEAD UNDERESTIMATED: Maintaining a goal-conditioned value function, periodically retraining it, and recomputing TD errors over the full demonstration buffer during VLA-scale fine-tuning is significantly more than ~5% overhead. A 7B VLA model's forward pass is already expensive; adding value function training + full-buffer TD recomputation every K steps could easily be 15-30%.", "DataMIL venue is ICLR 2026 Poster (not arXiv 2025 as cited). QoQ appears to be ICRA 2026 (not arXiv 2026). OpenVLA-OFT may no longer be SOTA — Pi0.5 and SimpleVLA-RL have matched or exceeded it.", "TIMELINE RISK: 15 days to abstract deadline and 18 days to paper deadline. Implementing a stable goal-conditioned value function, integrating it with OpenVLA-OFT training, running 5+ baselines + ablations on LIBERO/RoboMimic/OXE, and writing the paper is extremely ambitious even for auto-research mode."]
+Feedback: The core direction (adaptive vs. static data curation during VLA training) addresses a real gap, but the specific instantiation via TD-error PER has serious problems. To make this viable for CoRL 2026:
+
+1. **Acknowledge and differentiate from OPER, AFBC, and ExpReS-VLA.** OPER is the most direct threat — it already uses TD-error-based prioritized resampling for BC. You must clearly articulate what APER adds beyond OPER applied to VLA-scale training. The novelty claim needs complete rewriting.
+
+2. **Replace the goal-conditioned value function with a more stable priority signal.** The V(s,g) + hindsight relabeling approach has documented instability in offline settings. Consider alternatives: (a) SCIZOR-style progress prediction as a priority signal (but updated periodically), (b) policy loss/gradient magnitude as priority (no auxiliary model needed), (c) embedding-space surprise via the VLA's own representations. These avoid the known instability of offline value function estimation.
+
+3. **Choose benchmarks where data quality is the bottleneck.** Drop LIBERO (saturated at 97%). Use: RoboMimic multi-human (explicitly has mixed-quality operators), OXE subsets with known quality variation, or Sirius-Fleet (where SCIZOR showed 32.9% gains). The evaluation must demonstrate improvement ON TOP of static filtering (SCIZOR → APER), not just vs. uniform sampling.
+
+4. **Quantify the adaptive advantage formally.** When does adaptive prioritization provably outperform static filtering? A theoretical analysis showing conditions under which adaptive > static (e.g., when the optimal data distribution is non-stationary w.r.t. policy parameters) would significantly strengthen the contribution and address the 'why not just filter once' concern.
+
+5. **Be honest about compute overhead.** Profile the actual cost of priority recomputation at VLA scale. If it's 15-30%, the value proposition weakens substantially — why not just run SCIZOR and train 15% longer?
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL — UNDERSTATED OVERLAP WITH iw-SFT: The iw-SFT paper (arXiv:2507.12856) already implements adaptive importance weights with time-lagged EMA (θ_q = αθ_q + (1−α)θ) that track the evolving policy during SFT training, with IS correction and per-step clipping. It also evaluates on D4RL and Franka Kitchen manipulation tasks. APER's claimed theoretical contribution — that adaptive IS weights yield tighter bounds than static — is already the core result of iw-SFT ('As q(τ) → p(τ;θ) we have J_iw-SFT(θ) → J(θ)'). The differentiation from iw-SFT needs to be much clearer: what exactly does APER's loss-driven priority add beyond iw-SFT's policy-ratio-driven adaptive weights?", "MISSING COMPETING WORKS — SuRe (arXiv:2511.22367): Surprise-Driven Prioritised Replay for Continual LLM Learning uses NLL/loss-based priority scoring for replay buffer management in LLM training. This is conceptually very close to APER — both use the model's own prediction loss as a priority signal for data selection during training. Must be discussed.", "MISSING COMPETING WORKS — ProFit (arXiv:2601.09195, Jan 2026): Probability-Guided Token Selection for SFT selectively masks low-probability tokens during SFT training, achieving 3-10% gains. PEAR (arXiv:2602.01058, Feb 2026): Importance sampling reweighting at token/block/sequence level for SFT. PBS (arXiv:2602.17066, Feb 2026): Online loss prediction for batch scheduling in LLM training. All three perform online, loss/probability-based data prioritization during SFT — overlapping with APER's core contribution.", "WEAK THEORETICAL NOVELTY: The formal analysis described (gap bounded by cumulative KL divergence, Lipschitz continuity implies adaptive reduces KL, adaptive outperforms static when loss rankings change) consists of straightforward applications of known results. The condition 'adaptive strictly outperforms static when per-transition loss rankings change during training' is near-tautological — of course static is suboptimal when the optimal distribution changes. This does not constitute a novel theoretical contribution for a top venue.", "OHEM PRIOR ART: Online Hard Example Mining (Shrivastava et al., CVPR 2016) is the 10-year-old technique of sampling based on current loss magnitude during training. APER is essentially OHEM applied to VLA SFT with PER's sum-tree data structure and IS correction. This connection should be explicitly discussed and differentiated from.", "MISSING RECENT WORK — RINSE (arXiv:2604.23000, April 2026): 'Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning' proposes smoothness-based quality metrics for IL demonstration curation, achieving 16% higher success with 1/6 of data on RoboMimic. This is a very recent static curation baseline that should be included.", "VENUE DEADLINE CLARIFICATION: CoRL 2026 official Instruction for Authors explicitly states 'the paper submission deadline is Thursday (5/28) EOD rather than Friday.' The HuggingFace tracker shows May 29 at 11:59 UTC, which is effectively May 28 EOD US time. The idea correctly notes May 28 but inconsistently also says May 29 in some places.", "LAZY PRIORITY STALENESS RISK: With lazy updates (only recomputing priorities when sampled), most transitions' priorities become stale. The ε_mix=0.05 uniform mixing only refreshes 5% of samples per step. With large demonstration datasets (100K+ transitions), most transitions will never be resampled during training, keeping permanently stale priorities. The freshness decay helps but only penalizes, never refreshes actual loss values. This needs analysis — what fraction of the buffer actually gets resampled during typical VLA fine-tuning?"]
+Feedback: The Round 2 revision addressed Round 1's most critical issue (unstable value function) by switching to loss-driven priorities, which is a much cleaner approach. However, the novelty bar remains unmet for CoRL 2026. The core problem: APER combines known components (OHEM-style loss sampling + PER sum-tree + IS correction from Schaul et al. + freshness decay from FreshPER + theoretical framing from iw-SFT) without adding a genuinely new idea. To reach CoRL quality:
+
+1. **Differentiate sharply from iw-SFT.** iw-SFT already has adaptive IS weights tracking the policy during SFT. APER uses loss magnitude as priority while iw-SFT uses policy ratio — argue why loss-magnitude priorities are better (e.g., loss captures multi-modal difficulty that policy ratios miss in VLA action spaces). Ideally prove this formally.
+
+2. **Add VLA-specific novelty.** Generic PER applied to VLA is engineering. What about VLA-specific signals? E.g., action chunk consistency (some transitions have high loss because the chunk prediction diverges mid-chunk), visual attention entropy (high-attention transitions may be more informative), or multi-modal loss decomposition (separate vision/language/action loss components and prioritize by the bottleneck modality). These would make the contribution VLA-specific rather than a generic application.
+
+3. **Acknowledge and position against LLM SFT data selection work.** SuRe, ProFit, PEAR, PBS all perform online/loss-based data prioritization during LLM training. APER must explain why the VLA setting is different enough to warrant a separate contribution (e.g., continuous action spaces, multi-modal inputs, demonstration quality heterogeneity).
+
+4. **Strengthen the theoretical contribution.** The current analysis (KL divergence bounds, Lipschitz conditions) is textbook. Consider: (a) proving convergence rate improvements specific to multi-modal action distributions, (b) analyzing how action chunking interacts with per-transition priorities, or (c) providing sample complexity bounds showing adaptive PER needs fewer demonstrations to reach a given success rate.
+
+5. **Add RINSE (April 2026) as a baseline.** It's the most recent static curation method and directly competes on RoboMimic.
+
+6. **Quantify the staleness problem.** Run a simple analysis: during VLA fine-tuning with N transitions, what fraction of transitions are sampled at least once? How quickly do loss rankings decorrelate? This empirical characterization would strengthen the motivation.
+
+### Round 3 review
+Verdict: revise
+Issues: ["CRITICAL MISSING RELATED WORK — EMMA/AdaMix (arXiv:2509.22407, Sep 2025, revised Mar 2026): EMMA introduces AdaMix, a hard-sample-aware training strategy for VLA models that adaptively reweights samples during training based on three metrics: Action Prediction Error (MSE over action chunks), Trajectory Smoothness, and Joint Angle Limitation. AdaMix achieves 17% improvement over fixed-ratio mixing during VLA SFT. This is the closest existing work to CDAP in the VLA training space — it already performs online adaptive sample reweighting during VLA SFT using action prediction loss. The key difference is that AdaMix uses aggregated MSE over the full chunk while CDAP decomposes per-position losses, but this differentiation MUST be explicitly discussed. AdaMix should also be added as a baseline.", "MISSING RELATED WORK — Token Cleaning (arXiv:2502.01968, ICML 2025): Fine-grained token-level data selection for LLM SFT using influence of model updates on each token. Conceptually parallel to CDAP's per-position loss analysis — both move beyond sample-level to sub-sample-level quality assessment during SFT. Should be discussed in the LLM SFT landscape section.", "MISSING RELATED WORK — VGAS (arXiv:2602.07399, Feb 2026): Value-Guided Action-Chunk Selection for Few-Shot VLA Adaptation. Uses Q-Chunk-Former to evaluate and select action chunks at inference time. While inference-time (not training-time), it represents another work that analyzes action chunk quality at a fine-grained level.", "VENUE DEADLINE INACCURACY: The idea states 'abstract deadline: May 25, 2026' in the target_venues field — the actual CoRL 2026 abstract deadline is May 26, 2026 at 11:59 UTC. The paper deadline ambiguity (May 28 EOD Thursday vs. May 29 at 11:59 UTC) persists across sources; the idea should cite the conservative date (May 28 EOD).", "THEORETICAL CLAIMS OVERSTATED: The 'temporal profile evolution theorem' claims that per-position loss profiles evolve from flat to monotonically increasing 'under standard smoothness assumptions.' This is plausible but unproven — it's an empirical hypothesis, not a theorem. Calling it a theorem without proof or stating the exact assumptions risks reviewer pushback. The variance reduction result (chunk-decomposed prioritization reduces variance for heterogeneous chunks) is straightforward and adds limited theoretical novelty. The contact-phase sample complexity bound is a simple calculation, not a deep result.", "EMPIRICAL VALIDATION RISK: The entire contribution rests on the hypothesis that temporal divergence δ captures learning-relevant structure that scalar loss μ misses. If α_δ=0 (scalar PER ablation) performs comparably to full CDAP, the VLA-specific novelty collapses to engineering. This is the paper's make-or-break experiment and is currently untested.", "RINSE VENUE: The idea cites RINSE as 'arXiv April 2026' but it appears to be accepted at ICML 2025 (confirmed at icml.cc/virtual/2025/48703). This should be corrected.", "CAPS VENUE: CAPS (arXiv:2503.01650) is listed as a reference but was accepted at ICRA 2025 (not 2026). While not discussed in the landscape, if cited it should have the correct venue."]
+Feedback: Round 3 represents substantial improvement — the pivot from TD-error value functions (Round 1) through scalar loss prioritization (Round 2) to chunk-decomposed temporal profiles is the right direction. The CTP signal is genuinely novel. To reach CoRL quality:
+
+1. **CRITICAL: Add EMMA/AdaMix as related work AND baseline.** EMMA (arXiv:2509.22407) already performs online adaptive sample reweighting during VLA SFT using action prediction MSE. This is your most direct competitor. Differentiation: AdaMix uses aggregated MSE (scalar), CDAP decomposes per-position losses to capture *why* a transition is hard (temporal coherence vs. perception failure). Add AdaMix as baseline (e) between RINSE and scalar-loss PER: 'AdaMix (adaptive scalar-MSE reweighting during VLA SFT, EMMA 2025).' The ablation path becomes: Uniform → AdaMix (scalar adaptive) → Scalar-PER+IS (your α_δ=0 ablation) → full CDAP (temporal decomposition). This progression cleanly isolates CDAP's contribution.
+
+2. **Downgrade theoretical claims to hypotheses.** Present the temporal profile evolution as 'Hypothesis 1' to be validated empirically, not 'Theorem 1.' This is more honest and actually makes the empirical analysis contribution stronger — you're the first to systematically test this hypothesis. CoRL reviewers will appreciate intellectual honesty over inflated theory.
+
+3. **Strengthen the empirical contribution framing.** The first systematic analysis of how intra-chunk temporal loss profiles evolve during VLA SFT is genuinely valuable regardless of whether CDAP outperforms baselines. Frame it as: 'We provide the first empirical characterization of temporal loss profile evolution during VLA SFT, revealing [finding]. CDAP is a practical method motivated by this analysis.' This makes the paper valuable even if gains are modest.
+
+4. **Add Token Cleaning (ICML 2025) to LLM SFT landscape.** It's the closest LLM analogue — moving from sample-level to sub-sample-level (token-level) quality assessment during SFT. The parallel strengthens your positioning: 'Just as Token Cleaning reveals that token-level quality varies within samples for LLM SFT, we show that position-level difficulty varies within action chunks for VLA SFT.'
+
+5. **Fix venue citations.** RINSE → ICML 2025 (not just arXiv). CAPS → ICRA 2025. CoRL abstract deadline → May 26 (not May 25).
+
+6. **Design the α_δ ablation carefully.** The scalar PER (α_δ=0) vs. full CDAP comparison is the single most important experiment. If δ doesn't help, the paper doesn't work. Consider pre-running a small-scale pilot on RoboMimic-MH before committing to the full experimental pipeline.
+
+### Round 4 review
+Verdict: revise
+Issues: ["CRITICAL — PER FAILURE IN SUPERVISED LEARNING UNADDRESSED: Pan et al. (UAI 2022, 'Understanding and Mitigating the Limitations of Prioritized Replay') proved that error-based prioritized sampling for MSE minimization is mathematically equivalent to uniform sampling with a cubic power loss, and empirically showed PER performs WORSE than uniform in supervised regression. VLA fine-tuning is supervised L1/L2 regression. CDAP must directly address this foundational concern — why would chunk-decomposed PER succeed where standard PER demonstrably fails in supervised settings? The temporal decomposition may break this equivalence (because δ captures structure beyond loss magnitude), but this argument is not made.", "VENUE CITATION ERRORS: (1) RINSE (arXiv:2604.23000) was presented at the 'DataWorld: Unifying Data Curation Frameworks Across Domains' WORKSHOP at ICML 2025, NOT the main conference. Citing it as 'ICML 2025' without 'Workshop' is misleading. (2) Token Cleaning (arXiv:2502.01968) appears in ICML 2025 virtual site as a Poster (icml.cc/virtual/2025/poster/43777), not a Spotlight as claimed.", "MISSING DISCUSSION OF DAM-VLA AS PARTIAL PRIOR: DAM-VLA applies position-dependent exponential decay weighting within action chunks during training — this IS a form of intra-chunk loss decomposition, albeit with fixed (not data-driven) weights. The landscape discusses DAM-VLA but the novelty claim 'no existing work exploits the intra-chunk temporal loss profile' is too strong. A more defensible claim: 'no existing work uses the EMPIRICAL intra-chunk loss profile as a DATA-DRIVEN priority signal.'", "INSUFFICIENT DIFFERENTIATION FROM IMPLICIT LOSS REWEIGHTING: Pan et al. showed PER implicitly changes the effective loss function rather than improving optimization. CDAP's IS correction addresses the bias but doesn't address the coverage problem — high-priority transitions are oversampled, leaving low-priority transitions undertrained. The ε_mix uniform mixing partially addresses this, but with large datasets (100K+ transitions) and short VLA fine-tuning runs (50K-150K steps per OpenVLA-OFT), most transitions may never be resampled even once. The coverage analysis promised in the evaluation section should quantify this.", "TIMELINE RISK ELEVATED: 13 days to abstract deadline, 15 days to paper deadline. The pipeline requires: (1) implement CDAP (~2 days), (2) reimplement AdaMix (~2-3 days, no public code), (3) run RoboMimic-MH pilot (~1-2 days), (4) run 8 baselines + ablations on 4 benchmarks (~5-7 days), (5) analysis + writing (~3-5 days). Even with 8× A100 cluster running 24/7, this is extremely tight. Recommend scoping down to 2 benchmarks (RoboMimic-MH + SimplerEnv) for CoRL submission with remaining benchmarks for camera-ready.", "MISSING RELATED WORK (minor): 'Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority' (arXiv:2602.01227, Feb 2026) formalizes SFT as distribution reshaping via token-level priority, directly relevant to CDAP's framing. Should be discussed alongside Token Cleaning, ProFit, PEAR."]
+Feedback: The idea has matured well through 4 rounds — the temporal divergence signal δ is the right VLA-specific contribution, and the landscape/experimental design are strong. Three things will elevate this to CoRL quality:
+
+1. **ADDRESS PER-IN-SUPERVISED-LEARNING FAILURE HEAD-ON.** This is the most important remaining gap. Pan et al. (UAI 2022) showed PER ≡ implicit loss reweighting and fails in supervised regression. You must argue why CDAP is different. The key argument: Pan's equivalence holds for scalar-loss PER, but CDAP's temporal decomposition captures *structural* information (why a transition is hard, not just how hard) that scalar reweighting cannot express. Specifically, two transitions with identical aggregate loss μ but different δ receive different priorities under CDAP but identical priorities under scalar PER — this breaks the cubic-power-loss equivalence. Make this argument explicit and test it empirically: if CDAP with δ outperforms scalar PER (α_δ=0), it validates that the structural signal overcomes PER's supervised-learning limitations.
+
+2. **TIGHTEN THE NOVELTY CLAIM.** Change 'no existing work exploits the intra-chunk temporal loss profile' to 'no existing work uses the empirical intra-chunk loss profile as a data-driven adaptive priority signal.' This honestly acknowledges DAM-VLA's fixed positional weighting while maintaining CDAP's clear differentiation.
+
+3. **SCOPE DOWN FOR CoRL.** With 13 days to abstract, prioritize: (a) RoboMimic-MH pilot first (validates δ signal in 1-2 days), (b) if positive, run full comparison on RoboMimic-MH + SimplerEnv only, (c) add Sirius-Fleet and OXE for camera-ready. Four benchmarks × 8 baselines in 15 days is unrealistic.
+
+4. **Fix venue citations.** RINSE → 'ICML 2025 Workshop (DataWorld)'. Token Cleaning → 'ICML 2025'. Drop the 'Spotlight' claim unless verified independently.
+
+5. **Add Pan et al. (UAI 2022) to the landscape** under 'Online Hard Example Mining' or as a new subsection on PER limitations. Position CDAP as addressing PER's known failure modes in supervised settings through temporal decomposition.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "3c06c594-5927-44d4-8f11-29e0c637a16e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-13T18:02:57.802Z_
+
+```json
+{
+  "parentUuid": "3c06c594-5927-44d4-8f11-29e0c637a16e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "80592e2d-1f5b-4e2d-9cd2-d14ff95fdb92",
+  "timestamp": "2026-05-13T18:02:57.802Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-13T18:02:57.802Z_
+
+```json
+{
+  "parentUuid": "80592e2d-1f5b-4e2d-9cd2-d14ff95fdb92",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "46dfc628-3171-4720-b553-b525f006b174",
+  "timestamp": "2026-05-13T18:02:57.802Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "46dfc628-3171-4720-b553-b525f006b174",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-13T18:03:09.677Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea for CoRL 2026. This is Round 5 of 10, so I need to be thorough in my evaluation. The idea has evolved significantly through 4 rounds of revision. Let me conduct independent verification of the claims, check for missing related work, and assess the overall quality.
+
+Let me start by understanding the core idea:
+- CDAP (Chunk-Decomposed Adaptive Prioritization) for VLA SFT
+- Key insight: Instead of using scalar loss for prioritized sampling, decompose the action-chunk loss into per-position losses to capture temporal structure
+- Two components: aggregate difficulty (μ) and temporal divergence (δ)
+
+
+- Claims to break Pan et al.'s PER equivalence to cubic loss in supervised regression, incorporate contact-phase aware weighting, and use freshness-aware age decay with coverage-guaranteed mixing
+
+Now I need to verify the core technical claims: whether CDAP actually breaks the equivalence theorem Pan et al. established, how it genuinely differs from AdaMix and EMMA's approaches, and whether the temporal divergence signal is truly novel. I should also check that the cited papers are real and correctly attributed, look for any missing competing works, and assess feasibility and timeline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46dfc628-3171-4720-b553-b525f006b174",
+  "isSidechain": false,
+  "requestId": "req_011Cb11QpW8jb6r74GcgsP4R",
+  "type": "assistant",
+  "uuid": "e51207bd-bc09-4d43-ad1d-37bf57a52b1f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYdUg6xRSMkfQsN8ckimPB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25618,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25618,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25618,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25618
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-13T18:03:09.679Z_
+
+I'll conduct an independent, thorough review of this idea. Let me start by verifying the key claims and searching for competing work the generator may have missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e51207bd-bc09-4d43-ad1d-37bf57a52b1f",
+  "isSidechain": false,
+  "requestId": "req_011Cb11QpW8jb6r74GcgsP4R",
+  "type": "assistant",
+  "uuid": "50849fe8-d4bb-48f3-a340-c98177252cec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYdUg6xRSMkfQsN8ckimPB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25618,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25618,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25618,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25618
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T18:03:09.683Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RpZ8QSjHQJc3zhGvQq4jx3`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50849fe8-d4bb-48f3-a340-c98177252cec",
+  "isSidechain": false,
+  "requestId": "req_011Cb11QpW8jb6r74GcgsP4R",
+  "type": "assistant",
+  "uuid": "9762eaa9-5c1b-4573-b848-6fbde3d1ca77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYdUg6xRSMkfQsN8ckimPB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25618,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25618,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25618,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25618
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T18:03:09.690Z_
+
+<details><summary>↩ Tool result · `toolu_01RpZ8QSjHQJc3zhGvQq4jx3`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9762eaa9-5c1b-4573-b848-6fbde3d1ca77",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "cc9cce16-4eca-4260-a2a8-4794d477e3fe",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "9762eaa9-5c1b-4573-b848-6fbde3d1ca77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-13T18:03:19.295Z_
+
+Starting my independent review. Let me search across multiple dimensions in parallel to verify claims and find competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc9cce16-4eca-4260-a2a8-4794d477e3fe",
+  "isSidechain": false,
+  "requestId": "req_011Cb11RhisTmXbnW5MGebH4",
+  "type": "assistant",
+  "uuid": "503af728-eafd-47b4-b277-974364f2098e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01154yjRH7pETm2kLzPnQ8VS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1434,
+      "cache_read_input_tokens": 37459,
+      "output_tokens": 105,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1434,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 105,
+          "cache_read_input_tokens": 37459,
+          "cache_creation_input_tokens": 1434,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1434
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-13T18:03:20.253Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LU4inU4iMjpGE7U6GCLMMQ`</summary>
+
+```json
+{
+  "query": "Pan et al. \"Understanding and Mitigating the Limitations of Prioritized Replay\" UAI 2022 supervised regression equivalence"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "503af728-eafd-47b4-b277-974364f2098e",
+  "isSidechain": false,
+  "requestId": "req_011Cb11RhisTmXbnW5MGebH4",
+  "type": "assistant",
+  "uuid": "d13e467f-4b01-4664-85f6-11ce40820bf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01154yjRH7pETm2kLzPnQ8VS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1434,
+      "cache_read_input_tokens": 37459,
+      "output_tokens": 105,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1434,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 105,
+          "cache_read_input_tokens": 37459,
+          "cache_creation_input_tokens": 1434,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1434
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T18:03:25.888Z_
+
+<details><summary>↩ Tool result · `toolu_01LU4inU4iMjpGE7U6GCLMMQ`</summary>
+
+```text
+Web search results for query: "Pan et al. "Understanding and Mitigating the Limitations of Prioritized Replay" UAI 2022 supervised regression equivalence"
+
+Links: [{"title":"Understanding and Mitigating the Limitations of Prioritized Experience Replay","url":"https://proceedings.mlr.press/v180/pan22a/pan22a.pdf"},{"title":"Understanding and Mitigating the Limitations of Prioritized Experience Replay | OpenReview","url":"https://openreview.net/forum?id=HBlNGvIicg9"},{"title":"[2007.09569] Understanding and Mitigating the Limitations of Prioritized Experience Replay","url":"https://arxiv.org/abs/2007.09569"},{"title":"Prioritized experience replay based on dynamics priority - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10933423/"},{"title":"Understanding and Mitigating the Limitations of Prioritized ...","url":"https://proceedings.mlr.press/v180/pan22a/pan22a-supp.pdf"},{"title":"Prioritized experience replay based on dynamics priority | Scientific Reports","url":"https://www.nature.com/articles/s41598-024-56673-3"},{"title":"Understanding and Mitigating the Limitations of Prioritized Experience Replay","url":"https://openreview.net/references/pdf?id=e91fo4eexcr"},{"title":"Understanding and Mitigating the Limitations of Prioritized ...","url":"https://openreview.net/pdf?id=HBlNGvIicg9"},{"title":"Investigating the Interplay of Prioritized Replay and Generalization","url":"https://arxiv.org/html/2407.09702v2"},{"title":"(PDF) Prioritized experience replay based on dynamics priority","url":"https://www.researchgate.net/publication/378905650_Prioritized_experience_replay_based_on_dynamics_priority"}]
+
+I found the paper you're searching for! Here are the key findings regarding the supervised regression equivalence:
+
+In a supervised learning setting, the paper shows the equivalence between the error-based prioritized sampling method for mean squared error and uniform sampling for cubic power loss. This is a central theoretical contribution of the work.
+
+The paper is published in the Proceedings of the 38th Conference on Uncertainty in Artificial Intelligence (UAI 2022), PMLR 180:1561–1571.
+
+The authors provide theoretical insight into why it improves convergence rate upon uniform sampling during early learning. Additionally, the gradient direction of the cubic function is sharper than that of the square function when the error is relatively large.
+
+The paper's authors are Yangchen Pan, Jincheng Mei, Amir-massoud Farahmand, Martha White, Hengshuai Yao, Mohsen Rohani, and Jun Luo.
+
+You can access the full paper at: https://proceedings.mlr.press/v180/pan22a/pan22a.pdf
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d13e467f-4b01-4664-85f6-11ce40820bf5",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "799aaffc-1783-445d-9917-31f05f57d214",
+  "toolUseResult": {
+    "query": "Pan et al. \"Understanding and Mitigating the Limitations of Prioritized Replay\" UAI 2022 supervised regression equivalence",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Qp7kGhVPb3Z6YNu1JUu6LX",
+        "content": [
+          {
+            "title": "Understanding and Mitigating the Limitations of Prioritized Experience Replay",
+            "url": "https://proceedings.mlr.press/v180/pan22a/pan22a.pdf"
+          },
+          {
+            "title": "Understanding and Mitigating the Limitations of Prioritized Experience Replay | OpenReview",
+            "url": "https://openreview.net/forum?id=HBlNGvIicg9"
+          },
+          {
+            "title": "[2007.09569] Understanding and Mitigating the Limitations of Prioritized Experience Replay",
+            "url": "https://arxiv.org/abs/2007.09569"
+          },
+          {
+            "title": "Prioritized experience replay based on dynamics priority - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10933423/"
+          },
+          {
+            "title": "Understanding and Mitigating the Limitations of Prioritized ...",
+            "url": "https://proceedings.mlr.press/v180/pan22a/pan22a-supp.pdf"
+          },
+          {
+            "title": "Prioritized experience replay based on dynamics priority | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-024-56673-3"
+          },
+          {
+            "title": "Understanding and Mitigating the Limitations of Prioritized Experience Replay",
+            "url": "https://openreview.net/references/pdf?id=e91fo4eexcr"
+          },
+          {
+            "title": "Understanding and Mitigating the Limitations of Prioritized ...",
+            "url": "https://openreview.net/pdf?id=HBlNGvIicg9"
+          },
+          {
+            "title": "Investigating the Interplay of Prioritized Replay and Generalization",
+            "url": "https://arxiv.org/html/2407.09702v2"
+          },
+          {
+            "title": "(PDF) Prioritized experience replay based on dynamics priority",
+            "url": "https://www.researchgate.net/publication/378905650_Prioritized_experience_replay_based_on_dynamics_priority"
+          }
+        ]
+      },
+      "I found the paper you're searching for! Here are the key findings regarding the supervised regression equivalence:\n\nIn a supervised learning setting, the paper shows the equivalence between the error-based prioritized sampling method for mean squared error and uniform sampling for cubic power loss. This is a central theoretical contribution of the work.\n\nThe paper is published in the Proceedings of the 38th Conference on Uncertainty in Artificial Intelligence (UAI 2022), PMLR 180:1561–1571.\n\nThe authors provide theoretical insight into why it improves convergence rate upon uniform sampling during early learning. Additionally, the gradient direction of the cubic function is sharper than that of the square function when the error is relatively large.\n\nThe paper's authors are Yangchen Pan, Jincheng Mei, Amir-massoud Farahmand, Martha White, Hengshuai Yao, Mohsen Rohani, and Jun Luo.\n\nYou can access the full paper at: https://proceedings.mlr.press/v180/pan22a/pan22a.pdf"
+    ],
+    "durationSeconds": 5.6304405310000005
+  },
+  "sourceToolAssistantUUID": "d13e467f-4b01-4664-85f6-11ce40820bf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T18:03:30.954Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Se7KkfKaYf7bHN9WGHz8oN`</summary>
+
+```json
+{
+  "query": "EMMA AdaMix VLA adaptive sample reweighting arXiv 2509.22407 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "799aaffc-1783-445d-9917-31f05f57d214",
+  "isSidechain": false,
+  "requestId": "req_011Cb11StT4quxB65mPNJ33j",
+  "type": "assistant",
+  "uuid": "a6d360f6-3182-4581-875f-d9e2733acf6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HLRKtXFkrbCsrSdWLQmCMZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 38893,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 38893,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-13T18:03:39.236Z_
+
+<details><summary>↩ Tool result · `toolu_01Se7KkfKaYf7bHN9WGHz8oN`</summary>
+
+```text
+Web search results for query: "EMMA AdaMix VLA adaptive sample reweighting arXiv 2509.22407 2025 2026"
+
+Links: [{"title":"[2509.22407] EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer","url":"https://arxiv.org/abs/2509.22407"},{"title":"EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer","url":"https://arxiv.org/html/2509.22407v1"},{"title":"Preprint. Under review. EMMA: GENERALIZING REAL-WORLD ROBOT MA-","url":"https://arxiv.org/pdf/2509.22407"},{"title":"Paper page - EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer","url":"https://huggingface.co/papers/2509.22407"},{"title":"[2509.04063] Balancing Signal and Variance: Adaptive Offline RL Post-Training for VLA Flow Models","url":"https://arxiv.org/abs/2509.04063"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"AdaMix: Adaptive Mixed-Precision Delta-Compression with Quantization Error Optimization for Large Language Models","url":"https://arxiv.org/html/2506.11087v1"},{"title":"[2509.18107] AdaMixT: Adaptive Weighted Mixture of Multi-Scale Expert Transformers for Time Series Forecasting","url":"https://arxiv.org/abs/2509.18107"},{"title":"Human-assisted Robotic Policy Refinement via Action Preference Optimization","url":"https://arxiv.org/pdf/2506.07127"},{"title":"Robotic Policy Learning via Human-assisted Action Preference Optimization","url":"https://arxiv.org/html/2506.07127v1"}]
+
+Based on the search results, here's what I found about the paper with arXiv ID 2509.22407:
+
+## EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer
+
+The paper introduces Embodied Manipulation Media Adaptation (EMMA), a framework for augmenting VLA policies that combines a generative data engine with an effective training pipeline.
+
+### Key Components:
+
+**DreamTransfer:** DreamTransfer is a diffusion Transformer-based architecture for generating multi-view consistent and geometrically grounded embodied manipulation videos. DreamTransfer enables visual editing of robot videos through prompts, allowing for changes to the foreground, background, and lighting while preserving their 3D structure and geometric validity.
+
+**AdaMix:** AdaMix is a training strategy that adaptively weights samples according to policy performance to emphasize challenging samples. More specifically, AdaMix is a hard-sample-aware training strategy that dynamically reweights training batches to focus optimization on perceptually or kinematically challenging samples.
+
+### Results:
+
+In real-world robotic tasks with zero-shot visual settings, the framework achieves a relative performance increase of over 92% compared to training with real data alone, and improves by an additional 17% with AdaMix, demonstrating its efficacy in enhancing policy generalization.
+
+The paper was first submitted on September 26, 2025, with a subsequent version dated March 16, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a6d360f6-3182-4581-875f-d9e2733acf6f",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "d5635381-a7ec-43dc-922d-7f393f15fc3c",
+  "toolUseResult": {
+    "query": "EMMA AdaMix VLA adaptive sample reweighting arXiv 2509.22407 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015rYqP8oF8y3AxUWuqJMFxS",
+        "content": [
+          {
+            "title": "[2509.22407] EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer",
+            "url": "https://arxiv.org/abs/2509.22407"
+          },
+          {
+            "title": "EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer",
+            "url": "https://arxiv.org/html/2509.22407v1"
+          },
+          {
+            "title": "Preprint. Under review. EMMA: GENERALIZING REAL-WORLD ROBOT MA-",
+            "url": "https://arxiv.org/pdf/2509.22407"
+          },
+          {
+            "title": "Paper page - EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer",
+            "url": "https://huggingface.co/papers/2509.22407"
+          },
+          {
+            "title": "[2509.04063] Balancing Signal and Variance: Adaptive Offline RL Post-Training for VLA Flow Models",
+            "url": "https://arxiv.org/abs/2509.04063"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "AdaMix: Adaptive Mixed-Precision Delta-Compression with Quantization Error Optimization for Large Language Models",
+            "url": "https://arxiv.org/html/2506.11087v1"
+          },
+          {
+            "title": "[2509.18107] AdaMixT: Adaptive Weighted Mixture of Multi-Scale Expert Transformers for Time Series Forecasting",
+            "url": "https://arxiv.org/abs/2509.18107"
+          },
+          {
+            "title": "Human-assisted Robotic Policy Refinement via Action Preference Optimization",
+            "url": "https://arxiv.org/pdf/2506.07127"
+          },
+          {
+            "title": "Robotic Policy Learning via Human-assisted Action Preference Optimization",
+            "url": "https://arxiv.org/html/2506.07127v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper with arXiv ID 2509.22407:\n\n## EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer\n\nThe paper introduces Embodied Manipulation Media Adaptation (EMMA), a framework for augmenting VLA policies that combines a generative data engine with an effective training pipeline.\n\n### Key Components:\n\n**DreamTransfer:** DreamTransfer is a diffusion Transformer-based architecture for generating multi-view consistent and geometrically grounded embodied manipulation videos. DreamTransfer enables visual editing of robot videos through prompts, allowing for changes to the foreground, background, and lighting while preserving their 3D structure and geometric validity.\n\n**AdaMix:** AdaMix is a training strategy that adaptively weights samples according to policy performance to emphasize challenging samples. More specifically, AdaMix is a hard-sample-aware training strategy that dynamically reweights training batches to focus optimization on perceptually or kinematically challenging samples.\n\n### Results:\n\nIn real-world robotic tasks with zero-shot visual settings, the framework achieves a relative performance increase of over 92% compared to training with real data alone, and improves by an additional 17% with AdaMix, demonstrating its efficacy in enhancing policy generalization.\n\nThe paper was first submitted on September 26, 2025, with a subsequent version dated March 16, 2026."
+    ],
+    "durationSeconds": 8.277705066000003
+  },
+  "sourceToolAssistantUUID": "a6d360f6-3182-4581-875f-d9e2733acf6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-13T18:03:41.670Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WKeCZZqL23SGoeeY5S6J6U`</summary>
+
+```json
+{
+  "query": "action chunk loss decomposition VLA training temporal structure per-position 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5635381-a7ec-43dc-922d-7f393f15fc3c",
+  "isSidechain": false,
+  "requestId": "req_011Cb11TsWYGLZ5CC3NMwoEw",
+  "type": "assistant",
+  "uuid": "368a826d-e1c7-4355-b58c-1280d27dcaf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W8t7vwFWZT2gJWUoN2kRWK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 912,
+      "cache_read_input_tokens": 39754,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 912,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 39754,
+          "cache_creation_input_tokens": 912,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 912
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T18:03:49.773Z_
+
+<details><summary>↩ Tool result · `toolu_01WKeCZZqL23SGoeeY5S6J6U`</summary>
+
+```text
+Web search results for query: "action chunk loss decomposition VLA training temporal structure per-position 2025 2026"
+
+Links: [{"title":"VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning","url":"https://arxiv.org/html/2509.25718"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks | OpenReview","url":"https://openreview.net/forum?id=y5SGBsndWv"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/html/2509.23224v1"},{"title":"VQ-VLA: Improving Vision-Language-Action Models via Scaling","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Wang_VQ-VLA_Improving_Vision-Language-Action_Models_via_Scaling_Vector-Quantized_Action_Tokenizers_ICCV_2025_paper.pdf"},{"title":"Real-Time Execution of Action Chunking Flow Policies Kevin Black1,2,","url":"https://www.pi.website/download/real_time_chunking.pdf"},{"title":"[2507.07969] Reinforcement Learning with Action Chunking","url":"https://arxiv.org/abs/2507.07969"},{"title":"Action chunking as conditional policy compression","url":"https://gershmanlab.com/pubs/Lai25.pdf"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/html/2505.19789v4"},{"title":"ACT Policy Explained (2026): Action Chunking with Transformers | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/blog/act-policy-explained"},{"title":"Rohit Bandaru | Foundation Models for Robotics: Vision-Language-Action (VLA)","url":"https://rohitbandaru.github.io/blog/Foundation-Models-for-Robotics-VLA/"}]
+
+Based on the web search results, I found several relevant papers and resources on action chunking in VLA (Vision-Language-Action) training from 2025-2026:
+
+## Key Findings:
+
+**1. Action Chunk-Based Training Methods:**
+Aggregating consecutive actions into chunks improves the temporal consistency of the policy and the density of informative feedback. Action chunk based on proximal policy optimization (PPO) with behavior cloning uses self-collected demonstrations for VLA post-training.
+
+**2. Temporal Structure and Per-Position Corrections:**
+A positional feature that encodes the index of the base action within the chunk is combined with the latest observation and predicted action to output a per-step correction. This approach, known as Asynchronous Action Chunk Correction (A2C2), addresses temporal structure in action chunking.
+
+**3. Loss Decomposition in Training:**
+The relative weight between the action-chunked PPO objective and the self behavior clone auxiliary loss is adapted online to stabilize the post-training process.
+
+**4. Vector-Quantized Action Tokenization:**
+Time embedding, a sinusoidal time embedding, was added to encode temporal information at varying frequencies to improve the encoder's ability to process temporal and spatial information.
+
+**5. Recent RL Approaches with Action Chunking:**
+Action chunking can be applied to temporal difference (TD)-based RL methods by running RL in a 'chunked' action space, enabling agents to leverage temporally consistent behaviors from offline data and use unbiased n-step backups for more stable TD learning.
+
+The search results reveal active research in decomposing losses for action chunk training, managing temporal structure through positional embeddings, and improving per-position action predictions in VLA models during 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "368a826d-e1c7-4355-b58c-1280d27dcaf8",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "9416b6ad-a5c4-4ba6-bf74-648d121845ee",
+  "toolUseResult": {
+    "query": "action chunk loss decomposition VLA training temporal structure per-position 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01U7DqVhF4hxxdXWkPrWC1hG",
+        "content": [
+          {
+            "title": "VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning",
+            "url": "https://arxiv.org/html/2509.25718"
+          },
+          {
+            "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks | OpenReview",
+            "url": "https://openreview.net/forum?id=y5SGBsndWv"
+          },
+          {
+            "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks",
+            "url": "https://arxiv.org/html/2509.23224v1"
+          },
+          {
+            "title": "VQ-VLA: Improving Vision-Language-Action Models via Scaling",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Wang_VQ-VLA_Improving_Vision-Language-Action_Models_via_Scaling_Vector-Quantized_Action_Tokenizers_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "Real-Time Execution of Action Chunking Flow Policies Kevin Black1,2,",
+            "url": "https://www.pi.website/download/real_time_chunking.pdf"
+          },
+          {
+            "title": "[2507.07969] Reinforcement Learning with Action Chunking",
+            "url": "https://arxiv.org/abs/2507.07969"
+          },
+          {
+            "title": "Action chunking as conditional policy compression",
+            "url": "https://gershmanlab.com/pubs/Lai25.pdf"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/html/2505.19789v4"
+          },
+          {
+            "title": "ACT Policy Explained (2026): Action Chunking with Transformers | Silicon Valley Robotics Center",
+            "url": "https://www.roboticscenter.ai/blog/act-policy-explained"
+          },
+          {
+            "title": "Rohit Bandaru | Foundation Models for Robotics: Vision-Language-Action (VLA)",
+            "url": "https://rohitbandaru.github.io/blog/Foundation-Models-for-Robotics-VLA/"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and resources on action chunking in VLA (Vision-Language-Action) training from 2025-2026:\n\n## Key Findings:\n\n**1. Action Chunk-Based Training Methods:**\nAggregating consecutive actions into chunks improves the temporal consistency of the policy and the density of informative feedback. Action chunk based on proximal policy optimization (PPO) with behavior cloning uses self-collected demonstrations for VLA post-training.\n\n**2. Temporal Structure and Per-Position Corrections:**\nA positional feature that encodes the index of the base action within the chunk is combined with the latest observation and predicted action to output a per-step correction. This approach, known as Asynchronous Action Chunk Correction (A2C2), addresses temporal structure in action chunking.\n\n**3. Loss Decomposition in Training:**\nThe relative weight between the action-chunked PPO objective and the self behavior clone auxiliary loss is adapted online to stabilize the post-training process.\n\n**4. Vector-Quantized Action Tokenization:**\nTime embedding, a sinusoidal time embedding, was added to encode temporal information at varying frequencies to improve the encoder's ability to process temporal and spatial information.\n\n**5. Recent RL Approaches with Action Chunking:**\nAction chunking can be applied to temporal difference (TD)-based RL methods by running RL in a 'chunked' action space, enabling agents to leverage temporally consistent behaviors from offline data and use unbiased n-step backups for more stable TD learning.\n\nThe search results reveal active research in decomposing losses for action chunk training, managing temporal structure through positional embeddings, and improving per-position action predictions in VLA models during 2025-2026."
+    ],
+    "durationSeconds": 8.099599792000001
+  },
+  "sourceToolAssistantUUID": "368a826d-e1c7-4355-b58c-1280d27dcaf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "9416b6ad-a5c4-4ba6-bf74-648d121845ee",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-13T18:03:51.960Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WFQmYE3jfLR6zVGCDZaM1c`</summary>
+
+```json
+{
+  "query": "CoRL 2026 submission deadline abstract paper Austin"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9416b6ad-a5c4-4ba6-bf74-648d121845ee",
+  "isSidechain": false,
+  "requestId": "req_011Cb11UeYTjoqR8MnNM1xkP",
+  "type": "assistant",
+  "uuid": "890c3284-dd67-4760-9501-f064c1ec8f9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QALnPasRXNqUqRNrG4uKBx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 40666,
+      "output_tokens": 62,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1012,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 62,
+          "cache_read_input_tokens": 40666,
+          "cache_creation_input_tokens": 1012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1012
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-13T18:03:57.692Z_
+
+<details><summary>↩ Tool result · `toolu_01WFQmYE3jfLR6zVGCDZaM1c`</summary>
+
+```text
+Web search results for query: "CoRL 2026 submission deadline abstract paper Austin"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz","url":"https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"}]
+
+Based on the search results, here are the key submission deadlines and details for CoRL 2026 in Austin:
+
+**Submission Deadlines:**
+- Abstract submission deadline: May 26, 2026 11:59 UTC
+- Paper submission deadline: May 29, 2026 11:59 UTC
+
+**Conference Details:**
+- Conference dates: November 9-12, 2026
+- Venue: JW Marriott Austin, 110 E 2nd St, Austin, TX 78701
+
+**Paper Requirements:**
+- Page limit will be 8 pages for the main paper
+- Acknowledgments, References, and Appendix (optional) will not count towards the page limit
+
+**Important Notes:**
+- Authors may update the title and abstract on OpenReview after the abstract submission deadline. However, authors cannot be added or removed after this deadline, as this information is required to facilitate reviewer assignments
+- The deadlines are final, and accommodations cannot be made for missing the abstract deadline or paper deadline
+
+Papers may be submitted through OpenReview via the CoRL 2026 Conference page.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "890c3284-dd67-4760-9501-f064c1ec8f9a",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "f7bb8699-bccf-4837-8dea-852bcc47bf78",
+  "toolUseResult": {
+    "query": "CoRL 2026 submission deadline abstract paper Austin",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016wJmXVAJ4qzR9rwhCjbsFp",
+        "content": [
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz",
+            "url": "https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          }
+        ]
+      },
+      "Based on the search results, here are the key submission deadlines and details for CoRL 2026 in Austin:\n\n**Submission Deadlines:**\n- Abstract submission deadline: May 26, 2026 11:59 UTC\n- Paper submission deadline: May 29, 2026 11:59 UTC\n\n**Conference Details:**\n- Conference dates: November 9-12, 2026\n- Venue: JW Marriott Austin, 110 E 2nd St, Austin, TX 78701\n\n**Paper Requirements:**\n- Page limit will be 8 pages for the main paper\n- Acknowledgments, References, and Appendix (optional) will not count towards the page limit\n\n**Important Notes:**\n- Authors may update the title and abstract on OpenReview after the abstract submission deadline. However, authors cannot be added or removed after this deadline, as this information is required to facilitate reviewer assignments\n- The deadlines are final, and accommodations cannot be made for missing the abstract deadline or paper deadline\n\nPapers may be submitted through OpenReview via the CoRL 2026 Conference page."
+    ],
+    "durationSeconds": 5.726474835000001
+  },
+  "sourceToolAssistantUUID": "890c3284-dd67-4760-9501-f064c1ec8f9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-13T18:03:59.820Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016TLVqmEWWsM5qvLxFEcJup`</summary>
+
+```json
+{
+  "query": "prioritized sampling demonstration data robot imitation learning adaptive 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7bb8699-bccf-4837-8dea-852bcc47bf78",
+  "isSidechain": false,
+  "requestId": "req_011Cb11VESuUQdTR5xZt6Th3",
+  "type": "assistant",
+  "uuid": "0b3d9c00-197c-4c4e-a1ad-03953b9a9be5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014K7z7jTsagpm51VvmngF7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 761,
+      "cache_read_input_tokens": 41678,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 761,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 41678,
+          "cache_creation_input_tokens": 761,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 761
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-13T18:04:07.600Z_
+
+<details><summary>↩ Tool result · `toolu_016TLVqmEWWsM5qvLxFEcJup`</summary>
+
+```text
+Web search results for query: "prioritized sampling demonstration data robot imitation learning adaptive 2025 2026"
+
+Links: [{"title":"Frontiers | Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682437/full"},{"title":"Frontiers | Solving robotics tasks with prior demonstration via exploration-efficient deep reinforcement learning","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682200/full"},{"title":"Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12757213/"},{"title":"[2509.04069] Solving Robotics Tasks with Prior Demonstration via Exploration-Efficient Deep Reinforcement Learning","url":"https://arxiv.org/abs/2509.04069"},{"title":"Visual imitation learning from one-shot demonstration for multi-step robot pick and place tasks | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-30938-x"},{"title":"Proceedings of Machine Learning Research | Proceedings of The 9th Conference on Robot Learning Held in Seoul, Korea on 27-30 September 2025 Published as Volume 305 by the Proceedings of Machine Learning Research on 07 October 2025. Volume Edited by: Joseph Lim Shuran Song Hae-Won Park Series Editors: Neil D. Lawrence","url":"https://proceedings.mlr.press/v305/"},{"title":"ICLR 2025 Data Scaling Laws in Imitation Learning for Robotic Manipulation Oral","url":"https://iclr.cc/virtual/2025/oral/31769"},{"title":"Robot-Gated Interactive Imitation Learning with Adaptive Intervention Mechanism","url":"https://arxiv.org/html/2506.09176v1"},{"title":"INSTANT POLICY: IN-CONTEXT IMITATION LEARNING ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/5692c7dbc4abcaa50f9ce609819212e5-Paper-Conference.pdf"},{"title":"DATA SCALING LAWS IN IMITATION LEARNING FOR ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/88b7b2c896506daabc8d3fd587055167-Paper-Conference.pdf"}]
+
+I found several relevant research papers and resources related to your search query about prioritized sampling, demonstration data, robot imitation learning, and adaptive methods from 2025-2026. Here are the key findings:
+
+## Key Research Areas Found:
+
+**Prioritized Interactive Experience Replay (PIER)**
+
+The PIER (Prioritized Interactive Experience Replay) module prioritizes using mixed evaluative-and-corrective demonstrations during training–allowing the novice to learn both what not to do and what to do more efficiently. This is part of the Active Skill-level Data Aggregation (ASkDAgger) framework (Luijkx et al., 2025), where the human teacher can provide feedback in three ways: validation, relabeling, and annotation demonstrations.
+
+**Prioritized Replay with Demonstrations**
+
+Early studies initialize training by mixing offline demonstrations and online interaction in the replay buffer and use a prioritized replay mechanism to enable the reinforcement learning (RL) policy for efficient exploration, demonstrating the application of prioritized sampling to demonstration data in robotics.
+
+**Recent Related Work (2025)**
+
+The research landscape includes several contemporary approaches:
+- A one-shot visual imitation learning framework that allows robots to acquire multi-step pick & place tasks from a single video demonstration
+- A comprehensive empirical study on data scaling in imitation learning where researchers study how a policy's generalization performance changes with the number of training environments, objects, and demonstrations, collecting over 40,000 demonstrations and executing more than 15,000 real-world robot rollouts
+
+These resources show active research into adaptive sampling strategies, demonstration data efficiency, and interactive learning approaches in robotic manipulation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b3d9c00-197c-4c4e-a1ad-03953b9a9be5",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "160d476f-afa4-4778-bac5-cc91880be20c",
+  "toolUseResult": {
+    "query": "prioritized sampling demonstration data robot imitation learning adaptive 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NuVJF2d1zzDQu491YSG7EB",
+        "content": [
+          {
+            "title": "Frontiers | Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682437/full"
+          },
+          {
+            "title": "Frontiers | Solving robotics tasks with prior demonstration via exploration-efficient deep reinforcement learning",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682200/full"
+          },
+          {
+            "title": "Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12757213/"
+          },
+          {
+            "title": "[2509.04069] Solving Robotics Tasks with Prior Demonstration via Exploration-Efficient Deep Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2509.04069"
+          },
+          {
+            "title": "Visual imitation learning from one-shot demonstration for multi-step robot pick and place tasks | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-30938-x"
+          },
+          {
+            "title": "Proceedings of Machine Learning Research | Proceedings of The 9th Conference on Robot Learning Held in Seoul, Korea on 27-30 September 2025 Published as Volume 305 by the Proceedings of Machine Learning Research on 07 October 2025. Volume Edited by: Joseph Lim Shuran Song Hae-Won Park Series Editors: Neil D. Lawrence",
+            "url": "https://proceedings.mlr.press/v305/"
+          },
+          {
+            "title": "ICLR 2025 Data Scaling Laws in Imitation Learning for Robotic Manipulation Oral",
+            "url": "https://iclr.cc/virtual/2025/oral/31769"
+          },
+          {
+            "title": "Robot-Gated Interactive Imitation Learning with Adaptive Intervention Mechanism",
+            "url": "https://arxiv.org/html/2506.09176v1"
+          },
+          {
+            "title": "INSTANT POLICY: IN-CONTEXT IMITATION LEARNING ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/5692c7dbc4abcaa50f9ce609819212e5-Paper-Conference.pdf"
+          },
+          {
+            "title": "DATA SCALING LAWS IN IMITATION LEARNING FOR ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/88b7b2c896506daabc8d3fd587055167-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources related to your search query about prioritized sampling, demonstration data, robot imitation learning, and adaptive methods from 2025-2026. Here are the key findings:\n\n## Key Research Areas Found:\n\n**Prioritized Interactive Experience Replay (PIER)**\n\nThe PIER (Prioritized Interactive Experience Replay) module prioritizes using mixed evaluative-and-corrective demonstrations during training–allowing the novice to learn both what not to do and what to do more efficiently. This is part of the Active Skill-level Data Aggregation (ASkDAgger) framework (Luijkx et al., 2025), where the human teacher can provide feedback in three ways: validation, relabeling, and annotation demonstrations.\n\n**Prioritized Replay with Demonstrations**\n\nEarly studies initialize training by mixing offline demonstrations and online interaction in the replay buffer and use a prioritized replay mechanism to enable the reinforcement learning (RL) policy for efficient exploration, demonstrating the application of prioritized sampling to demonstration data in robotics.\n\n**Recent Related Work (2025)**\n\nThe research landscape includes several contemporary approaches:\n- A one-shot visual imitation learning framework that allows robots to acquire multi-step pick & place tasks from a single video demonstration\n- A comprehensive empirical study on data scaling in imitation learning where researchers study how a policy's generalization performance changes with the number of training environments, objects, and demonstrations, collecting over 40,000 demonstrations and executing more than 15,000 real-world robot rollouts\n\nThese resources show active research into adaptive sampling strategies, demonstration data efficiency, and interactive learning approaches in robotic manipulation."
+    ],
+    "durationSeconds": 7.777231703999998
+  },
+  "sourceToolAssistantUUID": "0b3d9c00-197c-4c4e-a1ad-03953b9a9be5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T18:04:10.229Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UtKaQfEt3KZvdMdJyphXn8`</summary>
+
+```json
+{
+  "query": "CAPS \"Context-Aware Priority Sampling\" imitation learning ICRA 2025 arXiv 2503.01650"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "160d476f-afa4-4778-bac5-cc91880be20c",
+  "isSidechain": false,
+  "requestId": "req_011Cb11VxmMuLBQKCk3XLvw5",
+  "type": "assistant",
+  "uuid": "95457b90-9f8e-42f1-9f93-7f22749cc2e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CHa5rsY9VPom2gbPvqKTaL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1096,
+      "cache_read_input_tokens": 42439,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1096,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 42439,
+          "cache_creation_input_tokens": 1096,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1096
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T18:04:16.521Z_
+
+<details><summary>↩ Tool result · `toolu_01UtKaQfEt3KZvdMdJyphXn8`</summary>
+
+```text
+Web search results for query: "CAPS "Context-Aware Priority Sampling" imitation learning ICRA 2025 arXiv 2503.01650"
+
+Links: [{"title":"[2503.01650] CAPS: Context-Aware Priority Sampling for Enhanced Imitation Learning in Autonomous Driving","url":"https://arxiv.org/abs/2503.01650"},{"title":"CAPS: Context-Aware Priority Sampling for Enhanced Imitation Learning in Autonomous Driving","url":"https://arxiv.org/html/2503.01650"},{"title":"[Literature Review] CAPS: Context-Aware Priority Sampling for Enhanced Imitation Learning in Autonomous Driving","url":"https://www.themoonlight.io/en/review/caps-context-aware-priority-sampling-for-enhanced-imitation-learning-in-autonomous-driving"},{"title":"Machine Learning Mar 2025","url":"https://arxiv.org/list/cs.LG/2025-03?skip=150&show=25"},{"title":"Computer Science Mar 2025","url":"https://arxiv.org/list/cs/2025-03?skip=800&show=250"},{"title":"Machine Learning Mar 2025","url":"https://www.arxiv.org/list/cs.LG/2025-03?skip=0&show=2000"},{"title":"Robotics Mar 2025","url":"https://www.arxiv.org/list/cs.RO/2025-03?skip=875&show=25"},{"title":"Robotics Mar 2025","url":"https://arxiv.org/list/cs.RO/2025-03?skip=875&show=500"},{"title":"An Analysis through the Lens of Human-Aware AI","url":"https://openreview.net/pdf?id=ljszDKJ9ME"},{"title":"CAPS: Context-Aware Priority Sampling for Autonomous ...","url":"https://www.linkedin.com/posts/abdullah-kasri_caps-context-aware-priority-sampling-for-activity-7303044146582204416-y52i"}]
+
+Based on the search results, here's what I found about CAPS:
+
+CAPS (Context-Aware Priority Sampling) is a novel method designed to enhance data efficiency in learning-based autonomous driving systems. CAPS addresses the challenge of imbalanced training datasets in imitation learning by leveraging Vector Quantized Variational Autoencoders (VQ-VAEs).
+
+**Key Technical Approach:**
+
+The VQ-VAE provides a structured and interpretable data representation to reveal meaningful patterns in the data, which are used to group the data into clusters with each sample being assigned a cluster ID, and the cluster IDs are then used to re-balance the dataset, ensuring that rare yet valuable samples receive higher priority during training.
+
+**Results and Evaluation:**
+
+By ensuring a more diverse and informative training set, CAPS improves the generalization of the trained planner across a wide range of driving scenarios. The method is evaluated through closed-loop simulations in the CARLA environment.
+
+The paper was submitted to arXiv on March 3, 2025, with arXiv identifier 2503.01650. The authors are Hamidreza Mirkhani, Behzad Khamidehi, Ehsan Ahmadi, Fazel Arasteh, Mohammed Elmahgiubi, Weize Zhang, Umar Rajguru, and Kasra Rezaee.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "95457b90-9f8e-42f1-9f93-7f22749cc2e9",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "d297ac0a-da28-4eae-85b2-77340e7537bf",
+  "toolUseResult": {
+    "query": "CAPS \"Context-Aware Priority Sampling\" imitation learning ICRA 2025 arXiv 2503.01650",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FsHtrVBpZcXGXWbRDyGEFz",
+        "content": [
+          {
+            "title": "[2503.01650] CAPS: Context-Aware Priority Sampling for Enhanced Imitation Learning in Autonomous Driving",
+            "url": "https://arxiv.org/abs/2503.01650"
+          },
+          {
+            "title": "CAPS: Context-Aware Priority Sampling for Enhanced Imitation Learning in Autonomous Driving",
+            "url": "https://arxiv.org/html/2503.01650"
+          },
+          {
+            "title": "[Literature Review] CAPS: Context-Aware Priority Sampling for Enhanced Imitation Learning in Autonomous Driving",
+            "url": "https://www.themoonlight.io/en/review/caps-context-aware-priority-sampling-for-enhanced-imitation-learning-in-autonomous-driving"
+          },
+          {
+            "title": "Machine Learning Mar 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-03?skip=150&show=25"
+          },
+          {
+            "title": "Computer Science Mar 2025",
+            "url": "https://arxiv.org/list/cs/2025-03?skip=800&show=250"
+          },
+          {
+            "title": "Machine Learning Mar 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-03?skip=0&show=2000"
+          },
+          {
+            "title": "Robotics Mar 2025",
+            "url": "https://www.arxiv.org/list/cs.RO/2025-03?skip=875&show=25"
+          },
+          {
+            "title": "Robotics Mar 2025",
+            "url": "https://arxiv.org/list/cs.RO/2025-03?skip=875&show=500"
+          },
+          {
+            "title": "An Analysis through the Lens of Human-Aware AI",
+            "url": "https://openreview.net/pdf?id=ljszDKJ9ME"
+          },
+          {
+            "title": "CAPS: Context-Aware Priority Sampling for Autonomous ...",
+            "url": "https://www.linkedin.com/posts/abdullah-kasri_caps-context-aware-priority-sampling-for-activity-7303044146582204416-y52i"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CAPS:\n\nCAPS (Context-Aware Priority Sampling) is a novel method designed to enhance data efficiency in learning-based autonomous driving systems. CAPS addresses the challenge of imbalanced training datasets in imitation learning by leveraging Vector Quantized Variational Autoencoders (VQ-VAEs).\n\n**Key Technical Approach:**\n\nThe VQ-VAE provides a structured and interpretable data representation to reveal meaningful patterns in the data, which are used to group the data into clusters with each sample being assigned a cluster ID, and the cluster IDs are then used to re-balance the dataset, ensuring that rare yet valuable samples receive higher priority during training.\n\n**Results and Evaluation:**\n\nBy ensuring a more diverse and informative training set, CAPS improves the generalization of the trained planner across a wide range of driving scenarios. The method is evaluated through closed-loop simulations in the CARLA environment.\n\nThe paper was submitted to arXiv on March 3, 2025, with arXiv identifier 2503.01650. The authors are Hamidreza Mirkhani, Behzad Khamidehi, Ehsan Ahmadi, Fazel Arasteh, Mohammed Elmahgiubi, Weize Zhang, Umar Rajguru, and Kasra Rezaee."
+    ],
+    "durationSeconds": 6.287481314000004
+  },
+  "sourceToolAssistantUUID": "95457b90-9f8e-42f1-9f93-7f22749cc2e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-13T18:04:19.121Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VTYbGwj4oBvRKQHyGoeaK7`</summary>
+
+```json
+{
+  "query": "adaptive data selection VLA fine-tuning noise filtering demonstration quality 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d297ac0a-da28-4eae-85b2-77340e7537bf",
+  "isSidechain": false,
+  "requestId": "req_011Cb11WcvnNhC64boDqZBzx",
+  "type": "assistant",
+  "uuid": "ed557f6d-4e0a-48f1-b059-124bd5465857",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KtCSXGeDJk1z3Qiu11gNjb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 926,
+      "cache_read_input_tokens": 43535,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 926,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 43535,
+          "cache_creation_input_tokens": 926,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 926
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T18:04:32.168Z_
+
+<details><summary>↩ Tool result · `toolu_01VTYbGwj4oBvRKQHyGoeaK7`</summary>
+
+```text
+Web search results for query: "adaptive data selection VLA fine-tuning noise filtering demonstration quality 2026"
+
+Links: [{"title":"Dual-Actor Fine-Tuning of VLA Models: A Talk-and-Tweak Human-in-the-Loop Approach","url":"https://arxiv.org/html/2509.13774v1"},{"title":"VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts","url":"https://arxiv.org/html/2605.06175v1"},{"title":"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/html/2512.11921v1"},{"title":"A Novel Adaptive Fine-Tuning Algorithm for Multimodal Models: Self-Optimizing Classification and Selection of High-Quality Datasets in Remote Sensing | MDPI","url":"https://www.mdpi.com/2072-4292/17/10/1748"},{"title":"(PDF) Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://www.researchgate.net/publication/398721162_Towards_Accessible_Physical_AI_LoRA-Based_Fine-Tuning_of_VLA_Models_for_Real-World_Robot_Control"},{"title":"[2512.11921] Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/abs/2512.11921"},{"title":"𝜋_\"RL\": Online RL Fine-tuning for Flow-based Vision-Language-Action Models","url":"https://arxiv.org/html/2510.25889v1"},{"title":"Scaling VLA Model Training on a Budget: Lessons From 100+ Fine-Tunes | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/blog/scaling-vla-training-on-a-budget"},{"title":"VLA-RFT: Vision-Language-Action Reinforcement Fine-Tuning with Verified Rewards in World Simulators | OpenReview","url":"https://openreview.net/forum?id=Jaut99EHeu"},{"title":"A Survey on Efficient Vision-Language-Action Models","url":"https://arxiv.org/html/2510.24795v1"}]
+
+I found several relevant research papers and resources about VLA (Vision-Language-Action) model fine-tuning. Here are the key findings:
+
+## Recent VLA Fine-Tuning Research (2025-2026)
+
+### Adaptive Data Selection and Quality Improvement
+
+A novel adaptive fine-tuning algorithm uses two stages of data truncation—first projecting vast datasets into semantic vector space using MiniBatchKMeans clustering to ensure high semantic similarity within clusters. This approach proposes a new multimodal instruction fine-tuning dataset quality metric (generalization performance metric) and introduces an algorithm that selects high-quality remote sensing multimodal fine-tuning datasets for faster and more efficient training results.
+
+### Practical VLA Fine-Tuning at Scale
+
+A recent 2026 practitioner guide shows that you don't need an H100 cluster to fine-tune a useful VLA—a single H100 with LoRA (or QLoRA on a smaller budget) plus FlashAttention-2 and gradient checkpointing will fine-tune OpenVLA on a few hundred episodes overnight, while Octo fine-tunes on a consumer 24GB card in an afternoon. The scarce resource is almost never FLOPs—it is clean, well-labeled, well-bucketed demonstration data.
+
+### Recent VLA Methods Addressing Data Quality
+
+Standard robot-only VLA fine-tuning can suffer from catastrophic forgetting due to updating all parameters, which overwrites the backbone's generalized priors and degrades zero-shot capabilities. Supervised fine-tuning's efficacy hinges on data abundance and quality, making reinforcement learning-based post-training a potent approach to address scarcity and variability in robotic datasets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed557f6d-4e0a-48f1-b059-124bd5465857",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "277cdf15-a3e0-4d72-ac46-f5f079480517",
+  "toolUseResult": {
+    "query": "adaptive data selection VLA fine-tuning noise filtering demonstration quality 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BRuQ2C5CFHTUmaMeXtTvqt",
+        "content": [
+          {
+            "title": "Dual-Actor Fine-Tuning of VLA Models: A Talk-and-Tweak Human-in-the-Loop Approach",
+            "url": "https://arxiv.org/html/2509.13774v1"
+          },
+          {
+            "title": "VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA with Generalized and Specialized Experts",
+            "url": "https://arxiv.org/html/2605.06175v1"
+          },
+          {
+            "title": "Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control",
+            "url": "https://arxiv.org/html/2512.11921v1"
+          },
+          {
+            "title": "A Novel Adaptive Fine-Tuning Algorithm for Multimodal Models: Self-Optimizing Classification and Selection of High-Quality Datasets in Remote Sensing | MDPI",
+            "url": "https://www.mdpi.com/2072-4292/17/10/1748"
+          },
+          {
+            "title": "(PDF) Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control",
+            "url": "https://www.researchgate.net/publication/398721162_Towards_Accessible_Physical_AI_LoRA-Based_Fine-Tuning_of_VLA_Models_for_Real-World_Robot_Control"
+          },
+          {
+            "title": "[2512.11921] Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control",
+            "url": "https://arxiv.org/abs/2512.11921"
+          },
+          {
+            "title": "𝜋_\"RL\": Online RL Fine-tuning for Flow-based Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.25889v1"
+          },
+          {
+            "title": "Scaling VLA Model Training on a Budget: Lessons From 100+ Fine-Tunes | Silicon Valley Robotics Center",
+            "url": "https://www.roboticscenter.ai/blog/scaling-vla-training-on-a-budget"
+          },
+          {
+            "title": "VLA-RFT: Vision-Language-Action Reinforcement Fine-Tuning with Verified Rewards in World Simulators | OpenReview",
+            "url": "https://openreview.net/forum?id=Jaut99EHeu"
+          },
+          {
+            "title": "A Survey on Efficient Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.24795v1"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources about VLA (Vision-Language-Action) model fine-tuning. Here are the key findings:\n\n## Recent VLA Fine-Tuning Research (2025-2026)\n\n### Adaptive Data Selection and Quality Improvement\n\nA novel adaptive fine-tuning algorithm uses two stages of data truncation—first projecting vast datasets into semantic vector space using MiniBatchKMeans clustering to ensure high semantic similarity within clusters. This approach proposes a new multimodal instruction fine-tuning dataset quality metric (generalization performance metric) and introduces an algorithm that selects high-quality remote sensing multimodal fine-tuning datasets for faster and more efficient training results.\n\n### Practical VLA Fine-Tuning at Scale\n\nA recent 2026 practitioner guide shows that you don't need an H100 cluster to fine-tune a useful VLA—a single H100 with LoRA (or QLoRA on a smaller budget) plus FlashAttention-2 and gradient checkpointing will fine-tune OpenVLA on a few hundred episodes overnight, while Octo fine-tunes on a consumer 24GB card in an afternoon. The scarce resource is almost never FLOPs—it is clean, well-labeled, well-bucketed demonstration data.\n\n### Recent VLA Methods Addressing Data Quality\n\nStandard robot-only VLA fine-tuning can suffer from catastrophic forgetting due to updating all parameters, which overwrites the backbone's generalized priors and degrades zero-shot capabilities. Supervised fine-tuning's efficacy hinges on data abundance and quality, making reinforcement learning-based post-training a potent approach to address scarcity and variability in robotic datasets."
+    ],
+    "durationSeconds": 13.043820992999986
+  },
+  "sourceToolAssistantUUID": "ed557f6d-4e0a-48f1-b059-124bd5465857",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-13T18:04:32.175Z_
+
+```json
+{
+  "parentUuid": "277cdf15-a3e0-4d72-ac46-f5f079480517",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "90427d86-df75-4f1e-a5a0-d4d1d6cdb327",
+  "timestamp": "2026-05-13T18:04:32.175Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "90427d86-df75-4f1e-a5a0-d4d1d6cdb327",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-13T18:04:35.805Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UkcZXNvAvBw4NDH4Y5swTR`</summary>
+
+```json
+{
+  "query": "SCIZOR self-supervised data curation imitation learning ICRA 2026 arXiv 2505.22626"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90427d86-df75-4f1e-a5a0-d4d1d6cdb327",
+  "isSidechain": false,
+  "requestId": "req_011Cb11XmqbHyqTkYpPU4iZW",
+  "type": "assistant",
+  "uuid": "74c85bdb-f38f-466b-af79-263a784ca78e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dhusr7d5cToZ6eDZtRXWbW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1189,
+      "cache_read_input_tokens": 44461,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1189,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 44461,
+          "cache_creation_input_tokens": 1189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1189
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-13T18:04:43.842Z_
+
+<details><summary>↩ Tool result · `toolu_01UkcZXNvAvBw4NDH4Y5swTR`</summary>
+
+```text
+Web search results for query: "SCIZOR self-supervised data curation imitation learning ICRA 2026 arXiv 2505.22626"
+
+Links: [{"title":"[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/abs/2505.22626"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v1"},{"title":"SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning","url":"https://ut-austin-rpl.github.io/SCIZOR/"},{"title":"SCIZOR: A Self-Supervised Approach to Data Curation for ...","url":"https://openreview.net/pdf?id=Wo8eEdFUDF"},{"title":"(PDF) SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://www.researchgate.net/publication/392167457_SCIZOR_A_Self-Supervised_Approach_to_Data_Curation_for_Large-Scale_Imitation_Learning"},{"title":"GitHub - UT-Austin-RPL/SCIZOR · GitHub","url":"https://github.com/UT-Austin-RPL/SCIZOR"},{"title":"[PDF] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/SCIZOR:-A-Self-Supervised-Approach-to-Data-Curation-Zhang-Xie/1a601961be1a3facbacc68205b9279216e802c5c"},{"title":"Huihan Liu on X: \"Our data curation work SCIZOR is accepted to ICRA 2026! Check out this self-supervised data curation approach that removes suboptimal and duplicated data for large-scale imitation learning, led by @YZ_Franklin @yuqi_xie5\" / X","url":"https://x.com/huihan_liu/status/2017698931493195899"},{"title":"Computer Science May 2025","url":"https://arxiv.org/list/cs/2025-05?skip=11625&show=1000"},{"title":"ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation","url":"https://arxiv.org/html/2510.02298v1"}]
+
+Based on the search results, I found comprehensive information about SCIZOR:
+
+## Summary
+
+SCIZOR is a self-supervised data curation framework that filters out low-quality state-action pairs to improve the performance of imitation learning policies. The paper is published in the IEEE International Conference on Robotics and Automation (ICRA) 2026.
+
+## Key Features
+
+SCIZOR targets two complementary sources of low-quality data: suboptimal data (which hinders learning with undesirable actions) and redundant data (which dilutes training with repetitive patterns). It leverages a self-supervised task progress predictor for suboptimal data to remove samples lacking task progression, and a deduplication module operating on joint state-action representation for samples with redundant patterns.
+
+## Motivation and Problem
+
+Large-scale datasets used for policy training often introduce substantial variability in quality, which can negatively impact performance. Automatically curating datasets by filtering low-quality samples becomes essential. Existing robotic curation approaches rely on costly manual annotations and perform curation at a coarse granularity, such as the dataset or trajectory level, failing to account for the quality of individual state-action pairs.
+
+## Performance
+
+SCIZOR enables imitation learning policies to achieve higher performance with less data, yielding an average improvement of 15.4% across multiple benchmarks.
+
+## Authors
+
+The authors are Yu Zhang, Yuqi Xie, Huihan Liu, Rutav Shah, Michael Wan, Linxi Fan, and Yuke Zhu.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "74c85bdb-f38f-466b-af79-263a784ca78e",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "1ef8fa23-b33a-420b-926d-b1aab5739384",
+  "toolUseResult": {
+    "query": "SCIZOR self-supervised data curation imitation learning ICRA 2026 arXiv 2505.22626",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XdyEaEYstBMW9egYzX9Qrf",
+        "content": [
+          {
+            "title": "[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/abs/2505.22626"
+          },
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v1"
+          },
+          {
+            "title": "SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning",
+            "url": "https://ut-austin-rpl.github.io/SCIZOR/"
+          },
+          {
+            "title": "SCIZOR: A Self-Supervised Approach to Data Curation for ...",
+            "url": "https://openreview.net/pdf?id=Wo8eEdFUDF"
+          },
+          {
+            "title": "(PDF) SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://www.researchgate.net/publication/392167457_SCIZOR_A_Self-Supervised_Approach_to_Data_Curation_for_Large-Scale_Imitation_Learning"
+          },
+          {
+            "title": "GitHub - UT-Austin-RPL/SCIZOR · GitHub",
+            "url": "https://github.com/UT-Austin-RPL/SCIZOR"
+          },
+          {
+            "title": "[PDF] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/SCIZOR:-A-Self-Supervised-Approach-to-Data-Curation-Zhang-Xie/1a601961be1a3facbacc68205b9279216e802c5c"
+          },
+          {
+            "title": "Huihan Liu on X: \"Our data curation work SCIZOR is accepted to ICRA 2026! Check out this self-supervised data curation approach that removes suboptimal and duplicated data for large-scale imitation learning, led by @YZ_Franklin @yuqi_xie5\" / X",
+            "url": "https://x.com/huihan_liu/status/2017698931493195899"
+          },
+          {
+            "title": "Computer Science May 2025",
+            "url": "https://arxiv.org/list/cs/2025-05?skip=11625&show=1000"
+          },
+          {
+            "title": "ARMADA: Autonomous Online Failure Detection and Human Shared Control Empower Scalable Real-world Deployment and Adaptation",
+            "url": "https://arxiv.org/html/2510.02298v1"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about SCIZOR:\n\n## Summary\n\nSCIZOR is a self-supervised data curation framework that filters out low-quality state-action pairs to improve the performance of imitation learning policies. The paper is published in the IEEE International Conference on Robotics and Automation (ICRA) 2026.\n\n## Key Features\n\nSCIZOR targets two complementary sources of low-quality data: suboptimal data (which hinders learning with undesirable actions) and redundant data (which dilutes training with repetitive patterns). It leverages a self-supervised task progress predictor for suboptimal data to remove samples lacking task progression, and a deduplication module operating on joint state-action representation for samples with redundant patterns.\n\n## Motivation and Problem\n\nLarge-scale datasets used for policy training often introduce substantial variability in quality, which can negatively impact performance. Automatically curating datasets by filtering low-quality samples becomes essential. Existing robotic curation approaches rely on costly manual annotations and perform curation at a coarse granularity, such as the dataset or trajectory level, failing to account for the quality of individual state-action pairs.\n\n## Performance\n\nSCIZOR enables imitation learning policies to achieve higher performance with less data, yielding an average improvement of 15.4% across multiple benchmarks.\n\n## Authors\n\nThe authors are Yu Zhang, Yuqi Xie, Huihan Liu, Rutav Shah, Michael Wan, Linxi Fan, and Yuke Zhu."
+    ],
+    "durationSeconds": 8.032789516999998
+  },
+  "sourceToolAssistantUUID": "74c85bdb-f38f-466b-af79-263a784ca78e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-13T18:04:47.512Z_
+
+Good, SCIZOR is confirmed at ICRA 2026. Now let me search for the most critical competing works and verify Pan et al.'s theorem in detail.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ef8fa23-b33a-420b-926d-b1aab5739384",
+  "isSidechain": false,
+  "requestId": "req_011Cb11YdixpPS4pFCY8UpfX",
+  "type": "assistant",
+  "uuid": "30574857-d1df-4a6a-ab98-cd0fb331250d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNdVAMNnTsPJs527fGuHHU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1106,
+      "cache_read_input_tokens": 45650,
+      "output_tokens": 113,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1106,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 113,
+          "cache_read_input_tokens": 45650,
+          "cache_creation_input_tokens": 1106,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1106
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-13T18:04:48.471Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XrhwWA6YNicuUm66eRgXRN`</summary>
+
+```json
+{
+  "query": "intra-chunk loss weighting action prediction VLA per-position temporal 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30574857-d1df-4a6a-ab98-cd0fb331250d",
+  "isSidechain": false,
+  "requestId": "req_011Cb11YdixpPS4pFCY8UpfX",
+  "type": "assistant",
+  "uuid": "a375d81b-3778-47ad-aba3-d723708df8ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNdVAMNnTsPJs527fGuHHU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1106,
+      "cache_read_input_tokens": 45650,
+      "output_tokens": 113,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1106,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 113,
+          "cache_read_input_tokens": 45650,
+          "cache_creation_input_tokens": 1106,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1106
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-13T18:04:58.523Z_
+
+<details><summary>↩ Tool result · `toolu_01XrhwWA6YNicuUm66eRgXRN`</summary>
+
+```text
+Web search results for query: "intra-chunk loss weighting action prediction VLA per-position temporal 2025 2026 arxiv"
+
+Links: [{"title":"VLA Knows Its Limits","url":"https://arxiv.org/html/2602.21445v1"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/html/2509.23224v1"},{"title":"[2509.23224] Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/abs/2509.23224"},{"title":"FPC-VLA: A Vision-Language-Action Framework with a Supervisor for Failure Prediction and Correction","url":"https://arxiv.org/html/2509.04018"},{"title":"VLA-RAIL: A Real-Time Asynchronous Inference Linker for VLA Models and Robots","url":"https://arxiv.org/html/2512.24673"},{"title":"SilentDrift: Exploiting Action Chunking for Stealthy Backdoor Attacks on Vision-Language-Action Models","url":"https://arxiv.org/html/2601.14323"},{"title":"ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.25766"},{"title":"Reshaping Action Error Distributions for Reliable Vision-Language-Action Models","url":"https://arxiv.org/html/2602.04228"},{"title":"DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation","url":"https://arxiv.org/html/2603.00926"},{"title":"VQ-VLA: Improving Vision-Language-Action Models via Scaling Vector-Quantized Action Tokenizers","url":"https://arxiv.org/html/2507.01016v1"}]
+
+I found several relevant papers on arxiv related to VLA (Vision-Language-Action) models with action chunking and temporal aspects. Here are the key results:
+
+1. **"VLA Knows Its Limits"** (arxiv 2602.21445, February 24, 2026): This paper concludes that intra-chunk actions exhibit limited adaptability and attend strongly to radial action sinks, and proposes to interpret the action self-attention weights as implicit indicators of the model's predictive limit.
+
+2. **"Leave No Observation Behind: Real-time Correction for VLA Action Chunks"** (arxiv 2509.23224, September 27, 2025): This work addresses how action chunking in VLA models harms reactivity under inference delay and long horizons.
+
+3. **"FPC-VLA: A Vision-Language-Action Framework with a Supervisor for Failure Prediction and Correction"** (arxiv 2509.04018, December 3, 2025): This framework proposes a dual-stream action fusion module that aggregates a history of past action predictions, intelligently weighting them based on their cosine similarity to the current prediction and applying a temporal decay to prioritize recent inputs.
+
+4. **"VLA-RAIL: A Real-Time Asynchronous Inference Linker for VLA Models and Robots"** (arxiv 2512.24673, December 30, 2025): This paper presents a two-stage action chunk post-processing strategy consisting of intra-chunk smoothing and inter-chunk fusion, which eliminates motion jitter arising from prediction noise and asynchronous temporal misalignment.
+
+5. **"DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation"** (arxiv 2603.00926, March 1, 2026): This framework introduces a dual-scale action weighting mechanism (i.e., trajectory-level and action-chunk-level) that enables dynamic coordination between different action models.
+
+These papers collectively address various aspects of loss weighting, per-position temporal dynamics, and action prediction in VLA systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a375d81b-3778-47ad-aba3-d723708df8ef",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "f398ba98-51c7-4677-8d4d-8f95c48a53d4",
+  "toolUseResult": {
+    "query": "intra-chunk loss weighting action prediction VLA per-position temporal 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DBJGA5ed8KvMg8umAZu6TX",
+        "content": [
+          {
+            "title": "VLA Knows Its Limits",
+            "url": "https://arxiv.org/html/2602.21445v1"
+          },
+          {
+            "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks",
+            "url": "https://arxiv.org/html/2509.23224v1"
+          },
+          {
+            "title": "[2509.23224] Leave No Observation Behind: Real-time Correction for VLA Action Chunks",
+            "url": "https://arxiv.org/abs/2509.23224"
+          },
+          {
+            "title": "FPC-VLA: A Vision-Language-Action Framework with a Supervisor for Failure Prediction and Correction",
+            "url": "https://arxiv.org/html/2509.04018"
+          },
+          {
+            "title": "VLA-RAIL: A Real-Time Asynchronous Inference Linker for VLA Models and Robots",
+            "url": "https://arxiv.org/html/2512.24673"
+          },
+          {
+            "title": "SilentDrift: Exploiting Action Chunking for Stealthy Backdoor Attacks on Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2601.14323"
+          },
+          {
+            "title": "ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.25766"
+          },
+          {
+            "title": "Reshaping Action Error Distributions for Reliable Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2602.04228"
+          },
+          {
+            "title": "DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation",
+            "url": "https://arxiv.org/html/2603.00926"
+          },
+          {
+            "title": "VQ-VLA: Improving Vision-Language-Action Models via Scaling Vector-Quantized Action Tokenizers",
+            "url": "https://arxiv.org/html/2507.01016v1"
+          }
+        ]
+      },
+      "I found several relevant papers on arxiv related to VLA (Vision-Language-Action) models with action chunking and temporal aspects. Here are the key results:\n\n1. **\"VLA Knows Its Limits\"** (arxiv 2602.21445, February 24, 2026): This paper concludes that intra-chunk actions exhibit limited adaptability and attend strongly to radial action sinks, and proposes to interpret the action self-attention weights as implicit indicators of the model's predictive limit.\n\n2. **\"Leave No Observation Behind: Real-time Correction for VLA Action Chunks\"** (arxiv 2509.23224, September 27, 2025): This work addresses how action chunking in VLA models harms reactivity under inference delay and long horizons.\n\n3. **\"FPC-VLA: A Vision-Language-Action Framework with a Supervisor for Failure Prediction and Correction\"** (arxiv 2509.04018, December 3, 2025): This framework proposes a dual-stream action fusion module that aggregates a history of past action predictions, intelligently weighting them based on their cosine similarity to the current prediction and applying a temporal decay to prioritize recent inputs.\n\n4. **\"VLA-RAIL: A Real-Time Asynchronous Inference Linker for VLA Models and Robots\"** (arxiv 2512.24673, December 30, 2025): This paper presents a two-stage action chunk post-processing strategy consisting of intra-chunk smoothing and inter-chunk fusion, which eliminates motion jitter arising from prediction noise and asynchronous temporal misalignment.\n\n5. **\"DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation\"** (arxiv 2603.00926, March 1, 2026): This framework introduces a dual-scale action weighting mechanism (i.e., trajectory-level and action-chunk-level) that enables dynamic coordination between different action models.\n\nThese papers collectively address various aspects of loss weighting, per-position temporal dynamics, and action prediction in VLA systems."
+    ],
+    "durationSeconds": 10.046889947000004
+  },
+  "sourceToolAssistantUUID": "a375d81b-3778-47ad-aba3-d723708df8ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-13T18:05:00.881Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018DPWM8qPfSMMkurz61iMbR`</summary>
+
+```json
+{
+  "query": "\"Reshaping Action Error Distributions\" VLA 2026 arXiv per-position loss"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f398ba98-51c7-4677-8d4d-8f95c48a53d4",
+  "isSidechain": false,
+  "requestId": "req_011Cb11ZiWE4DVy1taaWuCQ8",
+  "type": "assistant",
+  "uuid": "eba0849c-f3e6-4617-a26a-d340731a3237",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DkAMEzLR3UPJXWnoZSUGvg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1107,
+      "cache_read_input_tokens": 46756,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1107,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 46756,
+          "cache_creation_input_tokens": 1107,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1107
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-13T18:05:08.643Z_
+
+<details><summary>↩ Tool result · `toolu_018DPWM8qPfSMMkurz61iMbR`</summary>
+
+```text
+Web search results for query: ""Reshaping Action Error Distributions" VLA 2026 arXiv per-position loss"
+
+Links: [{"title":"Reshaping Action Error Distributions for Reliable Vision-Language-Action Models","url":"https://arxiv.org/html/2602.04228"},{"title":"[2602.04228] Reshaping Action Error Distributions for Reliable Vision-Language-Action Models","url":"https://arxiv.org/abs/2602.04228"},{"title":"ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models","url":"https://arxiv.org/html/2601.11404v2"},{"title":"GitHub - Ed1sonChen/DailyArxiv · GitHub","url":"https://github.com/Ed1sonChen/DailyArxiv"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/html/2505.19789v4"},{"title":"VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models","url":"https://arxiv.org/html/2604.03956v2"},{"title":"GigaBrain-0.5M*: a VLA That Learns From World Model-Based Reinforcement Learning","url":"https://arxiv.org/html/2602.12099v1"},{"title":"[2603.09086] Latent World Models for Automated Driving: A Unified Taxonomy, Evaluation Framework, and Open Challenges","url":"https://arxiv.org/abs/2603.09086"},{"title":"From Pixels to Tokens: A Systematic Study of Latent Action Supervision for Vision-Language-Action Models","url":"https://arxiv.org/html/2605.04678v1"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"}]
+
+I found the paper you're looking for! Here's the information about "Reshaping Action Error Distributions for Reliable Vision-Language-Action Models":
+
+## Summary
+
+The paper addresses vision-language-action (VLA) models for robotic manipulation and proposes introducing Minimum Error Entropy (MEE) into modern VLA architectures with a trajectory-level MEE objective and two weighted variants, combined with MSE for continuous-action VLA training.
+
+## Key Contributions
+
+Most existing VLA frameworks rely on standard supervised objectives like mean squared error (MSE) for continuous action regression, which impose strong pointwise constraints on individual predictions. The paper moves beyond conventional MSE-based regression by reshaping action error distributions during training.
+
+By reshaping action error distributions beyond pointwise regression, T-MEE (trajectory-level MEE) promotes compact and structured errors without assuming a predefined parametric form.
+
+## Results
+
+For small-scale models including BC-RNN and BC-Transformer, T-MEE yields substantial gains, improving the average success rate by up to +13.3% for BC-RNN and +10.9% for BC-Transformer. For large-scale VLA models, the improvements are more moderate but remain consistent, typically ranging from +0.5 to +2.4%.
+
+The approaches were evaluated across standard, few-shot, and noisy settings on multiple representative VLA architectures using simulation benchmarks such as LIBERO and SimplerEnv as well as real-world robotic manipulation tasks, with experimental results demonstrating consistent improvements in success rates and robustness across these settings while incurring negligible additional training cost.
+
+The paper was published on arXiv on February 4, 2026 (arXiv:2602.04228).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eba0849c-f3e6-4617-a26a-d340731a3237",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "59f568b4-4add-4297-abaa-34e632e5b5d0",
+  "toolUseResult": {
+    "query": "\"Reshaping Action Error Distributions\" VLA 2026 arXiv per-position loss",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TwExngmEzFA1MjrmZACHkb",
+        "content": [
+          {
+            "title": "Reshaping Action Error Distributions for Reliable Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2602.04228"
+          },
+          {
+            "title": "[2602.04228] Reshaping Action Error Distributions for Reliable Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2602.04228"
+          },
+          {
+            "title": "ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2601.11404v2"
+          },
+          {
+            "title": "GitHub - Ed1sonChen/DailyArxiv · GitHub",
+            "url": "https://github.com/Ed1sonChen/DailyArxiv"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/html/2505.19789v4"
+          },
+          {
+            "title": "VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models",
+            "url": "https://arxiv.org/html/2604.03956v2"
+          },
+          {
+            "title": "GigaBrain-0.5M*: a VLA That Learns From World Model-Based Reinforcement Learning",
+            "url": "https://arxiv.org/html/2602.12099v1"
+          },
+          {
+            "title": "[2603.09086] Latent World Models for Automated Driving: A Unified Taxonomy, Evaluation Framework, and Open Challenges",
+            "url": "https://arxiv.org/abs/2603.09086"
+          },
+          {
+            "title": "From Pixels to Tokens: A Systematic Study of Latent Action Supervision for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2605.04678v1"
+          },
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/openvla/openvla"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's the information about \"Reshaping Action Error Distributions for Reliable Vision-Language-Action Models\":\n\n## Summary\n\nThe paper addresses vision-language-action (VLA) models for robotic manipulation and proposes introducing Minimum Error Entropy (MEE) into modern VLA architectures with a trajectory-level MEE objective and two weighted variants, combined with MSE for continuous-action VLA training.\n\n## Key Contributions\n\nMost existing VLA frameworks rely on standard supervised objectives like mean squared error (MSE) for continuous action regression, which impose strong pointwise constraints on individual predictions. The paper moves beyond conventional MSE-based regression by reshaping action error distributions during training.\n\nBy reshaping action error distributions beyond pointwise regression, T-MEE (trajectory-level MEE) promotes compact and structured errors without assuming a predefined parametric form.\n\n## Results\n\nFor small-scale models including BC-RNN and BC-Transformer, T-MEE yields substantial gains, improving the average success rate by up to +13.3% for BC-RNN and +10.9% for BC-Transformer. For large-scale VLA models, the improvements are more moderate but remain consistent, typically ranging from +0.5 to +2.4%.\n\nThe approaches were evaluated across standard, few-shot, and noisy settings on multiple representative VLA architectures using simulation benchmarks such as LIBERO and SimplerEnv as well as real-world robotic manipulation tasks, with experimental results demonstrating consistent improvements in success rates and robustness across these settings while incurring negligible additional training cost.\n\nThe paper was published on arXiv on February 4, 2026 (arXiv:2602.04228)."
+    ],
+    "durationSeconds": 7.757490298999997
+  },
+  "sourceToolAssistantUUID": "eba0849c-f3e6-4617-a26a-d340731a3237",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-13T18:05:11.563Z_
+
+This is interesting — "Reshaping Action Error Distributions" is a relevant competing work. Let me now do deeper verification on the most critical aspects.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59f568b4-4add-4297-abaa-34e632e5b5d0",
+  "isSidechain": false,
+  "requestId": "req_011Cb11aTjkLC9ZHpphtYCMX",
+  "type": "assistant",
+  "uuid": "cb9d5c43-5d61-47f5-bf1e-369264984127",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWCobmZLS3KEHneSba12od",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 47863,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 47863,
+          "cache_creation_input_tokens": 978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-13T18:05:14.378Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SMHC8Fu7x42HzWBs46kpQY`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2007.09569",
+  "prompt": "Extract the exact statement of Theorem 1 (or the main equivalence result) about prioritized experience replay being equivalent to cubic power loss in supervised regression. What exactly are the conditions/assumptions? Does the theorem require the priority to be a monotonic function of scalar prediction error? What are the two main limitations they identify?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb9d5c43-5d61-47f5-bf1e-369264984127",
+  "isSidechain": false,
+  "requestId": "req_011Cb11aTjkLC9ZHpphtYCMX",
+  "type": "assistant",
+  "uuid": "872118ca-2164-47f0-87e8-ad97cddb7fde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWCobmZLS3KEHneSba12od",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 47863,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 47863,
+          "cache_creation_input_tokens": 978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-13T18:05:17.482Z_
+
+<details><summary>↩ Tool result · `toolu_01SMHC8Fu7x42HzWBs46kpQY`</summary>
+
+```text
+Based on the provided webpage content, I cannot extract the exact statement of Theorem 1 or its specific conditions, as the abstract does not include the formal theorem statement.
+
+However, the abstract does convey the key equivalence result: "error-based prioritized sampling method for mean squared error" is equivalent to "uniform sampling for cubic power loss" in a supervised learning setting.
+
+The two main limitations of prioritized experience replay that the authors identify are:
+
+1. **Outdated priorities** - priorities become stale as the model updates during learning
+2. **Insufficient coverage of the sample space** - the method fails to adequately represent the entire distribution of experiences
+
+To access the complete formal statement of Theorem 1 with exact conditions and assumptions (including whether monotonicity of priority functions is required), you would need to consult the full PDF paper, which is available through the arXiv link provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "872118ca-2164-47f0-87e8-ad97cddb7fde",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "816aa1ad-cc8d-465c-9ea0-cf0bf316e846",
+  "toolUseResult": {
+    "bytes": 47836,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the provided webpage content, I cannot extract the exact statement of Theorem 1 or its specific conditions, as the abstract does not include the formal theorem statement.\n\nHowever, the abstract does convey the key equivalence result: \"error-based prioritized sampling method for mean squared error\" is equivalent to \"uniform sampling for cubic power loss\" in a supervised learning setting.\n\nThe two main limitations of prioritized experience replay that the authors identify are:\n\n1. **Outdated priorities** - priorities become stale as the model updates during learning\n2. **Insufficient coverage of the sample space** - the method fails to adequately represent the entire distribution of experiences\n\nTo access the complete formal statement of Theorem 1 with exact conditions and assumptions (including whether monotonicity of priority functions is required), you would need to consult the full PDF paper, which is available through the arXiv link provided.",
+    "durationMs": 3099,
+    "url": "https://arxiv.org/abs/2007.09569"
+  },
+  "sourceToolAssistantUUID": "872118ca-2164-47f0-87e8-ad97cddb7fde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "816aa1ad-cc8d-465c-9ea0-cf0bf316e846",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-13T18:05:22.272Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019zutFAqT7kEShHMqqcMpfE`</summary>
+
+```json
+{
+  "url": "https://proceedings.mlr.press/v180/pan22a/pan22a.pdf",
+  "prompt": "Find and extract the exact statement of Theorem 1 (the equivalence between prioritized experience replay and cubic power loss in supervised regression). What are the precise conditions? Does it assume priority is proportional to |prediction error|? Is the priority required to be a monotonic function of the scalar error? Also extract any discussion of when this equivalence breaks down."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "816aa1ad-cc8d-465c-9ea0-cf0bf316e846",
+  "isSidechain": false,
+  "requestId": "req_011Cb11b7c4KUouyeKffZEDW",
+  "type": "assistant",
+  "uuid": "fa424291-9024-4228-83e8-90b774d1af10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M9zR582aVUcNHRmtK5ZXVZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 384,
+      "cache_read_input_tokens": 48841,
+      "output_tokens": 163,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 384,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 163,
+          "cache_read_input_tokens": 48841,
+          "cache_creation_input_tokens": 384,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 384
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-13T18:05:26.423Z_
+
+<details><summary>↩ Tool result · `toolu_019zutFAqT7kEShHMqqcMpfE`</summary>
+
+```text
+I've reviewed the provided PDF content, but it appears to be a heavily compressed/encoded document with embedded font data and stream objects rather than readable text. The content does not display Theorem 1 or its conditions in a format I can extract clearly.
+
+To properly answer your question about:
+- The precise equivalence statement between prioritized experience replay and cubic power loss
+- Whether priority must be proportional to |prediction error|
+- Monotonicity requirements
+- Conditions where equivalence breaks down
+
+I would need access to a readable version of this document. The material provided consists primarily of PDF structural metadata and compressed streams rather than extractable text content.
+
+Could you provide either:
+1. A text-based version of the document, or
+2. A clearer image/PDF of the specific page containing Theorem 1?
+
+This would allow me to accurately extract the exact statement and conditions you're seeking.
+
+[Binary content (application/pdf, 753.7KB) also saved to /home/ubuntu/.claude-account-2/projects/-/ce540991-92c8-4cd4-b2b7-3c86dfc7bf03/tool-results/webfetch-1778695522679-k7awdf.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa424291-9024-4228-83e8-90b774d1af10",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "cb0b56d3-8979-4ac4-96d8-460c2e4a610f",
+  "toolUseResult": {
+    "bytes": 771835,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I've reviewed the provided PDF content, but it appears to be a heavily compressed/encoded document with embedded font data and stream objects rather than readable text. The content does not display Theorem 1 or its conditions in a format I can extract clearly.\n\nTo properly answer your question about:\n- The precise equivalence statement between prioritized experience replay and cubic power loss\n- Whether priority must be proportional to |prediction error|\n- Monotonicity requirements\n- Conditions where equivalence breaks down\n\nI would need access to a readable version of this document. The material provided consists primarily of PDF structural metadata and compressed streams rather than extractable text content.\n\nCould you provide either:\n1. A text-based version of the document, or\n2. A clearer image/PDF of the specific page containing Theorem 1?\n\nThis would allow me to accurately extract the exact statement and conditions you're seeking.\n\n[Binary content (application/pdf, 753.7KB) also saved to /home/ubuntu/.claude-account-2/projects/-/ce540991-92c8-4cd4-b2b7-3c86dfc7bf03/tool-results/webfetch-1778695522679-k7awdf.pdf]",
+    "durationMs": 4148,
+    "url": "https://proceedings.mlr.press/v180/pan22a/pan22a.pdf"
+  },
+  "sourceToolAssistantUUID": "fa424291-9024-4228-83e8-90b774d1af10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-13T18:05:29.734Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WMnLdEtxXWiEtwihuiU72P`</summary>
+
+```json
+{
+  "query": "Pan et al UAI 2022 Theorem 1 \"cubic power loss\" \"prioritized sampling\" proof conditions monotonic error"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb0b56d3-8979-4ac4-96d8-460c2e4a610f",
+  "isSidechain": false,
+  "requestId": "req_011Cb11bo6McgG75JA8tijCp",
+  "type": "assistant",
+  "uuid": "5221faed-c150-4b48-a77f-b60d903f1c30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UGZrdtqYLR4L4z4CZfejkm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 446,
+      "cache_read_input_tokens": 49225,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 49225,
+          "cache_creation_input_tokens": 446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-13T18:05:34.976Z_
+
+<details><summary>↩ Tool result · `toolu_01WMnLdEtxXWiEtwihuiU72P`</summary>
+
+```text
+Web search results for query: "Pan et al UAI 2022 Theorem 1 "cubic power loss" "prioritized sampling" proof conditions monotonic error"
+
+Links: [{"title":"[2007.09569] Understanding and Mitigating the Limitations of Prioritized Experience Replay","url":"https://ar5iv.labs.arxiv.org/html/2007.09569"},{"title":"Understanding and Mitigating the Limitations of Prioritized Experience Replay","url":"https://proceedings.mlr.press/v180/pan22a/pan22a.pdf"},{"title":"An Equivalence between Loss Functions and Non-Uniform ...","url":"https://papers.neurips.cc/paper_files/paper/2020/file/a3bf6e4db673b6449c2f7d13ee6ec9c0-Paper.pdf"},{"title":"MAC-PO: Multi-Agent Experience Replay via Collective Priority Optimization","url":"https://www2.seas.gwu.edu/~tlan/papers/ReMER_AAMAS_2023.pdf"},{"title":"1 Introduction","url":"https://arxiv.org/html/2306.09020"},{"title":"Prioritized Training on Points that are Learnable,","url":"https://icml.cc/media/icml-2022/Slides/18419.pdf"},{"title":"SPTK: Sampling and The Sampling Theorem – Cyclostationary Signal Processing","url":"https://cyclostationary.blog/2022/02/20/sptk-sampling-and-the-sampling-theorem/"},{"title":"[Solved] The minimum sampling rate allowed by the sampling theorem is","url":"https://testbook.com/question-answer/the-minimum-sampling-rate-allowed-by-the-sampling--60ebe4cf992534e1c55b3162"},{"title":"A novel importance sampling method of power system reliability assessment considering multi-state units and correlation between wind speed and load - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0142061518320520"},{"title":"[2208.10483] Prioritizing Samples in Reinforcement Learning with Reducible Loss","url":"https://arxiv.org/abs/2208.10483"}]
+
+Based on the search results, I found relevant information about the Pan et al. UAI 2022 paper. The paper "Understanding and Mitigating the Limitations of Prioritized Experience Replay" was published in the Proceedings of the 38th Conference on Uncertainty in Artificial Intelligence (UAI 2022).
+
+Regarding Theorem 1: The theorem establishes the equivalence between the error-based prioritized sampling method for mean squared error and uniform sampling for cubic power loss. The theorem provides an intuitive reason for why prioritized sampling can help improve sample efficiency: the gradient direction of the cubic function is sharper than that of the square function when the error is relatively large.
+
+However, the detailed proof conditions and specific discussion of "monotonic error" are not fully visible in the search results. The papers indicate that the full proof of Theorem 1 is in Appendix A.3, but those specific proof conditions and technical details about monotonic error aren't shown in the publicly available excerpts retrieved.
+
+For more detailed information about the specific proof conditions and the monotonic error analysis in Theorem 1, you would need to consult the full paper directly through the UAI 2022 proceedings or the ArXiv version.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5221faed-c150-4b48-a77f-b60d903f1c30",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "cd484eab-aa49-4843-b4f6-9dc87047c912",
+  "toolUseResult": {
+    "query": "Pan et al UAI 2022 Theorem 1 \"cubic power loss\" \"prioritized sampling\" proof conditions monotonic error",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E3yWaiTKtoZyVW9MFwPmux",
+        "content": [
+          {
+            "title": "[2007.09569] Understanding and Mitigating the Limitations of Prioritized Experience Replay",
+            "url": "https://ar5iv.labs.arxiv.org/html/2007.09569"
+          },
+          {
+            "title": "Understanding and Mitigating the Limitations of Prioritized Experience Replay",
+            "url": "https://proceedings.mlr.press/v180/pan22a/pan22a.pdf"
+          },
+          {
+            "title": "An Equivalence between Loss Functions and Non-Uniform ...",
+            "url": "https://papers.neurips.cc/paper_files/paper/2020/file/a3bf6e4db673b6449c2f7d13ee6ec9c0-Paper.pdf"
+          },
+          {
+            "title": "MAC-PO: Multi-Agent Experience Replay via Collective Priority Optimization",
+            "url": "https://www2.seas.gwu.edu/~tlan/papers/ReMER_AAMAS_2023.pdf"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2306.09020"
+          },
+          {
+            "title": "Prioritized Training on Points that are Learnable,",
+            "url": "https://icml.cc/media/icml-2022/Slides/18419.pdf"
+          },
+          {
+            "title": "SPTK: Sampling and The Sampling Theorem – Cyclostationary Signal Processing",
+            "url": "https://cyclostationary.blog/2022/02/20/sptk-sampling-and-the-sampling-theorem/"
+          },
+          {
+            "title": "[Solved] The minimum sampling rate allowed by the sampling theorem is",
+            "url": "https://testbook.com/question-answer/the-minimum-sampling-rate-allowed-by-the-sampling--60ebe4cf992534e1c55b3162"
+          },
+          {
+            "title": "A novel importance sampling method of power system reliability assessment considering multi-state units and correlation between wind speed and load - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0142061518320520"
+          },
+          {
+            "title": "[2208.10483] Prioritizing Samples in Reinforcement Learning with Reducible Loss",
+            "url": "https://arxiv.org/abs/2208.10483"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the Pan et al. UAI 2022 paper. The paper \"Understanding and Mitigating the Limitations of Prioritized Experience Replay\" was published in the Proceedings of the 38th Conference on Uncertainty in Artificial Intelligence (UAI 2022).\n\nRegarding Theorem 1: The theorem establishes the equivalence between the error-based prioritized sampling method for mean squared error and uniform sampling for cubic power loss. The theorem provides an intuitive reason for why prioritized sampling can help improve sample efficiency: the gradient direction of the cubic function is sharper than that of the square function when the error is relatively large.\n\nHowever, the detailed proof conditions and specific discussion of \"monotonic error\" are not fully visible in the search results. The papers indicate that the full proof of Theorem 1 is in Appendix A.3, but those specific proof conditions and technical details about monotonic error aren't shown in the publicly available excerpts retrieved.\n\nFor more detailed information about the specific proof conditions and the monotonic error analysis in Theorem 1, you would need to consult the full paper directly through the UAI 2022 proceedings or the ArXiv version."
+    ],
+    "durationSeconds": 5.238599466000014
+  },
+  "sourceToolAssistantUUID": "5221faed-c150-4b48-a77f-b60d903f1c30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-13T18:05:47.322Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HDj76h4Z5kA7XSyNkDRVBP`</summary>
+
+```json
+{
+  "url": "https://ar5iv.labs.arxiv.org/html/2007.09569",
+  "prompt": "Find Theorem 1 (the equivalence between PER and cubic power loss). Extract: (1) the exact theorem statement, (2) the conditions/assumptions (does it require priority proportional to |error|?), (3) whether the priority must be a monotonic function of scalar error magnitude, (4) any discussion of when this equivalence breaks or doesn't apply. Also look for any mention of multi-component or structured priorities that might escape the equivalence."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd484eab-aa49-4843-b4f6-9dc87047c912",
+  "isSidechain": false,
+  "requestId": "req_011Cb11cQLAbFeK6ySmDkR6V",
+  "type": "assistant",
+  "uuid": "4d6a09a0-8941-4dd5-b1af-7b70c56f18bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RvymzN5kqVVmUHTizPWHop",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 926,
+      "cache_read_input_tokens": 49671,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 926,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 49671,
+          "cache_creation_input_tokens": 926,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 926
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-13T18:05:55.175Z_
+
+<details><summary>↩ Tool result · `toolu_01HDj76h4Z5kA7XSyNkDRVBP`</summary>
+
+```text
+# Analysis of Theorem 1: PER and Cubic Power Loss Equivalence
+
+## Theorem Statement
+
+Theorem 1 establishes that for a constant c determined by θ and 𝒯:
+
+"c𝔼_(x,y)~q(x,y;θ)[∇_θ(1/2)(f_θ(x)−y)²] = 𝔼_(x,y)~uniform(𝒯)[∇_θ(1/3)|f_θ(x)−y|³]"
+
+## Conditions and Assumptions
+
+**Priority Definition Required:**
+The theorem explicitly assumes error-based prioritized sampling where "p(x,y;θ)∝|f_θ(x)−y|" following equation (1). This is the only priority scheme examined.
+
+**Key Constraint:**
+The priorities must be updated using current parameters θ at each step. The paper later emphasizes this limitation, noting that in practice priorities become outdated.
+
+**Supervised Learning Setting:**
+The theorem applies specifically to l₂ regression with a fixed training set 𝒯, not directly to RL where the target distribution changes.
+
+## Monotonicity Requirement
+
+The equivalence implicitly requires that priority is monotonic in absolute error magnitude. The cubic objective's gradient is "sharper than that of the square function when the error is relatively large," supporting error-magnitude-based prioritization.
+
+## Scope Limitations
+
+The paper explicitly identifies where equivalence breaks:
+
+1. **Outdated priorities:** If only sampled experience priorities update (not all), the equivalence degrades
+2. **Limited coverage:** When training set incompletely represents the sample space, prioritized sampling becomes inaccurate
+3. **Non-error priorities:** The theorem doesn't address alternative prioritization schemes (reward-based, distribution-based)
+
+The authors note: "our theorem still explains the improvement of sample efficiency during the early learning stage" but acknowledge structured or dynamic priorities weren't examined.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d6a09a0-8941-4dd5-b1af-7b70c56f18bd",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "05381947-3c29-4110-a48b-2db1a0e2e509",
+  "toolUseResult": {
+    "bytes": 2115950,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Theorem 1: PER and Cubic Power Loss Equivalence\n\n## Theorem Statement\n\nTheorem 1 establishes that for a constant c determined by θ and 𝒯:\n\n\"c𝔼_(x,y)~q(x,y;θ)[∇_θ(1/2)(f_θ(x)−y)²] = 𝔼_(x,y)~uniform(𝒯)[∇_θ(1/3)|f_θ(x)−y|³]\"\n\n## Conditions and Assumptions\n\n**Priority Definition Required:**\nThe theorem explicitly assumes error-based prioritized sampling where \"p(x,y;θ)∝|f_θ(x)−y|\" following equation (1). This is the only priority scheme examined.\n\n**Key Constraint:**\nThe priorities must be updated using current parameters θ at each step. The paper later emphasizes this limitation, noting that in practice priorities become outdated.\n\n**Supervised Learning Setting:**\nThe theorem applies specifically to l₂ regression with a fixed training set 𝒯, not directly to RL where the target distribution changes.\n\n## Monotonicity Requirement\n\nThe equivalence implicitly requires that priority is monotonic in absolute error magnitude. The cubic objective's gradient is \"sharper than that of the square function when the error is relatively large,\" supporting error-magnitude-based prioritization.\n\n## Scope Limitations\n\nThe paper explicitly identifies where equivalence breaks:\n\n1. **Outdated priorities:** If only sampled experience priorities update (not all), the equivalence degrades\n2. **Limited coverage:** When training set incompletely represents the sample space, prioritized sampling becomes inaccurate\n3. **Non-error priorities:** The theorem doesn't address alternative prioritization schemes (reward-based, distribution-based)\n\nThe authors note: \"our theorem still explains the improvement of sample efficiency during the early learning stage\" but acknowledge structured or dynamic priorities weren't examined.",
+    "durationMs": 7846,
+    "url": "https://ar5iv.labs.arxiv.org/html/2007.09569"
+  },
+  "sourceToolAssistantUUID": "4d6a09a0-8941-4dd5-b1af-7b70c56f18bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-13T18:05:58.780Z_
+
+Excellent — this confirms that Pan's theorem specifically assumes `p(x,y;θ) ∝ |f_θ(x)−y|` (proportional to absolute scalar error). Now let me verify the CDAP claim about breaking this equivalence, and search for more competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05381947-3c29-4110-a48b-2db1a0e2e509",
+  "isSidechain": false,
+  "requestId": "req_011Cb11dtoD1B2hPpAqPp5z7",
+  "type": "assistant",
+  "uuid": "d94994a2-3c6d-436f-a7ae-67afe175b08b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q1kgSLoSFgi7FuRN2CfzBH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 651,
+      "cache_read_input_tokens": 50597,
+      "output_tokens": 150,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 651,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 150,
+          "cache_read_input_tokens": 50597,
+          "cache_creation_input_tokens": 651,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 651
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-13T18:06:00.183Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GVGxUHTtNqyWGDVDo7pPwJ`</summary>
+
+```json
+{
+  "query": "\"token cleaning\" ICML 2025 token-level data selection SFT noisy label arXiv 2502.01968"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d94994a2-3c6d-436f-a7ae-67afe175b08b",
+  "isSidechain": false,
+  "requestId": "req_011Cb11dtoD1B2hPpAqPp5z7",
+  "type": "assistant",
+  "uuid": "da688a32-6083-40a3-a797-168808ff3ca1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q1kgSLoSFgi7FuRN2CfzBH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 651,
+      "cache_read_input_tokens": 50597,
+      "output_tokens": 150,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 651,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 150,
+          "cache_read_input_tokens": 50597,
+          "cache_creation_input_tokens": 651,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 651
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-13T18:06:08.260Z_
+
+<details><summary>↩ Tool result · `toolu_01GVGxUHTtNqyWGDVDo7pPwJ`</summary>
+
+```text
+Web search results for query: ""token cleaning" ICML 2025 token-level data selection SFT noisy label arXiv 2502.01968"
+
+Links: [{"title":"[2502.01968] Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning","url":"https://arxiv.org/abs/2502.01968"},{"title":"Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning","url":"https://arxiv.org/html/2502.01968"},{"title":"arXiv:2502.01968v2 [cs.CL] 9 Jun 2025","url":"https://arxiv.org/pdf/2502.01968"},{"title":"GitHub - UCSC-REAL/TokenCleaning: [ICML 2025] Official implementation of paper \"Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning\"","url":"https://github.com/UCSC-REAL/TokenCleaning"},{"title":"ICML Poster Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning","url":"https://icml.cc/virtual/2025/poster/43777"},{"title":"(PDF) Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning","url":"https://www.researchgate.net/publication/388686220_Token_Cleaning_Fine-Grained_Data_Selection_for_LLM_Supervised_Fine-Tuning"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=1075&show=25"},{"title":"Token-level Data Selection for Safe LLM Fine-tuning","url":"https://arxiv.org/html/2603.01185"},{"title":"Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning | OpenReview","url":"https://openreview.net/forum?id=tXkOUS3vLS"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"}]
+
+Based on the search results, I found comprehensive information about the paper you're interested in:
+
+## Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning
+
+Recent studies show that in supervised fine-tuning (SFT) of large language models (LLMs), data quality matters more than quantity. While most data cleaning methods concentrate on filtering entire samples, the quality of individual tokens within a sample can vary significantly.
+
+### Key Contributions
+
+The paper investigates token quality from a noisy-label perspective and proposes a generic token cleaning pipeline for SFT tasks. The method filters out uninformative tokens while preserving those carrying key task-specific information. Specifically, it first evaluates token quality by examining the influence of model updates on each token, then applies a threshold-based separation.
+
+### Paper Details
+
+- **arXiv ID**: 2502.01968
+- **Authors**: Jinlong Pang, Na Di, Zhaowei Zhu, Jiaheng Wei, Hao Cheng, Chen Qian, and Yang Liu
+- **Conference**: Accepted at ICML 2025 as a Spotlight paper
+- **Availability**: Official implementation available on GitHub at UCSC-REAL/TokenCleaning
+
+The paper addresses a fundamental observation: even in high-quality samples, patterns or phrases that are not task-related can be redundant, uninformative, or even harmful. Continuing to fine-tune on these patterns may offer limited benefit and even degrade downstream task performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "da688a32-6083-40a3-a797-168808ff3ca1",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "0ac6de72-c463-4a72-aae5-92442ccbc002",
+  "toolUseResult": {
+    "query": "\"token cleaning\" ICML 2025 token-level data selection SFT noisy label arXiv 2502.01968",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CqUhzyooV4CTQs1KE8GMiS",
+        "content": [
+          {
+            "title": "[2502.01968] Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning",
+            "url": "https://arxiv.org/abs/2502.01968"
+          },
+          {
+            "title": "Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning",
+            "url": "https://arxiv.org/html/2502.01968"
+          },
+          {
+            "title": "arXiv:2502.01968v2 [cs.CL] 9 Jun 2025",
+            "url": "https://arxiv.org/pdf/2502.01968"
+          },
+          {
+            "title": "GitHub - UCSC-REAL/TokenCleaning: [ICML 2025] Official implementation of paper \"Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning\"",
+            "url": "https://github.com/UCSC-REAL/TokenCleaning"
+          },
+          {
+            "title": "ICML Poster Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning",
+            "url": "https://icml.cc/virtual/2025/poster/43777"
+          },
+          {
+            "title": "(PDF) Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning",
+            "url": "https://www.researchgate.net/publication/388686220_Token_Cleaning_Fine-Grained_Data_Selection_for_LLM_Supervised_Fine-Tuning"
+          },
+          {
+            "title": "Computation and Language 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025?skip=1075&show=25"
+          },
+          {
+            "title": "Token-level Data Selection for Safe LLM Fine-tuning",
+            "url": "https://arxiv.org/html/2603.01185"
+          },
+          {
+            "title": "Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning | OpenReview",
+            "url": "https://openreview.net/forum?id=tXkOUS3vLS"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the paper you're interested in:\n\n## Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning\n\nRecent studies show that in supervised fine-tuning (SFT) of large language models (LLMs), data quality matters more than quantity. While most data cleaning methods concentrate on filtering entire samples, the quality of individual tokens within a sample can vary significantly.\n\n### Key Contributions\n\nThe paper investigates token quality from a noisy-label perspective and proposes a generic token cleaning pipeline for SFT tasks. The method filters out uninformative tokens while preserving those carrying key task-specific information. Specifically, it first evaluates token quality by examining the influence of model updates on each token, then applies a threshold-based separation.\n\n### Paper Details\n\n- **arXiv ID**: 2502.01968\n- **Authors**: Jinlong Pang, Na Di, Zhaowei Zhu, Jiaheng Wei, Hao Cheng, Chen Qian, and Yang Liu\n- **Conference**: Accepted at ICML 2025 as a Spotlight paper\n- **Availability**: Official implementation available on GitHub at UCSC-REAL/TokenCleaning\n\nThe paper addresses a fundamental observation: even in high-quality samples, patterns or phrases that are not task-related can be redundant, uninformative, or even harmful. Continuing to fine-tune on these patterns may offer limited benefit and even degrade downstream task performance."
+    ],
+    "durationSeconds": 8.072814272000018
+  },
+  "sourceToolAssistantUUID": "da688a32-6083-40a3-a797-168808ff3ca1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53 · 2026-05-13T18:06:08.265Z_
+
+```json
+{
+  "parentUuid": "0ac6de72-c463-4a72-aae5-92442ccbc002",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "05f15ce2-2888-48c0-922d-e0f490af8c9e",
+  "timestamp": "2026-05-13T18:06:08.265Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-13T18:06:11.521Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GanVMC2h4X9iGd3WKidXrX`</summary>
+
+```json
+{
+  "query": "RINSE smoothness data quality imitation learning ICML 2025 workshop DataWorld arXiv 2604.23000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05f15ce2-2888-48c0-922d-e0f490af8c9e",
+  "isSidechain": false,
+  "requestId": "req_011Cb11erfVgMbpkeDXQuQBx",
+  "type": "assistant",
+  "uuid": "94e9aa7b-a675-43cb-a0ea-d3d691ddcd0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KKcQqrFNj2xEHrVPvSXVBZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 51248,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 51248,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-13T18:06:19.941Z_
+
+<details><summary>↩ Tool result · `toolu_01GanVMC2h4X9iGd3WKidXrX`</summary>
+
+```text
+Web search results for query: "RINSE smoothness data quality imitation learning ICML 2025 workshop DataWorld arXiv 2604.23000"
+
+Links: [{"title":"Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://arxiv.org/html/2604.23000"},{"title":"[2604.23000] Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://arxiv.org/abs/2604.23000"},{"title":"ICML Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://icml.cc/virtual/2025/48703"},{"title":"ICML 2025 Workshops","url":"https://icml.cc/virtual/2025/events/workshop"},{"title":"ICML 2025 Workshop on Unifying Data Curation Frameworks Across Domains","url":"https://dataworldicml2025.github.io/"},{"title":"1 Introduction","url":"https://arxiv.org/html/2604.24357"},{"title":"DataWorld: Unifying data curation frameworks across domains","url":"https://icml.cc/virtual/2025/workshop/39966"},{"title":"ICLR 2025 Workshops","url":"https://iclr.cc/virtual/2025/events/workshop"},{"title":"ICML 2025 Papers","url":"https://icml.cc/virtual/2025/papers.html"},{"title":"[2306.02437] Data Quality in Imitation Learning","url":"https://arxiv.org/abs/2306.02437"}]
+
+Based on the search results, I found comprehensive information about your query. Here's what I found:
+
+## RINSE: Smoothness-Driven Metrics for Data Quality in Imitation Learning
+
+RINSE (Ranking and INdexing Smooth Examples) is a lightweight framework for scoring demonstrations based on trajectory smoothness that is policy-architecture-agnostic and operates on trajectory data alone, with TED additionally using a phase-boundary/contact signal.
+
+### Methodology
+
+RINSE uses two complementary metrics: Spectral Arc Length (SAL), a spectral measure of frequency-domain regularity, and Trajectory-Envelope Distance (TED), a spatial measure of contact-aware geometric deviation. The approach is grounded in motor control theory: skilled human movements are smooth because the motor system minimizes jerk and effort.
+
+### Key Results
+
+On RoboMimic benchmarks, SAL filtering achieves 16% higher success using one-sixth of the data, and on real-world manipulation, TED filtering achieves 20% improvement with half the data. As a retrieval-stage filter within STRAP on LIBERO-10, RINSE re-ranking improves mean success by 5.6%, and as soft weights in Re-Mix domain reweighting, RINSE scores produce domain allocations highly correlated with the learned Re-Mix allocations.
+
+### Conference Presentation
+
+RINSE was presented at ICML 2025 as a general-purpose method for filtering demonstration data based on trajectory smoothness that enables more efficient and reliable policy learning from imperfect data. The paper is available on arXiv as 2604.23000 and was also presented at the DataWorld workshop at ICML 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94e9aa7b-a675-43cb-a0ea-d3d691ddcd0f",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "98f7dca7-edc4-4df1-ab3f-e35af757b8fc",
+  "toolUseResult": {
+    "query": "RINSE smoothness data quality imitation learning ICML 2025 workshop DataWorld arXiv 2604.23000",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Sm6coL4qiXdwga2zPD3Dwr",
+        "content": [
+          {
+            "title": "Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/html/2604.23000"
+          },
+          {
+            "title": "[2604.23000] Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/abs/2604.23000"
+          },
+          {
+            "title": "ICML Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://icml.cc/virtual/2025/48703"
+          },
+          {
+            "title": "ICML 2025 Workshops",
+            "url": "https://icml.cc/virtual/2025/events/workshop"
+          },
+          {
+            "title": "ICML 2025 Workshop on Unifying Data Curation Frameworks Across Domains",
+            "url": "https://dataworldicml2025.github.io/"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2604.24357"
+          },
+          {
+            "title": "DataWorld: Unifying data curation frameworks across domains",
+            "url": "https://icml.cc/virtual/2025/workshop/39966"
+          },
+          {
+            "title": "ICLR 2025 Workshops",
+            "url": "https://iclr.cc/virtual/2025/events/workshop"
+          },
+          {
+            "title": "ICML 2025 Papers",
+            "url": "https://icml.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "[2306.02437] Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/abs/2306.02437"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about your query. Here's what I found:\n\n## RINSE: Smoothness-Driven Metrics for Data Quality in Imitation Learning\n\nRINSE (Ranking and INdexing Smooth Examples) is a lightweight framework for scoring demonstrations based on trajectory smoothness that is policy-architecture-agnostic and operates on trajectory data alone, with TED additionally using a phase-boundary/contact signal.\n\n### Methodology\n\nRINSE uses two complementary metrics: Spectral Arc Length (SAL), a spectral measure of frequency-domain regularity, and Trajectory-Envelope Distance (TED), a spatial measure of contact-aware geometric deviation. The approach is grounded in motor control theory: skilled human movements are smooth because the motor system minimizes jerk and effort.\n\n### Key Results\n\nOn RoboMimic benchmarks, SAL filtering achieves 16% higher success using one-sixth of the data, and on real-world manipulation, TED filtering achieves 20% improvement with half the data. As a retrieval-stage filter within STRAP on LIBERO-10, RINSE re-ranking improves mean success by 5.6%, and as soft weights in Re-Mix domain reweighting, RINSE scores produce domain allocations highly correlated with the learned Re-Mix allocations.\n\n### Conference Presentation\n\nRINSE was presented at ICML 2025 as a general-purpose method for filtering demonstration data based on trajectory smoothness that enables more efficient and reliable policy learning from imperfect data. The paper is available on arXiv as 2604.23000 and was also presented at the DataWorld workshop at ICML 2025."
+    ],
+    "durationSeconds": 8.414061906999995
+  },
+  "sourceToolAssistantUUID": "94e9aa7b-a675-43cb-a0ea-d3d691ddcd0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "98f7dca7-edc4-4df1-ab3f-e35af757b8fc",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-13T18:06:23.221Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RVVyunKJKPq6ju2LfXm2XY`</summary>
+
+```json
+{
+  "query": "Fujimoto \"equivalence loss functions non-uniform sampling\" NeurIPS 2020 LAP PAL framework"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98f7dca7-edc4-4df1-ab3f-e35af757b8fc",
+  "isSidechain": false,
+  "requestId": "req_011Cb11fib6wcC4of2iFfw5H",
+  "type": "assistant",
+  "uuid": "fa29c2e6-1e64-485e-a106-81928f7fa010",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015swYqn5KZrGYLtTHxaegCk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 905,
+      "cache_read_input_tokens": 52454,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 52454,
+          "cache_creation_input_tokens": 905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-13T18:06:29.679Z_
+
+<details><summary>↩ Tool result · `toolu_01RVVyunKJKPq6ju2LfXm2XY`</summary>
+
+```text
+Web search results for query: "Fujimoto "equivalence loss functions non-uniform sampling" NeurIPS 2020 LAP PAL framework"
+
+Links: [{"title":"An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay","url":"https://proceedings.neurips.cc/paper/2020/hash/a3bf6e4db673b6449c2f7d13ee6ec9c0-Abstract.html"},{"title":"An Equivalence between Loss Functions and Non-Uniform ...","url":"https://papers.neurips.cc/paper_files/paper/2020/file/a3bf6e4db673b6449c2f7d13ee6ec9c0-Paper.pdf"},{"title":"dblp: An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay.","url":"https://dblp.org/rec/conf/nips/FujimotoMP20.html"},{"title":"GitHub - sfujim/LAP-PAL: Author's PyTorch implementation of LAP and PAL with TD3 and DDQN","url":"https://github.com/sfujim/LAP-PAL"},{"title":"An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay | Request PDF","url":"https://www.researchgate.net/publication/342916067_An_Equivalence_between_Loss_Functions_and_Non-Uniform_Sampling_in_Experience_Replay"},{"title":"[2007.06049] An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay","url":"https://arxiv.org/abs/2007.06049"},{"title":"[PDF] An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay | Semantic Scholar","url":"https://www.semanticscholar.org/paper/An-Equivalence-between-Loss-Functions-and-Sampling-Fujimoto-Meger/a425c6d74273cb9d2ad958273429cd0e8b0f13ba"},{"title":"[RL] TD7","url":"https://leeyngdo.github.io/blog/reinforcement-learning/2024-10-14-td7/"},{"title":"An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay","url":"https://papertalk.org/papertalks/8817"},{"title":"An Equivalence between Loss Functions and Non-Uniform ...","url":"https://papers.nips.cc/paper/2020/file/a3bf6e4db673b6449c2f7d13ee6ec9c0-Paper.pdf"}]
+
+Based on the search results, I found the paper you're looking for. Here's what the research is about:
+
+## Paper Overview
+
+"An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay" is by Scott Fujimoto, David Meger, and Doina Precup at NeurIPS 2020.
+
+## Main Contribution
+
+The paper shows that any loss function evaluated with non-uniformly sampled data can be transformed into another uniformly sampled loss function with the same expected gradient. In some environments, Prioritized Experience Replay (PER) can be replaced entirely by this new loss function without impact to empirical performance.
+
+## The LAP and PAL Framework
+
+The authors introduce Loss-Adjusted Prioritized (LAP) experience replay and simplify PER by removing unnecessary importance sampling ratios and setting the minimum priority to be 1. They also present its uniformly sampled loss equivalent, Prioritized Approximation Loss (PAL), which resembles a weighted variant of the Huber loss and can be added to any deep reinforcement learning algorithm in only a few lines of code.
+
+## Implementation and Results
+
+Code is provided for both continuous (with TD3) and discrete (with DDQN) domains. The methods are evaluated on MuJoCo environments and Atari games, and both LAP and PAL outperform the vanilla algorithms they modify.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa29c2e6-1e64-485e-a106-81928f7fa010",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "6164340f-81ec-43be-a3e0-60e6d5457bf4",
+  "toolUseResult": {
+    "query": "Fujimoto \"equivalence loss functions non-uniform sampling\" NeurIPS 2020 LAP PAL framework",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GpMSjXBrppeTWZRnU2iygD",
+        "content": [
+          {
+            "title": "An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay",
+            "url": "https://proceedings.neurips.cc/paper/2020/hash/a3bf6e4db673b6449c2f7d13ee6ec9c0-Abstract.html"
+          },
+          {
+            "title": "An Equivalence between Loss Functions and Non-Uniform ...",
+            "url": "https://papers.neurips.cc/paper_files/paper/2020/file/a3bf6e4db673b6449c2f7d13ee6ec9c0-Paper.pdf"
+          },
+          {
+            "title": "dblp: An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay.",
+            "url": "https://dblp.org/rec/conf/nips/FujimotoMP20.html"
+          },
+          {
+            "title": "GitHub - sfujim/LAP-PAL: Author's PyTorch implementation of LAP and PAL with TD3 and DDQN",
+            "url": "https://github.com/sfujim/LAP-PAL"
+          },
+          {
+            "title": "An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay | Request PDF",
+            "url": "https://www.researchgate.net/publication/342916067_An_Equivalence_between_Loss_Functions_and_Non-Uniform_Sampling_in_Experience_Replay"
+          },
+          {
+            "title": "[2007.06049] An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay",
+            "url": "https://arxiv.org/abs/2007.06049"
+          },
+          {
+            "title": "[PDF] An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/An-Equivalence-between-Loss-Functions-and-Sampling-Fujimoto-Meger/a425c6d74273cb9d2ad958273429cd0e8b0f13ba"
+          },
+          {
+            "title": "[RL] TD7",
+            "url": "https://leeyngdo.github.io/blog/reinforcement-learning/2024-10-14-td7/"
+          },
+          {
+            "title": "An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay",
+            "url": "https://papertalk.org/papertalks/8817"
+          },
+          {
+            "title": "An Equivalence between Loss Functions and Non-Uniform ...",
+            "url": "https://papers.nips.cc/paper/2020/file/a3bf6e4db673b6449c2f7d13ee6ec9c0-Paper.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what the research is about:\n\n## Paper Overview\n\n\"An Equivalence between Loss Functions and Non-Uniform Sampling in Experience Replay\" is by Scott Fujimoto, David Meger, and Doina Precup at NeurIPS 2020.\n\n## Main Contribution\n\nThe paper shows that any loss function evaluated with non-uniformly sampled data can be transformed into another uniformly sampled loss function with the same expected gradient. In some environments, Prioritized Experience Replay (PER) can be replaced entirely by this new loss function without impact to empirical performance.\n\n## The LAP and PAL Framework\n\nThe authors introduce Loss-Adjusted Prioritized (LAP) experience replay and simplify PER by removing unnecessary importance sampling ratios and setting the minimum priority to be 1. They also present its uniformly sampled loss equivalent, Prioritized Approximation Loss (PAL), which resembles a weighted variant of the Huber loss and can be added to any deep reinforcement learning algorithm in only a few lines of code.\n\n## Implementation and Results\n\nCode is provided for both continuous (with TD3) and discrete (with DDQN) domains. The methods are evaluated on MuJoCo environments and Atari games, and both LAP and PAL outperform the vanilla algorithms they modify."
+    ],
+    "durationSeconds": 6.454241825000005
+  },
+  "sourceToolAssistantUUID": "fa29c2e6-1e64-485e-a106-81928f7fa010",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-13T18:06:32.603Z_
+
+Now let me search for potentially missed concurrent/competing work more aggressively.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6164340f-81ec-43be-a3e0-60e6d5457bf4",
+  "isSidechain": false,
+  "requestId": "req_011Cb11gSCdx3xqTeKFqeHLr",
+  "type": "assistant",
+  "uuid": "13f5a60e-3bc5-49a1-8341-0f358e491874",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121nKTXPz6Xc5NYtZ7E9qRE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 53359,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1059,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 53359,
+          "cache_creation_input_tokens": 1059,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1059
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-13T18:06:33.424Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U4wXD1vWNYqDTCsPMYvtYy`</summary>
+
+```json
+{
+  "query": "VLA training data quality curriculum learning sample weighting robot manipulation 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13f5a60e-3bc5-49a1-8341-0f358e491874",
+  "isSidechain": false,
+  "requestId": "req_011Cb11gSCdx3xqTeKFqeHLr",
+  "type": "assistant",
+  "uuid": "3fe41582-32f6-46e7-a867-0a186faea9e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121nKTXPz6Xc5NYtZ7E9qRE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 53359,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1059,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 53359,
+          "cache_creation_input_tokens": 1059,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1059
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-13T18:06:40.699Z_
+
+<details><summary>↩ Tool result · `toolu_01U4wXD1vWNYqDTCsPMYvtYy`</summary>
+
+```text
+Web search results for query: "VLA training data quality curriculum learning sample weighting robot manipulation 2026 arxiv"
+
+Links: [{"title":"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation","url":"https://arxiv.org/html/2603.22760"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"Sample-Efficient Robot Skill Learning for Construction Tasks:","url":"https://arxiv.org/pdf/2512.14031"},{"title":"VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning","url":"https://arxiv.org/html/2505.18719v1"},{"title":"World Model for Robot Learning: A Comprehensive Survey","url":"https://arxiv.org/html/2605.00080v1"},{"title":"EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer","url":"https://arxiv.org/html/2509.22407v1"},{"title":"DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation","url":"https://arxiv.org/html/2603.00926"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"2026-01-28 Work in progress.","url":"https://arxiv.org/pdf/2601.15197"},{"title":"A Pragmatic VLA Foundation Model","url":"https://arxiv.org/html/2601.18692v1"}]
+
+Based on the web search results, I found several recent papers from 2026 on arXiv related to VLA (Vision-Language-Action) models for robot manipulation that address data quality, training strategies, and sample weighting:
+
+## Key Papers Found:
+
+1. **EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer** (September 2025)
+   The paper features an adaptive sample weighting strategy where low-quality videos are initially assigned zero sampling weight to stabilize early-stage training, and the AdaMix module further adaptively reweights training samples based on trajectory performance metrics, up-weighting challenging samples to improve policy robustness and generalization.
+
+2. **VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning** (May 2025)
+   The system includes systematic techniques such as GPU-balanced vectorized environment, batch decoding, curriculum selection strategy, and critic warmup that contribute to training efficiency and stability.
+
+3. **DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation** (March 2026)
+   This framework introduces an action routing mechanism using task-specific visual and linguistic cues, a dynamic action model that fuses high-level VLM cognition with low-level visual features, and a dual-scale action weighting mechanism.
+
+4. **LingBot-VLA: A Pragmatic VLA Foundation Model** (March 2026)
+   This paper presents a VLA foundation model trained on about 20,000 hours of real-world manipulation data from 9 robotic platforms.
+
+These papers collectively address training data quality, curriculum learning strategies, and sample weighting mechanisms for improving VLA model performance in robot manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3fe41582-32f6-46e7-a867-0a186faea9e2",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "292954d7-31ea-4d9d-b9cc-0d610ec1fb40",
+  "toolUseResult": {
+    "query": "VLA training data quality curriculum learning sample weighting robot manipulation 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013aVSvnKUcs5WgbF44rt9Xa",
+        "content": [
+          {
+            "title": "SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation",
+            "url": "https://arxiv.org/html/2603.22760"
+          },
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "Sample-Efficient Robot Skill Learning for Construction Tasks:",
+            "url": "https://arxiv.org/pdf/2512.14031"
+          },
+          {
+            "title": "VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning",
+            "url": "https://arxiv.org/html/2505.18719v1"
+          },
+          {
+            "title": "World Model for Robot Learning: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2605.00080v1"
+          },
+          {
+            "title": "EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer",
+            "url": "https://arxiv.org/html/2509.22407v1"
+          },
+          {
+            "title": "DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation",
+            "url": "https://arxiv.org/html/2603.00926"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "2026-01-28 Work in progress.",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          },
+          {
+            "title": "A Pragmatic VLA Foundation Model",
+            "url": "https://arxiv.org/html/2601.18692v1"
+          }
+        ]
+      },
+      "Based on the web search results, I found several recent papers from 2026 on arXiv related to VLA (Vision-Language-Action) models for robot manipulation that address data quality, training strategies, and sample weighting:\n\n## Key Papers Found:\n\n1. **EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer** (September 2025)\n   The paper features an adaptive sample weighting strategy where low-quality videos are initially assigned zero sampling weight to stabilize early-stage training, and the AdaMix module further adaptively reweights training samples based on trajectory performance metrics, up-weighting challenging samples to improve policy robustness and generalization.\n\n2. **VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning** (May 2025)\n   The system includes systematic techniques such as GPU-balanced vectorized environment, batch decoding, curriculum selection strategy, and critic warmup that contribute to training efficiency and stability.\n\n3. **DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation** (March 2026)\n   This framework introduces an action routing mechanism using task-specific visual and linguistic cues, a dynamic action model that fuses high-level VLM cognition with low-level visual features, and a dual-scale action weighting mechanism.\n\n4. **LingBot-VLA: A Pragmatic VLA Foundation Model** (March 2026)\n   This paper presents a VLA foundation model trained on about 20,000 hours of real-world manipulation data from 9 robotic platforms.\n\nThese papers collectively address training data quality, curriculum learning strategies, and sample weighting mechanisms for improving VLA model performance in robot manipulation tasks."
+    ],
+    "durationSeconds": 7.271938916999992
+  },
+  "sourceToolAssistantUUID": "3fe41582-32f6-46e7-a867-0a186faea9e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-13T18:06:43.830Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014JWPP7DGuNYZE6DKfENvqY`</summary>
+
+```json
+{
+  "query": "prioritized replay supervised fine-tuning action chunk robot policy 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "292954d7-31ea-4d9d-b9cc-0d610ec1fb40",
+  "isSidechain": false,
+  "requestId": "req_011Cb11hFNJ9uX3krvCZEcCn",
+  "type": "assistant",
+  "uuid": "1286244e-acfa-4a72-9e0f-81069a187ab0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PMfQbANPXreTLufqAwDLMN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 928,
+      "cache_read_input_tokens": 54418,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 928,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 54418,
+          "cache_creation_input_tokens": 928,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 928
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-13T18:06:51.872Z_
+
+<details><summary>↩ Tool result · `toolu_014JWPP7DGuNYZE6DKfENvqY`</summary>
+
+```text
+Web search results for query: "prioritized replay supervised fine-tuning action chunk robot policy 2025 2026"
+
+Links: [{"title":"Frontiers | Solving robotics tasks with prior demonstration via exploration-efficient deep reinforcement learning","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682200/full"},{"title":"ReinFlow: Fine-tuning Flow Matching Policy with Online ...","url":"https://nicsefc.ee.tsinghua.edu.cn//nics_file/pdf/09dbaac9-e1ab-4e18-abf2-99ec82476290.pdf"},{"title":"[2508.11143] Actor-Critic for Continuous Action Chunks: A Reinforcement Learning Framework for Long-Horizon Robotic Manipulation with Sparse Reward","url":"https://arxiv.org/abs/2508.11143"},{"title":"Actor-Critic for Continuous Action Chunks: A Reinforcement Learning Framework for Long-Horizon Robotic Manipulation with Sparse Reward","url":"https://arxiv.org/html/2508.11143"},{"title":"GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub","url":"https://github.com/YanjieZe/Paper-List"},{"title":"Multi-objective trajectory optimization method for industrial robots based on improved TD3 algorithm | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-25949-7"},{"title":"Actor-Critic for Continuous Action Chunks: A Reinforcement Learning Framework","url":"https://arxiv.org/pdf/2508.11143"},{"title":"DISTRIBUTED PRIORITIZED EXPERIENCE REPLAY","url":"https://openreview.net/pdf?id=H1Dy---0Z"},{"title":"FLaRe: Achieving Masterful and Adaptive Robot Policies with Large-Scale Reinforcement Learning Fine-Tuning","url":"https://robot-flare.github.io/"},{"title":"Leveraging OS-Level Primitives for Robotic Action Management Wenxin Zheng","url":"https://ipads.se.sjtu.edu.cn/_media/publications/robot_os-ams.pdf"}]
+
+The search results contain several highly relevant papers on robot policy learning combining action chunks, supervised fine-tuning, and reinforcement learning approaches from 2025-2026:
+
+## Key Research Findings
+
+**1. Exploration-Efficient Deep Reinforcement Learning (2025-2026)**
+
+Early studies initialize training by mixing offline demonstrations and online interaction in the replay buffer and use a prioritized replay mechanism to enable the reinforcement learning (RL) policy for efficient exploration. More recent approaches separate offline pretraining from online fine-tuning and report superior exploration efficiency.
+
+**2. ReinFlow: Flow Matching Policy Fine-tuning**
+
+In practice, action chunking is adopted during policy execution, in which the policy outputs multiple actions in a batch given an observation. During fine-tuning, the noise injection network is trained with the velocity network to add diversity to the sample path for better exploration. After fine-tuning, the noise net is discarded and the flow matching policy is recovered.
+
+**3. AC3: Actor-Critic for Continuous Action Chunks (2026)**
+
+AC3 (Actor-Critic for Continuous Chunks) is a novel RL framework that learns to generate high-dimensional, continuous action sequences. To make this learning process stable and data-efficient, AC3 incorporates targeted stabilization mechanisms for both the actor and the critic. The actor is trained with an asymmetric update rule, learning exclusively from successful trajectories.
+
+**4. Prioritized Experience Replay in Industrial Robot Control (2025)**
+
+A prioritized experience replay mechanism is introduced to improve the utilization efficiency of critical experiences, thereby enhancing the algorithm's convergence speed and stability.
+
+These papers represent the current state-of-the-art in combining prioritized replay, supervised fine-tuning, and action chunk-based robot policies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1286244e-acfa-4a72-9e0f-81069a187ab0",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "b45358e6-cf11-4161-ba75-d2f0665505a0",
+  "toolUseResult": {
+    "query": "prioritized replay supervised fine-tuning action chunk robot policy 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AD8371brctJKEhWA2pyspn",
+        "content": [
+          {
+            "title": "Frontiers | Solving robotics tasks with prior demonstration via exploration-efficient deep reinforcement learning",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682200/full"
+          },
+          {
+            "title": "ReinFlow: Fine-tuning Flow Matching Policy with Online ...",
+            "url": "https://nicsefc.ee.tsinghua.edu.cn//nics_file/pdf/09dbaac9-e1ab-4e18-abf2-99ec82476290.pdf"
+          },
+          {
+            "title": "[2508.11143] Actor-Critic for Continuous Action Chunks: A Reinforcement Learning Framework for Long-Horizon Robotic Manipulation with Sparse Reward",
+            "url": "https://arxiv.org/abs/2508.11143"
+          },
+          {
+            "title": "Actor-Critic for Continuous Action Chunks: A Reinforcement Learning Framework for Long-Horizon Robotic Manipulation with Sparse Reward",
+            "url": "https://arxiv.org/html/2508.11143"
+          },
+          {
+            "title": "GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub",
+            "url": "https://github.com/YanjieZe/Paper-List"
+          },
+          {
+            "title": "Multi-objective trajectory optimization method for industrial robots based on improved TD3 algorithm | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-25949-7"
+          },
+          {
+            "title": "Actor-Critic for Continuous Action Chunks: A Reinforcement Learning Framework",
+            "url": "https://arxiv.org/pdf/2508.11143"
+          },
+          {
+            "title": "DISTRIBUTED PRIORITIZED EXPERIENCE REPLAY",
+            "url": "https://openreview.net/pdf?id=H1Dy---0Z"
+          },
+          {
+            "title": "FLaRe: Achieving Masterful and Adaptive Robot Policies with Large-Scale Reinforcement Learning Fine-Tuning",
+            "url": "https://robot-flare.github.io/"
+          },
+          {
+            "title": "Leveraging OS-Level Primitives for Robotic Action Management Wenxin Zheng",
+            "url": "https://ipads.se.sjtu.edu.cn/_media/publications/robot_os-ams.pdf"
+          }
+        ]
+      },
+      "The search results contain several highly relevant papers on robot policy learning combining action chunks, supervised fine-tuning, and reinforcement learning approaches from 2025-2026:\n\n## Key Research Findings\n\n**1. Exploration-Efficient Deep Reinforcement Learning (2025-2026)**\n\nEarly studies initialize training by mixing offline demonstrations and online interaction in the replay buffer and use a prioritized replay mechanism to enable the reinforcement learning (RL) policy for efficient exploration. More recent approaches separate offline pretraining from online fine-tuning and report superior exploration efficiency.\n\n**2. ReinFlow: Flow Matching Policy Fine-tuning**\n\nIn practice, action chunking is adopted during policy execution, in which the policy outputs multiple actions in a batch given an observation. During fine-tuning, the noise injection network is trained with the velocity network to add diversity to the sample path for better exploration. After fine-tuning, the noise net is discarded and the flow matching policy is recovered.\n\n**3. AC3: Actor-Critic for Continuous Action Chunks (2026)**\n\nAC3 (Actor-Critic for Continuous Chunks) is a novel RL framework that learns to generate high-dimensional, continuous action sequences. To make this learning process stable and data-efficient, AC3 incorporates targeted stabilization mechanisms for both the actor and the critic. The actor is trained with an asymmetric update rule, learning exclusively from successful trajectories.\n\n**4. Prioritized Experience Replay in Industrial Robot Control (2025)**\n\nA prioritized experience replay mechanism is introduced to improve the utilization efficiency of critical experiences, thereby enhancing the algorithm's convergence speed and stability.\n\nThese papers represent the current state-of-the-art in combining prioritized replay, supervised fine-tuning, and action chunk-based robot policies."
+    ],
+    "durationSeconds": 8.037887776000018
+  },
+  "sourceToolAssistantUUID": "1286244e-acfa-4a72-9e0f-81069a187ab0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-13T18:06:54.664Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KUcpT9SQAFrJmaLHtorhLR`</summary>
+
+```json
+{
+  "query": "\"Freshness-Aware\" prioritized experience replay LLM VLM 2026 arXiv 2604"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b45358e6-cf11-4161-ba75-d2f0665505a0",
+  "isSidechain": false,
+  "requestId": "req_011Cb11i57C2tuygDMsVHaAJ",
+  "type": "assistant",
+  "uuid": "218ee2c7-f044-469e-b6df-96fb6e0495d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdAtJnsd3HQvQe1vuD5uQj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 55346,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 55346,
+          "cache_creation_input_tokens": 1049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-13T18:07:01.485Z_
+
+<details><summary>↩ Tool result · `toolu_01KUcpT9SQAFrJmaLHtorhLR`</summary>
+
+```text
+Web search results for query: ""Freshness-Aware" prioritized experience replay LLM VLM 2026 arXiv 2604"
+
+Links: [{"title":"Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning","url":"https://arxiv.org/html/2604.16918"},{"title":"[2604.16918] Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning","url":"https://arxiv.org/abs/2604.16918"},{"title":"Prioritized Experience Replay | Request PDF","url":"https://www.researchgate.net/publication/319770330_Prioritized_Experience_Replay"},{"title":"[PDF] Prioritized Experience Replay | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Prioritized-Experience-Replay-Schaul-Quan/c6170fa90d3b2efede5a2e1660cb23e1c824f2ca"},{"title":"[1511.05952] Prioritized Experience Replay","url":"https://arxiv.org/abs/1511.05952"},{"title":"Prioritized Experience Replay | BibSonomy","url":"https://www.bibsonomy.org/bibtex/db6e4402b0807938aae61afc45b70f73"},{"title":"Prioritized Experience Replay","url":"https://arxiv.org/pdf/1511.05952"},{"title":"(PDF) Prioritized Experience Replay","url":"https://www.researchgate.net/publication/284219262_Prioritized_Experience_Replay"},{"title":"[2604.08706] Efficient RL Training for LLMs with Experience Replay","url":"https://arxiv.org/abs/2604.08706"},{"title":"SuRe: Surprise-Driven Prioritised Replay for Continual LLM Learning","url":"https://arxiv.org/html/2511.22367v1"}]
+
+I found the paper you're looking for! Here's the information about the search result:
+
+The paper "Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning" was published on arXiv on April 18, 2026 (arXiv:2604.16918v1) by researchers from KAUST, CASIA, University College London, and other institutions.
+
+**Key Points:**
+
+The paper addresses the issue that on-policy RL algorithms like PPO, GRPO, and REINFORCE++ discard all collected trajectories after a single gradient update, resulting in poor sample efficiency, particularly wasteful for agentic tasks with expensive multi-turn environment interactions.
+
+While Experience Replay drives sample efficiency in classic RL, directly applying Prioritized Experience Replay (PER) to LLMs fails because the rapid policy evolution of billion-parameter models renders stored priorities stale, causing old high-priority trajectories to dominate sampling.
+
+The proposed solution is "Freshness-Aware PER," which addresses the priority staleness problem by augmenting any PER-based priority with a multiplicative exponential age decay grounded in effective sample size analysis.
+
+The method significantly outperforms on-policy baselines, achieving +46% on NQ Search, +367% on Sokoban, and +133% on VLM FrozenLake, while standard PER without age decay consistently degrades performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "218ee2c7-f044-469e-b6df-96fb6e0495d0",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "c51caa5b-bf41-4021-a21c-5175b0ba09da",
+  "toolUseResult": {
+    "query": "\"Freshness-Aware\" prioritized experience replay LLM VLM 2026 arXiv 2604",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ECim1deqms1D32CXHdenZc",
+        "content": [
+          {
+            "title": "Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning",
+            "url": "https://arxiv.org/html/2604.16918"
+          },
+          {
+            "title": "[2604.16918] Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2604.16918"
+          },
+          {
+            "title": "Prioritized Experience Replay | Request PDF",
+            "url": "https://www.researchgate.net/publication/319770330_Prioritized_Experience_Replay"
+          },
+          {
+            "title": "[PDF] Prioritized Experience Replay | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Prioritized-Experience-Replay-Schaul-Quan/c6170fa90d3b2efede5a2e1660cb23e1c824f2ca"
+          },
+          {
+            "title": "[1511.05952] Prioritized Experience Replay",
+            "url": "https://arxiv.org/abs/1511.05952"
+          },
+          {
+            "title": "Prioritized Experience Replay | BibSonomy",
+            "url": "https://www.bibsonomy.org/bibtex/db6e4402b0807938aae61afc45b70f73"
+          },
+          {
+            "title": "Prioritized Experience Replay",
+            "url": "https://arxiv.org/pdf/1511.05952"
+          },
+          {
+            "title": "(PDF) Prioritized Experience Replay",
+            "url": "https://www.researchgate.net/publication/284219262_Prioritized_Experience_Replay"
+          },
+          {
+            "title": "[2604.08706] Efficient RL Training for LLMs with Experience Replay",
+            "url": "https://arxiv.org/abs/2604.08706"
+          },
+          {
+            "title": "SuRe: Surprise-Driven Prioritised Replay for Continual LLM Learning",
+            "url": "https://arxiv.org/html/2511.22367v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's the information about the search result:\n\nThe paper \"Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning\" was published on arXiv on April 18, 2026 (arXiv:2604.16918v1) by researchers from KAUST, CASIA, University College London, and other institutions.\n\n**Key Points:**\n\nThe paper addresses the issue that on-policy RL algorithms like PPO, GRPO, and REINFORCE++ discard all collected trajectories after a single gradient update, resulting in poor sample efficiency, particularly wasteful for agentic tasks with expensive multi-turn environment interactions.\n\nWhile Experience Replay drives sample efficiency in classic RL, directly applying Prioritized Experience Replay (PER) to LLMs fails because the rapid policy evolution of billion-parameter models renders stored priorities stale, causing old high-priority trajectories to dominate sampling.\n\nThe proposed solution is \"Freshness-Aware PER,\" which addresses the priority staleness problem by augmenting any PER-based priority with a multiplicative exponential age decay grounded in effective sample size analysis.\n\nThe method significantly outperforms on-policy baselines, achieving +46% on NQ Search, +367% on Sokoban, and +133% on VLM FrozenLake, while standard PER without age decay consistently degrades performance."
+    ],
+    "durationSeconds": 6.817574365999986
+  },
+  "sourceToolAssistantUUID": "218ee2c7-f044-469e-b6df-96fb6e0495d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "c51caa5b-bf41-4021-a21c-5175b0ba09da",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-13T18:07:06.063Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BtENxm9Ngb8r48vhVMe7kE`</summary>
+
+```json
+{
+  "query": "action chunk prediction quality degradation temporal position VLA training analysis 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c51caa5b-bf41-4021-a21c-5175b0ba09da",
+  "isSidechain": false,
+  "requestId": "req_011Cb11inCyDjGhE4CokeMfD",
+  "type": "assistant",
+  "uuid": "f5e7bd9c-83eb-4cfe-a595-71db7015fc41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017EVjUV3SMFPtSu1C9zU9zT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 927,
+      "cache_read_input_tokens": 56395,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 927,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 56395,
+          "cache_creation_input_tokens": 927,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 927
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-13T18:07:15.689Z_
+
+<details><summary>↩ Tool result · `toolu_01BtENxm9Ngb8r48vhVMe7kE`</summary>
+
+```text
+Web search results for query: "action chunk prediction quality degradation temporal position VLA training analysis 2025 2026"
+
+Links: [{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/html/2509.23224v1"},{"title":"Task adaptation of Vision-Language-Action model: 1st Place Solution for the 2025 BEHAVIOR Challenge","url":"https://arxiv.org/html/2512.06951v1"},{"title":"VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning","url":"https://arxiv.org/html/2509.25718"},{"title":"VLA Knows Its Limits","url":"https://arxiv.org/html/2602.21445"},{"title":"VQ-VLA: Improving Vision-Language-Action Models via Scaling","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Wang_VQ-VLA_Improving_Vision-Language-Action_Models_via_Scaling_Vector-Quantized_Action_Tokenizers_ICCV_2025_paper.pdf"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks | OpenReview","url":"https://openreview.net/forum?id=y5SGBsndWv"},{"title":"Real-Time Execution of Action Chunking Flow Policies Kevin Black1,2,","url":"https://www.pi.website/download/real_time_chunking.pdf"},{"title":"2026-01-28 Work in progress.","url":"https://arxiv.org/pdf/2601.15197"},{"title":"(Preprint) AAS 25-897 ACTION CHUNKING WITH TRANSFORMERS FOR IMAGE-BASED","url":"https://www.arxiv.org/pdf/2509.04628"},{"title":"[2509.25718] VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning","url":"https://arxiv.org/abs/2509.25718"}]
+
+Based on the search results, I found several relevant research papers addressing action chunk prediction quality degradation and temporal position analysis in VLA (Vision-Language-Action) models from 2025-2026:
+
+## Key Findings:
+
+**Action Chunk Quality Degradation Issues:**
+
+Mismatches across chunks can cause jerky motion and noticeable performance degradation, especially in dynamic environments. When inference delay is ≥3 steps, the naive baseline suffers a sharp drop in success rate due to compounding errors from executing outdated action chunks, and RTC inference partially mitigates this issue by overlapping prediction and execution, but performance still declines as the execution horizon increases.
+
+**Temporal Position Analysis:**
+
+A2C2 (Asynchronous Action Chunk Correction) is a lightweight real-time chunk correction head that runs every control step and adds a time-aware correction to any off-the-shelf VLA's action chunk using a positional feature that encodes the index of the base action within the chunk. Intra-chunk actions exhibit limited adaptability and attend strongly to radial action sinks, and action self-attention weights can be interpreted as implicit indicators of the model's predictive limit, with high weights indicating the model is confident predictions align with guiding anchors.
+
+**VLA Training Analysis:**
+
+Fine-tuning VLMs for robotic action generation diminishes the model's foundational reasoning, with ChatVLA attributing this to spurious forgetting where robot training overwrites crucial visual-text alignments and task interference where competing control and understanding tasks degrade performance when trained jointly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5e7bd9c-83eb-4cfe-a595-71db7015fc41",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "b250e6ed-376a-4a0e-aab3-998b3b01b75c",
+  "toolUseResult": {
+    "query": "action chunk prediction quality degradation temporal position VLA training analysis 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Fk5YnqkvRN1PrrVc7Dum7Q",
+        "content": [
+          {
+            "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks",
+            "url": "https://arxiv.org/html/2509.23224v1"
+          },
+          {
+            "title": "Task adaptation of Vision-Language-Action model: 1st Place Solution for the 2025 BEHAVIOR Challenge",
+            "url": "https://arxiv.org/html/2512.06951v1"
+          },
+          {
+            "title": "VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning",
+            "url": "https://arxiv.org/html/2509.25718"
+          },
+          {
+            "title": "VLA Knows Its Limits",
+            "url": "https://arxiv.org/html/2602.21445"
+          },
+          {
+            "title": "VQ-VLA: Improving Vision-Language-Action Models via Scaling",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Wang_VQ-VLA_Improving_Vision-Language-Action_Models_via_Scaling_Vector-Quantized_Action_Tokenizers_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks | OpenReview",
+            "url": "https://openreview.net/forum?id=y5SGBsndWv"
+          },
+          {
+            "title": "Real-Time Execution of Action Chunking Flow Policies Kevin Black1,2,",
+            "url": "https://www.pi.website/download/real_time_chunking.pdf"
+          },
+          {
+            "title": "2026-01-28 Work in progress.",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          },
+          {
+            "title": "(Preprint) AAS 25-897 ACTION CHUNKING WITH TRANSFORMERS FOR IMAGE-BASED",
+            "url": "https://www.arxiv.org/pdf/2509.04628"
+          },
+          {
+            "title": "[2509.25718] VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning",
+            "url": "https://arxiv.org/abs/2509.25718"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant research papers addressing action chunk prediction quality degradation and temporal position analysis in VLA (Vision-Language-Action) models from 2025-2026:\n\n## Key Findings:\n\n**Action Chunk Quality Degradation Issues:**\n\nMismatches across chunks can cause jerky motion and noticeable performance degradation, especially in dynamic environments. When inference delay is ≥3 steps, the naive baseline suffers a sharp drop in success rate due to compounding errors from executing outdated action chunks, and RTC inference partially mitigates this issue by overlapping prediction and execution, but performance still declines as the execution horizon increases.\n\n**Temporal Position Analysis:**\n\nA2C2 (Asynchronous Action Chunk Correction) is a lightweight real-time chunk correction head that runs every control step and adds a time-aware correction to any off-the-shelf VLA's action chunk using a positional feature that encodes the index of the base action within the chunk. Intra-chunk actions exhibit limited adaptability and attend strongly to radial action sinks, and action self-attention weights can be interpreted as implicit indicators of the model's predictive limit, with high weights indicating the model is confident predictions align with guiding anchors.\n\n**VLA Training Analysis:**\n\nFine-tuning VLMs for robotic action generation diminishes the model's foundational reasoning, with ChatVLA attributing this to spurious forgetting where robot training overwrites crucial visual-text alignments and task interference where competing control and understanding tasks degrade performance when trained jointly."
+    ],
+    "durationSeconds": 9.622978728000016
+  },
+  "sourceToolAssistantUUID": "f5e7bd9c-83eb-4cfe-a595-71db7015fc41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-13T18:07:21.001Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UBdM6oA5AGRdpjszDxYwnf`</summary>
+
+```json
+{
+  "query": "online hard example mining sample reweighting behavioral cloning imitation learning robot 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b250e6ed-376a-4a0e-aab3-998b3b01b75c",
+  "isSidechain": false,
+  "requestId": "req_011Cb11jpwT7GfSum25c7fiz",
+  "type": "assistant",
+  "uuid": "f57ce472-b72e-454f-aaac-fa12415f1ca1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JYJKGB1pthdMsX2h8mCTA9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 952,
+      "cache_read_input_tokens": 57322,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 952,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 57322,
+          "cache_creation_input_tokens": 952,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 952
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-13T18:07:28.111Z_
+
+<details><summary>↩ Tool result · `toolu_01UBdM6oA5AGRdpjszDxYwnf`</summary>
+
+```text
+Web search results for query: "online hard example mining sample reweighting behavioral cloning imitation learning robot 2024 2025 2026"
+
+Links: [{"title":"Frontiers | Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682437/full"},{"title":"Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10514-025-10237-0"},{"title":"Towards robust long-tailed recognition: A class-balanced loss based on example forgetting","url":"https://www.aimsciences.org/article/doi/10.3934/mfc.2025028"},{"title":"Imitation learning for legged robot locomotion: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1678567/pdf"},{"title":"Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12757213/"},{"title":"(PDF) Hard Sample Mining: A New Paradigm of Efficient and Robust Model Training","url":"https://www.researchgate.net/publication/395497039_Hard_Sample_Mining_A_New_Paradigm_of_Efficient_and_Robust_Model_Training"},{"title":"Proceedings of Machine Learning Research | Proceedings of The 8th Conference on Robot Learning Held in Munich, Germany on 06-09 November 2024 Published as Volume 270 by the Proceedings of Machine Learning Research on 12 January 2025. Volume Edited by: Pulkit Agrawal Oliver Kroemer Wolfram Burgard Series Editors: Neil D. Lawrence","url":"https://proceedings.mlr.press/v270/"},{"title":"Frontiers | Imitation learning for legged robot locomotion: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1678567/full"},{"title":"Imitation learning for legged robot locomotion: a survey - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12702866/"},{"title":"Ch. 21 - Imitation Learning - Underactuated Robotics","url":"https://underactuated.mit.edu/imitation.html"}]
+
+Based on my web search results, I found relevant research on hard example mining, sample reweighting, and imitation learning in robotics from 2024-2026. Here are the key findings:
+
+## Sample Reweighting in Imitation Learning
+
+Prior works have suggested reweighting the data based on training performance. Specifically, Dass et al. (2025) uses held-out demonstrations to track training progress and increases the learning weights of samples that perform poorly, while Hejna et al. (2024) computes training loss with respect to a reference policy that is trained on the original, unweighted dataset.
+
+## Hard Example Mining
+
+A novel Class-Balanced Loss Based on Example Forgetting (FCB loss) integrates hard example mining and example forgetting into the computation of the total information volume. Additionally, a common solution in sample reweighting is to assign larger weights to harder samples and lower weights to easier ones.
+
+## Imitation Learning and Behavioral Cloning in Robotics
+
+Recent research shows active development in behavioral cloning and imitation learning for robots. Recent research addresses shortcomings by combining BC with online adaptation layers or by augmenting demonstration datasets with greater diversity and domain randomization. This is particularly relevant for handling imbalanced datasets in robot learning.
+
+## Related Challenges
+
+In practice, human-provided datasets are inevitably imbalanced: i.e., the human demonstrates some subtasks more frequently than others, which directly impacts the effectiveness of imitation learning approaches for robots.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f57ce472-b72e-454f-aaac-fa12415f1ca1",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "e1d451a6-2b51-4016-99ff-1200798909b5",
+  "toolUseResult": {
+    "query": "online hard example mining sample reweighting behavioral cloning imitation learning robot 2024 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WZziWF1v3KdFozHV1s9A1g",
+        "content": [
+          {
+            "title": "Frontiers | Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682437/full"
+          },
+          {
+            "title": "Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10514-025-10237-0"
+          },
+          {
+            "title": "Towards robust long-tailed recognition: A class-balanced loss based on example forgetting",
+            "url": "https://www.aimsciences.org/article/doi/10.3934/mfc.2025028"
+          },
+          {
+            "title": "Imitation learning for legged robot locomotion: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1678567/pdf"
+          },
+          {
+            "title": "Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12757213/"
+          },
+          {
+            "title": "(PDF) Hard Sample Mining: A New Paradigm of Efficient and Robust Model Training",
+            "url": "https://www.researchgate.net/publication/395497039_Hard_Sample_Mining_A_New_Paradigm_of_Efficient_and_Robust_Model_Training"
+          },
+          {
+            "title": "Proceedings of Machine Learning Research | Proceedings of The 8th Conference on Robot Learning Held in Munich, Germany on 06-09 November 2024 Published as Volume 270 by the Proceedings of Machine Learning Research on 12 January 2025. Volume Edited by: Pulkit Agrawal Oliver Kroemer Wolfram Burgard Series Editors: Neil D. Lawrence",
+            "url": "https://proceedings.mlr.press/v270/"
+          },
+          {
+            "title": "Frontiers | Imitation learning for legged robot locomotion: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1678567/full"
+          },
+          {
+            "title": "Imitation learning for legged robot locomotion: a survey - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12702866/"
+          },
+          {
+            "title": "Ch. 21 - Imitation Learning - Underactuated Robotics",
+            "url": "https://underactuated.mit.edu/imitation.html"
+          }
+        ]
+      },
+      "Based on my web search results, I found relevant research on hard example mining, sample reweighting, and imitation learning in robotics from 2024-2026. Here are the key findings:\n\n## Sample Reweighting in Imitation Learning\n\nPrior works have suggested reweighting the data based on training performance. Specifically, Dass et al. (2025) uses held-out demonstrations to track training progress and increases the learning weights of samples that perform poorly, while Hejna et al. (2024) computes training loss with respect to a reference policy that is trained on the original, unweighted dataset.\n\n## Hard Example Mining\n\nA novel Class-Balanced Loss Based on Example Forgetting (FCB loss) integrates hard example mining and example forgetting into the computation of the total information volume. Additionally, a common solution in sample reweighting is to assign larger weights to harder samples and lower weights to easier ones.\n\n## Imitation Learning and Behavioral Cloning in Robotics\n\nRecent research shows active development in behavioral cloning and imitation learning for robots. Recent research addresses shortcomings by combining BC with online adaptation layers or by augmenting demonstration datasets with greater diversity and domain randomization. This is particularly relevant for handling imbalanced datasets in robot learning.\n\n## Related Challenges\n\nIn practice, human-provided datasets are inevitably imbalanced: i.e., the human demonstrates some subtasks more frequently than others, which directly impacts the effectiveness of imitation learning approaches for robots."
+    ],
+    "durationSeconds": 7.105950233999989
+  },
+  "sourceToolAssistantUUID": "f57ce472-b72e-454f-aaac-fa12415f1ca1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-13T18:07:31.086Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VtTjnoghFgKNEk2nPgvAJi`</summary>
+
+```json
+{
+  "query": "\"Reshaping Action Error\" MEE minimum error entropy VLA training arXiv 2602.04228"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1d451a6-2b51-4016-99ff-1200798909b5",
+  "isSidechain": false,
+  "requestId": "req_011Cb11kk3oHvvEJZVhaARcq",
+  "type": "assistant",
+  "uuid": "e76abc12-4396-4d91-8c72-9c1f651efbd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017M3JD7DbzpUGJLm9wvavxG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 58274,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 58274,
+          "cache_creation_input_tokens": 1076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-13T18:07:37.136Z_
+
+<details><summary>↩ Tool result · `toolu_01VtTjnoghFgKNEk2nPgvAJi`</summary>
+
+```text
+Web search results for query: ""Reshaping Action Error" MEE minimum error entropy VLA training arXiv 2602.04228"
+
+Links: [{"title":"[2602.04228] Reshaping Action Error Distributions for Reliable Vision-Language-Action Models","url":"https://arxiv.org/abs/2602.04228"},{"title":"Reshaping Action Error Distributions for Reliable Vision-Language-Action Models","url":"https://arxiv.org/html/2602.04228"}]
+
+I found the paper you're looking for! Here's a summary of the arXiv paper 2602.04228:
+
+**Title:** Reshaping Action Error Distributions for Reliable Vision-Language-Action Models
+
+**Main Contribution:** The paper focuses on continuous-action VLA models and moves beyond conventional MSE-based regression by reshaping action error distributions during training. It introduces Minimum Error Entropy (MEE) into modern VLA architectures and proposes a trajectory-level MEE objective, together with two weighted variants, combined with MSE for continuous-action VLA training.
+
+**Key Features:** The authors adapt the MEE criterion to the action prediction setting by reformulating it over trajectory-level action errors, resulting in Trajectory-level MEE (T-MEE), and further introduce two complementary weighted variants: Chunk-weighted T-MEE (Cw-TMEE) and Element-weighted T-MEE (Ew-TMEE).
+
+**Evaluation:** The approaches are evaluated across standard, few-shot, and noisy settings on multiple representative VLA architectures, using simulation benchmarks such as LIBERO and SimplerEnv.
+
+The paper was posted on February 4, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e76abc12-4396-4d91-8c72-9c1f651efbd9",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "a9475611-e719-4a55-8965-cf164909e2ef",
+  "toolUseResult": {
+    "query": "\"Reshaping Action Error\" MEE minimum error entropy VLA training arXiv 2602.04228",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RXkU5HWzqjiBkVeAAtZgWM",
+        "content": [
+          {
+            "title": "[2602.04228] Reshaping Action Error Distributions for Reliable Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2602.04228"
+          },
+          {
+            "title": "Reshaping Action Error Distributions for Reliable Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2602.04228"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's a summary of the arXiv paper 2602.04228:\n\n**Title:** Reshaping Action Error Distributions for Reliable Vision-Language-Action Models\n\n**Main Contribution:** The paper focuses on continuous-action VLA models and moves beyond conventional MSE-based regression by reshaping action error distributions during training. It introduces Minimum Error Entropy (MEE) into modern VLA architectures and proposes a trajectory-level MEE objective, together with two weighted variants, combined with MSE for continuous-action VLA training.\n\n**Key Features:** The authors adapt the MEE criterion to the action prediction setting by reformulating it over trajectory-level action errors, resulting in Trajectory-level MEE (T-MEE), and further introduce two complementary weighted variants: Chunk-weighted T-MEE (Cw-TMEE) and Element-weighted T-MEE (Ew-TMEE).\n\n**Evaluation:** The approaches are evaluated across standard, few-shot, and noisy settings on multiple representative VLA architectures, using simulation benchmarks such as LIBERO and SimplerEnv.\n\nThe paper was posted on February 4, 2026."
+    ],
+    "durationSeconds": 6.04629983199999
+  },
+  "sourceToolAssistantUUID": "e76abc12-4396-4d91-8c72-9c1f651efbd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-13T18:07:41.893Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RvRKBJEsMDRAPZCLaAYBDp`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.04228",
+  "prompt": "Extract the key details about this paper: (1) What is the Chunk-weighted T-MEE variant — does it apply different weights to different positions within action chunks? (2) What is Element-weighted T-MEE? (3) Do they analyze per-position loss within chunks? (4) Do they use any form of adaptive data prioritization or sample selection? (5) How does their approach differ from simply reweighting samples by loss magnitude?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9475611-e719-4a55-8965-cf164909e2ef",
+  "isSidechain": false,
+  "requestId": "req_011Cb11mQcnCJpD53Nr8jcdd",
+  "type": "assistant",
+  "uuid": "d4ca8485-5e27-4d00-a97d-8fdd5e75ef0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjSyHPTSx1URxdzgPEmLF8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 494,
+      "cache_read_input_tokens": 59350,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 494,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 59350,
+          "cache_creation_input_tokens": 494,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 494
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-13T18:07:46.257Z_
+
+<details><summary>↩ Tool result · `toolu_01RvRKBJEsMDRAPZCLaAYBDp`</summary>
+
+```text
+# Key Details from Paper Abstract
+
+Based on the webpage content provided, I cannot fully answer your specific questions because the abstract does not contain detailed information about:
+
+1. **Chunk-weighted T-MEE variant** — The abstract mentions "two weighted variants, combined with MSE" but does not specify their mechanics or whether they apply position-specific weights within action chunks.
+
+2. **Element-weighted T-MEE** — Similarly unnamed in the abstract; only that weighted variants exist alongside a "trajectory-level MEE objective."
+
+3. **Per-position loss analysis** — No mention of analyzing loss at individual positions within chunks.
+
+4. **Adaptive data prioritization** — Not discussed in the available abstract.
+
+5. **Distinction from loss-magnitude reweighting** — The abstract describes the method as "reshaping action error distributions during training" using "information-theoretic principles" and MEE, but doesn't explicitly contrast this with loss-based sample reweighting approaches.
+
+**What is stated:** The paper proposes "Minimum Error Entropy (MEE) into modern VLA architectures" with weighted variants for continuous-action training, evaluated on LIBERO, SimplerEnv, and real robotic tasks. The full paper (accessible via PDF) would contain these implementation details.
+
+To answer your questions comprehensively, the complete paper would need to be reviewed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d4ca8485-5e27-4d00-a97d-8fdd5e75ef0c",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "5d45fc57-a8f7-4a1c-be17-8a103415f8aa",
+  "toolUseResult": {
+    "bytes": 48171,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Key Details from Paper Abstract\n\nBased on the webpage content provided, I cannot fully answer your specific questions because the abstract does not contain detailed information about:\n\n1. **Chunk-weighted T-MEE variant** — The abstract mentions \"two weighted variants, combined with MSE\" but does not specify their mechanics or whether they apply position-specific weights within action chunks.\n\n2. **Element-weighted T-MEE** — Similarly unnamed in the abstract; only that weighted variants exist alongside a \"trajectory-level MEE objective.\"\n\n3. **Per-position loss analysis** — No mention of analyzing loss at individual positions within chunks.\n\n4. **Adaptive data prioritization** — Not discussed in the available abstract.\n\n5. **Distinction from loss-magnitude reweighting** — The abstract describes the method as \"reshaping action error distributions during training\" using \"information-theoretic principles\" and MEE, but doesn't explicitly contrast this with loss-based sample reweighting approaches.\n\n**What is stated:** The paper proposes \"Minimum Error Entropy (MEE) into modern VLA architectures\" with weighted variants for continuous-action training, evaluated on LIBERO, SimplerEnv, and real robotic tasks. The full paper (accessible via PDF) would contain these implementation details.\n\nTo answer your questions comprehensively, the complete paper would need to be reviewed.",
+    "durationMs": 4360,
+    "url": "https://arxiv.org/abs/2602.04228"
+  },
+  "sourceToolAssistantUUID": "d4ca8485-5e27-4d00-a97d-8fdd5e75ef0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 77 · 2026-05-13T18:07:46.262Z_
+
+```json
+{
+  "parentUuid": "5d45fc57-a8f7-4a1c-be17-8a103415f8aa",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "662f6c0b-2e7b-4316-9689-4e641fb633f8",
+  "timestamp": "2026-05-13T18:07:46.262Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-13T18:07:58.140Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017fhYjtPQdnpP8NCLSduHdm`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.04228",
+  "prompt": "Extract the following details: (1) What is Chunk-weighted T-MEE (Cw-TMEE) — does it apply different weights to different positions within action chunks? (2) What is Element-weighted T-MEE (Ew-TMEE)? (3) Do they analyze per-position loss profiles within chunks or temporal degradation of prediction quality? (4) Is there any adaptive data selection or sample prioritization? (5) What are the key results — how much improvement over MSE baseline?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "662f6c0b-2e7b-4316-9689-4e641fb633f8",
+  "isSidechain": false,
+  "requestId": "req_011Cb11n5doHEWuxVVYYuzPH",
+  "type": "assistant",
+  "uuid": "e08cc861-f329-49e9-9ceb-9af89e703008",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MR1iNDPRpTzFzBRYqvSztS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 587,
+      "cache_read_input_tokens": 59844,
+      "output_tokens": 196,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 587,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 196,
+          "cache_read_input_tokens": 59844,
+          "cache_creation_input_tokens": 587,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 587
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-13T18:08:06.625Z_
+
+<details><summary>↩ Tool result · `toolu_017fhYjtPQdnpP8NCLSduHdm`</summary>
+
+```text
+# Analysis of T-MEE Variants and Results
+
+## 1. Chunk-weighted T-MEE (Cw-TMEE)
+
+Cw-TMEE applies **asymmetric weighting that emphasizes reliable action chunks**. Specifically, it uses the weighting scheme ωᵢⱼ = (1/N²)wᵢ, where weights are based on error magnitude: "wi = exp(−‖ei‖²/2σw²) / Σ exp(−‖ek‖²/2σw²)". This prioritizes chunks with smaller errors while aggregating across trajectories, but does **not** differentiate by position within chunks.
+
+## 2. Element-weighted T-MEE (Ew-TMEE)
+
+Ew-TMEE employs symmetric, element-wise weighting where ωᵢⱼ = wᵢwⱼ. This creates "a symmetric, element-weighted quadratic Rényi entropy estimator" that weight-scales both error samples equally in the pairwise interaction kernel, rather than privileging specific positions.
+
+## 3. Per-Position Loss Profiles and Temporal Degradation
+
+**No explicit analysis of these phenomena** appears in the paper. The authors do not examine within-chunk position-specific losses or track how prediction quality degrades temporally across steps.
+
+## 4. Adaptive Data Selection or Sample Prioritization
+
+The weighting mechanisms (Equations 7–8) do implicitly prioritize samples—lower-error samples receive higher weights. However, the paper does not implement explicit adaptive data selection or strategic sample filtering beyond this entropy-based weighting.
+
+## 5. Key Results: Improvement over MSE
+
+**Small-scale models** show substantial gains: BC-RNN improved by +13.3%, BC-Transformer by +10.9%. **Large-scale models** show modest but consistent improvements: typically +0.5% to +2.4%. Real-world experiments confirm consistent success-rate improvements across manipulation tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e08cc861-f329-49e9-9ceb-9af89e703008",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "f8220efb-2140-404b-aa50-b72c96118bce",
+  "toolUseResult": {
+    "bytes": 382454,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of T-MEE Variants and Results\n\n## 1. Chunk-weighted T-MEE (Cw-TMEE)\n\nCw-TMEE applies **asymmetric weighting that emphasizes reliable action chunks**. Specifically, it uses the weighting scheme ωᵢⱼ = (1/N²)wᵢ, where weights are based on error magnitude: \"wi = exp(−‖ei‖²/2σw²) / Σ exp(−‖ek‖²/2σw²)\". This prioritizes chunks with smaller errors while aggregating across trajectories, but does **not** differentiate by position within chunks.\n\n## 2. Element-weighted T-MEE (Ew-TMEE)\n\nEw-TMEE employs symmetric, element-wise weighting where ωᵢⱼ = wᵢwⱼ. This creates \"a symmetric, element-weighted quadratic Rényi entropy estimator\" that weight-scales both error samples equally in the pairwise interaction kernel, rather than privileging specific positions.\n\n## 3. Per-Position Loss Profiles and Temporal Degradation\n\n**No explicit analysis of these phenomena** appears in the paper. The authors do not examine within-chunk position-specific losses or track how prediction quality degrades temporally across steps.\n\n## 4. Adaptive Data Selection or Sample Prioritization\n\nThe weighting mechanisms (Equations 7–8) do implicitly prioritize samples—lower-error samples receive higher weights. However, the paper does not implement explicit adaptive data selection or strategic sample filtering beyond this entropy-based weighting.\n\n## 5. Key Results: Improvement over MSE\n\n**Small-scale models** show substantial gains: BC-RNN improved by +13.3%, BC-Transformer by +10.9%. **Large-scale models** show modest but consistent improvements: typically +0.5% to +2.4%. Real-world experiments confirm consistent success-rate improvements across manipulation tasks.",
+    "durationMs": 8477,
+    "url": "https://arxiv.org/html/2602.04228"
+  },
+  "sourceToolAssistantUUID": "e08cc861-f329-49e9-9ceb-9af89e703008",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f8220efb-2140-404b-aa50-b72c96118bce",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-13T18:08:10.654Z_
+
+Good — Reshaping Action Error is relevant but distinct: it changes the loss function (MEE) rather than doing adaptive data prioritization, and does not analyze per-position temporal profiles. Now let me check for the most critical potential competing works I haven't found yet.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8220efb-2140-404b-aa50-b72c96118bce",
+  "isSidechain": false,
+  "requestId": "req_011Cb11oahoyethsEugmqZoJ",
+  "type": "assistant",
+  "uuid": "0f4f2dae-2eb2-4421-8015-d67b105cff44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014KMFaLcvQyKcbwpT1tTYRz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 670,
+      "cache_read_input_tokens": 60431,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 670,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 60431,
+          "cache_creation_input_tokens": 670,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 670
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-13T18:08:11.378Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019dvjCEHjenbYMVSeStD3B1`</summary>
+
+```json
+{
+  "query": "loss-based curriculum learning demonstration filtering online VLA SFT 2026 action prediction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f4f2dae-2eb2-4421-8015-d67b105cff44",
+  "isSidechain": false,
+  "requestId": "req_011Cb11oahoyethsEugmqZoJ",
+  "type": "assistant",
+  "uuid": "66220338-a420-45a4-acca-ae54f2a17b2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014KMFaLcvQyKcbwpT1tTYRz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 670,
+      "cache_read_input_tokens": 60431,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 670,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 60431,
+          "cache_creation_input_tokens": 670,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 670
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-13T18:08:19.686Z_
+
+<details><summary>↩ Tool result · `toolu_019dvjCEHjenbYMVSeStD3B1`</summary>
+
+```text
+Web search results for query: "loss-based curriculum learning demonstration filtering online VLA SFT 2026 action prediction"
+
+Links: [{"title":"Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models","url":"https://arxiv.org/html/2602.01166v2"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning","url":"https://arxiv.org/html/2509.09674v1"},{"title":"CRL-VLA: Continual Vision–Language–Action Learning","url":"https://arxiv.org/html/2602.03445v1"},{"title":"World-VLA-Loop: Closed-Loop Learning of Video World Model and VLA Policy","url":"https://arxiv.org/html/2602.06508v1"},{"title":"DynVLA: Learning World Dynamics for Action Reasoning in Autonomous Driving","url":"https://arxiv.org/html/2603.11041"},{"title":"Rohit Bandaru | Foundation Models for Robotics: Vision-Language-Action (VLA)","url":"https://rohitbandaru.github.io/blog/Foundation-Models-for-Robotics-VLA/"},{"title":"SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=TQhSodCM4r"},{"title":"[2501.16664] Improving Vision-Language-Action Model with Online Reinforcement Learning","url":"https://arxiv.org/abs/2501.16664"},{"title":"2025-9-18 ThinkAct: Vision-Language-Action Reasoning via","url":"https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"}]
+
+I found several relevant research papers from 2025-2026 on Vision-Language-Action (VLA) models. Here are the key findings:
+
+## VLA Training and Action Prediction Research
+
+**Curriculum Learning and Training Strategies:**
+LaRA-VLA proposes a curriculum-based training strategy, progressively transitioning from explicit multi-modal chain-of-thought supervision to latent embodied reasoning, guided by predictive visual latent objectives and stabilized with EMA-based visual encoders.
+
+**Online RL and SFT:**
+SimpleVLA-RL develops an efficient end-to-end VLA online RL framework based on veRL that enables stable, sample-efficient training, optimized for rendering parallelization and distributed training & inference. With only a single demonstration per task, RL boosts LIBERO-Long success rates from 17.1% to 91.7%, and significantly outperforms SFT in spatial, object, and task generalization.
+
+**Demonstration and Demonstration Filtering:**
+The search results show multiple papers addressing demonstration efficiency. For the SUPA dataset, manually collected success and near-success trajectories are used alongside rollouts from the SFT OpenVLA-OFT baseline, and for subsequent iterations, the dataset is expanded to include newly generated trajectories from the RL-optimized policy produced in the previous step.
+
+**Reinforcement Fine-tuning (RFT):**
+DynVLA trains to generate dynamics tokens before actions through SFT and RFT, improving decision quality while maintaining latency-efficient inference.
+
+These papers collectively represent current 2026 research on VLA training methodologies including curriculum learning, demonstration filtering, and online RL approaches for action prediction in robotics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "66220338-a420-45a4-acca-ae54f2a17b2a",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "4e2e749d-5ffd-4221-8c99-2106faec570e",
+  "toolUseResult": {
+    "query": "loss-based curriculum learning demonstration filtering online VLA SFT 2026 action prediction",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y1FYcrDYjLZp354TafRfo3",
+        "content": [
+          {
+            "title": "Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2602.01166v2"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.09674v1"
+          },
+          {
+            "title": "CRL-VLA: Continual Vision–Language–Action Learning",
+            "url": "https://arxiv.org/html/2602.03445v1"
+          },
+          {
+            "title": "World-VLA-Loop: Closed-Loop Learning of Video World Model and VLA Policy",
+            "url": "https://arxiv.org/html/2602.06508v1"
+          },
+          {
+            "title": "DynVLA: Learning World Dynamics for Action Reasoning in Autonomous Driving",
+            "url": "https://arxiv.org/html/2603.11041"
+          },
+          {
+            "title": "Rohit Bandaru | Foundation Models for Robotics: Vision-Language-Action (VLA)",
+            "url": "https://rohitbandaru.github.io/blog/Foundation-Models-for-Robotics-VLA/"
+          },
+          {
+            "title": "SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=TQhSodCM4r"
+          },
+          {
+            "title": "[2501.16664] Improving Vision-Language-Action Model with Online Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2501.16664"
+          },
+          {
+            "title": "2025-9-18 ThinkAct: Vision-Language-Action Reasoning via",
+            "url": "https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"
+          }
+        ]
+      },
+      "I found several relevant research papers from 2025-2026 on Vision-Language-Action (VLA) models. Here are the key findings:\n\n## VLA Training and Action Prediction Research\n\n**Curriculum Learning and Training Strategies:**\nLaRA-VLA proposes a curriculum-based training strategy, progressively transitioning from explicit multi-modal chain-of-thought supervision to latent embodied reasoning, guided by predictive visual latent objectives and stabilized with EMA-based visual encoders.\n\n**Online RL and SFT:**\nSimpleVLA-RL develops an efficient end-to-end VLA online RL framework based on veRL that enables stable, sample-efficient training, optimized for rendering parallelization and distributed training & inference. With only a single demonstration per task, RL boosts LIBERO-Long success rates from 17.1% to 91.7%, and significantly outperforms SFT in spatial, object, and task generalization.\n\n**Demonstration and Demonstration Filtering:**\nThe search results show multiple papers addressing demonstration efficiency. For the SUPA dataset, manually collected success and near-success trajectories are used alongside rollouts from the SFT OpenVLA-OFT baseline, and for subsequent iterations, the dataset is expanded to include newly generated trajectories from the RL-optimized policy produced in the previous step.\n\n**Reinforcement Fine-tuning (RFT):**\nDynVLA trains to generate dynamics tokens before actions through SFT and RFT, improving decision quality while maintaining latency-efficient inference.\n\nThese papers collectively represent current 2026 research on VLA training methodologies including curriculum learning, demonstration filtering, and online RL approaches for action prediction in robotics."
+    ],
+    "durationSeconds": 8.303443733999972
+  },
+  "sourceToolAssistantUUID": "66220338-a420-45a4-acca-ae54f2a17b2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-13T18:08:22.950Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012T3QqvgnxBovKQ7R8joTKi`</summary>
+
+```json
+{
+  "query": "ExpReS-VLA experience replay specializing VLA arXiv 2511.06202"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4e2e749d-5ffd-4221-8c99-2106faec570e",
+  "isSidechain": false,
+  "requestId": "req_011Cb11pYabHzRrpxcniufX1",
+  "type": "assistant",
+  "uuid": "11ad3e10-886d-4706-8c3b-d03c674eeb47",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012bHeAdL7NQ1ho2ByhKa8vh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1042,
+      "cache_read_input_tokens": 61101,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1042,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 61101,
+          "cache_creation_input_tokens": 1042,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1042
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-13T18:08:31.244Z_
+
+<details><summary>↩ Tool result · `toolu_012T3QqvgnxBovKQ7R8joTKi`</summary>
+
+```text
+Web search results for query: "ExpReS-VLA experience replay specializing VLA arXiv 2511.06202"
+
+Links: [{"title":"[2511.06202] ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval","url":"https://arxiv.org/abs/2511.06202"},{"title":"ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval","url":"https://arxiv.org/html/2511.06202"},{"title":"ExpReS-VLA: Specializing Vision-Language-Action Models Through","url":"https://arxiv.org/pdf/2511.06202"},{"title":"(PDF) ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval","url":"https://www.researchgate.net/publication/397480729_ExpReS-VLA_Specializing_Vision-Language-Action_Models_Through_Experience_Replay_and_Retrieval"},{"title":"ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval | alphaXiv","url":"https://www.alphaxiv.org/overview/2511.06202v1"},{"title":"Physical robot evaluation tasks. We evaluate ExpReS-VLA on five... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Physical-robot-evaluation-tasks-We-evaluate-ExpReS-VLA-on-five-manipulation-tasks-using_fig3_397480729"},{"title":"π^{*}_{0.6}$: a VLA That Learns From Experience | Request PDF","url":"https://www.researchgate.net/publication/397739001_p_06_a_VLA_That_Learns_From_Experience"},{"title":"𝜋^∗_0.6: a VLA That Learns From Experience","url":"https://arxiv.org/html/2511.14759.pdf"},{"title":"[2507.22424] Spec-VLA: Speculative Decoding for Vision-Language-Action Models with Relaxed Acceptance","url":"https://arxiv.org/abs/2507.22424"},{"title":"[2511.18950] Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation","url":"https://arxiv.org/abs/2511.18950"}]
+
+Based on the search results, I found detailed information about ExpReS-VLA (arXiv 2511.06202):
+
+## Overview
+
+ExpReS-VLA is a method that enables rapid on-device adaptation of pre-trained VLAs to target domains while preventing catastrophic forgetting through compressed experience replay and retrieval-augmented generation.
+
+## Problem Context
+
+Vision-Language-Action (VLA) models like OpenVLA demonstrate impressive zero-shot generalization across robotic manipulation tasks but struggle to adapt to specific deployment environments where consistent high performance on a limited set of tasks is more valuable than broad generalization.
+
+## Key Technical Approach
+
+The method uses several key components:
+
+- The approach maintains a memory-efficient buffer by storing extracted embeddings from OpenVLA's frozen vision backbone, reducing storage requirements by 97% compared to raw image-action pairs.
+
+- During deployment, ExpReS-VLA retrieves the k most similar past experiences using cosine similarity to augment training batches, while a prioritized experience replay buffer preserves recently successful trajectories.
+
+- The method introduces Thresholded Hybrid Contrastive Loss (THCL), enabling the model to learn from both successful and unsuccessful demonstrations collected during deployment.
+
+## Performance Results
+
+Experiments on the LIBERO simulation benchmark show that ExpReS-VLA improves success rates from 82.6% to 93.1% on spatial reasoning tasks and from 61% to 72.3% on long-horizon tasks compared to base OpenVLA.
+
+Physical robot experiments across five manipulation tasks demonstrate that the approach achieves 98% success on both in-distribution and out-of-distribution tasks (with unseen backgrounds and objects), improving from 84.7% and 32% respectively for naive fine-tuning.
+
+ExpReS-VLA accomplishes this adaptation in 31 seconds using only 12 demonstrations on a single RTX 5090, making it practical for real-world deployment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "11ad3e10-886d-4706-8c3b-d03c674eeb47",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "79b6e5e2-82a9-4f1e-b828-e439720dfd35",
+  "toolUseResult": {
+    "query": "ExpReS-VLA experience replay specializing VLA arXiv 2511.06202",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T64GXQKBguNdKhxVTWsUQF",
+        "content": [
+          {
+            "title": "[2511.06202] ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval",
+            "url": "https://arxiv.org/abs/2511.06202"
+          },
+          {
+            "title": "ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval",
+            "url": "https://arxiv.org/html/2511.06202"
+          },
+          {
+            "title": "ExpReS-VLA: Specializing Vision-Language-Action Models Through",
+            "url": "https://arxiv.org/pdf/2511.06202"
+          },
+          {
+            "title": "(PDF) ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval",
+            "url": "https://www.researchgate.net/publication/397480729_ExpReS-VLA_Specializing_Vision-Language-Action_Models_Through_Experience_Replay_and_Retrieval"
+          },
+          {
+            "title": "ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2511.06202v1"
+          },
+          {
+            "title": "Physical robot evaluation tasks. We evaluate ExpReS-VLA on five... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Physical-robot-evaluation-tasks-We-evaluate-ExpReS-VLA-on-five-manipulation-tasks-using_fig3_397480729"
+          },
+          {
+            "title": "π^{*}_{0.6}$: a VLA That Learns From Experience | Request PDF",
+            "url": "https://www.researchgate.net/publication/397739001_p_06_a_VLA_That_Learns_From_Experience"
+          },
+          {
+            "title": "𝜋^∗_0.6: a VLA That Learns From Experience",
+            "url": "https://arxiv.org/html/2511.14759.pdf"
+          },
+          {
+            "title": "[2507.22424] Spec-VLA: Speculative Decoding for Vision-Language-Action Models with Relaxed Acceptance",
+            "url": "https://arxiv.org/abs/2507.22424"
+          },
+          {
+            "title": "[2511.18950] Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2511.18950"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about ExpReS-VLA (arXiv 2511.06202):\n\n## Overview\n\nExpReS-VLA is a method that enables rapid on-device adaptation of pre-trained VLAs to target domains while preventing catastrophic forgetting through compressed experience replay and retrieval-augmented generation.\n\n## Problem Context\n\nVision-Language-Action (VLA) models like OpenVLA demonstrate impressive zero-shot generalization across robotic manipulation tasks but struggle to adapt to specific deployment environments where consistent high performance on a limited set of tasks is more valuable than broad generalization.\n\n## Key Technical Approach\n\nThe method uses several key components:\n\n- The approach maintains a memory-efficient buffer by storing extracted embeddings from OpenVLA's frozen vision backbone, reducing storage requirements by 97% compared to raw image-action pairs.\n\n- During deployment, ExpReS-VLA retrieves the k most similar past experiences using cosine similarity to augment training batches, while a prioritized experience replay buffer preserves recently successful trajectories.\n\n- The method introduces Thresholded Hybrid Contrastive Loss (THCL), enabling the model to learn from both successful and unsuccessful demonstrations collected during deployment.\n\n## Performance Results\n\nExperiments on the LIBERO simulation benchmark show that ExpReS-VLA improves success rates from 82.6% to 93.1% on spatial reasoning tasks and from 61% to 72.3% on long-horizon tasks compared to base OpenVLA.\n\nPhysical robot experiments across five manipulation tasks demonstrate that the approach achieves 98% success on both in-distribution and out-of-distribution tasks (with unseen backgrounds and objects), improving from 84.7% and 32% respectively for naive fine-tuning.\n\nExpReS-VLA accomplishes this adaptation in 31 seconds using only 12 demonstrations on a single RTX 5090, making it practical for real-world deployment."
+    ],
+    "durationSeconds": 8.28878012900002
+  },
+  "sourceToolAssistantUUID": "11ad3e10-886d-4706-8c3b-d03c674eeb47",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-13T18:08:35.373Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y4keqLSpad9HtbbtrXBUqs`</summary>
+
+```json
+{
+  "query": "DAM-VLA dual scale action weighting chunk exponential decay gripper contact arXiv 2603.00926"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79b6e5e2-82a9-4f1e-b828-e439720dfd35",
+  "isSidechain": false,
+  "requestId": "req_011Cb11qQ1vt435RbhDiyjsF",
+  "type": "assistant",
+  "uuid": "30917dce-39e8-420e-a299-4232c0a2f9cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WS95cxAhacBx3nYDEk4xJt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1127,
+      "cache_read_input_tokens": 62143,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1127,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 62143,
+          "cache_creation_input_tokens": 1127,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1127
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-13T18:08:42.412Z_
+
+<details><summary>↩ Tool result · `toolu_01Y4keqLSpad9HtbbtrXBUqs`</summary>
+
+```text
+Web search results for query: "DAM-VLA dual scale action weighting chunk exponential decay gripper contact arXiv 2603.00926"
+
+Links: [{"title":"DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action","url":"https://arxiv.org/pdf/2603.00926"},{"title":"[2603.00926] DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation","url":"https://arxiv.org/abs/2603.00926"},{"title":"DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation","url":"https://arxiv.org/html/2603.00926"},{"title":"VLA-Touch: Enhancing Vision-Language-Action Models ...","url":"https://arxiv.org/pdf/2507.17294"},{"title":"FPC-VLA: A Vision-Language-Action Framework with a Supervisor for Failure Prediction and Correction","url":"https://arxiv.org/html/2509.04018"},{"title":"VacuumVLA: Boosting VLA Capabilities via a Unified Suction and","url":"https://arxiv.org/pdf/2511.21557"},{"title":"SELF-VLA: A Skill Enhanced Agentic Vision-Language-Action Framework for Contact-Rich Disassembly","url":"https://arxiv.org/html/2603.11080"},{"title":"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation","url":"https://arxiv.org/html/2603.22760"},{"title":"Action Draft and Verify: A Self-Verifying Framework for Vision-Language-Action Model","url":"https://arxiv.org/html/2603.18091v1"},{"title":"GitHub - iszhanjiawei/flow_matching_arxiv_daily · GitHub","url":"https://github.com/iszhanjiawei/flow_matching_arxiv_daily"}]
+
+The search successfully found the paper! Here's what I found about DAM-VLA and its dual scale action weighting mechanism:
+
+DAM-VLA is a dynamic action model-based VLA (Vision-Language-Action) framework that integrates VLM reasoning with diffusion-based action models specialized for arm and gripper control.
+
+## Dual Scale Action Weighting Mechanism
+
+The dual-scale action weighting mechanism uses asymmetrical Gaussian distributions in the trajectory weight to highlight critical manipulation phases, while within each predicted chunk, the action chunk weight applies exponential decay to prioritize immediate temporal accuracy. The final weight integrates both scales to guide model supervision.
+
+## Key Components
+
+The framework introduces an action routing mechanism using task-specific visual and linguistic cues to select appropriate action models (arm movement or gripper manipulation), a dynamic action model that fuses high-level VLM cognition with low-level visual features to predict actions, and the dual-scale action weighting mechanism that enables dynamic coordination between the arm-movement and gripper-manipulation models.
+
+## Performance
+
+DAM-VLA achieves superior success rates compared to state-of-the-art VLA methods in simulated (SIMPLER, FurnitureBench) and real-world settings, showing robust generalization from standard pick-and-place to demanding long-horizon and contact-rich tasks.
+
+The paper (arXiv:2603.00926) was published on March 1, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "30917dce-39e8-420e-a299-4232c0a2f9cc",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "e17ee56b-5c8f-4777-b121-b9297fcb38e2",
+  "toolUseResult": {
+    "query": "DAM-VLA dual scale action weighting chunk exponential decay gripper contact arXiv 2603.00926",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JySZRwb7HKgD7edtaYxTCZ",
+        "content": [
+          {
+            "title": "DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action",
+            "url": "https://arxiv.org/pdf/2603.00926"
+          },
+          {
+            "title": "[2603.00926] DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation",
+            "url": "https://arxiv.org/abs/2603.00926"
+          },
+          {
+            "title": "DAM-VLA: A Dynamic Action Model-Based Vision-Language-Action Framework for Robot Manipulation",
+            "url": "https://arxiv.org/html/2603.00926"
+          },
+          {
+            "title": "VLA-Touch: Enhancing Vision-Language-Action Models ...",
+            "url": "https://arxiv.org/pdf/2507.17294"
+          },
+          {
+            "title": "FPC-VLA: A Vision-Language-Action Framework with a Supervisor for Failure Prediction and Correction",
+            "url": "https://arxiv.org/html/2509.04018"
+          },
+          {
+            "title": "VacuumVLA: Boosting VLA Capabilities via a Unified Suction and",
+            "url": "https://arxiv.org/pdf/2511.21557"
+          },
+          {
+            "title": "SELF-VLA: A Skill Enhanced Agentic Vision-Language-Action Framework for Contact-Rich Disassembly",
+            "url": "https://arxiv.org/html/2603.11080"
+          },
+          {
+            "title": "SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation",
+            "url": "https://arxiv.org/html/2603.22760"
+          },
+          {
+            "title": "Action Draft and Verify: A Self-Verifying Framework for Vision-Language-Action Model",
+            "url": "https://arxiv.org/html/2603.18091v1"
+          },
+          {
+            "title": "GitHub - iszhanjiawei/flow_matching_arxiv_daily · GitHub",
+            "url": "https://github.com/iszhanjiawei/flow_matching_arxiv_daily"
+          }
+        ]
+      },
+      "The search successfully found the paper! Here's what I found about DAM-VLA and its dual scale action weighting mechanism:\n\nDAM-VLA is a dynamic action model-based VLA (Vision-Language-Action) framework that integrates VLM reasoning with diffusion-based action models specialized for arm and gripper control.\n\n## Dual Scale Action Weighting Mechanism\n\nThe dual-scale action weighting mechanism uses asymmetrical Gaussian distributions in the trajectory weight to highlight critical manipulation phases, while within each predicted chunk, the action chunk weight applies exponential decay to prioritize immediate temporal accuracy. The final weight integrates both scales to guide model supervision.\n\n## Key Components\n\nThe framework introduces an action routing mechanism using task-specific visual and linguistic cues to select appropriate action models (arm movement or gripper manipulation), a dynamic action model that fuses high-level VLM cognition with low-level visual features to predict actions, and the dual-scale action weighting mechanism that enables dynamic coordination between the arm-movement and gripper-manipulation models.\n\n## Performance\n\nDAM-VLA achieves superior success rates compared to state-of-the-art VLA methods in simulated (SIMPLER, FurnitureBench) and real-world settings, showing robust generalization from standard pick-and-place to demanding long-horizon and contact-rich tasks.\n\nThe paper (arXiv:2603.00926) was published on March 1, 2026."
+    ],
+    "durationSeconds": 7.034944760000042
+  },
+  "sourceToolAssistantUUID": "30917dce-39e8-420e-a299-4232c0a2f9cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-13T18:08:45.219Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NV8fZTdUPckfFQ4YSrUWD5`</summary>
+
+```json
+{
+  "query": "iw-SFT \"supervised fine tuning curated data reinforcement learning\" arXiv 2507.12856 importance weights"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e17ee56b-5c8f-4777-b121-b9297fcb38e2",
+  "isSidechain": false,
+  "requestId": "req_011Cb11rDnoHqeFSrD6aiaEZ",
+  "type": "assistant",
+  "uuid": "326a1065-c316-415a-9721-1cc7d25ab03e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KktwL1XGYycizqmuhKD327",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 909,
+      "cache_read_input_tokens": 63270,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 909,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 63270,
+          "cache_creation_input_tokens": 909,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 909
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-13T18:08:55.395Z_
+
+<details><summary>↩ Tool result · `toolu_01NV8fZTdUPckfFQ4YSrUWD5`</summary>
+
+```text
+Web search results for query: "iw-SFT "supervised fine tuning curated data reinforcement learning" arXiv 2507.12856 importance weights"
+
+Links: [{"title":"[2507.12856] Supervised Fine Tuning on Curated Data is Reinforcement Learning (and can be improved)","url":"https://arxiv.org/abs/2507.12856"},{"title":"Supervised Fine Tuning on Curated Data is Reinforcement ...","url":"https://arxiv.org/pdf/2507.12856"},{"title":"Supervised Fine Tuning on Curated Data is Reinforcement Learning (and can be improved)","url":"https://arxiv.org/html/2507.12856v1"},{"title":"Paper page - Supervised Fine Tuning on Curated Data is Reinforcement Learning (and can be improved)","url":"https://huggingface.co/papers/2507.12856"},{"title":"Proximal Supervised Fine-Tuning","url":"https://arxiv.org/html/2508.17784v1"},{"title":"On the Generalization of SFT: A Reinforcement Learning Perspective with Reward Rectification","url":"https://arxiv.org/html/2508.05629v1"},{"title":"Mind the Gap: Data Rewriting for Stable Off-Policy Supervised Fine-Tuning","url":"https://arxiv.org/html/2509.15157v1"},{"title":"Harmonizing Supervised Fine-Tuning and Reinforcement ...","url":"https://arxiv.org/pdf/2508.11408"},{"title":"Supervised Fine Tuning on Curated Data is Reinforcement ...","url":"https://www.alphaxiv.org/overview/2507.12856v1"},{"title":"Anchored Supervised Fine-Tuning","url":"https://arxiv.org/html/2509.23753"}]
+
+I found the paper you were searching for! Here's what I found about iw-SFT:
+
+## Overview
+
+iw-SFT (importance weighted supervised fine-tuning) is a method introduced in arXiv paper 2507.12856. Behavior Cloning (BC) on curated (or filtered) data is the predominant paradigm for supervised fine-tuning (SFT) of large language models and imitation learning of control policies, and the paper draws on a connection between this strategy and the theory and practice of finding optimal policies via Reinforcement Learning (RL).
+
+## Key Contributions
+
+The paper clarifies that SFT can be understood as maximizing a lower bound on the RL objective in a sparse reward setting. A small modification to SFT leads to an importance weighted variant that behaves closer to training with RL as it: i) optimizes a tighter bound to the RL objective and, ii) can improve performance compared to SFT on curated data.
+
+## How Importance Weights Work
+
+The bound can be tightened through importance re-weighting of the maximum likelihood SFT objective. This re-weighting can be seen as a way of performing 'adaptive-filtering' since the reweighted data points place increasingly heavier weights on 'preferred' data points.
+
+## Practical Results
+
+The resulting modifications to SFT – SFT from quality sampled data (SFT(Q)) and importance weighted SFT (iw-SFT) – are easy to implement and can match or surpass SFT in many settings. For example, achieving 66.7% on the AIME 2024 dataset.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "326a1065-c316-415a-9721-1cc7d25ab03e",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "e939c8db-e9f5-4865-8246-a7e6b9f869ba",
+  "toolUseResult": {
+    "query": "iw-SFT \"supervised fine tuning curated data reinforcement learning\" arXiv 2507.12856 importance weights",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0141NWL8vQ98vA12EwXAKx51",
+        "content": [
+          {
+            "title": "[2507.12856] Supervised Fine Tuning on Curated Data is Reinforcement Learning (and can be improved)",
+            "url": "https://arxiv.org/abs/2507.12856"
+          },
+          {
+            "title": "Supervised Fine Tuning on Curated Data is Reinforcement ...",
+            "url": "https://arxiv.org/pdf/2507.12856"
+          },
+          {
+            "title": "Supervised Fine Tuning on Curated Data is Reinforcement Learning (and can be improved)",
+            "url": "https://arxiv.org/html/2507.12856v1"
+          },
+          {
+            "title": "Paper page - Supervised Fine Tuning on Curated Data is Reinforcement Learning (and can be improved)",
+            "url": "https://huggingface.co/papers/2507.12856"
+          },
+          {
+            "title": "Proximal Supervised Fine-Tuning",
+            "url": "https://arxiv.org/html/2508.17784v1"
+          },
+          {
+            "title": "On the Generalization of SFT: A Reinforcement Learning Perspective with Reward Rectification",
+            "url": "https://arxiv.org/html/2508.05629v1"
+          },
+          {
+            "title": "Mind the Gap: Data Rewriting for Stable Off-Policy Supervised Fine-Tuning",
+            "url": "https://arxiv.org/html/2509.15157v1"
+          },
+          {
+            "title": "Harmonizing Supervised Fine-Tuning and Reinforcement ...",
+            "url": "https://arxiv.org/pdf/2508.11408"
+          },
+          {
+            "title": "Supervised Fine Tuning on Curated Data is Reinforcement ...",
+            "url": "https://www.alphaxiv.org/overview/2507.12856v1"
+          },
+          {
+            "title": "Anchored Supervised Fine-Tuning",
+            "url": "https://arxiv.org/html/2509.23753"
+          }
+        ]
+      },
+      "I found the paper you were searching for! Here's what I found about iw-SFT:\n\n## Overview\n\niw-SFT (importance weighted supervised fine-tuning) is a method introduced in arXiv paper 2507.12856. Behavior Cloning (BC) on curated (or filtered) data is the predominant paradigm for supervised fine-tuning (SFT) of large language models and imitation learning of control policies, and the paper draws on a connection between this strategy and the theory and practice of finding optimal policies via Reinforcement Learning (RL).\n\n## Key Contributions\n\nThe paper clarifies that SFT can be understood as maximizing a lower bound on the RL objective in a sparse reward setting. A small modification to SFT leads to an importance weighted variant that behaves closer to training with RL as it: i) optimizes a tighter bound to the RL objective and, ii) can improve performance compared to SFT on curated data.\n\n## How Importance Weights Work\n\nThe bound can be tightened through importance re-weighting of the maximum likelihood SFT objective. This re-weighting can be seen as a way of performing 'adaptive-filtering' since the reweighted data points place increasingly heavier weights on 'preferred' data points.\n\n## Practical Results\n\nThe resulting modifications to SFT – SFT from quality sampled data (SFT(Q)) and importance weighted SFT (iw-SFT) – are easy to implement and can match or surpass SFT in many settings. For example, achieving 66.7% on the AIME 2024 dataset."
+    ],
+    "durationSeconds": 10.169759197000007
+  },
+  "sourceToolAssistantUUID": "326a1065-c316-415a-9721-1cc7d25ab03e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e939c8db-e9f5-4865-8246-a7e6b9f869ba",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-13T18:08:59.710Z_
+
+Now let me check for the most important potential missing work — any recent paper that specifically uses per-position / temporal loss decomposition for prioritized training in VLA or similar domains.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e939c8db-e9f5-4865-8246-a7e6b9f869ba",
+  "isSidechain": false,
+  "requestId": "req_011Cb11sBEHi3R7ZNFMdo2fC",
+  "type": "assistant",
+  "uuid": "16403f58-43e2-412a-953c-7463214cc808",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REQTJ6a258PeFe2RWqdTrT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 940,
+      "cache_read_input_tokens": 64179,
+      "output_tokens": 121,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 940,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 121,
+          "cache_read_input_tokens": 64179,
+          "cache_creation_input_tokens": 940,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 940
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-13T18:09:00.829Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019BvTfnq4NNuFn7a7Y5yc12`</summary>
+
+```json
+{
+  "query": "\"per-position loss\" OR \"position-wise loss\" OR \"temporal loss profile\" action chunk VLA training prioritized 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16403f58-43e2-412a-953c-7463214cc808",
+  "isSidechain": false,
+  "requestId": "req_011Cb11sBEHi3R7ZNFMdo2fC",
+  "type": "assistant",
+  "uuid": "97548674-eb04-422f-95d0-56e66dd1153b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REQTJ6a258PeFe2RWqdTrT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 940,
+      "cache_read_input_tokens": 64179,
+      "output_tokens": 121,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 940,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 121,
+          "cache_read_input_tokens": 64179,
+          "cache_creation_input_tokens": 940,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 940
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-13T18:09:08.074Z_
+
+<details><summary>↩ Tool result · `toolu_019BvTfnq4NNuFn7a7Y5yc12`</summary>
+
+```text
+Web search results for query: ""per-position loss" OR "position-wise loss" OR "temporal loss profile" action chunk VLA training prioritized 2025 2026"
+
+Links: [{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/html/2509.23224v1"},{"title":"AR-VLA: True Autoregressive Action Expert for Vision–Language–Action Models","url":"https://arxiv.org/html/2603.10126"},{"title":"VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning","url":"https://arxiv.org/html/2509.25718"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks | OpenReview","url":"https://openreview.net/forum?id=y5SGBsndWv"},{"title":"Real-Time Execution of Action Chunking Flow Policies Kevin Black1,2,","url":"https://arxiv.org/pdf/2506.07339"},{"title":"[2509.23224] Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/abs/2509.23224"},{"title":"VQ-VLA: Improving Vision-Language-Action Models via Scaling","url":"https://xiaoxiao0406.github.io/vqvla.github.io/static/pdfs/VQ-VLA.pdf"},{"title":"[2509.25718] VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning","url":"https://arxiv.org/abs/2509.25718"},{"title":"PD-VLA: Accelerating Vision-Language-Action Model Integrated with Action Chunking via Parallel Decoding","url":"https://arxiv.org/html/2503.02310"},{"title":"VGAS: Value-Guided Action-Chunk Selection for Few-Shot Vision-Language-Action Adaptation","url":"https://arxiv.org/html/2602.07399"}]
+
+I found several relevant research papers from 2025-2026 related to VLA training with action chunks. Here are the key findings:
+
+## Recent VLA Action Chunk Training Research (2025-2026)
+
+### Temporal Loss and Position-Aware Training
+
+Asynchronous Action Chunk Correction (A2C2) introduces a lightweight real-time chunk correction head that combines the latest observation, predicted action, a positional feature encoding the index within the chunk, and policy features to output per-step correction. The correction head explicitly conditions on position within the action chunking VLA using a temporal feature.
+
+### Action-Chunked PPO Training
+
+Recent work introduces action-chunked PPO with self-generated demonstrations for VLA post-training, where consecutive actions are aggregated into chunks to increase the density of informative feedback. The relative weight between the action-chunked PPO objective and self behavior clone auxiliary loss is adapted online to stabilize post-training.
+
+### Parallel Decoding with Action Chunks
+
+PD-VLA (Parallel Decoding for VLA) is a parallel decoding framework for VLAs integrated with action chunking that reformulates autoregressive decoding as a nonlinear system solved by parallel fixed-point iterations, preserving model performance while improving decoding speed.
+
+### Value-Guided Action Chunk Selection
+
+Recent work proposes hybrid learning objectives combining temporal and spatial supervision, stabilizing offline training using Proposal-Constrained Chunked Expected-Max backup to enforce temporal consistency across action chunks.
+
+These papers from September 2025 through March 2026 demonstrate active research into position-wise and temporal aspects of action chunk training in VLAs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "97548674-eb04-422f-95d0-56e66dd1153b",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "1f41629f-ac26-46af-b6c4-6836810f91f5",
+  "toolUseResult": {
+    "query": "\"per-position loss\" OR \"position-wise loss\" OR \"temporal loss profile\" action chunk VLA training prioritized 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A4h5i7g9HFbqEcwbTX2w5v",
+        "content": [
+          {
+            "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks",
+            "url": "https://arxiv.org/html/2509.23224v1"
+          },
+          {
+            "title": "AR-VLA: True Autoregressive Action Expert for Vision–Language–Action Models",
+            "url": "https://arxiv.org/html/2603.10126"
+          },
+          {
+            "title": "VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning",
+            "url": "https://arxiv.org/html/2509.25718"
+          },
+          {
+            "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks | OpenReview",
+            "url": "https://openreview.net/forum?id=y5SGBsndWv"
+          },
+          {
+            "title": "Real-Time Execution of Action Chunking Flow Policies Kevin Black1,2,",
+            "url": "https://arxiv.org/pdf/2506.07339"
+          },
+          {
+            "title": "[2509.23224] Leave No Observation Behind: Real-time Correction for VLA Action Chunks",
+            "url": "https://arxiv.org/abs/2509.23224"
+          },
+          {
+            "title": "VQ-VLA: Improving Vision-Language-Action Models via Scaling",
+            "url": "https://xiaoxiao0406.github.io/vqvla.github.io/static/pdfs/VQ-VLA.pdf"
+          },
+          {
+            "title": "[2509.25718] VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning",
+            "url": "https://arxiv.org/abs/2509.25718"
+          },
+          {
+            "title": "PD-VLA: Accelerating Vision-Language-Action Model Integrated with Action Chunking via Parallel Decoding",
+            "url": "https://arxiv.org/html/2503.02310"
+          },
+          {
+            "title": "VGAS: Value-Guided Action-Chunk Selection for Few-Shot Vision-Language-Action Adaptation",
+            "url": "https://arxiv.org/html/2602.07399"
+          }
+        ]
+      },
+      "I found several relevant research papers from 2025-2026 related to VLA training with action chunks. Here are the key findings:\n\n## Recent VLA Action Chunk Training Research (2025-2026)\n\n### Temporal Loss and Position-Aware Training\n\nAsynchronous Action Chunk Correction (A2C2) introduces a lightweight real-time chunk correction head that combines the latest observation, predicted action, a positional feature encoding the index within the chunk, and policy features to output per-step correction. The correction head explicitly conditions on position within the action chunking VLA using a temporal feature.\n\n### Action-Chunked PPO Training\n\nRecent work introduces action-chunked PPO with self-generated demonstrations for VLA post-training, where consecutive actions are aggregated into chunks to increase the density of informative feedback. The relative weight between the action-chunked PPO objective and self behavior clone auxiliary loss is adapted online to stabilize post-training.\n\n### Parallel Decoding with Action Chunks\n\nPD-VLA (Parallel Decoding for VLA) is a parallel decoding framework for VLAs integrated with action chunking that reformulates autoregressive decoding as a nonlinear system solved by parallel fixed-point iterations, preserving model performance while improving decoding speed.\n\n### Value-Guided Action Chunk Selection\n\nRecent work proposes hybrid learning objectives combining temporal and spatial supervision, stabilizing offline training using Proposal-Constrained Chunked Expected-Max backup to enforce temporal consistency across action chunks.\n\nThese papers from September 2025 through March 2026 demonstrate active research into position-wise and temporal aspects of action chunk training in VLAs."
+    ],
+    "durationSeconds": 7.241177665999974
+  },
+  "sourceToolAssistantUUID": "97548674-eb04-422f-95d0-56e66dd1153b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-13T18:09:11.668Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012j31DtZ58wyb1RFTsPh5Aj`</summary>
+
+```json
+{
+  "query": "adaptive sample selection data curation VLA robot SFT noisy demonstrations experience replay buffer training 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f41629f-ac26-46af-b6c4-6836810f91f5",
+  "isSidechain": false,
+  "requestId": "req_011Cb11t7rR2f9ULjHfDafRd",
+  "type": "assistant",
+  "uuid": "687d2e78-152e-4774-9636-4ee4fabd6f8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018fzEprd1ioXPWw3Sp6EzHR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1020,
+      "cache_read_input_tokens": 65119,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1020,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 65119,
+          "cache_creation_input_tokens": 1020,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1020
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-13T18:09:19.714Z_
+
+<details><summary>↩ Tool result · `toolu_012j31DtZ58wyb1RFTsPh5Aj`</summary>
+
+```text
+Web search results for query: "adaptive sample selection data curation VLA robot SFT noisy demonstrations experience replay buffer training 2026"
+
+Links: [{"title":"ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval","url":"https://arxiv.org/html/2511.06202v2"},{"title":"TGM-VLA: Task-Guided Mixup for Sampling-Efficient and Robust Robotic Manipulation","url":"https://arxiv.org/html/2603.00615"},{"title":"EVOLVE-VLA: Test-Time Training for Vision-Language-Action Models","url":"https://showlab.github.io/EVOLVE-VLA/"},{"title":"EVOLVE-VLA: Test-Time Training from Environment Feedback for Vision-Language-Action Models","url":"https://arxiv.org/html/2512.14666"},{"title":"From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop","url":"https://icra2026vlapipeline.github.io/"},{"title":"1 Introduction","url":"https://arxiv.org/html/2602.00919v1"},{"title":"EVOLVE-VLA: Test-Time Training from Environment","url":"https://arxiv.org/pdf/2512.14666"},{"title":"AIRoA Announces ICRA 2026 Workshop — Launching a Global Competition on VLA Pipelines and Approximately 10,000 Hours of Real-World Robot Data — | AIRoA","url":"https://www.airoa.org/updates/2026-02-10"},{"title":"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning","url":"https://arxiv.org/html/2601.06748v1"},{"title":"2025-9-18 ThinkAct: Vision-Language-Action Reasoning via","url":"https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"}]
+
+Based on the search results, I found several highly relevant papers from 2026 that address various aspects of your query:
+
+## Key Findings
+
+**ExpReS-VLA** is a prominent recent work directly addressing several aspects of your query. ExpReS-VLA enables rapid on-device adaptation of pre-trained VLAs to target domains while preventing catastrophic forgetting through compressed experience replay and retrieval-augmented generation. The approach includes retrieval of the k most similar past experiences using cosine similarity to augment training batches, while a prioritized experience replay buffer preserves recently successful trajectories.
+
+**Handling Noisy Demonstrations**: The method introduces Thresholded Hybrid Contrastive Loss (THCL), which adaptively switches between triplet and InfoNCE objectives based on failure complexity, transforming unsuccessful attempts into learning signals.
+
+**EVOLVE-VLA** addresses the challenge of adapting VLAs with limited demonstrations by designing the framework to "tame" inherently noisy signals via an accumulative progress estimation mechanism smoothing noisy point-wise estimates, and a progressive horizon extension strategy enabling gradual policy evolution.
+
+**Data Curation in VLA Pipelines**: Most VLA pipelines lack rigorous data curation, principled training regimes, and standardized evaluation, leading to inconsistent performance and safety concerns on physical robots. This has motivated recent work, including dataset curation plus RL alignment building on unified pretraining to progressively improve performance on a concrete target embodiment.
+
+**Noisy Sample Handling**: Techniques that introduce noisy or sub-optimal samples force heavy oversampling to maintain performance, resulting in highly redundant replay buffers, increased storage costs, and reduced training efficiency.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "687d2e78-152e-4774-9636-4ee4fabd6f8f",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "6448b7a7-817e-4817-b7a8-e73563454886",
+  "toolUseResult": {
+    "query": "adaptive sample selection data curation VLA robot SFT noisy demonstrations experience replay buffer training 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YXSeCj1dkphLnK1DYDcuSf",
+        "content": [
+          {
+            "title": "ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval",
+            "url": "https://arxiv.org/html/2511.06202v2"
+          },
+          {
+            "title": "TGM-VLA: Task-Guided Mixup for Sampling-Efficient and Robust Robotic Manipulation",
+            "url": "https://arxiv.org/html/2603.00615"
+          },
+          {
+            "title": "EVOLVE-VLA: Test-Time Training for Vision-Language-Action Models",
+            "url": "https://showlab.github.io/EVOLVE-VLA/"
+          },
+          {
+            "title": "EVOLVE-VLA: Test-Time Training from Environment Feedback for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2512.14666"
+          },
+          {
+            "title": "From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop",
+            "url": "https://icra2026vlapipeline.github.io/"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2602.00919v1"
+          },
+          {
+            "title": "EVOLVE-VLA: Test-Time Training from Environment",
+            "url": "https://arxiv.org/pdf/2512.14666"
+          },
+          {
+            "title": "AIRoA Announces ICRA 2026 Workshop — Launching a Global Competition on VLA Pipelines and Approximately 10,000 Hours of Real-World Robot Data — | AIRoA",
+            "url": "https://www.airoa.org/updates/2026-02-10"
+          },
+          {
+            "title": "On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/html/2601.06748v1"
+          },
+          {
+            "title": "2025-9-18 ThinkAct: Vision-Language-Action Reasoning via",
+            "url": "https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found several highly relevant papers from 2026 that address various aspects of your query:\n\n## Key Findings\n\n**ExpReS-VLA** is a prominent recent work directly addressing several aspects of your query. ExpReS-VLA enables rapid on-device adaptation of pre-trained VLAs to target domains while preventing catastrophic forgetting through compressed experience replay and retrieval-augmented generation. The approach includes retrieval of the k most similar past experiences using cosine similarity to augment training batches, while a prioritized experience replay buffer preserves recently successful trajectories.\n\n**Handling Noisy Demonstrations**: The method introduces Thresholded Hybrid Contrastive Loss (THCL), which adaptively switches between triplet and InfoNCE objectives based on failure complexity, transforming unsuccessful attempts into learning signals.\n\n**EVOLVE-VLA** addresses the challenge of adapting VLAs with limited demonstrations by designing the framework to \"tame\" inherently noisy signals via an accumulative progress estimation mechanism smoothing noisy point-wise estimates, and a progressive horizon extension strategy enabling gradual policy evolution.\n\n**Data Curation in VLA Pipelines**: Most VLA pipelines lack rigorous data curation, principled training regimes, and standardized evaluation, leading to inconsistent performance and safety concerns on physical robots. This has motivated recent work, including dataset curation plus RL alignment building on unified pretraining to progressively improve performance on a concrete target embodiment.\n\n**Noisy Sample Handling**: Techniques that introduce noisy or sub-optimal samples force heavy oversampling to maintain performance, resulting in highly redundant replay buffers, increased storage costs, and reduced training efficiency."
+    ],
+    "durationSeconds": 8.040628266000015
+  },
+  "sourceToolAssistantUUID": "687d2e78-152e-4774-9636-4ee4fabd6f8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-13T18:09:22.270Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013BMbzWgVHNY8FACWjFFdxL`</summary>
+
+```json
+{
+  "query": "TGM-VLA \"Task-Guided Mixup\" sampling VLA training arXiv 2603.00615"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6448b7a7-817e-4817-b7a8-e73563454886",
+  "isSidechain": false,
+  "requestId": "req_011Cb11tyCJFwLTkTHmxE7LV",
+  "type": "assistant",
+  "uuid": "3c745fbb-d2d2-4eb9-81c5-2797d1e4c754",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016CggAMvdvTPVW1N1vRKTtF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 968,
+      "cache_read_input_tokens": 66139,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 968,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 66139,
+          "cache_creation_input_tokens": 968,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 968
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-13T18:09:29.072Z_
+
+<details><summary>↩ Tool result · `toolu_013BMbzWgVHNY8FACWjFFdxL`</summary>
+
+```text
+Web search results for query: "TGM-VLA "Task-Guided Mixup" sampling VLA training arXiv 2603.00615"
+
+Links: [{"title":"[2603.00615] TGM-VLA: Task-Guided Mixup for Sampling-Efficient and Robust Robotic Manipulation","url":"https://arxiv.org/abs/2603.00615"},{"title":"TGM-VLA: Task-Guided Mixup for Sampling-Efficient and Robust Robotic Manipulation","url":"https://arxiv.org/html/2603.00615"},{"title":"[2509.09674] SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning","url":"https://arxiv.org/abs/2509.09674"},{"title":"Learning from Mistakes: Post-Training for Driving VLA with Takeover Data","url":"https://arxiv.org/html/2603.14972"},{"title":"Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey","url":"https://arxiv.org/html/2508.13073v1"},{"title":"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation","url":"https://arxiv.org/html/2603.22760"},{"title":"CoMaTrack: Competitive Multi-Agent Game-Theoretic Tracking with Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22846v1"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2603.23202v1"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"}]
+
+Based on the search results, I found information about the paper you're looking for:
+
+TGM-VLA: Task-Guided Mixup for Sampling-Efficient and Robust Robotic Manipulation (arXiv 2603.00615) is a paper that addresses limitations in robotic imitation learning. 
+
+The performance of robotic imitation learning is fundamentally limited by data quality and training strategies, with prevalent sampling strategies on RLBench suffering from severe keyframe redundancy and imbalanced temporal distribution, leading to inefficient memory usage and unstable optimization.
+
+The paper proposes three main contributions:
+
+1. **Keyframe Sampling Optimization**: The researchers redesigned and optimized the keyframe sampling strategy, reducing memory consumption by 80% and accelerating training speed by 5x.
+
+2. **Color Inversion Projection**: The model was augmented with a color inversion projection branch—a simple yet effective module that resolves the ambiguity of dark objects.
+
+3. **Task-Guided Mixup**: A task-guided mixup technique was proposed that dynamically fuses point clouds and action heatmaps according to task instructions, greatly improving robustness to distractors and performance in multi-goal scenarios.
+
+Extensive experiments demonstrate that the method achieves state-of-the-art performance with a 90.5% success rate on RLBench and 68.8% on the COLOSSEUM benchmark under challenging interference conditions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c745fbb-d2d2-4eb9-81c5-2797d1e4c754",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "7cb7813b-6433-4335-8ddf-d287c78ae97b",
+  "toolUseResult": {
+    "query": "TGM-VLA \"Task-Guided Mixup\" sampling VLA training arXiv 2603.00615",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Muc74vvtAxR2LtNNWCy7Kt",
+        "content": [
+          {
+            "title": "[2603.00615] TGM-VLA: Task-Guided Mixup for Sampling-Efficient and Robust Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2603.00615"
+          },
+          {
+            "title": "TGM-VLA: Task-Guided Mixup for Sampling-Efficient and Robust Robotic Manipulation",
+            "url": "https://arxiv.org/html/2603.00615"
+          },
+          {
+            "title": "[2509.09674] SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2509.09674"
+          },
+          {
+            "title": "Learning from Mistakes: Post-Training for Driving VLA with Takeover Data",
+            "url": "https://arxiv.org/html/2603.14972"
+          },
+          {
+            "title": "Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey",
+            "url": "https://arxiv.org/html/2508.13073v1"
+          },
+          {
+            "title": "SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation",
+            "url": "https://arxiv.org/html/2603.22760"
+          },
+          {
+            "title": "CoMaTrack: Competitive Multi-Agent Game-Theoretic Tracking with Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22846v1"
+          },
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/openvla/openvla"
+          },
+          {
+            "title": "Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2603.23202v1"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper you're looking for:\n\nTGM-VLA: Task-Guided Mixup for Sampling-Efficient and Robust Robotic Manipulation (arXiv 2603.00615) is a paper that addresses limitations in robotic imitation learning. \n\nThe performance of robotic imitation learning is fundamentally limited by data quality and training strategies, with prevalent sampling strategies on RLBench suffering from severe keyframe redundancy and imbalanced temporal distribution, leading to inefficient memory usage and unstable optimization.\n\nThe paper proposes three main contributions:\n\n1. **Keyframe Sampling Optimization**: The researchers redesigned and optimized the keyframe sampling strategy, reducing memory consumption by 80% and accelerating training speed by 5x.\n\n2. **Color Inversion Projection**: The model was augmented with a color inversion projection branch—a simple yet effective module that resolves the ambiguity of dark objects.\n\n3. **Task-Guided Mixup**: A task-guided mixup technique was proposed that dynamically fuses point clouds and action heatmaps according to task instructions, greatly improving robustness to distractors and performance in multi-goal scenarios.\n\nExtensive experiments demonstrate that the method achieves state-of-the-art performance with a 90.5% success rate on RLBench and 68.8% on the COLOSSEUM benchmark under challenging interference conditions."
+    ],
+    "durationSeconds": 6.798904788000043
+  },
+  "sourceToolAssistantUUID": "3c745fbb-d2d2-4eb9-81c5-2797d1e4c754",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 100 · 2026-05-13T18:09:29.074Z_
+
+```json
+{
+  "parentUuid": "7cb7813b-6433-4335-8ddf-d287c78ae97b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "165be8b9-969d-4f19-b472-a938ac8589dd",
+  "timestamp": "2026-05-13T18:09:29.074Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-13T18:09:32.018Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01F4DeKia1F8SBCi5MyLM4rk`</summary>
+
+```json
+{
+  "query": "CoRL 2026 paper deadline May 28 or May 29 official instruction authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "165be8b9-969d-4f19-b472-a938ac8589dd",
+  "isSidechain": false,
+  "requestId": "req_011Cb11ufG4swgEA1yTtb2cR",
+  "type": "assistant",
+  "uuid": "6581c75e-3545-41fb-b6e2-627419a75b71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GK7JpRzawiqPvfesf2nks8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1048,
+      "cache_read_input_tokens": 67107,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1048,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 67107,
+          "cache_creation_input_tokens": 1048,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1048
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-13T18:09:36.906Z_
+
+<details><summary>↩ Tool result · `toolu_01F4DeKia1F8SBCi5MyLM4rk`</summary>
+
+```text
+Web search results for query: "CoRL 2026 paper deadline May 28 or May 29 official instruction authors"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"Refactor conference data · huggingface/ai-deadlines at f3cc2d7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"}]
+
+Based on the search results, here's what I found regarding the CoRL 2026 paper deadline:
+
+The official information shows some variation in the stated deadline:
+
+- The paper submission deadline is May 29, 2026 11:59 UTC according to the AI Deadlines database.
+- The paper submission deadline is May 29, 2026 according to the Underleaf template.
+- Submission Deadline: May 28, 2026 (AoE) according to the official CoRL Contributions page.
+
+The discrepancy between May 28 and May 29 appears to be related to timezone interpretation (AoE = Anywhere on Earth). The deadlines are final, and no accommodations can be made for missing the abstract deadline or paper deadline.
+
+For the most authoritative information, you should check the OpenReview submission link at https://openreview.net/group?id=robot-learning.org/CoRL/2026/Conference, which is the official submission platform for CoRL 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6581c75e-3545-41fb-b6e2-627419a75b71",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "77581de0-0b45-4c5a-ae99-d70b7de900cc",
+  "toolUseResult": {
+    "query": "CoRL 2026 paper deadline May 28 or May 29 official instruction authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CBss6FDGh5vuQpUBZBJn1u",
+        "content": [
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 - Contributions",
+            "url": "https://www.corl.org/contributions"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "Refactor conference data · huggingface/ai-deadlines at f3cc2d7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding the CoRL 2026 paper deadline:\n\nThe official information shows some variation in the stated deadline:\n\n- The paper submission deadline is May 29, 2026 11:59 UTC according to the AI Deadlines database.\n- The paper submission deadline is May 29, 2026 according to the Underleaf template.\n- Submission Deadline: May 28, 2026 (AoE) according to the official CoRL Contributions page.\n\nThe discrepancy between May 28 and May 29 appears to be related to timezone interpretation (AoE = Anywhere on Earth). The deadlines are final, and no accommodations can be made for missing the abstract deadline or paper deadline.\n\nFor the most authoritative information, you should check the OpenReview submission link at https://openreview.net/group?id=robot-learning.org/CoRL/2026/Conference, which is the official submission platform for CoRL 2026."
+    ],
+    "durationSeconds": 4.883322264999967
+  },
+  "sourceToolAssistantUUID": "6581c75e-3545-41fb-b6e2-627419a75b71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 103_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "77581de0-0b45-4c5a-ae99-d70b7de900cc",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 104_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-13T18:09:40.844Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014xWaVW4TTyQe7WgbZQB9Vn`</summary>
+
+```json
+{
+  "url": "https://www.corl.org/contributions/instruction-for-authors",
+  "prompt": "Extract the exact paper submission deadline and abstract deadline. Is it May 28 or May 29? What timezone? Also extract any specific note about Thursday vs Friday deadlines."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77581de0-0b45-4c5a-ae99-d70b7de900cc",
+  "isSidechain": false,
+  "requestId": "req_011Cb11vEgV9VYv6D81Uz18E",
+  "type": "assistant",
+  "uuid": "e9e48ec9-c5fa-4a21-a684-e0daef220039",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VfsGbbUJoAc8rBcRgvHCiX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 68155,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 775,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 68155,
+          "cache_creation_input_tokens": 775,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 775
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-13T18:09:44.366Z_
+
+<details><summary>↩ Tool result · `toolu_014xWaVW4TTyQe7WgbZQB9Vn`</summary>
+
+```text
+Based on the provided content, I can extract the following information:
+
+**Paper Submission Deadline:** The document states "the paper submission deadline is Thursday (5/28) EOD rather than Friday!" This indicates the deadline is **May 28** (Thursday), not May 29 (Friday).
+
+**Abstract Deadline:** The instructions mention "the abstract deadline" and note that "deadlines are final," but the specific date for the abstract submission is not provided in this excerpt.
+
+**Timezone:** The camera-ready submission specifies "23:59 Anywhere on Earth" as the timezone reference, though this applies to the camera-ready deadline (Oct 12, 2026) rather than the initial submission deadlines.
+
+**Key Note:** The authors emphasize that they moved the deadline from Friday to Thursday, humorously suggesting it allows authors to "enjoy your weekend after the deadline."
+
+The document does not explicitly state the abstract deadline date, only referencing it in the context of submission requirements and correction policies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9e48ec9-c5fa-4a21-a684-e0daef220039",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "d53baa82-dd0d-4ae0-bc74-1793dd76c79e",
+  "toolUseResult": {
+    "bytes": 176728,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the provided content, I can extract the following information:\n\n**Paper Submission Deadline:** The document states \"the paper submission deadline is Thursday (5/28) EOD rather than Friday!\" This indicates the deadline is **May 28** (Thursday), not May 29 (Friday).\n\n**Abstract Deadline:** The instructions mention \"the abstract deadline\" and note that \"deadlines are final,\" but the specific date for the abstract submission is not provided in this excerpt.\n\n**Timezone:** The camera-ready submission specifies \"23:59 Anywhere on Earth\" as the timezone reference, though this applies to the camera-ready deadline (Oct 12, 2026) rather than the initial submission deadlines.\n\n**Key Note:** The authors emphasize that they moved the deadline from Friday to Thursday, humorously suggesting it allows authors to \"enjoy your weekend after the deadline.\"\n\nThe document does not explicitly state the abstract deadline date, only referencing it in the context of submission requirements and correction policies.",
+    "durationMs": 3515,
+    "url": "https://www.corl.org/contributions/instruction-for-authors"
+  },
+  "sourceToolAssistantUUID": "e9e48ec9-c5fa-4a21-a684-e0daef220039",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-13T18:09:47.282Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T6ipKSDEF9GoKQY5aWHN8R`</summary>
+
+```json
+{
+  "query": "CoRL 2026 abstract deadline May 26 openreview submission"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d53baa82-dd0d-4ae0-bc74-1793dd76c79e",
+  "isSidechain": false,
+  "requestId": "req_011Cb11vncNAuhrr5YdEJ3BG",
+  "type": "assistant",
+  "uuid": "42e4aa76-b455-4ae2-b8de-bff00cd78916",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KfSUvZ12ocgnGF4jNnsnZj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 345,
+      "cache_read_input_tokens": 68930,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 345,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 68930,
+          "cache_creation_input_tokens": 345,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 345
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-13T18:09:51.874Z_
+
+<details><summary>↩ Tool result · `toolu_01T6ipKSDEF9GoKQY5aWHN8R`</summary>
+
+```text
+Web search results for query: "CoRL 2026 abstract deadline May 26 openreview submission"
+
+Links: [{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 | OpenReview","url":"https://openreview.net/group?id=robot-learning.org/CoRL/2026"},{"title":"Refactor conference data · huggingface/ai-deadlines at f3cc2d7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Venues | OpenReview","url":"https://openreview.net/"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"}]
+
+Based on the search results, here's the information about CoRL 2026's abstract deadline and submission process:
+
+CoRL 2026 has an abstract submission deadline of May 26, 2026 at 11:59 UTC. Papers may be submitted through OpenReview via the link at https://openreview.net/group?id=robot-learning.org/CoRL/2026/Conference.
+
+It's worth noting that the deadlines are final, and they cannot make any accommodations for missing the abstract deadline or paper deadline. Additionally, authors may update the title and abstract on OpenReview after the abstract submission deadline, however, authors cannot be added or removed after this deadline, as this information is required to facilitate reviewer assignments.
+
+The conference itself will be held November 9-12, 2026 in Austin, Texas, US.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "42e4aa76-b455-4ae2-b8de-bff00cd78916",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "8c853eb7-0b72-4db7-a952-a8328d505ba1",
+  "toolUseResult": {
+    "query": "CoRL 2026 abstract deadline May 26 openreview submission",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CP6N94K92VrM7tjMNQJfpy",
+        "content": [
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026 | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org/CoRL/2026"
+          },
+          {
+            "title": "Refactor conference data · huggingface/ai-deadlines at f3cc2d7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "Venues | OpenReview",
+            "url": "https://openreview.net/"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about CoRL 2026's abstract deadline and submission process:\n\nCoRL 2026 has an abstract submission deadline of May 26, 2026 at 11:59 UTC. Papers may be submitted through OpenReview via the link at https://openreview.net/group?id=robot-learning.org/CoRL/2026/Conference.\n\nIt's worth noting that the deadlines are final, and they cannot make any accommodations for missing the abstract deadline or paper deadline. Additionally, authors may update the title and abstract on OpenReview after the abstract submission deadline, however, authors cannot be added or removed after this deadline, as this information is required to facilitate reviewer assignments.\n\nThe conference itself will be held November 9-12, 2026 in Austin, Texas, US."
+    ],
+    "durationSeconds": 4.589076403999992
+  },
+  "sourceToolAssistantUUID": "42e4aa76-b455-4ae2-b8de-bff00cd78916",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109 · 2026-05-13T18:09:55.353Z_
+
+Good. Now let me verify the most critical novelty check — whether anyone has done temporal loss decomposition for data prioritization in VLA training.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c853eb7-0b72-4db7-a952-a8328d505ba1",
+  "isSidechain": false,
+  "requestId": "req_011Cb11wLjtmGCsh45YvcntQ",
+  "type": "assistant",
+  "uuid": "124744eb-a1f1-4683-ada3-26db89f523a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0143hmoc4PpnzqCPHixisrTU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 715,
+      "cache_read_input_tokens": 69275,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 715,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 69275,
+          "cache_creation_input_tokens": 715,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 715
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-13T18:09:56.242Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HEg2aStKmK6XDnZ838NhBC`</summary>
+
+```json
+{
+  "query": "sub-sample loss decomposition prioritized training multi-step prediction structured loss 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "124744eb-a1f1-4683-ada3-26db89f523a4",
+  "isSidechain": false,
+  "requestId": "req_011Cb11wLjtmGCsh45YvcntQ",
+  "type": "assistant",
+  "uuid": "47e55f54-8a2e-41b7-8114-40ae503406ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0143hmoc4PpnzqCPHixisrTU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 715,
+      "cache_read_input_tokens": 69275,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 715,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 69275,
+          "cache_creation_input_tokens": 715,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 715
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-13T18:10:03.121Z_
+
+<details><summary>↩ Tool result · `toolu_01HEg2aStKmK6XDnZ838NhBC`</summary>
+
+```text
+Web search results for query: "sub-sample loss decomposition prioritized training multi-step prediction structured loss 2025 2026"
+
+Links: [{"title":"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining","url":"https://arxiv.org/html/2502.06733v1"},{"title":"Improving Multi-step Prediction of Learned Time Series Models","url":"https://www.ri.cmu.edu/pub_files/2015/1/Venkatraman.pdf"},{"title":"Loss Functions in Deep Learning: A Comprehensive Review","url":"https://arxiv.org/html/2504.04242v1"},{"title":"Loss Functions and Metrics in Deep Learning","url":"https://arxiv.org/html/2307.02694v3"},{"title":"A comprehensive survey of loss functions and metrics in deep learning | Artificial Intelligence Review | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10462-025-11198-7"},{"title":"What is Loss Function? - Machine learning","url":"https://www.ibm.com/think/topics/loss-function"},{"title":"Loss Functions in the Era of Semantic Segmentation: A Survey and Outlook","url":"https://arxiv.org/html/2312.05391v1"},{"title":"Strategies for Balancing Multiple Loss Functions in Deep Learning | by Baicen Xiao | Medium","url":"https://medium.com/@baicenxiao/strategies-for-balancing-multiple-loss-functions-in-deep-learning-e1a641e0bcc0"},{"title":"[2402.03146] A Multi-step Loss Function for Robust Learning of the Dynamics in Model-based Reinforcement Learning","url":"https://arxiv.org/abs/2402.03146"},{"title":"From Expert Trajectories to Step-wise Reasoning","url":"https://arxiv.org/pdf/2510.25992"}]
+
+I found several relevant results from your search query. Here's a summary of the most relevant findings:
+
+## Recent Research on Multi-Step Prediction and Loss Functions
+
+One approach to addressing multi-step prediction challenges uses a multi-step objective to train one-step models, with the objective being a weighted sum of the mean squared error (MSE) loss at various future horizons. A critical challenge in this area is the compounding of one-step prediction errors as the length of the trajectory grows.
+
+## Loss-Based Sample Prioritization in Training
+
+A quadratic strategy prioritizes samples with moderate loss values while down-weighting both low-loss (easy or repetitive) and high-loss (potential outliers) samples by applying a quadratic function. Pioneering approaches prioritize samples based on loss values or gradient norms with the goal of accelerating training speed.
+
+## Structured Loss for Complex Tasks
+
+In structured learning approaches, dense, intrinsic supervision rewards models for the quality of step-wise actions rather than just the final answer, which provides more robust learning signals for complex reasoning tasks where outcome-based exploration is challenging.
+
+## General Loss Function Framework
+
+Comprehensive reviews of loss functions highlight how different loss functions and evaluation metrics can be paired to address task-specific challenges such as class imbalance, outliers, and sequence-level optimization.
+
+The search results show active research in 2025-2026 on these combined topics, particularly focusing on how loss decomposition and prioritization strategies can improve model training efficiency and multi-step prediction robustness.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "47e55f54-8a2e-41b7-8114-40ae503406ef",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "6bc357f2-f068-4ba7-9ccf-331dc39a8e92",
+  "toolUseResult": {
+    "query": "sub-sample loss decomposition prioritized training multi-step prediction structured loss 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SdmPCUEK5ifqjWktLQNVXx",
+        "content": [
+          {
+            "title": "Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining",
+            "url": "https://arxiv.org/html/2502.06733v1"
+          },
+          {
+            "title": "Improving Multi-step Prediction of Learned Time Series Models",
+            "url": "https://www.ri.cmu.edu/pub_files/2015/1/Venkatraman.pdf"
+          },
+          {
+            "title": "Loss Functions in Deep Learning: A Comprehensive Review",
+            "url": "https://arxiv.org/html/2504.04242v1"
+          },
+          {
+            "title": "Loss Functions and Metrics in Deep Learning",
+            "url": "https://arxiv.org/html/2307.02694v3"
+          },
+          {
+            "title": "A comprehensive survey of loss functions and metrics in deep learning | Artificial Intelligence Review | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10462-025-11198-7"
+          },
+          {
+            "title": "What is Loss Function? - Machine learning",
+            "url": "https://www.ibm.com/think/topics/loss-function"
+          },
+          {
+            "title": "Loss Functions in the Era of Semantic Segmentation: A Survey and Outlook",
+            "url": "https://arxiv.org/html/2312.05391v1"
+          },
+          {
+            "title": "Strategies for Balancing Multiple Loss Functions in Deep Learning | by Baicen Xiao | Medium",
+            "url": "https://medium.com/@baicenxiao/strategies-for-balancing-multiple-loss-functions-in-deep-learning-e1a641e0bcc0"
+          },
+          {
+            "title": "[2402.03146] A Multi-step Loss Function for Robust Learning of the Dynamics in Model-based Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2402.03146"
+          },
+          {
+            "title": "From Expert Trajectories to Step-wise Reasoning",
+            "url": "https://arxiv.org/pdf/2510.25992"
+          }
+        ]
+      },
+      "I found several relevant results from your search query. Here's a summary of the most relevant findings:\n\n## Recent Research on Multi-Step Prediction and Loss Functions\n\nOne approach to addressing multi-step prediction challenges uses a multi-step objective to train one-step models, with the objective being a weighted sum of the mean squared error (MSE) loss at various future horizons. A critical challenge in this area is the compounding of one-step prediction errors as the length of the trajectory grows.\n\n## Loss-Based Sample Prioritization in Training\n\nA quadratic strategy prioritizes samples with moderate loss values while down-weighting both low-loss (easy or repetitive) and high-loss (potential outliers) samples by applying a quadratic function. Pioneering approaches prioritize samples based on loss values or gradient norms with the goal of accelerating training speed.\n\n## Structured Loss for Complex Tasks\n\nIn structured learning approaches, dense, intrinsic supervision rewards models for the quality of step-wise actions rather than just the final answer, which provides more robust learning signals for complex reasoning tasks where outcome-based exploration is challenging.\n\n## General Loss Function Framework\n\nComprehensive reviews of loss functions highlight how different loss functions and evaluation metrics can be paired to address task-specific challenges such as class imbalance, outliers, and sequence-level optimization.\n\nThe search results show active research in 2025-2026 on these combined topics, particularly focusing on how loss decomposition and prioritization strategies can improve model training efficiency and multi-step prediction robustness."
+    ],
+    "durationSeconds": 6.8735625069999955
+  },
+  "sourceToolAssistantUUID": "47e55f54-8a2e-41b7-8114-40ae503406ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112 · 2026-05-13T18:10:05.968Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014idDXbDZWYvcYvPbq2Q4UB`</summary>
+
+```json
+{
+  "query": "EMMA AdaMix reweight action prediction error aggregated MSE chunk VLA SFT details method"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6bc357f2-f068-4ba7-9ccf-331dc39a8e92",
+  "isSidechain": false,
+  "requestId": "req_011Cb11xAmeFe6FfJDcooRCU",
+  "type": "assistant",
+  "uuid": "a678cb21-5646-45af-b63e-69afe25e0f5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JMjybN8D4q6JzEn72UzAf8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 928,
+      "cache_read_input_tokens": 69990,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 928,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 69990,
+          "cache_creation_input_tokens": 928,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 928
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-13T18:10:12.650Z_
+
+<details><summary>↩ Tool result · `toolu_014idDXbDZWYvcYvPbq2Q4UB`</summary>
+
+```text
+Web search results for query: "EMMA AdaMix reweight action prediction error aggregated MSE chunk VLA SFT details method"
+
+Links: [{"title":"Reshaping Action Error Distributions for Reliable Vision-Language-Action Models","url":"https://arxiv.org/html/2602.04228"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/html/2509.23224v1"},{"title":"[2509.22407] EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer","url":"https://arxiv.org/abs/2509.22407"},{"title":"EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer","url":"https://arxiv.org/html/2509.22407v1"},{"title":"The AdEMAMix Optimizer: Better, Faster, Older | OpenReview","url":"https://openreview.net/forum?id=jj7b3p5kLY"},{"title":"Rohit Bandaru | Foundation Models for Robotics: Vision-Language-Action (VLA)","url":"https://rohitbandaru.github.io/blog/Foundation-Models-for-Robotics-VLA/"},{"title":"Exponential Moving Average of Weights in Deep Learning: Dynamics and Benefits","url":"https://arxiv.org/html/2411.18704v1"},{"title":"VLA Knows Its Limits","url":"https://arxiv.org/html/2602.21445v1"},{"title":"Model EMA (Exponential Moving Average) | timmdocs","url":"https://timm.fast.ai/training_modelEMA"},{"title":"Real-Time Execution of Action Chunking Flow Policies Kevin Black1,2,","url":"https://www.pi.website/download/real_time_chunking.pdf"}]
+
+Based on the search results, I found relevant information about EMMA and AdaMix. Here's what I found:
+
+## EMMA: Embodied Manipulation Media Adaptation
+
+EMMA is a framework for augmenting VLA policies that combines a generative data engine with an effective training pipeline. The framework has two main components:
+
+1. **DreamTransfer**: A diffusion Transformer-based architecture for generating multi-view consistent and geometrically grounded embodied manipulation videos.
+
+2. **AdaMix**: A training strategy that adaptively weights samples according to policy performance to emphasize challenging samples.
+
+## AdaMix Details
+
+AdaMix is a hard-sample-aware training strategy that dynamically reweights training data based on policy performance. Unlike uniform sampling schemes that treat all samples equally, AdaMix continuously identifies challenging scenarios, particularly those in the long tail where policies typically struggle. By up-weighting these hard samples during training, AdaMix achieves improved generalization.
+
+## Performance Results
+
+In real-world robotic tasks with zero-shot visual settings, the framework achieves a relative performance increase of over 92% compared to training with real data alone, and improves by an additional 17% with AdaMix.
+
+The method addresses the problem that uniform training paradigms fail to adequately address challenging, long-tail scenarios, even when those scenarios are present in the training data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a678cb21-5646-45af-b63e-69afe25e0f5e",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "45d9a3e5-7ba2-49ff-9efb-0ed8a6dbcaf9",
+  "toolUseResult": {
+    "query": "EMMA AdaMix reweight action prediction error aggregated MSE chunk VLA SFT details method",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013nzyamUCiXqsnk9NJ7L844",
+        "content": [
+          {
+            "title": "Reshaping Action Error Distributions for Reliable Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2602.04228"
+          },
+          {
+            "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks",
+            "url": "https://arxiv.org/html/2509.23224v1"
+          },
+          {
+            "title": "[2509.22407] EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer",
+            "url": "https://arxiv.org/abs/2509.22407"
+          },
+          {
+            "title": "EMMA: Generalizing Real-World Robot Manipulation via Generative Visual Transfer",
+            "url": "https://arxiv.org/html/2509.22407v1"
+          },
+          {
+            "title": "The AdEMAMix Optimizer: Better, Faster, Older | OpenReview",
+            "url": "https://openreview.net/forum?id=jj7b3p5kLY"
+          },
+          {
+            "title": "Rohit Bandaru | Foundation Models for Robotics: Vision-Language-Action (VLA)",
+            "url": "https://rohitbandaru.github.io/blog/Foundation-Models-for-Robotics-VLA/"
+          },
+          {
+            "title": "Exponential Moving Average of Weights in Deep Learning: Dynamics and Benefits",
+            "url": "https://arxiv.org/html/2411.18704v1"
+          },
+          {
+            "title": "VLA Knows Its Limits",
+            "url": "https://arxiv.org/html/2602.21445v1"
+          },
+          {
+            "title": "Model EMA (Exponential Moving Average) | timmdocs",
+            "url": "https://timm.fast.ai/training_modelEMA"
+          },
+          {
+            "title": "Real-Time Execution of Action Chunking Flow Policies Kevin Black1,2,",
+            "url": "https://www.pi.website/download/real_time_chunking.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about EMMA and AdaMix. Here's what I found:\n\n## EMMA: Embodied Manipulation Media Adaptation\n\nEMMA is a framework for augmenting VLA policies that combines a generative data engine with an effective training pipeline. The framework has two main components:\n\n1. **DreamTransfer**: A diffusion Transformer-based architecture for generating multi-view consistent and geometrically grounded embodied manipulation videos.\n\n2. **AdaMix**: A training strategy that adaptively weights samples according to policy performance to emphasize challenging samples.\n\n## AdaMix Details\n\nAdaMix is a hard-sample-aware training strategy that dynamically reweights training data based on policy performance. Unlike uniform sampling schemes that treat all samples equally, AdaMix continuously identifies challenging scenarios, particularly those in the long tail where policies typically struggle. By up-weighting these hard samples during training, AdaMix achieves improved generalization.\n\n## Performance Results\n\nIn real-world robotic tasks with zero-shot visual settings, the framework achieves a relative performance increase of over 92% compared to training with real data alone, and improves by an additional 17% with AdaMix.\n\nThe method addresses the problem that uniform training paradigms fail to adequately address challenging, long-tail scenarios, even when those scenarios are present in the training data."
+    ],
+    "durationSeconds": 6.67818611900002
+  },
+  "sourceToolAssistantUUID": "a678cb21-5646-45af-b63e-69afe25e0f5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-13T18:10:17.978Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FkWmPuaft2gDxGYuBeGbRx`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2509.22407v1",
+  "prompt": "Find the detailed AdaMix section. Extract: (1) How exactly does AdaMix compute its sample reweighting? (2) Does it use per-position loss within action chunks, or aggregate MSE over the full chunk? (3) What are the three metrics it uses? (4) How are samples reweighted — what is the formula? (5) Is there any temporal decomposition or per-position analysis within chunks? Focus on the technical details of the AdaMix method specifically."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45d9a3e5-7ba2-49ff-9efb-0ed8a6dbcaf9",
+  "isSidechain": false,
+  "requestId": "req_011Cb11xsZ5hyjLa6fUikNcJ",
+  "type": "assistant",
+  "uuid": "21ed481f-007f-4fd5-aa61-e6c7ce29b911",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xa7zxMjxXMGaFApGKX7PEr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 859,
+      "cache_read_input_tokens": 70918,
+      "output_tokens": 188,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 859,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 188,
+          "cache_read_input_tokens": 70918,
+          "cache_creation_input_tokens": 859,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 859
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-13T18:10:23.788Z_
+
+<details><summary>↩ Tool result · `toolu_01FkWmPuaft2gDxGYuBeGbRx`</summary>
+
+```text
+# AdaMix Technical Details
+
+## (1) Sample Reweighting Computation
+
+AdaMix computes reweighting by first identifying challenging training samples through policy evaluation, then adjusting sampling probabilities based on performance scores. The process occurs in three stages: quality filtering, initial uniform training, and adaptive reweighting.
+
+## (2) Loss Aggregation Approach
+
+AdaMix uses **aggregate MSE over the full chunk** rather than per-position analysis. The action prediction error metric is: "Mean Squared Error (MSE) between the predicted action chunk a^i:t and the corresponding ground-truth sequence ai:t over a window of at most L frames."
+
+This represents a chunk-level aggregate, not temporal decomposition.
+
+## (3) Three Metrics Used
+
+1. **Action Prediction Error**: MSE between predicted and ground-truth action sequences over L-frame windows
+2. **Trajectory Smoothness**: Penalizes abrupt joint movements using "second-order difference of joint angles"
+3. **Joint Angle Limitation**: Binary safety indicator ensuring "all joint angles within thresholds"
+
+## (4) Reweighting Formula
+
+The sampling weight formula is:
+
+**p(i) ∝ γ + λ·(1 − si)**
+
+where γ>0 ensures minimum support for all samples, λ controls emphasis on hard samples, and si represents the normalized combined score. Higher si indicates better performance, so (1−si) upweights poorly-performing trajectories.
+
+## (5) Temporal Analysis
+
+No per-position decomposition occurs. All three metrics aggregate across the full action chunk window, treating each sample as a unified unit for reweighting purposes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21ed481f-007f-4fd5-aa61-e6c7ce29b911",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "fdd67dbb-d237-4674-8c8a-96b76b987e77",
+  "toolUseResult": {
+    "bytes": 169115,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# AdaMix Technical Details\n\n## (1) Sample Reweighting Computation\n\nAdaMix computes reweighting by first identifying challenging training samples through policy evaluation, then adjusting sampling probabilities based on performance scores. The process occurs in three stages: quality filtering, initial uniform training, and adaptive reweighting.\n\n## (2) Loss Aggregation Approach\n\nAdaMix uses **aggregate MSE over the full chunk** rather than per-position analysis. The action prediction error metric is: \"Mean Squared Error (MSE) between the predicted action chunk a^i:t and the corresponding ground-truth sequence ai:t over a window of at most L frames.\"\n\nThis represents a chunk-level aggregate, not temporal decomposition.\n\n## (3) Three Metrics Used\n\n1. **Action Prediction Error**: MSE between predicted and ground-truth action sequences over L-frame windows\n2. **Trajectory Smoothness**: Penalizes abrupt joint movements using \"second-order difference of joint angles\"\n3. **Joint Angle Limitation**: Binary safety indicator ensuring \"all joint angles within thresholds\"\n\n## (4) Reweighting Formula\n\nThe sampling weight formula is:\n\n**p(i) ∝ γ + λ·(1 − si)**\n\nwhere γ>0 ensures minimum support for all samples, λ controls emphasis on hard samples, and si represents the normalized combined score. Higher si indicates better performance, so (1−si) upweights poorly-performing trajectories.\n\n## (5) Temporal Analysis\n\nNo per-position decomposition occurs. All three metrics aggregate across the full action chunk window, treating each sample as a unified unit for reweighting purposes.",
+    "durationMs": 5806,
+    "url": "https://arxiv.org/html/2509.22407v1"
+  },
+  "sourceToolAssistantUUID": "21ed481f-007f-4fd5-aa61-e6c7ce29b911",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 116_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "fdd67dbb-d237-4674-8c8a-96b76b987e77",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 117_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Assistant
+
+_source line 118 · 2026-05-13T18:10:28.061Z_
+
+This is very valuable — confirms that AdaMix uses aggregated MSE over the full chunk, not per-position decomposition. CDAP's temporal divergence δ is indeed a genuinely different signal. Let me now check for any very recent competing work from May 2026.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fdd67dbb-d237-4674-8c8a-96b76b987e77",
+  "isSidechain": false,
+  "requestId": "req_011Cb11yh8J6uuyBpMuAAb87",
+  "type": "assistant",
+  "uuid": "6dc6c2d2-9f4f-4b6e-bad6-89f45c95bb9d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012DDdgmvdY31JHJ6qCyzawe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 71777,
+      "output_tokens": 129,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 572,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 129,
+          "cache_read_input_tokens": 71777,
+          "cache_creation_input_tokens": 572,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 572
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-13T18:10:28.745Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UuFA6zRe9fXvpWJnrR5FJm`</summary>
+
+```json
+{
+  "query": "VLA data curation training sample selection May 2026 arxiv robot manipulation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6dc6c2d2-9f4f-4b6e-bad6-89f45c95bb9d",
+  "isSidechain": false,
+  "requestId": "req_011Cb11yh8J6uuyBpMuAAb87",
+  "type": "assistant",
+  "uuid": "bbf29807-1569-4b7b-b162-907d5ab5acaf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012DDdgmvdY31JHJ6qCyzawe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 71777,
+      "output_tokens": 129,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 572,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 129,
+          "cache_read_input_tokens": 71777,
+          "cache_creation_input_tokens": 572,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 572
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-13T18:10:35.322Z_
+
+<details><summary>↩ Tool result · `toolu_01UuFA6zRe9fXvpWJnrR5FJm`</summary>
+
+```text
+Web search results for query: "VLA data curation training sample selection May 2026 arxiv robot manipulation"
+
+Links: [{"title":"From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop","url":"https://icra2026vlapipeline.github.io/"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"1 Introduction","url":"https://arxiv.org/html/2602.00919v1"},{"title":"Grounding Robot Generalization in Training Data via Retrieval-Augmented VLMs","url":"https://arxiv.org/html/2603.11426v1"},{"title":"A Pragmatic VLA Foundation Model","url":"https://arxiv.org/html/2601.18692v1"},{"title":"Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey","url":"https://arxiv.org/html/2508.13073v1"},{"title":"Vision-Language-Action in Robotics: A Survey of Datasets, Benchmarks, and Data Engines","url":"https://arxiv.org/html/2604.23001"},{"title":"Do World Action Models Generalize Better than VLAs? A Robustness Study","url":"https://arxiv.org/html/2603.22078v1"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://openvla.github.io/"},{"title":"[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/abs/2406.09246"}]
+
+I've successfully performed the web search for "VLA data curation training sample selection May 2026 arxiv robot manipulation". Here are the relevant findings:
+
+## Search Results Summary
+
+The search returned several recent papers and resources related to Vision-Language-Action (VLA) models for robot manipulation with focus on data curation and training:
+
+**Key Findings:**
+
+1. **Data Curation and Scaling**: Careful data curation and guidance matter for high-quality VLA, with staged training approaches showing gains in long-horizon success, recovery, and precise task following.
+
+2. **Large-Scale VLA Training**: Recent VLA models are pre-trained on extensive corpora approximating 20,000 hours of multi-embodiment data, with massive-scale datasets characterized by high behavioral diversity significantly bolstering the model's generalization capabilities across various robotic manipulation tasks.
+
+3. **Training Data Selection**: OpenVLA curates a dataset of 970k robot manipulation trajectories from the Open X-Embodiment dataset spanning a wide range of tasks, scenes and robot embodiments.
+
+4. **Data Quality Challenges**: Data collection remains costly, annotations are labor-intensive, and long-tail corner cases are often underrepresented.
+
+5. **Data-Driven Approaches**: Recent robotic methods are typically deep learning–based and data-driven; consequently, dataset collection and annotation play a critical role in driving advancements in the field.
+
+The search results include recent papers from March-May 2026 on this topic, with multiple sources discussing strategies for effective VLA training data selection and curation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bbf29807-1569-4b7b-b162-907d5ab5acaf",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "ee937038-b782-4004-ac0c-4cff183efc66",
+  "toolUseResult": {
+    "query": "VLA data curation training sample selection May 2026 arxiv robot manipulation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JoQ7iQrWv5JrDyhf4QQeqw",
+        "content": [
+          {
+            "title": "From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop",
+            "url": "https://icra2026vlapipeline.github.io/"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2602.00919v1"
+          },
+          {
+            "title": "Grounding Robot Generalization in Training Data via Retrieval-Augmented VLMs",
+            "url": "https://arxiv.org/html/2603.11426v1"
+          },
+          {
+            "title": "A Pragmatic VLA Foundation Model",
+            "url": "https://arxiv.org/html/2601.18692v1"
+          },
+          {
+            "title": "Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey",
+            "url": "https://arxiv.org/html/2508.13073v1"
+          },
+          {
+            "title": "Vision-Language-Action in Robotics: A Survey of Datasets, Benchmarks, and Data Engines",
+            "url": "https://arxiv.org/html/2604.23001"
+          },
+          {
+            "title": "Do World Action Models Generalize Better than VLAs? A Robustness Study",
+            "url": "https://arxiv.org/html/2603.22078v1"
+          },
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://openvla.github.io/"
+          },
+          {
+            "title": "[2406.09246] OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/abs/2406.09246"
+          }
+        ]
+      },
+      "I've successfully performed the web search for \"VLA data curation training sample selection May 2026 arxiv robot manipulation\". Here are the relevant findings:\n\n## Search Results Summary\n\nThe search returned several recent papers and resources related to Vision-Language-Action (VLA) models for robot manipulation with focus on data curation and training:\n\n**Key Findings:**\n\n1. **Data Curation and Scaling**: Careful data curation and guidance matter for high-quality VLA, with staged training approaches showing gains in long-horizon success, recovery, and precise task following.\n\n2. **Large-Scale VLA Training**: Recent VLA models are pre-trained on extensive corpora approximating 20,000 hours of multi-embodiment data, with massive-scale datasets characterized by high behavioral diversity significantly bolstering the model's generalization capabilities across various robotic manipulation tasks.\n\n3. **Training Data Selection**: OpenVLA curates a dataset of 970k robot manipulation trajectories from the Open X-Embodiment dataset spanning a wide range of tasks, scenes and robot embodiments.\n\n4. **Data Quality Challenges**: Data collection remains costly, annotations are labor-intensive, and long-tail corner cases are often underrepresented.\n\n5. **Data-Driven Approaches**: Recent robotic methods are typically deep learning–based and data-driven; consequently, dataset collection and annotation play a critical role in driving advancements in the field.\n\nThe search results include recent papers from March-May 2026 on this topic, with multiple sources discussing strategies for effective VLA training data selection and curation."
+    ],
+    "durationSeconds": 6.572074653999996
+  },
+  "sourceToolAssistantUUID": "bbf29807-1569-4b7b-b162-907d5ab5acaf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-13T18:10:38.297Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0168dPr32ThoQ3ChwaPYrFSF`</summary>
+
+```json
+{
+  "query": "Token Priority \"arXiv:2602.01227\" supervised fine-tuning distribution reshaping token level"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee937038-b782-4004-ac0c-4cff183efc66",
+  "isSidechain": false,
+  "requestId": "req_011Cb11zYSgkUtitaTDs5gNt",
+  "type": "assistant",
+  "uuid": "e8a1638f-bf0d-4093-a6d2-ddc270ced313",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BcZCYMPK7ncXbb4T4FxYJ4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 927,
+      "cache_read_input_tokens": 72349,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 927,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 72349,
+          "cache_creation_input_tokens": 927,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 927
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-13T18:10:45.509Z_
+
+<details><summary>↩ Tool result · `toolu_0168dPr32ThoQ3ChwaPYrFSF`</summary>
+
+```text
+Web search results for query: "Token Priority "arXiv:2602.01227" supervised fine-tuning distribution reshaping token level"
+
+Links: [{"title":"[2602.01227] Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority","url":"https://arxiv.org/abs/2602.01227"},{"title":"Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority","url":"https://arxiv.org/html/2602.01227"},{"title":"Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority","url":"https://www.arxiv.org/pdf/2602.01227"},{"title":"Patch the Distribution Mismatch: RL Rewriting Agent for Stable...","url":"https://arxiv.org/abs/2602.11220v1"},{"title":"RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs","url":"https://arxiv.org/html/2508.16546v1"},{"title":"[2602.12222] Towards On-Policy SFT: Distribution Discriminant Theory and its Applications in LLM Training","url":"https://arxiv.org/abs/2602.12222"},{"title":"Closed-Loop Supervised Fine-Tuning of Tokenized Traffic Models","url":"https://arxiv.org/html/2412.05334v1"},{"title":"[2602.12222v1] Towards On-Policy SFT: Distribution Discriminant Theory and its Applications in LLM Training","url":"https://arxiv.org/abs/2602.12222v1"},{"title":"SRFT: A Single-Stage Method with Supervised and Reinforcement Fine-Tuning for Reasoning","url":"https://arxiv.org/html/2506.19767v1"},{"title":"Proximal Supervised Fine-Tuning","url":"https://arxiv.org/html/2508.17784v1"}]
+
+Based on the search results, I found relevant information about the arXiv paper 2602.01227. Here's what the paper is about:
+
+The paper advocates Token Priority as the essential bridge, formalizing Supervised Fine-Tuning (SFT) not as simple optimization but as a precise distribution reshaping process that aligns raw data with the ideal alignment manifold.
+
+The paper addresses a fundamental constraint where fine-grained autoregressive generation is often supervised by coarse or uniform signals.
+
+The paper categorizes recent advancements into two distinct regimes:
+
+1. Positive Priority for noise filtration and Signed Priority for toxic modes unlearning.
+
+2. The paper demonstrates that recent empirical breakthroughs, ranging from high-density signal extraction to recovery-oriented training, are already implicitly addressing pathologies by reshaping optimization at the token level.
+
+Key conceptual elements include:
+
+- The Token Priority Function Φ assigns a scalar value to a token given context.
+
+- While standard SFT treats all ground-truth tokens as equal, a Priority-based framework can dynamically up-weight "Recovery Tokens"—those that resolve ambiguity or correct deviations in non-expert trajectories.
+
+The paper was submitted on February 1, 2026 and represents a recent position paper on improving supervised fine-tuning through token-level priority mechanisms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e8a1638f-bf0d-4093-a6d2-ddc270ced313",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "30a7e63b-6c11-4db6-905d-204708c92f4a",
+  "toolUseResult": {
+    "query": "Token Priority \"arXiv:2602.01227\" supervised fine-tuning distribution reshaping token level",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LHNWSSKvyQVgjHSyRYqMFV",
+        "content": [
+          {
+            "title": "[2602.01227] Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority",
+            "url": "https://arxiv.org/abs/2602.01227"
+          },
+          {
+            "title": "Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority",
+            "url": "https://arxiv.org/html/2602.01227"
+          },
+          {
+            "title": "Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority",
+            "url": "https://www.arxiv.org/pdf/2602.01227"
+          },
+          {
+            "title": "Patch the Distribution Mismatch: RL Rewriting Agent for Stable...",
+            "url": "https://arxiv.org/abs/2602.11220v1"
+          },
+          {
+            "title": "RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs",
+            "url": "https://arxiv.org/html/2508.16546v1"
+          },
+          {
+            "title": "[2602.12222] Towards On-Policy SFT: Distribution Discriminant Theory and its Applications in LLM Training",
+            "url": "https://arxiv.org/abs/2602.12222"
+          },
+          {
+            "title": "Closed-Loop Supervised Fine-Tuning of Tokenized Traffic Models",
+            "url": "https://arxiv.org/html/2412.05334v1"
+          },
+          {
+            "title": "[2602.12222v1] Towards On-Policy SFT: Distribution Discriminant Theory and its Applications in LLM Training",
+            "url": "https://arxiv.org/abs/2602.12222v1"
+          },
+          {
+            "title": "SRFT: A Single-Stage Method with Supervised and Reinforcement Fine-Tuning for Reasoning",
+            "url": "https://arxiv.org/html/2506.19767v1"
+          },
+          {
+            "title": "Proximal Supervised Fine-Tuning",
+            "url": "https://arxiv.org/html/2508.17784v1"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the arXiv paper 2602.01227. Here's what the paper is about:\n\nThe paper advocates Token Priority as the essential bridge, formalizing Supervised Fine-Tuning (SFT) not as simple optimization but as a precise distribution reshaping process that aligns raw data with the ideal alignment manifold.\n\nThe paper addresses a fundamental constraint where fine-grained autoregressive generation is often supervised by coarse or uniform signals.\n\nThe paper categorizes recent advancements into two distinct regimes:\n\n1. Positive Priority for noise filtration and Signed Priority for toxic modes unlearning.\n\n2. The paper demonstrates that recent empirical breakthroughs, ranging from high-density signal extraction to recovery-oriented training, are already implicitly addressing pathologies by reshaping optimization at the token level.\n\nKey conceptual elements include:\n\n- The Token Priority Function Φ assigns a scalar value to a token given context.\n\n- While standard SFT treats all ground-truth tokens as equal, a Priority-based framework can dynamically up-weight \"Recovery Tokens\"—those that resolve ambiguity or correct deviations in non-expert trajectories.\n\nThe paper was submitted on February 1, 2026 and represents a recent position paper on improving supervised fine-tuning through token-level priority mechanisms."
+    ],
+    "durationSeconds": 7.184663263000024
+  },
+  "sourceToolAssistantUUID": "e8a1638f-bf0d-4093-a6d2-ddc270ced313",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 123 · 2026-05-13T18:10:45.520Z_
+
+```json
+{
+  "parentUuid": "30a7e63b-6c11-4db6-905d-204708c92f4a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f3f40d10-8507-4766-8ea4-ff2273a78ca1",
+  "timestamp": "2026-05-13T18:10:45.520Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 124 · 2026-05-13T18:10:48.626Z_
+
+Let me now do the final critical searches — specifically looking for any work that might have been missed, and checking the RINSE venue claim more carefully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f3f40d10-8507-4766-8ea4-ff2273a78ca1",
+  "isSidechain": false,
+  "requestId": "req_011Cb121J5GpBoKa2bMgpwPr",
+  "type": "assistant",
+  "uuid": "c2de3feb-6979-4504-9521-e38de3bd2bb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xkn7KzExhxoU2zpP4XzZkS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 995,
+      "cache_read_input_tokens": 73276,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 995,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 73276,
+          "cache_creation_input_tokens": 995,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 995
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-13T18:10:49.619Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01L8Kn91kwB3rHkDKx92TJfB`</summary>
+
+```json
+{
+  "query": "RINSE \"Learning from the Best\" ICML 2025 main conference OR workshop DataWorld accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2de3feb-6979-4504-9521-e38de3bd2bb0",
+  "isSidechain": false,
+  "requestId": "req_011Cb121J5GpBoKa2bMgpwPr",
+  "type": "assistant",
+  "uuid": "6bb3f6ad-bd9c-41ac-bbc0-752df62b4bbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xkn7KzExhxoU2zpP4XzZkS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 995,
+      "cache_read_input_tokens": 73276,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 995,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 73276,
+          "cache_creation_input_tokens": 995,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 995
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-13T18:10:57.540Z_
+
+<details><summary>↩ Tool result · `toolu_01L8Kn91kwB3rHkDKx92TJfB`</summary>
+
+```text
+Web search results for query: "RINSE "Learning from the Best" ICML 2025 main conference OR workshop DataWorld accepted"
+
+Links: [{"title":"ICML Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://icml.cc/virtual/2025/48703"},{"title":"ICML 2025 Workshop on Unifying Data Curation Frameworks Across Domains","url":"https://dataworldicml2025.github.io/"},{"title":"ICML 2025 Workshop DataWorld | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2025%2FWorkshop%2FDataWorld"},{"title":"DataWorld: Unifying data curation frameworks across domains","url":"https://icml.cc/virtual/2025/workshop/39966"},{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"ICML.2025 | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/ICML.2025"},{"title":"Paper Digest: ICML 2025 Papers & Highlights – Paper Digest","url":"https://www.paperdigest.org/2025/06/icml-2025-papers-highlights/"},{"title":"GitHub - DmitryRyumin/ICML-2025-Papers: ICML 2025 Papers: Dive into cutting-edge research from the premier machine learning conference. Stay current with breakthroughs in deep learning, generative AI, optimization, reinforcement learning, and beyond. Code implementations included. ⭐ support the future of machine learning research!","url":"https://github.com/DmitryRyumin/ICML-2025-Papers"},{"title":"2025 Conference","url":"https://icml.cc/Conferences/2025/index.html"},{"title":"Apple Machine Learning Research at ICML 2025 - Apple Machine Learning Research","url":"https://machinelearning.apple.com/research/icml-2025"}]
+
+Based on the search results, I found relevant information about your query:
+
+RINSE (Ranking and INdexing Smooth Examples) is a general-purpose method for filtering demonstration data based on trajectory smoothness, and it addresses the limitation that existing data filtering techniques typically require extensive manual annotation or substantial computational cost.
+
+The paper appears to have been accepted to "Learning from the Best", which is part of ICML 2025. According to the search results, RINSE enables more efficient and reliable policy learning from imperfect data and assigns dataset quality scores that correlate strongly with downstream performance.
+
+Additionally, the search confirmed that the DataWorld workshop is an ICML 2025 workshop scheduled for Saturday, July 19, focusing on data-centric machine learning research.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6bb3f6ad-bd9c-41ac-bbc0-752df62b4bbf",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "22dcb1fb-33a7-405c-9af1-0934841756fe",
+  "toolUseResult": {
+    "query": "RINSE \"Learning from the Best\" ICML 2025 main conference OR workshop DataWorld accepted",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H1WJ4TtcGCE2inLXMBaSfR",
+        "content": [
+          {
+            "title": "ICML Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://icml.cc/virtual/2025/48703"
+          },
+          {
+            "title": "ICML 2025 Workshop on Unifying Data Curation Frameworks Across Domains",
+            "url": "https://dataworldicml2025.github.io/"
+          },
+          {
+            "title": "ICML 2025 Workshop DataWorld | OpenReview",
+            "url": "https://openreview.net/group?id=ICML.cc%2F2025%2FWorkshop%2FDataWorld"
+          },
+          {
+            "title": "DataWorld: Unifying data curation frameworks across domains",
+            "url": "https://icml.cc/virtual/2025/workshop/39966"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://icml.cc/"
+          },
+          {
+            "title": "ICML.2025 | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/ICML.2025"
+          },
+          {
+            "title": "Paper Digest: ICML 2025 Papers & Highlights – Paper Digest",
+            "url": "https://www.paperdigest.org/2025/06/icml-2025-papers-highlights/"
+          },
+          {
+            "title": "GitHub - DmitryRyumin/ICML-2025-Papers: ICML 2025 Papers: Dive into cutting-edge research from the premier machine learning conference. Stay current with breakthroughs in deep learning, generative AI, optimization, reinforcement learning, and beyond. Code implementations included. ⭐ support the future of machine learning research!",
+            "url": "https://github.com/DmitryRyumin/ICML-2025-Papers"
+          },
+          {
+            "title": "2025 Conference",
+            "url": "https://icml.cc/Conferences/2025/index.html"
+          },
+          {
+            "title": "Apple Machine Learning Research at ICML 2025 - Apple Machine Learning Research",
+            "url": "https://machinelearning.apple.com/research/icml-2025"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about your query:\n\nRINSE (Ranking and INdexing Smooth Examples) is a general-purpose method for filtering demonstration data based on trajectory smoothness, and it addresses the limitation that existing data filtering techniques typically require extensive manual annotation or substantial computational cost.\n\nThe paper appears to have been accepted to \"Learning from the Best\", which is part of ICML 2025. According to the search results, RINSE enables more efficient and reliable policy learning from imperfect data and assigns dataset quality scores that correlate strongly with downstream performance.\n\nAdditionally, the search confirmed that the DataWorld workshop is an ICML 2025 workshop scheduled for Saturday, July 19, focusing on data-centric machine learning research."
+    ],
+    "durationSeconds": 7.916561866000004
+  },
+  "sourceToolAssistantUUID": "6bb3f6ad-bd9c-41ac-bbc0-752df62b4bbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-13T18:11:07.305Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016mqh94pAhDwyn1Ps31veuE`</summary>
+
+```json
+{
+  "url": "https://icml.cc/virtual/2025/48703",
+  "prompt": "What is this page about? Is this a main ICML 2025 paper (poster/spotlight/oral) or a workshop paper? Which workshop? Extract the venue information clearly."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22dcb1fb-33a7-405c-9af1-0934841756fe",
+  "isSidechain": false,
+  "requestId": "req_011Cb122BTBkurHNnx9CYJGW",
+  "type": "assistant",
+  "uuid": "f10d7c74-9c33-46b7-b82b-1050e53d9d0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016nrm8bduWFrHrj2Qguz5vj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 810,
+      "cache_read_input_tokens": 74271,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 810,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 74271,
+          "cache_creation_input_tokens": 810,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 810
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-13T18:11:10.644Z_
+
+<details><summary>↩ Tool result · `toolu_016mqh94pAhDwyn1Ps31veuE`</summary>
+
+```text
+# Summary
+
+This page presents a research contribution titled "Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning" by Soham Kulkarni, Raayan Dhar, and Yuchen Cui.
+
+## Venue Type
+This is **a workshop paper, not a main conference paper**. The page clearly indicates it is "in Workshop: DataWorld: Unifying data curation frameworks across domains."
+
+## Content Focus
+The work proposes RINSE, a method for filtering demonstration data in imitation learning based on trajectory smoothness. According to the abstract, the approach "evaluates each trajectory using both Cartesian and frequency-domain smoothness metrics, ranking and selecting high-quality demonstrations for training."
+
+## Key Details
+- **Keywords**: Data quality, behaviour cloning, imitation learning, robot learning
+- **Validation**: Testing occurred in simulated environments and on real robotic platforms
+- **Application**: The method addresses the challenge that "real-world datasets often contain suboptimal, noisy, or inconsistent trajectories"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f10d7c74-9c33-46b7-b82b-1050e53d9d0c",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "09d3b205-8e2a-4f4a-a2d7-f2435427f49f",
+  "toolUseResult": {
+    "bytes": 84015,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary\n\nThis page presents a research contribution titled \"Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning\" by Soham Kulkarni, Raayan Dhar, and Yuchen Cui.\n\n## Venue Type\nThis is **a workshop paper, not a main conference paper**. The page clearly indicates it is \"in Workshop: DataWorld: Unifying data curation frameworks across domains.\"\n\n## Content Focus\nThe work proposes RINSE, a method for filtering demonstration data in imitation learning based on trajectory smoothness. According to the abstract, the approach \"evaluates each trajectory using both Cartesian and frequency-domain smoothness metrics, ranking and selecting high-quality demonstrations for training.\"\n\n## Key Details\n- **Keywords**: Data quality, behaviour cloning, imitation learning, robot learning\n- **Validation**: Testing occurred in simulated environments and on real robotic platforms\n- **Application**: The method addresses the challenge that \"real-world datasets often contain suboptimal, noisy, or inconsistent trajectories\"",
+    "durationMs": 3336,
+    "url": "https://icml.cc/virtual/2025/48703"
+  },
+  "sourceToolAssistantUUID": "f10d7c74-9c33-46b7-b82b-1050e53d9d0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 129 · 2026-05-13T18:11:15.617Z_
+
+Confirmed: RINSE is indeed an ICML 2025 **Workshop** paper (DataWorld), not a main conference paper. The idea correctly cites it as "ICML 2025 Workshop — DataWorld" now. Let me do a few final searches for anti-evidence and completeness.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09d3b205-8e2a-4f4a-a2d7-f2435427f49f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1239Xsc8dHwvHQPdrAm",
+  "type": "assistant",
+  "uuid": "b6e04ccc-68ef-4c18-bc9e-b9c119ed3a25",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FpPAVPCy5zZxFN4JtrH64B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 365,
+      "cache_read_input_tokens": 75081,
+      "output_tokens": 136,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 365,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 136,
+          "cache_read_input_tokens": 75081,
+          "cache_creation_input_tokens": 365,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 365
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-13T18:11:16.050Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AypVE8zTBxTLWNRbH4meWk`</summary>
+
+```json
+{
+  "query": "\"Token Cleaning\" ICML 2025 poster OR spotlight venue type"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6e04ccc-68ef-4c18-bc9e-b9c119ed3a25",
+  "isSidechain": false,
+  "requestId": "req_011Cb1239Xsc8dHwvHQPdrAm",
+  "type": "assistant",
+  "uuid": "916aef8c-db24-4ed2-b4f2-da26f37b1550",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FpPAVPCy5zZxFN4JtrH64B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 365,
+      "cache_read_input_tokens": 75081,
+      "output_tokens": 136,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 365,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 136,
+          "cache_read_input_tokens": 75081,
+          "cache_creation_input_tokens": 365,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 365
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 131_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "916aef8c-db24-4ed2-b4f2-da26f37b1550",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 132_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Tool result
+
+_source line 133 · 2026-05-13T18:11:19.382Z_
+
+<details><summary>↩ Tool result · `toolu_01AypVE8zTBxTLWNRbH4meWk`</summary>
+
+```text
+Web search results for query: ""Token Cleaning" ICML 2025 poster OR spotlight venue type"
+
+Links: [{"title":"ICML Poster Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning","url":"https://icml.cc/virtual/2025/poster/43777"},{"title":"ICML 2025 Poster Instructions","url":"https://icml.cc/Conferences/2025/PosterInstructions"},{"title":"ICML Poster Spotlights","url":"https://icml.cc/virtual/2024/39086"},{"title":"ICML Poster From Language Models over Tokens to Language Models over Characters","url":"https://icml.cc/virtual/2025/poster/43839"},{"title":"ICML 2025 2025 Spotlight Posters","url":"https://icml.cc/virtual/2025/events/2025SpotlightPosters"},{"title":"Erfan Shayegani's Post","url":"https://www.linkedin.com/posts/erfan-shayegani_icml-spotlight-vlms-activity-7323783710875488257-shvu"},{"title":"ICML Conference on X: \"You can find ICML 2025 Poster Instructions here: https://t.co/4gIhYi9dpC\" / X","url":"https://x.com/icmlconf/status/1938226828490989988"},{"title":"ICML Poster Train for the Worst, Plan for the Best: Understanding Token Ordering in Masked Diffusions","url":"https://icml.cc/virtual/2025/poster/45990"},{"title":"9 must-see posters at ICML 2025 – MIT Jameel Clinic","url":"https://jclinic.mit.edu/must-see-posters-icml-2025/"},{"title":"ICML 2025 Conference | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2025%2FConference"}]
+
+Based on the search results, the "Token Cleaning" paper investigates token quality from a noisy-label perspective and proposes a generic token cleaning pipeline for SFT tasks. 
+
+According to the ICML 2025 virtual conference page, "Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning" is presented as a poster at ICML 2025. The venue type is **Poster** (not a spotlight presentation).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "916aef8c-db24-4ed2-b4f2-da26f37b1550",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "aa8c3e15-d246-4b08-8ba2-67e6e5d20c04",
+  "toolUseResult": {
+    "query": "\"Token Cleaning\" ICML 2025 poster OR spotlight venue type",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MBLDBtvRjZkfcVgQrmEAQM",
+        "content": [
+          {
+            "title": "ICML Poster Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning",
+            "url": "https://icml.cc/virtual/2025/poster/43777"
+          },
+          {
+            "title": "ICML 2025 Poster Instructions",
+            "url": "https://icml.cc/Conferences/2025/PosterInstructions"
+          },
+          {
+            "title": "ICML Poster Spotlights",
+            "url": "https://icml.cc/virtual/2024/39086"
+          },
+          {
+            "title": "ICML Poster From Language Models over Tokens to Language Models over Characters",
+            "url": "https://icml.cc/virtual/2025/poster/43839"
+          },
+          {
+            "title": "ICML 2025 2025 Spotlight Posters",
+            "url": "https://icml.cc/virtual/2025/events/2025SpotlightPosters"
+          },
+          {
+            "title": "Erfan Shayegani's Post",
+            "url": "https://www.linkedin.com/posts/erfan-shayegani_icml-spotlight-vlms-activity-7323783710875488257-shvu"
+          },
+          {
+            "title": "ICML Conference on X: \"You can find ICML 2025 Poster Instructions here: https://t.co/4gIhYi9dpC\" / X",
+            "url": "https://x.com/icmlconf/status/1938226828490989988"
+          },
+          {
+            "title": "ICML Poster Train for the Worst, Plan for the Best: Understanding Token Ordering in Masked Diffusions",
+            "url": "https://icml.cc/virtual/2025/poster/45990"
+          },
+          {
+            "title": "9 must-see posters at ICML 2025 – MIT Jameel Clinic",
+            "url": "https://jclinic.mit.edu/must-see-posters-icml-2025/"
+          },
+          {
+            "title": "ICML 2025 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=ICML.cc%2F2025%2FConference"
+          }
+        ]
+      },
+      "Based on the search results, the \"Token Cleaning\" paper investigates token quality from a noisy-label perspective and proposes a generic token cleaning pipeline for SFT tasks. \n\nAccording to the ICML 2025 virtual conference page, \"Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning\" is presented as a poster at ICML 2025. The venue type is **Poster** (not a spotlight presentation)."
+    ],
+    "durationSeconds": 3.3296363610000115
+  },
+  "sourceToolAssistantUUID": "916aef8c-db24-4ed2-b4f2-da26f37b1550",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134 · 2026-05-13T18:11:22.996Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HPhVcn8gmaQYWzbNDxKfBf`</summary>
+
+```json
+{
+  "query": "OpenVLA-OFT SimplerEnv RoboMimic benchmark results 2025 2026 success rate state of the art"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa8c3e15-d246-4b08-8ba2-67e6e5d20c04",
+  "isSidechain": false,
+  "requestId": "req_011Cb123npi1yP2deGguoVN9",
+  "type": "assistant",
+  "uuid": "9a9a7fb2-6bcc-4118-8ca1-83a5cf825cd4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VPAiA4jFeXmdGYE4dHBAVc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 772,
+      "cache_read_input_tokens": 75446,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 772,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 75446,
+          "cache_creation_input_tokens": 772,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 772
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-13T18:11:31.882Z_
+
+<details><summary>↩ Tool result · `toolu_01HPhVcn8gmaQYWzbNDxKfBf`</summary>
+
+```text
+Web search results for query: "OpenVLA-OFT SimplerEnv RoboMimic benchmark results 2025 2026 success rate state of the art"
+
+Links: [{"title":"OpenVLA-OFT","url":"https://openvla-oft.github.io/"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"GitHub - DelinQu/SimplerEnv-OpenVLA: Evaluating and reproducing real-world robot manipulation policies (e.g., RT-1, RT-1-X, Octo, and OpenVLA) in simulation under common setups (e.g., Google Robot, WidowX+Bridge) · GitHub","url":"https://github.com/DelinQu/SimplerEnv-OpenVLA"},{"title":"Experiences from Benchmarking Vision–Language–Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2511.11298v1"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"},{"title":"Self-Improving Vision-Language-Action Models with Data ...","url":"https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"},{"title":"OpenVLA: An Open-Source Vision-Language-Action Model","url":"https://arxiv.org/html/2406.09246v3"},{"title":"MiniVLA: A Better VLA with a Smaller Footprint | SAIL Blog","url":"https://ai.stanford.edu/blog/minivla/"},{"title":"openvla/README.md at main · hprm-robotics/openvla","url":"https://github.com/hprm-robotics/openvla/blob/main/README.md"},{"title":"GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub","url":"https://github.com/moojink/openvla-oft"}]
+
+Based on the web search results, here are the key benchmark results for OpenVLA-OFT, SimplerEnv, and RoboMimic:
+
+## OpenVLA-OFT Performance
+
+OpenVLA-OFT achieves state-of-the-art (SOTA) results in LIBERO with 97.1% average success rate across 4 task suites, outperforming π0, MDT, Seer, DiT Policy, Octo, and Diffusion Policy. Through parallel decoding and action chunking, OpenVLA-OFT obtains 26x faster action generation speed and 3x lower latency than the base OpenVLA model.
+
+Compared to vanilla OpenVLA fine-tuning, OFT enables 25-50x faster inference speed, higher task success rates, multiple input images, and high-frequency bimanual robot control.
+
+## SimplerEnv Results
+
+SimplerEnv maintains a public Google Sheets documenting the latest SOTA models' performance and fine-tuned weights on Simpler-Env, making community benchmarking more accessible.
+
+## Recent Benchmarking Studies (2025-2026)
+
+Recent comprehensive evaluations show more nuanced results. Studies evaluate specialist imitation-learning policy (ACT) against three generalist VLAs (OpenVLA–OFT, RDT-1B, and π0). Large VLA models exhibit strong semantic grounding but poor contact precision, often missing grasps or releasing unstably. In contrast, π0 achieves the best overall robustness, maintaining high success rates across all conditions.
+
+## Additional Performance Enhancements
+
+ReBot's real-to-sim-to-real synthetic video pipeline improves OpenVLA's success rates by 21.8% (simulation) and 20% (real world).
+
+The results indicate that while OpenVLA-OFT achieves impressive state-of-the-art performance on LIBERO, real-world and more challenging out-of-distribution evaluation scenarios reveal performance gaps in fine-grained manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a9a7fb2-6bcc-4118-8ca1-83a5cf825cd4",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "5c0c52f1-08eb-45f4-85e1-e5f52a383255",
+  "toolUseResult": {
+    "query": "OpenVLA-OFT SimplerEnv RoboMimic benchmark results 2025 2026 success rate state of the art",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WhJb2MTxN9grEGQjW8mPXV",
+        "content": [
+          {
+            "title": "OpenVLA-OFT",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/openvla/openvla"
+          },
+          {
+            "title": "GitHub - DelinQu/SimplerEnv-OpenVLA: Evaluating and reproducing real-world robot manipulation policies (e.g., RT-1, RT-1-X, Octo, and OpenVLA) in simulation under common setups (e.g., Google Robot, WidowX+Bridge) · GitHub",
+            "url": "https://github.com/DelinQu/SimplerEnv-OpenVLA"
+          },
+          {
+            "title": "Experiences from Benchmarking Vision–Language–Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2511.11298v1"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data ...",
+            "url": "https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"
+          },
+          {
+            "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+            "url": "https://arxiv.org/html/2406.09246v3"
+          },
+          {
+            "title": "MiniVLA: A Better VLA with a Smaller Footprint | SAIL Blog",
+            "url": "https://ai.stanford.edu/blog/minivla/"
+          },
+          {
+            "title": "openvla/README.md at main · hprm-robotics/openvla",
+            "url": "https://github.com/hprm-robotics/openvla/blob/main/README.md"
+          },
+          {
+            "title": "GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub",
+            "url": "https://github.com/moojink/openvla-oft"
+          }
+        ]
+      },
+      "Based on the web search results, here are the key benchmark results for OpenVLA-OFT, SimplerEnv, and RoboMimic:\n\n## OpenVLA-OFT Performance\n\nOpenVLA-OFT achieves state-of-the-art (SOTA) results in LIBERO with 97.1% average success rate across 4 task suites, outperforming π0, MDT, Seer, DiT Policy, Octo, and Diffusion Policy. Through parallel decoding and action chunking, OpenVLA-OFT obtains 26x faster action generation speed and 3x lower latency than the base OpenVLA model.\n\nCompared to vanilla OpenVLA fine-tuning, OFT enables 25-50x faster inference speed, higher task success rates, multiple input images, and high-frequency bimanual robot control.\n\n## SimplerEnv Results\n\nSimplerEnv maintains a public Google Sheets documenting the latest SOTA models' performance and fine-tuned weights on Simpler-Env, making community benchmarking more accessible.\n\n## Recent Benchmarking Studies (2025-2026)\n\nRecent comprehensive evaluations show more nuanced results. Studies evaluate specialist imitation-learning policy (ACT) against three generalist VLAs (OpenVLA–OFT, RDT-1B, and π0). Large VLA models exhibit strong semantic grounding but poor contact precision, often missing grasps or releasing unstably. In contrast, π0 achieves the best overall robustness, maintaining high success rates across all conditions.\n\n## Additional Performance Enhancements\n\nReBot's real-to-sim-to-real synthetic video pipeline improves OpenVLA's success rates by 21.8% (simulation) and 20% (real world).\n\nThe results indicate that while OpenVLA-OFT achieves impressive state-of-the-art performance on LIBERO, real-world and more challenging out-of-distribution evaluation scenarios reveal performance gaps in fine-grained manipulation tasks."
+    ],
+    "durationSeconds": 8.883237115999975
+  },
+  "sourceToolAssistantUUID": "9a9a7fb2-6bcc-4118-8ca1-83a5cf825cd4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 136 · 2026-05-13T18:11:37.587Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ASxRL5oXuhFaPKRpcJgVRa`</summary>
+
+```json
+{
+  "query": "RoboMimic multi-human mixed quality operator benchmark data quality 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c0c52f1-08eb-45f4-85e1-e5f52a383255",
+  "isSidechain": false,
+  "requestId": "req_011Cb124iJNtJoAfzXL8A4m6",
+  "type": "assistant",
+  "uuid": "2dea45cb-ed45-43cd-a5e2-412567662c05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018HnPLNk94fJ6G68Bq4Xxhg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1115,
+      "cache_read_input_tokens": 76218,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1115,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 76218,
+          "cache_creation_input_tokens": 1115,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1115
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 137 · 2026-05-13T18:11:44.363Z_
+
+<details><summary>↩ Tool result · `toolu_01ASxRL5oXuhFaPKRpcJgVRa`</summary>
+
+```text
+Web search results for query: "RoboMimic multi-human mixed quality operator benchmark data quality 2025 2026"
+
+Links: [{"title":"MimicGen","url":"https://mimicgen.github.io/"},{"title":"robomimic v0.1 (CoRL 2021) — robomimic 0.5 documentation","url":"https://robomimic.github.io/docs/datasets/robomimic_v0.1.html"},{"title":"robomimic","url":"https://robomimic.github.io/"},{"title":"Towards Effective Utilization of Mixed-Quality Demonstrations in Robotic Manipulation via Segment-Level Selection and Optimization","url":"https://arxiv.org/html/2409.19917v1"},{"title":"GitHub - ARISE-Initiative/robomimic: robomimic: A Modular Framework for Robot Learning from Demonstration · GitHub","url":"https://github.com/ARISE-Initiative/robomimic"},{"title":"What Matters in Learning from Offline Human Demonstrations for Robot Manipulation | robomimic","url":"https://robomimic.github.io/study/"},{"title":"Robotic Manipulation via Imitation Learning: Taxonomy, Evolution, Benchmark, and Challenges","url":"https://arxiv.org/html/2508.17449v1"},{"title":"RoboMIND: Benchmark on Multi-embodiment Intelligence Normative Data for Robot Manipulation","url":"https://x-humanoid-robomind.github.io/"},{"title":"robomimic v0.1 (CoRL 2021) — robomimic 0.2.1 documentation","url":"https://robomimic.github.io/docs/v0.2/datasets/robomimic_v0.1.html"},{"title":"RoboManipBaselines: A Unified Framework for Imitation Learning in Robotic Manipulation across Real and Simulated Environments","url":"https://arxiv.org/html/2509.17057v1"}]
+
+Based on the search results, I found relevant information about RoboMimic and mixed-quality demonstration data:
+
+RoboMimic v0.1 datasets is a large-scale, diverse collection of task demonstrations spanning multiple human demonstrators of varying quality. This directly addresses the multi-human aspect of your query.
+
+Regarding data quality considerations, MimicGen datasets were generated on Square D2 from two sets of source datasets - 10 demos from a better quality operator and 10 demos from a worse quality operator (both from the robomimic Square MH dataset), and policies trained on each dataset achieve comparable results, which suggests that in the large-scale data regime, data quality might not matter as much.
+
+Additionally, the robomimic datasets supply large-scale human teleoperation demonstrations at varying qualities (expert/medium/mixed), enabling imitation and offline RL benchmarks with consistent metrics and baselines.
+
+The search results also include recent work on handling mixed-quality demonstrations. S2I can improve the performance of various downstream policies by optimizing the mixed-quality demonstration data, and consistently outperforms baseline methods in simulation environments, improving the performance of various robotic manipulation policies on mixed-quality demonstrations (from a 2024 paper).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2dea45cb-ed45-43cd-a5e2-412567662c05",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "c8e55b11-6645-47a9-b7cb-f2a4d46def71",
+  "toolUseResult": {
+    "query": "RoboMimic multi-human mixed quality operator benchmark data quality 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018R1QsqLojMU5VkKgEAzSD5",
+        "content": [
+          {
+            "title": "MimicGen",
+            "url": "https://mimicgen.github.io/"
+          },
+          {
+            "title": "robomimic v0.1 (CoRL 2021) — robomimic 0.5 documentation",
+            "url": "https://robomimic.github.io/docs/datasets/robomimic_v0.1.html"
+          },
+          {
+            "title": "robomimic",
+            "url": "https://robomimic.github.io/"
+          },
+          {
+            "title": "Towards Effective Utilization of Mixed-Quality Demonstrations in Robotic Manipulation via Segment-Level Selection and Optimization",
+            "url": "https://arxiv.org/html/2409.19917v1"
+          },
+          {
+            "title": "GitHub - ARISE-Initiative/robomimic: robomimic: A Modular Framework for Robot Learning from Demonstration · GitHub",
+            "url": "https://github.com/ARISE-Initiative/robomimic"
+          },
+          {
+            "title": "What Matters in Learning from Offline Human Demonstrations for Robot Manipulation | robomimic",
+            "url": "https://robomimic.github.io/study/"
+          },
+          {
+            "title": "Robotic Manipulation via Imitation Learning: Taxonomy, Evolution, Benchmark, and Challenges",
+            "url": "https://arxiv.org/html/2508.17449v1"
+          },
+          {
+            "title": "RoboMIND: Benchmark on Multi-embodiment Intelligence Normative Data for Robot Manipulation",
+            "url": "https://x-humanoid-robomind.github.io/"
+          },
+          {
+            "title": "robomimic v0.1 (CoRL 2021) — robomimic 0.2.1 documentation",
+            "url": "https://robomimic.github.io/docs/v0.2/datasets/robomimic_v0.1.html"
+          },
+          {
+            "title": "RoboManipBaselines: A Unified Framework for Imitation Learning in Robotic Manipulation across Real and Simulated Environments",
+            "url": "https://arxiv.org/html/2509.17057v1"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about RoboMimic and mixed-quality demonstration data:\n\nRoboMimic v0.1 datasets is a large-scale, diverse collection of task demonstrations spanning multiple human demonstrators of varying quality. This directly addresses the multi-human aspect of your query.\n\nRegarding data quality considerations, MimicGen datasets were generated on Square D2 from two sets of source datasets - 10 demos from a better quality operator and 10 demos from a worse quality operator (both from the robomimic Square MH dataset), and policies trained on each dataset achieve comparable results, which suggests that in the large-scale data regime, data quality might not matter as much.\n\nAdditionally, the robomimic datasets supply large-scale human teleoperation demonstrations at varying qualities (expert/medium/mixed), enabling imitation and offline RL benchmarks with consistent metrics and baselines.\n\nThe search results also include recent work on handling mixed-quality demonstrations. S2I can improve the performance of various downstream policies by optimizing the mixed-quality demonstration data, and consistently outperforms baseline methods in simulation environments, improving the performance of various robotic manipulation policies on mixed-quality demonstrations (from a 2024 paper)."
+    ],
+    "durationSeconds": 6.771275651999982
+  },
+  "sourceToolAssistantUUID": "2dea45cb-ed45-43cd-a5e2-412567662c05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 138 · 2026-05-13T18:11:47.461Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015BsAZo9pSgM7k42B4oDhR7`</summary>
+
+```json
+{
+  "query": "\"priority\" OR \"prioritized\" \"action chunk\" OR \"action chunking\" training loss robot 2025 2026 site:arxiv.org"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8e55b11-6645-47a9-b7cb-f2a4d46def71",
+  "isSidechain": false,
+  "requestId": "req_011Cb125deMwRSLQX9k6JA42",
+  "type": "assistant",
+  "uuid": "f2fef045-6f7b-4500-9ec4-3ca87b97e3e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QLLGpGQwEBHhP8UTDc6TYh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 850,
+      "cache_read_input_tokens": 77333,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 77333,
+          "cache_creation_input_tokens": 850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 139 · 2026-05-13T18:11:55.177Z_
+
+<details><summary>↩ Tool result · `toolu_015BsAZo9pSgM7k42B4oDhR7`</summary>
+
+```text
+Web search results for query: ""priority" OR "prioritized" "action chunk" OR "action chunking" training loss robot 2025 2026 site:arxiv.org"
+
+Links: [{"title":"Real-Time Execution of Action Chunking Flow Policies","url":"https://arxiv.org/html/2506.07339v1"},{"title":"Learning Native Continuation for Action Chunking Flow Policies","url":"https://arxiv.org/html/2602.12978v1"},{"title":"FTACT: Force Torque aware Action Chunking Transformer for Pick-and-Reorient Bottle Task","url":"https://arxiv.org/html/2509.23112v1"},{"title":"SEAR: Sample Efficient Action Chunking Reinforcement Learning","url":"https://arxiv.org/html/2603.01891v1"},{"title":"Actor-Critic for Continuous Action Chunks: A Reinforcement Learning Framework for Long-Horizon Robotic Manipulation with Sparse Reward","url":"https://arxiv.org/html/2508.11143"},{"title":"[2309.01918] RoboAgent: Generalization and Efficiency in Robot Manipulation via Semantic Augmentations and Action Chunking","url":"https://arxiv.org/abs/2309.01918"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/html/2509.23224v1"},{"title":"LEAVE NO OBSERVATION BEHIND: REAL-TIME COR- RECTION FOR VLA ACTION CHUNKS","url":"https://www.arxiv.org/pdf/2509.23224"},{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"},{"title":"Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey","url":"https://arxiv.org/html/2510.17111v1"}]
+
+I found several relevant papers on arxiv.org about action chunking in robotic learning from 2025-2026. Here are the key results:
+
+## Recent Papers on Action Chunking and Robot Training
+
+**1. Real-Time Execution of Action Chunking Flow Policies (June 2025)**
+This paper presents a novel inference-time algorithm that enables smooth asynchronous execution of action chunking policies, with a method called real-time chunking (RTC) that is applicable to any diffusion- or flow-based VLA without re-training.
+
+**2. Learning Native Continuation for Action Chunking Flow Policies (February 2026)**
+Action chunking enables Vision Language Action (VLA) models to run in real time, but naive chunked execution often exhibits discontinuities at chunk boundaries.
+
+**3. SEAR: Sample Efficient Action Chunking Reinforcement Learning (March 2026)**
+In robotic learning, action chunking agents generate multiple consecutive actions at once.
+
+**4. Actor-Critic for Continuous Action Chunks (February 2026)**
+This paper introduces AC3, a reinforcement learning framework specifically designed for action chunking in robot manipulation tasks.
+
+**5. Additional Related Work:**
+- Asynchronous Action Chunk Correction (A2C2), which is a lightweight correction head that can be executed at every timestep to complement action chunks (September 2025)
+- FTACT, a multimodal Imitation Learning policy that augments the Action Chunking Transformer (ACT) with force and torque sensing, enabling end-to-end learning over images, joint states, and forces and torques. (September 2025)
+
+These papers address various aspects of action chunking including training loss optimization, real-time execution efficiency, and reinforcement learning approaches for robotic control.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f2fef045-6f7b-4500-9ec4-3ca87b97e3e5",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "583be6ad-b4da-4332-b91a-28ddcfd2ed52",
+  "toolUseResult": {
+    "query": "\"priority\" OR \"prioritized\" \"action chunk\" OR \"action chunking\" training loss robot 2025 2026 site:arxiv.org",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A2yYDzrcnmWUEn23s8ksGz",
+        "content": [
+          {
+            "title": "Real-Time Execution of Action Chunking Flow Policies",
+            "url": "https://arxiv.org/html/2506.07339v1"
+          },
+          {
+            "title": "Learning Native Continuation for Action Chunking Flow Policies",
+            "url": "https://arxiv.org/html/2602.12978v1"
+          },
+          {
+            "title": "FTACT: Force Torque aware Action Chunking Transformer for Pick-and-Reorient Bottle Task",
+            "url": "https://arxiv.org/html/2509.23112v1"
+          },
+          {
+            "title": "SEAR: Sample Efficient Action Chunking Reinforcement Learning",
+            "url": "https://arxiv.org/html/2603.01891v1"
+          },
+          {
+            "title": "Actor-Critic for Continuous Action Chunks: A Reinforcement Learning Framework for Long-Horizon Robotic Manipulation with Sparse Reward",
+            "url": "https://arxiv.org/html/2508.11143"
+          },
+          {
+            "title": "[2309.01918] RoboAgent: Generalization and Efficiency in Robot Manipulation via Semantic Augmentations and Action Chunking",
+            "url": "https://arxiv.org/abs/2309.01918"
+          },
+          {
+            "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks",
+            "url": "https://arxiv.org/html/2509.23224v1"
+          },
+          {
+            "title": "LEAVE NO OBSERVATION BEHIND: REAL-TIME COR- RECTION FOR VLA ACTION CHUNKS",
+            "url": "https://www.arxiv.org/pdf/2509.23224"
+          },
+          {
+            "title": "Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising",
+            "url": "https://arxiv.org/html/2604.26694v2"
+          },
+          {
+            "title": "Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey",
+            "url": "https://arxiv.org/html/2510.17111v1"
+          }
+        ]
+      },
+      "I found several relevant papers on arxiv.org about action chunking in robotic learning from 2025-2026. Here are the key results:\n\n## Recent Papers on Action Chunking and Robot Training\n\n**1. Real-Time Execution of Action Chunking Flow Policies (June 2025)**\nThis paper presents a novel inference-time algorithm that enables smooth asynchronous execution of action chunking policies, with a method called real-time chunking (RTC) that is applicable to any diffusion- or flow-based VLA without re-training.\n\n**2. Learning Native Continuation for Action Chunking Flow Policies (February 2026)**\nAction chunking enables Vision Language Action (VLA) models to run in real time, but naive chunked execution often exhibits discontinuities at chunk boundaries.\n\n**3. SEAR: Sample Efficient Action Chunking Reinforcement Learning (March 2026)**\nIn robotic learning, action chunking agents generate multiple consecutive actions at once.\n\n**4. Actor-Critic for Continuous Action Chunks (February 2026)**\nThis paper introduces AC3, a reinforcement learning framework specifically designed for action chunking in robot manipulation tasks.\n\n**5. Additional Related Work:**\n- Asynchronous Action Chunk Correction (A2C2), which is a lightweight correction head that can be executed at every timestep to complement action chunks (September 2025)\n- FTACT, a multimodal Imitation Learning policy that augments the Action Chunking Transformer (ACT) with force and torque sensing, enabling end-to-end learning over images, joint states, and forces and torques. (September 2025)\n\nThese papers address various aspects of action chunking including training loss optimization, real-time execution efficiency, and reinforcement learning approaches for robotic control."
+    ],
+    "durationSeconds": 7.712559711000067
+  },
+  "sourceToolAssistantUUID": "f2fef045-6f7b-4500-9ec4-3ca87b97e3e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 140 · 2026-05-13T18:11:58.183Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013Eq23rEULGvJxGngg5RmTk`</summary>
+
+```json
+{
+  "query": "SEAR \"Sample Efficient Action Chunking Reinforcement Learning\" arXiv 2603.01891 prioritized sampling"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "583be6ad-b4da-4332-b91a-28ddcfd2ed52",
+  "isSidechain": false,
+  "requestId": "req_011Cb126RqV8rVb39gWJWgHU",
+  "type": "assistant",
+  "uuid": "36ae78a5-986e-4b75-b540-b2604f81a330",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KUV3Uf196MCVrjqbZkBDoT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1010,
+      "cache_read_input_tokens": 78183,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 78183,
+          "cache_creation_input_tokens": 1010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 141 · 2026-05-13T18:12:05.475Z_
+
+<details><summary>↩ Tool result · `toolu_013Eq23rEULGvJxGngg5RmTk`</summary>
+
+```text
+Web search results for query: "SEAR "Sample Efficient Action Chunking Reinforcement Learning" arXiv 2603.01891 prioritized sampling"
+
+Links: [{"title":"[2603.01891] SEAR: Sample Efficient Action Chunking Reinforcement Learning","url":"https://arxiv.org/abs/2603.01891"},{"title":"SEAR: Sample Efficient Action Chunking Reinforcement Learning","url":"https://arxiv.org/html/2603.01891v1"},{"title":"[2507.07969] Reinforcement Learning with Action Chunking","url":"https://arxiv.org/abs/2507.07969"},{"title":"ICML Sample-Efficient Reinforcement Learning with Action Chunking","url":"https://icml.cc/virtual/2025/51519"},{"title":"Reinforcement Learning with Action Chunking | OpenReview","url":"https://openreview.net/forum?id=XUks1Y96NR"},{"title":"Reinforcement Learning with Action Chunking","url":"https://arxiv.org/html/2507.07969v1"},{"title":"Reinforcement Learning with Action Chunking (UC ...","url":"https://www.facebook.com/groups/DeepNetGroup/posts/2541383162921217/"},{"title":"Reinforcement Learning with Action Chunking","url":"https://www.researchgate.net/publication/393586748_Reinforcement_Learning_with_Action_Chunking"},{"title":"Reinforcement Learning with Action Chunking | alphaXiv","url":"https://www.alphaxiv.org/overview/2507.07969v2"},{"title":"[2507.07969v1] Reinforcement Learning with Action Chunking","url":"https://arxiv.org/abs/2507.07969v1"}]
+
+Based on the search results, I found information about the paper you requested:
+
+## SEAR: Sample Efficient Action Chunking Reinforcement Learning (arXiv 2603.01891)
+
+SEAR is an off-policy online reinforcement learning algorithm for action chunking that exploits the temporal structure of action chunks and operates with a receding horizon, effectively combining the benefits of small and large chunk sizes.
+
+The paper addresses the challenge that action chunking can improve exploration and value estimation in long horizon reinforcement learning, but makes learning substantially harder since the critic must evaluate action sequences rather than single actions, greatly increasing approximation and data efficiency challenges.
+
+Existing action chunking methods, primarily designed for the offline and offline-to-online settings, have not achieved strong performance in purely online reinforcement learning. SEAR specifically targets this gap.
+
+SEAR outperforms state of the art online reinforcement learning methods on Metaworld, training with chunk sizes up to 20.
+
+The paper was submitted on March 2, 2026, by authors including C. F. Maximilian Nagy, Onur Celik, Emiliyan Gospodinov, Florian Seligmann, Weiran Liao, Aryan Kaushik, and Gerhard Neumann.
+
+Note: The search results do not contain specific details about prioritized sampling mechanisms in SEAR. To learn more about that aspect, you may want to consult the full paper directly at arxiv.org/abs/2603.01891.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36ae78a5-986e-4b75-b540-b2604f81a330",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "2b2da021-1fd1-45dc-98e4-b30c772e692a",
+  "toolUseResult": {
+    "query": "SEAR \"Sample Efficient Action Chunking Reinforcement Learning\" arXiv 2603.01891 prioritized sampling",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MSVkkDpxVBoWzhYP1uoEAv",
+        "content": [
+          {
+            "title": "[2603.01891] SEAR: Sample Efficient Action Chunking Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2603.01891"
+          },
+          {
+            "title": "SEAR: Sample Efficient Action Chunking Reinforcement Learning",
+            "url": "https://arxiv.org/html/2603.01891v1"
+          },
+          {
+            "title": "[2507.07969] Reinforcement Learning with Action Chunking",
+            "url": "https://arxiv.org/abs/2507.07969"
+          },
+          {
+            "title": "ICML Sample-Efficient Reinforcement Learning with Action Chunking",
+            "url": "https://icml.cc/virtual/2025/51519"
+          },
+          {
+            "title": "Reinforcement Learning with Action Chunking | OpenReview",
+            "url": "https://openreview.net/forum?id=XUks1Y96NR"
+          },
+          {
+            "title": "Reinforcement Learning with Action Chunking",
+            "url": "https://arxiv.org/html/2507.07969v1"
+          },
+          {
+            "title": "Reinforcement Learning with Action Chunking (UC ...",
+            "url": "https://www.facebook.com/groups/DeepNetGroup/posts/2541383162921217/"
+          },
+          {
+            "title": "Reinforcement Learning with Action Chunking",
+            "url": "https://www.researchgate.net/publication/393586748_Reinforcement_Learning_with_Action_Chunking"
+          },
+          {
+            "title": "Reinforcement Learning with Action Chunking | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2507.07969v2"
+          },
+          {
+            "title": "[2507.07969v1] Reinforcement Learning with Action Chunking",
+            "url": "https://arxiv.org/abs/2507.07969v1"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper you requested:\n\n## SEAR: Sample Efficient Action Chunking Reinforcement Learning (arXiv 2603.01891)\n\nSEAR is an off-policy online reinforcement learning algorithm for action chunking that exploits the temporal structure of action chunks and operates with a receding horizon, effectively combining the benefits of small and large chunk sizes.\n\nThe paper addresses the challenge that action chunking can improve exploration and value estimation in long horizon reinforcement learning, but makes learning substantially harder since the critic must evaluate action sequences rather than single actions, greatly increasing approximation and data efficiency challenges.\n\nExisting action chunking methods, primarily designed for the offline and offline-to-online settings, have not achieved strong performance in purely online reinforcement learning. SEAR specifically targets this gap.\n\nSEAR outperforms state of the art online reinforcement learning methods on Metaworld, training with chunk sizes up to 20.\n\nThe paper was submitted on March 2, 2026, by authors including C. F. Maximilian Nagy, Onur Celik, Emiliyan Gospodinov, Florian Seligmann, Weiran Liao, Aryan Kaushik, and Gerhard Neumann.\n\nNote: The search results do not contain specific details about prioritized sampling mechanisms in SEAR. To learn more about that aspect, you may want to consult the full paper directly at arxiv.org/abs/2603.01891."
+    ],
+    "durationSeconds": 7.28394103300001
+  },
+  "sourceToolAssistantUUID": "36ae78a5-986e-4b75-b540-b2604f81a330",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 142_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2b2da021-1fd1-45dc-98e4-b30c772e692a",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 143_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Assistant
+
+_source line 144 · 2026-05-13T18:12:10.156Z_
+
+SEAR is about online RL with action chunking, not about SFT data prioritization — different setting. Let me now check for one more critical dimension: whether anyone has empirically characterized how intra-chunk loss profiles evolve during VLA training.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b2da021-1fd1-45dc-98e4-b30c772e692a",
+  "isSidechain": false,
+  "requestId": "req_011Cb127BvMNsVBtrZUAQnV8",
+  "type": "assistant",
+  "uuid": "5ac95f43-bad7-429f-8b95-bfb6b45829b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019y3xmXuwswwQkAHg1hQbLK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 887,
+      "cache_read_input_tokens": 79193,
+      "output_tokens": 135,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 887,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 135,
+          "cache_read_input_tokens": 79193,
+          "cache_creation_input_tokens": 887,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 887
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-13T18:12:11.231Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LXqL2qjky2ZynNawNWRKT1`</summary>
+
+```json
+{
+  "query": "\"VLA Knows Its Limits\" action sink prediction quality temporal distance intra-chunk arXiv 2602.21445"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ac95f43-bad7-429f-8b95-bfb6b45829b2",
+  "isSidechain": false,
+  "requestId": "req_011Cb127BvMNsVBtrZUAQnV8",
+  "type": "assistant",
+  "uuid": "1e105245-4e82-4749-afa5-0c0ed89221bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019y3xmXuwswwQkAHg1hQbLK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 887,
+      "cache_read_input_tokens": 79193,
+      "output_tokens": 135,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 887,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 135,
+          "cache_read_input_tokens": 79193,
+          "cache_creation_input_tokens": 887,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 887
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-13T18:12:20.340Z_
+
+<details><summary>↩ Tool result · `toolu_01LXqL2qjky2ZynNawNWRKT1`</summary>
+
+```text
+Web search results for query: ""VLA Knows Its Limits" action sink prediction quality temporal distance intra-chunk arXiv 2602.21445"
+
+Links: [{"title":"VLA Knows Its Limits","url":"https://arxiv.org/html/2602.21445v1"},{"title":"[2602.21445] VLA Knows Its Limits","url":"https://arxiv.org/abs/2602.21445"},{"title":"[2602.07845] Recurrent-Depth VLA: Implicit Test-Time Compute Scaling of Vision-Language-Action Models via Latent Iterative Reasoning","url":"https://arxiv.org/abs/2602.07845"},{"title":"Recurrent-Depth VLA: Implicit Test-Time Compute Scaling of Vision–Language–Action Models via Latent Iterative Reasoning","url":"https://arxiv.org/html/2602.07845v1"},{"title":"Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models","url":"https://arxiv.org/html/2602.01166"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/html/2509.23224v1"},{"title":"Efficient Long-Horizon Vision-Language-Action Models via Static-Dynamic Disentanglement","url":"https://arxiv.org/html/2602.03983"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks | OpenReview","url":"https://openreview.net/forum?id=y5SGBsndWv"},{"title":"Accelerating Vision-Language-Action Model Integrated with Action Chunking via Parallel Decoding","url":"https://arxiv.org/html/2503.02310v1"},{"title":"[2602.00919] Green-VLA: Staged Vision-Language-Action Model for Generalist Robots","url":"https://arxiv.org/abs/2602.00919"}]
+
+I found the paper you're looking for! Here's information about "VLA Knows Its Limits":
+
+## Overview
+
+Action chunking has recently emerged as a standard practice in flow-based Vision-Language-Action (VLA) models. However, the effect and choice of the execution horizon - the number of actions to be executed from each predicted chunk - remains underexplored.
+
+## Key Findings
+
+Varying the execution horizon leads to substantial performance deviations, with performance initially improving and then declining as the horizon increases.
+
+The paper reveals two critical phenomena:
+
+1. **Intra-chunk Actions and Fixed Contexts**: Intra-chunk actions consistently attend to the same vision–language tokens, indicating that they rely on fixed perceptual contexts. These contexts provide useful guidance for early actions but become increasingly outdated for later ones as the environment changes, revealing the limited adaptability of the predicted chunks.
+
+2. **Action Sinks and Temporal Distance**: Predicted actions exhibit strong attention to the initial and terminal action tokens, with correspondence strength remaining high before sharply decaying as temporal distance increases.
+
+## Proposed Solution
+
+The paper proposes AutoHorizon, a dynamic execution horizon estimation strategy for flow-based VLAs trained with action chunking. It introduces a bidirectional soft-pointer mechanism that locates the first turning points where the attention mass ceases to advance and begins to plateau. These turning points, identified for both initial and terminal radial action sinks, define the estimated execution horizon.
+
+The paper is available on arXiv as 2602.21445.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e105245-4e82-4749-afa5-0c0ed89221bf",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "94e190e8-95d4-44ad-85e0-6047657fcaec",
+  "toolUseResult": {
+    "query": "\"VLA Knows Its Limits\" action sink prediction quality temporal distance intra-chunk arXiv 2602.21445",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BKAJRrKSsK8tUrm3uDmWWh",
+        "content": [
+          {
+            "title": "VLA Knows Its Limits",
+            "url": "https://arxiv.org/html/2602.21445v1"
+          },
+          {
+            "title": "[2602.21445] VLA Knows Its Limits",
+            "url": "https://arxiv.org/abs/2602.21445"
+          },
+          {
+            "title": "[2602.07845] Recurrent-Depth VLA: Implicit Test-Time Compute Scaling of Vision-Language-Action Models via Latent Iterative Reasoning",
+            "url": "https://arxiv.org/abs/2602.07845"
+          },
+          {
+            "title": "Recurrent-Depth VLA: Implicit Test-Time Compute Scaling of Vision–Language–Action Models via Latent Iterative Reasoning",
+            "url": "https://arxiv.org/html/2602.07845v1"
+          },
+          {
+            "title": "Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2602.01166"
+          },
+          {
+            "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks",
+            "url": "https://arxiv.org/html/2509.23224v1"
+          },
+          {
+            "title": "Efficient Long-Horizon Vision-Language-Action Models via Static-Dynamic Disentanglement",
+            "url": "https://arxiv.org/html/2602.03983"
+          },
+          {
+            "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks | OpenReview",
+            "url": "https://openreview.net/forum?id=y5SGBsndWv"
+          },
+          {
+            "title": "Accelerating Vision-Language-Action Model Integrated with Action Chunking via Parallel Decoding",
+            "url": "https://arxiv.org/html/2503.02310v1"
+          },
+          {
+            "title": "[2602.00919] Green-VLA: Staged Vision-Language-Action Model for Generalist Robots",
+            "url": "https://arxiv.org/abs/2602.00919"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's information about \"VLA Knows Its Limits\":\n\n## Overview\n\nAction chunking has recently emerged as a standard practice in flow-based Vision-Language-Action (VLA) models. However, the effect and choice of the execution horizon - the number of actions to be executed from each predicted chunk - remains underexplored.\n\n## Key Findings\n\nVarying the execution horizon leads to substantial performance deviations, with performance initially improving and then declining as the horizon increases.\n\nThe paper reveals two critical phenomena:\n\n1. **Intra-chunk Actions and Fixed Contexts**: Intra-chunk actions consistently attend to the same vision–language tokens, indicating that they rely on fixed perceptual contexts. These contexts provide useful guidance for early actions but become increasingly outdated for later ones as the environment changes, revealing the limited adaptability of the predicted chunks.\n\n2. **Action Sinks and Temporal Distance**: Predicted actions exhibit strong attention to the initial and terminal action tokens, with correspondence strength remaining high before sharply decaying as temporal distance increases.\n\n## Proposed Solution\n\nThe paper proposes AutoHorizon, a dynamic execution horizon estimation strategy for flow-based VLAs trained with action chunking. It introduces a bidirectional soft-pointer mechanism that locates the first turning points where the attention mass ceases to advance and begins to plateau. These turning points, identified for both initial and terminal radial action sinks, define the estimated execution horizon.\n\nThe paper is available on arXiv as 2602.21445."
+    ],
+    "durationSeconds": 9.10515812300006
+  },
+  "sourceToolAssistantUUID": "1e105245-4e82-4749-afa5-0c0ed89221bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 147 · 2026-05-13T18:12:20.342Z_
+
+```json
+{
+  "parentUuid": "94e190e8-95d4-44ad-85e0-6047657fcaec",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "44e5c33a-e134-4828-8b0c-5cb23df03973",
+  "timestamp": "2026-05-13T18:12:20.342Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 148 · 2026-05-13T18:12:24.261Z_
+
+Now let me assess the Token Cleaning ICML 2025 status — the idea originally called it a Spotlight but previous review corrected it to Poster. Let me verify.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44e5c33a-e134-4828-8b0c-5cb23df03973",
+  "isSidechain": false,
+  "requestId": "req_011Cb128HSWiawmFAKxKJ3q5",
+  "type": "assistant",
+  "uuid": "7cac4f0f-1975-437e-a03a-04f33e2c2759",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L5aKSSJhDHC5wND21p3vC5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1100,
+      "cache_read_input_tokens": 80080,
+      "output_tokens": 147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1100,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 147,
+          "cache_read_input_tokens": 80080,
+          "cache_creation_input_tokens": 1100,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1100
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 149 · 2026-05-13T18:12:25.216Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PGVbEthZT8Q2fs64WkJayo`</summary>
+
+```json
+{
+  "url": "https://icml.cc/virtual/2025/poster/43777",
+  "prompt": "Is this paper a Poster or a Spotlight at ICML 2025? Extract the presentation type clearly."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7cac4f0f-1975-437e-a03a-04f33e2c2759",
+  "isSidechain": false,
+  "requestId": "req_011Cb128HSWiawmFAKxKJ3q5",
+  "type": "assistant",
+  "uuid": "51b5e291-4808-4691-bfab-bd08c0d3ca44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L5aKSSJhDHC5wND21p3vC5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1100,
+      "cache_read_input_tokens": 80080,
+      "output_tokens": 147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1100,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 147,
+          "cache_read_input_tokens": 80080,
+          "cache_creation_input_tokens": 1100,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1100
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-13T18:12:27.499Z_
+
+<details><summary>↩ Tool result · `toolu_01PGVbEthZT8Q2fs64WkJayo`</summary>
+
+```text
+# Presentation Type
+
+This paper is presented as a **Poster** at ICML 2025.
+
+The page clearly identifies it at the top: "ICML Poster Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning" and again in the metadata as "2025 Poster."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "51b5e291-4808-4691-bfab-bd08c0d3ca44",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "d28f6da6-3dc5-47f9-a644-c1ec7ea61991",
+  "toolUseResult": {
+    "bytes": 87545,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Presentation Type\n\nThis paper is presented as a **Poster** at ICML 2025.\n\nThe page clearly identifies it at the top: \"ICML Poster Token Cleaning: Fine-Grained Data Selection for LLM Supervised Fine-Tuning\" and again in the metadata as \"2025 Poster.\"",
+    "durationMs": 2279,
+    "url": "https://icml.cc/virtual/2025/poster/43777"
+  },
+  "sourceToolAssistantUUID": "51b5e291-4808-4691-bfab-bd08c0d3ca44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 151 · 2026-05-13T18:12:31.508Z_
+
+Now let me do a final check: whether there are any other VLA-specific adaptive training methods from the past 3 months that might be competing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d28f6da6-3dc5-47f9-a644-c1ec7ea61991",
+  "isSidechain": false,
+  "requestId": "req_011Cb128p6FPLQwj9wNRzPwA",
+  "type": "assistant",
+  "uuid": "92e23f85-18e4-4df5-9dec-b766b9eea031",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TuHE6F71rX6hRP1tLkLbtS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 233,
+      "cache_read_input_tokens": 81180,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 233,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 81180,
+          "cache_creation_input_tokens": 233,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 233
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 152 · 2026-05-13T18:12:32.438Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DdjcbtFd1xUAKrsNc37T32`</summary>
+
+```json
+{
+  "query": "adaptive training strategy VLA loss-based reweighting data quality March April May 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92e23f85-18e4-4df5-9dec-b766b9eea031",
+  "isSidechain": false,
+  "requestId": "req_011Cb128p6FPLQwj9wNRzPwA",
+  "type": "assistant",
+  "uuid": "5d5b910c-9aea-4f4e-8b22-d293499ccbf2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TuHE6F71rX6hRP1tLkLbtS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 233,
+      "cache_read_input_tokens": 81180,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 233,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 81180,
+          "cache_creation_input_tokens": 233,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 233
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 153 · 2026-05-13T18:12:42.058Z_
+
+<details><summary>↩ Tool result · `toolu_01DdjcbtFd1xUAKrsNc37T32`</summary>
+
+```text
+Web search results for query: "adaptive training strategy VLA loss-based reweighting data quality March April May 2026 arxiv"
+
+Links: [{"title":"[2509.04063] Balancing Signal and Variance: Adaptive Offline RL Post-Training for VLA Flow Models","url":"https://arxiv.org/abs/2509.04063"},{"title":"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning","url":"https://arxiv.org/html/2601.06748v1"},{"title":"ART: Adaptive Resampling-based Training for Difficulty-aware Classification","url":"https://arxiv.org/html/2509.00955"},{"title":"Class–Confidence Aware Reweighting for Long-Tailed Learning","url":"https://arxiv.org/html/2601.15924v1"},{"title":"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining","url":"https://arxiv.org/html/2502.06733v1"},{"title":"A Survey on Efficient Vision-Language-Action Models","url":"https://arxiv.org/html/2510.24795v1"},{"title":"Towards Next-Generation LLM Training: From the Data-Centric Perspective","url":"https://arxiv.org/html/2603.14712v1"},{"title":"GitHub - Ed1sonChen/DailyArxiv · GitHub","url":"https://github.com/Ed1sonChen/DailyArxiv"},{"title":"Do Generated Data Always Help Contrastive Learning?","url":"https://arxiv.org/html/2403.12448v1"},{"title":"[2311.00913] Self-Influence Guided Data Reweighting for Language Model Pre-training","url":"https://ar5iv.labs.arxiv.org/html/2311.00913"}]
+
+I found several relevant arxiv papers related to adaptive training strategies, VLA models, and loss-based reweighting for data quality. Here are the key results:
+
+## Most Relevant Results:
+
+**1. Balancing Signal and Variance: Adaptive Offline RL Post-Training for VLA Flow Models** (arXiv:2509.04063, September 4, 2025)
+
+This paper proposes an offline RL post-training objective for VLA flow models and introduces the Adaptive Reinforced Flow Matching (ARFM) algorithm, which uses an adaptively adjusted scaling factor in the VLA flow model loss to construct a bias-variance trade-off objective function that optimally controls the impact of RL signal on flow loss. ARFM adaptively balances RL advantage preservation and flow loss gradient variance control, resulting in a more stable and efficient fine-tuning process.
+
+**2. Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining** (arXiv:2502.06733, February 10, 2025)
+
+This paper introduces novel algorithms for dynamic, instance-level data reweighting aimed at improving LLM pretraining, with methods that adjust the weight of each training sample based on its loss value in an online fashion, allowing the model to dynamically focus on more informative or important samples at the current training stage.
+
+**3. Towards Next-Generation LLM Training: From the Data-Centric Perspective** (arXiv:2603.14712, March 16, 2026)
+
+This paper discusses online data reweighting that dynamically adjusts the importance of each training sample based on its current loss, where samples that the model finds difficult or informative are assigned higher weights, while easy or redundant ones are down-weighted as training progresses.
+
+These papers cover adaptive training strategies with loss-based reweighting methods relevant to your search query, with publication dates spanning the March-May 2026 timeframe you specified.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d5b910c-9aea-4f4e-8b22-d293499ccbf2",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "2febdcd9-5cda-4cb4-a136-64237817468f",
+  "toolUseResult": {
+    "query": "adaptive training strategy VLA loss-based reweighting data quality March April May 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TmTM7yZmE3ipn8HGAPdiRN",
+        "content": [
+          {
+            "title": "[2509.04063] Balancing Signal and Variance: Adaptive Offline RL Post-Training for VLA Flow Models",
+            "url": "https://arxiv.org/abs/2509.04063"
+          },
+          {
+            "title": "On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/html/2601.06748v1"
+          },
+          {
+            "title": "ART: Adaptive Resampling-based Training for Difficulty-aware Classification",
+            "url": "https://arxiv.org/html/2509.00955"
+          },
+          {
+            "title": "Class–Confidence Aware Reweighting for Long-Tailed Learning",
+            "url": "https://arxiv.org/html/2601.15924v1"
+          },
+          {
+            "title": "Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining",
+            "url": "https://arxiv.org/html/2502.06733v1"
+          },
+          {
+            "title": "A Survey on Efficient Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.24795v1"
+          },
+          {
+            "title": "Towards Next-Generation LLM Training: From the Data-Centric Perspective",
+            "url": "https://arxiv.org/html/2603.14712v1"
+          },
+          {
+            "title": "GitHub - Ed1sonChen/DailyArxiv · GitHub",
+            "url": "https://github.com/Ed1sonChen/DailyArxiv"
+          },
+          {
+            "title": "Do Generated Data Always Help Contrastive Learning?",
+            "url": "https://arxiv.org/html/2403.12448v1"
+          },
+          {
+            "title": "[2311.00913] Self-Influence Guided Data Reweighting for Language Model Pre-training",
+            "url": "https://ar5iv.labs.arxiv.org/html/2311.00913"
+          }
+        ]
+      },
+      "I found several relevant arxiv papers related to adaptive training strategies, VLA models, and loss-based reweighting for data quality. Here are the key results:\n\n## Most Relevant Results:\n\n**1. Balancing Signal and Variance: Adaptive Offline RL Post-Training for VLA Flow Models** (arXiv:2509.04063, September 4, 2025)\n\nThis paper proposes an offline RL post-training objective for VLA flow models and introduces the Adaptive Reinforced Flow Matching (ARFM) algorithm, which uses an adaptively adjusted scaling factor in the VLA flow model loss to construct a bias-variance trade-off objective function that optimally controls the impact of RL signal on flow loss. ARFM adaptively balances RL advantage preservation and flow loss gradient variance control, resulting in a more stable and efficient fine-tuning process.\n\n**2. Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining** (arXiv:2502.06733, February 10, 2025)\n\nThis paper introduces novel algorithms for dynamic, instance-level data reweighting aimed at improving LLM pretraining, with methods that adjust the weight of each training sample based on its loss value in an online fashion, allowing the model to dynamically focus on more informative or important samples at the current training stage.\n\n**3. Towards Next-Generation LLM Training: From the Data-Centric Perspective** (arXiv:2603.14712, March 16, 2026)\n\nThis paper discusses online data reweighting that dynamically adjusts the importance of each training sample based on its current loss, where samples that the model finds difficult or informative are assigned higher weights, while easy or redundant ones are down-weighted as training progresses.\n\nThese papers cover adaptive training strategies with loss-based reweighting methods relevant to your search query, with publication dates spanning the March-May 2026 timeframe you specified."
+    ],
+    "durationSeconds": 9.61599694500002
+  },
+  "sourceToolAssistantUUID": "5d5b910c-9aea-4f4e-8b22-d293499ccbf2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 154 · 2026-05-13T18:12:44.958Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RsBvkhxNUjwqvtwX4GsMBN`</summary>
+
+```json
+{
+  "query": "GREATS online data selection high quality LLM training NeurIPS 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2febdcd9-5cda-4cb4-a136-64237817468f",
+  "isSidechain": false,
+  "requestId": "req_011Cb129tNkRRPiLfoj3cgRw",
+  "type": "assistant",
+  "uuid": "35c16d7d-1f5f-41c9-ab1e-e3b0a2c878cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fg83jgoEnvrxNqPLNkmkWj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1031,
+      "cache_read_input_tokens": 81413,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1031,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 81413,
+          "cache_creation_input_tokens": 1031,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1031
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 155 · 2026-05-13T18:12:51.043Z_
+
+<details><summary>↩ Tool result · `toolu_01RsBvkhxNUjwqvtwX4GsMBN`</summary>
+
+```text
+Web search results for query: "GREATS online data selection high quality LLM training NeurIPS 2024"
+
+Links: [{"title":"GREATS: Online Selection of High-Quality Data for LLM Training in Every Iteration | OpenReview","url":"https://openreview.net/forum?id=232VcN8tSx"},{"title":"GREATS: Online Selection of High-Quality Data for LLM ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/ed165f2ff227cf36c7e3ef88957dadd9-Paper-Conference.pdf"},{"title":"GREATS: Online Selection of High-Quality Data for LLM Training in Every Iteration","url":"https://proceedings.neurips.cc//paper_files/paper/2024/hash/ed165f2ff227cf36c7e3ef88957dadd9-Abstract-Conference.html"},{"title":"NeurIPS Poster GREATS: Online Selection of High-Quality Data for LLM Training in Every Iteration","url":"https://neurips.cc/virtual/2024/poster/96834"},{"title":"GREATS: Online Selection of High-Quality Data for LLM ...","url":"https://par.nsf.gov/servlets/purl/10616013"},{"title":"dblp: GREATS: Online Selection of High-Quality Data for LLM Training in Every Iteration.","url":"https://dblp.org/rec/conf/nips/WangWSM024.html"},{"title":"GREATS: Online Selection of High-Quality Data for LLM Training in Every Iteration - Princeton University","url":"https://collaborate.princeton.edu/en/publications/greats-online-selection-of-high-quality-data-for-llm-training-in-"},{"title":"Improving Data Efficiency for LLM Reinforcement Fine-tuning Through Difficulty-targeted Online Data Selection and Rollout Replay","url":"https://arxiv.org/html/2506.05316v1"},{"title":"GREATS: Online Selection of High-Quality Data for LLM Training in Every Iteration | Request PDF","url":"https://www.researchgate.net/publication/397217738_GREATS_Online_Selection_of_High-Quality_Data_for_LLM_Training_in_Every_Iteration"},{"title":"GitHub - Jiachen-T-Wang/GREATS","url":"https://github.com/Jiachen-T-Wang/GREATS"}]
+
+Based on the search results, I found comprehensive information about GREATS. Here's what the research reveals:
+
+## GREATS: Online Selection of High-Quality Data for LLM Training
+
+GREATS (GREedy Approximation Taylor Selection) is a principled and efficient online batch selection method that applies greedy algorithm to optimize the data batch quality approximated by Taylor expansion.
+
+### Problem It Addresses
+
+Online batch selection methods offer an adaptive alternative to static training data selection by dynamically selecting data batches during training. However, existing methods either rely on impractical reference models or simple heuristics that may not capture true data informativeness.
+
+### Key Contributions
+
+The researchers developed a series of techniques to scale GREATS to large-scale model training. Notably, they developed a novel technique called "ghost inner-product" that allows for the efficient computation of pairwise gradient inner-products without the need to instantiate any model-sized vectors.
+
+### Results
+
+Extensive experiments with large language models (LLMs) demonstrate that GREATS significantly improves training convergence speed and generalization performance.
+
+### Publication Details
+
+GREATS was published at NeurIPS 2024 as a spotlight paper. The authors are Jiachen T. Wang, Tong Wu, Dawn Song, Prateek Mittal, and Ruoxi Jia, with code publicly available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "35c16d7d-1f5f-41c9-ab1e-e3b0a2c878cc",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "bd597b02-70a3-43eb-a54b-0e6e1a16912d",
+  "toolUseResult": {
+    "query": "GREATS online data selection high quality LLM training NeurIPS 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019xkuMDib6mNzc8Pg6bSoDh",
+        "content": [
+          {
+            "title": "GREATS: Online Selection of High-Quality Data for LLM Training in Every Iteration | OpenReview",
+            "url": "https://openreview.net/forum?id=232VcN8tSx"
+          },
+          {
+            "title": "GREATS: Online Selection of High-Quality Data for LLM ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/ed165f2ff227cf36c7e3ef88957dadd9-Paper-Conference.pdf"
+          },
+          {
+            "title": "GREATS: Online Selection of High-Quality Data for LLM Training in Every Iteration",
+            "url": "https://proceedings.neurips.cc//paper_files/paper/2024/hash/ed165f2ff227cf36c7e3ef88957dadd9-Abstract-Conference.html"
+          },
+          {
+            "title": "NeurIPS Poster GREATS: Online Selection of High-Quality Data for LLM Training in Every Iteration",
+            "url": "https://neurips.cc/virtual/2024/poster/96834"
+          },
+          {
+            "title": "GREATS: Online Selection of High-Quality Data for LLM ...",
+            "url": "https://par.nsf.gov/servlets/purl/10616013"
+          },
+          {
+            "title": "dblp: GREATS: Online Selection of High-Quality Data for LLM Training in Every Iteration.",
+            "url": "https://dblp.org/rec/conf/nips/WangWSM024.html"
+          },
+          {
+            "title": "GREATS: Online Selection of High-Quality Data for LLM Training in Every Iteration - Princeton University",
+            "url": "https://collaborate.princeton.edu/en/publications/greats-online-selection-of-high-quality-data-for-llm-training-in-"
+          },
+          {
+            "title": "Improving Data Efficiency for LLM Reinforcement Fine-tuning Through Difficulty-targeted Online Data Selection and Rollout Replay",
+            "url": "https://arxiv.org/html/2506.05316v1"
+          },
+          {
+            "title": "GREATS: Online Selection of High-Quality Data for LLM Training in Every Iteration | Request PDF",
+            "url": "https://www.researchgate.net/publication/397217738_GREATS_Online_Selection_of_High-Quality_Data_for_LLM_Training_in_Every_Iteration"
+          },
+          {
+            "title": "GitHub - Jiachen-T-Wang/GREATS",
+            "url": "https://github.com/Jiachen-T-Wang/GREATS"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about GREATS. Here's what the research reveals:\n\n## GREATS: Online Selection of High-Quality Data for LLM Training\n\nGREATS (GREedy Approximation Taylor Selection) is a principled and efficient online batch selection method that applies greedy algorithm to optimize the data batch quality approximated by Taylor expansion.\n\n### Problem It Addresses\n\nOnline batch selection methods offer an adaptive alternative to static training data selection by dynamically selecting data batches during training. However, existing methods either rely on impractical reference models or simple heuristics that may not capture true data informativeness.\n\n### Key Contributions\n\nThe researchers developed a series of techniques to scale GREATS to large-scale model training. Notably, they developed a novel technique called \"ghost inner-product\" that allows for the efficient computation of pairwise gradient inner-products without the need to instantiate any model-sized vectors.\n\n### Results\n\nExtensive experiments with large language models (LLMs) demonstrate that GREATS significantly improves training convergence speed and generalization performance.\n\n### Publication Details\n\nGREATS was published at NeurIPS 2024 as a spotlight paper. The authors are Jiachen T. Wang, Tong Wu, Dawn Song, Prateek Mittal, and Ruoxi Jia, with code publicly available on GitHub."
+    ],
+    "durationSeconds": 6.08143406400003
+  },
+  "sourceToolAssistantUUID": "35c16d7d-1f5f-41c9-ab1e-e3b0a2c878cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 156_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "bd597b02-70a3-43eb-a54b-0e6e1a16912d",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 157_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Tool call
+
+_source line 158 · 2026-05-13T18:12:54.512Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019pw6zDuYB9SgD6AxdjkH9M`</summary>
+
+```json
+{
+  "query": "\"balanced behavior cloning\" OR \"curriculum behavioral cloning\" prioritized sampling imbalanced demonstration 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd597b02-70a3-43eb-a54b-0e6e1a16912d",
+  "isSidechain": false,
+  "requestId": "req_011Cb12AYgr5n3U98AXEwVTc",
+  "type": "assistant",
+  "uuid": "36fd3b9f-2977-49ae-8814-e180417e58b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JbrwZPskkGT1C7pWqJEmps",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1003,
+      "cache_read_input_tokens": 82444,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1003,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 82444,
+          "cache_creation_input_tokens": 1003,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1003
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 159 · 2026-05-13T18:13:03.762Z_
+
+<details><summary>↩ Tool result · `toolu_019pw6zDuYB9SgD6AxdjkH9M`</summary>
+
+```text
+Web search results for query: ""balanced behavior cloning" OR "curriculum behavioral cloning" prioritized sampling imbalanced demonstration 2025 2026"
+
+Links: [{"title":"Towards Balanced Behavior Cloning from Imbalanced Datasets","url":"https://collab.me.vt.edu/pdfs/sagar_auro2025.pdf"},{"title":"Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10514-025-10237-0"},{"title":"[2508.06319] Towards Balanced Behavior Cloning from Imbalanced Datasets","url":"https://arxiv.org/abs/2508.06319"},{"title":"Achieving Balanced Behavior Cloning from Imbalanced Datasets","url":"https://bioengineer.org/achieving-balanced-behavior-cloning-from-imbalanced-datasets/"},{"title":"Behavior Cloning from Suboptimal Demonstrations with Robust World Models | OpenReview","url":"https://openreview.net/forum?id=PZwpFrNNYn"},{"title":"Towards balanced behavior cloning from imbalanced datasets - R Discovery","url":"https://discovery.researcher.life/article/towards-balanced-behavior-cloning-from-imbalanced-datasets/59622ee489d53fe785c8e30317a36dcc"},{"title":"Posterior Behavioral Cloning: Pretraining BC Policies for Efficient RL Finetuning","url":"https://arxiv.org/html/2512.16911v1"},{"title":"Is Behavior Cloning All You Need? Understanding Horizon in Imitation Learning | OpenReview","url":"https://openreview.net/forum?id=8KPyJm4gt5&noteId=cnD6DsaUrE"},{"title":"Posterior Behavioral Cloning: Pretraining BC","url":"https://arxiv.org/pdf/2512.16911"},{"title":"Behavioral Cloning in Imitation Learning","url":"https://www.emergentmind.com/topics/behavioral-cloning-bc"}]
+
+I found relevant research on your topic. Here are the key findings from recent 2025-2026 publications:
+
+## Main Research Finding
+
+The primary research addresses how robots should learn complex behaviors from human demonstrations, where these human-provided datasets are inevitably imbalanced—meaning the human demonstrates some subtasks more frequently than others.
+
+## The Problem with Imbalanced Demonstration Data
+
+In practice, human-provided datasets are inevitably imbalanced: the human demonstrates some subtasks more frequently than others. State-of-the-art methods default to treating each element of the human's dataset as equally important. So if the majority of the human's data focuses on reaching a goal, and only a few state-action pairs move to avoid an obstacle, the learning algorithm will place greater emphasis on goal reaching.
+
+## Proposed Solutions
+
+Existing methods address this issue by adjusting the data proportions or their learning costs. Data-level approaches include undersampling the majority classes or oversampling the minority class to balance the data. On the algorithm side, cost-sensitive learning methods achieve balance by assigning higher weights or penalties to rare, often misclassified, samples to increase their importance during training.
+
+## Key Challenge
+
+A central challenge across these methods is deciding the desired balance—e.g., selecting appropriate weights for each behavior or determining how frequently each behavior should be sampled.
+
+The recent publication "Towards Balanced Behavior Cloning from Imbalanced Datasets" by Parekh et al. (published January 2026) appears to be the primary research directly addressing your search query, with focus on meta-gradient approaches and distributed robust optimization methods for handling imbalanced behavioral demonstrations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36fd3b9f-2977-49ae-8814-e180417e58b9",
+  "isSidechain": false,
+  "promptId": "c39d58a4-2ded-4289-81a1-154eb3e1d2e4",
+  "type": "user",
+  "uuid": "72ec9d4d-ccd4-40f6-87f3-bd909831dcd5",
+  "toolUseResult": {
+    "query": "\"balanced behavior cloning\" OR \"curriculum behavioral cloning\" prioritized sampling imbalanced demonstration 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KyQXF9wpRWkySyLdMKd9Yp",
+        "content": [
+          {
+            "title": "Towards Balanced Behavior Cloning from Imbalanced Datasets",
+            "url": "https://collab.me.vt.edu/pdfs/sagar_auro2025.pdf"
+          },
+          {
+            "title": "Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10514-025-10237-0"
+          },
+          {
+            "title": "[2508.06319] Towards Balanced Behavior Cloning from Imbalanced Datasets",
+            "url": "https://arxiv.org/abs/2508.06319"
+          },
+          {
+            "title": "Achieving Balanced Behavior Cloning from Imbalanced Datasets",
+            "url": "https://bioengineer.org/achieving-balanced-behavior-cloning-from-imbalanced-datasets/"
+          },
+          {
+            "title": "Behavior Cloning from Suboptimal Demonstrations with Robust World Models | OpenReview",
+            "url": "https://openreview.net/forum?id=PZwpFrNNYn"
+          },
+          {
+            "title": "Towards balanced behavior cloning from imbalanced datasets - R Discovery",
+            "url": "https://discovery.researcher.life/article/towards-balanced-behavior-cloning-from-imbalanced-datasets/59622ee489d53fe785c8e30317a36dcc"
+          },
+          {
+            "title": "Posterior Behavioral Cloning: Pretraining BC Policies for Efficient RL Finetuning",
+            "url": "https://arxiv.org/html/2512.16911v1"
+          },
+          {
+            "title": "Is Behavior Cloning All You Need? Understanding Horizon in Imitation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=8KPyJm4gt5&noteId=cnD6DsaUrE"
+          },
+          {
+            "title": "Posterior Behavioral Cloning: Pretraining BC",
+            "url": "https://arxiv.org/pdf/2512.16911"
+          },
+          {
+            "title": "Behavioral Cloning in Imitation Learning",
+            "url": "https://www.emergentmind.com/topics/behavioral-cloning-bc"
+          }
+        ]
+      },
+      "I found relevant research on your topic. Here are the key findings from recent 2025-2026 publications:\n\n## Main Research Finding\n\nThe primary research addresses how robots should learn complex behaviors from human demonstrations, where these human-provided datasets are inevitably imbalanced—meaning the human demonstrates some subtasks more frequently than others.\n\n## The Problem with Imbalanced Demonstration Data\n\nIn practice, human-provided datasets are inevitably imbalanced: the human demonstrates some subtasks more frequently than others. State-of-the-art methods default to treating each element of the human's dataset as equally important. So if the majority of the human's data focuses on reaching a goal, and only a few state-action pairs move to avoid an obstacle, the learning algorithm will place greater emphasis on goal reaching.\n\n## Proposed Solutions\n\nExisting methods address this issue by adjusting the data proportions or their learning costs. Data-level approaches include undersampling the majority classes or oversampling the minority class to balance the data. On the algorithm side, cost-sensitive learning methods achieve balance by assigning higher weights or penalties to rare, often misclassified, samples to increase their importance during training.\n\n## Key Challenge\n\nA central challenge across these methods is deciding the desired balance—e.g., selecting appropriate weights for each behavior or determining how frequently each behavior should be sampled.\n\nThe recent publication \"Towards Balanced Behavior Cloning from Imbalanced Datasets\" by Parekh et al. (published January 2026) appears to be the primary research directly addressing your search query, with focus on meta-gradient approaches and distributed robust optimization methods for handling imbalanced behavioral demonstrations."
+    ],
+    "durationSeconds": 9.24642263699998
+  },
+  "sourceToolAssistantUUID": "36fd3b9f-2977-49ae-8814-e180417e58b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 160 · 2026-05-13T18:16:29.685Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to make my assessment. Let me compile everything I've found and analyze it against the CDAP idea.
+
+## Summary of findings:
+
+### Verification of key claims:
+
+1. **Pan et al. (UAI 2022)** — CONFIRMED. The theorem assumes priority proportional to |f_θ(x)−y|, i.e., proportional to absolute scalar error. The equivalence to cubic loss requires this specific form. CDAP's claim that its multi-component priority (combining μ and δ) breaks this equivalence is *mathematically plausible*, since δ is indeed not a function of μ — two transitions with identical aggregate loss can have different temporal divergence. 
+
+This is a valid theoretical argument.
+
+2. **AdaMix/EMMA** — CONFIRMED. AdaMix uses aggregated MSE over the full action chunk as a scalar, combined with trajectory smoothness and joint angle limitations. The differentiation from CDAP is valid: AdaMix does not decompose per-position losses within chunks. The formula p(i) ∝ γ + λ·(1−s_i) uses a scalar composite score.
+
+3. **DAM-VLA** — CONFIRMED. Uses fixed exponential decay w_j = γ^j within chunks, not adaptive/data-driven. CDAP's claim that it uses *empirical* per-position loss is accurate—DAM-VLA doesn't actually learn position-specific weights from data the way CDAP proposes.
+
+4. **VLA Knows Its Limits** — CONFIRMED. The paper demonstrates that prediction quality degrades with temporal distance within chunks, which directly supports CDAP's core premise that temporal structure matters.
+
+5. **Token Cleaning** — CONFIRMED as ICML 2025 Poster. The venue designation is now accurate.
+
+6. **RINSE** — CONFIRMED as ICML 2025 Workshop paper. The citation is correct.
+
+7. **Venue deadlines** — Abstract due May 26, 2026 11:59 UTC; paper due May 28 EOD Thursday per the official guidelines, though OpenReview shows May 29 11:59 UTC—I should use the official deadline to be safe.
+
+8. **iw-SFT** — CONFIRMED. It uses policy-ratio weighting, which is distinct from CDAP's loss-structure approach, and policy ratios can suffer numerical instability in high-dimensional continuous action spaces.
+
+9. **Freshness-Aware PER** — CONFIRMED as an April 2026 arXiv paper targeting LLM/VLM RL, not SFT. CDAP adopts its exponential age decay mechanism.
+
+10. **Reshaping Action Error Distributions** — Found a new paper (arXiv:2602.04228) that proposes MEE-based loss modifications for VLA training with chunk and element weighting, but it doesn't address per-position temporal weighting like CDAP does.
+
+The paper modifies the training objective rather than the sampling distribution, so it's orthogonal to data prioritization, though worth mentioning in the broader context of improving VLA training. I'm also noting a few other papers—TGM-VLA focuses on keyframe sampling and mixup, SEAR addresses online RL with action chunking in a different setting, and there's another paper on balanced behavior that got cut off—but none of these directly overlap with the per-position adaptive weighting approach.
+
+Looking at the novelty assessment, the core contribution of using per-position loss decomposition within action chunks as an adaptive priority signal is genuinely novel. Existing methods either aggregate losses into scalars like AdaMix, use fixed positional weights like DAM-VLA, operate in discrete token spaces like Token Cleaning, or rely on scalar losses like OHEM and PER. The reshaping approach changes the loss function itself rather than the prioritization mechanism.
+
+The theoretical argument holds up too — CDAP's priority depends on both the mean and variance of the loss distribution, where variance isn't a function of the mean alone, so the priority signal isn't monotonic with respect to scalar error magnitude.
+
+The main empirical risk is whether variance actually carries learning-relevant information beyond the mean, which hasn't been validated yet. The RoboMimic-MH pilot is the right test, but it needs to run. The CoRL 2026 deadline is tight with only 13 days to abstract and 15 to paper, though feasible with focused effort.
+
+On the venue and related work front, the references correctly list ICML 2025 without specifying poster versus spotlight, the "Reshaping Action Error Distributions" paper isn't critical to cite since it addresses loss functions rather than data selection, and the paper deadline is now properly handled with the conservative May 28 EOD interpretation. The coverage analysis showing >99.9% coverage under typical VLA SFT regimes with ε_mix = 0.1 effectively addresses Pan et al.'s coverage concerns.
+
+For the resource estimates, the ~350h A100 allocation for two benchmarks seems solid, the 10-14 day HIL timeline is tight though feasible, and the 8-12 day auto-research estimate with 8× A100 is ambitious but plausible. Looking back at the iterative improvements, I've successfully replaced the unstable value function with loss-based priorities, added VLA-specific novelty through temporal decomposition, incorporated AdaMix as a baseline, downgraded theorems to hypotheses, and added Token Cleaning—each round addressing specific feedback about Pan et al.'s concerns.
+
+On scoring, the temporal divergence signal as an adaptive priority mechanism is genuinely novel for VLA SFT and the argument about breaking scalar-error equivalence holds up, though the individual components are borrowed—the real contribution is in how they compose together and the VLA-specific framing. The feasibility score reflects the extremely tight timeline of 13 days to abstract and 15 to paper, with the implementation being lightweight but the challenge lying in running all baselines and reimplementing AdaMix since there's no public code available.
+
+The clarity is strong—the idea is well-articulated, the landscape is comprehensive, and the ablation path cleanly isolates each contribution. On impact, if the temporal divergence signal carries sufficient signal, this offers a practical and inexpensive approach to improving VLA SFT, though the gains may be modest since it's fundamentally a data sampling technique, and the scope is limited to VLA models with action chunking.
+
+Averaging the scores gives 3.875, just shy of the 4.0 threshold. The main risks are the tight timeline, the empirical uncertainty around whether δ will actually help, and impact that's solid but not transformative. That said, the core idea is sound—the remaining concerns are mostly execution risk. The concept is genuinely novel, well-positioned, and fills a real gap. And reconsidering the user's note about theoretical grounding: if the filtering method is derived from fundamental principles, it may be acceptable without real robot validation. The CDAP approach does seem to satisfy that criterion.
+
+The Pan et al. argument provides principled justification, and evaluating on RoboMimic-MH and SimplerEnv is reasonable for a theoretically motivated method. This actually looks like solid CoRL material—the venue values methodological contributions with simulation-only evaluation when the insight is strong enough. The temporal divergence observation plus the theoretical framing should meet that bar. I should also note that there's a related paper on reshaping action error distributions that I should reference, though it doesn't fundamentally change the positioning.
+
+The main remaining concerns are pretty minor: some related work gaps, execution risk that's inherent to any new project, and the empirical hypothesis being untested by necessity. The core idea is well-developed, the approach is principled, and it addresses a genuine problem in VLA training. The novelty feels solid—this is genuinely new thinking about how to handle action distribution mismatch.
+
+Now I'm settling on my final scores. The novelty is strong at 4/5 since it's a VLA-specific insight grounded in clean theory, though it's built from existing components. Feasibility drops to 3.5/5 because the timeline is extremely tight and the core hypothesis hasn't been validated yet, plus I'd need to reimplement AdaMix. Clarity is excellent at 4.5/5—the presentation is comprehensive and the ablation plan is clear. Impact lands at 3.5/5 because while this would be a practical improvement for VLA supervised fine-tuning and provides the first empirical characterization of loss profiles across chunks, the scope is limited and the gains might be modest.
+
+That averages to 3.875, which falls short of the 4.0 threshold. The bottlenecks are really the feasibility timeline and the uncertainty around impact magnitude. I'm at Round 5 out of 10, so I need to decide whether to push forward or revise.
+
+Looking at what would actually help: I should acknowledge "Reshaping Action Error Distributions" as related work, stress-test whether the timeline is truly doable—maybe I need to cut a baseline or streamline the ablations—and make the broader implications clearer. But reconsidering the feasibility piece, the core implementation is genuinely lightweight at around 150 lines, the per-position losses are already computed during training with zero overhead, and the method adds less than 3% compute. The 8-12 day estimate for the scoped version with 2 benchmarks seems realistic, especially with the RoboMimic-MH pilot as a smart risk mitigation step. For manual mode, 2-3 months is plenty of time.
+
+The real constraint is reimplementing AdaMix since there's no public code, and I haven't validated the core hypothesis yet that δ actually helps. Writing the paper within that same 8-12 day window adds pressure too. Still, the idea itself is ready to implement—the remaining challenges are execution details rather than conceptual ones. Checking against what the user actually needs: CoRL 2026 is the right target, and CDAP directly tackles the goal of using the data's own signal to score and filter collected actions without introducing noise into VLA training.
+
+Looking at the scores: novelty is solid at 4/5, feasibility drops to 3.5/5 due to the timeline and untested hypothesis, clarity is 4.5/5, and impact lands at 3.5/5. That averages to 3.875, which points toward revising. The key feedback is adding "Reshaping Action Error Distributions" to related work, creating a backup plan for AdaMix (maybe just use their reported numbers or strip it down), and potentially positioning the empirical characterization of temporal loss profiles as the main contribution to protect against modest CDAP gains. I'm noticing this has already cycled through four rounds of revision and is now on round five.
+
+Reconsidering whether these remaining issues actually warrant another pass: the missing reference is genuinely minor since it's about loss functions rather than a competing sampling method, the timeline concern is more about execution than idea quality, the untested hypothesis is unavoidable before submission and the pilot study addresses it, and the modest impact worry is speculative—the temporal loss profile characterization has value on its own. The real question is whether this clears the 4.0 threshold. Recalculating: novelty stays at 4 for the genuine combination and sound theory, feasibility is still 3.5 given the execution risks.
+
+Now I'm reconsidering the impact score in the context of CoRL specifically—a strong simulation study could actually carry more weight for that venue than I initially weighted it.
+
+The core insight about how temporal loss profiles evolve during VLA training is genuinely novel, and if the paper demonstrates that temporal divergence carries signal beyond just aggregate loss, that's a meaningful empirical contribution. Combined with the theoretically grounded CDAP method and the Pan et al. framing, this feels like a solid CoRL paper.
+
+Bumping impact up to 4/5 shifts the overall picture—now I'm looking at Novelty 4, Feasibility 3.5, Clarity 4.5, and Impact 4, which puts this in passing territory.
+
+But that 3.5 feasibility score is nagging at me. The method itself is straightforward—just 150 lines of code using losses that are already computed, so there's no computational overhead. The evaluation scope across 2 benchmarks is reasonable, and the timeline actually works: the auto-research estimate of 8-12 days fits comfortably within 15 days. The pilot study to validate the core hypothesis before full commitment is solid experimental practice, and the AdaMix reimplementation, while untested, has enough detail in the EMMA paper to be doable in a couple days. Maybe I'm being too conservative here.
+
+Actually, I think the real issue is that these are execution risks rather than fundamental feasibility problems. The core idea is sound. I'm going to recommend "revise" with targeted feedback: flag the missing related work on action error distributions, suggest a concrete backup plan for the AdaMix comparison using their reported numbers where benchmarks don't overlap, and reframe the contribution to highlight that the empirical characterization of temporal loss profiles stands on its own. The verdict pushes them to address these fixable issues while keeping the strong core idea intact.
+
+Now I'm reconsidering whether "Reshaping Action Error Distributions" actually belongs in the related work. Looking at what that paper does—it modifies the loss function with MEE-based variants for VLA training and shows modest improvements—it's addressing a similar problem space but through a completely different mechanism. They're tweaking the loss function itself, whereas this work is about data sampling prioritization. The temporal loss profile analysis is also unique to this submission. For a CoRL venue, it's borderline whether this deserves a citation, but it's not essential to the narrative.
+
+Let me think through the scoring framework. A pass requires an average of 4.0 or higher with no critical issues, revise handles fixable problems or below-threshold scores, and fail is reserved for fundamental flaws. My current scores are novelty at 4, feasibility at 3.5, clarity at 4.5, and impact somewhere between 3.5 and 4. If impact lands at 3.5, the average drops to 3.875, which pushes toward revise territory. At 4.0, I'm right at the borderline. For CoRL standards, I'd estimate impact around 3.5 to 4—the contribution is methodologically sound but not particularly exciting, more of a practical data sampling technique than a breakthrough.
+
+Going with novelty 4, feasibility 3.5, clarity 4.5, and impact 3.5 gives me an average of 3.875, which maps to revise. The main concerns are the missing related work citation, feasibility questions around timeline and reimplementation effort, and whether the impact argument could be strengthened. Before finalizing, I should verify there aren't any critical flaws I've overlooked. I also notice the deadline details in the submission instructions—May 28, 2026 EOD Thursday or May 29, 2026 11:59 UTC depending on the source.
+
+The dates check out as consistent across both sources, with the abstract due May 26 (13 days away) and the full paper due May 28-29 (15-16 days away). Given the timeline and the paper's genuine novelty in the VLA space, sound theoretical grounding, and well-structured experiments, I'm leaning toward a conditional accept despite the 3.875 average falling slightly below 4.0. The remaining issues feel manageable rather than fundamental.
+
+However, the feasibility concern is real — testing the core hypothesis that δ outperforms μ in just 13 days before the abstract deadline is tight, and the impact may be more incremental than transformative. The balance tips toward a revise recommendation with constructive, focused feedback that acknowledges how close the work is to acceptance. I should also verify that the CAPS reference is correctly characterized as autonomous driving rather than manipulation work. I'm reconsidering whether I'm being fair with another revise verdict. Looking back at the submission history, every round has had revisions requested, but this version has genuinely addressed all the major concerns from before—the unstable value function issues, the missing related work, the theoretical gaps. What's left are relatively minor gaps like one overlooked paper and some feasibility questions, which feels like a different category of issue than the fundamental problems from earlier rounds.
+
+I think a focused revise makes sense here with specific, limited feedback: adding that missing work on action error distributions, clarifying the timeline and backup plans, and tightening the impact argument. If these get addressed, it should be ready to accept.
+
+Actually, let me recalibrate the impact assessment. The practical value is genuinely strong—this is a simple, broadly applicable method for any vision-language model using action chunking. The empirical contribution is solid too, being the first systematic look at temporal loss patterns in this setting. The theory is sound but not groundbreaking, and the scope is somewhat narrow. That puts it at moderate-to-high impact overall, which supports moving forward with a revise rather than reject.
+
+So I'm settling on 3.5 for impact—it's a well-scoped contribution that fits CoRL well, though it wouldn't quite reach the bar for the very top venues. The overall scores average to about 3.875, which means revise with minor, focused feedback.
+
+One last thing to verify: I should double-check that Token Priority paper citation to make sure it's accurate.
+
+And PEAR—the title "Good SFT Optimizes for SFT, Better SFT Prepares for RL" seems a bit unusual, but I did find it in my earlier searches, so that checks out.
+
+Now I want to confirm whether EMMA was actually withdrawn from ICLR 2026 as claimed. I can't easily verify the withdrawal status from what I've searched, so I'll note that I couldn't fully confirm this detail.
+
+The arXiv metadata for EMMA is correct though—2509.22407 from September 2025, revised in March 2026. The technical content is what really matters here.
+
+Looking back at what the user asked for—using RL-inspired ideas to score or filter actions based on the data's own information—CDAP does exactly this by leveraging the model's per-position losses as a priority signal, which is inspired by prioritized experience replay from RL. That alignment is strong.
+
+On the filtering aspect, CDAP deprioritizes rather than hard-filters low-value samples through its sampling mechanism, which actually maintains better coverage than strict filtering would. And since the user indicated that a theoretically grounded filtering method without real robot experiments is acceptable, CDAP fits well—it has the Pan et al. theoretical foundation and uses only simulation-based evaluation. The approach seems well-positioned overall.
+
+Now I'm reconsidering whether this deserves a "pass" or just "revise." A CoRL reviewer would likely appreciate the novel temporal loss insight specific to VLAs, the clean theoretical framing against Pan et al., the simplicity and low overhead, and the well-designed ablations. But they'd probably push back on whether the contribution hinges too heavily on Hypothesis 2, whether the temporal decomposition is truly a deep theoretical advance versus a practical design choice, and the limitation of simulation-only evaluation. The AdaMix baseline is also quite close to what's being proposed.
+
+These concerns are real but manageable—simulation-only work is acceptable for CoRL especially with the "first empirical characterization" framing, and the theoretical argument is sound even if not groundbreaking. I'm leaning toward "revise" with very targeted feedback, since the missing pieces like the action error distribution section are straightforward to add, the feasibility concern already has a pilot study plan, and the impact limitations are inherent to the approach rather than fixable flaws.
+
+Let me verify the timeline—CoRL 2026 is November 9-12 with an abstract deadline of May 26 (17 days from now) and paper deadline May 28-29 (15-20 days away), so the schedule is tight but the idea accounts for this appropriately. I'm reconsidering whether "revise" is the right call or if I should adjust my assessment.
+
+The idea has already been through four substantial revision cycles, and the remaining gaps are minor—just one missing paragraph on reshaping action error distributions, plus feasibility and impact concerns that won't improve with further revision. The feasibility issue stems from execution timeline risk rather than conceptual weakness, and the limited impact is inherent to the scope. Given that my average score is 3.875 with feasibility at 3.5, I'm below the 4.0 threshold for passing, but the feasibility score reflects execution risk rather than idea quality itself.
+
+I'll go with a revise verdict and provide concrete, actionable feedback focused on that one fixable element—the missing section—so the next round can push the score above 4.0.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72ec9d4d-ccd4-40f6-87f3-bd909831dcd5",
+  "isSidechain": false,
+  "requestId": "req_011Cb12BV7aBeAWqUsXh3aCL",
+  "type": "assistant",
+  "uuid": "de81152e-af30-4b54-a7e1-20a575bca34e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LXW1RyBPexdrCdMQGnnD41",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 996,
+      "cache_read_input_tokens": 83447,
+      "output_tokens": 10397,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 996,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10397,
+          "cache_read_input_tokens": 83447,
+          "cache_creation_input_tokens": 996,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 996
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 161 · 2026-05-13T18:17:23.468Z_
+
+I've completed extensive independent verification. Let me now compile my assessment.
+
+Key findings from my research:
+- **Pan et al. (UAI 2022)**: Confirmed. Theorem requires priority ∝ |f_θ(x)−y| — specifically scalar error magnitude. CDAP's multi-component priority (μ + δ) plausibly breaks this since δ ≠ f(μ).
+- **AdaMix/EMMA**: Confirmed. Uses aggregated MSE over full chunk as scalar — no per-position decomposition. CDAP's differentiation is valid.
+- **DAM-VLA**: Confirmed. Fixed exponential decay w_j=γ^j — not data-driven or adaptive.
+- **VLA Knows Its Limits**: Confirmed. Shows prediction quality degrades with temporal distance — supports CDAP's premise.
+- **Venue deadlines**: Abstract May 26, paper May 28 EOD (official) / May 29 11:59 UTC (OpenReview). Correctly handled.
+- **RINSE**: Confirmed ICML 2025 Workshop (DataWorld), correctly cited now.
+- **Token Cleaning**: Confirmed ICML 2025 Poster (not Spotlight). Correctly cited as "ICML 2025."
+- Found **"Reshaping Action Error Distributions" (arXiv:2602.04228)** — MEE-based loss for VLA training with chunk-weighted variants. Not cited by the idea.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 4, "rationale": "The temporal divergence signal δ as a VLA-specific adaptive priority is genuinely novel — no existing work uses empirical intra-chunk temporal loss profiles as data-driven adaptive priorities. The Pan et al. equivalence-breaking argument is mathematically sound: CDAP's priority depends on both μ and δ where δ ≠ f(μ), so it cannot be reduced to a monotonic function of scalar error. Individual components (sum-tree, IS correction, age decay) are borrowed, but the composition and VLA-specific insight are original."},
+    "feasibility": {"score": 3.5, "rationale": "The method itself is simple (~150 lines, <3% overhead, uses already-computed per-position losses), but the 13-day timeline to abstract with untested core hypothesis (does δ help?), AdaMix reimplementation (no public code), and 5+ baselines on 2 benchmarks plus writing is very aggressive. The pilot study design is smart risk mitigation, but if the pilot fails on day 2, there's no fallback plan. The auto-research estimate of 8-12 days with 8× A100 is tight but not unreasonable for the scoped 2-benchmark version."},
+    "clarity": {"score": 4.5, "rationale": "Exceptionally well-articulated. The landscape is comprehensive and accurately positioned. The ablation path (Uniform → AdaMix → Scalar PER → Full CDAP) cleanly isolates contributions. The three testable hypotheses are well-formulated. The theoretical positioning against Pan et al. is clear and precise."},
+    "impact": {"score": 3.5, "rationale": "For CoRL, this is a solid contribution — a practical, cheap method for improving VLA SFT plus the first systematic characterization of intra-chunk temporal loss profiles. However, the scope is limited to VLA models with action chunking, and the practical gains may be modest given that this is fundamentally a sampling optimization. The Pan et al. argument is principled but more of a 'breaks an existing equivalence' insight than a deep theoretical advance."}
+  },
+  "issues": [
+    "MINOR MISSING RELATED WORK — 'Reshaping Action Error Distributions for Reliable Vision-Language-Action Models' (arXiv:2602.04228, Feb 2026): Proposes Minimum Error Entropy (MEE) with chunk-weighted (Cw-TMEE) and element-weighted (Ew-TMEE) variants for VLA training, replacing standard MSE. While it addresses a different mechanism (loss function modification vs. data sampling prioritization), it is relevant to the broader landscape of 'improving VLA training beyond standard MSE loss.' Key differentiation from CDAP: Cw-TMEE applies fixed error-magnitude-based weights that prioritize low-error chunks (not positions within chunks), and does not analyze temporal loss profiles or perform adaptive data selection. Their large-VLA gains are modest (+0.5-2.4%). Should be briefly discussed as complementary (orthogonal approach: CDAP changes which data to train on, MEE changes how to compute loss on selected data).",
+    "FEASIBILITY CONCERN — AdaMix REIMPLEMENTATION RISK: AdaMix has no public code and must be reimplemented from the EMMA paper description. With only ~13 days to abstract, dedicating 2-3 days to reimplementation is a significant fraction of the timeline. The idea should consider a backup plan: (a) report AdaMix's published numbers on overlapping benchmarks for comparison, or (b) replace AdaMix baseline with a scalar-MSE-reweighted variant that CDAP can generate internally (since α_δ=0 already ablates to scalar PER, a scalar-MSE reweighting without IS/age-decay approximates AdaMix's core mechanism). This doesn't remove AdaMix from the comparison but provides a fallback if reimplementation takes longer than expected.",
+    "PILOT STUDY FALLBACK PLAN ABSENT: The idea correctly designs a day 1-2 pilot on RoboMimic-MH to validate that δ carries signal. However, there is no explicit plan for what to do if the pilot shows δ adds negligible value. If Hypothesis 2 fails, the paper's primary contribution collapses. The idea should briefly articulate a pivot strategy: e.g., if δ ≈ 0 in signal, the temporal profile evolution analysis (Hypothesis 1) plus the Pan et al. empirical verification (Hypothesis 3: scalar PER vs. uniform in VLA SFT) could still constitute a valuable empirical contribution worth submitting.",
+    "MINOR — RESOURCE ESTIMATE INCONSISTENCY: The HIL mode estimates 10-14 days timeline with '~45min/day check-in' but also notes 'Timeline extremely tight with 13 days to abstract.' Since today is May 13 and the abstract deadline is May 26, there are exactly 13 days. The HIL timeline of 10-14 days means the paper might not be ready by May 28 EOD. The auto-research mode (8-12 days) is more realistic for the CoRL deadline. The resource section should acknowledge that HIL mode may not meet the CoRL deadline and recommend auto-research for CoRL-targeted execution."
+  ],
+  "feedback": "The idea has matured excellently through 5 rounds — the temporal divergence insight is genuinely novel, the Pan et al. positioning is sound, and the experimental design is clean. Three focused changes to reach pass threshold:\n\n1. **Add 'Reshaping Action Error Distributions' (arXiv:2602.04228) to landscape.** One paragraph under 'VLA-specific loss weighting' or a new subsection. Key point: MEE changes the loss function, CDAP changes the sampling — they are orthogonal and potentially complementary. This also strengthens your positioning: 'Even approaches that modify the loss function itself (T-MEE) still apply uniform sampling; CDAP addresses the orthogonal dimension of which data to prioritize.'\n\n2. **Add explicit fallback strategy if pilot fails.** State clearly: 'If the day 1-2 pilot shows δ adds <X% over scalar PER, we pivot the paper to: (a) the first systematic empirical characterization of temporal loss profile evolution during VLA SFT (Hypothesis 1 — valuable regardless of CDAP performance), (b) empirical verification of Pan et al.'s scalar-PER ≡ cubic-loss equivalence in VLA SFT (novel experimental contribution), and (c) analysis of coverage and staleness dynamics under different prioritization schemes.' This de-risks the submission and makes the contribution more robust.\n\n3. **Simplify AdaMix baseline integration.** Since AdaMix has no public code, propose: (a) first try the full reimplementation (2-3 days), (b) if blocked, use the α_δ=0 scalar PER ablation as the primary 'scalar-adaptive' baseline (which captures AdaMix's core mechanism of scalar-loss-based adaptive reweighting), and report AdaMix's published numbers from EMMA for qualitative comparison. This doesn't weaken the paper since the critical comparison is scalar PER (α_δ=0) vs. full CDAP — which is already your primary ablation.",
+  "reason": "Strong idea with genuinely novel VLA-specific contribution, but feasibility concerns (tight timeline, untested core hypothesis, no AdaMix code) and minor missing related work keep avg score at 3.875 < 4.0 threshold."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de81152e-af30-4b54-a7e1-20a575bca34e",
+  "isSidechain": false,
+  "requestId": "req_011Cb12BV7aBeAWqUsXh3aCL",
+  "type": "assistant",
+  "uuid": "5e77ea48-c02f-4c96-b3cc-b4d650fcac30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LXW1RyBPexdrCdMQGnnD41",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 996,
+      "cache_read_input_tokens": 83447,
+      "output_tokens": 10397,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 996,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10397,
+          "cache_read_input_tokens": 83447,
+          "cache_creation_input_tokens": 996,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 996
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 162_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "5e77ea48-c02f-4c96-b3cc-b4d650fcac30",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 163_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 164_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "5e77ea48-c02f-4c96-b3cc-b4d650fcac30",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 165_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Chunk-decomposed action-chunk prioritization for VLA training",
+  "sessionId": "ce540991-92c8-4cd4-b2b7-3c86dfc7bf03"
+}
+```
+
+---

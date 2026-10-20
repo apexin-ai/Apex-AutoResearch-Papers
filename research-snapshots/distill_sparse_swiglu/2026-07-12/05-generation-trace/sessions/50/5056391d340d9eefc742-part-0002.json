@@ -1,0 +1,1502 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5056391d340d9eefc742",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-13T11:48:13.426Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012ziwiEA4msetMGJ8HJUZ8P",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2026 robot demonstration curation online training-time data selection noise reduction VLA SFT\"\n\nLinks: [{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2602.00919v1\"},{\"title\":\"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning\",\"url\":\"https://arxiv.org/html/2603.09056\"},{\"title\":\"[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning\",\"url\":\"https://arxiv.org/abs/2603.09056\"},{\"title\":\"Grounding Robot Generalization in Training Data via Retrieval-Augmented VLMs\",\"url\":\"https://arxiv.org/html/2603.11426v1\"},{\"title\":\"From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop\",\"url\":\"https://icra2026vlapipeline.github.io/\"},{\"title\":\"A Pragmatic VLA Foundation Model\",\"url\":\"https://arxiv.org/html/2601.18692v1\"},{\"title\":\"Curating Demonstrations using Online Experience\",\"url\":\"https://arxiv.org/html/2503.03707\"},{\"title\":\"Pure Vision Language Action (VLA) Models: A Comprehensive Survey\",\"url\":\"https://arxiv.org/html/2509.19012v1\"},{\"title\":\"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels\",\"url\":\"https://arxiv.org/html/2505.09603\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://arxiv.org/pdf/2604.16391\"}]\n\nI found several highly relevant arxiv papers from 2026 related to your search query. Here are the key findings:\n\n## Primary Results:\n\n**Quality over Quantity (QoQ)**: Learning from demonstrations has emerged as a promising paradigm for end-to-end robot control, particularly when scaled to diverse and large datasets. However, the quality of demonstration data, often collected through human teleoperation, remains a critical bottleneck for effective data-driven robot learning. Human errors, operational constraints, and teleoperator variability introduce noise and suboptimal behaviors, making data curation essential yet largely manual and heuristic-driven. QoQ proposes a grounded and systematic approach to identifying high-quality data by defining data quality as the contribution of each training sample to reducing loss on validation demonstrations, using influence functions to quantify the impact of individual training samples on model performance.\n\n**Demo-SCORE**: A method for robots to self-curate based on online robot experience, training and cross-validating a classifier to discern successful policy roll-outs from unsuccessful ones and using the classifier to filter heterogeneous demonstration datasets. Demo-SCORE can effectively identify suboptimal demonstrations without manual curation.\n\n**Green-VLA**: Demonstrates a three-stage approach using the same architecture: (i) R0 pretraining on the unfiltered BRIDGE mixture, (ii) R1-style SFT on a filtered BRIDGE subset, and (iii) R2 RL fine-tuning starting from the filtered R1 checkpoint, showing how dataset curation plus RL alignment builds on the unified pretrain to progressively improve performance.\n\nThese papers address online training-time data selection, noise reduction through demonstration curation, and VLA supervised fine-tuning (SFT) that your query specifically targeted.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8de7df59-5023-438f-988a-c67ef0d2bad1",
+            "isSidechain": false,
+            "promptId": "42ca653a-3bab-4928-ac0b-fe8cc5d4e06f",
+            "type": "user",
+            "uuid": "d5954963-85ac-49d7-b9f6-a672818d9ef1",
+            "toolUseResult": {
+              "query": "arxiv 2026 robot demonstration curation online training-time data selection noise reduction VLA SFT",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01GBVC3JH8khABGrW5ZLKazr",
+                  "content": [
+                    {
+                      "title": "1 Introduction",
+                      "url": "https://arxiv.org/html/2602.00919v1"
+                    },
+                    {
+                      "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+                      "url": "https://arxiv.org/html/2603.09056"
+                    },
+                    {
+                      "title": "[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+                      "url": "https://arxiv.org/abs/2603.09056"
+                    },
+                    {
+                      "title": "Grounding Robot Generalization in Training Data via Retrieval-Augmented VLMs",
+                      "url": "https://arxiv.org/html/2603.11426v1"
+                    },
+                    {
+                      "title": "From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop",
+                      "url": "https://icra2026vlapipeline.github.io/"
+                    },
+                    {
+                      "title": "A Pragmatic VLA Foundation Model",
+                      "url": "https://arxiv.org/html/2601.18692v1"
+                    },
+                    {
+                      "title": "Curating Demonstrations using Online Experience",
+                      "url": "https://arxiv.org/html/2503.03707"
+                    },
+                    {
+                      "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+                      "url": "https://arxiv.org/html/2509.19012v1"
+                    },
+                    {
+                      "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+                      "url": "https://arxiv.org/html/2505.09603"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2026",
+                      "url": "https://arxiv.org/pdf/2604.16391"
+                    }
+                  ]
+                },
+                "I found several highly relevant arxiv papers from 2026 related to your search query. Here are the key findings:\n\n## Primary Results:\n\n**Quality over Quantity (QoQ)**: Learning from demonstrations has emerged as a promising paradigm for end-to-end robot control, particularly when scaled to diverse and large datasets. However, the quality of demonstration data, often collected through human teleoperation, remains a critical bottleneck for effective data-driven robot learning. Human errors, operational constraints, and teleoperator variability introduce noise and suboptimal behaviors, making data curation essential yet largely manual and heuristic-driven. QoQ proposes a grounded and systematic approach to identifying high-quality data by defining data quality as the contribution of each training sample to reducing loss on validation demonstrations, using influence functions to quantify the impact of individual training samples on model performance.\n\n**Demo-SCORE**: A method for robots to self-curate based on online robot experience, training and cross-validating a classifier to discern successful policy roll-outs from unsuccessful ones and using the classifier to filter heterogeneous demonstration datasets. Demo-SCORE can effectively identify suboptimal demonstrations without manual curation.\n\n**Green-VLA**: Demonstrates a three-stage approach using the same architecture: (i) R0 pretraining on the unfiltered BRIDGE mixture, (ii) R1-style SFT on a filtered BRIDGE subset, and (iii) R2 RL fine-tuning starting from the filtered R1 checkpoint, showing how dataset curation plus RL alignment builds on the unified pretrain to progressively improve performance.\n\nThese papers address online training-time data selection, noise reduction through demonstration curation, and VLA supervised fine-tuning (SFT) that your query specifically targeted."
+              ],
+              "durationSeconds": 8.224588655999979
+            },
+            "sourceToolAssistantUUID": "8de7df59-5023-438f-988a-c67ef0d2bad1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-13T11:48:18.327Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013xR9kzasgqrypwaBxXmFfH",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2503.03707",
+                "prompt": "I need to understand this paper on 'Curating Demonstrations using Online Experience': 1) What is Demo-SCORE? 2) Is it static or online/dynamic during training? 3) Does it use loss-based signals, EMA models, or reducible loss? 4) When was it submitted and to what venue? 5) How does it differ from online data weighting approaches like RAPID? 6) What tasks does it apply to?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5954963-85ac-49d7-b9f6-a672818d9ef1",
+            "isSidechain": false,
+            "requestId": "req_011CazWqQ2nyyGL19MMACsVG",
+            "type": "assistant",
+            "uuid": "93852c7f-0df2-4d11-8c5a-b5017abbffa0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VZiJdA6L3GdrP3t9gRGyQU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 937,
+                "cache_read_input_tokens": 82524,
+                "output_tokens": 182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 937,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 182,
+                    "cache_read_input_tokens": 82524,
+                    "cache_creation_input_tokens": 937,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 937
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+                "leafUuid": "93852c7f-0df2-4d11-8c5a-b5017abbffa0",
+                "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c"
+              }
+            }
+          ],
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review VLA data quality filtering for SFT→RL pipelines",
+                "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c"
+              }
+            }
+          ],
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-13T11:48:25.180Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013xR9kzasgqrypwaBxXmFfH",
+              "type": "tool_result",
+              "content": "# Demo-SCORE: Curating Demonstrations Using Online Experience\n\n## 1) What is Demo-SCORE?\n\nDemo-SCORE is an automated method for filtering heterogeneous demonstration datasets by identifying and removing unreliable strategies. The approach trains a binary classifier on policy rollouts to distinguish successful from failed trajectories, then applies this classifier to curate the original demonstration set.\n\n## 2) Static or Dynamic During Training?\n\nDemo-SCORE operates **statically post-training**. It trains an initial policy on all demonstrations, generates rollouts during evaluation, trains the classifier, and then filters demonstrations for a final retraining phase. It is not dynamically applied during the initial policy training.\n\n## 3) Loss-Based Signals, EMA Models, or Reducible Loss?\n\nDemo-SCORE uses **binary success/failure labels** from rollouts rather than loss-based signals. The classifier learns from \"sparse binary success/failure annotations\" without computing reducible loss or using EMA models. It relies on cross-validation across multiple policy checkpoints for generalization.\n\n## 4) Submission Timeline and Venue\n\nThe paper shows a version number (2503.03707v2) indicating an **arXiv submission in March 2025**. No specific conference venue is explicitly stated in the provided content.\n\n## 5) Comparison to RAPID and Online Data Weighting\n\nThe paper does not mention RAPID. It compares to Training Loss weighting (inverse loss), Autonomous Imitation Learning, and Return-Conditioned Policies. Unlike online weighting approaches, Demo-SCORE performs **binary filtering** (keep/discard) rather than continuous reweighting.\n\n## 6) Task Applications\n\nDemo-SCORE evaluates on robotic manipulation tasks: Robosuite square peg insertion, ALOHA peg insertion (simulated and real), and five real-world ALOHA tasks (spoon placement, chocolate transfer, sharpie pickup, strawberry pickup, jellybean assembly)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93852c7f-0df2-4d11-8c5a-b5017abbffa0",
+            "isSidechain": false,
+            "promptId": "42ca653a-3bab-4928-ac0b-fe8cc5d4e06f",
+            "type": "user",
+            "uuid": "62f38c7e-756b-4ce3-be73-17fa2995f6a9",
+            "toolUseResult": {
+              "bytes": 417931,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# Demo-SCORE: Curating Demonstrations Using Online Experience\n\n## 1) What is Demo-SCORE?\n\nDemo-SCORE is an automated method for filtering heterogeneous demonstration datasets by identifying and removing unreliable strategies. The approach trains a binary classifier on policy rollouts to distinguish successful from failed trajectories, then applies this classifier to curate the original demonstration set.\n\n## 2) Static or Dynamic During Training?\n\nDemo-SCORE operates **statically post-training**. It trains an initial policy on all demonstrations, generates rollouts during evaluation, trains the classifier, and then filters demonstrations for a final retraining phase. It is not dynamically applied during the initial policy training.\n\n## 3) Loss-Based Signals, EMA Models, or Reducible Loss?\n\nDemo-SCORE uses **binary success/failure labels** from rollouts rather than loss-based signals. The classifier learns from \"sparse binary success/failure annotations\" without computing reducible loss or using EMA models. It relies on cross-validation across multiple policy checkpoints for generalization.\n\n## 4) Submission Timeline and Venue\n\nThe paper shows a version number (2503.03707v2) indicating an **arXiv submission in March 2025**. No specific conference venue is explicitly stated in the provided content.\n\n## 5) Comparison to RAPID and Online Data Weighting\n\nThe paper does not mention RAPID. It compares to Training Loss weighting (inverse loss), Autonomous Imitation Learning, and Return-Conditioned Policies. Unlike online weighting approaches, Demo-SCORE performs **binary filtering** (keep/discard) rather than continuous reweighting.\n\n## 6) Task Applications\n\nDemo-SCORE evaluates on robotic manipulation tasks: Robosuite square peg insertion, ALOHA peg insertion (simulated and real), and five real-world ALOHA tasks (spoon placement, chocolate transfer, sharpie pickup, strawberry pickup, jellybean assembly).",
+              "durationMs": 6847,
+              "url": "https://arxiv.org/html/2503.03707"
+            },
+            "sourceToolAssistantUUID": "93852c7f-0df2-4d11-8c5a-b5017abbffa0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-13T11:48:28.084Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014SHkuYWP6v2m48PWKZt6oV",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"token priority SFT\" arxiv 2026 importance sampling SFT granular training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "62f38c7e-756b-4ce3-be73-17fa2995f6a9",
+            "isSidechain": false,
+            "requestId": "req_011CazWrGFkdoNx6rAfYpZKz",
+            "type": "assistant",
+            "uuid": "1cf25f7f-ea1d-49cc-b084-03152f07183f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Eozc1pPxLUCapEgbRwcsU9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 632,
+                "cache_read_input_tokens": 83461,
+                "output_tokens": 72,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 632,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 72,
+                    "cache_read_input_tokens": 83461,
+                    "cache_creation_input_tokens": 632,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 632
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-13T11:48:36.297Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014SHkuYWP6v2m48PWKZt6oV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"token priority SFT\" arxiv 2026 importance sampling SFT granular training\"\n\nLinks: [{\"title\":\"Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority\",\"url\":\"https://arxiv.org/html/2602.01227\"},{\"title\":\"Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority\",\"url\":\"https://www.arxiv.org/pdf/2602.01227\"},{\"title\":\"[2601.09195] ProFit: Leveraging High-Value Signals in SFT via Probability-Guided Token Selection\",\"url\":\"https://arxiv.org/abs/2601.09195\"},{\"title\":\"[2602.01227] Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority\",\"url\":\"https://arxiv.org/abs/2602.01227\"},{\"title\":\"Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning\",\"url\":\"https://www.arxiv.org/pdf/2602.01058\"},{\"title\":\"Leveraging Importance Sampling to Detach Alignment Modules from Large Language Models\",\"url\":\"https://arxiv.org/html/2505.19700\"},{\"title\":\"ProFit: Leveraging High-Value Signals in SFT via Probability-Guided Token Selection\",\"url\":\"https://arxiv.org/html/2601.09195\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://arxiv.org/pdf/2508.11408\"},{\"title\":\"Mitigating Reward Over-optimization in Direct Alignment Algorithms with Importance Sampling\",\"url\":\"https://arxiv.org/html/2506.08681\"},{\"title\":\"Token-Importance Guided Direct Preference Optimization\",\"url\":\"https://arxiv.org/html/2505.19653v1\"}]\n\nBased on the web search results, I found several highly relevant papers from 2026 and recent work on token priority in supervised fine-tuning with importance sampling approaches:\n\n## Key Findings:\n\n**Main Paper - \"Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority\"**\n\nThis position paper advocates Token Priority as the essential bridge, formalizing Supervised Fine-Tuning (SFT) not as simple optimization but as a precise distribution reshaping process that aligns raw data with the ideal alignment manifold.\n\nBy viewing token priority Φ(x) as a Granular Importance Sampling estimator (approximating the density ratio πθ(x)/πdata(x)), SFT can dynamically modulate gradients, allowing the model to \"clip\" updates on tokens where the policy divergence is excessive while accelerating learning on tokens within the trust region.\n\n**Granular Training Approaches:**\n\nToken Priority filters noise in SFT by identifying and masking easy, surface-level patterns, preventing the model from overfitting to the static training distribution and forcing it to focus on the \"long-tail\" logic tokens that dictate generalization.\n\nA fine-grained priority function can reward locally optimal actions via selective backpropagation, ensuring that models learn robust logical operators rather than just memorizing successful paths.\n\n**Related Methods:**\n\nProFit selectively masks low-probability tokens to prevent surface-level overfitting, consistently outperforming traditional SFT baselines on general reasoning and mathematical benchmarks.\n\nPEAR (Policy Evaluation–inspired Algorithm for Offline Learning Loss Reweighting) is an OPE-inspired loss reweighting scheme that down-weights logged continuations that are implausible under the current policy.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1cf25f7f-ea1d-49cc-b084-03152f07183f",
+            "isSidechain": false,
+            "promptId": "42ca653a-3bab-4928-ac0b-fe8cc5d4e06f",
+            "type": "user",
+            "uuid": "3840bf58-c904-4b49-ae0d-460cd068e40c",
+            "toolUseResult": {
+              "query": "\"token priority SFT\" arxiv 2026 importance sampling SFT granular training",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01CvhWJPHcbKeH2PerMMpoxZ",
+                  "content": [
+                    {
+                      "title": "Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority",
+                      "url": "https://arxiv.org/html/2602.01227"
+                    },
+                    {
+                      "title": "Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority",
+                      "url": "https://www.arxiv.org/pdf/2602.01227"
+                    },
+                    {
+                      "title": "[2601.09195] ProFit: Leveraging High-Value Signals in SFT via Probability-Guided Token Selection",
+                      "url": "https://arxiv.org/abs/2601.09195"
+                    },
+                    {
+                      "title": "[2602.01227] Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority",
+                      "url": "https://arxiv.org/abs/2602.01227"
+                    },
+                    {
+                      "title": "Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning",
+                      "url": "https://www.arxiv.org/pdf/2602.01058"
+                    },
+                    {
+                      "title": "Leveraging Importance Sampling to Detach Alignment Modules from Large Language Models",
+                      "url": "https://arxiv.org/html/2505.19700"
+                    },
+                    {
+                      "title": "ProFit: Leveraging High-Value Signals in SFT via Probability-Guided Token Selection",
+                      "url": "https://arxiv.org/html/2601.09195"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2026",
+                      "url": "https://arxiv.org/pdf/2508.11408"
+                    },
+                    {
+                      "title": "Mitigating Reward Over-optimization in Direct Alignment Algorithms with Importance Sampling",
+                      "url": "https://arxiv.org/html/2506.08681"
+                    },
+                    {
+                      "title": "Token-Importance Guided Direct Preference Optimization",
+                      "url": "https://arxiv.org/html/2505.19653v1"
+                    }
+                  ]
+                },
+                "Based on the web search results, I found several highly relevant papers from 2026 and recent work on token priority in supervised fine-tuning with importance sampling approaches:\n\n## Key Findings:\n\n**Main Paper - \"Supervised Fine-Tuning Needs to Unlock the Potential of Token Priority\"**\n\nThis position paper advocates Token Priority as the essential bridge, formalizing Supervised Fine-Tuning (SFT) not as simple optimization but as a precise distribution reshaping process that aligns raw data with the ideal alignment manifold.\n\nBy viewing token priority Φ(x) as a Granular Importance Sampling estimator (approximating the density ratio πθ(x)/πdata(x)), SFT can dynamically modulate gradients, allowing the model to \"clip\" updates on tokens where the policy divergence is excessive while accelerating learning on tokens within the trust region.\n\n**Granular Training Approaches:**\n\nToken Priority filters noise in SFT by identifying and masking easy, surface-level patterns, preventing the model from overfitting to the static training distribution and forcing it to focus on the \"long-tail\" logic tokens that dictate generalization.\n\nA fine-grained priority function can reward locally optimal actions via selective backpropagation, ensuring that models learn robust logical operators rather than just memorizing successful paths.\n\n**Related Methods:**\n\nProFit selectively masks low-probability tokens to prevent surface-level overfitting, consistently outperforming traditional SFT baselines on general reasoning and mathematical benchmarks.\n\nPEAR (Policy Evaluation–inspired Algorithm for Offline Learning Loss Reweighting) is an OPE-inspired loss reweighting scheme that down-weights logged continuations that are implausible under the current policy."
+              ],
+              "durationSeconds": 8.21014482200006
+            },
+            "sourceToolAssistantUUID": "1cf25f7f-ea1d-49cc-b084-03152f07183f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-13T11:48:39.709Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NxE1J6GgLggyXrBv6Rr2iJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Good SFT Optimizes\" \"Better SFT Prepares for Reinforcement Learning\" 2602.01058"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3840bf58-c904-4b49-ae0d-460cd068e40c",
+            "isSidechain": false,
+            "requestId": "req_011CazWs5tScGUHVM4W38LeZ",
+            "type": "assistant",
+            "uuid": "168a0a95-434d-4a60-9910-4f68c6c9e510",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Anf6Nwg8azATD2vLSCgEGV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 946,
+                "cache_read_input_tokens": 84093,
+                "output_tokens": 80,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 946,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 80,
+                    "cache_read_input_tokens": 84093,
+                    "cache_creation_input_tokens": 946,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 946
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-13T11:48:45.009Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NxE1J6GgLggyXrBv6Rr2iJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Good SFT Optimizes\" \"Better SFT Prepares for Reinforcement Learning\" 2602.01058\"\n\nLinks: [{\"title\":\"[2602.01058] Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2602.01058\"},{\"title\":\"Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2602.01058\"},{\"title\":\"Paper page - Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning\",\"url\":\"https://huggingface.co/papers/2602.01058\"},{\"title\":\"Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning\",\"url\":\"https://www.arxiv.org/pdf/2602.01058\"},{\"title\":\"(PDF) Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning\",\"url\":\"https://www.researchgate.net/publication/400369783_Good_SFT_Optimizes_for_SFT_Better_SFT_Prepares_for_Reinforcement_Learning\"}]\n\nI found the research paper you were looking for! Here are the key details:\n\n**Paper Title:** Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning\n\n**Authors & Date:** The paper was submitted on February 1, 2026 by Dylan Zhang, Yufeng Xu, Haojin Wang, Qingzhi Chen, and Hao Peng\n\n**Key Finding:** After identical RL training, models initialized from stronger SFT checkpoints can significantly underperform those initialized from weaker ones\n\n**Main Contribution:** The researchers propose PEAR (Policy Evaluation-inspired Algorithm for Offline Learning Loss Re-weighting), an SFT-stage method that corrects this mismatch and better prepares the model for RL\n\nThe paper addresses an important issue in LLM post-training: the distribution that generates the offline SFT data can differ substantially from the policy optimized during online RL, which learns from its own rollouts\n\nThe paper is available on arXiv at https://arxiv.org/abs/2602.01058\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "168a0a95-434d-4a60-9910-4f68c6c9e510",
+            "isSidechain": false,
+            "promptId": "42ca653a-3bab-4928-ac0b-fe8cc5d4e06f",
+            "type": "user",
+            "uuid": "97cdc653-8997-49d0-91b2-1c2cbe696f1f",
+            "toolUseResult": {
+              "query": "\"Good SFT Optimizes\" \"Better SFT Prepares for Reinforcement Learning\" 2602.01058",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01DWeGyjrjY8CjYvqk6bpTdz",
+                  "content": [
+                    {
+                      "title": "[2602.01058] Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning",
+                      "url": "https://arxiv.org/abs/2602.01058"
+                    },
+                    {
+                      "title": "Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning",
+                      "url": "https://arxiv.org/html/2602.01058"
+                    },
+                    {
+                      "title": "Paper page - Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning",
+                      "url": "https://huggingface.co/papers/2602.01058"
+                    },
+                    {
+                      "title": "Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning",
+                      "url": "https://www.arxiv.org/pdf/2602.01058"
+                    },
+                    {
+                      "title": "(PDF) Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning",
+                      "url": "https://www.researchgate.net/publication/400369783_Good_SFT_Optimizes_for_SFT_Better_SFT_Prepares_for_Reinforcement_Learning"
+                    }
+                  ]
+                },
+                "I found the research paper you were looking for! Here are the key details:\n\n**Paper Title:** Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning\n\n**Authors & Date:** The paper was submitted on February 1, 2026 by Dylan Zhang, Yufeng Xu, Haojin Wang, Qingzhi Chen, and Hao Peng\n\n**Key Finding:** After identical RL training, models initialized from stronger SFT checkpoints can significantly underperform those initialized from weaker ones\n\n**Main Contribution:** The researchers propose PEAR (Policy Evaluation-inspired Algorithm for Offline Learning Loss Re-weighting), an SFT-stage method that corrects this mismatch and better prepares the model for RL\n\nThe paper addresses an important issue in LLM post-training: the distribution that generates the offline SFT data can differ substantially from the policy optimized during online RL, which learns from its own rollouts\n\nThe paper is available on arXiv at https://arxiv.org/abs/2602.01058"
+              ],
+              "durationSeconds": 5.297245464000036
+            },
+            "sourceToolAssistantUUID": "168a0a95-434d-4a60-9910-4f68c6c9e510",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-13T11:48:49.307Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "This is another very important find — \"Good SFT Optimizes for SFT, Better SFT Prepares for RL\" (2602.01058) directly studies how SFT technique/data affects downstream RL and proposes PEAR, an SFT-stage loss reweighting method to better prepare for RL. This is highly relevant and not cited in the proposal. Let me fetch more details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "97cdc653-8997-49d0-91b2-1c2cbe696f1f",
+            "isSidechain": false,
+            "requestId": "req_011CazWsj2rMjtFdtXGMWq7f",
+            "type": "assistant",
+            "uuid": "f4cdf0da-d834-438e-8470-54ce22331cea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NPUWZE3DZQKAx1Ku4BDwvR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 679,
+                "cache_read_input_tokens": 85039,
+                "output_tokens": 277,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 679,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 277,
+                    "cache_read_input_tokens": 85039,
+                    "cache_creation_input_tokens": 679,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 679
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-13T11:48:51.974Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HdjgdVwgNG7mrLEvAnfHxN",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2602.01058",
+                "prompt": "Extract: 1) Full abstract 2) What is PEAR exactly? How does it work? 3) Does it use loss reweighting, data filtering, or something else? 4) Is it for LLMs or robots? 5) What is the key insight about SFT quality and downstream RL? 6) Venue status (accepted where?) 7) How does it relate to the idea that SFT data quality affects RL outcomes?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4cdf0da-d834-438e-8470-54ce22331cea",
+            "isSidechain": false,
+            "requestId": "req_011CazWsj2rMjtFdtXGMWq7f",
+            "type": "assistant",
+            "uuid": "05cd0e7d-e576-428c-96c1-1d89fcb5c6cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NPUWZE3DZQKAx1Ku4BDwvR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 679,
+                "cache_read_input_tokens": 85039,
+                "output_tokens": 277,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 679,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 277,
+                    "cache_read_input_tokens": 85039,
+                    "cache_creation_input_tokens": 679,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 679
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-13T11:48:57.580Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HdjgdVwgNG7mrLEvAnfHxN",
+              "type": "tool_result",
+              "content": "# Analysis of arXiv:2602.01058\n\n**1) Full Abstract:**\nPost-training reasoning LLMs involves SFT followed by RL. The paper shows that stronger SFT checkpoints can underperform weaker ones after identical RL training due to distribution mismatch. PEAR is proposed to reweight SFT loss using importance sampling at token, block, and sequence levels. Experiments on mathematical reasoning tasks show improvements up to 14.6% on AIME2025.\n\n**2) What is PEAR?**\nPEAR stands for \"Policy Evaluation-inspired Algorithm for Offline Learning Loss Re-weighting.\" It's \"an SFT-stage method that corrects this mismatch and better prepares the model for RL.\"\n\n**3) Loss Reweighting vs. Filtering:**\nPEAR uses **loss reweighting**. It \"uses importance sampling to reweight the SFT loss, with three variants operating at the token, block, and sequence levels.\"\n\n**4) LLMs or Robots:**\nThis applies to **Large Language Models (LLMs)**. The work focuses on \"post-training of reasoning LLMs.\"\n\n**5) Key Insight on SFT Quality and RL:**\nThe critical finding: \"the distribution that generates the offline SFT data can differ substantially from the policy optimized during online RL, which learns from its own rollouts.\" Superior SFT performance doesn't guarantee better RL outcomes—alignment between SFT and RL distributions matters.\n\n**6) Venue Status:**\nThe paper was submitted February 1, 2026. No acceptance venue is mentioned on this abstract page.\n\n**7) Relation to SFT Data Quality:**\nPEAR embodies the principle that SFT should be \"designed and evaluated with downstream RL in mind rather than in isolation,\" treating data quality through distributional alignment rather than raw performance optimization."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05cd0e7d-e576-428c-96c1-1d89fcb5c6cd",
+            "isSidechain": false,
+            "promptId": "42ca653a-3bab-4928-ac0b-fe8cc5d4e06f",
+            "type": "user",
+            "uuid": "399bf5ab-bb2e-4f3d-b9f1-57bf141b54ef",
+            "toolUseResult": {
+              "bytes": 48146,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# Analysis of arXiv:2602.01058\n\n**1) Full Abstract:**\nPost-training reasoning LLMs involves SFT followed by RL. The paper shows that stronger SFT checkpoints can underperform weaker ones after identical RL training due to distribution mismatch. PEAR is proposed to reweight SFT loss using importance sampling at token, block, and sequence levels. Experiments on mathematical reasoning tasks show improvements up to 14.6% on AIME2025.\n\n**2) What is PEAR?**\nPEAR stands for \"Policy Evaluation-inspired Algorithm for Offline Learning Loss Re-weighting.\" It's \"an SFT-stage method that corrects this mismatch and better prepares the model for RL.\"\n\n**3) Loss Reweighting vs. Filtering:**\nPEAR uses **loss reweighting**. It \"uses importance sampling to reweight the SFT loss, with three variants operating at the token, block, and sequence levels.\"\n\n**4) LLMs or Robots:**\nThis applies to **Large Language Models (LLMs)**. The work focuses on \"post-training of reasoning LLMs.\"\n\n**5) Key Insight on SFT Quality and RL:**\nThe critical finding: \"the distribution that generates the offline SFT data can differ substantially from the policy optimized during online RL, which learns from its own rollouts.\" Superior SFT performance doesn't guarantee better RL outcomes—alignment between SFT and RL distributions matters.\n\n**6) Venue Status:**\nThe paper was submitted February 1, 2026. No acceptance venue is mentioned on this abstract page.\n\n**7) Relation to SFT Data Quality:**\nPEAR embodies the principle that SFT should be \"designed and evaluated with downstream RL in mind rather than in isolation,\" treating data quality through distributional alignment rather than raw performance optimization.",
+              "durationMs": 5601,
+              "url": "https://arxiv.org/abs/2602.01058"
+            },
+            "sourceToolAssistantUUID": "05cd0e7d-e576-428c-96c1-1d89fcb5c6cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-13T11:49:01.082Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "This is critical. PEAR (Feb 2026) directly studies how SFT loss reweighting affects downstream RL for LLMs — closely related to RAPID's Contribution 3. Let me check one more dimension."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "399bf5ab-bb2e-4f3d-b9f1-57bf141b54ef",
+            "isSidechain": false,
+            "requestId": "req_011CazWtep8PwYYoozKyWa8r",
+            "type": "assistant",
+            "uuid": "11382b33-4ff8-456b-b459-db299b99c667",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TxoYCPcKjY7DZpn73kmD3i",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 715,
+                "cache_read_input_tokens": 85718,
+                "output_tokens": 125,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 715,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 125,
+                    "cache_read_input_tokens": 85718,
+                    "cache_creation_input_tokens": 715,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 715
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-13T11:49:01.862Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FJ7NKAwfnaAc1Zqepb47iC",
+              "name": "WebSearch",
+              "input": {
+                "query": "data curation VLA SFT RL pipeline robot 2026 arxiv noise filtering quality scoring training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "11382b33-4ff8-456b-b459-db299b99c667",
+            "isSidechain": false,
+            "requestId": "req_011CazWtep8PwYYoozKyWa8r",
+            "type": "assistant",
+            "uuid": "ee674722-bebf-4dde-9f5a-abe3b42dda51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TxoYCPcKjY7DZpn73kmD3i",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 715,
+                "cache_read_input_tokens": 85718,
+                "output_tokens": 125,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 715,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 125,
+                    "cache_read_input_tokens": 85718,
+                    "cache_creation_input_tokens": 715,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 715
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-13T11:49:10.193Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FJ7NKAwfnaAc1Zqepb47iC",
+              "type": "tool_result",
+              "content": "Web search results for query: \"data curation VLA SFT RL pipeline robot 2026 arxiv noise filtering quality scoring training\"\n\nLinks: [{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2602.00919v1\"},{\"title\":\"From SFT to RL: Demystifying the Post-Training Pipeline for LLM-based Vulnerability Detection\",\"url\":\"https://arxiv.org/html/2602.14012\"},{\"title\":\"𝜋_\\\"RL\\\": Online RL Fine-tuning for Flow-based Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2510.25889v1\"},{\"title\":\"Pure Vision Language Action (VLA) Models: A Comprehensive Survey\",\"url\":\"https://arxiv.org/html/2509.19012v1\"},{\"title\":\"VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation\",\"url\":\"https://arxiv.org/html/2603.26666\"},{\"title\":\"From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop\",\"url\":\"https://icra2026vlapipeline.github.io/\"},{\"title\":\"VLA-OPD: Bridging Offline SFT and Online RL for...\",\"url\":\"https://arxiv.org/abs/2603.26666\"},{\"title\":\"Self-Improving Vision-Language-Action Models with Data Generation via Residual RL\",\"url\":\"https://arxiv.org/html/2511.00091v1\"},{\"title\":\"VLA-R1: Enhancing Reasoning in Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2510.01623v1\"},{\"title\":\"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2601.06748v1\"}]\n\nBased on the search results, I found several highly relevant papers from arXiv 2026 discussing data curation, VLA (Vision-Language-Action) models, SFT (Supervised Fine-Tuning), RL (Reinforcement Learning) pipelines, and robot training:\n\n## Key Findings:\n\n**Green-VLA (January 2026)**: This work performs a three-stage comparison including R0 pretraining on unfiltered data, R1-style SFT on filtered subsets, and R2 RL fine-tuning, demonstrating how dataset curation plus RL alignment progressively improves performance on target embodiments.\n\n**VLA-OPD (March 2026)**: This framework bridges the efficiency of SFT with the robustness of RL by leveraging an expert teacher to provide dense, token-level supervision on the student's self-generated trajectories, enabling active error correction on policy-induced states while preserving pre-trained capabilities.\n\n**Data Curation and Noise Filtering**: Most VLA pipelines lack rigorous data curation, principled training regimes, and standardized evaluation, leading to inconsistent performance and safety concerns on physical robots. For data curation in post-training pipelines, rejection sampling proves more effective than rationalization-based supervision, as rationalization can introduce hallucinations; in RL training, difficulty-aware data filtering can reduce data coverage, causing performance loss.\n\n**Quality Scoring and Training**: Training often uses two stages: SFT with CoT supervision to learn reasoning over images and instructions, followed by refinement via RL with verifiable rewards (GRPO).\n\nThese papers represent recent advances in creating more robust VLA training pipelines with improved data handling and quality control mechanisms.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee674722-bebf-4dde-9f5a-abe3b42dda51",
+            "isSidechain": false,
+            "promptId": "42ca653a-3bab-4928-ac0b-fe8cc5d4e06f",
+            "type": "user",
+            "uuid": "37e37ae3-d162-4a64-833e-149ebc340c60",
+            "toolUseResult": {
+              "query": "data curation VLA SFT RL pipeline robot 2026 arxiv noise filtering quality scoring training",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Nvzo68DFG4ZXVCZsJYuj7n",
+                  "content": [
+                    {
+                      "title": "1 Introduction",
+                      "url": "https://arxiv.org/html/2602.00919v1"
+                    },
+                    {
+                      "title": "From SFT to RL: Demystifying the Post-Training Pipeline for LLM-based Vulnerability Detection",
+                      "url": "https://arxiv.org/html/2602.14012"
+                    },
+                    {
+                      "title": "𝜋_\"RL\": Online RL Fine-tuning for Flow-based Vision-Language-Action Models",
+                      "url": "https://arxiv.org/html/2510.25889v1"
+                    },
+                    {
+                      "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+                      "url": "https://arxiv.org/html/2509.19012v1"
+                    },
+                    {
+                      "title": "VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation",
+                      "url": "https://arxiv.org/html/2603.26666"
+                    },
+                    {
+                      "title": "From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop",
+                      "url": "https://icra2026vlapipeline.github.io/"
+                    },
+                    {
+                      "title": "VLA-OPD: Bridging Offline SFT and Online RL for...",
+                      "url": "https://arxiv.org/abs/2603.26666"
+                    },
+                    {
+                      "title": "Self-Improving Vision-Language-Action Models with Data Generation via Residual RL",
+                      "url": "https://arxiv.org/html/2511.00091v1"
+                    },
+                    {
+                      "title": "VLA-R1: Enhancing Reasoning in Vision-Language-Action Models",
+                      "url": "https://arxiv.org/html/2510.01623v1"
+                    },
+                    {
+                      "title": "On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning",
+                      "url": "https://arxiv.org/html/2601.06748v1"
+                    }
+                  ]
+                },
+                "Based on the search results, I found several highly relevant papers from arXiv 2026 discussing data curation, VLA (Vision-Language-Action) models, SFT (Supervised Fine-Tuning), RL (Reinforcement Learning) pipelines, and robot training:\n\n## Key Findings:\n\n**Green-VLA (January 2026)**: This work performs a three-stage comparison including R0 pretraining on unfiltered data, R1-style SFT on filtered subsets, and R2 RL fine-tuning, demonstrating how dataset curation plus RL alignment progressively improves performance on target embodiments.\n\n**VLA-OPD (March 2026)**: This framework bridges the efficiency of SFT with the robustness of RL by leveraging an expert teacher to provide dense, token-level supervision on the student's self-generated trajectories, enabling active error correction on policy-induced states while preserving pre-trained capabilities.\n\n**Data Curation and Noise Filtering**: Most VLA pipelines lack rigorous data curation, principled training regimes, and standardized evaluation, leading to inconsistent performance and safety concerns on physical robots. For data curation in post-training pipelines, rejection sampling proves more effective than rationalization-based supervision, as rationalization can introduce hallucinations; in RL training, difficulty-aware data filtering can reduce data coverage, causing performance loss.\n\n**Quality Scoring and Training**: Training often uses two stages: SFT with CoT supervision to learn reasoning over images and instructions, followed by refinement via RL with verifiable rewards (GRPO).\n\nThese papers represent recent advances in creating more robust VLA training pipelines with improved data handling and quality control mechanisms."
+              ],
+              "durationSeconds": 8.327464090000023
+            },
+            "sourceToolAssistantUUID": "ee674722-bebf-4dde-9f5a-abe3b42dda51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-13T11:49:10.196Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "37e37ae3-d162-4a64-833e-149ebc340c60",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "04304a59-de09-454b-806d-76eb18bef8e1",
+                "timestamp": "2026-05-13T11:49:10.196Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+                "leafUuid": "04304a59-de09-454b-806d-76eb18bef8e1",
+                "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c"
+              }
+            }
+          ],
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review VLA data quality filtering for SFT→RL pipelines",
+                "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c"
+              }
+            }
+          ],
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-13T11:49:13.058Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I've now conducted extensive research. Let me synthesize my findings and produce the review verdict."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04304a59-de09-454b-806d-76eb18bef8e1",
+            "isSidechain": false,
+            "requestId": "req_011CazWuap3jhFFC42pSiEL2",
+            "type": "assistant",
+            "uuid": "8f245c1d-6d80-40fc-8105-1fcd91704a86",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SS3ScB8y5xLuoVFGUEw3H7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1112,
+                "cache_read_input_tokens": 86433,
+                "output_tokens": 97,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1112,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 97,
+                    "cache_read_input_tokens": 86433,
+                    "cache_creation_input_tokens": 1112,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1112
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-13T11:49:13.861Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UvRYZkhRztHxNyf4Ys8a3k",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"self-distillation\" \"sometimes degrade\" reasoning LLM 2603 arxiv feedback loop EMA"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f245c1d-6d80-40fc-8105-1fcd91704a86",
+            "isSidechain": false,
+            "requestId": "req_011CazWuap3jhFFC42pSiEL2",
+            "type": "assistant",
+            "uuid": "56cfc7f8-8926-430b-b341-1d8f8e1a022a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SS3ScB8y5xLuoVFGUEw3H7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1112,
+                "cache_read_input_tokens": 86433,
+                "output_tokens": 97,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1112,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 97,
+                    "cache_read_input_tokens": 86433,
+                    "cache_creation_input_tokens": 1112,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1112
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-13T11:49:18.960Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UvRYZkhRztHxNyf4Ys8a3k",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"self-distillation\" \"sometimes degrade\" reasoning LLM 2603 arxiv feedback loop EMA\"\n\nLinks: [{\"title\":\"[2603.24472] Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?\",\"url\":\"https://arxiv.org/abs/2603.24472\"},{\"title\":\"Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?\",\"url\":\"https://arxiv.org/html/2603.24472v1\"},{\"title\":\"[2603.24472v1] Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?\",\"url\":\"https://arxiv.org/abs/2603.24472v1\"},{\"title\":\"Paper page - Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?\",\"url\":\"https://huggingface.co/papers/2603.24472\"},{\"title\":\"Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs? | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2603.24472\"},{\"title\":\"Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs? [Quick Review]\",\"url\":\"https://liner.com/review/why-does-selfdistillation-sometimes-degrade-reasoning-capability-llms\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2605.06597\"},{\"title\":\"Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs? | Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/arxiv/2603.24472\"},{\"title\":\"[2601.18734] Self-Distilled Reasoner: On-Policy Self-Distillation for Large Language Models\",\"url\":\"https://arxiv.org/abs/2601.18734\"},{\"title\":\"Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?\",\"url\":\"https://www.researchgate.net/publication/403153841_Why_Does_Self-Distillation_Sometimes_Degrade_the_Reasoning_Capability_of_LLMs\"}]\n\nI found the paper you're looking for! Here's what the search results show:\n\nThe arXiv paper 2603.24472 titled \"Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?\" addresses how self-distillation can reduce response length while degrading performance in mathematical reasoning, tracing this degradation to the suppression of epistemic verbalization - the model's expression of uncertainty during reasoning.\n\nThe research shows that conditioning the teacher on rich information suppresses uncertainty expression, enabling rapid in-domain optimization with limited task coverage but harming out-of-distribution performance, where unseen problems benefit from expressing uncertainty and adjusting accordingly.\n\nNotably regarding the feedback loop you asked about: A moving target teacher, even with slow EMA (exponential moving average) updates, amplifies epistemic suppression through a feedback loop, where the student learns from an increasingly confident teacher, leading to greater performance degradation. Fixing the teacher to the initial policy yields better performance.\n\nThe researchers observe performance drops of up to 40% across Qwen3-8B, DeepSeek-Distill-Qwen-7B, and Olmo3-7B-Instruct.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56cfc7f8-8926-430b-b341-1d8f8e1a022a",
+            "isSidechain": false,
+            "promptId": "42ca653a-3bab-4928-ac0b-fe8cc5d4e06f",
+            "type": "user",
+            "uuid": "747aea40-bcbc-4e31-99ab-648fc8a5e74f",
+            "toolUseResult": {
+              "query": "\"self-distillation\" \"sometimes degrade\" reasoning LLM 2603 arxiv feedback loop EMA",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01DVAi7zNnF37PFcGgKHa19D",
+                  "content": [
+                    {
+                      "title": "[2603.24472] Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?",
+                      "url": "https://arxiv.org/abs/2603.24472"
+                    },
+                    {
+                      "title": "Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?",
+                      "url": "https://arxiv.org/html/2603.24472v1"
+                    },
+                    {
+                      "title": "[2603.24472v1] Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?",
+                      "url": "https://arxiv.org/abs/2603.24472v1"
+                    },
+                    {
+                      "title": "Paper page - Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?",
+                      "url": "https://huggingface.co/papers/2603.24472"
+                    },
+                    {
+                      "title": "Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs? | alphaXiv",
+                      "url": "https://www.alphaxiv.org/overview/2603.24472"
+                    },
+                    {
+                      "title": "Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs? [Quick Review]",
+                      "url": "https://liner.com/review/why-does-selfdistillation-sometimes-degrade-reasoning-capability-llms"
+                    },
+                    {
+                      "title": "1 Introduction",
+                      "url": "https://arxiv.org/html/2605.06597"
+                    },
+                    {
+                      "title": "Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs? | Cool Papers - Immersive Paper Discovery",
+                      "url": "https://papers.cool/arxiv/2603.24472"
+                    },
+                    {
+                      "title": "[2601.18734] Self-Distilled Reasoner: On-Policy Self-Distillation for Large Language Models",
+                      "url": "https://arxiv.org/abs/2601.18734"
+                    },
+                    {
+                      "title": "Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?",
+                      "url": "https://www.researchgate.net/publication/403153841_Why_Does_Self-Distillation_Sometimes_Degrade_the_Reasoning_Capability_of_LLMs"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for! Here's what the search results show:\n\nThe arXiv paper 2603.24472 titled \"Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?\" addresses how self-distillation can reduce response length while degrading performance in mathematical reasoning, tracing this degradation to the suppression of epistemic verbalization - the model's expression of uncertainty during reasoning.\n\nThe research shows that conditioning the teacher on rich information suppresses uncertainty expression, enabling rapid in-domain optimization with limited task coverage but harming out-of-distribution performance, where unseen problems benefit from expressing uncertainty and adjusting accordingly.\n\nNotably regarding the feedback loop you asked about: A moving target teacher, even with slow EMA (exponential moving average) updates, amplifies epistemic suppression through a feedback loop, where the student learns from an increasingly confident teacher, leading to greater performance degradation. Fixing the teacher to the initial policy yields better performance.\n\nThe researchers observe performance drops of up to 40% across Qwen3-8B, DeepSeek-Distill-Qwen-7B, and Olmo3-7B-Instruct."
+              ],
+              "durationSeconds": 5.093437007999979
+            },
+            "sourceToolAssistantUUID": "56cfc7f8-8926-430b-b341-1d8f8e1a022a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-13T11:49:22.219Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "This confirms a key risk the proposal acknowledges — EMA feedback loops. Now let me consolidate all findings into the final review."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "747aea40-bcbc-4e31-99ab-648fc8a5e74f",
+            "isSidechain": false,
+            "requestId": "req_011CazWvECLYwN3LvkMWBWrR",
+            "type": "assistant",
+            "uuid": "129c5982-cd6b-422e-bc75-0c2a5bf1b2b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S81kWKtEPhA66R1Jy6V14m",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 964,
+                "cache_read_input_tokens": 87545,
+                "output_tokens": 95,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 964,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 95,
+                    "cache_read_input_tokens": 87545,
+                    "cache_creation_input_tokens": 964,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 964
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-13T11:49:22.933Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eg8RCxyUQmDTSX4CEFs8EK",
+              "name": "WebSearch",
+              "input": {
+                "query": "CoRL 2026 paper acceptance rate real robot experiments simulation-only policy"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "129c5982-cd6b-422e-bc75-0c2a5bf1b2b7",
+            "isSidechain": false,
+            "requestId": "req_011CazWvECLYwN3LvkMWBWrR",
+            "type": "assistant",
+            "uuid": "ba48e683-93ba-4c86-b8b5-4c5c26709d24",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S81kWKtEPhA66R1Jy6V14m",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 964,
+                "cache_read_input_tokens": 87545,
+                "output_tokens": 95,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 964,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 95,
+                    "cache_read_input_tokens": 87545,
+                    "cache_creation_input_tokens": 964,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 964
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-13T11:49:27.825Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Eg8RCxyUQmDTSX4CEFs8EK",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CoRL 2026 paper acceptance rate real robot experiments simulation-only policy\"\n\nLinks: [{\"title\":\"CoRL 2026 - Call for Papers\",\"url\":\"https://www.corl.org/contributions/call-for-papers\"},{\"title\":\"CoRL 2026\",\"url\":\"https://www.corl.org/\"},{\"title\":\"GitHub - smallfryy/corl-2025-papers: ✨ 200+ robotics papers from CoRL 2025, with TLDRs, project pages, code, and more\",\"url\":\"https://github.com/smallfryy/corl-2025-papers\"},{\"title\":\"CoRL 2026 - Instruction for Authors\",\"url\":\"https://www.corl.org/contributions/instruction-for-authors\"},{\"title\":\"CoRL 2025 - Call for Papers\",\"url\":\"https://2025.corl.org/contributions/call-for-papers\"},{\"title\":\"CoRL 2024 - Instruction for Reviews\",\"url\":\"https://2024.corl.org/contributions/instruction-for-reviews\"},{\"title\":\"CoRL 2026 - Awards\",\"url\":\"https://www.corl.org/program/awards\"},{\"title\":\"CoRL 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference\"},{\"title\":\"CoRL 2024 Accepted Paper List - Paper Copilot\",\"url\":\"https://papercopilot.com/paper-list/corl-paper-list/corl-2024-paper-list/\"},{\"title\":\"Call for Papers – CORL 2022\",\"url\":\"https://corl2022.org/call-for-papers/\"}]\n\nBased on the search results, I can provide you with information about CoRL 2026's policies regarding robot experiments and simulation:\n\n## Real Robot Experiments and Simulation Policies\n\nAuthors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots. This reflects CoRL's emphasis on practical robotics research and the importance of demonstrating real-world applicability.\n\nThe conference guidelines clarify that simulation-only work is acceptable if it convincingly demonstrates transferability to real robots. For example, in guidance from previous years, papers are noted as satisfying requirements if they show sim-to-real transfer capabilities (such as autonomous driving in simulation environments like CARLA).\n\n## Paper Acceptance Rate\n\nUnfortunately, the search results do not contain information about CoRL 2026's paper acceptance rate. The results reference acceptance rates from other years (such as CoRL 2024), but specific statistics for CoRL 2026 are not yet available in the search results. If you need this information, you may want to check the OpenReview portal directly at https://openreview.net/group?id=robot-learning.org/CoRL/2026/Conference once decisions have been announced.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba48e683-93ba-4c86-b8b5-4c5c26709d24",
+            "isSidechain": false,
+            "promptId": "42ca653a-3bab-4928-ac0b-fe8cc5d4e06f",
+            "type": "user",
+            "uuid": "dadf66b6-d5ca-44c4-a3ff-5a3c8f30a64a",
+            "toolUseResult": {
+              "query": "CoRL 2026 paper acceptance rate real robot experiments simulation-only policy",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_011MJcUYgrE39dbwfuEENUTU",
+                  "content": [
+                    {
+                      "title": "CoRL 2026 - Call for Papers",
+                      "url": "https://www.corl.org/contributions/call-for-papers"
+                    },
+                    {
+                      "title": "CoRL 2026",
+                      "url": "https://www.corl.org/"
+                    },
+                    {
+                      "title": "GitHub - smallfryy/corl-2025-papers: ✨ 200+ robotics papers from CoRL 2025, with TLDRs, project pages, code, and more",
+                      "url": "https://github.com/smallfryy/corl-2025-papers"
+                    },
+                    {
+                      "title": "CoRL 2026 - Instruction for Authors",
+                      "url": "https://www.corl.org/contributions/instruction-for-authors"
+                    },
+                    {
+                      "title": "CoRL 2025 - Call for Papers",
+                      "url": "https://2025.corl.org/contributions/call-for-papers"
+                    },
+                    {
+                      "title": "CoRL 2024 - Instruction for Reviews",
+                      "url": "https://2024.corl.org/contributions/instruction-for-reviews"
+                    },
+                    {
+                      "title": "CoRL 2026 - Awards",
+                      "url": "https://www.corl.org/program/awards"
+                    },
+                    {
+                      "title": "CoRL 2026 Conference | OpenReview",
+                      "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+                    },
+                    {
+                      "title": "CoRL 2024 Accepted Paper List - Paper Copilot",
+                      "url": "https://papercopilot.com/paper-list/corl-paper-list/corl-2024-paper-list/"
+                    },
+                    {
+                      "title": "Call for Papers – CORL 2022",
+                      "url": "https://corl2022.org/call-for-papers/"
+                    }
+                  ]
+                },
+                "Based on the search results, I can provide you with information about CoRL 2026's policies regarding robot experiments and simulation:\n\n## Real Robot Experiments and Simulation Policies\n\nAuthors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots. This reflects CoRL's emphasis on practical robotics research and the importance of demonstrating real-world applicability.\n\nThe conference guidelines clarify that simulation-only work is acceptable if it convincingly demonstrates transferability to real robots. For example, in guidance from previous years, papers are noted as satisfying requirements if they show sim-to-real transfer capabilities (such as autonomous driving in simulation environments like CARLA).\n\n## Paper Acceptance Rate\n\nUnfortunately, the search results do not contain information about CoRL 2026's paper acceptance rate. The results reference acceptance rates from other years (such as CoRL 2024), but specific statistics for CoRL 2026 are not yet available in the search results. If you need this information, you may want to check the OpenReview portal directly at https://openreview.net/group?id=robot-learning.org/CoRL/2026/Conference once decisions have been announced."
+              ],
+              "durationSeconds": 4.888314223000081
+            },
+            "sourceToolAssistantUUID": "ba48e683-93ba-4c86-b8b5-4c5c26709d24",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-13T11:50:35.925Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have enough information to produce a thorough review. Let me synthesize all findings.\n\nBased on my extensive independent research — 20+ searches, multiple deep reads — here is my review:\n\n```json\n{\n  \"verdict\": \"revise\",\n  \"scores\": {\n    \"novelty\": {\"score\": 3, \"rationale\": \"The gap is real but narrower than presented. iw-SFT already uses EMA for continuous control SFT; RAPID's novelty is the specific combination of reducible loss decomposition (from RHO-LOSS/ReLo) + PER-style sampling + application to VLA SFT. Each component exists; the integration and domain transfer is the contribution. The 'first to test SFT data quality → RL for VLAs' claim is weakened by PEAR (2602.01058) and DC-SFT (2602.10815) studying exactly SFT→RL cascading for LLMs/VLMs, plus the ICML 2026 clipping paper for LLM agents.\"},\n    \"feasibility\": {\"score\": 3, \"rationale\": \"The CoRL sprint (950 GPU-hours in ~14 days) is extremely tight but technically possible with existing infrastructure (OpenVLA-OFT trains in 1-2 days on 8×A100). The go/no-go by May 22 is honest. However, the RAPID+RL experiment (Contribution 3, the headline) requires untested SimpleVLA-RL integration with custom SFT checkpoints — debugging this alone could consume the entire timeline. AAAI 2027 timeline is realistic.\"},\n    \"clarity\": {\"score\": 4, \"rationale\": \"The proposal is exceptionally well-structured after 6 rounds of revision. The landscape analysis is comprehensive, positioning is mostly honest, and the experimental plan is detailed with explicit risk management (go/no-go dates, CoRL vs AAAI fallback). The three contributions are clearly delineated.\"},\n    \"impact\": {\"score\": 3, \"rationale\": \"The SFT→RL cascade finding would be impactful IF it materializes with compelling numbers, but it's the untested headline contribution. On clean LIBERO (97%+ baseline), gains will be marginal per 'When Do Curricula Work?' finding. The noise-injection setting is a controlled mechanism test, not a real-world demonstration. The practical impact depends on whether real-world VLA datasets are noisy enough for RAPID to matter — currently undemonstrated.\"}\n  },\n  \"issues\": [\n    \"MISSING REFERENCE (HIGH PRIORITY): 'Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning' (arXiv 2602.01058, Feb 2026) proposes PEAR — an SFT-stage importance-sampling loss reweighting method that explicitly optimizes SFT for downstream RL outcomes. This paper directly studies how SFT technique (loss reweighting) affects downstream RL for LLMs, closely overlapping with RAPID's Contribution 3 ('SFT data quality → RL outcomes'). PEAR operates at token/block/sequence level with importance weights; RAPID operates at demonstration level with reducible loss priorities. Must be cited and differentiated. RAPID's claim of 'first to study SFT data quality → RL' is now further weakened — reframe as 'first to study noise-filtering prioritized sampling during VLA SFT for downstream RL.'\",\n    \"MISSING REFERENCE (HIGH PRIORITY): 'Why Does RL Generalize Better Than SFT? A Data-Centric Perspective on VLM Post-Training' (arXiv 2602.10815, Feb 2026) proposes DC-SFT — static difficulty-based data filtering during SFT that *surpasses RL* performance on OOD tasks. The core insight is identical to RAPID's: filtering hard/noisy samples from SFT training improves outcomes. DC-SFT uses correctness-based difficulty categorization (static, pre-training); RAPID uses reducible loss (online, during training). DC-SFT targets VLM reasoning; RAPID targets VLA manipulation. This paper strengthens RAPID's motivation (data filtering during SFT matters) but narrows its novelty (the principle is already demonstrated). Must be cited.\",\n    \"MISSING REFERENCE: QoQ — 'Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning' (arXiv 2603.09056, ICRA 2026). Static influence-function-based demonstration curation specifically for VLA/robot learning with billion-parameter models. Directly relevant to the static curation baseline landscape. The proposal cites CUPID but not QoQ, which is the more recent and VLA-specific influence function work.\",\n    \"NOVELTY CEILING: The proposal's three contributions are each partially anticipated: (1) EMA-based reducible loss — iw-SFT uses EMA for continuous control, ReLo uses Polyak-averaged target for reducible loss in RL, RHO-LOSS/Rho-1 use reducible loss in supervised learning; (2) noise-robust SFT — DC-SFT filters noisy/hard samples from SFT, RINSE uses smoothness metrics, Green-VLA's DataQA pipeline filters demonstrations; (3) SFT quality → RL cascade — PEAR, the ICML 2026 clipping paper, 'Tailored Primitive Initialization', and PRISM all study how SFT technique/quality affects downstream RL. RAPID's unique combination (online reducible-loss PER for VLA SFT + downstream RL testing) is valid but the contribution per component is incremental.\",\n    \"THEORETICAL TESTABILITY REMAINS WEAK: The finite-T bounds (Corollary 1.1) depend on constants C₁, C₂ tied to loss landscape properties (Lipschitz constant, gradient bound) that cannot be estimated a priori for VLA models. The proposal acknowledges this but the 'qualitative prediction' framing (linear vs quadratic growth) may not be testable in short VLA SFT runs (1-3 epochs, ~500 demos). If the bound gap doesn't manifest empirically, the theory section loses its anchor.\",\n    \"CoRL FEASIBILITY RISK: The RAPID+RL experiment (Contribution 3, the headline) requires integrating RAPID SFT checkpoints with SimpleVLA-RL's GRPO pipeline — a nontrivial engineering task on an untested code path. If this integration fails or produces inconclusive results by May 22, the CoRL submission falls back to Contributions 1-2 only, which are weaker without the RL cascade story.\"\n  ],\n  \"feedback\": \"The proposal has reached a high level of polish and landscape comprehensiveness after 6 rounds. The remaining path to 'pass' requires addressing two newly discovered missing references and honestly confronting the narrowing novelty:\\n\\n**1. Cite PEAR (2602.01058) and DC-SFT (2602.10815) — these are the most critical additions.** Both papers from Feb 2026 directly study how SFT data quality/filtering affects downstream outcomes. PEAR uses importance-sampling loss reweighting during SFT to prepare for RL (LLM domain). DC-SFT filters hard samples from SFT to surpass RL performance (VLM domain). Together with the ICML 2026 clipping paper (already cited), these form a clear trend: 'SFT quality for RL' is an active research direction, not a gap. Reframe RAPID as: 'We bring this principle to VLA manipulation with a noise-robust, online mechanism (reducible loss PER) rather than static correctness-based filtering (DC-SFT) or token-level reweighting (PEAR).' This is still a valid contribution — online adaptivity and noise robustness via reducible loss decomposition differentiate RAPID from all of these.\\n\\n**2. Cite QoQ (2603.09056, ICRA 2026).** This is a 2026 VLA-specific influence-function curation method. Add it alongside CUPID and DataMIL in the static curation baseline section.\\n\\n**3. Reframe Contribution 3 more narrowly.** Instead of 'first empirical test of whether SFT data quality affects downstream RL for VLAs,' state: 'first empirical test of whether *noise-filtering prioritized sampling* during VLA SFT improves downstream RL convergence — complementing concurrent findings in LLMs (PEAR, ICML 2026 clipping) and VLMs (DC-SFT) by demonstrating the principle extends to continuous action prediction with a different mechanism.'\\n\\n**4. Strengthen the DC-SFT comparison.** DC-SFT's static filtering already surpasses RL for VLM reasoning. RAPID's key advantages over DC-SFT: (a) online adaptation to the policy's evolving learning state (DC-SFT filters once before training), (b) noise robustness via reducible loss (DC-SFT uses correctness labels, unavailable for continuous action prediction), (c) applicability to VLA where binary correctness is undefined. This is actually a strong differentiator — make it explicit.\\n\\n**5. For the CoRL sprint, prioritize the RAPID+RL experiment.** If you can show even a modest improvement (e.g., 20-30% fewer RL steps to 90% success), it transforms the narrative. Without it, the paper is 'another data curation method' competing with QoQ, SCIZOR, CUPID, RINSE, DataMIL, and Green-VLA's DataQA — a crowded space.\\n\\n**Bottom line:** The proposal needs to acknowledge that 'SFT quality for RL' is now a recognized research direction (PEAR, DC-SFT, ICML 2026 clipping, Tailored Primitive Initialization), not an untouched gap. RAPID's contribution is the specific mechanism (online reducible-loss PER) and domain (VLA continuous control) — which is valid but must be positioned honestly against this landscape. With these 2-3 additional citations and reframing, the average score could reach 3.5, but reaching 4.0 requires compelling empirical results (especially the RAPID+RL finding) that don't yet exist.\",\n  \"reason\": \"Novelty narrowed by uncited PEAR (2602.01058) and DC-SFT (2602.10815) studying SFT filtering→RL for LLMs/VLMs; the 'SFT quality for RL' gap is no longer untouched. Core mechanism is sound but incremental — each component (reducible loss, EMA reference, PER sampling, SFT→RL cascade) exists in prior work. Impact hinges on untested RAPID+RL experiment.\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dadf66b6-d5ca-44c4-a3ff-5a3c8f30a64a",
+            "isSidechain": false,
+            "requestId": "req_011CazWvtCLg46KCs5hYkoow",
+            "type": "assistant",
+            "uuid": "dc8591b1-ed1a-4835-9ac5-3eb1b42d39bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K4WMpN22KeEyS2PUn4Fc1w",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 808,
+                "cache_read_input_tokens": 88509,
+                "output_tokens": 2598,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 808,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2598,
+                    "cache_read_input_tokens": 88509,
+                    "cache_creation_input_tokens": 808,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 808
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+                "leafUuid": "dc8591b1-ed1a-4835-9ac5-3eb1b42d39bb",
+                "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c"
+              }
+            }
+          ],
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review VLA data quality filtering for SFT→RL pipelines",
+                "sessionId": "c910c13d-bae5-469c-bad4-44d932f7b20c"
+              }
+            }
+          ],
+          "id": "event-000178"
+        }
+      ]
+    }
+  ]
+}

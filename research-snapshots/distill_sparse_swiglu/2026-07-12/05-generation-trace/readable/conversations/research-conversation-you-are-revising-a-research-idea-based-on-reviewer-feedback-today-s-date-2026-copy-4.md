@@ -1,0 +1,4705 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-14 (UTC).** ## Original idea { "tit
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 69
+- **Recorded user turns:** 1
+- **Tool calls:** 19
+- **Original source:** `logs/chats/exported-trajectories/account-2/b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3.jsonl`
+- **Structured JSON:** [`b83292325560899b111b.json`](../../sessions/b8/b83292325560899b111b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T16:05:25.045Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T16:05:25.045Z",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-14 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Contrastive Verification Retrieval for Reasoning Chain Faithfulness\",\n  \"core_problem\": \"Current retrieval-augmented reasoning systems only retrieve supportive evidence, creating an echo chamber where errors in intermediate reasoning steps propagate unchecked. This 'confirmation bias in retrieval' mirrors the well-documented confirmation bias in LLM reasoning itself (Failing to Falsify, arxiv 2604.02485), but no existing work addresses it through learned, step-level contrastive retrieval within an end-to-end RL framework. Recent GRPO-based methods have improved retrieval timing (Search-R1), retrieval ranking (CoSearch), step-level retrieval rewards (IG-Search), and generation faithfulness given retrieved evidence (CRAFT) — but all treat retrieval as a single-mode supportive action. The retrieval query itself remains a source of confirmation bias that none of these methods address.\",\n  \"opportunity\": \"The adaptive retrieval paradox (arxiv 2602.07213) shows retrieval often hurts reasoning because supportive retrieval reinforces wrong conclusions. FVA-RAG (arxiv 2512.07015) demonstrates that falsification retrieval via prompted 'kill queries' can surface decisive counter-evidence in ~25-29% of queries, improving TruthfulQA accuracy by 8-9% over Self-RAG — but operates only at the answer level with hand-designed prompts, not at intermediate reasoning steps. CRAFT (arxiv 2602.01348) achieves the strongest GRPO baselines on multi-hop QA (HotpotQA 66.61%, 2WikiMultihopQA 78.72%, MuSiQue 54.35% EM on Qwen2.5-7B) by optimizing generation faithfulness with dual reward mechanisms — but it optimizes how the model reasons given evidence, not what evidence the model retrieves. IG-Search (arxiv 2604.15148) introduces step-level information gain rewards for retrieval, improving search quality — but optimizes for informativeness, not contrastive verification. CoSearch (arxiv 2604.17555) jointly trains reasoning and retrieval ranking, showing +6.6% F1 over Search-R1 — but optimizes document ranking for relevance, not query formulation for contrastive intent. CounterRefine (arxiv 2603.16091) retrieves answer-conditioned counter-evidence for inference-time repair — but operates post-hoc on final answers, not during reasoning. The gap remains: a retrieval mechanism that learns via RL to formulate step-level contrastive verification queries — seeking potentially contradictory evidence at intermediate reasoning steps — before the model proceeds to the next hop.\",\n  \"landscape\": \"Search-R1 (COLM 2025, arxiv 2503.09516), ReSearch (NeurIPS 2025, arxiv 2503.19470), R3-RAG (Findings of EMNLP 2025), and ReaLM-Retrieve (SIGIR 2026, arxiv 2604.26649) all treat retrieval as a single-mode supportive action. CRAFT (arxiv 2602.01348) is the strongest GRPO baseline on our target benchmarks (HotpotQA 66.61%, 2WikiMultihopQA 78.72%, MuSiQue 54.35% EM with Qwen2.5-7B), training with dual deterministic+judge-based rewards for generation faithfulness — but it optimizes the response generation stage, not retrieval query formulation; CVR is complementary and could be combined with CRAFT's reward design. IG-Search (arxiv 2604.15148) introduces step-level information gain rewards measuring how retrieved documents improve answer confidence vs. random documents, achieving 0.476 avg EM on Qwen2.5-7B — it optimizes for informativeness at each step, while CVR optimizes for contrastive verification intent; these are complementary objectives. CoSearch (arxiv 2604.17555) jointly trains the reasoning agent and a generative document ranker via GRPO with semantic grouping, showing +26.8% oracle gap recovery — it optimizes document ranking quality, while CVR optimizes query formulation intent; again complementary. OThink-SRR1 (arxiv 2604.19766) adds a Refine stage via GRPO-IR to distill retrieved documents before reasoning, improving retrieval quality but not retrieval intent. VERITAS (arxiv 2510.13272) introduces faithfulness rewards during RL training but never changes what is retrieved. CTRL-RAG (arxiv 2603.04406) uses contrastive likelihood reward to improve faithfulness via RL, but 'contrastive' refers to likelihood gaps between prompted/unprompted responses, not retrieval of counter-evidence. FVA-RAG (arxiv 2512.07015) is the closest prior art on adversarial retrieval: it generates 'kill queries' to surface contradictory evidence, achieving 79.8-80.1% on TruthfulQA vs 71-74% for Self-RAG/CRAG — but operates at the answer level with prompted (not learned) query generation in a pipeline (not end-to-end RL) setting. CounterRefine (arxiv 2603.16091) retrieves answer-conditioned counter-evidence and applies restricted refinement (KEEP/REVISE decisions) for inference-time knowledge repair, improving GPT-5 Baseline-RAG by 5.8pp on SimpleQA — an inference-time pipeline approach complementary to CVR's training-time RL approach. CoRM-RAG (arxiv 2605.01302) addresses the 'Relevance-Robustness Gap' via counterfactual risk minimization, training an Evidence Critic to identify documents robust to cognitive biases — it optimizes document selection robustness, while CVR optimizes query generation for contrastive intent. Contradiction to Consensus (arxiv 2602.18693) retrieves evidence for both original and negated claims for dual-perspective claim verification, similar in spirit to CVR's contrastive retrieval but applied to whole-claim fact-checking rather than step-level multi-hop reasoning, and using prompting rather than RL-learned behavior. RAFTS (ACL 2024, arxiv 2406.09815) synthesizes contrastive supporting/refuting arguments for fact verification but uses a pipeline approach without RL optimization. PROClaim (arxiv 2603.28488) uses stance-conditioned retrieval for whole-claim verification via multi-agent debate. RAG-Star (NAACL 2025, arxiv 2412.12881) retrieves evidence to verify intermediate steps but only supportive evidence. SLATE (arxiv 2602.23440) achieves 7% improvement via step-level credit assignment but its retrieval queries remain standard. EvidenceRL (arxiv 2603.19532) enforces evidence consistency via GRPO in domain-specific settings. Failing to Falsify (arxiv 2604.02485) demonstrates LLMs exhibit confirmation bias, with counter-example prompting improving rule discovery from 42% to 56%, providing strong motivation for contrastive retrieval. The specific combination of (1) step-level granularity, (2) learned contrastive query generation, (3) end-to-end RL training, and (4) explicit exploration mechanisms for the contrastive action remains unaddressed by any existing or concurrent work.\",\n  \"approach\": \"We augment the Search-R1 framework with a dual-mode retrieval mechanism. At each intermediate reasoning step, the model can invoke either a standard &lt;search> token (supportive retrieval) or a new &lt;contrastive_search> token (verification retrieval). The contrastive token signals the model to generate a query designed to surface evidence challenging its current intermediate conclusion. We use Qwen2.5-7B as the primary base model for direct comparability with CRAFT, IG-Search, and CoSearch, with Qwen3-8B as a supplementary experiment to demonstrate generalization.\\n\\n**BM25-Compatible Contrastive Strategies.** Because BM25 is a bag-of-words model that cannot process negation semantics, queries like 'counterexample to X' would simply retrieve documents about X. We hypothesize that RL training will learn BM25-compatible contrastive strategies — querying alternative entities (e.g., 'Who else discovered penicillin' instead of 'Fleming did not discover penicillin'), querying alternative explanations (e.g., 'other causes of World War I' rather than 'World War I was not caused by assassination'), or retrieving background context that contextualizes claims differently. We provide a systematic analysis of learned contrastive query patterns in Section 5, categorizing emergent strategies and measuring their effectiveness. As an additional analysis, we compare BM25-only against a hybrid BM25+Contriever setting to quantify the impact of retriever expressiveness on contrastive query quality.\\n\\n**Forced Exploration for Contrastive Token.** Since &lt;search> already provides positive reward signal from the start, GRPO would likely converge to never using &lt;contrastive_search> — the gradient signal for an unused action is zero. Inspired by DAPO's clip-higher technique and XRPO's exploration bonuses, we implement forced exploration during the first 30% of training steps: 20% of &lt;search> tokens are randomly replaced with &lt;contrastive_search>, ensuring the model explores contrastive retrieval and receives gradient signal for learning when it is beneficial. After the exploration phase, the model freely chooses between modes based on learned value.\\n\\n**Training.** We train via GRPO with LoRA using a simplified two-component reward: (a) final answer correctness (EM match), and (b) an NLI-based contrastive consistency score. For the NLI component, when &lt;contrastive_search> is invoked, an off-the-shelf NLI model (DeBERTa-v3-large fine-tuned on MNLI, ~304M params) checks during reward computation whether the model's post-retrieval reasoning is logically consistent with the retrieved counter-evidence — rewarding appropriate revision when contradictions are valid, and appropriate maintenance when counter-evidence is irrelevant. The NLI model runs only during reward computation, not during rollout generation, adding minimal overhead.\\n\\n**Evaluation and Faithfulness Metric.** We evaluate on five benchmarks spanning multi-hop reasoning (HotpotQA, 2WikiMultihopQA, MuSiQue), commonsense multi-step reasoning (StrategyQA), and fact verification (FEVER), measuring both task accuracy (EM/F1) and reasoning chain faithfulness. For faithfulness evaluation: we extract intermediate claims by splitting CoT reasoning at sentence boundaries. For each claim, an NLI model computes entailment probability against the union of retrieved passages cited up to that step. A claim is 'supported' if P(entailment) > 0.5. To avoid evaluation circularity, we use a separate DeBERTa-v3-base checkpoint for evaluation, distinct from the DeBERTa-v3-large used in the training reward. We compare against Search-R1 (direct baseline), CRAFT (strongest GRPO baseline on these benchmarks), IG-Search (step-level reward baseline), and CoSearch (joint retrieval optimization baseline).\\n\\nImplementation builds directly on the open-source Search-R1 codebase (GitHub/veRL) with its existing BM25+Wikipedia retrieval server, requiring: (1) adding the &lt;contrastive_search> special token to the action space with forced exploration scheduling, (2) integrating NLI reward computation into the GRPO reward function, (3) LoRA adapter configuration, and (4) analysis pipeline for learned contrastive query patterns.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200 H100-hours budget: baseline Search-R1 reproduction on Qwen2.5-7B (~50 H100-hours, 4 GPUs × 12h), main CVR training (~80 H100-hours, 4 GPUs × 20h), 1 key ablation — contrastive retrieval with correctness-only reward, no NLI component (~45 H100-hours), evaluation on all 5 benchmarks (~25 H100-hours). Effective compute ~140 H100-hours for training/eval, with ~60 H100-hours overhead for debugging, hyperparameter calibration, and analysis.\",\n      \"gpu_utilization\": \"Effective utilization ~70% of budget; overhead accounts for debugging, NLI reward coefficient calibration (1-2 short runs of ~5 H100-hours each), and analysis gaps between sequential training runs.\",\n      \"timeline\": \"16 days: Days 1-4 implementation (fork Search-R1, add contrastive token with forced exploration, NLI reward, LoRA config, dataset prep for StrategyQA/FEVER). Days 5-6 baseline training. Days 7-10 main CVR training. Day 11 ablation run. Days 12-13 evaluation + contrastive query pattern analysis. Days 14-16 paper writing (introduction, related work, and method sections pre-written in parallel during Days 1-10).\",\n      \"team\": \"1-2 researchers working intensively\",\n      \"estimated_gpu_cost\": \"$900-$1,200 (at ~$4-5/hr H100 spot pricing for 4-GPU cluster)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~200 H100-hours (same budget; agent handles implementation and experiment orchestration more efficiently)\",\n      \"gpu_utilization\": \"Effective utilization ~85%; agent queues next experiment immediately upon completion, reducing inter-run gaps\",\n      \"timeline\": \"12-14 days\",\n      \"team\": \"1 researcher, ~2hr/day reviewing agent proposals and approving experiment launches\",\n      \"claude_api_cost\": \"$50-$100 (~500-1000 Opus turns for code implementation, experiment orchestration, and analysis)\",\n      \"estimated_gpu_cost\": \"$900-$1,200\",\n      \"risk_note\": \"NLI reward coefficient α may need 1-2 short calibration runs (~5 H100-hours each) if initial setting causes over-retrieval or under-retrieval of contrastive queries; budget includes margin\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~200 H100-hours (hard budget cap; agent optimizes experiment selection within fixed compute envelope)\",\n      \"gpu_utilization\": \"Effective utilization >95%; agent pipelines experiments 24/7\",\n      \"timeline\": \"10-12 days with 4 H100s continuously available\",\n      \"team\": \"0 researchers after initial 2-3 hour setup (repo fork, config, objective specification)\",\n      \"claude_api_cost\": \"$100-$200 (~1000-2000 Opus turns for full cycle)\",\n      \"estimated_gpu_cost\": \"$900-$1,200\",\n      \"speed_bottleneck\": \"Wall-clock training time per run (~12-20h on 4 H100s); budget allows 2-3 full training runs, so agent must make smart design choices upfront\",\n      \"risk_note\": \"With only 2-3 runs possible within budget, autonomous reward tuning is limited; agent should default to the simple NLI reward rather than exploring complex alternatives\"\n    }\n  },\n  \"target_venues\": [\n    \"ARR June 2026 cycle → EMNLP 2026 commitment (primary target; 16-day timeline allows thorough experimentation and writing)\",\n    \"ARR May 25, 2026 (stretch goal if implementation proceeds faster than expected; 11 days from today)\",\n    \"AAAI 2027 (submission ~August 2026; backup if additional experiments needed, e.g., Qwen3-8B supplementary results or dense retriever ablation)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning (COLM 2025, arxiv 2503.09516)\",\n    \"ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning (NeurIPS 2025, arxiv 2503.19470)\",\n    \"R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning (Findings of EMNLP 2025)\",\n    \"When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models [ReaLM-Retrieve] (SIGIR 2026, arxiv 2604.26649)\",\n    \"CRAFT: Calibrated Reasoning with Answer-Faithful Traces via Reinforcement Learning for Multi-Hop Question Answering (arXiv 2026, arxiv 2602.01348)\",\n    \"IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning (arXiv 2026, arxiv 2604.15148)\",\n    \"CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search (arXiv 2026, arxiv 2604.17555)\",\n    \"CounterRefine: Answer-Conditioned Counterevidence Retrieval for Inference-Time Knowledge Repair in Factual Question Answering (ACL 2026 Workshop, arxiv 2603.16091)\",\n    \"CoRM-RAG: Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation (arXiv 2026, arxiv 2605.01302)\",\n    \"Contradiction to Consensus: Dual Perspective, Multi Source Retrieval Based Claim Verification (arXiv 2026, arxiv 2602.18693)\",\n    \"FVA-RAG: Falsification-Verification Alignment for Mitigating Sycophantic Hallucinations (arXiv 2024, arxiv 2512.07015)\",\n    \"Retrieval Augmented Fact Verification by Synthesizing Contrastive Arguments [RAFTS] (ACL 2024, arxiv 2406.09815)\",\n    \"CTRL-RAG: Contrastive Likelihood Reward Based Reinforcement Learning for Context-Faithful RAG Models (arXiv 2026, arxiv 2603.04406)\",\n    \"OThink-SRR1: Search, Refine and Reasoning with Reinforced Learning for LLMs (arXiv 2026, arxiv 2604.19766)\",\n    \"Beyond Correctness: Rewarding Faithful Reasoning in Retrieval-Augmented Generation [VERITAS] (arXiv 2025, arxiv 2510.13272)\",\n    \"Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing [SAVeR] (arXiv 2026, arxiv 2604.08401)\",\n    \"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models (arXiv 2026, arxiv 2603.19532)\",\n    \"Truncated Step-Level Sampling with Process Rewards for Retrieval-Augmented Reasoning [SLATE] (arXiv 2026, arxiv 2602.23440)\",\n    \"Adaptive Retrieval helps Reasoning in LLMs -- but mostly if it's not used (arXiv 2026, arxiv 2602.07213)\",\n    \"PROClaim: Courtroom-Style Multi-Agent Debate with Progressive RAG and Role-Switching for Controversial Claim Verification (arXiv 2026, arxiv 2603.28488)\",\n    \"RAG-Star: Enhancing Deliberative Reasoning with Retrieval Augmented Verification and Refinement (NAACL 2025, arxiv 2412.12881)\",\n    \"Failing to Falsify: Evaluating and Mitigating Confirmation Bias in Language Models (arXiv 2026, arxiv 2604.02485)\",\n    \"RVR: Retrieve-Verify-Retrieve for Comprehensive Question Answering (arXiv 2026, arxiv 2602.18425)\",\n    \"XRPO: Pushing the Limits of GRPO with Targeted Exploration and Exploitation (arXiv 2025, arxiv 2510.06672)\"\n  ],\n  \"description\": \"Contrastive Verification Retrieval (CVR) addresses the confirmation bias in retrieval-augmented reasoning: current systems only retrieve supportive evidence, letting intermediate reasoning errors propagate unchecked through the chain. We augment the Search-R1 framework with a dual-mode retrieval mechanism on Qwen2.5-7B (for direct comparability with CRAFT, IG-Search, CoSearch), where the model learns via GRPO+LoRA to invoke either standard supportive queries (&lt;search>) or contrastive verification queries (&lt;contrastive_search>) that surface potentially contradictory evidence for intermediate chain-of-thought conclusions. Unlike FVA-RAG (arxiv 2512.07015) and CounterRefine (arxiv 2603.16091), which use prompted kill queries or answer-conditioned counter-evidence at the answer level in pipeline settings, CVR learns step-level contrastive query generation end-to-end via RL. Unlike CRAFT (arxiv 2602.01348), which optimizes generation faithfulness given retrieved evidence (achieving HotpotQA 66.61%, 2Wiki 78.72%, MuSiQue 54.35% EM), CVR optimizes retrieval query intent — these are complementary and could be combined. Unlike IG-Search (arxiv 2604.15148), which optimizes step-level information gain for informativeness, CVR optimizes for contrastive verification — again complementary. Unlike CoSearch (arxiv 2604.17555), which jointly optimizes document ranking, CVR optimizes query formulation intent. We address BM25's inability to process negation by hypothesizing that RL will learn BM25-compatible contrastive strategies (querying alternative entities/explanations rather than negations), and provide systematic analysis of emergent query patterns as an empirical contribution. To prevent GRPO from ignoring the contrastive action, we implement forced exploration: during the first 30% of training, 20% of &lt;search> tokens are randomly replaced with &lt;contrastive_search>. A simplified two-component reward combines final answer correctness with an NLI-based contrastive consistency score (DeBERTa-v3-large/MNLI for training, separate DeBERTa-v3-base for evaluation to avoid circularity). Faithfulness is measured by extracting intermediate claims at sentence boundaries and computing NLI entailment against cited passages (supported if P(entailment) > 0.5). Evaluated on HotpotQA, 2WikiMultihopQA, MuSiQue, StrategyQA, and FEVER. Designed for completion within 200 H100-hours and 16 days. We target EMNLP 2026 via ARR June 2026.\",\n  \"project_name\": \"contrastive_verify_rag\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 4)\nIssues: [\"CRITICAL: ARR June 2026 cycle does NOT exist. ARR switched to 10-week cycles in May 2025. After the May 25, 2026 deadline (→ EMNLP 2026), the next cycle is August 3, 2026 (→ EACL 2027). The generator's 'primary target' is fictitious. The ONLY remaining path to EMNLP 2026 is ARR May 25, 2026 — exactly 11 days from today.\", \"CRITICAL: Timeline violates user's hard constraint. User specified ≤11 days; generator proposes 16 days and labels ARR May 25 as a 'stretch goal.' Since ARR May 25 is the ONLY EMNLP 2026 path, the proposal must present a credible 11-day plan or honestly target AAAI 2027.\", \"MINOR MISSING WORK: HCQR — Hypothesis-Conditioned Query Rewriting (arxiv 2603.19008, March 2026) generates three targeted queries per question: supportive, distinguishing, and verifying. Training-free and MCQ-focused, but philosophically related to dual-mode retrieval. Worth citing to show awareness of the broader 'non-supportive retrieval' landscape.\", \"IG-Search 7B score unverified: The generator claims 0.476 avg EM on Qwen2.5-7B. The abstract only reports 0.430 on 3B with '+2.1 points at 7B scale.' 0.476 is plausible but cannot be confirmed from the abstract — cite cautiously or fetch the full results table.\", \"Impact risk: If BM25-compatible 'contrastive' queries end up being functionally equivalent to 'broader/more diverse' queries (querying alternative entities is not clearly contrastive — it's just wider coverage), the novelty narrative weakens. The paper needs to clearly demonstrate that contrastive queries retrieve qualitatively different evidence than broader supportive queries, not just more diverse evidence.\"]\nFeedback: The core idea has matured significantly — all Round 3 critical issues are resolved, the landscape is now comprehensive, and the technical design is well-specified. Two focused fixes remain:\n\n1. **Fix the venue target.** ARR June 2026 does not exist. Present an honest 11-day compressed plan for ARR May 25: Days 1-2 implementation (fork Search-R1, add contrastive token + NLI reward + forced exploration), Days 3-4 baseline reproduction, Days 5-7 CVR training (LoRA, ~80 H100-hours), Day 8 evaluation on all 5 benchmarks, Days 9-11 paper writing (pre-write introduction, related work, and method sections during Days 1-7). Skip the ablation for May 25 and add it for a camera-ready revision. If 11 days is truly infeasible, target AAAI 2027 honestly and explain why.\n\n2. **Add HCQR (arxiv 2603.19008) to landscape.** It generates hypothesis-conditioned queries including distinguishing/verifying queries. Differentiate: HCQR is training-free and question-level for MCQ tasks; CVR is RL-learned and step-level for open-domain multi-hop reasoning.\n\n3. **Strengthen the impact argument.** The 'complementary' framing is honest but modest. Add an experiment or analysis showing that CVR's contrastive queries retrieve qualitatively different evidence (not just more diverse), e.g., by measuring the contradiction rate between contrastive-retrieved passages and the model's intermediate claims. This turns the BM25 risk into an empirical finding either way.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.5 到 3.5，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T16:05:25.049Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T16:05:25.049Z",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+## Round 1
+
+67 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T16:05:25.088Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-14 (UTC).**
+
+## Original idea
+{
+  "title": "Contrastive Verification Retrieval for Reasoning Chain Faithfulness",
+  "core_problem": "Current retrieval-augmented reasoning systems only retrieve supportive evidence, creating an echo chamber where errors in intermediate reasoning steps propagate unchecked. This 'confirmation bias in retrieval' mirrors the well-documented confirmation bias in LLM reasoning itself (Failing to Falsify, arxiv 2604.02485), but no existing work addresses it through learned, step-level contrastive retrieval within an end-to-end RL framework. Recent GRPO-based methods have improved retrieval timing (Search-R1), retrieval ranking (CoSearch), step-level retrieval rewards (IG-Search), and generation faithfulness given retrieved evidence (CRAFT) — but all treat retrieval as a single-mode supportive action. The retrieval query itself remains a source of confirmation bias that none of these methods address.",
+  "opportunity": "The adaptive retrieval paradox (arxiv 2602.07213) shows retrieval often hurts reasoning because supportive retrieval reinforces wrong conclusions. FVA-RAG (arxiv 2512.07015) demonstrates that falsification retrieval via prompted 'kill queries' can surface decisive counter-evidence in ~25-29% of queries, improving TruthfulQA accuracy by 8-9% over Self-RAG — but operates only at the answer level with hand-designed prompts, not at intermediate reasoning steps. CRAFT (arxiv 2602.01348) achieves the strongest GRPO baselines on multi-hop QA (HotpotQA 66.61%, 2WikiMultihopQA 78.72%, MuSiQue 54.35% EM on Qwen2.5-7B) by optimizing generation faithfulness with dual reward mechanisms — but it optimizes how the model reasons given evidence, not what evidence the model retrieves. IG-Search (arxiv 2604.15148) introduces step-level information gain rewards for retrieval, improving search quality — but optimizes for informativeness, not contrastive verification. CoSearch (arxiv 2604.17555) jointly trains reasoning and retrieval ranking, showing +6.6% F1 over Search-R1 — but optimizes document ranking for relevance, not query formulation for contrastive intent. CounterRefine (arxiv 2603.16091) retrieves answer-conditioned counter-evidence for inference-time repair — but operates post-hoc on final answers, not during reasoning. The gap remains: a retrieval mechanism that learns via RL to formulate step-level contrastive verification queries — seeking potentially contradictory evidence at intermediate reasoning steps — before the model proceeds to the next hop.",
+  "landscape": "Search-R1 (COLM 2025, arxiv 2503.09516), ReSearch (NeurIPS 2025, arxiv 2503.19470), R3-RAG (Findings of EMNLP 2025), and ReaLM-Retrieve (SIGIR 2026, arxiv 2604.26649) all treat retrieval as a single-mode supportive action. CRAFT (arxiv 2602.01348) is the strongest GRPO baseline on our target benchmarks (HotpotQA 66.61%, 2WikiMultihopQA 78.72%, MuSiQue 54.35% EM with Qwen2.5-7B), training with dual deterministic+judge-based rewards for generation faithfulness — but it optimizes the response generation stage, not retrieval query formulation; CVR is complementary and could be combined with CRAFT's reward design. IG-Search (arxiv 2604.15148) introduces step-level information gain rewards measuring how retrieved documents improve answer confidence vs. random documents, achieving 0.476 avg EM on Qwen2.5-7B — it optimizes for informativeness at each step, while CVR optimizes for contrastive verification intent; these are complementary objectives. CoSearch (arxiv 2604.17555) jointly trains the reasoning agent and a generative document ranker via GRPO with semantic grouping, showing +26.8% oracle gap recovery — it optimizes document ranking quality, while CVR optimizes query formulation intent; again complementary. OThink-SRR1 (arxiv 2604.19766) adds a Refine stage via GRPO-IR to distill retrieved documents before reasoning, improving retrieval quality but not retrieval intent. VERITAS (arxiv 2510.13272) introduces faithfulness rewards during RL training but never changes what is retrieved. CTRL-RAG (arxiv 2603.04406) uses contrastive likelihood reward to improve faithfulness via RL, but 'contrastive' refers to likelihood gaps between prompted/unprompted responses, not retrieval of counter-evidence. FVA-RAG (arxiv 2512.07015) is the closest prior art on adversarial retrieval: it generates 'kill queries' to surface contradictory evidence, achieving 79.8-80.1% on TruthfulQA vs 71-74% for Self-RAG/CRAG — but operates at the answer level with prompted (not learned) query generation in a pipeline (not end-to-end RL) setting. CounterRefine (arxiv 2603.16091) retrieves answer-conditioned counter-evidence and applies restricted refinement (KEEP/REVISE decisions) for inference-time knowledge repair, improving GPT-5 Baseline-RAG by 5.8pp on SimpleQA — an inference-time pipeline approach complementary to CVR's training-time RL approach. CoRM-RAG (arxiv 2605.01302) addresses the 'Relevance-Robustness Gap' via counterfactual risk minimization, training an Evidence Critic to identify documents robust to cognitive biases — it optimizes document selection robustness, while CVR optimizes query generation for contrastive intent. Contradiction to Consensus (arxiv 2602.18693) retrieves evidence for both original and negated claims for dual-perspective claim verification, similar in spirit to CVR's contrastive retrieval but applied to whole-claim fact-checking rather than step-level multi-hop reasoning, and using prompting rather than RL-learned behavior. RAFTS (ACL 2024, arxiv 2406.09815) synthesizes contrastive supporting/refuting arguments for fact verification but uses a pipeline approach without RL optimization. PROClaim (arxiv 2603.28488) uses stance-conditioned retrieval for whole-claim verification via multi-agent debate. RAG-Star (NAACL 2025, arxiv 2412.12881) retrieves evidence to verify intermediate steps but only supportive evidence. SLATE (arxiv 2602.23440) achieves 7% improvement via step-level credit assignment but its retrieval queries remain standard. EvidenceRL (arxiv 2603.19532) enforces evidence consistency via GRPO in domain-specific settings. Failing to Falsify (arxiv 2604.02485) demonstrates LLMs exhibit confirmation bias, with counter-example prompting improving rule discovery from 42% to 56%, providing strong motivation for contrastive retrieval. The specific combination of (1) step-level granularity, (2) learned contrastive query generation, (3) end-to-end RL training, and (4) explicit exploration mechanisms for the contrastive action remains unaddressed by any existing or concurrent work.",
+  "approach": "We augment the Search-R1 framework with a dual-mode retrieval mechanism. At each intermediate reasoning step, the model can invoke either a standard &lt;search> token (supportive retrieval) or a new &lt;contrastive_search> token (verification retrieval). The contrastive token signals the model to generate a query designed to surface evidence challenging its current intermediate conclusion. We use Qwen2.5-7B as the primary base model for direct comparability with CRAFT, IG-Search, and CoSearch, with Qwen3-8B as a supplementary experiment to demonstrate generalization.\n\n**BM25-Compatible Contrastive Strategies.** Because BM25 is a bag-of-words model that cannot process negation semantics, queries like 'counterexample to X' would simply retrieve documents about X. We hypothesize that RL training will learn BM25-compatible contrastive strategies — querying alternative entities (e.g., 'Who else discovered penicillin' instead of 'Fleming did not discover penicillin'), querying alternative explanations (e.g., 'other causes of World War I' rather than 'World War I was not caused by assassination'), or retrieving background context that contextualizes claims differently. We provide a systematic analysis of learned contrastive query patterns in Section 5, categorizing emergent strategies and measuring their effectiveness. As an additional analysis, we compare BM25-only against a hybrid BM25+Contriever setting to quantify the impact of retriever expressiveness on contrastive query quality.\n\n**Forced Exploration for Contrastive Token.** Since &lt;search> already provides positive reward signal from the start, GRPO would likely converge to never using &lt;contrastive_search> — the gradient signal for an unused action is zero. Inspired by DAPO's clip-higher technique and XRPO's exploration bonuses, we implement forced exploration during the first 30% of training steps: 20% of &lt;search> tokens are randomly replaced with &lt;contrastive_search>, ensuring the model explores contrastive retrieval and receives gradient signal for learning when it is beneficial. After the exploration phase, the model freely chooses between modes based on learned value.\n\n**Training.** We train via GRPO with LoRA using a simplified two-component reward: (a) final answer correctness (EM match), and (b) an NLI-based contrastive consistency score. For the NLI component, when &lt;contrastive_search> is invoked, an off-the-shelf NLI model (DeBERTa-v3-large fine-tuned on MNLI, ~304M params) checks during reward computation whether the model's post-retrieval reasoning is logically consistent with the retrieved counter-evidence — rewarding appropriate revision when contradictions are valid, and appropriate maintenance when counter-evidence is irrelevant. The NLI model runs only during reward computation, not during rollout generation, adding minimal overhead.\n\n**Evaluation and Faithfulness Metric.** We evaluate on five benchmarks spanning multi-hop reasoning (HotpotQA, 2WikiMultihopQA, MuSiQue), commonsense multi-step reasoning (StrategyQA), and fact verification (FEVER), measuring both task accuracy (EM/F1) and reasoning chain faithfulness. For faithfulness evaluation: we extract intermediate claims by splitting CoT reasoning at sentence boundaries. For each claim, an NLI model computes entailment probability against the union of retrieved passages cited up to that step. A claim is 'supported' if P(entailment) > 0.5. To avoid evaluation circularity, we use a separate DeBERTa-v3-base checkpoint for evaluation, distinct from the DeBERTa-v3-large used in the training reward. We compare against Search-R1 (direct baseline), CRAFT (strongest GRPO baseline on these benchmarks), IG-Search (step-level reward baseline), and CoSearch (joint retrieval optimization baseline).\n\nImplementation builds directly on the open-source Search-R1 codebase (GitHub/veRL) with its existing BM25+Wikipedia retrieval server, requiring: (1) adding the &lt;contrastive_search> special token to the action space with forced exploration scheduling, (2) integrating NLI reward computation into the GRPO reward function, (3) LoRA adapter configuration, and (4) analysis pipeline for learned contrastive query patterns.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200 H100-hours budget: baseline Search-R1 reproduction on Qwen2.5-7B (~50 H100-hours, 4 GPUs × 12h), main CVR training (~80 H100-hours, 4 GPUs × 20h), 1 key ablation — contrastive retrieval with correctness-only reward, no NLI component (~45 H100-hours), evaluation on all 5 benchmarks (~25 H100-hours). Effective compute ~140 H100-hours for training/eval, with ~60 H100-hours overhead for debugging, hyperparameter calibration, and analysis.",
+      "gpu_utilization": "Effective utilization ~70% of budget; overhead accounts for debugging, NLI reward coefficient calibration (1-2 short runs of ~5 H100-hours each), and analysis gaps between sequential training runs.",
+      "timeline": "16 days: Days 1-4 implementation (fork Search-R1, add contrastive token with forced exploration, NLI reward, LoRA config, dataset prep for StrategyQA/FEVER). Days 5-6 baseline training. Days 7-10 main CVR training. Day 11 ablation run. Days 12-13 evaluation + contrastive query pattern analysis. Days 14-16 paper writing (introduction, related work, and method sections pre-written in parallel during Days 1-10).",
+      "team": "1-2 researchers working intensively",
+      "estimated_gpu_cost": "$900-$1,200 (at ~$4-5/hr H100 spot pricing for 4-GPU cluster)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~200 H100-hours (same budget; agent handles implementation and experiment orchestration more efficiently)",
+      "gpu_utilization": "Effective utilization ~85%; agent queues next experiment immediately upon completion, reducing inter-run gaps",
+      "timeline": "12-14 days",
+      "team": "1 researcher, ~2hr/day reviewing agent proposals and approving experiment launches",
+      "claude_api_cost": "$50-$100 (~500-1000 Opus turns for code implementation, experiment orchestration, and analysis)",
+      "estimated_gpu_cost": "$900-$1,200",
+      "risk_note": "NLI reward coefficient α may need 1-2 short calibration runs (~5 H100-hours each) if initial setting causes over-retrieval or under-retrieval of contrastive queries; budget includes margin"
+    },
+    "auto_research": {
+      "gpu_hours": "~200 H100-hours (hard budget cap; agent optimizes experiment selection within fixed compute envelope)",
+      "gpu_utilization": "Effective utilization >95%; agent pipelines experiments 24/7",
+      "timeline": "10-12 days with 4 H100s continuously available",
+      "team": "0 researchers after initial 2-3 hour setup (repo fork, config, objective specification)",
+      "claude_api_cost": "$100-$200 (~1000-2000 Opus turns for full cycle)",
+      "estimated_gpu_cost": "$900-$1,200",
+      "speed_bottleneck": "Wall-clock training time per run (~12-20h on 4 H100s); budget allows 2-3 full training runs, so agent must make smart design choices upfront",
+      "risk_note": "With only 2-3 runs possible within budget, autonomous reward tuning is limited; agent should default to the simple NLI reward rather than exploring complex alternatives"
+    }
+  },
+  "target_venues": [
+    "ARR June 2026 cycle → EMNLP 2026 commitment (primary target; 16-day timeline allows thorough experimentation and writing)",
+    "ARR May 25, 2026 (stretch goal if implementation proceeds faster than expected; 11 days from today)",
+    "AAAI 2027 (submission ~August 2026; backup if additional experiments needed, e.g., Qwen3-8B supplementary results or dense retriever ablation)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning (COLM 2025, arxiv 2503.09516)",
+    "ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning (NeurIPS 2025, arxiv 2503.19470)",
+    "R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning (Findings of EMNLP 2025)",
+    "When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models [ReaLM-Retrieve] (SIGIR 2026, arxiv 2604.26649)",
+    "CRAFT: Calibrated Reasoning with Answer-Faithful Traces via Reinforcement Learning for Multi-Hop Question Answering (arXiv 2026, arxiv 2602.01348)",
+    "IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning (arXiv 2026, arxiv 2604.15148)",
+    "CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search (arXiv 2026, arxiv 2604.17555)",
+    "CounterRefine: Answer-Conditioned Counterevidence Retrieval for Inference-Time Knowledge Repair in Factual Question Answering (ACL 2026 Workshop, arxiv 2603.16091)",
+    "CoRM-RAG: Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation (arXiv 2026, arxiv 2605.01302)",
+    "Contradiction to Consensus: Dual Perspective, Multi Source Retrieval Based Claim Verification (arXiv 2026, arxiv 2602.18693)",
+    "FVA-RAG: Falsification-Verification Alignment for Mitigating Sycophantic Hallucinations (arXiv 2024, arxiv 2512.07015)",
+    "Retrieval Augmented Fact Verification by Synthesizing Contrastive Arguments [RAFTS] (ACL 2024, arxiv 2406.09815)",
+    "CTRL-RAG: Contrastive Likelihood Reward Based Reinforcement Learning for Context-Faithful RAG Models (arXiv 2026, arxiv 2603.04406)",
+    "OThink-SRR1: Search, Refine and Reasoning with Reinforced Learning for LLMs (arXiv 2026, arxiv 2604.19766)",
+    "Beyond Correctness: Rewarding Faithful Reasoning in Retrieval-Augmented Generation [VERITAS] (arXiv 2025, arxiv 2510.13272)",
+    "Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing [SAVeR] (arXiv 2026, arxiv 2604.08401)",
+    "EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models (arXiv 2026, arxiv 2603.19532)",
+    "Truncated Step-Level Sampling with Process Rewards for Retrieval-Augmented Reasoning [SLATE] (arXiv 2026, arxiv 2602.23440)",
+    "Adaptive Retrieval helps Reasoning in LLMs -- but mostly if it's not used (arXiv 2026, arxiv 2602.07213)",
+    "PROClaim: Courtroom-Style Multi-Agent Debate with Progressive RAG and Role-Switching for Controversial Claim Verification (arXiv 2026, arxiv 2603.28488)",
+    "RAG-Star: Enhancing Deliberative Reasoning with Retrieval Augmented Verification and Refinement (NAACL 2025, arxiv 2412.12881)",
+    "Failing to Falsify: Evaluating and Mitigating Confirmation Bias in Language Models (arXiv 2026, arxiv 2604.02485)",
+    "RVR: Retrieve-Verify-Retrieve for Comprehensive Question Answering (arXiv 2026, arxiv 2602.18425)",
+    "XRPO: Pushing the Limits of GRPO with Targeted Exploration and Exploitation (arXiv 2025, arxiv 2510.06672)"
+  ],
+  "description": "Contrastive Verification Retrieval (CVR) addresses the confirmation bias in retrieval-augmented reasoning: current systems only retrieve supportive evidence, letting intermediate reasoning errors propagate unchecked through the chain. We augment the Search-R1 framework with a dual-mode retrieval mechanism on Qwen2.5-7B (for direct comparability with CRAFT, IG-Search, CoSearch), where the model learns via GRPO+LoRA to invoke either standard supportive queries (&lt;search>) or contrastive verification queries (&lt;contrastive_search>) that surface potentially contradictory evidence for intermediate chain-of-thought conclusions. Unlike FVA-RAG (arxiv 2512.07015) and CounterRefine (arxiv 2603.16091), which use prompted kill queries or answer-conditioned counter-evidence at the answer level in pipeline settings, CVR learns step-level contrastive query generation end-to-end via RL. Unlike CRAFT (arxiv 2602.01348), which optimizes generation faithfulness given retrieved evidence (achieving HotpotQA 66.61%, 2Wiki 78.72%, MuSiQue 54.35% EM), CVR optimizes retrieval query intent — these are complementary and could be combined. Unlike IG-Search (arxiv 2604.15148), which optimizes step-level information gain for informativeness, CVR optimizes for contrastive verification — again complementary. Unlike CoSearch (arxiv 2604.17555), which jointly optimizes document ranking, CVR optimizes query formulation intent. We address BM25's inability to process negation by hypothesizing that RL will learn BM25-compatible contrastive strategies (querying alternative entities/explanations rather than negations), and provide systematic analysis of emergent query patterns as an empirical contribution. To prevent GRPO from ignoring the contrastive action, we implement forced exploration: during the first 30% of training, 20% of &lt;search> tokens are randomly replaced with &lt;contrastive_search>. A simplified two-component reward combines final answer correctness with an NLI-based contrastive consistency score (DeBERTa-v3-large/MNLI for training, separate DeBERTa-v3-base for evaluation to avoid circularity). Faithfulness is measured by extracting intermediate claims at sentence boundaries and computing NLI entailment against cited passages (supported if P(entailment) > 0.5). Evaluated on HotpotQA, 2WikiMultihopQA, MuSiQue, StrategyQA, and FEVER. Designed for completion within 200 H100-hours and 16 days. We target EMNLP 2026 via ARR June 2026.",
+  "project_name": "contrastive_verify_rag",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 4)
+Issues: ["CRITICAL: ARR June 2026 cycle does NOT exist. ARR switched to 10-week cycles in May 2025. After the May 25, 2026 deadline (→ EMNLP 2026), the next cycle is August 3, 2026 (→ EACL 2027). The generator's 'primary target' is fictitious. The ONLY remaining path to EMNLP 2026 is ARR May 25, 2026 — exactly 11 days from today.", "CRITICAL: Timeline violates user's hard constraint. User specified ≤11 days; generator proposes 16 days and labels ARR May 25 as a 'stretch goal.' Since ARR May 25 is the ONLY EMNLP 2026 path, the proposal must present a credible 11-day plan or honestly target AAAI 2027.", "MINOR MISSING WORK: HCQR — Hypothesis-Conditioned Query Rewriting (arxiv 2603.19008, March 2026) generates three targeted queries per question: supportive, distinguishing, and verifying. Training-free and MCQ-focused, but philosophically related to dual-mode retrieval. Worth citing to show awareness of the broader 'non-supportive retrieval' landscape.", "IG-Search 7B score unverified: The generator claims 0.476 avg EM on Qwen2.5-7B. The abstract only reports 0.430 on 3B with '+2.1 points at 7B scale.' 0.476 is plausible but cannot be confirmed from the abstract — cite cautiously or fetch the full results table.", "Impact risk: If BM25-compatible 'contrastive' queries end up being functionally equivalent to 'broader/more diverse' queries (querying alternative entities is not clearly contrastive — it's just wider coverage), the novelty narrative weakens. The paper needs to clearly demonstrate that contrastive queries retrieve qualitatively different evidence than broader supportive queries, not just more diverse evidence."]
+Feedback: The core idea has matured significantly — all Round 3 critical issues are resolved, the landscape is now comprehensive, and the technical design is well-specified. Two focused fixes remain:
+
+1. **Fix the venue target.** ARR June 2026 does not exist. Present an honest 11-day compressed plan for ARR May 25: Days 1-2 implementation (fork Search-R1, add contrastive token + NLI reward + forced exploration), Days 3-4 baseline reproduction, Days 5-7 CVR training (LoRA, ~80 H100-hours), Day 8 evaluation on all 5 benchmarks, Days 9-11 paper writing (pre-write introduction, related work, and method sections during Days 1-7). Skip the ablation for May 25 and add it for a camera-ready revision. If 11 days is truly infeasible, target AAAI 2027 honestly and explain why.
+
+2. **Add HCQR (arxiv 2603.19008) to landscape.** It generates hypothesis-conditioned queries including distinguishing/verifying queries. Differentiate: HCQR is training-free and question-level for MCQ tasks; CVR is RL-learned and step-level for open-domain multi-hop reasoning.
+
+3. **Strengthen the impact argument.** The 'complementary' framing is honest but modest. Add an experiment or analysis showing that CVR's contrastive queries retrieve qualitatively different evidence (not just more diverse), e.g., by measuring the contradiction rate between contrastive-retrieved passages and the model's intermediate claims. This turns the BM25 risk into an empirical finding either way.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.5 到 3.5，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "0d63d502-99a7-4c0c-b1b1-d81e407d4896",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T16:05:25.085Z_
+
+```json
+{
+  "parentUuid": "0d63d502-99a7-4c0c-b1b1-d81e407d4896",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "3f19a502-cf67-4285-87e2-f101cc3d4ca5",
+  "timestamp": "2026-05-14T16:05:25.085Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T16:05:25.085Z_
+
+```json
+{
+  "parentUuid": "3f19a502-cf67-4285-87e2-f101cc3d4ca5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "40127dab-f4d8-47f4-b40e-4bbbb51f0f49",
+  "timestamp": "2026-05-14T16:05:25.085Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Contrastive Verification Retrieval for Reasoning Chain Faithfulness\",…",
+  "leafUuid": "40127dab-f4d8-47f4-b40e-4bbbb51f0f49",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CVR: fix ARR timeline, add HCQR, strengthen contrastive novelty",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T16:05:43.740Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully before diving into research:
+
+1. **CRITICAL: ARR June 2026 doesn't exist** - Need to fix venue targets. ARR switched to 10-week cycles. Must present a credible 11-day plan for ARR May 25, 2026.
+
+2. **CRITICAL: Timeline violation** - User specified ≤11 days; proposal says 16 days. Must compress to 11 days or honestly target AAAI 2027.
+
+3. **MINOR: HCQR (arxiv 2603.19008)** - Need to find and cite this paper about hypothesis-conditioned query rewriting.
+
+
+4. **IG-Search 7B score unverified** - The 0.476 avg EM claim needs verification.
+
+5. **Impact risk** - Need to strengthen the argument that contrastive queries are qualitatively different from "broader" queries.
+
+The core idea of learning to retrieve contrastive evidence at intermediate reasoning steps via RL is genuinely novel, but the stagnation across four rounds suggests the issue might be deeper than just presentation and timeline errors—possibly the BM25 limitation is constraining the approach's potential.
+
+The reviewer feedback is actually encouraging though—they note the core idea has matured significantly and all critical Round 3 issues are resolved. What remains are concrete fixes: correcting the venue information, adding the HCQR reference, and making a stronger case for why this matters. I should verify the ARR 2026 deadlines, track down the HCQR paper and IG-Search results to confirm those claims, and look for any recent work on contrastive retrieval that could strengthen the impact argument.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40127dab-f4d8-47f4-b40e-4bbbb51f0f49",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kFrWwTRc7E6gzMBMkA",
+  "type": "assistant",
+  "uuid": "0e929982-902b-451a-bb08-8b954835432c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HNqUnh5DJVmt1JC7Px8VV3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12980,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12980,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 648,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12980,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12980
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T16:05:43.742Z_
+
+I'll research the reviewer's specific concerns in parallel: ARR deadlines, the HCQR paper, IG-Search scores, and recent contrastive retrieval work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e929982-902b-451a-bb08-8b954835432c",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kFrWwTRc7E6gzMBMkA",
+  "type": "assistant",
+  "uuid": "cb29cd49-b89b-4d89-b6d7-e58a9f52c8ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HNqUnh5DJVmt1JC7Px8VV3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12980,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12980,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 648,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12980,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12980
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T16:05:43.751Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PAD1kLacGZoPz5Wrm3orKk`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb29cd49-b89b-4d89-b6d7-e58a9f52c8ac",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kFrWwTRc7E6gzMBMkA",
+  "type": "assistant",
+  "uuid": "fd6daf47-6a17-4cbe-8cc3-850ecd3aa214",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HNqUnh5DJVmt1JC7Px8VV3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12980,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12980,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 648,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12980,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12980
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T16:05:43.758Z_
+
+<details><summary>↩ Tool result · `toolu_01PAD1kLacGZoPz5Wrm3orKk`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd6daf47-6a17-4cbe-8cc3-850ecd3aa214",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "931563e9-0b27-4bdf-811e-0e87c00f1f9c",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "fd6daf47-6a17-4cbe-8cc3-850ecd3aa214",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-14T16:05:48.067Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me launch parallel searches for all the key pieces of information I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "931563e9-0b27-4bdf-811e-0e87c00f1f9c",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kHEADVGPug8jH5XN9U",
+  "type": "assistant",
+  "uuid": "a66d9294-e5c2-4396-9600-3b918f607942",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XL7U5rWzeB9vHEbTZUhRSi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1666,
+      "cache_read_input_tokens": 24821,
+      "output_tokens": 110,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1666,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 110,
+          "cache_read_input_tokens": 24821,
+          "cache_creation_input_tokens": 1666,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1666
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-14T16:05:48.636Z_
+
+Let me research all the reviewer's concerns in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a66d9294-e5c2-4396-9600-3b918f607942",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kHEADVGPug8jH5XN9U",
+  "type": "assistant",
+  "uuid": "3065314f-3484-4fcb-917c-2dc6bf2ef2b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XL7U5rWzeB9vHEbTZUhRSi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1666,
+      "cache_read_input_tokens": 24821,
+      "output_tokens": 110,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1666,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 110,
+          "cache_read_input_tokens": 24821,
+          "cache_creation_input_tokens": 1666,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1666
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T16:05:49.272Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XdGLhjkeKoniSY5HYoZaPD`</summary>
+
+```json
+{
+  "query": "ARR ACL Rolling Review 2026 submission deadlines cycles schedule"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3065314f-3484-4fcb-917c-2dc6bf2ef2b3",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kHEADVGPug8jH5XN9U",
+  "type": "assistant",
+  "uuid": "e0db9ffd-d646-4c7e-a807-40f1bfee2b2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XL7U5rWzeB9vHEbTZUhRSi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1666,
+      "cache_read_input_tokens": 24821,
+      "output_tokens": 110,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1666,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 110,
+          "cache_read_input_tokens": 24821,
+          "cache_creation_input_tokens": 1666,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1666
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T16:05:55.607Z_
+
+<details><summary>↩ Tool result · `toolu_01XdGLhjkeKoniSY5HYoZaPD`</summary>
+
+```text
+Web search results for query: "ARR ACL Rolling Review 2026 submission deadlines cycles schedule"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/incentives2026"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"},{"title":"ACLRollingReview (@ReviewAcl) / Posts / X","url":"https://x.com/ReviewAcl"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"ACL ARR | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR"}]
+
+Based on the search results, here's what I found about ARR ACL Rolling Review 2026 submission deadlines and cycles:
+
+## Review Cycle Schedule
+
+ARR switched from 8-week cycles to 10-week cycles, with the new schedule starting in May 2025. This means that instead of 6 cycles a year there will generally be 5, with more reasonable timelines for the review tasks and author response.
+
+## Key 2026 Dates
+
+For ACL 2026 specifically: Papers may be submitted to the ARR 2025 October cycle and ARR 2026 January cycle. ARR reviews and meta-reviews are available to authors of the January cycle by March 10, 2026.
+
+For the January 2026 cycle registration: The deadline for completing the registration form is January 7th 2026 EoD AoE.
+
+## General Submission Timeline
+
+The submission deadline is always the 15th of the month; other dates vary due to the length of months, timing of weekends, etc.
+
+The official ARR website (aclrollingreview.org/dates) contains a complete table of all key dates for upcoming cycles, though the detailed 2026 schedule table is referenced in the search results but not fully displayed in the excerpts provided.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0db9ffd-d646-4c7e-a807-40f1bfee2b2a",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "7cae6347-8877-46ac-9a36-1a84f4ca4072",
+  "toolUseResult": {
+    "query": "ARR ACL Rolling Review 2026 submission deadlines cycles schedule",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CqddpnX5UUE3mPZzkwLZfD",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/incentives2026"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewing"
+          },
+          {
+            "title": "ACLRollingReview (@ReviewAcl) / Posts / X",
+            "url": "https://x.com/ReviewAcl"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "ACL ARR | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ARR ACL Rolling Review 2026 submission deadlines and cycles:\n\n## Review Cycle Schedule\n\nARR switched from 8-week cycles to 10-week cycles, with the new schedule starting in May 2025. This means that instead of 6 cycles a year there will generally be 5, with more reasonable timelines for the review tasks and author response.\n\n## Key 2026 Dates\n\nFor ACL 2026 specifically: Papers may be submitted to the ARR 2025 October cycle and ARR 2026 January cycle. ARR reviews and meta-reviews are available to authors of the January cycle by March 10, 2026.\n\nFor the January 2026 cycle registration: The deadline for completing the registration form is January 7th 2026 EoD AoE.\n\n## General Submission Timeline\n\nThe submission deadline is always the 15th of the month; other dates vary due to the length of months, timing of weekends, etc.\n\nThe official ARR website (aclrollingreview.org/dates) contains a complete table of all key dates for upcoming cycles, though the detailed 2026 schedule table is referenced in the search results but not fully displayed in the excerpts provided."
+    ],
+    "durationSeconds": 6.328477464
+  },
+  "sourceToolAssistantUUID": "e0db9ffd-d646-4c7e-a807-40f1bfee2b2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T16:06:05.111Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Y5G2fT4hYew79M19bAGm8f`</summary>
+
+```json
+{
+  "url": "https://aclrollingreview.org/dates",
+  "prompt": "List ALL ARR submission cycle deadlines for 2026. I need to know: what are the exact submission deadline dates, which conferences can papers commit to from each cycle, and specifically whether there is a \"June 2026\" cycle or a \"May 2026\" cycle. Also note any cycles that feed into EMNLP 2026 or EACL 2027."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7cae6347-8877-46ac-9a36-1a84f4ca4072",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kJ6bKy4UCA5XuLDN6U",
+  "type": "assistant",
+  "uuid": "7d869588-6974-4cd5-83b2-d1bc1aa2abff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QBQAUvYm9CtK3jKfRiX2a8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 863,
+      "cache_read_input_tokens": 26487,
+      "output_tokens": 163,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 863,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 163,
+          "cache_read_input_tokens": 26487,
+          "cache_creation_input_tokens": 863,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 863
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T16:06:08.895Z_
+
+<details><summary>↩ Tool result · `toolu_01Y5G2fT4hYew79M19bAGm8f`</summary>
+
+```text
+# ARR 2026 Submission Cycles and Deadlines
+
+Based on the provided content, here are the 2026 ARR cycles:
+
+## Cycle Schedule
+
+**There is no June 2026 cycle.** The platform switched to 10-week cycles starting May 2025, resulting in approximately 5 cycles annually instead of 6.
+
+The 2026 cycles are:
+
+1. **March 2026** – Submission deadline: March 16, 2026
+2. **May 2026** – Submission deadline: May 25, 2026
+3. **August 2026** – Submission deadline: August 3, 2026
+4. **October 2026** – Submission deadline: October 12, 2026
+
+## Commitment to Conferences
+
+**May 2026 cycle** feeds into:
+- "EMNLP 2026" (commitment August 2, 2026)
+- "AACL 2026" (commitment August 26, 2026)
+
+**August 2026 cycle** feeds into:
+- "EACL 2027" (commitment October 11, 2026)
+
+The content notes that papers submitted in any cycle "may choose to revise and resubmit for another round of reviews, or commit their paper and reviews to a publication venue."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7d869588-6974-4cd5-83b2-d1bc1aa2abff",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "57965943-545f-43b5-88f0-fa8696016864",
+  "toolUseResult": {
+    "bytes": 25438,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARR 2026 Submission Cycles and Deadlines\n\nBased on the provided content, here are the 2026 ARR cycles:\n\n## Cycle Schedule\n\n**There is no June 2026 cycle.** The platform switched to 10-week cycles starting May 2025, resulting in approximately 5 cycles annually instead of 6.\n\nThe 2026 cycles are:\n\n1. **March 2026** – Submission deadline: March 16, 2026\n2. **May 2026** – Submission deadline: May 25, 2026\n3. **August 2026** – Submission deadline: August 3, 2026\n4. **October 2026** – Submission deadline: October 12, 2026\n\n## Commitment to Conferences\n\n**May 2026 cycle** feeds into:\n- \"EMNLP 2026\" (commitment August 2, 2026)\n- \"AACL 2026\" (commitment August 26, 2026)\n\n**August 2026 cycle** feeds into:\n- \"EACL 2027\" (commitment October 11, 2026)\n\nThe content notes that papers submitted in any cycle \"may choose to revise and resubmit for another round of reviews, or commit their paper and reviews to a publication venue.\"",
+    "durationMs": 3781,
+    "url": "https://aclrollingreview.org/dates"
+  },
+  "sourceToolAssistantUUID": "7d869588-6974-4cd5-83b2-d1bc1aa2abff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T16:06:12.667Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MqpwTqeAyxttVLxNckvLF7`</summary>
+
+```json
+{
+  "query": "HCQR hypothesis-conditioned query rewriting arxiv 2603.19008"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57965943-545f-43b5-88f0-fa8696016864",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kK5PRTsrYP28NcjyRp",
+  "type": "assistant",
+  "uuid": "ef6e4da5-2967-4628-8ae1-c8c8b242f436",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wn4YTiFKaocCPVzE2QLDFN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 27350,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 27350,
+          "cache_creation_input_tokens": 479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T16:06:20.669Z_
+
+<details><summary>↩ Tool result · `toolu_01MqpwTqeAyxttVLxNckvLF7`</summary>
+
+```text
+Web search results for query: "HCQR hypothesis-conditioned query rewriting arxiv 2603.19008"
+
+Links: [{"title":"[2603.19008] Hypothesis-Conditioned Query Rewriting for Decision-Useful Retrieval","url":"https://arxiv.org/abs/2603.19008"},{"title":"Hypothesis-Conditioned Query Rewriting for Decision-Useful Retrieval","url":"https://arxiv.org/html/2603.19008"},{"title":"ReFeed: Retrieval Feedback–Guided Dataset Construction for Style-Aware Query Rewriting","url":"https://arxiv.org/html/2603.01417"},{"title":"CHIQ: Contextual History Enhancement for Improving Query Rewriting in Conversational Search","url":"https://arxiv.org/html/2406.05013v1"},{"title":"[2311.06807] On the Robustness of Question Rewriting Systems to Questions of Varying Hardness","url":"https://arxiv.org/abs/2311.06807"},{"title":"Query Rewriting via LLMs","url":"https://arxiv.org/html/2502.12918v1"},{"title":"Deep Reinforced Query Reformulation for Information Retrieval Xiao Wang","url":"https://arxiv.org/pdf/2007.07987"},{"title":"[2406.10991] Adaptive Query Rewriting: Aligning Rewriters through Marginal Probability of Conversational Answers","url":"https://arxiv.org/abs/2406.10991"},{"title":"ReCQR: Incorporating conversational query rewriting to improve Multimodal Image Retrieval","url":"https://arxiv.org/html/2603.26669"},{"title":"Adaptive Query Rewriting: Aligning Rewriters through Marginal Probability of Conversational Answers","url":"https://arxiv.org/html/2406.10991v1"}]
+
+Based on the search results, I found the paper you're looking for. Here's what I found about HCQR:
+
+## Hypothesis-Conditioned Query Rewriting (HCQR)
+
+HCQR is a training-free pre-retrieval framework that reorients RAG (Retrieval-Augmented Generation) from topic-oriented retrieval to evidence-oriented retrieval.
+
+### How It Works
+
+HCQR first derives a lightweight working hypothesis from the input question and candidate options, and then rewrites retrieval into three targeted queries that seek evidence to: (1) support the hypothesis, (2) distinguish it from competing alternatives, and (3) verify salient clues in the question.
+
+### Motivation and Problem
+
+When a task requires choosing among competing options, simply grounding generation in broadly relevant context is often insufficient to drive the final decision. Existing RAG methods typically rely on a single initial query, which often favors topical relevance over decision-relevant evidence, and therefore retrieves background information that can fail to discriminate among answer options.
+
+### Performance
+
+HCQR is the strongest method in every dataset–model cell, improving average accuracy over Simple RAG by 5.9 points on MedQA and 3.6 points on MMLU-Med, while also substantially increasing the share of retrieved context sets judged decision-useful.
+
+The paper (arxiv 2603.19008) was published on March 19, 2026, and focuses on medical multiple-choice question answering as a testbed for the approach.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef6e4da5-2967-4628-8ae1-c8c8b242f436",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "4354217f-dda6-4655-947b-77a1534d93f4",
+  "toolUseResult": {
+    "query": "HCQR hypothesis-conditioned query rewriting arxiv 2603.19008",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JwTDu98S7b4ucmiQx7DtR2",
+        "content": [
+          {
+            "title": "[2603.19008] Hypothesis-Conditioned Query Rewriting for Decision-Useful Retrieval",
+            "url": "https://arxiv.org/abs/2603.19008"
+          },
+          {
+            "title": "Hypothesis-Conditioned Query Rewriting for Decision-Useful Retrieval",
+            "url": "https://arxiv.org/html/2603.19008"
+          },
+          {
+            "title": "ReFeed: Retrieval Feedback–Guided Dataset Construction for Style-Aware Query Rewriting",
+            "url": "https://arxiv.org/html/2603.01417"
+          },
+          {
+            "title": "CHIQ: Contextual History Enhancement for Improving Query Rewriting in Conversational Search",
+            "url": "https://arxiv.org/html/2406.05013v1"
+          },
+          {
+            "title": "[2311.06807] On the Robustness of Question Rewriting Systems to Questions of Varying Hardness",
+            "url": "https://arxiv.org/abs/2311.06807"
+          },
+          {
+            "title": "Query Rewriting via LLMs",
+            "url": "https://arxiv.org/html/2502.12918v1"
+          },
+          {
+            "title": "Deep Reinforced Query Reformulation for Information Retrieval Xiao Wang",
+            "url": "https://arxiv.org/pdf/2007.07987"
+          },
+          {
+            "title": "[2406.10991] Adaptive Query Rewriting: Aligning Rewriters through Marginal Probability of Conversational Answers",
+            "url": "https://arxiv.org/abs/2406.10991"
+          },
+          {
+            "title": "ReCQR: Incorporating conversational query rewriting to improve Multimodal Image Retrieval",
+            "url": "https://arxiv.org/html/2603.26669"
+          },
+          {
+            "title": "Adaptive Query Rewriting: Aligning Rewriters through Marginal Probability of Conversational Answers",
+            "url": "https://arxiv.org/html/2406.10991v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what I found about HCQR:\n\n## Hypothesis-Conditioned Query Rewriting (HCQR)\n\nHCQR is a training-free pre-retrieval framework that reorients RAG (Retrieval-Augmented Generation) from topic-oriented retrieval to evidence-oriented retrieval.\n\n### How It Works\n\nHCQR first derives a lightweight working hypothesis from the input question and candidate options, and then rewrites retrieval into three targeted queries that seek evidence to: (1) support the hypothesis, (2) distinguish it from competing alternatives, and (3) verify salient clues in the question.\n\n### Motivation and Problem\n\nWhen a task requires choosing among competing options, simply grounding generation in broadly relevant context is often insufficient to drive the final decision. Existing RAG methods typically rely on a single initial query, which often favors topical relevance over decision-relevant evidence, and therefore retrieves background information that can fail to discriminate among answer options.\n\n### Performance\n\nHCQR is the strongest method in every dataset–model cell, improving average accuracy over Simple RAG by 5.9 points on MedQA and 3.6 points on MMLU-Med, while also substantially increasing the share of retrieved context sets judged decision-useful.\n\nThe paper (arxiv 2603.19008) was published on March 19, 2026, and focuses on medical multiple-choice question answering as a testbed for the approach."
+    ],
+    "durationSeconds": 7.993870743
+  },
+  "sourceToolAssistantUUID": "ef6e4da5-2967-4628-8ae1-c8c8b242f436",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T16:06:27.577Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FMDehmFB971V28vTrZ2s8Q`</summary>
+
+```json
+{
+  "query": "IG-Search step-level information gain rewards search-augmented reasoning Qwen2.5-7B results exact match scores"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4354217f-dda6-4655-947b-77a1534d93f4",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kKwnoaWXtfHMJKPgXP",
+  "type": "assistant",
+  "uuid": "2ef5c859-7a58-4df9-9fe2-7822cd7709fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GY5k7DigoKfuT1ozfVqkag",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 919,
+      "cache_read_input_tokens": 27829,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 919,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 27829,
+          "cache_creation_input_tokens": 919,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 919
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T16:06:35.634Z_
+
+<details><summary>↩ Tool result · `toolu_01FMDehmFB971V28vTrZ2s8Q`</summary>
+
+```text
+Web search results for query: "IG-Search step-level information gain rewards search-augmented reasoning Qwen2.5-7B results exact match scores"
+
+Links: [{"title":"IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning","url":"https://arxiv.org/html/2604.15148"},{"title":"[2604.15148] IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning","url":"https://arxiv.org/abs/2604.15148"},{"title":"Information Gain-based Policy Optimization: A Simple and Effective Approach for Multi-Turn Search Agents","url":"https://arxiv.org/html/2510.14967"},{"title":"TIPS: Turn-level Information-Potential Reward Shaping for Search-Augmented LLMs","url":"https://arxiv.org/html/2603.22293"},{"title":"StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization","url":"https://arxiv.org/html/2505.15107"},{"title":"StepSearch: Igniting LLMs Search Ability via Step-Wise ...","url":"https://arxiv.org/pdf/2505.15107"},{"title":"[2603.22293] TIPS: Turn-Level Information-Potential Reward Shaping for Search-Augmented LLMs","url":"https://arxiv.org/abs/2603.22293"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"Qwen-2.5-Math-7B: Mathematical Reasoning Model","url":"https://www.emergentmind.com/topics/qwen-2-5-math-7b"},{"title":"Qwen2.5-Math-7B: Math-Specialized 7B LLM","url":"https://www.emergentmind.com/topics/qwen2-5-math-7b"}]
+
+Based on the search results, I found relevant information about IG-Search and its results with Qwen2.5-7B:
+
+## IG-Search: Step-Level Information Gain Rewards
+
+IG-Search introduces a step-level IG reward that measures the informational contribution of each search step. For each search step, IG measures how much the retrieved documents improve the model's confidence in the gold answer relative to a counterfactual baseline of random documents, thereby reflecting the effectiveness of the underlying search query.
+
+## Results with Qwen2.5-7B Exact Match Scores
+
+IG-Search delivers consistent gains over AutoRefine at every scale, with improvements of +3.5, +2.5, +2.1, and +2.3 points at 1.5B, 3B, 7B, and 14B respectively. Specifically for the 7B scale, Table 3 presents Exact Match accuracy at the 7B scale (Qwen2.5-7B).
+
+For broader context, with Qwen2.5-3B as the base model, IG-Search achieves an average Exact Match of 0.430, outperforming the strongest trajectory-level baseline (MR-Search) by 1.6 points and step-level method GiGPO by 0.9 points on average across benchmarks, with particularly pronounced gains on multi-hop reasoning tasks.
+
+IG-Search is evaluated on seven QA benchmarks spanning single-hop (NQ, TriviaQA, PopQA) and multi-hop (HotpotQA, 2WikiMultihopQA, Musique, Bamboogle) settings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2ef5c859-7a58-4df9-9fe2-7822cd7709fc",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "0d088635-bf41-4bd4-8e0a-96c8cd3e00e5",
+  "toolUseResult": {
+    "query": "IG-Search step-level information gain rewards search-augmented reasoning Qwen2.5-7B results exact match scores",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017fQD6uTeqhwrsqvcP6q5fU",
+        "content": [
+          {
+            "title": "IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning",
+            "url": "https://arxiv.org/html/2604.15148"
+          },
+          {
+            "title": "[2604.15148] IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning",
+            "url": "https://arxiv.org/abs/2604.15148"
+          },
+          {
+            "title": "Information Gain-based Policy Optimization: A Simple and Effective Approach for Multi-Turn Search Agents",
+            "url": "https://arxiv.org/html/2510.14967"
+          },
+          {
+            "title": "TIPS: Turn-level Information-Potential Reward Shaping for Search-Augmented LLMs",
+            "url": "https://arxiv.org/html/2603.22293"
+          },
+          {
+            "title": "StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization",
+            "url": "https://arxiv.org/html/2505.15107"
+          },
+          {
+            "title": "StepSearch: Igniting LLMs Search Ability via Step-Wise ...",
+            "url": "https://arxiv.org/pdf/2505.15107"
+          },
+          {
+            "title": "[2603.22293] TIPS: Turn-Level Information-Potential Reward Shaping for Search-Augmented LLMs",
+            "url": "https://arxiv.org/abs/2603.22293"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "Qwen-2.5-Math-7B: Mathematical Reasoning Model",
+            "url": "https://www.emergentmind.com/topics/qwen-2-5-math-7b"
+          },
+          {
+            "title": "Qwen2.5-Math-7B: Math-Specialized 7B LLM",
+            "url": "https://www.emergentmind.com/topics/qwen2-5-math-7b"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about IG-Search and its results with Qwen2.5-7B:\n\n## IG-Search: Step-Level Information Gain Rewards\n\nIG-Search introduces a step-level IG reward that measures the informational contribution of each search step. For each search step, IG measures how much the retrieved documents improve the model's confidence in the gold answer relative to a counterfactual baseline of random documents, thereby reflecting the effectiveness of the underlying search query.\n\n## Results with Qwen2.5-7B Exact Match Scores\n\nIG-Search delivers consistent gains over AutoRefine at every scale, with improvements of +3.5, +2.5, +2.1, and +2.3 points at 1.5B, 3B, 7B, and 14B respectively. Specifically for the 7B scale, Table 3 presents Exact Match accuracy at the 7B scale (Qwen2.5-7B).\n\nFor broader context, with Qwen2.5-3B as the base model, IG-Search achieves an average Exact Match of 0.430, outperforming the strongest trajectory-level baseline (MR-Search) by 1.6 points and step-level method GiGPO by 0.9 points on average across benchmarks, with particularly pronounced gains on multi-hop reasoning tasks.\n\nIG-Search is evaluated on seven QA benchmarks spanning single-hop (NQ, TriviaQA, PopQA) and multi-hop (HotpotQA, 2WikiMultihopQA, Musique, Bamboogle) settings."
+    ],
+    "durationSeconds": 8.054045600999991
+  },
+  "sourceToolAssistantUUID": "2ef5c859-7a58-4df9-9fe2-7822cd7709fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Contrastive Verification Retrieval for Reasoning Chain Faithfulness\",…",
+  "leafUuid": "0d088635-bf41-4bd4-8e0a-96c8cd3e00e5",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CVR: fix ARR timeline, add HCQR, strengthen contrastive novelty",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T16:06:41.567Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015KNbFHbSS3NwxqoWSD9xby`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.15148",
+  "prompt": "I need the EXACT Qwen2.5-7B results from the IG-Search paper. Specifically: what are the exact match scores on HotpotQA, 2WikiMultihopQA, MuSiQue, and the average EM across all benchmarks at the 7B scale? Is there a Table 3 with 7B results? What is the exact average EM for the 7B model?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d088635-bf41-4bd4-8e0a-96c8cd3e00e5",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kM3kzyviNrNG7mGrVo",
+  "type": "assistant",
+  "uuid": "644ef2b3-a2a3-40a4-bc14-558e64a6db5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X7jU39TTMUqQR3V35TPKZ3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1005,
+      "cache_read_input_tokens": 28748,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1005,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 28748,
+          "cache_creation_input_tokens": 1005,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1005
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T16:06:44.177Z_
+
+<details><summary>↩ Tool result · `toolu_015KNbFHbSS3NwxqoWSD9xby`</summary>
+
+```text
+Based on the webpage content provided, I cannot find the specific Qwen2.5-7B results you're requesting. 
+
+The abstract only mentions that "IG-Search achieves an average EM of 0.430 with Qwen2.5-3B," which is the 3B model performance, not the 7B scale results. The abstract does not contain detailed breakdowns for HotpotQA, 2WikiMultihopQA, MuSiQue, or any 7B-specific metrics.
+
+To obtain the exact Qwen2.5-7B results and Table 3 you're seeking, you would need to access the full paper PDF or HTML version linked on this arXiv page, as the webpage excerpt provided contains only the abstract and metadata.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "644ef2b3-a2a3-40a4-bc14-558e64a6db5c",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "edb603c8-582d-4b56-b645-407cb8badd13",
+  "toolUseResult": {
+    "bytes": 49131,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the webpage content provided, I cannot find the specific Qwen2.5-7B results you're requesting. \n\nThe abstract only mentions that \"IG-Search achieves an average EM of 0.430 with Qwen2.5-3B,\" which is the 3B model performance, not the 7B scale results. The abstract does not contain detailed breakdowns for HotpotQA, 2WikiMultihopQA, MuSiQue, or any 7B-specific metrics.\n\nTo obtain the exact Qwen2.5-7B results and Table 3 you're seeking, you would need to access the full paper PDF or HTML version linked on this arXiv page, as the webpage excerpt provided contains only the abstract and metadata.",
+    "durationMs": 2606,
+    "url": "https://arxiv.org/abs/2604.15148"
+  },
+  "sourceToolAssistantUUID": "644ef2b3-a2a3-40a4-bc14-558e64a6db5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T16:06:49.835Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DnkBpjAYkkzbFnwhu9g2iR`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.15148",
+  "prompt": "Find the EXACT results for Qwen2.5-7B in this paper. I need the exact match (EM) scores on each benchmark (HotpotQA, 2WikiMultihopQA, MuSiQue, Bamboogle, NQ, TriviaQA, PopQA) at the 7B scale. Look for Table 3 or any table showing 7B results. What is the average EM score for IG-Search at the 7B scale? Also check what baselines are compared (Search-R1, AutoRefine, MR-Search, GiGPO etc) and their 7B scores."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "edb603c8-582d-4b56-b645-407cb8badd13",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kMgCVK86u4Jakk84Mu",
+  "type": "assistant",
+  "uuid": "c4bbdde8-3ad8-4dc7-b6a9-b4d024c7a38c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NY9awmD2GTF74wfNuSLV8h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 367,
+      "cache_read_input_tokens": 29753,
+      "output_tokens": 231,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 367,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 231,
+          "cache_read_input_tokens": 29753,
+          "cache_creation_input_tokens": 367,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 367
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T16:06:54.326Z_
+
+<details><summary>↩ Tool result · `toolu_01DnkBpjAYkkzbFnwhu9g2iR`</summary>
+
+```text
+# Qwen2.5-7B Results from IG-Search Paper
+
+Based on Table 3 in the paper, here are the exact Exact Match (EM) scores at the 7B scale:
+
+## IG-Search Results (7B)
+- **IG-Search-Base**: 0.476 average
+- **IG-Search-Instruct**: 0.479 average
+
+## Benchmark-Specific Scores (IG-Search-Instruct)
+| Benchmark | Score |
+|-----------|-------|
+| NQ | 0.490 |
+| TriviaQA | 0.665 |
+| PopQA | 0.495 |
+| HotpotQA | 0.480 |
+| 2WikiMultihopQA | 0.445 |
+| MuSiQue | 0.215 |
+| Bamboogle | 0.560 |
+
+## Key Comparisons
+The paper notes that "IG-Search-Instruct achieves the highest average EM of 0.479, surpassing MR-Search (0.460) by 1.9 points." Other baseline results at 7B include:
+
+- MR-Search (Base): 0.460
+- AutoRefine-Base: 0.455
+- GiGPO (Instruct): 0.472
+- Search-R1-Base: 0.408
+
+IG-Search demonstrates consistent improvements across most benchmarks, with particularly notable gains on multi-hop reasoning tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4bbdde8-3ad8-4dc7-b6a9-b4d024c7a38c",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "7d3470a5-f94b-4b21-91d0-d822fe33e0ea",
+  "toolUseResult": {
+    "bytes": 439527,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Qwen2.5-7B Results from IG-Search Paper\n\nBased on Table 3 in the paper, here are the exact Exact Match (EM) scores at the 7B scale:\n\n## IG-Search Results (7B)\n- **IG-Search-Base**: 0.476 average\n- **IG-Search-Instruct**: 0.479 average\n\n## Benchmark-Specific Scores (IG-Search-Instruct)\n| Benchmark | Score |\n|-----------|-------|\n| NQ | 0.490 |\n| TriviaQA | 0.665 |\n| PopQA | 0.495 |\n| HotpotQA | 0.480 |\n| 2WikiMultihopQA | 0.445 |\n| MuSiQue | 0.215 |\n| Bamboogle | 0.560 |\n\n## Key Comparisons\nThe paper notes that \"IG-Search-Instruct achieves the highest average EM of 0.479, surpassing MR-Search (0.460) by 1.9 points.\" Other baseline results at 7B include:\n\n- MR-Search (Base): 0.460\n- AutoRefine-Base: 0.455\n- GiGPO (Instruct): 0.472\n- Search-R1-Base: 0.408\n\nIG-Search demonstrates consistent improvements across most benchmarks, with particularly notable gains on multi-hop reasoning tasks.",
+    "durationMs": 4488,
+    "url": "https://arxiv.org/html/2604.15148"
+  },
+  "sourceToolAssistantUUID": "c4bbdde8-3ad8-4dc7-b6a9-b4d024c7a38c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T16:06:57.785Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AHPKusL2QbBqKTfheqveHB`</summary>
+
+```json
+{
+  "query": "contrastive retrieval counter-evidence step-level reasoning RL reinforcement learning 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d3470a5-f94b-4b21-91d0-d822fe33e0ea",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kNRah7vk6EZ6cYm7Zf",
+  "type": "assistant",
+  "uuid": "d17b0433-9c77-4611-a3f8-d2c097b9666d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8c2N7PtuGdBzrT9cwixA5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 601,
+      "cache_read_input_tokens": 30120,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 30120,
+          "cache_creation_input_tokens": 601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T16:07:06.867Z_
+
+<details><summary>↩ Tool result · `toolu_01AHPKusL2QbBqKTfheqveHB`</summary>
+
+```text
+Web search results for query: "contrastive retrieval counter-evidence step-level reasoning RL reinforcement learning 2026 arxiv"
+
+Links: [{"title":"Latent-Space Contrastive Reinforcement Learning for Stable and Efficient LLM Reasoning","url":"https://arxiv.org/html/2601.17275"},{"title":"Optimizing Retrieval for RAG via Reinforcement Learning Jiawei Zhou Lei Chen","url":"https://arxiv.org/pdf/2510.24652"},{"title":"[2601.17275] Latent-Space Contrastive Reinforcement Learning for Stable and Efficient LLM Reasoning","url":"https://arxiv.org/abs/2601.17275"},{"title":"Embed-RL: Reinforcement Learning for Reasoning-Driven Multimodal Embeddings","url":"https://arxiv.org/pdf/2602.13823"},{"title":"[2510.24652] Optimizing Retrieval for RAG via Reinforcement Learning","url":"https://arxiv.org/abs/2510.24652"},{"title":"[2503.19470] ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning","url":"https://arxiv.org/abs/2503.19470"},{"title":"[2503.09516] Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning","url":"https://arxiv.org/abs/2503.09516"},{"title":"GitHub - TsinghuaC3I/Awesome-RL-for-LRMs: A Survey of Reinforcement Learning for Large Reasoning Models · GitHub","url":"https://github.com/TsinghuaC3I/Awesome-RL-for-LRMs"},{"title":"Agentic Reasoning and Tool Integration for LLMs via Reinforcement Learning","url":"https://arxiv.org/html/2505.01441v1"},{"title":"Contrastive Representations for Temporal Reasoning","url":"https://arxiv.org/html/2508.13113v1"}]
+
+I found several relevant papers from 2026 and recent 2025 arxiv submissions related to contrastive learning, reinforcement learning, and reasoning. Here are the key results:
+
+## Recent Papers on Contrastive and RL-Based Reasoning
+
+### Latent-Space Contrastive Reinforcement Learning (January 2026)
+DeepLatent Reasoning (DLR) is an innovative framework that migrates the RL trial-and-error process from discrete action spaces to a continuous latent manifold, utilizing a lightweight assistant model for low-cost, high-density hypothesis generation in latent space, guided by a contrastive learning objective for directed exploration. The approach achieves more stable training convergence, supports longer-horizon reasoning chains, and facilitates the sustainable accumulation of reasoning capabilities.
+
+### Retrieval-Augmented Generation with RL (January 2026)
+Reinforced contrastive learning effectively improves the retriever within RAG environments. R3 is a Retrieval framework optimized for RAG through Reinforcement learning that enables the retriever to explore and self-improve within given RAG environments.
+
+### Reasoning-Driven Multimodal Embeddings (February 2026)
+The Embed-RL framework leverages Embedder-Guided Reinforcement Learning (EG-RL) algorithm to optimize the CoTs generated by the Reasoner, using a novel process reward oriented to the alignment between query and target.
+
+### Integration of Search with Reasoning via RL
+ReSearch is a novel framework that trains LLMs to Reason with Search via reinforcement learning without using any supervised data on reasoning steps. Additionally, Search-R1 extends reinforcement learning for reasoning frameworks where the LLM learns to autonomously generate search queries during step-by-step reasoning with real-time retrieval.
+
+These papers collectively explore how contrastive learning and reinforcement learning can be combined to improve reasoning, retrieval, and multi-step problem-solving in language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d17b0433-9c77-4611-a3f8-d2c097b9666d",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "cdede8a2-8eff-471a-b5f6-2b55284fc3df",
+  "toolUseResult": {
+    "query": "contrastive retrieval counter-evidence step-level reasoning RL reinforcement learning 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0172iyKjN41fnYxrPW1dYrsH",
+        "content": [
+          {
+            "title": "Latent-Space Contrastive Reinforcement Learning for Stable and Efficient LLM Reasoning",
+            "url": "https://arxiv.org/html/2601.17275"
+          },
+          {
+            "title": "Optimizing Retrieval for RAG via Reinforcement Learning Jiawei Zhou Lei Chen",
+            "url": "https://arxiv.org/pdf/2510.24652"
+          },
+          {
+            "title": "[2601.17275] Latent-Space Contrastive Reinforcement Learning for Stable and Efficient LLM Reasoning",
+            "url": "https://arxiv.org/abs/2601.17275"
+          },
+          {
+            "title": "Embed-RL: Reinforcement Learning for Reasoning-Driven Multimodal Embeddings",
+            "url": "https://arxiv.org/pdf/2602.13823"
+          },
+          {
+            "title": "[2510.24652] Optimizing Retrieval for RAG via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2510.24652"
+          },
+          {
+            "title": "[2503.19470] ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2503.19470"
+          },
+          {
+            "title": "[2503.09516] Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2503.09516"
+          },
+          {
+            "title": "GitHub - TsinghuaC3I/Awesome-RL-for-LRMs: A Survey of Reinforcement Learning for Large Reasoning Models · GitHub",
+            "url": "https://github.com/TsinghuaC3I/Awesome-RL-for-LRMs"
+          },
+          {
+            "title": "Agentic Reasoning and Tool Integration for LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2505.01441v1"
+          },
+          {
+            "title": "Contrastive Representations for Temporal Reasoning",
+            "url": "https://arxiv.org/html/2508.13113v1"
+          }
+        ]
+      },
+      "I found several relevant papers from 2026 and recent 2025 arxiv submissions related to contrastive learning, reinforcement learning, and reasoning. Here are the key results:\n\n## Recent Papers on Contrastive and RL-Based Reasoning\n\n### Latent-Space Contrastive Reinforcement Learning (January 2026)\nDeepLatent Reasoning (DLR) is an innovative framework that migrates the RL trial-and-error process from discrete action spaces to a continuous latent manifold, utilizing a lightweight assistant model for low-cost, high-density hypothesis generation in latent space, guided by a contrastive learning objective for directed exploration. The approach achieves more stable training convergence, supports longer-horizon reasoning chains, and facilitates the sustainable accumulation of reasoning capabilities.\n\n### Retrieval-Augmented Generation with RL (January 2026)\nReinforced contrastive learning effectively improves the retriever within RAG environments. R3 is a Retrieval framework optimized for RAG through Reinforcement learning that enables the retriever to explore and self-improve within given RAG environments.\n\n### Reasoning-Driven Multimodal Embeddings (February 2026)\nThe Embed-RL framework leverages Embedder-Guided Reinforcement Learning (EG-RL) algorithm to optimize the CoTs generated by the Reasoner, using a novel process reward oriented to the alignment between query and target.\n\n### Integration of Search with Reasoning via RL\nReSearch is a novel framework that trains LLMs to Reason with Search via reinforcement learning without using any supervised data on reasoning steps. Additionally, Search-R1 extends reinforcement learning for reasoning frameworks where the LLM learns to autonomously generate search queries during step-by-step reasoning with real-time retrieval.\n\nThese papers collectively explore how contrastive learning and reinforcement learning can be combined to improve reasoning, retrieval, and multi-step problem-solving in language models."
+    ],
+    "durationSeconds": 9.077976408000001
+  },
+  "sourceToolAssistantUUID": "d17b0433-9c77-4611-a3f8-d2c097b9666d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-14T16:07:06.877Z_
+
+```json
+{
+  "parentUuid": "cdede8a2-8eff-471a-b5f6-2b55284fc3df",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c321349a-76b3-4c5b-b731-e91d7e59ba0a",
+  "timestamp": "2026-05-14T16:07:06.877Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T16:07:10.117Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DLP8YRayCjkzvbd43pmQzU`</summary>
+
+```json
+{
+  "query": "falsification verification adversarial retrieval reasoning chains multi-hop QA 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c321349a-76b3-4c5b-b731-e91d7e59ba0a",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kPMGWdXsrEjKgUFsCn",
+  "type": "assistant",
+  "uuid": "8580ebe6-5531-4dd2-b469-1443b2feff77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JPxzqH4DZnC3odAt6Hh4XV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1153,
+      "cache_read_input_tokens": 30721,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1153,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 30721,
+          "cache_creation_input_tokens": 1153,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1153
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T16:07:20.451Z_
+
+<details><summary>↩ Tool result · `toolu_01DLP8YRayCjkzvbd43pmQzU`</summary>
+
+```text
+Web search results for query: "falsification verification adversarial retrieval reasoning chains multi-hop QA 2026 arxiv"
+
+Links: [{"title":"Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends","url":"https://arxiv.org/html/2601.00536v1"},{"title":"[2112.09658] Reasoning Chain Based Adversarial Attack for Multi-hop Question Answering","url":"https://arxiv.org/abs/2112.09658"},{"title":"Multi-hop Question Answering","url":"https://arxiv.org/pdf/2204.09140"},{"title":"CODE: A Contradiction-Based Deliberation Extension Framework for Overthinking Attacks on Retrieval-Augmented Generation","url":"https://arxiv.org/html/2601.13112"},{"title":"Improving Retrieval-Augmented Generation for Multi-Hop ...","url":"https://arxiv.org/pdf/2601.11255"},{"title":"Reasoning Processes for Multi-hop Question Answering","url":"https://arxiv.org/pdf/2601.00536"},{"title":"FVA-RAG: Falsification-Verification Alignment for Mitigating Sycophantic Hallucinations","url":"https://arxiv.org/html/2512.07015v1"},{"title":"Robust Knowledge Editing via Explicit Reasoning Chains for Distractor-Resilient Multi-Hop QA","url":"https://arxiv.org/html/2509.01468"},{"title":"Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering","url":"https://arxiv.org/html/2601.11255v1"},{"title":"MHTS: Multi-Hop Tree Structure Framework for Generating Difficulty-Controllable QA Datasets for RAG Evaluation","url":"https://arxiv.org/html/2504.08756"}]
+
+I found several relevant arxiv papers matching your search query. Here are the key results:
+
+## Most Relevant Results
+
+**1. FVA-RAG: Falsification-Verification Alignment for Mitigating Sycophantic Hallucinations** (December 2025)
+
+This paper introduces Falsification-Verification Alignment RAG (FVA-RAG), a framework that shifts the retrieval paradigm from Inductive Verification (seeking support) to Deductive Falsification (seeking disproof). FVA-RAG deploys a distinct Adversarial Retrieval Policy that actively generates "Kill Queries"—targeted search terms designed to surface contradictory evidence. This appears to be the closest match to your search terms, combining falsification, verification, and adversarial retrieval.
+
+## Related Papers on Multi-Hop QA and Reasoning Chains
+
+**2. Retrieval–Reasoning Processes for Multi-hop Question Answering** (January 2026)
+
+This paper addresses multi-hop question answering, which requires a system to combine information from multiple pieces of evidence to answer a single question. For knowledge-intensive multi-step questions, the procedure—when to retrieve, how to form the next query, what evidence to keep under budgets, and when to stop—is often the main lever that changes both accuracy and failure modes.
+
+**3. CODE: Contradiction-Based Deliberation Extension Framework** (January 2026)
+
+This work introduces an adversarial framework that induces overthinking in LRMs within RAG systems via lightweight knowledge-base poisoning under a strict black-box setting.
+
+**4. Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering** (January 2026)
+
+RT-RAG systematically decomposes multi-hop questions into explicit reasoning trees, minimizing inaccurate decomposition through structured entity analysis and consensus-based tree selection that clearly separates core queries, known entities, and unknown entities. Subsequently, a bottom-up traversal strategy employs iterative query rewriting and refinement to collect high-quality evidence, thereby mitigating error propagation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8580ebe6-5531-4dd2-b469-1443b2feff77",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "ae5ea94d-4f6a-4ea7-bb75-3c43510557d2",
+  "toolUseResult": {
+    "query": "falsification verification adversarial retrieval reasoning chains multi-hop QA 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RuUDE5BFAh8wyY83J5V5w2",
+        "content": [
+          {
+            "title": "Retrieval–Reasoning Processes for Multi-hop Question Answering: A Four-Axis Design Framework and Empirical Trends",
+            "url": "https://arxiv.org/html/2601.00536v1"
+          },
+          {
+            "title": "[2112.09658] Reasoning Chain Based Adversarial Attack for Multi-hop Question Answering",
+            "url": "https://arxiv.org/abs/2112.09658"
+          },
+          {
+            "title": "Multi-hop Question Answering",
+            "url": "https://arxiv.org/pdf/2204.09140"
+          },
+          {
+            "title": "CODE: A Contradiction-Based Deliberation Extension Framework for Overthinking Attacks on Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2601.13112"
+          },
+          {
+            "title": "Improving Retrieval-Augmented Generation for Multi-Hop ...",
+            "url": "https://arxiv.org/pdf/2601.11255"
+          },
+          {
+            "title": "Reasoning Processes for Multi-hop Question Answering",
+            "url": "https://arxiv.org/pdf/2601.00536"
+          },
+          {
+            "title": "FVA-RAG: Falsification-Verification Alignment for Mitigating Sycophantic Hallucinations",
+            "url": "https://arxiv.org/html/2512.07015v1"
+          },
+          {
+            "title": "Robust Knowledge Editing via Explicit Reasoning Chains for Distractor-Resilient Multi-Hop QA",
+            "url": "https://arxiv.org/html/2509.01468"
+          },
+          {
+            "title": "Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2601.11255v1"
+          },
+          {
+            "title": "MHTS: Multi-Hop Tree Structure Framework for Generating Difficulty-Controllable QA Datasets for RAG Evaluation",
+            "url": "https://arxiv.org/html/2504.08756"
+          }
+        ]
+      },
+      "I found several relevant arxiv papers matching your search query. Here are the key results:\n\n## Most Relevant Results\n\n**1. FVA-RAG: Falsification-Verification Alignment for Mitigating Sycophantic Hallucinations** (December 2025)\n\nThis paper introduces Falsification-Verification Alignment RAG (FVA-RAG), a framework that shifts the retrieval paradigm from Inductive Verification (seeking support) to Deductive Falsification (seeking disproof). FVA-RAG deploys a distinct Adversarial Retrieval Policy that actively generates \"Kill Queries\"—targeted search terms designed to surface contradictory evidence. This appears to be the closest match to your search terms, combining falsification, verification, and adversarial retrieval.\n\n## Related Papers on Multi-Hop QA and Reasoning Chains\n\n**2. Retrieval–Reasoning Processes for Multi-hop Question Answering** (January 2026)\n\nThis paper addresses multi-hop question answering, which requires a system to combine information from multiple pieces of evidence to answer a single question. For knowledge-intensive multi-step questions, the procedure—when to retrieve, how to form the next query, what evidence to keep under budgets, and when to stop—is often the main lever that changes both accuracy and failure modes.\n\n**3. CODE: Contradiction-Based Deliberation Extension Framework** (January 2026)\n\nThis work introduces an adversarial framework that induces overthinking in LRMs within RAG systems via lightweight knowledge-base poisoning under a strict black-box setting.\n\n**4. Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering** (January 2026)\n\nRT-RAG systematically decomposes multi-hop questions into explicit reasoning trees, minimizing inaccurate decomposition through structured entity analysis and consensus-based tree selection that clearly separates core queries, known entities, and unknown entities. Subsequently, a bottom-up traversal strategy employs iterative query rewriting and refinement to collect high-quality evidence, thereby mitigating error propagation."
+    ],
+    "durationSeconds": 10.329120574999994
+  },
+  "sourceToolAssistantUUID": "8580ebe6-5531-4dd2-b469-1443b2feff77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T16:07:23.206Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Pt8CDbB9vzaGiHusmzbFj9`</summary>
+
+```json
+{
+  "query": "\"dual mode retrieval\" OR \"contrastive search\" OR \"verification retrieval\" reinforcement learning reasoning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae5ea94d-4f6a-4ea7-bb75-3c43510557d2",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kQMHnMSnyGdQt2yaAp",
+  "type": "assistant",
+  "uuid": "2fb9edd2-9b98-4ca8-ac87-daa847756079",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NoCSJr3t8HAr14ie8Qctr5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1062,
+      "cache_read_input_tokens": 31874,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 31874,
+          "cache_creation_input_tokens": 1062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T16:07:31.158Z_
+
+<details><summary>↩ Tool result · `toolu_01Pt8CDbB9vzaGiHusmzbFj9`</summary>
+
+```text
+Web search results for query: ""dual mode retrieval" OR "contrastive search" OR "verification retrieval" reinforcement learning reasoning 2026"
+
+Links: [{"title":"Unsupervised Dense Information Retrieval with Contrastive Learning | OpenReview","url":"https://openreview.net/forum?id=jKN1pXi7b0"},{"title":"Article Not peer-reviewed version Learning to Retrieve, Generate, and","url":"https://www.preprints.org/manuscript/202508.1211/v1/download"},{"title":"[2510.24652] Optimizing Retrieval for RAG via Reinforcement Learning","url":"https://arxiv.org/abs/2510.24652"},{"title":"Cross-Modal Retrieval: A Systematic Review of Methods and Future Directions","url":"https://arxiv.org/html/2308.14263v3"},{"title":"MM-EMBED: UNIVERSAL MULTIMODAL RETRIEVAL ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/6d5d6afa9957cfc9142ba60e78a467e9-Paper-Conference.pdf"},{"title":"Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=Rwhi91ideu"},{"title":"R3-RAG: Learning Step-by-Step Reasoning and Retrieval ...","url":"https://aclanthology.org/2025.findings-emnlp.554.pdf"},{"title":"Computer Science Jan 2025","url":"https://arxiv.org/list/cs/2025-01?skip=2000&show=2000"},{"title":"Search-R1: Training LLMs to Reason and Leverage ...","url":"https://arxiv.org/pdf/2503.09516"},{"title":"Reasoning in Trees: Improving Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2601.11255"}]
+
+Based on the search results, here are the key findings related to your query about dual mode retrieval, contrastive search, verification retrieval combined with reinforcement learning and reasoning in 2026:
+
+## Recent Developments in Retrieval-Augmented Generation with Reinforcement Learning
+
+As retrieval-augmented generation (RAG) becomes more widespread, the role of retrieval is shifting from retrieving information for human browsing to retrieving context for AI reasoning.
+
+### Reinforcement Learning for Retrieval and Reasoning
+
+Several recent papers from 2025-2026 demonstrate the integration of reinforcement learning with retrieval systems:
+
+Search-R1 is an extension of reinforcement learning for reasoning frameworks where the LLM learns to autonomously generate (multiple) search queries during step-by-step reasoning with real-time retrieval. Experiments on seven question-answering datasets show that Search-R1 improves performance by 41% (Qwen2.5-7B) and 20% (Qwen2.5-3B) over RAG baselines under the same setting.
+
+### Training Paradigms
+
+Diverse training paradigms used in RAG include supervised and self-supervised learning, contrastive training, end-to-end differentiable training, retrieval distillation, reinforcement learning, curriculum learning, and memory-efficient strategies.
+
+Efficient retrievers are trained using objectives that enforce semantic closeness between matched query-document pairs while separating negatives.
+
+RAG can be used to build agents that learn retrieval heuristics via reinforcement learning.
+
+The search results indicate active research in combining reinforcement learning with advanced retrieval methods for improved reasoning capabilities in large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2fb9edd2-9b98-4ca8-ac87-daa847756079",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "48b4c643-d389-4aae-9259-f04c7f18429d",
+  "toolUseResult": {
+    "query": "\"dual mode retrieval\" OR \"contrastive search\" OR \"verification retrieval\" reinforcement learning reasoning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LbpZtv6C26JSxPbpjYF7TR",
+        "content": [
+          {
+            "title": "Unsupervised Dense Information Retrieval with Contrastive Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=jKN1pXi7b0"
+          },
+          {
+            "title": "Article Not peer-reviewed version Learning to Retrieve, Generate, and",
+            "url": "https://www.preprints.org/manuscript/202508.1211/v1/download"
+          },
+          {
+            "title": "[2510.24652] Optimizing Retrieval for RAG via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2510.24652"
+          },
+          {
+            "title": "Cross-Modal Retrieval: A Systematic Review of Methods and Future Directions",
+            "url": "https://arxiv.org/html/2308.14263v3"
+          },
+          {
+            "title": "MM-EMBED: UNIVERSAL MULTIMODAL RETRIEVAL ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/6d5d6afa9957cfc9142ba60e78a467e9-Paper-Conference.pdf"
+          },
+          {
+            "title": "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=Rwhi91ideu"
+          },
+          {
+            "title": "R3-RAG: Learning Step-by-Step Reasoning and Retrieval ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.554.pdf"
+          },
+          {
+            "title": "Computer Science Jan 2025",
+            "url": "https://arxiv.org/list/cs/2025-01?skip=2000&show=2000"
+          },
+          {
+            "title": "Search-R1: Training LLMs to Reason and Leverage ...",
+            "url": "https://arxiv.org/pdf/2503.09516"
+          },
+          {
+            "title": "Reasoning in Trees: Improving Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2601.11255"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to your query about dual mode retrieval, contrastive search, verification retrieval combined with reinforcement learning and reasoning in 2026:\n\n## Recent Developments in Retrieval-Augmented Generation with Reinforcement Learning\n\nAs retrieval-augmented generation (RAG) becomes more widespread, the role of retrieval is shifting from retrieving information for human browsing to retrieving context for AI reasoning.\n\n### Reinforcement Learning for Retrieval and Reasoning\n\nSeveral recent papers from 2025-2026 demonstrate the integration of reinforcement learning with retrieval systems:\n\nSearch-R1 is an extension of reinforcement learning for reasoning frameworks where the LLM learns to autonomously generate (multiple) search queries during step-by-step reasoning with real-time retrieval. Experiments on seven question-answering datasets show that Search-R1 improves performance by 41% (Qwen2.5-7B) and 20% (Qwen2.5-3B) over RAG baselines under the same setting.\n\n### Training Paradigms\n\nDiverse training paradigms used in RAG include supervised and self-supervised learning, contrastive training, end-to-end differentiable training, retrieval distillation, reinforcement learning, curriculum learning, and memory-efficient strategies.\n\nEfficient retrievers are trained using objectives that enforce semantic closeness between matched query-document pairs while separating negatives.\n\nRAG can be used to build agents that learn retrieval heuristics via reinforcement learning.\n\nThe search results indicate active research in combining reinforcement learning with advanced retrieval methods for improved reasoning capabilities in large language models."
+    ],
+    "durationSeconds": 7.948221423999988
+  },
+  "sourceToolAssistantUUID": "2fb9edd2-9b98-4ca8-ac87-daa847756079",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Contrastive Verification Retrieval for Reasoning Chain Faithfulness\",…",
+  "leafUuid": "48b4c643-d389-4aae-9259-f04c7f18429d",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CVR: fix ARR timeline, add HCQR, strengthen contrastive novelty",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T16:07:33.733Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xt5XGD9LyeqPgokA4NwBfv`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 commitment deadline ARR May 2026 cycle dates"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48b4c643-d389-4aae-9259-f04c7f18429d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kR96b1toqN5fYyzMcX",
+  "type": "assistant",
+  "uuid": "bcefb932-f27c-4a0d-90da-27d66bd975e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015w2Br2W8JDpQj2JnsVnjG6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 975,
+      "cache_read_input_tokens": 32936,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 32936,
+          "cache_creation_input_tokens": 975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T16:07:39.498Z_
+
+<details><summary>↩ Tool result · `toolu_01Xt5XGD9LyeqPgokA4NwBfv`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 commitment deadline ARR May 2026 cycle dates"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"}]
+
+Based on the search results, here are the key dates for EMNLP 2026 related to the ARR May 2026 cycle:
+
+## ARR 2026 May Cycle Dates for EMNLP 2026:
+
+**ARR submission deadline (long & short papers):** May 25, 2026
+
+**Reviewer registration deadline for ALL authors:** May 27, 2026
+
+**Author response and author-reviewer discussion:** July 7 - July 13, 2026
+
+**Meta review released:** July 30, 2026
+
+**EMNLP commitment deadline:** August 2, 2026
+
+**Notification of acceptance (long & short papers):** August 20, 2026
+
+**Camera-ready papers due (long & short):** September 20, 2026
+
+Note: All deadlines are 11:59PM UTC-12:00 ("anywhere on Earth").
+
+## Important Policy Note:
+
+Since the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors must explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bcefb932-f27c-4a0d-90da-27d66bd975e9",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "0642a974-758f-4513-8c24-b2997978af0b",
+  "toolUseResult": {
+    "query": "EMNLP 2026 commitment deadline ARR May 2026 cycle dates",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xj3d4A3nTVCnZyoLqVTBRS",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          },
+          {
+            "title": "Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"
+          }
+        ]
+      },
+      "Based on the search results, here are the key dates for EMNLP 2026 related to the ARR May 2026 cycle:\n\n## ARR 2026 May Cycle Dates for EMNLP 2026:\n\n**ARR submission deadline (long & short papers):** May 25, 2026\n\n**Reviewer registration deadline for ALL authors:** May 27, 2026\n\n**Author response and author-reviewer discussion:** July 7 - July 13, 2026\n\n**Meta review released:** July 30, 2026\n\n**EMNLP commitment deadline:** August 2, 2026\n\n**Notification of acceptance (long & short papers):** August 20, 2026\n\n**Camera-ready papers due (long & short):** September 20, 2026\n\nNote: All deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\n## Important Policy Note:\n\nSince the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors must explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026."
+    ],
+    "durationSeconds": 5.759712251000004
+  },
+  "sourceToolAssistantUUID": "bcefb932-f27c-4a0d-90da-27d66bd975e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T16:07:42.463Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R4YcNytdGBoSr5HDMLpVM7`</summary>
+
+```json
+{
+  "query": "contrastive evidence retrieval qualitative analysis query patterns BM25 diversity vs contradiction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0642a974-758f-4513-8c24-b2997978af0b",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kRkiU4pXXBm4Gm9Pxp",
+  "type": "assistant",
+  "uuid": "219c43bd-d259-4397-aa0a-22db718601d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEKFTaaJ4MF6vC3T1qCVZi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1045,
+      "cache_read_input_tokens": 33911,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1045,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 33911,
+          "cache_creation_input_tokens": 1045,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1045
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T16:07:53.302Z_
+
+<details><summary>↩ Tool result · `toolu_01R4YcNytdGBoSr5HDMLpVM7`</summary>
+
+```text
+Web search results for query: "contrastive evidence retrieval qualitative analysis query patterns BM25 diversity vs contradiction"
+
+Links: [{"title":"Toward Safer Retrieval-Augmented Generation in Healthcare","url":"https://arxiv.org/pdf/2511.06668"},{"title":"Unsupervised Dense Information Retrieval with Contrastive ...","url":"https://openreview.net/pdf?id=jKN1pXi7b0"},{"title":"Foundations and Trends R ⃝in Information Retrieval Vol. 3, No. 4 (2009) 333–389","url":"https://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf"},{"title":"AGH IR at LongEval: Improving Scientific Information ...","url":"https://ceur-ws.org/Vol-4038/paper_276.pdf"},{"title":"A Survey of Model Architectures in Information Retrieval","url":"https://arxiv.org/html/2502.14822v2"},{"title":"Dense–Sparse Hybrid Retrieval","url":"https://www.emergentmind.com/topics/dense-sparse-hybrid-retrieval"},{"title":"Dense vs Sparse Retrieval: Mastering FAISS, BM25, and Hybrid Search - DEV Community","url":"https://dev.to/qvfagundes/dense-vs-sparse-retrieval-mastering-faiss-bm25-and-hybrid-search-4kb1"},{"title":"Retrieval Techniques - Sparse, Dense, and Hybrid ...","url":"https://www.linkedin.com/pulse/retrieval-techniques-sparse-dense-hybrid-najeeb-khan-ph-d--wmtpc"},{"title":"Introduction to Information Retrieval Introduction to Information Retrieval","url":"https://web.stanford.edu/class/cs276/handouts/lecture12-bm25etc.pdf"},{"title":"Explain Like I am BM25: Interpreting a Dense Model's Ranked-List with a Sparse Approximation | Proceedings of the 46th International ACM SIGIR Conference on Research and Development in Information Retrieval","url":"https://dl.acm.org/doi/10.1145/3539618.3591982"}]
+
+I found relevant research on your query topic. Here are the key findings from the web search results:
+
+## Contrastive Evidence Retrieval and Contradiction Detection
+
+The most directly relevant result comes from research on "Safer Retrieval-Augmented Generation in Healthcare." This work addresses "Contradiction-Aware Retrieval," where the system must identify and quantify contradictions among retrieved abstracts to avoid incorrect or potentially harmful responses.
+
+## Diversity vs. Contradiction Analysis
+
+The research identifies "Temporal Diversity in Evidence Selection," recognizing that given the evolving nature of medical knowledge, the system must select a subset of evidence appropriately. The study analyzes document distributions across these dimensions: A "Document frequency by binned diversity-aware similarity score" and "contradiction score" shows how documents fall into different categories.
+
+## BM25 in Retrieval Pipelines
+
+Regarding BM25, BM25 is used for lexical retrieval, with cross-encoders subsequently reranking top candidates to refine semantic relevance. The research also notes that few studies explicitly examine the risks posed by outdated or contradictory evidence within retrieved sources.
+
+## Query Pattern Analysis
+
+The research implements contradiction detection using NLI (Natural Language Inference): Sentence pairs are passed to a biomedical NLI classifier that returns probabilities for different relations including entailment, neutral, and contradiction.
+
+This research directly addresses your query interests by combining contrastive analysis with practical methods for identifying diversity versus contradiction in retrieved evidence.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "219c43bd-d259-4397-aa0a-22db718601d2",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "6c7636fd-fc9a-4eb3-b55d-496b119dcb04",
+  "toolUseResult": {
+    "query": "contrastive evidence retrieval qualitative analysis query patterns BM25 diversity vs contradiction",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019VsnThTdfGvZevxeLfMbD3",
+        "content": [
+          {
+            "title": "Toward Safer Retrieval-Augmented Generation in Healthcare",
+            "url": "https://arxiv.org/pdf/2511.06668"
+          },
+          {
+            "title": "Unsupervised Dense Information Retrieval with Contrastive ...",
+            "url": "https://openreview.net/pdf?id=jKN1pXi7b0"
+          },
+          {
+            "title": "Foundations and Trends R ⃝in Information Retrieval Vol. 3, No. 4 (2009) 333–389",
+            "url": "https://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf"
+          },
+          {
+            "title": "AGH IR at LongEval: Improving Scientific Information ...",
+            "url": "https://ceur-ws.org/Vol-4038/paper_276.pdf"
+          },
+          {
+            "title": "A Survey of Model Architectures in Information Retrieval",
+            "url": "https://arxiv.org/html/2502.14822v2"
+          },
+          {
+            "title": "Dense–Sparse Hybrid Retrieval",
+            "url": "https://www.emergentmind.com/topics/dense-sparse-hybrid-retrieval"
+          },
+          {
+            "title": "Dense vs Sparse Retrieval: Mastering FAISS, BM25, and Hybrid Search - DEV Community",
+            "url": "https://dev.to/qvfagundes/dense-vs-sparse-retrieval-mastering-faiss-bm25-and-hybrid-search-4kb1"
+          },
+          {
+            "title": "Retrieval Techniques - Sparse, Dense, and Hybrid ...",
+            "url": "https://www.linkedin.com/pulse/retrieval-techniques-sparse-dense-hybrid-najeeb-khan-ph-d--wmtpc"
+          },
+          {
+            "title": "Introduction to Information Retrieval Introduction to Information Retrieval",
+            "url": "https://web.stanford.edu/class/cs276/handouts/lecture12-bm25etc.pdf"
+          },
+          {
+            "title": "Explain Like I am BM25: Interpreting a Dense Model's Ranked-List with a Sparse Approximation | Proceedings of the 46th International ACM SIGIR Conference on Research and Development in Information Retrieval",
+            "url": "https://dl.acm.org/doi/10.1145/3539618.3591982"
+          }
+        ]
+      },
+      "I found relevant research on your query topic. Here are the key findings from the web search results:\n\n## Contrastive Evidence Retrieval and Contradiction Detection\n\nThe most directly relevant result comes from research on \"Safer Retrieval-Augmented Generation in Healthcare.\" This work addresses \"Contradiction-Aware Retrieval,\" where the system must identify and quantify contradictions among retrieved abstracts to avoid incorrect or potentially harmful responses.\n\n## Diversity vs. Contradiction Analysis\n\nThe research identifies \"Temporal Diversity in Evidence Selection,\" recognizing that given the evolving nature of medical knowledge, the system must select a subset of evidence appropriately. The study analyzes document distributions across these dimensions: A \"Document frequency by binned diversity-aware similarity score\" and \"contradiction score\" shows how documents fall into different categories.\n\n## BM25 in Retrieval Pipelines\n\nRegarding BM25, BM25 is used for lexical retrieval, with cross-encoders subsequently reranking top candidates to refine semantic relevance. The research also notes that few studies explicitly examine the risks posed by outdated or contradictory evidence within retrieved sources.\n\n## Query Pattern Analysis\n\nThe research implements contradiction detection using NLI (Natural Language Inference): Sentence pairs are passed to a biomedical NLI classifier that returns probabilities for different relations including entailment, neutral, and contradiction.\n\nThis research directly addresses your query interests by combining contrastive analysis with practical methods for identifying diversity versus contradiction in retrieved evidence."
+    ],
+    "durationSeconds": 10.834938370000017
+  },
+  "sourceToolAssistantUUID": "219c43bd-d259-4397-aa0a-22db718601d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T16:07:55.683Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Qwr6ihhXy7Qmvbt3mJXn6a`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline date August 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c7636fd-fc9a-4eb3-b55d-496b119dcb04",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kSmhmrGN19tb2gxSNi",
+  "type": "assistant",
+  "uuid": "81813c2f-6cae-451f-b102-34021647c365",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V3ML4RkffmLmGSkbsog8Em",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 977,
+      "cache_read_input_tokens": 34956,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 977,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 34956,
+          "cache_creation_input_tokens": 977,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 977
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T16:07:59.416Z_
+
+<details><summary>↩ Tool result · `toolu_01Qwr6ihhXy7Qmvbt3mJXn6a`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline date August 2026"
+
+Links: [{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"AAAI 2027 Conference | OpenReview","url":"https://openreview.net/group?id=AAAI.org%2F2027%2FConference"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"AAAI Conference on Artificial Intelligence","url":"http://aideadlines.org/conference/?id=aaai27"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"}]
+
+Based on the web search results, AAAI 2027 will be held in Montréal, Québec, Canada from February 16-23, 2027. However, the AAAI 2027 paper submission deadline is TBD (to be determined).
+
+That said, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns. So while an official deadline in August 2026 has not yet been announced, that timeframe aligns with when AAAI typically announces paper submission deadlines for its February conferences.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "81813c2f-6cae-451f-b102-34021647c365",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "afc75d1c-05f1-4670-b63c-946315f22a9a",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline date August 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WXrCy67nYYbKwapJ8UCEzE",
+        "content": [
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "AAAI 2027 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=AAAI.org%2F2027%2FConference"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          }
+        ]
+      },
+      "Based on the web search results, AAAI 2027 will be held in Montréal, Québec, Canada from February 16-23, 2027. However, the AAAI 2027 paper submission deadline is TBD (to be determined).\n\nThat said, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns. So while an official deadline in August 2026 has not yet been announced, that timeframe aligns with when AAAI typically announces paper submission deadlines for its February conferences."
+    ],
+    "durationSeconds": 3.7298034360000165
+  },
+  "sourceToolAssistantUUID": "81813c2f-6cae-451f-b102-34021647c365",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T16:08:02.582Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015xyDJm9e5P3N7B6aEZKGsd`</summary>
+
+```json
+{
+  "url": "https://aideadlines.org/conference/?id=aaai27",
+  "prompt": "What is the exact paper submission deadline for AAAI 2027? List all deadlines: abstract, paper, supplementary, notification, camera-ready, etc."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afc75d1c-05f1-4670-b63c-946315f22a9a",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kTDu7wYfTxsCuBKr6d",
+  "type": "assistant",
+  "uuid": "2b184b85-ef79-4576-b4c2-59f3066f5db6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BMKsSCSmReU7YtCxctQjG6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 714,
+      "cache_read_input_tokens": 35933,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 714,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 35933,
+          "cache_creation_input_tokens": 714,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 714
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T16:08:03.055Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_015xyDJm9e5P3N7B6aEZKGsd`</summary>
+
+```text
+ECONNREFUSED
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b184b85-ef79-4576-b4c2-59f3066f5db6",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "ec860208-77c9-40a8-b006-3d4fd5b2d79e",
+  "toolUseResult": "Error: ECONNREFUSED",
+  "sourceToolAssistantUUID": "2b184b85-ef79-4576-b4c2-59f3066f5db6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T16:08:05.951Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0124L1oqDNJhk2dkRR3rJdKY`</summary>
+
+```json
+{
+  "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html",
+  "prompt": "What is the exact paper submission deadline for AAAI 2027? List all deadlines: abstract registration, full paper, notification, camera-ready."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec860208-77c9-40a8-b006-3d4fd5b2d79e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kTVRWmtjZMaRk4Ejt7",
+  "type": "assistant",
+  "uuid": "1d7b84c9-93e9-46c6-bd9e-6193583a2ebc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BxKcUSiNCBCKTtDZ59RGmx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 145,
+      "cache_read_input_tokens": 36647,
+      "output_tokens": 124,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 145,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 124,
+          "cache_read_input_tokens": 36647,
+          "cache_creation_input_tokens": 145,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 145
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T16:08:08.512Z_
+
+<details><summary>↩ Tool result · `toolu_0124L1oqDNJhk2dkRR3rJdKY`</summary>
+
+```text
+Based on the webpage content provided, I cannot give you the specific deadlines you're requesting.
+
+The page states: "Paper deadline TBD (UTC-12)" and "Abstract deadline TBD (UTC-12)". The notation "TBD" means "to be determined," indicating these dates have not yet been announced.
+
+The only confirmed dates available are the conference itself: **February 16-23, 2027 in Montréal, Québec, Canada**.
+
+The page does not provide information about notification dates or camera-ready submission deadlines. For complete deadline details, you would need to check the official AAAI 2027 website at https://aaai.org/conference/aaai/aaai-27/.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1d7b84c9-93e9-46c6-bd9e-6193583a2ebc",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "89f48fd9-4201-45af-be85-87691f065013",
+  "toolUseResult": {
+    "bytes": 28933,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the webpage content provided, I cannot give you the specific deadlines you're requesting.\n\nThe page states: \"Paper deadline TBD (UTC-12)\" and \"Abstract deadline TBD (UTC-12)\". The notation \"TBD\" means \"to be determined,\" indicating these dates have not yet been announced.\n\nThe only confirmed dates available are the conference itself: **February 16-23, 2027 in Montréal, Québec, Canada**.\n\nThe page does not provide information about notification dates or camera-ready submission deadlines. For complete deadline details, you would need to check the official AAAI 2027 website at https://aaai.org/conference/aaai/aaai-27/.",
+    "durationMs": 2558,
+    "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+  },
+  "sourceToolAssistantUUID": "1d7b84c9-93e9-46c6-bd9e-6193583a2ebc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T16:08:11.423Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0162N963migSUbJLFcTWpAYV`</summary>
+
+```json
+{
+  "query": "AAAI 2026 submission deadline date abstract paper 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89f48fd9-4201-45af-be85-87691f065013",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kTtjyAxHqjqBP2KTsJ",
+  "type": "assistant",
+  "uuid": "5ab36ba0-5051-43b2-9281-eaf70a902f34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gg5EGRcJbWpMQMwJNRcQJe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 300,
+      "cache_read_input_tokens": 36792,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 300,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 36792,
+          "cache_creation_input_tokens": 300,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 300
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T16:08:16.098Z_
+
+<details><summary>↩ Tool result · `toolu_0162N963migSUbJLFcTWpAYV`</summary>
+
+```text
+Web search results for query: "AAAI 2026 submission deadline date abstract paper 2025"
+
+Links: [{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"},{"title":"The 40th Annual AAAI Conference on Artificial Intelligence","url":"https://aaai.org/conference/aaai/aaai-26/"},{"title":"AAAI-26 Review Process - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/review-process/"},{"title":"Main Technical Track: Call for Papers - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/"},{"title":"AAAI 2026","url":"http://aideadlines.org/conference/?id=aaai26"},{"title":"IJCAI-ECAI 2026 Call for papers (Main Track) – IJCAI 2026","url":"https://2026.ijcai.org/ijcai-ecai-2026-call-for-papers-main-track/"},{"title":"AAAI 2026 | OpenReview","url":"https://openreview.net/group?id=AAAI.org%2F2026"},{"title":"AAAI-26 Student Abstract and Poster Program: Call for Proposals - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/student-abstract-and-poster-program-call/"},{"title":"Call for Papers (AAAI Track) | AAMAS","url":"https://cyprusconferences.org/aamas2026/call-for-papers-aaai-track/"},{"title":"AAAI on X: \"The 40th Annual AAAI Conference on Artificial Intelligence (AAAI-26), will be held in Singapore at The Singapore EXPO, January 20-27, 2026. The Main Track of the Technical Program will take place January 22-25, 2026. ➡️ Please note the updated timeline for AAAI-26 abstracts and\" / X","url":"https://x.com/RealAAAI/status/1921976524254712039"}]
+
+Based on the search results, here are the AAAI 2026 submission deadlines:
+
+**Abstract Submission Deadline:** July 25, 2025
+
+**Full Paper Submission Deadline:** August 1, 2025
+
+Every submission requires both an abstract submission and a corresponding paper submission, and all deadlines are "anywhere on earth" (UTC-12), meaning the deadlines are at 11:59 PM UTC-12 on those dates.
+
+Additional important details:
+- There will be no individual exceptions
+- The supplementary material deadline is 3 days after the paper submission deadline (August 4, 2025)
+- The conference will take place January 20-27, 2026
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ab36ba0-5051-43b2-9281-eaf70a902f34",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "9cd09902-b26a-471f-a35d-db40014aa5d0",
+  "toolUseResult": {
+    "query": "AAAI 2026 submission deadline date abstract paper 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01F6cfY5SKF9h2aCKjdCpN3a",
+        "content": [
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          },
+          {
+            "title": "The 40th Annual AAAI Conference on Artificial Intelligence",
+            "url": "https://aaai.org/conference/aaai/aaai-26/"
+          },
+          {
+            "title": "AAAI-26 Review Process - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/review-process/"
+          },
+          {
+            "title": "Main Technical Track: Call for Papers - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/"
+          },
+          {
+            "title": "AAAI 2026",
+            "url": "http://aideadlines.org/conference/?id=aaai26"
+          },
+          {
+            "title": "IJCAI-ECAI 2026 Call for papers (Main Track) – IJCAI 2026",
+            "url": "https://2026.ijcai.org/ijcai-ecai-2026-call-for-papers-main-track/"
+          },
+          {
+            "title": "AAAI 2026 | OpenReview",
+            "url": "https://openreview.net/group?id=AAAI.org%2F2026"
+          },
+          {
+            "title": "AAAI-26 Student Abstract and Poster Program: Call for Proposals - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/student-abstract-and-poster-program-call/"
+          },
+          {
+            "title": "Call for Papers (AAAI Track) | AAMAS",
+            "url": "https://cyprusconferences.org/aamas2026/call-for-papers-aaai-track/"
+          },
+          {
+            "title": "AAAI on X: \"The 40th Annual AAAI Conference on Artificial Intelligence (AAAI-26), will be held in Singapore at The Singapore EXPO, January 20-27, 2026. The Main Track of the Technical Program will take place January 22-25, 2026. ➡️ Please note the updated timeline for AAAI-26 abstracts and\" / X",
+            "url": "https://x.com/RealAAAI/status/1921976524254712039"
+          }
+        ]
+      },
+      "Based on the search results, here are the AAAI 2026 submission deadlines:\n\n**Abstract Submission Deadline:** July 25, 2025\n\n**Full Paper Submission Deadline:** August 1, 2025\n\nEvery submission requires both an abstract submission and a corresponding paper submission, and all deadlines are \"anywhere on earth\" (UTC-12), meaning the deadlines are at 11:59 PM UTC-12 on those dates.\n\nAdditional important details:\n- There will be no individual exceptions\n- The supplementary material deadline is 3 days after the paper submission deadline (August 4, 2025)\n- The conference will take place January 20-27, 2026"
+    ],
+    "durationSeconds": 4.669092654000007
+  },
+  "sourceToolAssistantUUID": "5ab36ba0-5051-43b2-9281-eaf70a902f34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Contrastive Verification Retrieval for Reasoning Chain Faithfulness\",…",
+  "leafUuid": "9cd09902-b26a-471f-a35d-db40014aa5d0",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CVR: fix ARR timeline, add HCQR, strengthen contrastive novelty",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-14T16:09:15.710Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have all the information I need. Let me now compile my findings and revise the idea.
+
+Key findings:
+
+1. **ARR deadlines**: Confirmed - there is NO June 2026 cycle. The ARR cycles for 2026 are: March 16, May 25, August 3, October 12. The May 25, 2026 cycle feeds into EMNLP 2026 (commitment August 2, 2026). The August 3, 2026 cycle feeds into EACL 2027.
+
+
+2. **AAAI 2027**: Expected abstract and paper deadlines would fall in late July/early August 2026 based on the 2026 pattern, though the exact dates are still TBD.
+3. **HCQR paper**: This generates hypothesis-conditioned queries in three types—supportive, distinguishing, and verifying—without requiring training, and targets MCQ tasks with a March 2026 timeline.
+4. **IG-Search 7B performance**: Looking at the benchmark results, IG-Search-Base achieves a 0.476 average EM score on Qwen.
+
+2.5-7B, with IG-Search-Instruct slightly higher at 0.479, while Search-R1-Base lags at 0.408, confirming the baseline figure.
+5. **Strengthening the impact argument**: I should add a contradiction rate analysis metric to make the contribution more compelling.
+6. **Competitive landscape**: No existing work addresses step-level learned contrastive retrieval through RL, so there's still room to explore here.
+
+The stagnation at 3.5 across three rounds is concerning, but the reviewer acknowledges the core idea has matured and all critical issues from Round 3 are resolved. What remains are relatively straightforward fixes—correcting the venue, incorporating HCQR, and bolstering the impact narrative—none of which require fundamental rethinking.
+
+I'm going to approach this as a focused revision targeting these specific gaps. First, I'll establish ARR May 25, 2026 as the primary submission target with an 11-day timeline, positioning AAAI 2027 as a fallback. I'll integrate HCQR into the related work, correct the IG-Search citation to use the verified 0.476 number, and add a "Contrastive Evidence Quality" analysis that measures contradiction rates and distinguishes genuinely contrastive queries from merely diverse ones. This should address the impact concern while keeping the revision scope manageable.
+
+For the empirical contribution, I'm introducing a metric that directly measures whether contrastive-retrieved passages are qualitatively distinct from supportive ones—looking at NLI contradiction rates between retrieved passages and intermediate claims, comparing entity overlap patterns, and demonstrating that contrastive queries target the model's actual claims rather than just pulling broader documents. This turns the BM25 limitation into a strength by showing the approach works despite simpler retrieval.
+
+The timeline breaks down cleanly: implementation on May 14-15, baseline reproduction on May 16-17, and contrastive retrieval training on May 18-20, hitting the May 25 deadline.
+
+I'm verifying the baseline numbers—the 0.476 score for IG-Search-Base at 7B matches Table 3, so the original claim holds up. I'll finalize the JSON structure now and skip the ablation for this submission, saving it for camera-ready.
+
+Now I'm revising the core proposal: shifting to EMNLP 2026 as the primary target with a compressed 11-day timeline, keeping AAAI 2027 as a backup. I'm adding HCQR to the landscape with clear positioning, strengthening the impact argument by framing the contrastive retrieval analysis—measuring contradiction rates, entity divergence, and qualitative differences between passage types—as a concrete empirical contribution.
+
+I'm debating whether to label this a minor or major revision. The core idea is sound and all critical Round 3 issues are resolved, so it feels like minor corrections: fixing the venue error, adding one reference, and deepening an existing argument. But the stagnation warning about the average score stuck at 3.5 makes me wonder if I need to push harder on the impact argument itself—the real substance issue that could move the needle.
+
+The reviewer's concern about contrastive queries potentially being functionally equivalent to diverse queries is the deepest threat to the paper's novelty. To properly address this, I need to make the distinction between contrastive and diverse queries a core contribution by defining a clear metric like Contrastive Retrieval Divergence and committing to a concrete test: if contrastive queries show significantly higher NLI contradiction rates against intermediate claims compared to diverse queries, the mechanism works; otherwise, I report it honestly. This is probably what's holding the score back—the reviewers see the BM25 equivalence risk as a fundamental narrative problem.
+
+But there's also a framing issue. Calling CVR "complementary" to existing methods makes it sound incremental, when really it's introducing something fundamentally different. Every current method optimizes some aspect of RAG but assumes retrieval should support the model's reasoning direction. CVR challenges that core assumption by adding a new retrieval intent dimension—supportive versus contrastive—that's orthogonal to all existing optimizations, similar to how attention mechanisms are orthogonal to transformer architecture choices. That's the real contribution I should emphasize.
+
+For the revision itself, I'm treating this as a minor change since the core idea and approach stay intact. I need to fix the venue target, add the HCQR citation, double-check the IG-Search score, strengthen the impact section with concrete analysis metrics, and compress the timeline. These are all refinements within the existing framework rather than fundamental shifts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9cd09902-b26a-471f-a35d-db40014aa5d0",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kUTD6EM2Xy8Us95vsG",
+  "type": "assistant",
+  "uuid": "7b326092-f2e9-4485-b1b7-3c9806fc123d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HHYzJ9C9UYwmpGpdxdFdjD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 835,
+      "cache_read_input_tokens": 37092,
+      "output_tokens": 2191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 835,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2191,
+          "cache_read_input_tokens": 37092,
+          "cache_creation_input_tokens": 835,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 835
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-14T16:09:15.711Z_
+
+Now let me search for any very recent work that might have appeared on this topic since the last revision.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b326092-f2e9-4485-b1b7-3c9806fc123d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kUTD6EM2Xy8Us95vsG",
+  "type": "assistant",
+  "uuid": "c4ddcda9-f5b6-468c-ac05-9979eebd242e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HHYzJ9C9UYwmpGpdxdFdjD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 835,
+      "cache_read_input_tokens": 37092,
+      "output_tokens": 2191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 835,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2191,
+          "cache_read_input_tokens": 37092,
+          "cache_creation_input_tokens": 835,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 835
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T16:09:16.271Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XGmYBLgpdBnnJdoKX8174R`</summary>
+
+```json
+{
+  "query": "search augmented reasoning GRPO retrieval query formulation verification May 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4ddcda9-f5b6-468c-ac05-9979eebd242e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kUTD6EM2Xy8Us95vsG",
+  "type": "assistant",
+  "uuid": "6d36d758-39ff-4b08-9668-fba832690cef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HHYzJ9C9UYwmpGpdxdFdjD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 835,
+      "cache_read_input_tokens": 37092,
+      "output_tokens": 2191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 835,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2191,
+          "cache_read_input_tokens": 37092,
+          "cache_creation_input_tokens": 835,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 835
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T16:09:24.775Z_
+
+<details><summary>↩ Tool result · `toolu_01XGmYBLgpdBnnJdoKX8174R`</summary>
+
+```text
+Web search results for query: "search augmented reasoning GRPO retrieval query formulation verification May 2026 arxiv"
+
+Links: [{"title":"Search and Refine During Think: Autonomous Retrieval-Augmented Reasoning of LLMs","url":"https://arxiv.org/html/2505.11277v1"},{"title":"HiPRAG: Hierarchical Process Rewards for Efficient Agentic Retrieval Augmented Generation","url":"https://arxiv.org/html/2510.07794"},{"title":"Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering","url":"https://arxiv.org/html/2601.11255v1"},{"title":"Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers","url":"https://arxiv.org/html/2506.00054v1"},{"title":"Reasoning RAG via System 1 or System 2: A Survey on Reasoning Agentic Retrieval-Augmented Generation for Industry Challenges","url":"https://arxiv.org/html/2506.10408v1"},{"title":"Cost-Aware Retrieval-Augmentation Reasoning Models with","url":"https://arxiv.org/pdf/2510.15719"},{"title":"A Survey of Query Optimization in Large Language Models","url":"https://arxiv.org/html/2412.17558"},{"title":"[2602.00845] Optimizing Agentic Reasoning with Retrieval via Synthetic Semantic Information Gain Reward","url":"https://arxiv.org/abs/2602.00845"},{"title":"A Survey on Retrieval And Structuring Augmented Generation","url":"https://arxiv.org/pdf/2509.10697"},{"title":"Search-R1: Training LLMs to Reason and Leverage ...","url":"https://arxiv.org/pdf/2503.09516"}]
+
+Based on the search results, I found several relevant papers from arxiv related to search-augmented reasoning, GRPO, retrieval, and query formulation from May 2026:
+
+## Key Findings:
+
+**1. AutoRefine (Most Relevant)**
+
+AutoRefine is an RL post-training framework that enhances LLM's autonomous retrieval-augmented reasoning capability using a "search-and-refine-during-think" paradigm guided by a combination of answer and retrieval rewards. The framework applies Group Relative Policy Optimization (GRPO) to train the model with both outcome-based and retrieval-specific rewards. This paper appears to be from May 2025.
+
+**2. HiPRAG**
+
+HiPRAG compares against a suite of strong baselines on seven question-answering benchmarks, outperforming all baseline methods across both 3B and 7B model sizes. This work incorporates hierarchical process rewards for agentic retrieval augmented generation.
+
+**3. Query Optimization Survey**
+
+A comprehensive survey collected papers on query optimization, query rewriting, query expansion, query decomposition, and retrieval-augmented generation from premier NLP, IR, and AI venues from 2020 through early 2026. Papers were selected based on their direct relevance to query formulation and transformation within LLM-based systems.
+
+**4. Search-R1 Framework**
+
+During rollout, LLMs can conduct multi-turn interactions with the search engine, with the framework explicitly incorporating retrieval interleaved reasoning.
+
+**5. InfoReasoner**
+
+This work uses an intrinsic reward that guides the policy to maximize epistemic progress, enabling efficient training via Group Relative Policy Optimization (GRPO).
+
+These papers collectively cover advances in search-augmented reasoning with GRPO, query formulation optimization, and verification mechanisms for retrieval-augmented systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d36d758-39ff-4b08-9668-fba832690cef",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "155c9e41-ce9a-4665-bf54-dda18453374e",
+  "toolUseResult": {
+    "query": "search augmented reasoning GRPO retrieval query formulation verification May 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013Z8BRAfvj5QLfQUZ9FdEqo",
+        "content": [
+          {
+            "title": "Search and Refine During Think: Autonomous Retrieval-Augmented Reasoning of LLMs",
+            "url": "https://arxiv.org/html/2505.11277v1"
+          },
+          {
+            "title": "HiPRAG: Hierarchical Process Rewards for Efficient Agentic Retrieval Augmented Generation",
+            "url": "https://arxiv.org/html/2510.07794"
+          },
+          {
+            "title": "Reasoning in Trees: Improving Retrieval-Augmented Generation for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2601.11255v1"
+          },
+          {
+            "title": "Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers",
+            "url": "https://arxiv.org/html/2506.00054v1"
+          },
+          {
+            "title": "Reasoning RAG via System 1 or System 2: A Survey on Reasoning Agentic Retrieval-Augmented Generation for Industry Challenges",
+            "url": "https://arxiv.org/html/2506.10408v1"
+          },
+          {
+            "title": "Cost-Aware Retrieval-Augmentation Reasoning Models with",
+            "url": "https://arxiv.org/pdf/2510.15719"
+          },
+          {
+            "title": "A Survey of Query Optimization in Large Language Models",
+            "url": "https://arxiv.org/html/2412.17558"
+          },
+          {
+            "title": "[2602.00845] Optimizing Agentic Reasoning with Retrieval via Synthetic Semantic Information Gain Reward",
+            "url": "https://arxiv.org/abs/2602.00845"
+          },
+          {
+            "title": "A Survey on Retrieval And Structuring Augmented Generation",
+            "url": "https://arxiv.org/pdf/2509.10697"
+          },
+          {
+            "title": "Search-R1: Training LLMs to Reason and Leverage ...",
+            "url": "https://arxiv.org/pdf/2503.09516"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers from arxiv related to search-augmented reasoning, GRPO, retrieval, and query formulation from May 2026:\n\n## Key Findings:\n\n**1. AutoRefine (Most Relevant)**\n\nAutoRefine is an RL post-training framework that enhances LLM's autonomous retrieval-augmented reasoning capability using a \"search-and-refine-during-think\" paradigm guided by a combination of answer and retrieval rewards. The framework applies Group Relative Policy Optimization (GRPO) to train the model with both outcome-based and retrieval-specific rewards. This paper appears to be from May 2025.\n\n**2. HiPRAG**\n\nHiPRAG compares against a suite of strong baselines on seven question-answering benchmarks, outperforming all baseline methods across both 3B and 7B model sizes. This work incorporates hierarchical process rewards for agentic retrieval augmented generation.\n\n**3. Query Optimization Survey**\n\nA comprehensive survey collected papers on query optimization, query rewriting, query expansion, query decomposition, and retrieval-augmented generation from premier NLP, IR, and AI venues from 2020 through early 2026. Papers were selected based on their direct relevance to query formulation and transformation within LLM-based systems.\n\n**4. Search-R1 Framework**\n\nDuring rollout, LLMs can conduct multi-turn interactions with the search engine, with the framework explicitly incorporating retrieval interleaved reasoning.\n\n**5. InfoReasoner**\n\nThis work uses an intrinsic reward that guides the policy to maximize epistemic progress, enabling efficient training via Group Relative Policy Optimization (GRPO).\n\nThese papers collectively cover advances in search-augmented reasoning with GRPO, query formulation optimization, and verification mechanisms for retrieval-augmented systems."
+    ],
+    "durationSeconds": 8.494315208999993
+  },
+  "sourceToolAssistantUUID": "6d36d758-39ff-4b08-9668-fba832690cef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55 · 2026-05-14T16:09:24.782Z_
+
+```json
+{
+  "parentUuid": "155c9e41-ce9a-4665-bf54-dda18453374e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b3b3d234-5e5f-44a1-b965-77cc41c5e25e",
+  "timestamp": "2026-05-14T16:09:24.782Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-14T16:09:27.709Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DUNsGLJsDD8DMCZUnTuHtE`</summary>
+
+```json
+{
+  "query": "StepSearch step-wise search reasoning LLM arxiv 2505"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3b3d234-5e5f-44a1-b965-77cc41c5e25e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kZWsk8QntdGXtwweBN",
+  "type": "assistant",
+  "uuid": "4123db76-bedd-4900-86cc-e8e47f8ef903",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jit3DrYN3KaAaUNqAMi7KR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3224,
+      "cache_read_input_tokens": 37927,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3224,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 37927,
+          "cache_creation_input_tokens": 3224,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3224
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-14T16:09:34.579Z_
+
+<details><summary>↩ Tool result · `toolu_01DUNsGLJsDD8DMCZUnTuHtE`</summary>
+
+```text
+Web search results for query: "StepSearch step-wise search reasoning LLM arxiv 2505"
+
+Links: [{"title":"StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal...","url":"https://arxiv.org/abs/2505.15107"},{"title":"StepSearch: Igniting LLMs Search Ability via Step-Wise ...","url":"https://arxiv.org/pdf/2505.15107"},{"title":"StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization","url":"https://arxiv.org/html/2505.15107"},{"title":"[2505.15107] StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization","url":"https://ar5iv.labs.arxiv.org/html/2505.15107"},{"title":"GitHub - Zillwang/StepSearch: EMNLP MAIN 2025 StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization · GitHub","url":"https://github.com/Zillwang/StepSearch"},{"title":"IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning","url":"https://arxiv.org/html/2604.15148"},{"title":"2025-8-14 ParallelSearch: Train your LLMs to Decompose Query and","url":"https://arxiv.org/pdf/2508.09303"},{"title":"StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization","url":"https://www.researchgate.net/publication/391953965_StepSearch_Igniting_LLMs_Search_Ability_via_Step-Wise_Proximal_Policy_Optimization"},{"title":"Stepwise Reasoning Checkpoint Analysis: A Test Time Scaling Method to Enhance LLMs’ Reasoning","url":"https://arxiv.org/html/2505.17829"},{"title":"Learning to Route Queries across Knowledge Bases for Step-wise Retrieval-Augmented Reasoning","url":"https://arxiv.org/html/2505.22095v1"}]
+
+Based on the search results, here's what I found about StepSearch:
+
+## StepSearch Overview
+
+StepSearch is a framework for search LLMs trained with step-wise proximal policy optimization method. The paper is titled "StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization" (arXiv 2505.15107).
+
+## Problem It Addresses
+
+The framework addresses the challenge that efficient multi-hop reasoning requires LLMs to acquire high-value external knowledge iteratively, and previous work with reinforcement learning underperformed on complex, multi-hop question answering due to sparse rewards from global signals only.
+
+## Key Technical Features
+
+StepSearch consists of richer and more detailed intermediate search rewards and token-level process supervision based on information gain and redundancy penalties to better guide each search step. The system is trained using reinforcement learning, particularly the Proximal Policy Optimization (PPO) algorithm with token-level rewards, to optimize a policy that decides search tools to invoke and what queries to issue at each stage.
+
+## Performance Results
+
+On standard multi-hop QA benchmarks, it significantly outperforms global-reward baselines, achieving 11.2% and 4.2% absolute improvements for 3B and 7B models over various search with RL baselines using only 19k training data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4123db76-bedd-4900-86cc-e8e47f8ef903",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "3f08a6aa-2e1a-4e35-b8f2-45acdcd33766",
+  "toolUseResult": {
+    "query": "StepSearch step-wise search reasoning LLM arxiv 2505",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MCVbdHYahB85NeWacff5T8",
+        "content": [
+          {
+            "title": "StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal...",
+            "url": "https://arxiv.org/abs/2505.15107"
+          },
+          {
+            "title": "StepSearch: Igniting LLMs Search Ability via Step-Wise ...",
+            "url": "https://arxiv.org/pdf/2505.15107"
+          },
+          {
+            "title": "StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization",
+            "url": "https://arxiv.org/html/2505.15107"
+          },
+          {
+            "title": "[2505.15107] StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization",
+            "url": "https://ar5iv.labs.arxiv.org/html/2505.15107"
+          },
+          {
+            "title": "GitHub - Zillwang/StepSearch: EMNLP MAIN 2025 StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization · GitHub",
+            "url": "https://github.com/Zillwang/StepSearch"
+          },
+          {
+            "title": "IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning",
+            "url": "https://arxiv.org/html/2604.15148"
+          },
+          {
+            "title": "2025-8-14 ParallelSearch: Train your LLMs to Decompose Query and",
+            "url": "https://arxiv.org/pdf/2508.09303"
+          },
+          {
+            "title": "StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization",
+            "url": "https://www.researchgate.net/publication/391953965_StepSearch_Igniting_LLMs_Search_Ability_via_Step-Wise_Proximal_Policy_Optimization"
+          },
+          {
+            "title": "Stepwise Reasoning Checkpoint Analysis: A Test Time Scaling Method to Enhance LLMs’ Reasoning",
+            "url": "https://arxiv.org/html/2505.17829"
+          },
+          {
+            "title": "Learning to Route Queries across Knowledge Bases for Step-wise Retrieval-Augmented Reasoning",
+            "url": "https://arxiv.org/html/2505.22095v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about StepSearch:\n\n## StepSearch Overview\n\nStepSearch is a framework for search LLMs trained with step-wise proximal policy optimization method. The paper is titled \"StepSearch: Igniting LLMs Search Ability via Step-Wise Proximal Policy Optimization\" (arXiv 2505.15107).\n\n## Problem It Addresses\n\nThe framework addresses the challenge that efficient multi-hop reasoning requires LLMs to acquire high-value external knowledge iteratively, and previous work with reinforcement learning underperformed on complex, multi-hop question answering due to sparse rewards from global signals only.\n\n## Key Technical Features\n\nStepSearch consists of richer and more detailed intermediate search rewards and token-level process supervision based on information gain and redundancy penalties to better guide each search step. The system is trained using reinforcement learning, particularly the Proximal Policy Optimization (PPO) algorithm with token-level rewards, to optimize a policy that decides search tools to invoke and what queries to issue at each stage.\n\n## Performance Results\n\nOn standard multi-hop QA benchmarks, it significantly outperforms global-reward baselines, achieving 11.2% and 4.2% absolute improvements for 3B and 7B models over various search with RL baselines using only 19k training data."
+    ],
+    "durationSeconds": 6.86630978500002
+  },
+  "sourceToolAssistantUUID": "4123db76-bedd-4900-86cc-e8e47f8ef903",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Contrastive Verification Retrieval for Reasoning Chain Faithfulness\",…",
+  "leafUuid": "3f08a6aa-2e1a-4e35-b8f2-45acdcd33766",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CVR: fix ARR timeline, add HCQR, strengthen contrastive novelty",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-14T16:09:46.912Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+StepSearch is relevant but uses PPO not GRPO, and focuses on step-level rewards for search quality, not contrastive retrieval intent. It's complementary but worth noting in the landscape. Let me check if it was published at EMNLP 2025 Main as the GitHub suggests.
+
+Now I have all the info I need. Let me compile the revised idea.
+
+Key changes:
+1. Fix venue: ARR May 25, 2026 → EMNLP 2026 as primary (11-day plan). AAAI 2027 as backup.
+2. Add HCQR to landscape
+
+
+3. I've verified the IG-Search 7B baseline score of 0.476 from the paper's results table, and I'm adding StepSearch to the related work section since it appeared at EMNLP 2025 Main with step-level PPO rewards for search optimization. Now I'll compress the timeline to 11 days and strengthen the proposal with a Contrastive Retrieval Quality analysis before drafting the JSON.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f08a6aa-2e1a-4e35-b8f2-45acdcd33766",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kaEoP9YEaUpVZ692R9",
+  "type": "assistant",
+  "uuid": "f2430c93-a496-42ad-824a-316613a110cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BmcJkCnc5r59fPkjKorm5o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 940,
+      "cache_read_input_tokens": 42091,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 42091,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-14T16:10:51.896Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+StepSearch is relevant but is from May 2025 (arxiv 2505) and uses PPO, not GRPO. It's an EMNLP 2025 paper. It's about step-wise optimization of search queries, but doesn't address contrastive/verification retrieval. It's already captured conceptually by the existing landscape entries (step-level rewards for search). I should mention it if it adds something new, but it doesn't - it optimizes informativeness like IG-Search, not contrastive intent.
+
+Let me also check if there's anything very recent (May 2026) that might be a direct competitor.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2430c93-a496-42ad-824a-316613a110cb",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kaEoP9YEaUpVZ692R9",
+  "type": "assistant",
+  "uuid": "5ca932de-aabc-4180-a5ab-de19b9c85a7d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018YX7jysSZDagJdQMqQyQRJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 940,
+      "cache_read_input_tokens": 42091,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 42091,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-14T16:10:52.776Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JregFJCGXDP8mneSAiM66r`</summary>
+
+```json
+{
+  "query": "\"contrastive verification\" OR \"adversarial retrieval\" OR \"counter-evidence retrieval\" reasoning LLM RL training 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ca932de-aabc-4180-a5ab-de19b9c85a7d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kaEoP9YEaUpVZ692R9",
+  "type": "assistant",
+  "uuid": "594e2ccd-40e6-4db4-bc06-e5808eebf6d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018YX7jysSZDagJdQMqQyQRJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 940,
+      "cache_read_input_tokens": 42091,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 42091,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-14T16:11:01.739Z_
+
+<details><summary>↩ Tool result · `toolu_01JregFJCGXDP8mneSAiM66r`</summary>
+
+```text
+Web search results for query: ""contrastive verification" OR "adversarial retrieval" OR "counter-evidence retrieval" reasoning LLM RL training 2026"
+
+Links: [{"title":"LLM-as-Critic: Contrastive and Adversarial Strategies for Authentic Text Verification[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202506.0126"},{"title":"GitHub - liunian-Jay/Awesome-RAG: 💡 Awesome RAG: A resource of Retrieval-Augmented Generation (RAG) for LLMs, focusing on the development of technology.","url":"https://github.com/liunian-Jay/Awesome-RAG"},{"title":"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models","url":"https://arxiv.org/html/2603.19532"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.23863"},{"title":"GitHub - smiles724/Awesome-LLM-RLVR: Collection of latest papers and materials in the area of RLVR! · GitHub","url":"https://github.com/smiles724/Awesome-LLM-RLVR"},{"title":"GitHub - TsinghuaC3I/Awesome-RL-for-LRMs: A Survey of Reinforcement Learning for Large Reasoning Models · GitHub","url":"https://github.com/TsinghuaC3I/Awesome-RL-for-LRMs"},{"title":"A Survey of Frontiers in LLM Reasoning: Inference Scaling,","url":"https://llm-reasoning-ai.github.io/survey_arxiv.pdf"},{"title":"R3-RAG: Learning Step-by-Step Reasoning and Retrieval ...","url":"https://aclanthology.org/2025.findings-emnlp.554.pdf"},{"title":"Downloads 2025","url":"https://iclr.cc/Downloads/2025"},{"title":"The State of Reinforcement Learning for LLM Reasoning","url":"https://magazine.sebastianraschka.com/p/the-state-of-llm-reasoning-model-training"}]
+
+Based on the web search results, I found several relevant research directions and papers related to your query about contrastive verification, adversarial retrieval, and counter-evidence retrieval in LLM reasoning and RL training for 2026:
+
+## Key Findings:
+
+**Contrastive Verification and Learning:**
+Contrastive learning forces LLMs to learn subtle distinctions between human and AI linguistic patterns by maximizing divergence in their respective "human-likeness" scores. Additionally, CARE What Fails is a contrastive anchored-reflection method for verifiable multimodal reasoning published in March 2026.
+
+**Adversarial Training Approaches:**
+A multi-objective training paradigm includes contrastive learning loss to maximize inter-class separation and adversarial training schemes to bolster robustness against sophisticated AI-generated content.
+
+**Evidence and Counter-Evidence in Reasoning:**
+EvidenceRL is a reinforcement learning framework that enforces evidence adherence during training. This approach directly addresses the integration of evidence verification in RL-based reasoning systems.
+
+**Self-Play and Verification in Long-Context Reasoning:**
+One LLM assumes three complementary roles: questioning, responding, and verifying, representing a recent approach to creating internal verification mechanisms without external supervision.
+
+**Verifiable Reasoning Frameworks:**
+Recent 2026 work includes an industrial-scale insurance LLM achieving verifiable domain mastery and hallucination control, and QuantumQA enhancing scientific reasoning via physics-consistent datasets and verification-aware reinforcement learning.
+
+The research landscape shows a strong trend toward integrating verification, contrastive learning, and evidence grounding directly into RL training procedures for LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "594e2ccd-40e6-4db4-bc06-e5808eebf6d1",
+  "isSidechain": false,
+  "promptId": "da0ba898-66f7-4e0f-a6cc-c3105405d82a",
+  "type": "user",
+  "uuid": "ee75cc4a-1b72-4d5e-bfd6-86f6b86af69a",
+  "toolUseResult": {
+    "query": "\"contrastive verification\" OR \"adversarial retrieval\" OR \"counter-evidence retrieval\" reasoning LLM RL training 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DuMGoPHNfjAv1L3qxAR7Ub",
+        "content": [
+          {
+            "title": "LLM-as-Critic: Contrastive and Adversarial Strategies for Authentic Text Verification[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202506.0126"
+          },
+          {
+            "title": "GitHub - liunian-Jay/Awesome-RAG: 💡 Awesome RAG: A resource of Retrieval-Augmented Generation (RAG) for LLMs, focusing on the development of technology.",
+            "url": "https://github.com/liunian-Jay/Awesome-RAG"
+          },
+          {
+            "title": "EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models",
+            "url": "https://arxiv.org/html/2603.19532"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.23863"
+          },
+          {
+            "title": "GitHub - smiles724/Awesome-LLM-RLVR: Collection of latest papers and materials in the area of RLVR! · GitHub",
+            "url": "https://github.com/smiles724/Awesome-LLM-RLVR"
+          },
+          {
+            "title": "GitHub - TsinghuaC3I/Awesome-RL-for-LRMs: A Survey of Reinforcement Learning for Large Reasoning Models · GitHub",
+            "url": "https://github.com/TsinghuaC3I/Awesome-RL-for-LRMs"
+          },
+          {
+            "title": "A Survey of Frontiers in LLM Reasoning: Inference Scaling,",
+            "url": "https://llm-reasoning-ai.github.io/survey_arxiv.pdf"
+          },
+          {
+            "title": "R3-RAG: Learning Step-by-Step Reasoning and Retrieval ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.554.pdf"
+          },
+          {
+            "title": "Downloads 2025",
+            "url": "https://iclr.cc/Downloads/2025"
+          },
+          {
+            "title": "The State of Reinforcement Learning for LLM Reasoning",
+            "url": "https://magazine.sebastianraschka.com/p/the-state-of-llm-reasoning-model-training"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant research directions and papers related to your query about contrastive verification, adversarial retrieval, and counter-evidence retrieval in LLM reasoning and RL training for 2026:\n\n## Key Findings:\n\n**Contrastive Verification and Learning:**\nContrastive learning forces LLMs to learn subtle distinctions between human and AI linguistic patterns by maximizing divergence in their respective \"human-likeness\" scores. Additionally, CARE What Fails is a contrastive anchored-reflection method for verifiable multimodal reasoning published in March 2026.\n\n**Adversarial Training Approaches:**\nA multi-objective training paradigm includes contrastive learning loss to maximize inter-class separation and adversarial training schemes to bolster robustness against sophisticated AI-generated content.\n\n**Evidence and Counter-Evidence in Reasoning:**\nEvidenceRL is a reinforcement learning framework that enforces evidence adherence during training. This approach directly addresses the integration of evidence verification in RL-based reasoning systems.\n\n**Self-Play and Verification in Long-Context Reasoning:**\nOne LLM assumes three complementary roles: questioning, responding, and verifying, representing a recent approach to creating internal verification mechanisms without external supervision.\n\n**Verifiable Reasoning Frameworks:**\nRecent 2026 work includes an industrial-scale insurance LLM achieving verifiable domain mastery and hallucination control, and QuantumQA enhancing scientific reasoning via physics-consistent datasets and verification-aware reinforcement learning.\n\nThe research landscape shows a strong trend toward integrating verification, contrastive learning, and evidence grounding directly into RL training procedures for LLMs."
+    ],
+    "durationSeconds": 8.956008429000038
+  },
+  "sourceToolAssistantUUID": "594e2ccd-40e6-4db4-bc06-e5808eebf6d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-14T16:11:27.963Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good - no direct competitor has appeared for the specific combination of step-level contrastive retrieval via RL. The gap remains open. Let me now compose the revised idea.
+
+Key revisions:
+1. Fix venue: ARR May 25, 2026 as primary (11 days), AAAI 2027 as backup
+2. Compress timeline to 11 days
+3. Add HCQR to landscape
+4. Verify IG-Search 7B score (confirmed: 0.476 for Base, 0.479 for Instruct)
+
+
+5. I need to strengthen the impact by adding a contrastive retrieval analysis with concrete metrics, and reframe this as introducing a new retrieval intent dimension rather than just a complementary approach.
+
+Now I'm writing out the full revised JSON structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee75cc4a-1b72-4d5e-bfd6-86f6b86af69a",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kgfSdMZpwfPoed7NZe",
+  "type": "assistant",
+  "uuid": "22ae5c3e-5f39-4e73-a466-f90a559c2be8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKLeHwUXQT95ECG7rgix6u",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1197,
+      "cache_read_input_tokens": 42091,
+      "output_tokens": 7428,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1197,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7428,
+          "cache_read_input_tokens": 42091,
+          "cache_creation_input_tokens": 1197,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1197
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-14T16:14:15.210Z_
+
+I now have all the information needed. Let me summarize my findings and compose the revised idea:
+
+**Key findings:**
+- ARR May 25, 2026 is confirmed as the only path to EMNLP 2026 (commitment Aug 2). No June cycle exists.
+- HCQR (arxiv 2603.19008) generates supportive/distinguishing/verifying queries — training-free, MCQ-focused.
+- IG-Search 7B score **verified**: 0.476 avg EM (Base) / 0.479 (Instruct) from Table 3 of the full paper.
+- No new direct competitor found for step-level learned contrastive retrieval via RL.
+- AAAI 2027 deadline is TBD but expected ~August 2026 based on AAAI 2026 pattern (Aug 1, 2025).
+
+Now composing the complete revised idea with: (1) honest 11-day plan for ARR May 25, (2) HCQR in landscape, (3) verified IG-Search score, (4) strengthened impact via Contrastive Retrieval Analysis metrics, and (5) reframed contribution narrative.
+
+```json
+{
+  "title": "Contrastive Verification Retrieval for Reasoning Chain Faithfulness",
+  "change_type": "minor",
+  "core_problem": "Current retrieval-augmented reasoning systems only retrieve supportive evidence, creating an echo chamber where errors in intermediate reasoning steps propagate unchecked. This 'confirmation bias in retrieval' mirrors the well-documented confirmation bias in LLM reasoning itself (Failing to Falsify, arxiv 2604.02485), but no existing work addresses it through learned, step-level contrastive retrieval within an end-to-end RL framework. Recent GRPO-based methods have improved retrieval timing (Search-R1), retrieval ranking (CoSearch), step-level retrieval rewards (IG-Search), and generation faithfulness given retrieved evidence (CRAFT) — but all treat retrieval as a single-mode supportive action. The retrieval query itself remains a source of confirmation bias that none of these methods address.",
+  "opportunity": "The adaptive retrieval paradox (arxiv 2602.07213) shows retrieval often hurts reasoning because supportive retrieval reinforces wrong conclusions. FVA-RAG (arxiv 2512.07015) demonstrates that falsification retrieval via prompted 'kill queries' can surface decisive counter-evidence in ~25-29% of queries, improving TruthfulQA accuracy by 8-9% over Self-RAG — but operates only at the answer level with hand-designed prompts, not at intermediate reasoning steps. CRAFT (arxiv 2602.01348) achieves the strongest GRPO baselines on multi-hop QA (HotpotQA 66.61%, 2WikiMultihopQA 78.72%, MuSiQue 54.35% EM on Qwen2.5-7B) by optimizing generation faithfulness with dual reward mechanisms — but it optimizes how the model reasons given evidence, not what evidence the model retrieves. IG-Search (arxiv 2604.15148) introduces step-level information gain rewards for retrieval, improving search quality — but optimizes for informativeness, not contrastive verification. CoSearch (arxiv 2604.17555) jointly trains reasoning and retrieval ranking, showing +6.6% F1 over Search-R1 — but optimizes document ranking for relevance, not query formulation for contrastive intent. CounterRefine (arxiv 2603.16091) retrieves answer-conditioned counter-evidence for inference-time repair — but operates post-hoc on final answers, not during reasoning. HCQR (arxiv 2603.19008) generates hypothesis-conditioned queries including distinguishing and verifying queries for MCQ tasks — but is training-free, operates at the question level (not step level), and targets closed-set answer selection rather than open-domain multi-hop reasoning. The gap remains: a retrieval mechanism that learns via RL to formulate step-level contrastive verification queries — seeking potentially contradictory evidence at intermediate reasoning steps — before the model proceeds to the next hop.",
+  "landscape": "Search-R1 (COLM 2025, arxiv 2503.09516), ReSearch (NeurIPS 2025, arxiv 2503.19470), R3-RAG (Findings of EMNLP 2025), and ReaLM-Retrieve (SIGIR 2026, arxiv 2604.26649) all treat retrieval as a single-mode supportive action. CRAFT (arxiv 2602.01348) is the strongest GRPO baseline on our target benchmarks (HotpotQA 66.61%, 2WikiMultihopQA 78.72%, MuSiQue 54.35% EM with Qwen2.5-7B), training with dual deterministic+judge-based rewards for generation faithfulness — but it optimizes the response generation stage, not retrieval query formulation; CVR is complementary and could be combined with CRAFT's reward design. IG-Search (arxiv 2604.15148) introduces step-level information gain rewards measuring how retrieved documents improve answer confidence vs. random documents, achieving 0.476 avg EM on Qwen2.5-7B-Base (verified from Table 3 of the full paper; the abstract reports only the 3B result of 0.430) — it optimizes for informativeness at each step, while CVR optimizes for contrastive verification intent; these are complementary objectives. CoSearch (arxiv 2604.17555) jointly trains the reasoning agent and a generative document ranker via GRPO with semantic grouping, showing +26.8% oracle gap recovery — it optimizes document ranking quality, while CVR optimizes query formulation intent; again complementary. OThink-SRR1 (arxiv 2604.19766) adds a Refine stage via GRPO-IR to distill retrieved documents before reasoning, improving retrieval quality but not retrieval intent. VERITAS (arxiv 2510.13272) introduces faithfulness rewards during RL training but never changes what is retrieved. CTRL-RAG (arxiv 2603.04406) uses contrastive likelihood reward to improve faithfulness via RL, but 'contrastive' refers to likelihood gaps between prompted/unprompted responses, not retrieval of counter-evidence. FVA-RAG (arxiv 2512.07015) is the closest prior art on adversarial retrieval: it generates 'kill queries' to surface contradictory evidence, achieving 79.8-80.1% on TruthfulQA vs 71-74% for Self-RAG/CRAG — but operates at the answer level with prompted (not learned) query generation in a pipeline (not end-to-end RL) setting. CounterRefine (arxiv 2603.16091) retrieves answer-conditioned counter-evidence and applies restricted refinement (KEEP/REVISE decisions) for inference-time knowledge repair, improving GPT-5 Baseline-RAG by 5.8pp on SimpleQA — an inference-time pipeline approach complementary to CVR's training-time RL approach. CoRM-RAG (arxiv 2605.01302) addresses the 'Relevance-Robustness Gap' via counterfactual risk minimization, training an Evidence Critic to identify documents robust to cognitive biases — it optimizes document selection robustness, while CVR optimizes query generation for contrastive intent. Contradiction to Consensus (arxiv 2602.18693) retrieves evidence for both original and negated claims for dual-perspective claim verification, similar in spirit to CVR's contrastive retrieval but applied to whole-claim fact-checking rather than step-level multi-hop reasoning, and using prompting rather than RL-learned behavior. HCQR (arxiv 2603.19008) generates hypothesis-conditioned query rewrites — supportive, distinguishing, and verifying queries — for MCQ tasks, improving average accuracy over Simple RAG by 5.9 points on MedQA; it shares the philosophical motivation of non-supportive retrieval, but is training-free (prompting-based), operates at the question level rather than intermediate reasoning steps, and targets closed-set answer selection rather than open-domain multi-hop reasoning. CVR differs by learning step-level contrastive query generation end-to-end via RL for open-domain multi-hop settings. RAFTS (ACL 2024, arxiv 2406.09815) synthesizes contrastive supporting/refuting arguments for fact verification but uses a pipeline approach without RL optimization. PROClaim (arxiv 2603.28488) uses stance-conditioned retrieval for whole-claim verification via multi-agent debate. RAG-Star (NAACL 2025, arxiv 2412.12881) retrieves evidence to verify intermediate steps but only supportive evidence. SLATE (arxiv 2602.23440) achieves 7% improvement via step-level credit assignment but its retrieval queries remain standard. EvidenceRL (arxiv 2603.19532) enforces evidence consistency via GRPO in domain-specific settings. Failing to Falsify (arxiv 2604.02485) demonstrates LLMs exhibit confirmation bias, with counter-example prompting improving rule discovery from 42% to 56%, providing strong motivation for contrastive retrieval. The specific combination of (1) step-level granularity, (2) learned contrastive query generation, (3) end-to-end RL training, and (4) explicit exploration mechanisms for the contrastive action remains unaddressed by any existing or concurrent work.",
+  "approach": "We augment the Search-R1 framework with a dual-mode retrieval mechanism. At each intermediate reasoning step, the model can invoke either a standard &lt;search> token (supportive retrieval) or a new &lt;contrastive_search> token (verification retrieval). The contrastive token signals the model to generate a query designed to surface evidence challenging its current intermediate conclusion. We use Qwen2.5-7B as the primary base model for direct comparability with CRAFT, IG-Search, and CoSearch.\n\n**BM25-Compatible Contrastive Strategies.** Because BM25 is a bag-of-words model that cannot process negation semantics, queries like 'counterexample to X' would simply retrieve documents about X. We hypothesize that RL training will learn BM25-compatible contrastive strategies — querying alternative entities (e.g., 'Who else discovered penicillin' instead of 'Fleming did not discover penicillin'), querying alternative explanations (e.g., 'other causes of World War I' rather than 'World War I was not caused by assassination'), or retrieving background context that contextualizes claims differently. We provide a systematic analysis of learned contrastive query patterns in Section 5, categorizing emergent strategies and measuring their effectiveness.\n\n**Contrastive Retrieval Analysis (addressing the 'diversity vs. contradiction' concern).** A key question is whether learned contrastive queries retrieve qualitatively different evidence or merely more diverse evidence. We design three metrics to empirically resolve this: (1) **NLI Contradiction Rate**: for each contrastive-retrieved passage, we measure the NLI contradiction probability against the model's intermediate claim that triggered the contrastive query — genuine contrastive retrieval should show significantly higher contradiction rates than supportive retrieval (which serves as the diversity-only baseline); (2) **Claim-Targeted Entity Divergence**: we measure entity overlap between the contrastive query and the original intermediate claim vs. between a hypothetical 'broader' query and the claim — contrastive queries should target the specific entities/relations in the claim, not just expand topic coverage; (3) **Revision Impact Correlation**: we measure whether higher contradiction rates in contrastive-retrieved passages correlate with higher rates of beneficial claim revision (changing wrong intermediate conclusions to correct ones). This analysis turns the BM25 limitation into an empirical finding either way and constitutes a core contribution.\n\n**Forced Exploration for Contrastive Token.** Since &lt;search> already provides positive reward signal from the start, GRPO would likely converge to never using &lt;contrastive_search> — the gradient signal for an unused action is zero. Inspired by DAPO's clip-higher technique and XRPO's exploration bonuses, we implement forced exploration during the first 30% of training steps: 20% of &lt;search> tokens are randomly replaced with &lt;contrastive_search>, ensuring the model explores contrastive retrieval and receives gradient signal for learning when it is beneficial. After the exploration phase, the model freely chooses between modes based on learned value.\n\n**Training.** We train via GRPO with LoRA using a simplified two-component reward: (a) final answer correctness (EM match), and (b) an NLI-based contrastive consistency score. For the NLI component, when &lt;contrastive_search> is invoked, an off-the-shelf NLI model (DeBERTa-v3-large fine-tuned on MNLI, ~304M params) checks during reward computation whether the model's post-retrieval reasoning is logically consistent with the retrieved counter-evidence — rewarding appropriate revision when contradictions are valid, and appropriate maintenance when counter-evidence is irrelevant. The NLI model runs only during reward computation, not during rollout generation, adding minimal overhead.\n\n**Evaluation and Faithfulness Metric.** We evaluate on five benchmarks spanning multi-hop reasoning (HotpotQA, 2WikiMultihopQA, MuSiQue), commonsense multi-step reasoning (StrategyQA), and fact verification (FEVER), measuring both task accuracy (EM/F1) and reasoning chain faithfulness. For faithfulness evaluation: we extract intermediate claims by splitting CoT reasoning at sentence boundaries. For each claim, an NLI model computes entailment probability against the union of retrieved passages cited up to that step. A claim is 'supported' if P(entailment) > 0.5. To avoid evaluation circularity, we use a separate DeBERTa-v3-base checkpoint for evaluation, distinct from the DeBERTa-v3-large used in the training reward. We compare against Search-R1 (direct baseline), CRAFT (strongest GRPO baseline on these benchmarks), IG-Search (step-level reward baseline), and CoSearch (joint retrieval optimization baseline).\n\nImplementation builds directly on the open-source Search-R1 codebase (GitHub/veRL) with its existing BM25+Wikipedia retrieval server, requiring: (1) adding the &lt;contrastive_search> special token to the action space with forced exploration scheduling, (2) integrating NLI reward computation into the GRPO reward function, (3) LoRA adapter configuration, and (4) Contrastive Retrieval Analysis pipeline.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~180 H100-hours budget: baseline Search-R1 reproduction on Qwen2.5-7B (~50 H100-hours, 4 GPUs × 12h), main CVR training (~80 H100-hours, 4 GPUs × 20h), evaluation on all 5 benchmarks + Contrastive Retrieval Analysis (~25 H100-hours), overhead for debugging and NLI reward coefficient calibration (~25 H100-hours). Ablation (contrastive retrieval with correctness-only reward, no NLI component) deferred to camera-ready revision (~45 H100-hours additional).",
+      "gpu_utilization": "Effective utilization ~80% of budget; overhead accounts for debugging, NLI reward coefficient calibration (1-2 short runs of ~5 H100-hours each), and Contrastive Retrieval Analysis.",
+      "timeline": "11 days (ARR May 25, 2026): Days 1-2 (May 14-15) implementation — fork Search-R1, add contrastive token with forced exploration, NLI reward, LoRA config, dataset prep for StrategyQA/FEVER. Days 3-4 (May 16-17) baseline Search-R1 reproduction. Days 5-7 (May 18-20) main CVR training with LoRA (~80 H100-hours on 4 GPUs). Day 8 (May 21) evaluation on all 5 benchmarks + Contrastive Retrieval Analysis. Days 9-11 (May 22-24) paper writing. Introduction, related work, and method sections are pre-written in parallel during Days 1-7. Ablation deferred to camera-ready revision (reviews arrive ~July 7).",
+      "team": "1-2 researchers working intensively",
+      "estimated_gpu_cost": "$800-$1,000 (at ~$4-5/hr H100 spot pricing for 4-GPU cluster; ablation cost additional for camera-ready)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~180 H100-hours (same budget; agent handles implementation and experiment orchestration more efficiently)",
+      "gpu_utilization": "Effective utilization ~85%; agent queues next experiment immediately upon completion, reducing inter-run gaps",
+      "timeline": "11 days",
+      "team": "1 researcher, ~2hr/day reviewing agent proposals and approving experiment launches",
+      "claude_api_cost": "$50-$100 (~500-1000 Opus turns for code implementation, experiment orchestration, and analysis)",
+      "estimated_gpu_cost": "$800-$1,000",
+      "risk_note": "NLI reward coefficient α may need 1-2 short calibration runs (~5 H100-hours each) if initial setting causes over-retrieval or under-retrieval of contrastive queries; budget includes margin"
+    },
+    "auto_research": {
+      "gpu_hours": "~180 H100-hours (hard budget cap; agent optimizes experiment selection within fixed compute envelope)",
+      "gpu_utilization": "Effective utilization >95%; agent pipelines experiments 24/7",
+      "timeline": "9-11 days with 4 H100s continuously available",
+      "team": "0 researchers after initial 2-3 hour setup (repo fork, config, objective specification)",
+      "claude_api_cost": "$100-$200 (~1000-2000 Opus turns for full cycle)",
+      "estimated_gpu_cost": "$800-$1,000",
+      "speed_bottleneck": "Wall-clock training time per run (~12-20h on 4 H100s); budget allows 2 full training runs (baseline + CVR) plus evaluation and analysis, with ablation deferred to camera-ready",
+      "risk_note": "With only 2 full runs in the initial submission budget, autonomous reward tuning is limited; agent should default to the simple NLI reward rather than exploring complex alternatives"
+    }
+  },
+  "target_venues": [
+    "ARR May 25, 2026 → EMNLP 2026 commitment (primary target; 11 days from today, tight but feasible with pre-written sections and ablation deferred to camera-ready. Author response July 7-13; camera-ready September 20 allows time for ablation experiments post-review)",
+    "AAAI 2027 (submission deadline TBD, expected ~August 2026 based on AAAI 2026 pattern of August 1, 2025; backup if ARR May 25 is missed or if additional experiments — Qwen3-8B, dense retriever ablation, full ablation suite — strengthen the paper)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning (COLM 2025, arxiv 2503.09516)",
+    "ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning (NeurIPS 2025, arxiv 2503.19470)",
+    "R3-RAG: Learning Step-by-Step Reasoning and Retrieval for LLMs via Reinforcement Learning (Findings of EMNLP 2025)",
+    "When to Retrieve During Reasoning: Adaptive Retrieval for Large Reasoning Models [ReaLM-Retrieve] (SIGIR 2026, arxiv 2604.26649)",
+    "CRAFT: Calibrated Reasoning with Answer-Faithful Traces via Reinforcement Learning for Multi-Hop Question Answering (arXiv 2026, arxiv 2602.01348)",
+    "IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning (arXiv 2026, arxiv 2604.15148)",
+    "CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search (arXiv 2026, arxiv 2604.17555)",
+    "CounterRefine: Answer-Conditioned Counterevidence Retrieval for Inference-Time Knowledge Repair in Factual Question Answering (ACL 2026 Workshop, arxiv 2603.16091)",
+    "CoRM-RAG: Beyond Semantic Relevance: Counterfactual Risk Minimization for Robust Retrieval-Augmented Generation (arXiv 2026, arxiv 2605.01302)",
+    "Contradiction to Consensus: Dual Perspective, Multi Source Retrieval Based Claim Verification (arXiv 2026, arxiv 2602.18693)",
+    "FVA-RAG: Falsification-Verification Alignment for Mitigating Sycophantic Hallucinations (arXiv 2024, arxiv 2512.07015)",
+    "HCQR: Hypothesis-Conditioned Query Rewriting for Decision-Useful Retrieval (arXiv 2026, arxiv 2603.19008)",
+    "Retrieval Augmented Fact Verification by Synthesizing Contrastive Arguments [RAFTS] (ACL 2024, arxiv 2406.09815)",
+    "CTRL-RAG: Contrastive Likelihood Reward Based Reinforcement Learning for Context-Faithful RAG Models (arXiv 2026, arxiv 2603.04406)",
+    "OThink-SRR1: Search, Refine and Reasoning with Reinforced Learning for LLMs (arXiv 2026, arxiv 2604.19766)",
+    "Beyond Correctness: Rewarding Faithful Reasoning in Retrieval-Augmented Generation [VERITAS] (arXiv 2025, arxiv 2510.13272)",
+    "Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing [SAVeR] (arXiv 2026, arxiv 2604.08401)",
+    "EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models (arXiv 2026, arxiv 2603.19532)",
+    "Truncated Step-Level Sampling with Process Rewards for Retrieval-Augmented Reasoning [SLATE] (arXiv 2026, arxiv 2602.23440)",
+    "Adaptive Retrieval helps Reasoning in LLMs -- but mostly if it's not used (arXiv 2026, arxiv 2602.07213)",
+    "PROClaim: Courtroom-Style Multi-Agent Debate with Progressive RAG and Role-Switching for Controversial Claim Verification (arXiv 2026, arxiv 2603.28488)",
+    "RAG-Star: Enhancing Deliberative Reasoning with Retrieval Augmented Verification and Refinement (NAACL 2025, arxiv 2412.12881)",
+    "Failing to Falsify: Evaluating and Mitigating Confirmation Bias in Language Models (arXiv 2026, arxiv 2604.02485)",
+    "RVR: Retrieve-Verify-Retrieve for Comprehensive Question Answering (arXiv 2026, arxiv 2602.18425)",
+    "XRPO: Pushing the Limits of GRPO with Targeted Exploration and Exploitation (arXiv 2025, arxiv 2510.06672)"
+  ],
+  "description": "Contrastive Verification Retrieval (CVR) addresses the confirmation bias in retrieval-augmented reasoning: current systems only retrieve supportive evidence, letting intermediate reasoning errors propagate unchecked through the chain. We augment the Search-R1 framework with a dual-mode retrieval mechanism on Qwen2.5-7B (for direct comparability with CRAFT, IG-Search, CoSearch), where the model learns via GRPO+LoRA to invoke either standard supportive queries (&lt;search>) or contrastive verification queries (&lt;contrastive_search>) that surface potentially contradictory evidence for intermediate chain-of-thought conclusions. Unlike FVA-RAG (arxiv 2512.07015) and CounterRefine (arxiv 2603.16091), which use prompted kill queries or answer-conditioned counter-evidence at the answer level in pipeline settings, CVR learns step-level contrastive query generation end-to-end via RL. Unlike HCQR (arxiv 2603.19008), which generates hypothesis-conditioned distinguishing/verifying queries via prompting for closed-set MCQ tasks, CVR learns open-domain contrastive queries at intermediate reasoning steps via RL. Unlike CRAFT (arxiv 2602.01348), which optimizes generation faithfulness given retrieved evidence (achieving HotpotQA 66.61%, 2Wiki 78.72%, MuSiQue 54.35% EM), CVR optimizes retrieval query intent — these are complementary and could be combined. Unlike IG-Search (arxiv 2604.15148), which optimizes step-level information gain for informativeness (0.476 avg EM on Qwen2.5-7B-Base per Table 3), CVR optimizes for contrastive verification — again complementary. We address BM25's inability to process negation by hypothesizing that RL will learn BM25-compatible contrastive strategies (querying alternative entities/explanations rather than negations), and critically, we introduce a Contrastive Retrieval Analysis with three metrics — NLI contradiction rate against intermediate claims, claim-targeted entity divergence, and revision impact correlation — to empirically demonstrate that contrastive queries retrieve qualitatively different (not merely more diverse) evidence. This analysis resolves the key question of whether contrastive retrieval under BM25 is genuinely contrastive or functionally equivalent to broader coverage, constituting a core empirical contribution either way. To prevent GRPO from ignoring the contrastive action, we implement forced exploration: during the first 30% of training, 20% of &lt;search> tokens are randomly replaced with &lt;contrastive_search>. A simplified two-component reward combines final answer correctness with an NLI-based contrastive consistency score (DeBERTa-v3-large/MNLI for training, separate DeBERTa-v3-base for evaluation to avoid circularity). Faithfulness is measured by extracting intermediate claims at sentence boundaries and computing NLI entailment against cited passages (supported if P(entailment) > 0.5). Evaluated on HotpotQA, 2WikiMultihopQA, MuSiQue, StrategyQA, and FEVER. Designed for completion within 11 days targeting ARR May 25, 2026 → EMNLP 2026 (ablation deferred to camera-ready), with AAAI 2027 (~August 2026) as backup.",
+  "project_name": "contrastive_verify_rag",
+  "source": "web_research"
+}
+```
+
+**Summary of changes (minor revision):**
+
+1. **Venue fix (CRITICAL):** Removed fictitious "ARR June 2026." Primary target is now ARR May 25, 2026 → EMNLP 2026, with an honest 11-day compressed plan (Days 1-2 implementation, 3-4 baseline, 5-7 CVR training, Day 8 eval, Days 9-11 writing; ablation deferred to camera-ready after reviews arrive July 7). AAAI 2027 (~August 2026, TBD) is the backup.
+
+2. **Timeline compressed to 11 days (CRITICAL):** Ablation experiments are deferred to the camera-ready phase (September 20 deadline), making the 11-day plan credible. Pre-writing method/related work sections during Days 1-7.
+
+3. **HCQR added (MINOR):** Added to both opportunity and landscape sections with clear differentiation: HCQR is training-free, question-level, MCQ-focused; CVR is RL-learned, step-level, open-domain multi-hop.
+
+4. **IG-Search 7B score verified:** Confirmed 0.476 avg EM for IG-Search-Base from Table 3 of the full paper. Added sourcing note "(verified from Table 3 of the full paper; the abstract reports only the 3B result of 0.430)."
+
+5. **Impact argument strengthened:** Added a new "Contrastive Retrieval Analysis" section with three concrete metrics — (1) NLI contradiction rate, (2) claim-targeted entity divergence, (3) revision impact correlation — designed to empirically distinguish genuine contrastive retrieval from merely broader/more diverse retrieval. This turns the BM25 risk into a core empirical contribution.
+
+Sources:
+- [ARR Dates and Venues](https://aclrollingreview.org/dates)
+- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)
+- [HCQR Paper](https://arxiv.org/abs/2603.19008)
+- [IG-Search Full Paper (Table 3)](https://arxiv.org/html/2604.15148)
+- [AAAI 2027 Conference](https://openreview.net/group?id=AAAI.org%2F2027%2FConference)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22ae5c3e-5f39-4e73-a466-f90a559c2be8",
+  "isSidechain": false,
+  "requestId": "req_011Cb2kgfSdMZpwfPoed7NZe",
+  "type": "assistant",
+  "uuid": "ea4c5041-83cc-414a-b2bc-4ed00b402924",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKLeHwUXQT95ECG7rgix6u",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1197,
+      "cache_read_input_tokens": 42091,
+      "output_tokens": 7428,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1197,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7428,
+          "cache_read_input_tokens": 42091,
+          "cache_creation_input_tokens": 1197,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1197
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Contrastive Verification Retrieval for Reasoning Chain Faithfulness\",…",
+  "leafUuid": "ea4c5041-83cc-414a-b2bc-4ed00b402924",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CVR: fix ARR timeline, add HCQR, strengthen contrastive novelty",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Contrastive Verification Retrieval for Reasoning Chain Faithfulness\",…",
+  "leafUuid": "ea4c5041-83cc-414a-b2bc-4ed00b402924",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 69_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CVR: fix ARR timeline, add HCQR, strengthen contrastive novelty",
+  "sessionId": "b4df42a1-f3a8-4be1-94bb-0d8f7e05b3b3"
+}
+```
+
+---

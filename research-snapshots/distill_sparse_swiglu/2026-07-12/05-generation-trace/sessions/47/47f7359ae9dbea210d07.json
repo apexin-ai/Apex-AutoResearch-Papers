@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "id": "47f7359ae9dbea210d07",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: qwen14b_kl30",
+  "task_key": "0d886d37-8f22-4581-ba15-9a4f426f3cd3",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/0d886d37-8f22-4581-ba15-9a4f426f3cd3.jsonl",
+    "occurrence": 1,
+    "bytes": 845911,
+    "sha256": "089da29c1ae982dc12f0fe363ff6d791c92de703ce6f6b44bce47e365e677395"
+  },
+  "statistics": {
+    "messages": 66,
+    "user_turns": 5,
+    "tool_calls": 14,
+    "roles": {
+      "record": 18,
+      "user": 5,
+      "assistant": 16,
+      "tool_call": 14,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "47f7359ae9dbea210d07-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "47f7359ae9dbea210d07-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "47f7359ae9dbea210d07-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 50,
+      "chunks": [
+        {
+          "path": "47f7359ae9dbea210d07-part-0001.json",
+          "message_count": 12
+        },
+        {
+          "path": "47f7359ae9dbea210d07-part-0002.json",
+          "message_count": 38
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "47f7359ae9dbea210d07-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "47f7359ae9dbea210d07-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-analyzing-done-process-exited-cleanly-w-b-data-available-exp-id-qwen14b-k-copy-2.md"
+}

@@ -1,0 +1,10950 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-14 (UTC).** Your job: indep
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 156
+- **Recorded user turns:** 1
+- **Tool calls:** 47
+- **Original source:** `logs/chats/exported-trajectories/account-2/2d3282c2-47b7-4fcd-82c0-437d1470bad6.jsonl`
+- **Structured JSON:** [`a5be892513a10c9decf5.json`](../../sessions/a5/a5be892513a10c9decf5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T02:49:35.499Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T02:49:35.499Z",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-14 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).\nDirection：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-14?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 1/10)\n{\n  \"title\": \"Prioritized Demonstration Replay for Dynamic VLA Training\",\n  \"core_problem\": \"All existing demonstration curation methods (RINSE, Scizor, GR-RL, DemInf, QoQ, CUPID, DataMIL) perform one-shot static filtering before training, creating a chicken-and-egg problem: accurate quality assessment requires a good model, but a good model requires quality data.\",\n  \"opportunity\": \"Prioritized Experience Replay (PER) from RL provides a proven mechanism for dynamic data prioritization during training, but has never been adapted to VLA behavioral cloning. By evolving sampling priorities based on the model's current learning signal (e.g., action prediction loss or TD error from an auxiliary value head), the curation naturally improves as the model improves. This is uniquely feasible now because VLA training pipelines (OpenVLA, SmolVLA) are mature enough to integrate custom samplers, and recent work like RIPT-VLA (May 2025) showed advantage-based filtering benefits RL post-training — extending this principle to the BC pre-training stage is the logical next step.\",\n  \"landscape\": \"PER (Schaul et al. 2015) revolutionized RL training efficiency by sampling transitions proportional to TD error, but its application to imitation learning remains limited to a 2022 goal-conditioned BC paper (IEEE 2022) with no follow-up in the VLA era. Scizor, RINSE, and GR-RL all filter data once and train on the filtered set — if the initial quality estimate is wrong, the error propagates. RIPT-VLA (May 2025) uses advantage-based rollout rejection during RL post-training but does not address the BC pre-training phase where most VLA training compute is spent. ALOE (Feb 2026) introduced chunking-based TD bootstrapping for off-policy evaluation of VLA actions, providing the theoretical machinery for computing per-chunk priorities, but applies it only to post-training. Concurrent work update: ExpReS-VLA (Nov 2025) uses experience replay with priority buffers for VLA domain adaptation but targets continual learning, not pre-training curation. Prioritized Replay for RL Post-training (Jan 2026) adapts PER to LLM reasoning tasks but operates at problem-level granularity in the RL post-training phase only. Demo-SCORE (RSS 2025) proposes iterative curation via online rollouts but remains a multi-stage pipeline with static re-filtering between training rounds, not within-training dynamic sampling. PLD (ICLR 2026) generates RL-augmented training data for VLA self-improvement but does not change the sampling strategy within BC training. The gap remains clear: dynamic, priority-based sampling during the initial BC training of VLAs.\",\n  \"approach\": \"We propose Prioritized Demonstration Replay (PDR), which replaces uniform data sampling in VLA behavioral cloning with loss-proportional prioritized sampling adapted from PER (Schaul et al., 2016). During training, each demonstration action-chunk is assigned a priority proportional to its action prediction loss raised to the power alpha, with importance-sampling correction weights annealed via beta to ensure unbiased gradient estimates as training progresses. We optionally augment loss-based priorities with TD-error signals from a lightweight auxiliary value head using ALOE-style Q-chunking, enabling advantage-aware prioritization without requiring separate environment rollouts. PDR is implemented as a drop-in PyTorch DistributedSampler compatible with OpenVLA-OFT and SmolVLA training pipelines, using a sum-tree data structure for O(log N) priority updates and periodic priority refresh every k gradient steps to amortize overhead. Evaluation spans LIBERO (all 4 suites: Spatial, Object, Goal, Long), SimplerEnv, and real-world Franka manipulation tasks, measuring both final success rate and data efficiency (performance at 25/50/75% of training data) against uniform sampling, static curation baselines (SCIZOR, CUPID, Demo-SCORE), and standard curriculum learning.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~500h A100 80GB\",\n      \"gpu_utilization\": \"Very low (~15-20%). GPU sits idle while researcher implements the sum-tree sampler, debugs distributed training integration, designs ablation matrices, and analyzes per-task results. Typical cycle: 1h GPU run followed by 3-4h human iteration.\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers (one ML systems for sampler implementation, one robotics for LIBERO/real-robot evaluation)\",\n      \"estimated_gpu_cost\": \"$750 (500h x ~$1.50/h spot A100 80GB)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~600h A100 80GB\",\n      \"gpu_utilization\": \"Moderate (~50-60%). Agent queues experiments back-to-back and auto-generates next config upon completion; human reviews ablation dashboards daily and approves alpha/beta sweep ranges, reducing idle gaps from hours to minutes between runs.\",\n      \"timeline\": \"3-5 weeks\",\n      \"team\": \"1 researcher, ~45min/day reviewing experiment results and approving next hyperparameter sweeps\",\n      \"claude_api_cost\": \"$150-250 (~200 conversation turns for code generation, experiment orchestration, and result analysis at ~$0.10/turn Opus)\",\n      \"estimated_gpu_cost\": \"$900 (600h x ~$1.50/h spot A100 80GB)\",\n      \"risk_note\": \"Real-robot Franka experiments require human presence for safety supervision and cannot be fully delegated; simulation-only results (LIBERO + SimplerEnv) may weaken acceptance at CoRL where real-robot validation is valued.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~1200h A100 80GB (3x more experiments: full alpha/beta grid search across 5x5 values, 3 priority functions x 4 LIBERO suites x 3 data fractions, plus exploratory runs and failed attempts)\",\n      \"gpu_utilization\": \"~95%. Agent pipelines experiments back-to-back 24/7 across 4-8 GPUs; next experiment config generated before current run completes, yielding near-zero idle time between jobs.\",\n      \"timeline\": \"7-12 days with 4-8 A100 GPUs running in parallel\",\n      \"team\": \"0 (initial prompt engineering + final paper review only)\",\n      \"claude_api_cost\": \"$300-500 (~500 conversation turns for end-to-end implementation, experiment orchestration, failure diagnosis, result analysis, and paper drafting)\",\n      \"estimated_gpu_cost\": \"$1,800 (1200h x ~$1.50/h spot A100 80GB)\",\n      \"speed_bottleneck\": \"GPU count is primary bottleneck: 4 A100s yield ~12 days, 8 yield ~7 days, 16 yield ~4 days. Secondary: LIBERO environment rendering is CPU-bound during evaluation rollouts and may throttle GPU utilization to ~80% during eval phases.\",\n      \"risk_note\": \"Cannot run real-robot experiments autonomously; agent may over-explore unpromising priority function variants without human judgment to prune early. Pure simulation scope may limit venue acceptance at robotics-focused conferences.\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract May 25, paper May 28 — top-tier robot learning venue, ideal topical fit for VLA training methodology)\",\n    \"ICLR 2027 (deadline expected ~October 2026 — top-tier ML venue, suitable if results generalize beyond robotics to broader imitation learning)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Prioritized Experience Replay (ICLR 2016)\",\n    \"OpenVLA: An Open-Source Vision-Language-Action Model (ICML 2025)\",\n    \"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success (RSS 2025)\",\n    \"Interactive Post-Training for Vision-Language-Action Models (arXiv 2025)\",\n    \"ALOE: Action-Level Off-Policy Evaluation for VLA Model Post-Training (arXiv 2026)\",\n    \"Curating Demonstrations using Online Experience (RSS 2025)\",\n    \"SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026)\",\n    \"CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)\",\n    \"Self-Improving Vision-Language-Action Models with Data Generation via Residual RL (ICLR 2026)\",\n    \"SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics (arXiv 2025)\",\n    \"Prioritized Replay for RL Post-training (arXiv 2026)\"\n  ],\n  \"description\": \"We introduce Prioritized Demonstration Replay (PDR), the first method applying dynamic priority-based sampling during VLA behavioral cloning pre-training. While all existing demonstration curation methods (SCIZOR, CUPID, Demo-SCORE, DataMIL) perform one-shot static filtering before training — creating a chicken-and-egg problem where quality assessment requires a good model — PDR adapts Prioritized Experience Replay from RL to continuously adjust sampling probabilities based on per-chunk action prediction loss during BC training. As the model improves, hard demonstrations are naturally upsampled while mastered ones are downweighted, creating a self-evolving curriculum that co-develops with model competence. PDR is implemented as a drop-in PyTorch DistributedSampler with O(log N) sum-tree updates, compatible with OpenVLA-OFT and SmolVLA pipelines. An optional auxiliary value head using ALOE-style Q-chunking provides TD-error-based priorities for advantage-aware sampling without separate rollouts. Evaluation on LIBERO (4 suites), SimplerEnv, and real-world Franka tasks targets both absolute success rate gains and 2-4x data efficiency improvements over uniform sampling and static curation baselines. This fills the clear gap between static pre-training curation and dynamic RL post-training methods like RIPT-VLA and PLD.\",\n  \"project_name\": \"prioritized_demo_replay_vla\",\n  \"source\": \"web_research\"\n}\n\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T02:49:35.523Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T02:49:35.523Z",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+## Round 1
+
+154 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T02:49:35.611Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-14 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).
+Direction：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-14?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 1/10)
+{
+  "title": "Prioritized Demonstration Replay for Dynamic VLA Training",
+  "core_problem": "All existing demonstration curation methods (RINSE, Scizor, GR-RL, DemInf, QoQ, CUPID, DataMIL) perform one-shot static filtering before training, creating a chicken-and-egg problem: accurate quality assessment requires a good model, but a good model requires quality data.",
+  "opportunity": "Prioritized Experience Replay (PER) from RL provides a proven mechanism for dynamic data prioritization during training, but has never been adapted to VLA behavioral cloning. By evolving sampling priorities based on the model's current learning signal (e.g., action prediction loss or TD error from an auxiliary value head), the curation naturally improves as the model improves. This is uniquely feasible now because VLA training pipelines (OpenVLA, SmolVLA) are mature enough to integrate custom samplers, and recent work like RIPT-VLA (May 2025) showed advantage-based filtering benefits RL post-training — extending this principle to the BC pre-training stage is the logical next step.",
+  "landscape": "PER (Schaul et al. 2015) revolutionized RL training efficiency by sampling transitions proportional to TD error, but its application to imitation learning remains limited to a 2022 goal-conditioned BC paper (IEEE 2022) with no follow-up in the VLA era. Scizor, RINSE, and GR-RL all filter data once and train on the filtered set — if the initial quality estimate is wrong, the error propagates. RIPT-VLA (May 2025) uses advantage-based rollout rejection during RL post-training but does not address the BC pre-training phase where most VLA training compute is spent. ALOE (Feb 2026) introduced chunking-based TD bootstrapping for off-policy evaluation of VLA actions, providing the theoretical machinery for computing per-chunk priorities, but applies it only to post-training. Concurrent work update: ExpReS-VLA (Nov 2025) uses experience replay with priority buffers for VLA domain adaptation but targets continual learning, not pre-training curation. Prioritized Replay for RL Post-training (Jan 2026) adapts PER to LLM reasoning tasks but operates at problem-level granularity in the RL post-training phase only. Demo-SCORE (RSS 2025) proposes iterative curation via online rollouts but remains a multi-stage pipeline with static re-filtering between training rounds, not within-training dynamic sampling. PLD (ICLR 2026) generates RL-augmented training data for VLA self-improvement but does not change the sampling strategy within BC training. The gap remains clear: dynamic, priority-based sampling during the initial BC training of VLAs.",
+  "approach": "We propose Prioritized Demonstration Replay (PDR), which replaces uniform data sampling in VLA behavioral cloning with loss-proportional prioritized sampling adapted from PER (Schaul et al., 2016). During training, each demonstration action-chunk is assigned a priority proportional to its action prediction loss raised to the power alpha, with importance-sampling correction weights annealed via beta to ensure unbiased gradient estimates as training progresses. We optionally augment loss-based priorities with TD-error signals from a lightweight auxiliary value head using ALOE-style Q-chunking, enabling advantage-aware prioritization without requiring separate environment rollouts. PDR is implemented as a drop-in PyTorch DistributedSampler compatible with OpenVLA-OFT and SmolVLA training pipelines, using a sum-tree data structure for O(log N) priority updates and periodic priority refresh every k gradient steps to amortize overhead. Evaluation spans LIBERO (all 4 suites: Spatial, Object, Goal, Long), SimplerEnv, and real-world Franka manipulation tasks, measuring both final success rate and data efficiency (performance at 25/50/75% of training data) against uniform sampling, static curation baselines (SCIZOR, CUPID, Demo-SCORE), and standard curriculum learning.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~500h A100 80GB",
+      "gpu_utilization": "Very low (~15-20%). GPU sits idle while researcher implements the sum-tree sampler, debugs distributed training integration, designs ablation matrices, and analyzes per-task results. Typical cycle: 1h GPU run followed by 3-4h human iteration.",
+      "timeline": "3-4 months",
+      "team": "1-2 researchers (one ML systems for sampler implementation, one robotics for LIBERO/real-robot evaluation)",
+      "estimated_gpu_cost": "$750 (500h x ~$1.50/h spot A100 80GB)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~600h A100 80GB",
+      "gpu_utilization": "Moderate (~50-60%). Agent queues experiments back-to-back and auto-generates next config upon completion; human reviews ablation dashboards daily and approves alpha/beta sweep ranges, reducing idle gaps from hours to minutes between runs.",
+      "timeline": "3-5 weeks",
+      "team": "1 researcher, ~45min/day reviewing experiment results and approving next hyperparameter sweeps",
+      "claude_api_cost": "$150-250 (~200 conversation turns for code generation, experiment orchestration, and result analysis at ~$0.10/turn Opus)",
+      "estimated_gpu_cost": "$900 (600h x ~$1.50/h spot A100 80GB)",
+      "risk_note": "Real-robot Franka experiments require human presence for safety supervision and cannot be fully delegated; simulation-only results (LIBERO + SimplerEnv) may weaken acceptance at CoRL where real-robot validation is valued."
+    },
+    "auto_research": {
+      "gpu_hours": "~1200h A100 80GB (3x more experiments: full alpha/beta grid search across 5x5 values, 3 priority functions x 4 LIBERO suites x 3 data fractions, plus exploratory runs and failed attempts)",
+      "gpu_utilization": "~95%. Agent pipelines experiments back-to-back 24/7 across 4-8 GPUs; next experiment config generated before current run completes, yielding near-zero idle time between jobs.",
+      "timeline": "7-12 days with 4-8 A100 GPUs running in parallel",
+      "team": "0 (initial prompt engineering + final paper review only)",
+      "claude_api_cost": "$300-500 (~500 conversation turns for end-to-end implementation, experiment orchestration, failure diagnosis, result analysis, and paper drafting)",
+      "estimated_gpu_cost": "$1,800 (1200h x ~$1.50/h spot A100 80GB)",
+      "speed_bottleneck": "GPU count is primary bottleneck: 4 A100s yield ~12 days, 8 yield ~7 days, 16 yield ~4 days. Secondary: LIBERO environment rendering is CPU-bound during evaluation rollouts and may throttle GPU utilization to ~80% during eval phases.",
+      "risk_note": "Cannot run real-robot experiments autonomously; agent may over-explore unpromising priority function variants without human judgment to prune early. Pure simulation scope may limit venue acceptance at robotics-focused conferences."
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (abstract May 25, paper May 28 — top-tier robot learning venue, ideal topical fit for VLA training methodology)",
+    "ICLR 2027 (deadline expected ~October 2026 — top-tier ML venue, suitable if results generalize beyond robotics to broader imitation learning)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Prioritized Experience Replay (ICLR 2016)",
+    "OpenVLA: An Open-Source Vision-Language-Action Model (ICML 2025)",
+    "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success (RSS 2025)",
+    "Interactive Post-Training for Vision-Language-Action Models (arXiv 2025)",
+    "ALOE: Action-Level Off-Policy Evaluation for VLA Model Post-Training (arXiv 2026)",
+    "Curating Demonstrations using Online Experience (RSS 2025)",
+    "SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026)",
+    "CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)",
+    "Self-Improving Vision-Language-Action Models with Data Generation via Residual RL (ICLR 2026)",
+    "SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics (arXiv 2025)",
+    "Prioritized Replay for RL Post-training (arXiv 2026)"
+  ],
+  "description": "We introduce Prioritized Demonstration Replay (PDR), the first method applying dynamic priority-based sampling during VLA behavioral cloning pre-training. While all existing demonstration curation methods (SCIZOR, CUPID, Demo-SCORE, DataMIL) perform one-shot static filtering before training — creating a chicken-and-egg problem where quality assessment requires a good model — PDR adapts Prioritized Experience Replay from RL to continuously adjust sampling probabilities based on per-chunk action prediction loss during BC training. As the model improves, hard demonstrations are naturally upsampled while mastered ones are downweighted, creating a self-evolving curriculum that co-develops with model competence. PDR is implemented as a drop-in PyTorch DistributedSampler with O(log N) sum-tree updates, compatible with OpenVLA-OFT and SmolVLA pipelines. An optional auxiliary value head using ALOE-style Q-chunking provides TD-error-based priorities for advantage-aware sampling without separate rollouts. Evaluation on LIBERO (4 suites), SimplerEnv, and real-world Franka tasks targets both absolute success rate gains and 2-4x data efficiency improvements over uniform sampling and static curation baselines. This fills the clear gap between static pre-training curation and dynamic RL post-training methods like RIPT-VLA and PLD.",
+  "project_name": "prioritized_demo_replay_vla",
+  "source": "web_research"
+}
+
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "a86da45e-6b95-4afb-8fd3-aceffc6be12a",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T02:49:35.607Z_
+
+```json
+{
+  "parentUuid": "a86da45e-6b95-4afb-8fd3-aceffc6be12a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "8246cd2b-39f2-44d8-8ab4-85355011005c",
+  "timestamp": "2026-05-14T02:49:35.607Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T02:49:35.607Z_
+
+```json
+{
+  "parentUuid": "8246cd2b-39f2-44d8-8ab4-85355011005c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "2017d1e5-8b1c-4f05-b098-8b86a628a88b",
+  "timestamp": "2026-05-14T02:49:35.607Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2017d1e5-8b1c-4f05-b098-8b86a628a88b",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T02:49:46.634Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to conduct a thorough adversarial review of a research idea about "Prioritized Demonstration Replay for Dynamic VLA Training." Let me break down what I need to verify:
+
+1. **SOTA freshness**: Are the cited models/baselines current?
+2. **Reference verification**: Do cited papers exist?
+3. **Gap validity**: Does the claimed research gap still exist?
+4. **Venue validity**: Are CoRL 2026 deadlines correct?
+5. **Feasibility**: Resource estimates realistic?
+6. **Novelty**: Is this sufficiently different from existing work?
+
+
+I'll need to systematically verify the core claims—whether PER has actually been applied to VLA behavioral cloning, whether the cited papers are real and accurately described, and whether the gap between static curation and dynamic RL training is as significant as claimed. Let me start searching for these key references and checking the CoRL 2026 submission timeline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2017d1e5-8b1c-4f05-b098-8b86a628a88b",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ha3cLS2QeqpuFgrKWi",
+  "type": "assistant",
+  "uuid": "17f25428-73d2-4b1d-97ef-2b83643d248f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GFvJPDtv751ihQLqvVoFNb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11497,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11497,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11497,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11497
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T02:49:46.636Z_
+
+I'll conduct a thorough adversarial review of this idea. Let me start by independently verifying the key claims with multiple parallel searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17f25428-73d2-4b1d-97ef-2b83643d248f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ha3cLS2QeqpuFgrKWi",
+  "type": "assistant",
+  "uuid": "fd8951be-879f-46bf-865e-0692da297b9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GFvJPDtv751ihQLqvVoFNb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11497,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11497,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11497,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11497
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T02:49:46.685Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HDX3zPAhktj2HYSHDN3tdX`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd8951be-879f-46bf-865e-0692da297b9e",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ha3cLS2QeqpuFgrKWi",
+  "type": "assistant",
+  "uuid": "7906eedf-5fed-48eb-ac5d-1afcde5303c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GFvJPDtv751ihQLqvVoFNb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11497,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11497,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11497,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11497
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T02:49:46.691Z_
+
+<details><summary>↩ Tool result · `toolu_01HDX3zPAhktj2HYSHDN3tdX`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7906eedf-5fed-48eb-ac5d-1afcde5303c0",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "58af1cb2-ebd1-4455-9f4d-02ac832c6a9f",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "7906eedf-5fed-48eb-ac5d-1afcde5303c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-14T02:49:49.569Z_
+
+Now let me launch multiple parallel searches to independently verify the key claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58af1cb2-ebd1-4455-9f4d-02ac832c6a9f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1harVse95fZvuJwNorD",
+  "type": "assistant",
+  "uuid": "825bcb7f-14a8-435b-aa67-2a0dc93f2741",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012kno2BpgcQjPJczuabDhmp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1406,
+      "cache_read_input_tokens": 23338,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1406,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 23338,
+          "cache_creation_input_tokens": 1406,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1406
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T02:49:50.005Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NAgYcZZZsMr66WJLptH7gJ`</summary>
+
+```json
+{
+  "query": "CoRL 2026 submission deadline abstract paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "825bcb7f-14a8-435b-aa67-2a0dc93f2741",
+  "isSidechain": false,
+  "requestId": "req_011Cb1harVse95fZvuJwNorD",
+  "type": "assistant",
+  "uuid": "0e5b1574-0559-4962-a473-2e4bcda2cd41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012kno2BpgcQjPJczuabDhmp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1406,
+      "cache_read_input_tokens": 23338,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1406,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 23338,
+          "cache_creation_input_tokens": 1406,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1406
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T02:49:55.805Z_
+
+<details><summary>↩ Tool result · `toolu_01NAgYcZZZsMr66WJLptH7gJ`</summary>
+
+```text
+Web search results for query: "CoRL 2026 submission deadline abstract paper"
+
+Links: [{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"Refactor conference data · huggingface/ai-deadlines at f3cc2d7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"CoRL 2026 - Annoucements","url":"https://www.corl.org/annoucements"}]
+
+Based on the search results, here's the information about CoRL 2026 submission deadlines and paper guidelines:
+
+## Submission Deadlines
+
+The abstract submission deadline is May 26, 2026 at 11:59 UTC, and the paper submission deadline is May 29, 2026 at 11:59 UTC. Note that the paper submission deadline is Thursday (5/28) EOD rather than Friday according to one source.
+
+## Paper Format Requirements
+
+The page limit is 8 pages for the main paper, and acknowledgments, references, and appendix (optional) will not count towards the page limit. An additional 9th page is available for camera-ready submissions to incorporate reviewer feedback.
+
+## Important Guidelines
+
+The deadlines are final, and accommodations cannot be made for missing the abstract deadline or paper deadline. Authors may update the title and abstract on OpenReview after the abstract submission deadline, but authors cannot be added or removed after this deadline.
+
+Papers may be submitted through OpenReview, and all submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0e5b1574-0559-4962-a473-2e4bcda2cd41",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "7efd44cd-ebed-4eb9-a0ab-982d701fd79f",
+  "toolUseResult": {
+    "query": "CoRL 2026 submission deadline abstract paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012av4WCWSru2CnZMP8PfCim",
+        "content": [
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "Refactor conference data · huggingface/ai-deadlines at f3cc2d7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "CoRL 2026 - Annoucements",
+            "url": "https://www.corl.org/annoucements"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about CoRL 2026 submission deadlines and paper guidelines:\n\n## Submission Deadlines\n\nThe abstract submission deadline is May 26, 2026 at 11:59 UTC, and the paper submission deadline is May 29, 2026 at 11:59 UTC. Note that the paper submission deadline is Thursday (5/28) EOD rather than Friday according to one source.\n\n## Paper Format Requirements\n\nThe page limit is 8 pages for the main paper, and acknowledgments, references, and appendix (optional) will not count towards the page limit. An additional 9th page is available for camera-ready submissions to incorporate reviewer feedback.\n\n## Important Guidelines\n\nThe deadlines are final, and accommodations cannot be made for missing the abstract deadline or paper deadline. Authors may update the title and abstract on OpenReview after the abstract submission deadline, but authors cannot be added or removed after this deadline.\n\nPapers may be submitted through OpenReview, and all submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments."
+    ],
+    "durationSeconds": 5.796052044
+  },
+  "sourceToolAssistantUUID": "0e5b1574-0559-4962-a473-2e4bcda2cd41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T02:49:58.374Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VVDH97hXDZ3WMNLZejDYab`</summary>
+
+```json
+{
+  "query": "prioritized experience replay imitation learning behavioral cloning 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7efd44cd-ebed-4eb9-a0ab-982d701fd79f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hbWtSMH689xL6RSx3G",
+  "type": "assistant",
+  "uuid": "8764d0b6-2812-40c6-89ab-f28dd5fbeab7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U5CB7ajPa4sjMEEjcKBMi5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 787,
+      "cache_read_input_tokens": 24744,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 787,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 24744,
+          "cache_creation_input_tokens": 787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 787
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T02:50:05.016Z_
+
+<details><summary>↩ Tool result · `toolu_01VVDH97hXDZ3WMNLZejDYab`</summary>
+
+```text
+Web search results for query: "prioritized experience replay imitation learning behavioral cloning 2024 2025 2026"
+
+Links: [{"title":"Goal-conditioned Behavioral Cloning with Prioritized Sampling | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/9702233/"},{"title":"[1511.05952] Prioritized Experience Replay","url":"https://arxiv.org/abs/1511.05952"},{"title":"(PDF) Integrating Behavior Cloning and Reinforcement Learning for Improved Performance in Dense and Sparse Reward Environments","url":"https://www.researchgate.net/publication/340492801_Integrating_Behavior_Cloning_and_Reinforcement_Learning_for_Improved_Performance_in_Dense_and_Sparse_Reward_Environments"},{"title":"Uncertainty Prioritized Experience Replay | OpenReview","url":"https://openreview.net/forum?id=aAxzDb0nlO"},{"title":"Prioritized experience replay based on dynamics priority - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10933423/"},{"title":"[PDF] Prioritized Experience Replay | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Prioritized-Experience-Replay-Schaul-Quan/c6170fa90d3b2efede5a2e1660cb23e1c824f2ca"},{"title":"Prioritized Experience Replay","url":"https://arxiv.org/pdf/1511.05952"},{"title":"Prioritized Generative Replay | OpenReview","url":"https://openreview.net/forum?id=5IkDAfabuo"},{"title":"Prioritized experience replay based on dynamics priority | Scientific Reports","url":"https://www.nature.com/articles/s41598-024-56673-3"},{"title":"Prioritized Experience Replay","url":"https://www.emergentmind.com/topics/prioritized-experience-replay"}]
+
+Based on the search results, here's what I found regarding prioritized experience replay, imitation learning, and behavioral cloning from recent research (2024-2026):
+
+## Key Findings
+
+**Recent Developments (2024-2025):**
+
+Prioritized experience replay, which improves sample efficiency by selecting relevant transitions, typically prioritizes transitions based on their temporal difference error. In traditional imitation learning methods like behavioral cloning, human demonstration transitions were uniformly sampled from replay buffer regardless of their different values.
+
+**Recent Research Focus:**
+
+To improve sampling efficiency, prioritized experience replay (PER) was proposed. Modern algorithms prioritize experiences based on temporal difference error (TD error), enabling the agent to learn from more valuable experiences stored in the experience pool.
+
+**Emerging Approaches:**
+
+Recent work proposes a prioritized, parametric version of an agent's memory using generative models to capture online experience, enabling densification of past experience with generations that benefit from the generative model's generalization capacity and guidance via relevance functions, instantiated using conditional diffusion models and simple relevance functions.
+
+**Best Practices (2024-2025):**
+
+Best-practice guidelines emphasize employing PER in low-noise, sparse-reward domains or when initial sample efficiency is paramount, using rank-based or uncertainty-modulated priorities in high-variance settings, and combining PER with automated or value-aware importance sampling correction.
+
+The search results indicate active research in extending prioritized experience replay to imitation learning and behavioral cloning, with focus on improving sample efficiency and handling diverse training scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8764d0b6-2812-40c6-89ab-f28dd5fbeab7",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "cba451b1-e3e1-4905-a703-c4458694a626",
+  "toolUseResult": {
+    "query": "prioritized experience replay imitation learning behavioral cloning 2024 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0125eMcmH6YzdFeuBMMrTvrP",
+        "content": [
+          {
+            "title": "Goal-conditioned Behavioral Cloning with Prioritized Sampling | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/9702233/"
+          },
+          {
+            "title": "[1511.05952] Prioritized Experience Replay",
+            "url": "https://arxiv.org/abs/1511.05952"
+          },
+          {
+            "title": "(PDF) Integrating Behavior Cloning and Reinforcement Learning for Improved Performance in Dense and Sparse Reward Environments",
+            "url": "https://www.researchgate.net/publication/340492801_Integrating_Behavior_Cloning_and_Reinforcement_Learning_for_Improved_Performance_in_Dense_and_Sparse_Reward_Environments"
+          },
+          {
+            "title": "Uncertainty Prioritized Experience Replay | OpenReview",
+            "url": "https://openreview.net/forum?id=aAxzDb0nlO"
+          },
+          {
+            "title": "Prioritized experience replay based on dynamics priority - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10933423/"
+          },
+          {
+            "title": "[PDF] Prioritized Experience Replay | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Prioritized-Experience-Replay-Schaul-Quan/c6170fa90d3b2efede5a2e1660cb23e1c824f2ca"
+          },
+          {
+            "title": "Prioritized Experience Replay",
+            "url": "https://arxiv.org/pdf/1511.05952"
+          },
+          {
+            "title": "Prioritized Generative Replay | OpenReview",
+            "url": "https://openreview.net/forum?id=5IkDAfabuo"
+          },
+          {
+            "title": "Prioritized experience replay based on dynamics priority | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-024-56673-3"
+          },
+          {
+            "title": "Prioritized Experience Replay",
+            "url": "https://www.emergentmind.com/topics/prioritized-experience-replay"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding prioritized experience replay, imitation learning, and behavioral cloning from recent research (2024-2026):\n\n## Key Findings\n\n**Recent Developments (2024-2025):**\n\nPrioritized experience replay, which improves sample efficiency by selecting relevant transitions, typically prioritizes transitions based on their temporal difference error. In traditional imitation learning methods like behavioral cloning, human demonstration transitions were uniformly sampled from replay buffer regardless of their different values.\n\n**Recent Research Focus:**\n\nTo improve sampling efficiency, prioritized experience replay (PER) was proposed. Modern algorithms prioritize experiences based on temporal difference error (TD error), enabling the agent to learn from more valuable experiences stored in the experience pool.\n\n**Emerging Approaches:**\n\nRecent work proposes a prioritized, parametric version of an agent's memory using generative models to capture online experience, enabling densification of past experience with generations that benefit from the generative model's generalization capacity and guidance via relevance functions, instantiated using conditional diffusion models and simple relevance functions.\n\n**Best Practices (2024-2025):**\n\nBest-practice guidelines emphasize employing PER in low-noise, sparse-reward domains or when initial sample efficiency is paramount, using rank-based or uncertainty-modulated priorities in high-variance settings, and combining PER with automated or value-aware importance sampling correction.\n\nThe search results indicate active research in extending prioritized experience replay to imitation learning and behavioral cloning, with focus on improving sample efficiency and handling diverse training scenarios."
+    ],
+    "durationSeconds": 6.638039962999999
+  },
+  "sourceToolAssistantUUID": "8764d0b6-2812-40c6-89ab-f28dd5fbeab7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T02:50:08.021Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013jkV1tKR2S7UEMUtm8nkQV`</summary>
+
+```json
+{
+  "query": "RIPT-VLA interactive post-training vision language action model 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cba451b1-e3e1-4905-a703-c4458694a626",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hcCJ2aP7eGbSt4XV65",
+  "type": "assistant",
+  "uuid": "bd27743e-d77e-4be8-96c6-aa64074037b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HSkpfKw6bRty2eEfpSa2pH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 25531,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 25531,
+          "cache_creation_input_tokens": 942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T02:50:13.635Z_
+
+<details><summary>↩ Tool result · `toolu_013jkV1tKR2S7UEMUtm8nkQV`</summary>
+
+```text
+Web search results for query: "RIPT-VLA interactive post-training vision language action model 2025"
+
+Links: [{"title":"[2505.17016] Interactive Post-Training for Vision-Language-Action Models","url":"https://arxiv.org/abs/2505.17016"},{"title":"GitHub - Ariostgx/ript-vla: Interactive Post-Training for Vision-Language-Action Models · GitHub","url":"https://github.com/Ariostgx/ript-vla"},{"title":"Interactive Post-Training for Vision-Language-Action Models","url":"https://arxiv.org/html/2505.17016v1"},{"title":"RIPT-VLA: Reinforcement Interactive Post-Training for Vision-Language-Action Models","url":"https://ariostgx.github.io/ript_vla/"},{"title":"Interactive Post-Training for Vision-Language-Action Models | OpenReview","url":"https://openreview.net/forum?id=oXYZHg7HiZ"},{"title":"tanshh97/RIPT_VLA · Hugging Face","url":"https://huggingface.co/tanshh97/RIPT_VLA"},{"title":"[Literature Review] Interactive Post-Training for Vision-Language-Action Models","url":"https://www.themoonlight.io/en/review/interactive-post-training-for-vision-language-action-models"},{"title":"[2505.17016v1] Interactive Post-Training for Vision-Language-Action Models","url":"https://arxiv.org/abs/2505.17016v1"},{"title":"Paper page - Interactive Post-Training for Vision-Language-Action Models","url":"https://huggingface.co/papers/2505.17016"},{"title":"(PDF) Interactive Post-Training for Vision-Language-Action Models","url":"https://www.researchgate.net/publication/391991781_Interactive_Post-Training_for_Vision-Language-Action_Models"}]
+
+Based on the web search results, here's what I found about RIPT-VLA:
+
+## Overview
+
+RIPT-VLA is a reinforcement-learning-based interactive post-training paradigm that fine-tunes pretrained Vision-Language-Action (VLA) models using only sparse binary success rewards.
+
+## Key Features
+
+RIPT-VLA addresses interactive post-training with a stable policy optimization algorithm based on dynamic rollout sampling and leave-one-out advantage estimation.
+
+## Performance Results
+
+RIPT-VLA applies to various VLA models, resulting in an improvement on the lightweight QueST model by 21.2%, and the 7B OpenVLA-OFT model to an unprecedented 97.5% success rate.
+
+RIPT-VLA is computationally efficient and data-efficient: with only one demonstration, RIPT-VLA enables an unworkable SFT model (4%) to succeed with a 97% success rate within 15 iterations.
+
+## Generalization
+
+The policy learned by RIPT-VLA generalizes across different tasks and scenarios and is robust to the initial state context.
+
+## Publication Details
+
+The paper was submitted on May 22, 2025. The research was conducted by Shuhan Tan, Kairan Dou, Yue Zhao, and Philipp Krähenbühl, with code and models available on GitHub and Hugging Face.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd27743e-d77e-4be8-96c6-aa64074037b0",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "fbe2ccb7-f00b-443a-83cb-4245734f7ecd",
+  "toolUseResult": {
+    "query": "RIPT-VLA interactive post-training vision language action model 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JwbRn5h2GpDjA8rwLVUDaK",
+        "content": [
+          {
+            "title": "[2505.17016] Interactive Post-Training for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2505.17016"
+          },
+          {
+            "title": "GitHub - Ariostgx/ript-vla: Interactive Post-Training for Vision-Language-Action Models · GitHub",
+            "url": "https://github.com/Ariostgx/ript-vla"
+          },
+          {
+            "title": "Interactive Post-Training for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2505.17016v1"
+          },
+          {
+            "title": "RIPT-VLA: Reinforcement Interactive Post-Training for Vision-Language-Action Models",
+            "url": "https://ariostgx.github.io/ript_vla/"
+          },
+          {
+            "title": "Interactive Post-Training for Vision-Language-Action Models | OpenReview",
+            "url": "https://openreview.net/forum?id=oXYZHg7HiZ"
+          },
+          {
+            "title": "tanshh97/RIPT_VLA · Hugging Face",
+            "url": "https://huggingface.co/tanshh97/RIPT_VLA"
+          },
+          {
+            "title": "[Literature Review] Interactive Post-Training for Vision-Language-Action Models",
+            "url": "https://www.themoonlight.io/en/review/interactive-post-training-for-vision-language-action-models"
+          },
+          {
+            "title": "[2505.17016v1] Interactive Post-Training for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2505.17016v1"
+          },
+          {
+            "title": "Paper page - Interactive Post-Training for Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2505.17016"
+          },
+          {
+            "title": "(PDF) Interactive Post-Training for Vision-Language-Action Models",
+            "url": "https://www.researchgate.net/publication/391991781_Interactive_Post-Training_for_Vision-Language-Action_Models"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about RIPT-VLA:\n\n## Overview\n\nRIPT-VLA is a reinforcement-learning-based interactive post-training paradigm that fine-tunes pretrained Vision-Language-Action (VLA) models using only sparse binary success rewards.\n\n## Key Features\n\nRIPT-VLA addresses interactive post-training with a stable policy optimization algorithm based on dynamic rollout sampling and leave-one-out advantage estimation.\n\n## Performance Results\n\nRIPT-VLA applies to various VLA models, resulting in an improvement on the lightweight QueST model by 21.2%, and the 7B OpenVLA-OFT model to an unprecedented 97.5% success rate.\n\nRIPT-VLA is computationally efficient and data-efficient: with only one demonstration, RIPT-VLA enables an unworkable SFT model (4%) to succeed with a 97% success rate within 15 iterations.\n\n## Generalization\n\nThe policy learned by RIPT-VLA generalizes across different tasks and scenarios and is robust to the initial state context.\n\n## Publication Details\n\nThe paper was submitted on May 22, 2025. The research was conducted by Shuhan Tan, Kairan Dou, Yue Zhao, and Philipp Krähenbühl, with code and models available on GitHub and Hugging Face."
+    ],
+    "durationSeconds": 5.602857141
+  },
+  "sourceToolAssistantUUID": "bd27743e-d77e-4be8-96c6-aa64074037b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T02:50:17.890Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HSvHDcvkeoWV9HDJ4oTmWZ`</summary>
+
+```json
+{
+  "query": "ALOE action level off-policy evaluation VLA post-training 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbe2ccb7-f00b-443a-83cb-4245734f7ecd",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hcq9ZucXEi9QyoT7T9",
+  "type": "assistant",
+  "uuid": "bc370516-4120-44de-8bf6-7f6ff9eef653",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013fuUb64wfzLQEBzUJYBb96",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 888,
+      "cache_read_input_tokens": 26473,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 26473,
+          "cache_creation_input_tokens": 888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "bc370516-4120-44de-8bf6-7f6ff9eef653",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T02:50:26.441Z_
+
+<details><summary>↩ Tool result · `toolu_01HSvHDcvkeoWV9HDJ4oTmWZ`</summary>
+
+```text
+Web search results for query: "ALOE action level off-policy evaluation VLA post-training 2026 arXiv"
+
+Links: [{"title":"ALOE: Action-Level Off-Policy Evaluation for Vision-Language-Action Model Post-Training","url":"https://arxiv.org/html/2602.12691v1"},{"title":"[2602.12691] ALOE: Action-Level Off-Policy Evaluation for Vision-Language-Action Model Post-Training","url":"https://arxiv.org/abs/2602.12691"},{"title":"(PDF) ALOE: Action-Level Off-Policy Evaluation for Vision-Language-Action Model Post-Training","url":"https://www.researchgate.net/publication/400812540_ALOE_Action-Level_Off-Policy_Evaluation_for_Vision-Language-Action_Model_Post-Training"},{"title":"VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation","url":"https://arxiv.org/html/2603.26666v1"},{"title":"[2603.26666] VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation","url":"https://arxiv.org/abs/2603.26666"},{"title":"World2Act: Latent Action Post-Training via Skill-Compositional World Models","url":"https://arxiv.org/html/2603.10422"},{"title":"A Survey on Efficient Vision-Language-Action Models","url":"https://arxiv.org/html/2510.24795v1"},{"title":"VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models","url":"https://arxiv.org/html/2604.03956v2"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/html/2505.19789v4"},{"title":"VLA-RFT: Vision-language-action Reinforcement fine-tuning with verified rewards in world simulators","url":"https://arxiv.org/html/2510.00406v1"}]
+
+I found the research paper you're looking for! Here's what I found:
+
+## ALOE: Action-Level Off-Policy Evaluation for Vision-Language-Action Model Post-Training
+
+ALOE is an action-level off-policy evaluation framework for VLA post-training that applies chunking-based temporal-difference bootstrapping to evaluate individual action sequences instead of predicting final task outcomes.
+
+### Key Details:
+
+**Problem**: The research studies how to improve large foundation vision-language-action (VLA) systems through online reinforcement learning in real-world settings. The value function is estimated from trajectory fragments collected from different data sources, including historical policies and intermittent human interventions. This is inherently an off-policy evaluation problem, but prior work often adopts conservative on-policy estimation for stability, which avoids direct evaluation of the current high-capacity policy and limits learning effectiveness.
+
+**Solution Benefits**: The design improves effective credit assignment to critical action chunks under sparse rewards and supports stable policy improvement.
+
+**Evaluation**: The method was evaluated on three real-world manipulation tasks, including smartphone packing as a high-precision task, laundry folding as a long-horizon deformable-object task, and bimanual pick-and-place involving multi-object perception. Across all tasks, ALOE improves learning efficiency without compromising execution speed, showing that off-policy RL can be reintroduced in a reliable manner for real-world VLA post-training.
+
+**arXiv Details**: The paper is listed as arXiv:2602.12691, published in February 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc370516-4120-44de-8bf6-7f6ff9eef653",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "970c646f-44ec-4d8b-8ab1-51bbf553dfa6",
+  "toolUseResult": {
+    "query": "ALOE action level off-policy evaluation VLA post-training 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Mz6XCC4SXpyuYHphoRpBEy",
+        "content": [
+          {
+            "title": "ALOE: Action-Level Off-Policy Evaluation for Vision-Language-Action Model Post-Training",
+            "url": "https://arxiv.org/html/2602.12691v1"
+          },
+          {
+            "title": "[2602.12691] ALOE: Action-Level Off-Policy Evaluation for Vision-Language-Action Model Post-Training",
+            "url": "https://arxiv.org/abs/2602.12691"
+          },
+          {
+            "title": "(PDF) ALOE: Action-Level Off-Policy Evaluation for Vision-Language-Action Model Post-Training",
+            "url": "https://www.researchgate.net/publication/400812540_ALOE_Action-Level_Off-Policy_Evaluation_for_Vision-Language-Action_Model_Post-Training"
+          },
+          {
+            "title": "VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation",
+            "url": "https://arxiv.org/html/2603.26666v1"
+          },
+          {
+            "title": "[2603.26666] VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation",
+            "url": "https://arxiv.org/abs/2603.26666"
+          },
+          {
+            "title": "World2Act: Latent Action Post-Training via Skill-Compositional World Models",
+            "url": "https://arxiv.org/html/2603.10422"
+          },
+          {
+            "title": "A Survey on Efficient Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.24795v1"
+          },
+          {
+            "title": "VLA-Forget: Vision-Language-Action Unlearning for Embodied Foundation Models",
+            "url": "https://arxiv.org/html/2604.03956v2"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/html/2505.19789v4"
+          },
+          {
+            "title": "VLA-RFT: Vision-language-action Reinforcement fine-tuning with verified rewards in world simulators",
+            "url": "https://arxiv.org/html/2510.00406v1"
+          }
+        ]
+      },
+      "I found the research paper you're looking for! Here's what I found:\n\n## ALOE: Action-Level Off-Policy Evaluation for Vision-Language-Action Model Post-Training\n\nALOE is an action-level off-policy evaluation framework for VLA post-training that applies chunking-based temporal-difference bootstrapping to evaluate individual action sequences instead of predicting final task outcomes.\n\n### Key Details:\n\n**Problem**: The research studies how to improve large foundation vision-language-action (VLA) systems through online reinforcement learning in real-world settings. The value function is estimated from trajectory fragments collected from different data sources, including historical policies and intermittent human interventions. This is inherently an off-policy evaluation problem, but prior work often adopts conservative on-policy estimation for stability, which avoids direct evaluation of the current high-capacity policy and limits learning effectiveness.\n\n**Solution Benefits**: The design improves effective credit assignment to critical action chunks under sparse rewards and supports stable policy improvement.\n\n**Evaluation**: The method was evaluated on three real-world manipulation tasks, including smartphone packing as a high-precision task, laundry folding as a long-horizon deformable-object task, and bimanual pick-and-place involving multi-object perception. Across all tasks, ALOE improves learning efficiency without compromising execution speed, showing that off-policy RL can be reintroduced in a reliable manner for real-world VLA post-training.\n\n**arXiv Details**: The paper is listed as arXiv:2602.12691, published in February 2026."
+    ],
+    "durationSeconds": 8.545106608000001
+  },
+  "sourceToolAssistantUUID": "bc370516-4120-44de-8bf6-7f6ff9eef653",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T02:50:30.485Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GAvSmQWQykNKm3K8kusGeY`</summary>
+
+```json
+{
+  "query": "ExpReS-VLA experience replay VLA domain adaptation continual learning 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "970c646f-44ec-4d8b-8ab1-51bbf553dfa6",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hdmzazCBtBiczQUh5R",
+  "type": "assistant",
+  "uuid": "967fe87e-0883-4455-8c18-04fe9f41caf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012BButGWR78ijxYBFWntvsQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 27361,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 987,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 27361,
+          "cache_creation_input_tokens": 987,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 987
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T02:50:38.850Z_
+
+<details><summary>↩ Tool result · `toolu_01GAvSmQWQykNKm3K8kusGeY`</summary>
+
+```text
+Web search results for query: "ExpReS-VLA experience replay VLA domain adaptation continual learning 2025"
+
+Links: [{"title":"ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval","url":"https://arxiv.org/html/2511.06202"},{"title":"[2511.06202] ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval","url":"https://arxiv.org/abs/2511.06202"},{"title":"ExpReS-VLA: Specializing Vision-Language-Action Models Through","url":"https://arxiv.org/pdf/2511.06202"},{"title":"CRL-VLA: Continual Vision–Language–Action Learning","url":"https://arxiv.org/html/2602.03445v1"},{"title":"(PDF) ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval","url":"https://www.researchgate.net/publication/397480729_ExpReS-VLA_Specializing_Vision-Language-Action_Models_Through_Experience_Replay_and_Retrieval"},{"title":"[2503.20018] Experience Replay Addresses Loss of Plasticity in Continual Learning","url":"https://arxiv.org/abs/2503.20018"},{"title":"ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval | alphaXiv","url":"https://www.alphaxiv.org/overview/2511.06202v1"},{"title":"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning","url":"https://arxiv.org/html/2601.06748v1"},{"title":"Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning","url":"https://arxiv.org/html/2603.03818"},{"title":"[2602.03445] CRL-VLA: Continual Vision-Language-Action Learning","url":"https://arxiv.org/abs/2602.03445"}]
+
+I found comprehensive information about ExpReS-VLA. Here are the key findings:
+
+## ExpReS-VLA Overview
+
+ExpReS-VLA is a method that enables rapid on-device adaptation of pre-trained VLAs to target domains while preventing catastrophic forgetting through compressed experience replay and retrieval-augmented generation.
+
+## Core Mechanisms
+
+Starting with a pre-trained VLA model, ExpReS-VLA continuously collects experiences during deployment, stores them in compressed form, and retrieves relevant past experiences to guide future adaptation.
+
+The system employs three key technical components:
+
+1. **Compressed Storage**: The approach maintains a memory-efficient buffer by storing extracted embeddings from OpenVLA's frozen vision backbone, reducing storage requirements by 97% compared to raw image-action pairs.
+
+2. **Retrieval-Augmented Training**: During deployment, ExpReS-VLA retrieves the k most similar past experiences using cosine similarity to augment training batches, while a prioritized experience replay buffer preserves recently successful trajectories.
+
+3. **Contrastive Learning**: To leverage failed attempts, the method introduces Thresholded Hybrid Contrastive Loss (THCL), enabling the model to learn from both successful and unsuccessful demonstrations.
+
+## Experimental Results
+
+Experiments on the LIBERO benchmark show improvements from 82.6% to 93.1% on spatial reasoning and 61% to 72.3% on long-horizon tasks over base OpenVLA, with gains across architectures including π0 (+3.2 points) and OpenVLA-OFT (+1.7 points).
+
+Physical robot experiments across five tasks demonstrate 98% success on both in-distribution and out-of-distribution conditions, improving from 84.7% and 32% respectively for naive fine-tuning.
+
+Adaptation completes in 31 seconds using 12 demonstrations on a single RTX 5090.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "967fe87e-0883-4455-8c18-04fe9f41caf8",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "630e182b-369d-49c6-890b-07ac67797f4f",
+  "toolUseResult": {
+    "query": "ExpReS-VLA experience replay VLA domain adaptation continual learning 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Pp7XqjUsJujJqE1gf5fFdY",
+        "content": [
+          {
+            "title": "ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval",
+            "url": "https://arxiv.org/html/2511.06202"
+          },
+          {
+            "title": "[2511.06202] ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval",
+            "url": "https://arxiv.org/abs/2511.06202"
+          },
+          {
+            "title": "ExpReS-VLA: Specializing Vision-Language-Action Models Through",
+            "url": "https://arxiv.org/pdf/2511.06202"
+          },
+          {
+            "title": "CRL-VLA: Continual Vision–Language–Action Learning",
+            "url": "https://arxiv.org/html/2602.03445v1"
+          },
+          {
+            "title": "(PDF) ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval",
+            "url": "https://www.researchgate.net/publication/397480729_ExpReS-VLA_Specializing_Vision-Language-Action_Models_Through_Experience_Replay_and_Retrieval"
+          },
+          {
+            "title": "[2503.20018] Experience Replay Addresses Loss of Plasticity in Continual Learning",
+            "url": "https://arxiv.org/abs/2503.20018"
+          },
+          {
+            "title": "ExpReS-VLA: Specializing Vision-Language-Action Models Through Experience Replay and Retrieval | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2511.06202v1"
+          },
+          {
+            "title": "On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/html/2601.06748v1"
+          },
+          {
+            "title": "Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning",
+            "url": "https://arxiv.org/html/2603.03818"
+          },
+          {
+            "title": "[2602.03445] CRL-VLA: Continual Vision-Language-Action Learning",
+            "url": "https://arxiv.org/abs/2602.03445"
+          }
+        ]
+      },
+      "I found comprehensive information about ExpReS-VLA. Here are the key findings:\n\n## ExpReS-VLA Overview\n\nExpReS-VLA is a method that enables rapid on-device adaptation of pre-trained VLAs to target domains while preventing catastrophic forgetting through compressed experience replay and retrieval-augmented generation.\n\n## Core Mechanisms\n\nStarting with a pre-trained VLA model, ExpReS-VLA continuously collects experiences during deployment, stores them in compressed form, and retrieves relevant past experiences to guide future adaptation.\n\nThe system employs three key technical components:\n\n1. **Compressed Storage**: The approach maintains a memory-efficient buffer by storing extracted embeddings from OpenVLA's frozen vision backbone, reducing storage requirements by 97% compared to raw image-action pairs.\n\n2. **Retrieval-Augmented Training**: During deployment, ExpReS-VLA retrieves the k most similar past experiences using cosine similarity to augment training batches, while a prioritized experience replay buffer preserves recently successful trajectories.\n\n3. **Contrastive Learning**: To leverage failed attempts, the method introduces Thresholded Hybrid Contrastive Loss (THCL), enabling the model to learn from both successful and unsuccessful demonstrations.\n\n## Experimental Results\n\nExperiments on the LIBERO benchmark show improvements from 82.6% to 93.1% on spatial reasoning and 61% to 72.3% on long-horizon tasks over base OpenVLA, with gains across architectures including π0 (+3.2 points) and OpenVLA-OFT (+1.7 points).\n\nPhysical robot experiments across five tasks demonstrate 98% success on both in-distribution and out-of-distribution conditions, improving from 84.7% and 32% respectively for naive fine-tuning.\n\nAdaptation completes in 31 seconds using 12 demonstrations on a single RTX 5090."
+    ],
+    "durationSeconds": 8.354405067000007
+  },
+  "sourceToolAssistantUUID": "967fe87e-0883-4455-8c18-04fe9f41caf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-14T02:50:42.954Z_
+
+Good, several key references verified. Let me now search for the most critical aspect — whether the claimed gap (dynamic priority sampling during BC pre-training) actually exists, and look for competing/concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "630e182b-369d-49c6-890b-07ac67797f4f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hegvmMjJhasjYSqTPP",
+  "type": "assistant",
+  "uuid": "277df2fc-aa42-411c-8a36-08e3d7796118",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015oapfpnJPVQS25sx3ffEGS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1041,
+      "cache_read_input_tokens": 28348,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1041,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 28348,
+          "cache_creation_input_tokens": 1041,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1041
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T02:50:43.656Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Jp94NXfv3SQYim7vHuroqa`</summary>
+
+```json
+{
+  "query": "dynamic data sampling curriculum learning VLA training behavioral cloning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "277df2fc-aa42-411c-8a36-08e3d7796118",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hegvmMjJhasjYSqTPP",
+  "type": "assistant",
+  "uuid": "678aa9c0-9f3e-4cce-a787-2bb1103b092c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015oapfpnJPVQS25sx3ffEGS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1041,
+      "cache_read_input_tokens": 28348,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1041,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 28348,
+          "cache_creation_input_tokens": 1041,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1041
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T02:50:51.603Z_
+
+<details><summary>↩ Tool result · `toolu_01Jp94NXfv3SQYim7vHuroqa`</summary>
+
+```text
+Web search results for query: "dynamic data sampling curriculum learning VLA training behavioral cloning 2025 2026"
+
+Links: [{"title":"ToolSample: Dual Dynamic Sampling Methods with Curriculum Learning for RL-based Tool Learning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250914718F/abstract"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/html/2505.19789v4"},{"title":"SimpleVLA-RL: Scalable VLA Reinforcement Learning","url":"https://www.emergentmind.com/topics/simplevla-rl"},{"title":"Dynamic Cluster Data Sampling for Efficient and Long-Tail-Aware Vision-Language Pre-training","url":"https://arxiv.org/html/2604.27932"},{"title":"VALUE-ALIGNED BEHAVIOR CLONING FOR OFFLINE ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/17ab5964d90f38b174a068646c958789-Paper-Conference.pdf"},{"title":"Comprehensive Survey of VLA Models | PDF | Embodied Cognition | Computer Vision","url":"https://www.scribd.com/document/939026368/Pure-Vision-Language-Action-VLA-Models-A-Comprehensive-Survey"},{"title":"Generative Models for Robot Learning","url":"https://iclr.cc/virtual/2025/workshop/23977"},{"title":"Offline Behavioral Data Selection","url":"https://arxiv.org/html/2512.18246"},{"title":"Dynamic Data Selection for Curriculum Learning via Ability Estimation - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7771727/"},{"title":"Dynamic Data Distribution-based Curriculum Learning - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0020025525000568"}]
+
+I found several relevant results for your search on dynamic data sampling, curriculum learning, VLA training, and behavioral cloning from 2025-2026. Here are the key findings:
+
+## Key Papers and Frameworks
+
+**SimpleVLA-RL (September 2025)**
+SimpleVLA-RL is an efficient online RL framework that advances VLA training via dynamic sampling, parallel interaction, and outcome-based rewards. It enables effective learning from as little as a single demonstration per task by relying on interactive reinforcement rather than behavior cloning.
+
+**ToolSample Framework (2025)**
+Dynamic Sampling with Curriculum Learning (DSCL) is a framework specifically designed to address challenges by targeting the unique characteristics of tool learning with multiple interdependent sub-tasks and multi-valued reward functions. DSCL features Reward-Based Dynamic Sampling, which uses multi-dimensional reward statistics to prioritize valuable data, and Task-Based Dynamic Curriculum Learning, which adaptively focuses training on less-mastered sub-tasks.
+
+**VLA Training Trends (2025-2026)**
+VLA model training predominantly relies on supervised fine-tuning (SFT) through behavioral cloning of demonstration labels. However, RL fine-tuning is increasingly being applied to VLAs with approaches ranging from incorporating human feedback to using offline RL updates or algorithms like PPO, sometimes in multi-stage processes with imitation learning.
+
+**Data Selection for Behavioral Cloning (December 2025)**
+Recent work has also addressed behavioral cloning as an approach for offline policy learning from expert demonstrations, with research on efficient data selection methods for large-scale offline behavioral datasets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "678aa9c0-9f3e-4cce-a787-2bb1103b092c",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "70cfda92-724e-4c96-95fb-15605039a08c",
+  "toolUseResult": {
+    "query": "dynamic data sampling curriculum learning VLA training behavioral cloning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0143iuhnbPhP8TKsLUYUsAcv",
+        "content": [
+          {
+            "title": "ToolSample: Dual Dynamic Sampling Methods with Curriculum Learning for RL-based Tool Learning - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250914718F/abstract"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/html/2505.19789v4"
+          },
+          {
+            "title": "SimpleVLA-RL: Scalable VLA Reinforcement Learning",
+            "url": "https://www.emergentmind.com/topics/simplevla-rl"
+          },
+          {
+            "title": "Dynamic Cluster Data Sampling for Efficient and Long-Tail-Aware Vision-Language Pre-training",
+            "url": "https://arxiv.org/html/2604.27932"
+          },
+          {
+            "title": "VALUE-ALIGNED BEHAVIOR CLONING FOR OFFLINE ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/17ab5964d90f38b174a068646c958789-Paper-Conference.pdf"
+          },
+          {
+            "title": "Comprehensive Survey of VLA Models | PDF | Embodied Cognition | Computer Vision",
+            "url": "https://www.scribd.com/document/939026368/Pure-Vision-Language-Action-VLA-Models-A-Comprehensive-Survey"
+          },
+          {
+            "title": "Generative Models for Robot Learning",
+            "url": "https://iclr.cc/virtual/2025/workshop/23977"
+          },
+          {
+            "title": "Offline Behavioral Data Selection",
+            "url": "https://arxiv.org/html/2512.18246"
+          },
+          {
+            "title": "Dynamic Data Selection for Curriculum Learning via Ability Estimation - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7771727/"
+          },
+          {
+            "title": "Dynamic Data Distribution-based Curriculum Learning - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0020025525000568"
+          }
+        ]
+      },
+      "I found several relevant results for your search on dynamic data sampling, curriculum learning, VLA training, and behavioral cloning from 2025-2026. Here are the key findings:\n\n## Key Papers and Frameworks\n\n**SimpleVLA-RL (September 2025)**\nSimpleVLA-RL is an efficient online RL framework that advances VLA training via dynamic sampling, parallel interaction, and outcome-based rewards. It enables effective learning from as little as a single demonstration per task by relying on interactive reinforcement rather than behavior cloning.\n\n**ToolSample Framework (2025)**\nDynamic Sampling with Curriculum Learning (DSCL) is a framework specifically designed to address challenges by targeting the unique characteristics of tool learning with multiple interdependent sub-tasks and multi-valued reward functions. DSCL features Reward-Based Dynamic Sampling, which uses multi-dimensional reward statistics to prioritize valuable data, and Task-Based Dynamic Curriculum Learning, which adaptively focuses training on less-mastered sub-tasks.\n\n**VLA Training Trends (2025-2026)**\nVLA model training predominantly relies on supervised fine-tuning (SFT) through behavioral cloning of demonstration labels. However, RL fine-tuning is increasingly being applied to VLAs with approaches ranging from incorporating human feedback to using offline RL updates or algorithms like PPO, sometimes in multi-stage processes with imitation learning.\n\n**Data Selection for Behavioral Cloning (December 2025)**\nRecent work has also addressed behavioral cloning as an approach for offline policy learning from expert demonstrations, with research on efficient data selection methods for large-scale offline behavioral datasets."
+    ],
+    "durationSeconds": 7.939136588000008
+  },
+  "sourceToolAssistantUUID": "678aa9c0-9f3e-4cce-a787-2bb1103b092c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28 · 2026-05-14T02:50:51.611Z_
+
+```json
+{
+  "parentUuid": "70cfda92-724e-4c96-95fb-15605039a08c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "efd04af2-a933-4f92-aa9a-ad2c55ba9b12",
+  "timestamp": "2026-05-14T02:50:51.611Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T02:50:54.757Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PSVLos4KCcaSKpEyfWmUku`</summary>
+
+```json
+{
+  "query": "SCIZOR self-supervised data curation imitation learning ICRA 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "efd04af2-a933-4f92-aa9a-ad2c55ba9b12",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hfdURohpYTVpVGj1Km",
+  "type": "assistant",
+  "uuid": "6373c8b8-56a8-4f90-bc1f-76502deae4f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaBb6xMawrAGbxdZvat3WM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1097,
+      "cache_read_input_tokens": 29389,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1097,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 29389,
+          "cache_creation_input_tokens": 1097,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1097
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T02:51:01.502Z_
+
+<details><summary>↩ Tool result · `toolu_01PSVLos4KCcaSKpEyfWmUku`</summary>
+
+```text
+Web search results for query: "SCIZOR self-supervised data curation imitation learning ICRA 2026"
+
+Links: [{"title":"SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning","url":"https://ut-austin-rpl.github.io/SCIZOR/"},{"title":"[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/abs/2505.22626"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v2"},{"title":"Huihan Liu on X: \"Our data curation work SCIZOR is accepted to ICRA 2026! Check out this self-supervised data curation approach that removes suboptimal and duplicated data for large-scale imitation learning, led by @YZ_Franklin @yuqi_xie5\" / X","url":"https://x.com/huihan_liu/status/2017698931493195899"},{"title":"SCIZOR: A Self-Supervised Approach to Data Curation for ...","url":"https://openreview.net/pdf?id=Wo8eEdFUDF"},{"title":"GitHub - UT-Austin-RPL/SCIZOR · GitHub","url":"https://github.com/UT-Austin-RPL/SCIZOR"},{"title":"Copyright by Yuqi Xie 2025 1","url":"https://repositories.lib.utexas.edu/bitstreams/d8256e22-405e-4881-87d8-ca3f8008345e/download"},{"title":"(PDF) SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://www.researchgate.net/publication/392167457_SCIZOR_A_Self-Supervised_Approach_to_Data_Curation_for_Large-Scale_Imitation_Learning"},{"title":"Publications – UT Austin Robot Perception and Learning Lab","url":"https://rpl.cs.utexas.edu/publications/"},{"title":"[Literature Review] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://www.themoonlight.io/en/review/scizor-a-self-supervised-approach-to-data-curation-for-large-scale-imitation-learning"}]
+
+Based on the search results, here's comprehensive information about SCIZOR:
+
+## Overview
+
+SCIZOR is a self-supervised data curation framework that filters out low-quality state-action pairs to improve the performance of imitation learning policies. The work was accepted to the 2026 IEEE International Conference on Robotics and Automation (ICRA).
+
+## Problem and Motivation
+
+Large-scale datasets used for policy training often introduce substantial variability in quality, which can negatively impact performance. As a result, automatically curating datasets by filtering low-quality samples to improve quality becomes essential. Existing robotic curation approaches rely on costly manual annotations and perform curation at a coarse granularity, such as the dataset or trajectory level, failing to account for the quality of individual state-action pairs.
+
+## Key Components
+
+SCIZOR targets two complementary sources of low-quality data: suboptimal data, which hinder learning with undesirable actions, and redundant data, which dilute training with repetitive patterns.
+
+The framework has two main modules:
+
+1. **Suboptimal Removal**: A progress-prediction model flags and removes frames that fail to make meaningful task progress, without needing reward signals.
+
+2. **Redundancy Removal**: Joint visual-action embeddings are clustered to detect and discard look-alike segments, ensuring diversity.
+
+## Results
+
+SCIZOR improves policy performance across diverse large-scale imitation learning benchmarks, showing on average 15.4% improvement.
+
+## Authors and Affiliation
+
+The work is authored by Yu Zhang, Yuqi Xie, Huihan Liu, Rutav Shah, Michael Wan, Linxi Fan, and Yuke Zhu.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6373c8b8-56a8-4f90-bc1f-76502deae4f6",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "ad21df58-4ce5-42cd-b741-fbaa16ee4623",
+  "toolUseResult": {
+    "query": "SCIZOR self-supervised data curation imitation learning ICRA 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CfiqT75geCoijW5YL4qC6L",
+        "content": [
+          {
+            "title": "SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning",
+            "url": "https://ut-austin-rpl.github.io/SCIZOR/"
+          },
+          {
+            "title": "[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/abs/2505.22626"
+          },
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v2"
+          },
+          {
+            "title": "Huihan Liu on X: \"Our data curation work SCIZOR is accepted to ICRA 2026! Check out this self-supervised data curation approach that removes suboptimal and duplicated data for large-scale imitation learning, led by @YZ_Franklin @yuqi_xie5\" / X",
+            "url": "https://x.com/huihan_liu/status/2017698931493195899"
+          },
+          {
+            "title": "SCIZOR: A Self-Supervised Approach to Data Curation for ...",
+            "url": "https://openreview.net/pdf?id=Wo8eEdFUDF"
+          },
+          {
+            "title": "GitHub - UT-Austin-RPL/SCIZOR · GitHub",
+            "url": "https://github.com/UT-Austin-RPL/SCIZOR"
+          },
+          {
+            "title": "Copyright by Yuqi Xie 2025 1",
+            "url": "https://repositories.lib.utexas.edu/bitstreams/d8256e22-405e-4881-87d8-ca3f8008345e/download"
+          },
+          {
+            "title": "(PDF) SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://www.researchgate.net/publication/392167457_SCIZOR_A_Self-Supervised_Approach_to_Data_Curation_for_Large-Scale_Imitation_Learning"
+          },
+          {
+            "title": "Publications – UT Austin Robot Perception and Learning Lab",
+            "url": "https://rpl.cs.utexas.edu/publications/"
+          },
+          {
+            "title": "[Literature Review] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://www.themoonlight.io/en/review/scizor-a-self-supervised-approach-to-data-curation-for-large-scale-imitation-learning"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about SCIZOR:\n\n## Overview\n\nSCIZOR is a self-supervised data curation framework that filters out low-quality state-action pairs to improve the performance of imitation learning policies. The work was accepted to the 2026 IEEE International Conference on Robotics and Automation (ICRA).\n\n## Problem and Motivation\n\nLarge-scale datasets used for policy training often introduce substantial variability in quality, which can negatively impact performance. As a result, automatically curating datasets by filtering low-quality samples to improve quality becomes essential. Existing robotic curation approaches rely on costly manual annotations and perform curation at a coarse granularity, such as the dataset or trajectory level, failing to account for the quality of individual state-action pairs.\n\n## Key Components\n\nSCIZOR targets two complementary sources of low-quality data: suboptimal data, which hinder learning with undesirable actions, and redundant data, which dilute training with repetitive patterns.\n\nThe framework has two main modules:\n\n1. **Suboptimal Removal**: A progress-prediction model flags and removes frames that fail to make meaningful task progress, without needing reward signals.\n\n2. **Redundancy Removal**: Joint visual-action embeddings are clustered to detect and discard look-alike segments, ensuring diversity.\n\n## Results\n\nSCIZOR improves policy performance across diverse large-scale imitation learning benchmarks, showing on average 15.4% improvement.\n\n## Authors and Affiliation\n\nThe work is authored by Yu Zhang, Yuqi Xie, Huihan Liu, Rutav Shah, Michael Wan, Linxi Fan, and Yuke Zhu."
+    ],
+    "durationSeconds": 6.740834642000002
+  },
+  "sourceToolAssistantUUID": "6373c8b8-56a8-4f90-bc1f-76502deae4f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ad21df58-4ce5-42cd-b741-fbaa16ee4623",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T02:51:04.321Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VuZkFFjR6a8S53whJewSGJ`</summary>
+
+```json
+{
+  "query": "CUPID curating data influence functions robot learning CoRL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad21df58-4ce5-42cd-b741-fbaa16ee4623",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hgMne7Q9X6pwzpyCmL",
+  "type": "assistant",
+  "uuid": "51a96fbe-b6ba-47ce-984e-36935a80d4a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UqKvZ5AdTf8tZRrt261FXW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1105,
+      "cache_read_input_tokens": 30486,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1105,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 30486,
+          "cache_creation_input_tokens": 1105,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1105
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T02:51:10.331Z_
+
+<details><summary>↩ Tool result · `toolu_01VuZkFFjR6a8S53whJewSGJ`</summary>
+
+```text
+Web search results for query: "CUPID curating data influence functions robot learning CoRL 2025"
+
+Links: [{"title":"GitHub - agiachris/cupid: Official repository for \"CUPID: Curating Data your Robot Loves with Influence Functions,\" accepted to CoRL 2025. · GitHub","url":"https://github.com/agiachris/cupid"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions | OpenReview","url":"https://openreview.net/forum?id=TqevdDMqrK"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://cupid-curation.github.io/"},{"title":"[2506.19121] CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/abs/2506.19121"},{"title":"[2506.19121v2] CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/abs/2506.19121v2"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/html/2506.19121"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://proceedings.mlr.press/v305/agia25a.html"},{"title":"[PDF] CUPID: Curating Data your Robot Loves with Influence Functions | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CUPID:-Curating-Data-your-Robot-Loves-with-Agia-Sinha/666481cd9e72de8e90e3dd12fb826338f5ce17f0"},{"title":"CUPID: Robot Data Curation via Influence Functions","url":"https://www.emergentmind.com/papers/2506.19121"},{"title":"About me - Haruki Nishimura","url":"https://harukins.github.io/"}]
+
+Based on the search results, here's information about CUPID:
+
+## Overview
+
+CUPID: Curating Data your Robot Loves with Influence Functions was accepted to CoRL 2025. It is a data curation method for robot imitation learning that uses influence functions to measure the causal impact of a demonstration on the policy's closed-loop performance.
+
+## Key Methodology
+
+CUPID estimates the influence of a training demonstration on the policy's expected return, enabling ranking and selection of demonstrations according to their impact on the policy's closed-loop performance. The approach curates data by 1) filtering out training demonstrations that harmed the policy's performance and 2) subselecting newly collected trajectories that will most help improve the policy.
+
+## Key Results
+
+Training with less than 33% of curated data can yield state-of-the-art diffusion policies on the simulated RoboMimic benchmark, with similar gains observed in hardware. Hardware experiments show that the method can identify robust strategies under distribution shift, isolate spurious correlations, and even enhance the post-training of generalist robot policies.
+
+## Authors and Resources
+
+The paper was authored by Agia, Sinha, Yang, Antonova, Pavone, Nishimura, Itkina, and Bohg. The official code repository is available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "51a96fbe-b6ba-47ce-984e-36935a80d4a0",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "d68ea846-cc25-418a-a238-2030ea07b9f5",
+  "toolUseResult": {
+    "query": "CUPID curating data influence functions robot learning CoRL 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HU2sB6vuTeFrRNnoHu6w9N",
+        "content": [
+          {
+            "title": "GitHub - agiachris/cupid: Official repository for \"CUPID: Curating Data your Robot Loves with Influence Functions,\" accepted to CoRL 2025. · GitHub",
+            "url": "https://github.com/agiachris/cupid"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions | OpenReview",
+            "url": "https://openreview.net/forum?id=TqevdDMqrK"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://cupid-curation.github.io/"
+          },
+          {
+            "title": "[2506.19121] CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/abs/2506.19121"
+          },
+          {
+            "title": "[2506.19121v2] CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/abs/2506.19121v2"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/html/2506.19121"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://proceedings.mlr.press/v305/agia25a.html"
+          },
+          {
+            "title": "[PDF] CUPID: Curating Data your Robot Loves with Influence Functions | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CUPID:-Curating-Data-your-Robot-Loves-with-Agia-Sinha/666481cd9e72de8e90e3dd12fb826338f5ce17f0"
+          },
+          {
+            "title": "CUPID: Robot Data Curation via Influence Functions",
+            "url": "https://www.emergentmind.com/papers/2506.19121"
+          },
+          {
+            "title": "About me - Haruki Nishimura",
+            "url": "https://harukins.github.io/"
+          }
+        ]
+      },
+      "Based on the search results, here's information about CUPID:\n\n## Overview\n\nCUPID: Curating Data your Robot Loves with Influence Functions was accepted to CoRL 2025. It is a data curation method for robot imitation learning that uses influence functions to measure the causal impact of a demonstration on the policy's closed-loop performance.\n\n## Key Methodology\n\nCUPID estimates the influence of a training demonstration on the policy's expected return, enabling ranking and selection of demonstrations according to their impact on the policy's closed-loop performance. The approach curates data by 1) filtering out training demonstrations that harmed the policy's performance and 2) subselecting newly collected trajectories that will most help improve the policy.\n\n## Key Results\n\nTraining with less than 33% of curated data can yield state-of-the-art diffusion policies on the simulated RoboMimic benchmark, with similar gains observed in hardware. Hardware experiments show that the method can identify robust strategies under distribution shift, isolate spurious correlations, and even enhance the post-training of generalist robot policies.\n\n## Authors and Resources\n\nThe paper was authored by Agia, Sinha, Yang, Antonova, Pavone, Nishimura, Itkina, and Bohg. The official code repository is available on GitHub."
+    ],
+    "durationSeconds": 6.003857743
+  },
+  "sourceToolAssistantUUID": "51a96fbe-b6ba-47ce-984e-36935a80d4a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-14T02:51:15.368Z_
+
+Now let me search for the most critical novelty threat — has anyone already done dynamic/online data selection during BC training for VLAs?
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d68ea846-cc25-418a-a238-2030ea07b9f5",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hh1cUWPb1oPJuGxWMU",
+  "type": "assistant",
+  "uuid": "d01a87ac-d991-40db-ae67-5f7304a9ec0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GFue7YxomvWMVa8AQWdKtT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 895,
+      "cache_read_input_tokens": 31591,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 895,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 31591,
+          "cache_creation_input_tokens": 895,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 895
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T02:51:15.880Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VsASNoG6Uk44dePYtwwqKr`</summary>
+
+```json
+{
+  "query": "online data selection during training imitation learning robot manipulation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d01a87ac-d991-40db-ae67-5f7304a9ec0e",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hh1cUWPb1oPJuGxWMU",
+  "type": "assistant",
+  "uuid": "b54d5f1a-c9ef-474f-b9a6-b02e294e61fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GFue7YxomvWMVa8AQWdKtT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 895,
+      "cache_read_input_tokens": 31591,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 895,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 31591,
+          "cache_creation_input_tokens": 895,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 895
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T02:51:24.335Z_
+
+<details><summary>↩ Tool result · `toolu_01VsASNoG6Uk44dePYtwwqKr`</summary>
+
+```text
+Web search results for query: "online data selection during training imitation learning robot manipulation 2025 2026"
+
+Links: [{"title":"Frontiers | Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682437/full"},{"title":"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/html/2505.09603"},{"title":"Foundation Models in Robotics: A Comprehensive Review of Methods, Models, Datasets, Challenges and Future Research Directions","url":"https://arxiv.org/html/2604.15395v1"},{"title":"Data Scaling Laws in Imitation Learning for Robotic Manipulation | OpenReview","url":"https://openreview.net/forum?id=pISLZG7ktL"},{"title":"Best Robot Learning Datasets 2026 | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/datasets/best-2026"},{"title":"A survey on imitation learning for contact-rich tasks in robotics - Toshiaki Tsuji, Yasuhiro Kato, Gokhan Solak, Heng Zhang, Tadej Petrič, Francesco Nori, Arash Ajoudani, 2026","url":"https://journals.sagepub.com/doi/10.1177/02783649261417694"},{"title":"AGIBOT WORLD 2026 dataset is open-source to accelerate embodied AI development - The Robot Report","url":"https://www.therobotreport.com/agibot-world-2026-dataset-open-source-accelerate-embodied-ai-development/"},{"title":"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub","url":"https://github.com/YanjieZe/awesome-humanoid-robot-learning"},{"title":"RoboMIND: Benchmark on Multi-embodiment Intelligence Normative Data for Robot Manipulation · Robotics: Science and Systems","url":"https://roboticsconference.org/program/papers/152/"},{"title":"Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12757213/"}]
+
+Based on the search results, here are key findings on online data selection during training in imitation learning for robot manipulation from 2025-2026:
+
+## Recent Developments
+
+DataMIL is a policy-driven data selection framework that reasons about data selection in an end-to-end manner using the policy itself to identify which data points will most improve performance, directly optimizing data selection for task success unlike standard practices that filter data using human notions of quality. To avoid performing expensive rollouts in the environment during selection, DataMIL uses a novel surrogate loss function on task-specific data, allowing it to be used in the real world without degrading performance.
+
+## Survey and Research Context
+
+Recent surveys have covered imitation learning for dexterous manipulation, diffusion models in robotics, and broader dexterous manipulation topics, though a dedicated examination of interactive imitation learning in the high-dimensional action space of multi-finger, contact-rich manipulation has been lacking.
+
+Since dexterous manipulation requires handling the complexity of contact dynamics that is difficult to formalize mathematically, imitation learning that learns from human empirical knowledge represents a promising approach.
+
+## Dataset Infrastructure
+
+AGIBOT WORLD 2026 plans to release in five phases aligned with core research directions in embodied intelligence, with the first release focusing on imitation learning, including hundreds of hours of real-world data collected in commercial and service environments.
+
+RoboMIND contains 107k demonstration trajectories across 479 diverse tasks, collected through human teleoperation with multi-view observations and proprioceptive robot state information across four distinct robotic embodiments.
+
+These developments show an emerging focus on intelligent data selection strategies and high-quality, structured datasets to improve the efficiency and generalization of imitation learning in robot manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b54d5f1a-c9ef-474f-b9a6-b02e294e61fa",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "45c01661-d6cc-4e6a-8391-d31b1504f0fd",
+  "toolUseResult": {
+    "query": "online data selection during training imitation learning robot manipulation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014nE9TnG7egbmRSw5SphG3y",
+        "content": [
+          {
+            "title": "Frontiers | Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682437/full"
+          },
+          {
+            "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/html/2505.09603"
+          },
+          {
+            "title": "Foundation Models in Robotics: A Comprehensive Review of Methods, Models, Datasets, Challenges and Future Research Directions",
+            "url": "https://arxiv.org/html/2604.15395v1"
+          },
+          {
+            "title": "Data Scaling Laws in Imitation Learning for Robotic Manipulation | OpenReview",
+            "url": "https://openreview.net/forum?id=pISLZG7ktL"
+          },
+          {
+            "title": "Best Robot Learning Datasets 2026 | Silicon Valley Robotics Center",
+            "url": "https://www.roboticscenter.ai/datasets/best-2026"
+          },
+          {
+            "title": "A survey on imitation learning for contact-rich tasks in robotics - Toshiaki Tsuji, Yasuhiro Kato, Gokhan Solak, Heng Zhang, Tadej Petrič, Francesco Nori, Arash Ajoudani, 2026",
+            "url": "https://journals.sagepub.com/doi/10.1177/02783649261417694"
+          },
+          {
+            "title": "AGIBOT WORLD 2026 dataset is open-source to accelerate embodied AI development - The Robot Report",
+            "url": "https://www.therobotreport.com/agibot-world-2026-dataset-open-source-accelerate-embodied-ai-development/"
+          },
+          {
+            "title": "GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub",
+            "url": "https://github.com/YanjieZe/awesome-humanoid-robot-learning"
+          },
+          {
+            "title": "RoboMIND: Benchmark on Multi-embodiment Intelligence Normative Data for Robot Manipulation · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/program/papers/152/"
+          },
+          {
+            "title": "Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12757213/"
+          }
+        ]
+      },
+      "Based on the search results, here are key findings on online data selection during training in imitation learning for robot manipulation from 2025-2026:\n\n## Recent Developments\n\nDataMIL is a policy-driven data selection framework that reasons about data selection in an end-to-end manner using the policy itself to identify which data points will most improve performance, directly optimizing data selection for task success unlike standard practices that filter data using human notions of quality. To avoid performing expensive rollouts in the environment during selection, DataMIL uses a novel surrogate loss function on task-specific data, allowing it to be used in the real world without degrading performance.\n\n## Survey and Research Context\n\nRecent surveys have covered imitation learning for dexterous manipulation, diffusion models in robotics, and broader dexterous manipulation topics, though a dedicated examination of interactive imitation learning in the high-dimensional action space of multi-finger, contact-rich manipulation has been lacking.\n\nSince dexterous manipulation requires handling the complexity of contact dynamics that is difficult to formalize mathematically, imitation learning that learns from human empirical knowledge represents a promising approach.\n\n## Dataset Infrastructure\n\nAGIBOT WORLD 2026 plans to release in five phases aligned with core research directions in embodied intelligence, with the first release focusing on imitation learning, including hundreds of hours of real-world data collected in commercial and service environments.\n\nRoboMIND contains 107k demonstration trajectories across 479 diverse tasks, collected through human teleoperation with multi-view observations and proprioceptive robot state information across four distinct robotic embodiments.\n\nThese developments show an emerging focus on intelligent data selection strategies and high-quality, structured datasets to improve the efficiency and generalization of imitation learning in robot manipulation tasks."
+    ],
+    "durationSeconds": 8.449872161000007
+  },
+  "sourceToolAssistantUUID": "b54d5f1a-c9ef-474f-b9a6-b02e294e61fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T02:51:34.052Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FvuSgcuTntVY4w7dgSZMrZ`</summary>
+
+```json
+{
+  "query": "Demo-SCORE curating demonstrations online experience RSS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45c01661-d6cc-4e6a-8391-d31b1504f0fd",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hi3XqoSdRXgrFxCxAc",
+  "type": "assistant",
+  "uuid": "7400d290-d1d9-4652-971c-6bca889f8237",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q3yHTyTwCVEFJ9Di7YJBof",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1113,
+      "cache_read_input_tokens": 32486,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1113,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 32486,
+          "cache_creation_input_tokens": 1113,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1113
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T02:51:40.683Z_
+
+<details><summary>↩ Tool result · `toolu_01FvuSgcuTntVY4w7dgSZMrZ`</summary>
+
+```text
+Web search results for query: "Demo-SCORE curating demonstrations online experience RSS 2025"
+
+Links: [{"title":"[2503.03707] Curating Demonstrations using Online Experience","url":"https://arxiv.org/abs/2503.03707"},{"title":"Curating Demonstrations using Online Experience · Robotics: Science and Systems","url":"https://roboticsconference.org/program/papers/71/"},{"title":"Demo-SCORE: Curating Demonstrations using Online Experience","url":"https://anniesch.github.io/demo-score/"},{"title":"Curating Demonstrations using Online Experience","url":"https://arxiv.org/html/2503.03707v1"},{"title":"[PDF] Curating Demonstrations using Online Experience | Semantic Scholar","url":"https://www.semanticscholar.org/paper/776c9466ece2a34832d4ebef206fa5c2e9855b39"},{"title":"Curating Demonstrations using Online Experience","url":"https://www.researchgate.net/publication/395366581_Curating_Demonstrations_using_Online_Experience"},{"title":"Illustration of Demo-SCORE. Our method self-curates demonstrations... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/llustration-of-Demo-SCORE-Our-method-self-curates-demonstrations-through-online-robot_fig2_389617044"},{"title":"Curating Demonstrations using Online Experience","url":"https://www.roboticsproceedings.org/rss21/p071.pdf"},{"title":"[Literature Review] Curating Demonstrations using Online Experience","url":"https://www.themoonlight.io/en/review/curating-demonstrations-using-online-experience"},{"title":"Curating Demonstrations using Online Experience | alphaXiv","url":"https://www.alphaxiv.org/en/overview/2503.03707"}]
+
+Based on the search results, here's what I found about Demo-SCORE:
+
+## Overview
+
+Demo-SCORE proposes for robots to self-curate based on online robot experience. The method is aimed at improving robotic learning from heterogeneous demonstration datasets.
+
+## The Problem
+
+Many robot demonstration datasets contain heterogeneous demonstrations of varying quality. This heterogeneity may benefit policy pre-training, but can hinder robot performance when used with a final imitation learning objective. In particular, some strategies in the data may be less reliable than others or may be underrepresented in the data, leading to poor performance when such strategies are sampled at test time.
+
+## How Demo-SCORE Works
+
+The method trains and cross-validates a classifier to discern successful policy roll-outs from unsuccessful ones and uses the classifier to filter heterogeneous demonstration datasets. More specifically, the method self-curates demonstrations through online robot experience in four steps: (i) train a policy on the full demonstration set; (ii) evaluate the policy by generating rollouts with different checkpoints; (iii) use these rollouts to train and cross-validate a classifier that distinguishes between success and failure trajectories; (iv) filter out unreliable demonstrations based on the learned classifier.
+
+## Key Results
+
+Experiments in simulation and the real world show that Demo-SCORE can effectively identify suboptimal demonstrations without manual curation. Notably, Demo-SCORE achieves over 15-35% higher absolute success rate in the resulting policy compared to the base policy trained with all original demonstrations.
+
+## Publication
+
+The paper was presented at Robotics: Science and Systems (RSS) XXI in June 2025 at the University of Southern California in Los Angeles.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7400d290-d1d9-4652-971c-6bca889f8237",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "71e7ca4a-38de-46f4-9971-87ce8b31bd4e",
+  "toolUseResult": {
+    "query": "Demo-SCORE curating demonstrations online experience RSS 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NzwRZ7iYstJ1cH5ZVD9tTP",
+        "content": [
+          {
+            "title": "[2503.03707] Curating Demonstrations using Online Experience",
+            "url": "https://arxiv.org/abs/2503.03707"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/program/papers/71/"
+          },
+          {
+            "title": "Demo-SCORE: Curating Demonstrations using Online Experience",
+            "url": "https://anniesch.github.io/demo-score/"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience",
+            "url": "https://arxiv.org/html/2503.03707v1"
+          },
+          {
+            "title": "[PDF] Curating Demonstrations using Online Experience | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/776c9466ece2a34832d4ebef206fa5c2e9855b39"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience",
+            "url": "https://www.researchgate.net/publication/395366581_Curating_Demonstrations_using_Online_Experience"
+          },
+          {
+            "title": "Illustration of Demo-SCORE. Our method self-curates demonstrations... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/llustration-of-Demo-SCORE-Our-method-self-curates-demonstrations-through-online-robot_fig2_389617044"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience",
+            "url": "https://www.roboticsproceedings.org/rss21/p071.pdf"
+          },
+          {
+            "title": "[Literature Review] Curating Demonstrations using Online Experience",
+            "url": "https://www.themoonlight.io/en/review/curating-demonstrations-using-online-experience"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience | alphaXiv",
+            "url": "https://www.alphaxiv.org/en/overview/2503.03707"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Demo-SCORE:\n\n## Overview\n\nDemo-SCORE proposes for robots to self-curate based on online robot experience. The method is aimed at improving robotic learning from heterogeneous demonstration datasets.\n\n## The Problem\n\nMany robot demonstration datasets contain heterogeneous demonstrations of varying quality. This heterogeneity may benefit policy pre-training, but can hinder robot performance when used with a final imitation learning objective. In particular, some strategies in the data may be less reliable than others or may be underrepresented in the data, leading to poor performance when such strategies are sampled at test time.\n\n## How Demo-SCORE Works\n\nThe method trains and cross-validates a classifier to discern successful policy roll-outs from unsuccessful ones and uses the classifier to filter heterogeneous demonstration datasets. More specifically, the method self-curates demonstrations through online robot experience in four steps: (i) train a policy on the full demonstration set; (ii) evaluate the policy by generating rollouts with different checkpoints; (iii) use these rollouts to train and cross-validate a classifier that distinguishes between success and failure trajectories; (iv) filter out unreliable demonstrations based on the learned classifier.\n\n## Key Results\n\nExperiments in simulation and the real world show that Demo-SCORE can effectively identify suboptimal demonstrations without manual curation. Notably, Demo-SCORE achieves over 15-35% higher absolute success rate in the resulting policy compared to the base policy trained with all original demonstrations.\n\n## Publication\n\nThe paper was presented at Robotics: Science and Systems (RSS) XXI in June 2025 at the University of Southern California in Los Angeles."
+    ],
+    "durationSeconds": 6.626076614000005
+  },
+  "sourceToolAssistantUUID": "7400d290-d1d9-4652-971c-6bca889f8237",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T02:51:44.317Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VqphJ6XZKMDFrs7m1ossq1`</summary>
+
+```json
+{
+  "query": "DataMIL selecting data robot imitation learning datamodels 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71e7ca4a-38de-46f4-9971-87ce8b31bd4e",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hjFGZY4cD7BwMe6xFP",
+  "type": "assistant",
+  "uuid": "1813e40a-141d-475d-9e19-e35978d3ffac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155qiRT2aHaxmkYy2pXbuML",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 927,
+      "cache_read_input_tokens": 33599,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 927,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 33599,
+          "cache_creation_input_tokens": 927,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 927
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T02:51:51.626Z_
+
+<details><summary>↩ Tool result · `toolu_01VqphJ6XZKMDFrs7m1ossq1`</summary>
+
+```text
+Web search results for query: "DataMIL selecting data robot imitation learning datamodels 2025"
+
+Links: [{"title":"[2505.09603] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/abs/2505.09603"},{"title":"GitHub - UT-Austin-RobIn/datamil: Code release for -- DataMIL: Selecting Data for Robot Imitation Learning with Datamodels · GitHub","url":"https://github.com/UT-Austin-RobIn/datamil"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://robin-lab.cs.utexas.edu/datamodels4imitation/"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with ...","url":"https://arxiv.org/pdf/2505.09603"},{"title":"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/html/2505.09603"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels | OpenReview","url":"https://openreview.net/forum?id=AcTsKglDdh"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://openreview.net/pdf/d1836285b655f13b1f86918922a074b725fa137b.pdf"},{"title":"DATAMIL: SELECTING DATA FOR ROBOT IMITATION ...","url":"https://openreview.net/pdf/82e6c304571ad1e85b44780f29e82e7042b2743f.pdf"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"[Literature Review] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://www.themoonlight.io/en/review/datamil-selecting-data-for-robot-imitation-learning-with-datamodels"}]
+
+Based on the web search results, here's information about DataMIL:
+
+## Overview
+
+DataMIL is a policy-driven data selection framework built on the datamodels paradigm that reasons about data selection in an end-to-end manner, using the policy itself to identify which data points will most improve performance.
+
+## The Problem It Addresses
+
+While the robotics community has amassed ever larger and more diverse datasets to train generalist robot policies, these policies often underperform on individual, specialized tasks and require further tuning on newly acquired task-specific data. Combining task-specific data with carefully curated subsets of large prior datasets via co-training can produce better specialized policies, but selecting data naively may actually harm downstream performance.
+
+## Key Innovation
+
+Unlike standard practices that filter data using human notions of quality (e.g., based on semantic or visual similarity), DataMIL directly optimizes data selection for task success.
+
+## How It Works
+
+DataMIL estimates how each training sample influences the policy performance on a given task and selects samples that leads to the maximum improvement, thus enabling end-to-end policy-aware data selection.
+
+## Performance Results
+
+DataMIL demonstrates effectiveness on 60+ simulation and real world tasks, most notably selecting relevant data from Open X-Embodiment datasets, showing significant improvements in performance compared to existing data selection methods, even for novel embodiments, not present in the prior data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1813e40a-141d-475d-9e19-e35978d3ffac",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "ea7367b7-8196-49a6-9142-ac417cd805e0",
+  "toolUseResult": {
+    "query": "DataMIL selecting data robot imitation learning datamodels 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015VaoCcronLi2E7qP7ACBBL",
+        "content": [
+          {
+            "title": "[2505.09603] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/abs/2505.09603"
+          },
+          {
+            "title": "GitHub - UT-Austin-RobIn/datamil: Code release for -- DataMIL: Selecting Data for Robot Imitation Learning with Datamodels · GitHub",
+            "url": "https://github.com/UT-Austin-RobIn/datamil"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://robin-lab.cs.utexas.edu/datamodels4imitation/"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with ...",
+            "url": "https://arxiv.org/pdf/2505.09603"
+          },
+          {
+            "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/html/2505.09603"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels | OpenReview",
+            "url": "https://openreview.net/forum?id=AcTsKglDdh"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://openreview.net/pdf/d1836285b655f13b1f86918922a074b725fa137b.pdf"
+          },
+          {
+            "title": "DATAMIL: SELECTING DATA FOR ROBOT IMITATION ...",
+            "url": "https://openreview.net/pdf/82e6c304571ad1e85b44780f29e82e7042b2743f.pdf"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          },
+          {
+            "title": "[Literature Review] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://www.themoonlight.io/en/review/datamil-selecting-data-for-robot-imitation-learning-with-datamodels"
+          }
+        ]
+      },
+      "Based on the web search results, here's information about DataMIL:\n\n## Overview\n\nDataMIL is a policy-driven data selection framework built on the datamodels paradigm that reasons about data selection in an end-to-end manner, using the policy itself to identify which data points will most improve performance.\n\n## The Problem It Addresses\n\nWhile the robotics community has amassed ever larger and more diverse datasets to train generalist robot policies, these policies often underperform on individual, specialized tasks and require further tuning on newly acquired task-specific data. Combining task-specific data with carefully curated subsets of large prior datasets via co-training can produce better specialized policies, but selecting data naively may actually harm downstream performance.\n\n## Key Innovation\n\nUnlike standard practices that filter data using human notions of quality (e.g., based on semantic or visual similarity), DataMIL directly optimizes data selection for task success.\n\n## How It Works\n\nDataMIL estimates how each training sample influences the policy performance on a given task and selects samples that leads to the maximum improvement, thus enabling end-to-end policy-aware data selection.\n\n## Performance Results\n\nDataMIL demonstrates effectiveness on 60+ simulation and real world tasks, most notably selecting relevant data from Open X-Embodiment datasets, showing significant improvements in performance compared to existing data selection methods, even for novel embodiments, not present in the prior data."
+    ],
+    "durationSeconds": 7.305021126000007
+  },
+  "sourceToolAssistantUUID": "1813e40a-141d-475d-9e19-e35978d3ffac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ea7367b7-8196-49a6-9142-ac417cd805e0",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-14T02:51:55.362Z_
+
+This is very important — DataMIL uses the policy itself to select data. Let me now search deeper for the most critical novelty threats.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea7367b7-8196-49a6-9142-ac417cd805e0",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hk4FooM51a7E9qhjFA",
+  "type": "assistant",
+  "uuid": "98f5b1c6-7997-46d4-87ac-d3f32cd80444",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018MfcqHd1sVM63Zz3q28sEV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1011,
+      "cache_read_input_tokens": 34526,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 34526,
+          "cache_creation_input_tokens": 1011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T02:51:55.876Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016V2aR4N3HYrkvUkY7dsiXg`</summary>
+
+```json
+{
+  "query": "loss-based sampling curriculum imitation learning training dynamic reweighting 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98f5b1c6-7997-46d4-87ac-d3f32cd80444",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hk4FooM51a7E9qhjFA",
+  "type": "assistant",
+  "uuid": "afa90f84-b3a1-4470-8b2f-9ca5f95a484f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018MfcqHd1sVM63Zz3q28sEV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1011,
+      "cache_read_input_tokens": 34526,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 34526,
+          "cache_creation_input_tokens": 1011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T02:52:03.970Z_
+
+<details><summary>↩ Tool result · `toolu_016V2aR4N3HYrkvUkY7dsiXg`</summary>
+
+```text
+Web search results for query: "loss-based sampling curriculum imitation learning training dynamic reweighting 2025 2026"
+
+Links: [{"title":"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining | OpenReview","url":"https://openreview.net/forum?id=gU4ZgQNsOC"},{"title":"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining","url":"https://arxiv.org/html/2502.06733v1"},{"title":"DYNAMIC LOSS-BASED SAMPLE REWEIGHTING FOR ...","url":"https://shiqiang.wang/papers/DS_ICLR2025.pdf"},{"title":"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining for ICLR 2025 - IBM Research","url":"https://research.ibm.com/publications/dynamic-loss-based-sample-reweighting-for-improved-large-language-model-pretraining"},{"title":"GitHub - sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025","url":"https://github.com/sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025"},{"title":"[2502.06733] Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining","url":"https://arxiv.org/abs/2502.06733"},{"title":"Leveraging Imitation Learning and LLMs for Efficient Hierarchical Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=6y00rooi7i"},{"title":"Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10514-025-10237-0"},{"title":"why resampling outperforms reweighting for","url":"https://web.stanford.edu/~lexing/resw.pdf"},{"title":"[PDF] A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/A-Reduction-of-Imitation-Learning-and-Structured-to-Ross-Gordon/79ab3c49903ec8cb339437ccf5cf998607fc313e"}]
+
+Based on the search results, I found highly relevant recent research on loss-based sampling, dynamic reweighting, and curriculum learning for training. Here are the key findings:
+
+## Primary Research: Dynamic Loss-Based Sample Reweighting
+
+Novel algorithms for dynamic, instance-level data reweighting have been introduced to improve both the efficiency and effectiveness of LLM pretraining. These methods adjust the weight of each training sample based on its loss value in an online fashion, allowing the model to dynamically focus on more informative or important samples at the current training stage.
+
+## Curriculum-Based Learning Integration
+
+A curriculum-based adjustment mechanism has been added on top of strategic sample weights by controlling the sharpness of importance weighting using a temperature parameter. Early in training, when the model is still learning fundamental patterns and losses are less informative, a more uniform weighting scheme is employed to ensure diverse feature learning.
+
+## Framework and Strategies
+
+Instance-level, loss-based reweighting strategies are being systematically studied for improving both the efficiency and effectiveness of ML training, with each strategy meticulously designed to achieve specific goals, such as focusing learning dynamics on different parts of the loss distribution.
+
+## Computational Efficiency
+
+The reweighting approach adds nearly zero computational overhead, as sample losses are already computed during the forward pass and then used to derive importance weights through simple analytical transformations.
+
+## Theoretical Contributions
+
+A new theoretical framework has been developed for analyzing the impact of loss-based reweighting on the convergence of gradient-based optimization, providing the first formal characterization of how these strategies affect convergence bounds.
+
+The research has been presented at ICLR 2025 and represents significant progress in applying dynamic reweighting strategies to improve training efficiency across various scales of language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "afa90f84-b3a1-4470-8b2f-9ca5f95a484f",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "9ea6e927-9c7c-41b1-a055-3f214ac52958",
+  "toolUseResult": {
+    "query": "loss-based sampling curriculum imitation learning training dynamic reweighting 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N5RapBveZMZrpNDyKyK7uP",
+        "content": [
+          {
+            "title": "Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining | OpenReview",
+            "url": "https://openreview.net/forum?id=gU4ZgQNsOC"
+          },
+          {
+            "title": "Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining",
+            "url": "https://arxiv.org/html/2502.06733v1"
+          },
+          {
+            "title": "DYNAMIC LOSS-BASED SAMPLE REWEIGHTING FOR ...",
+            "url": "https://shiqiang.wang/papers/DS_ICLR2025.pdf"
+          },
+          {
+            "title": "Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining for ICLR 2025 - IBM Research",
+            "url": "https://research.ibm.com/publications/dynamic-loss-based-sample-reweighting-for-improved-large-language-model-pretraining"
+          },
+          {
+            "title": "GitHub - sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025",
+            "url": "https://github.com/sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025"
+          },
+          {
+            "title": "[2502.06733] Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining",
+            "url": "https://arxiv.org/abs/2502.06733"
+          },
+          {
+            "title": "Leveraging Imitation Learning and LLMs for Efficient Hierarchical Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=6y00rooi7i"
+          },
+          {
+            "title": "Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10514-025-10237-0"
+          },
+          {
+            "title": "why resampling outperforms reweighting for",
+            "url": "https://web.stanford.edu/~lexing/resw.pdf"
+          },
+          {
+            "title": "[PDF] A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/A-Reduction-of-Imitation-Learning-and-Structured-to-Ross-Gordon/79ab3c49903ec8cb339437ccf5cf998607fc313e"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant recent research on loss-based sampling, dynamic reweighting, and curriculum learning for training. Here are the key findings:\n\n## Primary Research: Dynamic Loss-Based Sample Reweighting\n\nNovel algorithms for dynamic, instance-level data reweighting have been introduced to improve both the efficiency and effectiveness of LLM pretraining. These methods adjust the weight of each training sample based on its loss value in an online fashion, allowing the model to dynamically focus on more informative or important samples at the current training stage.\n\n## Curriculum-Based Learning Integration\n\nA curriculum-based adjustment mechanism has been added on top of strategic sample weights by controlling the sharpness of importance weighting using a temperature parameter. Early in training, when the model is still learning fundamental patterns and losses are less informative, a more uniform weighting scheme is employed to ensure diverse feature learning.\n\n## Framework and Strategies\n\nInstance-level, loss-based reweighting strategies are being systematically studied for improving both the efficiency and effectiveness of ML training, with each strategy meticulously designed to achieve specific goals, such as focusing learning dynamics on different parts of the loss distribution.\n\n## Computational Efficiency\n\nThe reweighting approach adds nearly zero computational overhead, as sample losses are already computed during the forward pass and then used to derive importance weights through simple analytical transformations.\n\n## Theoretical Contributions\n\nA new theoretical framework has been developed for analyzing the impact of loss-based reweighting on the convergence of gradient-based optimization, providing the first formal characterization of how these strategies affect convergence bounds.\n\nThe research has been presented at ICLR 2025 and represents significant progress in applying dynamic reweighting strategies to improve training efficiency across various scales of language models."
+    ],
+    "durationSeconds": 8.089727069999993
+  },
+  "sourceToolAssistantUUID": "afa90f84-b3a1-4470-8b2f-9ca5f95a484f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T02:52:07.637Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MwhKk8J6JXoiRGLYAdU1p4`</summary>
+
+```json
+{
+  "query": "\"prioritized replay\" \"behavioral cloning\" OR \"imitation learning\" VLA robot 2025 2026 site:arxiv.org"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ea6e927-9c7c-41b1-a055-3f214ac52958",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hkxu7vGCsJpq1JAfC8",
+  "type": "assistant",
+  "uuid": "89121823-b84e-4887-86fa-41f456b35806",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YSX8LzuCfneP2W5P1VMhZi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1089,
+      "cache_read_input_tokens": 35537,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1089,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 35537,
+          "cache_creation_input_tokens": 1089,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1089
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T02:52:19.887Z_
+
+<details><summary>↩ Tool result · `toolu_01MwhKk8J6JXoiRGLYAdU1p4`</summary>
+
+```text
+Web search results for query: ""prioritized replay" "behavioral cloning" OR "imitation learning" VLA robot 2025 2026 site:arxiv.org"
+
+Links: [{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/html/2505.19789v4"},{"title":"VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning","url":"https://arxiv.org/html/2505.18719v1"},{"title":"Sample-Efficient Robot Skill Learning for Construction Tasks:","url":"https://arxiv.org/pdf/2512.14031"},{"title":"Towards Practical World Model-based Reinforcement Learning for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.20607"},{"title":"Robotic Manipulation via Imitation Learning: Taxonomy, Evolution, Benchmark, and Challenges","url":"https://arxiv.org/html/2508.17449v1"},{"title":"Embodied Robot Manipulation in the Era of Foundation Models: Planning and Learning Perspectives","url":"https://arxiv.org/html/2512.22983v1"},{"title":"World-VLA-Loop: Closed-Loop Learning of Video World Model and VLA Policy","url":"https://arxiv.org/html/2602.06508"},{"title":"Experiences from Benchmarking Vision–Language–Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2511.11298v1"},{"title":"MoRI: Mixture of RL and IL Experts for Long-Horizon Manipulation Tasks","url":"https://arxiv.org/html/2604.10165"},{"title":"[2407.15007] Is Behavior Cloning All You Need? Understanding Horizon in Imitation Learning","url":"https://arxiv.org/abs/2407.15007"}]
+
+Based on the web search results from arxiv.org, I found several relevant papers on VLA (Vision-Language-Action) robots from 2025-2026, though none specifically matching all the exact terms you searched for. Here are the key findings:
+
+## Recent VLA Research on Behavioral Cloning and Reinforcement Learning
+
+VLA model training predominantly relies on supervised fine-tuning (SFT) through behavioral cloning of demonstration labels, though researchers are increasingly exploring alternatives.
+
+RL fine-tuning is increasingly being applied to VLAs, with approaches ranging from incorporating human feedback to using offline RL updates or algorithms like PPO, sometimes in multi-stage processes with imitation learning.
+
+## Key Papers Found:
+
+1. **"What Can RL Bring to VLA Generalization? An Empirical Study"** (January 2026) - Examines how reinforcement learning can improve upon behavioral cloning baselines for VLAs on pick-and-place tasks.
+
+2. **"VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning"** (May 2025) - Addresses how offline data limitations cause failures in out-of-distribution scenarios.
+
+3. **"Towards Practical World Model-based Reinforcement Learning for Vision-Language-Action Models"** (March 2026) - Traditionally, finetuning VLA models typically relies on imitation learning (IL), particularly Behavior Cloning (BC), where the model learns a policy by minimizing the discrepancy between the model and expert actions.
+
+4. **"MoRI: Mixture of RL and IL Experts for Long-Horizon Manipulation Tasks"** (April 2026) - Proposes a hybrid approach that dynamically switches between RL and IL experts.
+
+**Note:** The search did not return papers specifically mentioning "prioritized replay" combined with these other terms, though the results show the broader landscape of VLA research integrating behavioral cloning, imitation learning, and reinforcement learning approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89121823-b84e-4887-86fa-41f456b35806",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "29354538-a46f-46de-91ac-260637ed9837",
+  "toolUseResult": {
+    "query": "\"prioritized replay\" \"behavioral cloning\" OR \"imitation learning\" VLA robot 2025 2026 site:arxiv.org",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RQbZZ4RBpjDDDzLuHaBeKd",
+        "content": [
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/html/2505.19789v4"
+          },
+          {
+            "title": "VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning",
+            "url": "https://arxiv.org/html/2505.18719v1"
+          },
+          {
+            "title": "Sample-Efficient Robot Skill Learning for Construction Tasks:",
+            "url": "https://arxiv.org/pdf/2512.14031"
+          },
+          {
+            "title": "Towards Practical World Model-based Reinforcement Learning for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.20607"
+          },
+          {
+            "title": "Robotic Manipulation via Imitation Learning: Taxonomy, Evolution, Benchmark, and Challenges",
+            "url": "https://arxiv.org/html/2508.17449v1"
+          },
+          {
+            "title": "Embodied Robot Manipulation in the Era of Foundation Models: Planning and Learning Perspectives",
+            "url": "https://arxiv.org/html/2512.22983v1"
+          },
+          {
+            "title": "World-VLA-Loop: Closed-Loop Learning of Video World Model and VLA Policy",
+            "url": "https://arxiv.org/html/2602.06508"
+          },
+          {
+            "title": "Experiences from Benchmarking Vision–Language–Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2511.11298v1"
+          },
+          {
+            "title": "MoRI: Mixture of RL and IL Experts for Long-Horizon Manipulation Tasks",
+            "url": "https://arxiv.org/html/2604.10165"
+          },
+          {
+            "title": "[2407.15007] Is Behavior Cloning All You Need? Understanding Horizon in Imitation Learning",
+            "url": "https://arxiv.org/abs/2407.15007"
+          }
+        ]
+      },
+      "Based on the web search results from arxiv.org, I found several relevant papers on VLA (Vision-Language-Action) robots from 2025-2026, though none specifically matching all the exact terms you searched for. Here are the key findings:\n\n## Recent VLA Research on Behavioral Cloning and Reinforcement Learning\n\nVLA model training predominantly relies on supervised fine-tuning (SFT) through behavioral cloning of demonstration labels, though researchers are increasingly exploring alternatives.\n\nRL fine-tuning is increasingly being applied to VLAs, with approaches ranging from incorporating human feedback to using offline RL updates or algorithms like PPO, sometimes in multi-stage processes with imitation learning.\n\n## Key Papers Found:\n\n1. **\"What Can RL Bring to VLA Generalization? An Empirical Study\"** (January 2026) - Examines how reinforcement learning can improve upon behavioral cloning baselines for VLAs on pick-and-place tasks.\n\n2. **\"VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning\"** (May 2025) - Addresses how offline data limitations cause failures in out-of-distribution scenarios.\n\n3. **\"Towards Practical World Model-based Reinforcement Learning for Vision-Language-Action Models\"** (March 2026) - Traditionally, finetuning VLA models typically relies on imitation learning (IL), particularly Behavior Cloning (BC), where the model learns a policy by minimizing the discrepancy between the model and expert actions.\n\n4. **\"MoRI: Mixture of RL and IL Experts for Long-Horizon Manipulation Tasks\"** (April 2026) - Proposes a hybrid approach that dynamically switches between RL and IL experts.\n\n**Note:** The search did not return papers specifically mentioning \"prioritized replay\" combined with these other terms, though the results show the broader landscape of VLA research integrating behavioral cloning, imitation learning, and reinforcement learning approaches."
+    ],
+    "durationSeconds": 12.192788758999988
+  },
+  "sourceToolAssistantUUID": "89121823-b84e-4887-86fa-41f456b35806",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T02:52:30.672Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Bixwdeaa7Vn3b8esfbbgu2`</summary>
+
+```json
+{
+  "query": "PLD self-improving VLA residual RL ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29354538-a46f-46de-91ac-260637ed9837",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hn8vQPysLzFzvNHbUH",
+  "type": "assistant",
+  "uuid": "16d88729-a542-4bc5-9519-341f5d0850a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6gxQsbPxkytZvquKcMT2p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 36626,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1036,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 36626,
+          "cache_creation_input_tokens": 1036,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1036
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T02:52:38.298Z_
+
+<details><summary>↩ Tool result · `toolu_01Bixwdeaa7Vn3b8esfbbgu2`</summary>
+
+```text
+Web search results for query: "PLD self-improving VLA residual RL ICLR 2026"
+
+Links: [{"title":"PLD: Self-Improving Vision-Language-Action Models (ICLR 2026)","url":"https://wenlixiao.com/self-improve-VLA-PLD"},{"title":"Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | OpenReview","url":"https://openreview.net/forum?id=xqRD4LLY5M"},{"title":"ICLR Poster Self-Improving Vision-Language-Action Models with Data Generation via Residual RL","url":"https://iclr.cc/virtual/2026/poster/10008318"},{"title":"Self-Improving Vision-Language-Action Models with Data ...","url":"https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"},{"title":"[2511.00091] Self-Improving Vision-Language-Action Models with Data Generation via Residual RL","url":"https://arxiv.org/abs/2511.00091"},{"title":"(PDF) Self-Improving Vision-Language-Action Models with Data Generation via Residual RL","url":"https://www.researchgate.net/publication/397231758_Self-Improving_Vision-Language-Action_Models_with_Data_Generation_via_Residual_RL"},{"title":"Self-Improving Vision-Language-Action Models with Data Generation via Residual RL","url":"https://arxiv.org/html/2511.00091v1"},{"title":"ICLR 2026 Workshop - Lifelong Agents: Learning, Aligning, Evolving","url":"https://lifelongagent.github.io/"},{"title":"awesome-physical-ai/README.md at main · keon/awesome-physical-ai","url":"https://github.com/keon/awesome-physical-ai/blob/main/README.md"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"}]
+
+Based on the search results, here's what I found about PLD:
+
+## PLD: Self-Improving Vision-Language-Action Models
+
+PLD (Probe, Learn, Distill) is a three-stage plug-and-play framework that improves VLAs through residual reinforcement learning (RL) and distribution-aware data collection.
+
+### The Three-Stage Pipeline
+
+In Stage 1 (specialist acquisition), the VLA backbone is frozen and lightweight residual actors are trained via off-policy RL. These specialists take over in states where the base policy fails, thereby probing failure regions of the VLA generalist.
+
+In Stage 2 (data collection), a hybrid rollout scheme biases residual interventions toward states frequently visited by the base policy, aligning collected trajectories with the generalist's deployment distribution while capturing recovery behaviors.
+
+In Stage 3 (fine-tuning), these curated trajectories are distilled back into the generalist with standard SFT, applicable to both flow-matching and autoregressive heads.
+
+### Performance Results
+
+PLD achieves a near-saturated 99% task success rate on the LIBERO benchmark, delivers over 50% performance gains in SimplerEnv, and demonstrates a 100% success rate on real-world Franka arm and YAM arm dexterous manipulation tasks.
+
+RL-generated, policy-aligned data can surpass teleoperation-only demonstrations, offering a scalable path toward self-improving VLA models.
+
+This paper was accepted to ICLR 2026 and represents a significant contribution to making VLA models more efficient and capable without relying solely on costly human demonstrations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "16d88729-a542-4bc5-9519-341f5d0850a2",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "a3960d76-09bb-4a95-b07c-4c8a88fd01e2",
+  "toolUseResult": {
+    "query": "PLD self-improving VLA residual RL ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ErtQczSWmm3tKMRrKh5dRM",
+        "content": [
+          {
+            "title": "PLD: Self-Improving Vision-Language-Action Models (ICLR 2026)",
+            "url": "https://wenlixiao.com/self-improve-VLA-PLD"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | OpenReview",
+            "url": "https://openreview.net/forum?id=xqRD4LLY5M"
+          },
+          {
+            "title": "ICLR Poster Self-Improving Vision-Language-Action Models with Data Generation via Residual RL",
+            "url": "https://iclr.cc/virtual/2026/poster/10008318"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data ...",
+            "url": "https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"
+          },
+          {
+            "title": "[2511.00091] Self-Improving Vision-Language-Action Models with Data Generation via Residual RL",
+            "url": "https://arxiv.org/abs/2511.00091"
+          },
+          {
+            "title": "(PDF) Self-Improving Vision-Language-Action Models with Data Generation via Residual RL",
+            "url": "https://www.researchgate.net/publication/397231758_Self-Improving_Vision-Language-Action_Models_with_Data_Generation_via_Residual_RL"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data Generation via Residual RL",
+            "url": "https://arxiv.org/html/2511.00091v1"
+          },
+          {
+            "title": "ICLR 2026 Workshop - Lifelong Agents: Learning, Aligning, Evolving",
+            "url": "https://lifelongagent.github.io/"
+          },
+          {
+            "title": "awesome-physical-ai/README.md at main · keon/awesome-physical-ai",
+            "url": "https://github.com/keon/awesome-physical-ai/blob/main/README.md"
+          },
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about PLD:\n\n## PLD: Self-Improving Vision-Language-Action Models\n\nPLD (Probe, Learn, Distill) is a three-stage plug-and-play framework that improves VLAs through residual reinforcement learning (RL) and distribution-aware data collection.\n\n### The Three-Stage Pipeline\n\nIn Stage 1 (specialist acquisition), the VLA backbone is frozen and lightweight residual actors are trained via off-policy RL. These specialists take over in states where the base policy fails, thereby probing failure regions of the VLA generalist.\n\nIn Stage 2 (data collection), a hybrid rollout scheme biases residual interventions toward states frequently visited by the base policy, aligning collected trajectories with the generalist's deployment distribution while capturing recovery behaviors.\n\nIn Stage 3 (fine-tuning), these curated trajectories are distilled back into the generalist with standard SFT, applicable to both flow-matching and autoregressive heads.\n\n### Performance Results\n\nPLD achieves a near-saturated 99% task success rate on the LIBERO benchmark, delivers over 50% performance gains in SimplerEnv, and demonstrates a 100% success rate on real-world Franka arm and YAM arm dexterous manipulation tasks.\n\nRL-generated, policy-aligned data can surpass teleoperation-only demonstrations, offering a scalable path toward self-improving VLA models.\n\nThis paper was accepted to ICLR 2026 and represents a significant contribution to making VLA models more efficient and capable without relying solely on costly human demonstrations."
+    ],
+    "durationSeconds": 7.609200066000019
+  },
+  "sourceToolAssistantUUID": "16d88729-a542-4bc5-9519-341f5d0850a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 51 · 2026-05-14T02:52:38.311Z_
+
+```json
+{
+  "parentUuid": "a3960d76-09bb-4a95-b07c-4c8a88fd01e2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "5d094455-995d-41a5-9826-a870c81e6c1e",
+  "timestamp": "2026-05-14T02:52:38.311Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-14T02:52:41.360Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019XvsAL7Wznysq4if2yMcX8`</summary>
+
+```json
+{
+  "query": "\"prioritized replay\" \"post-training\" LLM reasoning 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d094455-995d-41a5-9826-a870c81e6c1e",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hoVjZuhLWjwUrYyEQb",
+  "type": "assistant",
+  "uuid": "b1e8deee-fbfb-496b-9204-3c442778dc40",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFxmUF2zYrwW4RZmohwYCi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 37662,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1087,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 37662,
+          "cache_creation_input_tokens": 1087,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1087
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T02:52:52.537Z_
+
+<details><summary>↩ Tool result · `toolu_019XvsAL7Wznysq4if2yMcX8`</summary>
+
+```text
+Web search results for query: ""prioritized replay" "post-training" LLM reasoning 2026 arXiv"
+
+Links: [{"title":"Prioritized Replay for RL Post-training Mehdi Fatemi mehdi.fatemi@ieee.org","url":"https://www.arxiv.org/pdf/2601.02648"},{"title":"Prioritized Replay for RL Post-training","url":"https://arxiv.org/html/2601.02648v1"},{"title":"Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning","url":"https://arxiv.org/html/2604.16918"},{"title":"[2601.02648] Prioritized Replay for RL Post-training","url":"https://arxiv.org/abs/2601.02648"},{"title":"RLEP: Reinforcement Learning with Experience Replay for LLM Reasoning","url":"https://arxiv.org/html/2507.07451v1"},{"title":"Efficient RL Training for LLMs with Experience Replay","url":"https://arxiv.org/html/2604.08706"},{"title":"Improving RL Exploration for LLM Reasoning through Retrospective Replay","url":"https://arxiv.org/html/2504.14363"},{"title":"Internalizing LLM Reasoning via Discovery and Replay of Latent Actions","url":"https://arxiv.org/html/2602.04925"},{"title":"[2508.06412] Sample-efficient LLM Optimization with Reset Replay","url":"https://arxiv.org/abs/2508.06412"},{"title":"[2504.14363] Improving RL Exploration for LLM Reasoning through Retrospective Replay","url":"https://arxiv.org/abs/2504.14363"}]
+
+I found a highly relevant paper for your search. Here are the key results:
+
+## Primary Result: "Prioritized Replay for RL Post-training"
+
+The paper studies RL post-training for large language models (LLMs), where the environment is a collection of reasoning problems or task simulators that produce complete rollouts for the agent. The research introduces a problem-level prioritization framework for RL post-training of large language models.
+
+**Key Findings:**
+
+The approach selects problems according to a simple, model-driven priority score derived from empirical success statistics, building on insights from prioritized replay in deep RL and observations that rollouts with intermediate success rates produce stronger learning signals. In contrast to conventional curriculum strategies that emphasize easier tasks early in training, the resulting schedule naturally focuses training on problems that are neither consistently solved nor consistently failed.
+
+The work introduces lightweight mechanisms for practical deployment, including heap-based prioritized sampling and periodic retesting of solved and unsolved problems to mitigate starvation and forgetting.
+
+**Reference:** arXiv:2601.02648v1 [cs.LG] 6 Jan 2026 by Mehdi Fatemi
+
+The search also returned several related papers on experience replay mechanisms for LLM reasoning from 2025-2026, indicating this is an active area of research in post-training optimization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b1e8deee-fbfb-496b-9204-3c442778dc40",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "39ed7df9-abc0-452a-be99-3dfc275c3690",
+  "toolUseResult": {
+    "query": "\"prioritized replay\" \"post-training\" LLM reasoning 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015Y6M95os5aHMGMKxmKWeMZ",
+        "content": [
+          {
+            "title": "Prioritized Replay for RL Post-training Mehdi Fatemi mehdi.fatemi@ieee.org",
+            "url": "https://www.arxiv.org/pdf/2601.02648"
+          },
+          {
+            "title": "Prioritized Replay for RL Post-training",
+            "url": "https://arxiv.org/html/2601.02648v1"
+          },
+          {
+            "title": "Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning",
+            "url": "https://arxiv.org/html/2604.16918"
+          },
+          {
+            "title": "[2601.02648] Prioritized Replay for RL Post-training",
+            "url": "https://arxiv.org/abs/2601.02648"
+          },
+          {
+            "title": "RLEP: Reinforcement Learning with Experience Replay for LLM Reasoning",
+            "url": "https://arxiv.org/html/2507.07451v1"
+          },
+          {
+            "title": "Efficient RL Training for LLMs with Experience Replay",
+            "url": "https://arxiv.org/html/2604.08706"
+          },
+          {
+            "title": "Improving RL Exploration for LLM Reasoning through Retrospective Replay",
+            "url": "https://arxiv.org/html/2504.14363"
+          },
+          {
+            "title": "Internalizing LLM Reasoning via Discovery and Replay of Latent Actions",
+            "url": "https://arxiv.org/html/2602.04925"
+          },
+          {
+            "title": "[2508.06412] Sample-efficient LLM Optimization with Reset Replay",
+            "url": "https://arxiv.org/abs/2508.06412"
+          },
+          {
+            "title": "[2504.14363] Improving RL Exploration for LLM Reasoning through Retrospective Replay",
+            "url": "https://arxiv.org/abs/2504.14363"
+          }
+        ]
+      },
+      "I found a highly relevant paper for your search. Here are the key results:\n\n## Primary Result: \"Prioritized Replay for RL Post-training\"\n\nThe paper studies RL post-training for large language models (LLMs), where the environment is a collection of reasoning problems or task simulators that produce complete rollouts for the agent. The research introduces a problem-level prioritization framework for RL post-training of large language models.\n\n**Key Findings:**\n\nThe approach selects problems according to a simple, model-driven priority score derived from empirical success statistics, building on insights from prioritized replay in deep RL and observations that rollouts with intermediate success rates produce stronger learning signals. In contrast to conventional curriculum strategies that emphasize easier tasks early in training, the resulting schedule naturally focuses training on problems that are neither consistently solved nor consistently failed.\n\nThe work introduces lightweight mechanisms for practical deployment, including heap-based prioritized sampling and periodic retesting of solved and unsolved problems to mitigate starvation and forgetting.\n\n**Reference:** arXiv:2601.02648v1 [cs.LG] 6 Jan 2026 by Mehdi Fatemi\n\nThe search also returned several related papers on experience replay mechanisms for LLM reasoning from 2025-2026, indicating this is an active area of research in post-training optimization."
+    ],
+    "durationSeconds": 11.169721481999993
+  },
+  "sourceToolAssistantUUID": "b1e8deee-fbfb-496b-9204-3c442778dc40",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "39ed7df9-abc0-452a-be99-3dfc275c3690",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-14T02:52:58.501Z_
+
+Now let me look at a very important potential threat — the "Freshness-Aware Prioritized Experience Replay" paper that appeared in those results, which could be highly relevant.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39ed7df9-abc0-452a-be99-3dfc275c3690",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hpiRav66p7esymTRap",
+  "type": "assistant",
+  "uuid": "1145c8e2-555f-4809-8f32-356a550d681a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DEsAmazmTazdG2kXXq3uAB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 842,
+      "cache_read_input_tokens": 38749,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 842,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 38749,
+          "cache_creation_input_tokens": 842,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 842
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-14T02:52:58.655Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WojsAv5bZwRpSnx9PPfyPo`</summary>
+
+```json
+{
+  "query": "Freshness-Aware Prioritized Experience Replay LLM VLM reinforcement learning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1145c8e2-555f-4809-8f32-356a550d681a",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hpiRav66p7esymTRap",
+  "type": "assistant",
+  "uuid": "6fb5bb12-6509-4c02-8584-007f433394e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DEsAmazmTazdG2kXXq3uAB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 842,
+      "cache_read_input_tokens": 38749,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 842,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 38749,
+          "cache_creation_input_tokens": 842,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 842
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T02:53:05.615Z_
+
+<details><summary>↩ Tool result · `toolu_01WojsAv5bZwRpSnx9PPfyPo`</summary>
+
+```text
+Web search results for query: "Freshness-Aware Prioritized Experience Replay LLM VLM reinforcement learning 2026"
+
+Links: [{"title":"Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning","url":"https://arxiv.org/html/2604.16918"},{"title":"[2604.16918] Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning","url":"https://arxiv.org/abs/2604.16918"},{"title":"Prioritized Experience Replay | Request PDF","url":"https://www.researchgate.net/publication/319770330_Prioritized_Experience_Replay"},{"title":"RLEP: Reinforcement Learning with Experience Replay for LLM Reasoning","url":"https://arxiv.org/html/2507.07451v1"},{"title":"(PDF) Efficient RL Training for LLMs with Experience Replay","url":"https://www.researchgate.net/publication/403750079_Efficient_RL_Training_for_LLMs_with_Experience_Replay"},{"title":"[1511.05952] Prioritized Experience Replay","url":"https://arxiv.org/abs/1511.05952"},{"title":"ExGRPO: Learning to Reason from Experience","url":"https://arxiv.org/html/2510.02245v1"},{"title":"Paper page - Efficient RL Training for LLMs with Experience Replay","url":"https://huggingface.co/papers/2604.08706"},{"title":"(PDF) Prioritized Experience Replay","url":"https://www.researchgate.net/publication/284219262_Prioritized_Experience_Replay"},{"title":"Best-of-Q: Improving VLM Agents with Q-function Action Ranking at Inference","url":"https://arxiv.org/html/2601.22701v1"}]
+
+Based on the search results, I found information about "Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning." Here's what I found:
+
+## Overview
+
+Freshness-Aware PER is the first work to successfully apply PER to LLM/VLM reinforcement learning.
+
+## The Problem
+
+On-policy methods like PPO, GRPO, and REINFORCE++ discard all collected trajectories after a single gradient update, resulting in poor sample efficiency, particularly wasteful for agentic tasks where multi-turn environment interactions are expensive. Additionally, the rapid policy evolution of billion-parameter models renders stored priorities stale, causing old high-priority trajectories to dominate sampling long after they have become uninformative.
+
+## The Solution
+
+Freshness-Aware PER addresses the priority staleness problem by augmenting any PER-based priority with a multiplicative exponential age decay grounded in effective sample size analysis.
+
+## Performance Results
+
+Freshness-Aware PER significantly outperforms on-policy baselines, achieving +46% on NQ Search, +367% on Sokoban, and +133% on VLM FrozenLake, while standard PER without age decay consistently degrades performance. The evaluation covered eight multi-step agentic, reasoning, and math competition tasks with 0.5B, 3B, and 7B models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6fb5bb12-6509-4c02-8584-007f433394e7",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "013f8178-2580-408a-9001-89e10ea54fd5",
+  "toolUseResult": {
+    "query": "Freshness-Aware Prioritized Experience Replay LLM VLM reinforcement learning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0184fd6YL7p5wef2yHs7tgBv",
+        "content": [
+          {
+            "title": "Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning",
+            "url": "https://arxiv.org/html/2604.16918"
+          },
+          {
+            "title": "[2604.16918] Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2604.16918"
+          },
+          {
+            "title": "Prioritized Experience Replay | Request PDF",
+            "url": "https://www.researchgate.net/publication/319770330_Prioritized_Experience_Replay"
+          },
+          {
+            "title": "RLEP: Reinforcement Learning with Experience Replay for LLM Reasoning",
+            "url": "https://arxiv.org/html/2507.07451v1"
+          },
+          {
+            "title": "(PDF) Efficient RL Training for LLMs with Experience Replay",
+            "url": "https://www.researchgate.net/publication/403750079_Efficient_RL_Training_for_LLMs_with_Experience_Replay"
+          },
+          {
+            "title": "[1511.05952] Prioritized Experience Replay",
+            "url": "https://arxiv.org/abs/1511.05952"
+          },
+          {
+            "title": "ExGRPO: Learning to Reason from Experience",
+            "url": "https://arxiv.org/html/2510.02245v1"
+          },
+          {
+            "title": "Paper page - Efficient RL Training for LLMs with Experience Replay",
+            "url": "https://huggingface.co/papers/2604.08706"
+          },
+          {
+            "title": "(PDF) Prioritized Experience Replay",
+            "url": "https://www.researchgate.net/publication/284219262_Prioritized_Experience_Replay"
+          },
+          {
+            "title": "Best-of-Q: Improving VLM Agents with Q-function Action Ranking at Inference",
+            "url": "https://arxiv.org/html/2601.22701v1"
+          }
+        ]
+      },
+      "Based on the search results, I found information about \"Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning.\" Here's what I found:\n\n## Overview\n\nFreshness-Aware PER is the first work to successfully apply PER to LLM/VLM reinforcement learning.\n\n## The Problem\n\nOn-policy methods like PPO, GRPO, and REINFORCE++ discard all collected trajectories after a single gradient update, resulting in poor sample efficiency, particularly wasteful for agentic tasks where multi-turn environment interactions are expensive. Additionally, the rapid policy evolution of billion-parameter models renders stored priorities stale, causing old high-priority trajectories to dominate sampling long after they have become uninformative.\n\n## The Solution\n\nFreshness-Aware PER addresses the priority staleness problem by augmenting any PER-based priority with a multiplicative exponential age decay grounded in effective sample size analysis.\n\n## Performance Results\n\nFreshness-Aware PER significantly outperforms on-policy baselines, achieving +46% on NQ Search, +367% on Sokoban, and +133% on VLM FrozenLake, while standard PER without age decay consistently degrades performance. The evaluation covered eight multi-step agentic, reasoning, and math competition tasks with 0.5B, 3B, and 7B models."
+    ],
+    "durationSeconds": 6.9543349129999985
+  },
+  "sourceToolAssistantUUID": "6fb5bb12-6509-4c02-8584-007f433394e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-14T02:53:09.710Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019osE44uUjRBRkN3nRG6U6e`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.16918",
+  "prompt": "Extract the full abstract and key details: What exactly does this paper propose? Does it apply to behavioral cloning or only RL? Does it apply to robotics/VLA or only language tasks? What is the core mechanism?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "013f8178-2580-408a-9001-89e10ea54fd5",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hqWSYXoqtULByRMFdP",
+  "type": "assistant",
+  "uuid": "9d2fad7c-0b31-42f8-983a-cb66dc69e8fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PrwwT6nuL4mGz3r47G7dVu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 39591,
+      "output_tokens": 129,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 129,
+          "cache_read_input_tokens": 39591,
+          "cache_creation_input_tokens": 933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T02:53:15.521Z_
+
+<details><summary>↩ Tool result · `toolu_019osE44uUjRBRkN3nRG6U6e`</summary>
+
+```text
+# Paper Summary: Freshness-Aware Prioritized Experience Replay
+
+## Core Proposal
+This work introduces a method to apply Prioritized Experience Replay (PER) to large language and vision-language models. The key innovation addresses a fundamental problem: "The rapid policy evolution of billion-parameter models renders stored priorities stale, causing old high-priority trajectories to dominate sampling long after they have become uninformative."
+
+The solution involves augmenting PER priorities with "a multiplicative exponential age decay grounded in effective sample size analysis."
+
+## Scope: RL Only (Not Behavioral Cloning)
+This method is explicitly designed for **reinforcement learning**, not behavioral cloning. The paper notes that on-policy RL algorithms like PPO, GRPO, and REINFORCE++ "discard all collected trajectories after a single gradient update," and this work enables trajectory reuse through experience replay.
+
+## Scope: Both Language and Vision Tasks
+The approach applies to both domains:
+- **Language tasks**: Multi-step agentic and reasoning benchmarks (NQ Search, math competitions)
+- **Vision-language models**: FrozenLake VLM experiments
+
+The paper specifically tests on "eight multi-step agentic, reasoning, and math competition tasks" across model sizes of 0.5B, 3B, and 7B parameters.
+
+## Performance Gains
+Results show substantial improvements: "+46% on NQ Search, +367% on Sokoban, and +133% on VLM FrozenLake," while standard PER without age decay consistently underperformed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d2fad7c-0b31-42f8-983a-cb66dc69e8fe",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "eff91d93-0ce0-4128-92ae-9600faa8c3f4",
+  "toolUseResult": {
+    "bytes": 47896,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: Freshness-Aware Prioritized Experience Replay\n\n## Core Proposal\nThis work introduces a method to apply Prioritized Experience Replay (PER) to large language and vision-language models. The key innovation addresses a fundamental problem: \"The rapid policy evolution of billion-parameter models renders stored priorities stale, causing old high-priority trajectories to dominate sampling long after they have become uninformative.\"\n\nThe solution involves augmenting PER priorities with \"a multiplicative exponential age decay grounded in effective sample size analysis.\"\n\n## Scope: RL Only (Not Behavioral Cloning)\nThis method is explicitly designed for **reinforcement learning**, not behavioral cloning. The paper notes that on-policy RL algorithms like PPO, GRPO, and REINFORCE++ \"discard all collected trajectories after a single gradient update,\" and this work enables trajectory reuse through experience replay.\n\n## Scope: Both Language and Vision Tasks\nThe approach applies to both domains:\n- **Language tasks**: Multi-step agentic and reasoning benchmarks (NQ Search, math competitions)\n- **Vision-language models**: FrozenLake VLM experiments\n\nThe paper specifically tests on \"eight multi-step agentic, reasoning, and math competition tasks\" across model sizes of 0.5B, 3B, and 7B parameters.\n\n## Performance Gains\nResults show substantial improvements: \"+46% on NQ Search, +367% on Sokoban, and +133% on VLM FrozenLake,\" while standard PER without age decay consistently underperformed.",
+    "durationMs": 5803,
+    "url": "https://arxiv.org/abs/2604.16918"
+  },
+  "sourceToolAssistantUUID": "9d2fad7c-0b31-42f8-983a-cb66dc69e8fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T02:53:18.804Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FfmqkmrJREp9GyP4EWgSc2`</summary>
+
+```json
+{
+  "query": "data quality scoring demonstration filtering VLA training noise removal 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eff91d93-0ce0-4128-92ae-9600faa8c3f4",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hrEkFefP1GGLjFHKzL",
+  "type": "assistant",
+  "uuid": "fad77ef0-954d-4e52-a4de-d88ddb8e7446",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014A2oGe6NtHsvoM9D4ck1gS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 40524,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 493,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 40524,
+          "cache_creation_input_tokens": 493,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 493
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T02:53:26.186Z_
+
+<details><summary>↩ Tool result · `toolu_01FfmqkmrJREp9GyP4EWgSc2`</summary>
+
+```text
+Web search results for query: "data quality scoring demonstration filtering VLA training noise removal 2025 2026"
+
+Links: [{"title":"1 Recipe for Vision-Language-Action Models in Robotic Manipulation: A Survey","url":"https://www.techrxiv.org/users/956965/articles/1326137/master/file/data/eart2025recipevla/eart2025recipevla.pdf?inline=true"},{"title":"Humanoid Robot Training Data: Deployment Guide 2026 | Shaip","url":"https://www.shaip.com/blog/humanoid-robot-training-data-what-teams-need-before-deployment/"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf?id=x54wwB6QvL"},{"title":"The Data-Quality Illusion: Rethinking Classifier-Based Quality Filtering for LLM Pretraining","url":"https://arxiv.org/html/2510.00866"},{"title":"Generative Models for Robot Learning","url":"https://iclr.cc/virtual/2025/workshop/23977"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/html/2505.19789v4"},{"title":"State of Robotics 2026 Report: $38B Market, 12 Humanoids, VLA Adoption | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/state-of-robotics-2026"},{"title":"Noise Reduction Algorithm - an overview | ScienceDirect Topics","url":"https://www.sciencedirect.com/topics/computer-science/noise-reduction-algorithm"},{"title":"ChatVLA: Unified Multimodal Understanding and Robot ...","url":"https://aclanthology.org/2025.emnlp-main.273.pdf"},{"title":"ON DATA REDUNDANCY IN VLA TRAINING","url":"https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf"}]
+
+Based on the web search results, here's what I found related to your query about data quality scoring, filtering, VLA training, and noise removal in 2025-2026:
+
+## Data Quality Scoring and Filtering in VLA Training
+
+Recent research frames data deficiency in terms of noise in data (E), coverage/diversity (F), repeated data (G), and loss in data quality from synthetic data (H), with data quality scaling laws documented by Chen et al. (2025), Goyal et al. (2024) and Chang et al. (2024).
+
+## Classifier-Based Quality Filtering
+
+A popular method is Classifier-based Quality Filtering (CQF), which trains a binary classifier to distinguish between pretraining data and a small, high-quality set, assigning each document a quality score and retaining only the top-scoring ones.
+
+## VLA Training Data Requirements
+
+A large-scale effort transformed unstructured egocentric human videos into VLA-formatted training data of 1 million episodes across 26 million frames (Wu et al., 2025), confirming that demonstration data is most useful when segmented, atomic, and language-aligned.
+
+Useful demonstrations carry a clear task instruction, framewise observations, action labels at every step, timestamps, and an evaluation marker.
+
+## Data Redundancy and Selection
+
+Research proposes that effective data selection should prioritize "temporal surprise"—moments where action trajectories undergo significant shifts—using a Temporal Surprise Score (TSS) metric that scores frames based on a weighted calculation of action change.
+
+These developments reflect the growing focus in 2025-2026 on improving data quality and efficiency in VLA training rather than simply collecting larger datasets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fad77ef0-954d-4e52-a4de-d88ddb8e7446",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "258f84e2-21d6-4d0b-a782-14398c12d21d",
+  "toolUseResult": {
+    "query": "data quality scoring demonstration filtering VLA training noise removal 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wfk1uYHJvchQH5K65FWMj7",
+        "content": [
+          {
+            "title": "1 Recipe for Vision-Language-Action Models in Robotic Manipulation: A Survey",
+            "url": "https://www.techrxiv.org/users/956965/articles/1326137/master/file/data/eart2025recipevla/eart2025recipevla.pdf?inline=true"
+          },
+          {
+            "title": "Humanoid Robot Training Data: Deployment Guide 2026 | Shaip",
+            "url": "https://www.shaip.com/blog/humanoid-robot-training-data-what-teams-need-before-deployment/"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf?id=x54wwB6QvL"
+          },
+          {
+            "title": "The Data-Quality Illusion: Rethinking Classifier-Based Quality Filtering for LLM Pretraining",
+            "url": "https://arxiv.org/html/2510.00866"
+          },
+          {
+            "title": "Generative Models for Robot Learning",
+            "url": "https://iclr.cc/virtual/2025/workshop/23977"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/html/2505.19789v4"
+          },
+          {
+            "title": "State of Robotics 2026 Report: $38B Market, 12 Humanoids, VLA Adoption | Silicon Valley Robotics Center",
+            "url": "https://www.roboticscenter.ai/state-of-robotics-2026"
+          },
+          {
+            "title": "Noise Reduction Algorithm - an overview | ScienceDirect Topics",
+            "url": "https://www.sciencedirect.com/topics/computer-science/noise-reduction-algorithm"
+          },
+          {
+            "title": "ChatVLA: Unified Multimodal Understanding and Robot ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.273.pdf"
+          },
+          {
+            "title": "ON DATA REDUNDANCY IN VLA TRAINING",
+            "url": "https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found related to your query about data quality scoring, filtering, VLA training, and noise removal in 2025-2026:\n\n## Data Quality Scoring and Filtering in VLA Training\n\nRecent research frames data deficiency in terms of noise in data (E), coverage/diversity (F), repeated data (G), and loss in data quality from synthetic data (H), with data quality scaling laws documented by Chen et al. (2025), Goyal et al. (2024) and Chang et al. (2024).\n\n## Classifier-Based Quality Filtering\n\nA popular method is Classifier-based Quality Filtering (CQF), which trains a binary classifier to distinguish between pretraining data and a small, high-quality set, assigning each document a quality score and retaining only the top-scoring ones.\n\n## VLA Training Data Requirements\n\nA large-scale effort transformed unstructured egocentric human videos into VLA-formatted training data of 1 million episodes across 26 million frames (Wu et al., 2025), confirming that demonstration data is most useful when segmented, atomic, and language-aligned.\n\nUseful demonstrations carry a clear task instruction, framewise observations, action labels at every step, timestamps, and an evaluation marker.\n\n## Data Redundancy and Selection\n\nResearch proposes that effective data selection should prioritize \"temporal surprise\"—moments where action trajectories undergo significant shifts—using a Temporal Surprise Score (TSS) metric that scores frames based on a weighted calculation of action change.\n\nThese developments reflect the growing focus in 2025-2026 on improving data quality and efficiency in VLA training rather than simply collecting larger datasets."
+    ],
+    "durationSeconds": 7.378154021000024
+  },
+  "sourceToolAssistantUUID": "fad77ef0-954d-4e52-a4de-d88ddb8e7446",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T02:53:28.464Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AZ7gKUmknWxtKDQ77AYnLQ`</summary>
+
+```json
+{
+  "query": "\"ON DATA REDUNDANCY IN VLA TRAINING\" openreview 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "258f84e2-21d6-4d0b-a782-14398c12d21d",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hs2Lex665gM78X14pC",
+  "type": "assistant",
+  "uuid": "73c711f7-7354-4f80-92dc-ac1237a1ee6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U5FYc1THRqqrKuqP5VSUuh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 991,
+      "cache_read_input_tokens": 41017,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 991,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 41017,
+          "cache_creation_input_tokens": 991,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 991
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T02:53:34.729Z_
+
+<details><summary>↩ Tool result · `toolu_01AZ7gKUmknWxtKDQ77AYnLQ`</summary>
+
+```text
+Web search results for query: ""ON DATA REDUNDANCY IN VLA TRAINING" openreview 2026"
+
+Links: [{"title":"ON DATA REDUNDANCY IN VLA TRAINING","url":"https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf"},{"title":"Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | OpenReview","url":"https://openreview.net/forum?id=xqRD4LLY5M"},{"title":"Towards Practical World Model-based Reinforcement Learning for Vision-Language-Action Models | OpenReview","url":"https://openreview.net/forum?id=gB1yFEd106"},{"title":"ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=Mzz4BhdIFb"},{"title":"EfficientVLA: Training-Free Acceleration and Compression ...","url":"https://openreview.net/pdf?id=SELYlDHZk2"},{"title":"VLA-Cache: Efficient Vision-Language-Action Manipulation ...","url":"https://openreview.net/pdf/ab187b19e4f174f9a6c3f7d82d52c8f6f1abfafb.pdf"},{"title":"LESS IS MORE: HIGH-VALUE DATA SELECTION FOR VISUAL INSTRUCTION TUNING | OpenReview","url":"https://openreview.net/forum?id=BydkbNH0gj"},{"title":"Sim2Real VLA: Zero-Shot Generalization of Synthesized Skills to Realistic Manipulation | OpenReview","url":"https://openreview.net/forum?id=H4SyKHjd4c"},{"title":"Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | OpenReview","url":"https://openreview.net/forum?id=sFO9d6XSlf"},{"title":"SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=TQhSodCM4r"}]
+
+I found the paper you were searching for! Here's the key information about the OpenReview paper "On Data Redundancy in VLA Training":
+
+The research reveals dramatic data redundancy in LIBERO, with model performance trained on coresets of different proportions remaining relatively stable until declining past 5%. The paper investigates data redundancy in the LIBERO benchmark through empirical testing on SmolVLA and GR00T N1.5 NVIDIA models by comparing two data selection strategies: random sampling and difficulty-based sampling.
+
+The research hypothesizes that an effective data selection strategy should prioritize "temporal surprise," or moments where action trajectories undergo significant shifts, and proposes the Temporal Surprise Score (TSS) metric that scores frames based on weighted calculation of action change.
+
+The results emphasize the importance of data diversity over data difficulty, as demonstrated by the better performance of random sampling compared to difficulty-based sampling.
+
+The paper can be accessed at the OpenReview PDF link: https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "73c711f7-7354-4f80-92dc-ac1237a1ee6f",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "2c1e87b3-a65a-4579-82dc-ae149640ede0",
+  "toolUseResult": {
+    "query": "\"ON DATA REDUNDANCY IN VLA TRAINING\" openreview 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XA4dKnXYCQUcsLuYjqSn3Z",
+        "content": [
+          {
+            "title": "ON DATA REDUNDANCY IN VLA TRAINING",
+            "url": "https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | OpenReview",
+            "url": "https://openreview.net/forum?id=xqRD4LLY5M"
+          },
+          {
+            "title": "Towards Practical World Model-based Reinforcement Learning for Vision-Language-Action Models | OpenReview",
+            "url": "https://openreview.net/forum?id=gB1yFEd106"
+          },
+          {
+            "title": "ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=Mzz4BhdIFb"
+          },
+          {
+            "title": "EfficientVLA: Training-Free Acceleration and Compression ...",
+            "url": "https://openreview.net/pdf?id=SELYlDHZk2"
+          },
+          {
+            "title": "VLA-Cache: Efficient Vision-Language-Action Manipulation ...",
+            "url": "https://openreview.net/pdf/ab187b19e4f174f9a6c3f7d82d52c8f6f1abfafb.pdf"
+          },
+          {
+            "title": "LESS IS MORE: HIGH-VALUE DATA SELECTION FOR VISUAL INSTRUCTION TUNING | OpenReview",
+            "url": "https://openreview.net/forum?id=BydkbNH0gj"
+          },
+          {
+            "title": "Sim2Real VLA: Zero-Shot Generalization of Synthesized Skills to Realistic Manipulation | OpenReview",
+            "url": "https://openreview.net/forum?id=H4SyKHjd4c"
+          },
+          {
+            "title": "Actions as Language: Fine-Tuning VLMs into VLAs Without Catastrophic Forgetting | OpenReview",
+            "url": "https://openreview.net/forum?id=sFO9d6XSlf"
+          },
+          {
+            "title": "SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=TQhSodCM4r"
+          }
+        ]
+      },
+      "I found the paper you were searching for! Here's the key information about the OpenReview paper \"On Data Redundancy in VLA Training\":\n\nThe research reveals dramatic data redundancy in LIBERO, with model performance trained on coresets of different proportions remaining relatively stable until declining past 5%. The paper investigates data redundancy in the LIBERO benchmark through empirical testing on SmolVLA and GR00T N1.5 NVIDIA models by comparing two data selection strategies: random sampling and difficulty-based sampling.\n\nThe research hypothesizes that an effective data selection strategy should prioritize \"temporal surprise,\" or moments where action trajectories undergo significant shifts, and proposes the Temporal Surprise Score (TSS) metric that scores frames based on weighted calculation of action change.\n\nThe results emphasize the importance of data diversity over data difficulty, as demonstrated by the better performance of random sampling compared to difficulty-based sampling.\n\nThe paper can be accessed at the OpenReview PDF link: https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf"
+    ],
+    "durationSeconds": 6.260212033000018
+  },
+  "sourceToolAssistantUUID": "73c711f7-7354-4f80-92dc-ac1237a1ee6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-14T02:53:37.818Z_
+
+This is a critical finding — a paper specifically studying data redundancy in VLA training on LIBERO found that random sampling beats difficulty-based sampling, which directly challenges the PDR hypothesis. Let me fetch more details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c1e87b3-a65a-4579-82dc-ae149640ede0",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hsewKhtgM6UADkuXv8",
+  "type": "assistant",
+  "uuid": "5517a0fa-eb6f-4502-8cea-0c21f722aef0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D89aA1HvmgEyWqnvm71a5z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 42008,
+      "output_tokens": 237,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 903,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 237,
+          "cache_read_input_tokens": 42008,
+          "cache_creation_input_tokens": 903,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 903
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-14T02:53:40.481Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JEyPHEjrUqQocUfDEGvqxm`</summary>
+
+```json
+{
+  "url": "https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf",
+  "prompt": "Extract the full abstract and key findings. Specifically: 1) What exactly did they find about difficulty-based vs random sampling for VLA training? 2) Does this paper conclude that prioritizing hard examples is harmful or unhelpful? 3) What is the Temporal Surprise Score? 4) Which venue was this submitted to? 5) What are the key conclusions about data selection strategies for VLA training?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5517a0fa-eb6f-4502-8cea-0c21f722aef0",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hsewKhtgM6UADkuXv8",
+  "type": "assistant",
+  "uuid": "5572c411-e802-4f62-b286-692f6a60def7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D89aA1HvmgEyWqnvm71a5z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 42008,
+      "output_tokens": 237,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 903,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 237,
+          "cache_read_input_tokens": 42008,
+          "cache_creation_input_tokens": 903,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 903
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "5572c411-e802-4f62-b286-692f6a60def7",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-14T02:53:40.865Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01JEyPHEjrUqQocUfDEGvqxm`</summary>
+
+```text
+Request failed with status code 404
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5572c411-e802-4f62-b286-692f6a60def7",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "93d9ecb3-3304-446a-98f1-a64b194cd050",
+  "toolUseResult": "Error: Request failed with status code 404",
+  "sourceToolAssistantUUID": "5572c411-e802-4f62-b286-692f6a60def7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-14T02:53:43.965Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011htMBByBU2HEyjZDAkVx3L`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=ab993a111c866b80680b9e9ba5a435cf58ea3408",
+  "prompt": "Extract the full abstract and key findings about data redundancy in VLA training, especially findings about difficulty-based vs random sampling."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93d9ecb3-3304-446a-98f1-a64b194cd050",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ht79ACDVTuWdpNEHCU",
+  "type": "assistant",
+  "uuid": "1464c1b7-f3e0-47aa-b26d-e28af5aced66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WiqoXPyNA8rtLpdhocGftG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 264,
+      "cache_read_input_tokens": 42911,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 264,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 42911,
+          "cache_creation_input_tokens": 264,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 264
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-14T02:53:46.563Z_
+
+<details><summary>↩ Tool result · `toolu_011htMBByBU2HEyjZDAkVx3L`</summary>
+
+```text
+I cannot provide the requested information about data redundancy in VLA training, difficulty-based sampling, or random sampling findings.
+
+The webpage content you've shared is an error page from OpenReview.net indicating that a specific note (ab993a111c866b80680b9e9ba5a435cf58ea3408) was not found on their server. This error page contains only navigation menus, footer links, and copyright information—no research abstract, findings, or technical content about VLA training or sampling methodologies.
+
+To obtain information about data redundancy in VLA training, you would need to:
+- Locate the actual research paper or note on OpenReview
+- Access the correct URL or note ID
+- Share the full text of the paper itself
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1464c1b7-f3e0-47aa-b26d-e28af5aced66",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "d7ed3bbc-8c2b-4195-b1dc-e0ea2bf9c53e",
+  "toolUseResult": {
+    "bytes": 43521,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot provide the requested information about data redundancy in VLA training, difficulty-based sampling, or random sampling findings.\n\nThe webpage content you've shared is an error page from OpenReview.net indicating that a specific note (ab993a111c866b80680b9e9ba5a435cf58ea3408) was not found on their server. This error page contains only navigation menus, footer links, and copyright information—no research abstract, findings, or technical content about VLA training or sampling methodologies.\n\nTo obtain information about data redundancy in VLA training, you would need to:\n- Locate the actual research paper or note on OpenReview\n- Access the correct URL or note ID\n- Share the full text of the paper itself",
+    "durationMs": 2596,
+    "url": "https://openreview.net/forum?id=ab993a111c866b80680b9e9ba5a435cf58ea3408"
+  },
+  "sourceToolAssistantUUID": "1464c1b7-f3e0-47aa-b26d-e28af5aced66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-14T02:53:54.926Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016b2Dk3jUoPWSuiZJueaK5V`</summary>
+
+```json
+{
+  "query": "\"data redundancy\" VLA training LIBERO coreset difficulty sampling temporal surprise score"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7ed3bbc-8c2b-4195-b1dc-e0ea2bf9c53e",
+  "isSidechain": false,
+  "requestId": "req_011Cb1htXSu9nd1GGrS9qSZu",
+  "type": "assistant",
+  "uuid": "07940433-9332-43a3-8839-1f9bdf6ec8da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDMWdxe4mDZ4L7nX2bgfJq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 302,
+      "cache_read_input_tokens": 43175,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 43175,
+          "cache_creation_input_tokens": 302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-14T02:54:02.397Z_
+
+<details><summary>↩ Tool result · `toolu_016b2Dk3jUoPWSuiZJueaK5V`</summary>
+
+```text
+Web search results for query: ""data redundancy" VLA training LIBERO coreset difficulty sampling temporal surprise score"
+
+Links: [{"title":"ON DATA REDUNDANCY IN VLA TRAINING","url":"https://openreview.net/pdf/5ab5366931930eeca68bec172a8d97cdf79e1dba.pdf"},{"title":"Seeing Realism from Simulation: Efficient Video Transfer for Vision-Language-Action Data Augmentation","url":"https://arxiv.org/html/2605.02757"},{"title":"FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models","url":"https://arxiv.org/html/2511.16233"},{"title":"Lightweight Dataset Pruning without Full Training via Example Difficulty and Prediction Uncertainty","url":"https://arxiv.org/html/2502.06905"},{"title":"EfficientVLA: Training-Free Acceleration and Compression ...","url":"https://openreview.net/pdf?id=SELYlDHZk2"},{"title":"RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation","url":"https://arxiv.org/html/2510.17640v1"},{"title":"Beyond Human Demonstrations: Diffusion-Based Reinforcement Learning to Generate Data for VLA Training","url":"https://arxiv.org/html/2509.19752"},{"title":"D3: Diversity, Difficulty, and Dependability-Aware Data Selection","url":"https://www.ijcai.org/proceedings/2025/0928.pdf"},{"title":"A Survey on Reinforcement Learning of Vision-Language-Action Models for Robotic Manipulation | TechRxiv","url":"https://www.techrxiv.org/users/934012/articles/1366553/master/file/data/TechrxivA_Survey_on_Reinforcement_Learning_of_Vision-Language-Action_Models_for_Robotic_Manipulation/TechrxivA_Survey_on_Reinforcement_Learning_of_Vision-Language-Action_Models_for_Robotic_Manipulation.pdf?inline=true"},{"title":"IEEE TRANSACTIONS ON KNOWLEDGE AND DATA ENGINEERING 1","url":"https://www.techrxiv.org/users/922498/articles/1294436/master/file/data/DPSurvey4LLM/DPSurvey4LLM.pdf?inline=true"}]
+
+Based on the web search results, I found comprehensive information about data redundancy in VLA training with the specific concepts you mentioned:
+
+## Key Findings on Data Redundancy in VLA Training
+
+This research investigates the extent of data redundancy in established benchmarks, specifically LIBERO. 
+
+### Temporal Surprise Score
+
+An effective data selection strategy should prioritize "temporal surprise", or moments where action trajectories undergo significant shifts. This is a key metric proposed in the research on VLA training efficiency.
+
+### Coreset Difficulty Sampling
+
+The research compares two major data selection approaches:
+
+1. **Random Sampling**: Through random subsampling, coverage is preserved proportionally across episodes and task phases.
+
+2. **Difficulty-Based Sampling**: Difficulty-based sampling (TSS, Hardest Coreset) can create gaps in coverage that hurt generalization.
+
+### Key Finding on Diversity vs. Difficulty
+
+At 5-10% sampling proportions, random selection still outperforms curated 30% coresets, suggesting that current VLA architectures are already capable of learning from sparse supervision and that what they need is broader coverage, not harder examples.
+
+### LIBERO Dataset Analysis
+
+LIBERO's 1690 episodes contain extensive within-task redundancy, and examples are valuable due to their coverage of the state-action space rather than their density.
+
+The research demonstrates that data diversity is more critical than difficulty-based selection for VLA training on LIBERO.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "07940433-9332-43a3-8839-1f9bdf6ec8da",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "a1740784-eca4-43ec-932f-a0950aa99dc3",
+  "toolUseResult": {
+    "query": "\"data redundancy\" VLA training LIBERO coreset difficulty sampling temporal surprise score",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q2s7ufYbzUfaVd2TcgTTaK",
+        "content": [
+          {
+            "title": "ON DATA REDUNDANCY IN VLA TRAINING",
+            "url": "https://openreview.net/pdf/5ab5366931930eeca68bec172a8d97cdf79e1dba.pdf"
+          },
+          {
+            "title": "Seeing Realism from Simulation: Efficient Video Transfer for Vision-Language-Action Data Augmentation",
+            "url": "https://arxiv.org/html/2605.02757"
+          },
+          {
+            "title": "FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models",
+            "url": "https://arxiv.org/html/2511.16233"
+          },
+          {
+            "title": "Lightweight Dataset Pruning without Full Training via Example Difficulty and Prediction Uncertainty",
+            "url": "https://arxiv.org/html/2502.06905"
+          },
+          {
+            "title": "EfficientVLA: Training-Free Acceleration and Compression ...",
+            "url": "https://openreview.net/pdf?id=SELYlDHZk2"
+          },
+          {
+            "title": "RESample: A Robust Data Augmentation Framework via Exploratory Sampling for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2510.17640v1"
+          },
+          {
+            "title": "Beyond Human Demonstrations: Diffusion-Based Reinforcement Learning to Generate Data for VLA Training",
+            "url": "https://arxiv.org/html/2509.19752"
+          },
+          {
+            "title": "D3: Diversity, Difficulty, and Dependability-Aware Data Selection",
+            "url": "https://www.ijcai.org/proceedings/2025/0928.pdf"
+          },
+          {
+            "title": "A Survey on Reinforcement Learning of Vision-Language-Action Models for Robotic Manipulation | TechRxiv",
+            "url": "https://www.techrxiv.org/users/934012/articles/1366553/master/file/data/TechrxivA_Survey_on_Reinforcement_Learning_of_Vision-Language-Action_Models_for_Robotic_Manipulation/TechrxivA_Survey_on_Reinforcement_Learning_of_Vision-Language-Action_Models_for_Robotic_Manipulation.pdf?inline=true"
+          },
+          {
+            "title": "IEEE TRANSACTIONS ON KNOWLEDGE AND DATA ENGINEERING 1",
+            "url": "https://www.techrxiv.org/users/922498/articles/1294436/master/file/data/DPSurvey4LLM/DPSurvey4LLM.pdf?inline=true"
+          }
+        ]
+      },
+      "Based on the web search results, I found comprehensive information about data redundancy in VLA training with the specific concepts you mentioned:\n\n## Key Findings on Data Redundancy in VLA Training\n\nThis research investigates the extent of data redundancy in established benchmarks, specifically LIBERO. \n\n### Temporal Surprise Score\n\nAn effective data selection strategy should prioritize \"temporal surprise\", or moments where action trajectories undergo significant shifts. This is a key metric proposed in the research on VLA training efficiency.\n\n### Coreset Difficulty Sampling\n\nThe research compares two major data selection approaches:\n\n1. **Random Sampling**: Through random subsampling, coverage is preserved proportionally across episodes and task phases.\n\n2. **Difficulty-Based Sampling**: Difficulty-based sampling (TSS, Hardest Coreset) can create gaps in coverage that hurt generalization.\n\n### Key Finding on Diversity vs. Difficulty\n\nAt 5-10% sampling proportions, random selection still outperforms curated 30% coresets, suggesting that current VLA architectures are already capable of learning from sparse supervision and that what they need is broader coverage, not harder examples.\n\n### LIBERO Dataset Analysis\n\nLIBERO's 1690 episodes contain extensive within-task redundancy, and examples are valuable due to their coverage of the state-action space rather than their density.\n\nThe research demonstrates that data diversity is more critical than difficulty-based selection for VLA training on LIBERO."
+    ],
+    "durationSeconds": 7.4619836280000165
+  },
+  "sourceToolAssistantUUID": "07940433-9332-43a3-8839-1f9bdf6ec8da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 74 · 2026-05-14T02:54:02.407Z_
+
+```json
+{
+  "parentUuid": "a1740784-eca4-43ec-932f-a0950aa99dc3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7b78d104-d3ab-4c40-bfac-b3359494bcb3",
+  "timestamp": "2026-05-14T02:54:02.407Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-14T02:54:05.420Z_
+
+This is a critical finding that directly challenges PDR's core hypothesis. Let me now search for more potential threats and verify the remaining claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b78d104-d3ab-4c40-bfac-b3359494bcb3",
+  "isSidechain": false,
+  "requestId": "req_011Cb1huhF34AyYkFpqtm1y1",
+  "type": "assistant",
+  "uuid": "64f5b46c-6b4e-4875-a518-617d3c235aaf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H7UmpPgxx7y1jk36QJeFcN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1129,
+      "cache_read_input_tokens": 43477,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1129,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 43477,
+          "cache_creation_input_tokens": 1129,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1129
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-14T02:54:05.803Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Jo2KEw2mdeX3JX3gS6Z7kq`</summary>
+
+```json
+{
+  "query": "GR-RL demonstration curation reinforcement learning robot 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64f5b46c-6b4e-4875-a518-617d3c235aaf",
+  "isSidechain": false,
+  "requestId": "req_011Cb1huhF34AyYkFpqtm1y1",
+  "type": "assistant",
+  "uuid": "397a652b-da66-4d7f-ac19-63429337aa4a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H7UmpPgxx7y1jk36QJeFcN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1129,
+      "cache_read_input_tokens": 43477,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1129,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 43477,
+          "cache_creation_input_tokens": 1129,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1129
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-14T02:54:13.548Z_
+
+<details><summary>↩ Tool result · `toolu_01Jo2KEw2mdeX3JX3gS6Z7kq`</summary>
+
+```text
+Web search results for query: "GR-RL demonstration curation reinforcement learning robot 2025"
+
+Links: [{"title":"[2512.01801] GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation","url":"https://arxiv.org/abs/2512.01801"},{"title":"Paper page - GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation","url":"https://huggingface.co/papers/2512.01801"},{"title":"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation","url":"https://arxiv.org/html/2512.01801"},{"title":"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation | alphaXiv","url":"https://www.alphaxiv.org/resources/2512.01801"},{"title":"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation - Publications - ByteDance Seed Team","url":"https://seed.bytedance.com/en/public_papers/gr-rl-going-dexterous-and-precise-for-long-horizon-robotic-manipulation"},{"title":"Frontiers | Solving robotics tasks with prior demonstration via exploration-efficient deep reinforcement learning","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682200/full"},{"title":"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2512.01801"},{"title":"Use Case: Robot Learning in Simulation Using NVIDIA Isaac Lab","url":"https://www.nvidia.com/en-us/use-cases/robot-learning/"},{"title":"Hierarchical Learning for Robotic Assembly Tasks Leveraging Learning from Demonstration - Singh - 2025 - Advanced Robotics Research - Wiley Online Library","url":"https://advanced.onlinelibrary.wiley.com/doi/10.1002/adrr.202400024"},{"title":"Robot policy learning from demonstrations and visual rewards for sequential manipulation tasks - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0921889025004087"}]
+
+Here are the search results for GR-RL demonstration curation reinforcement learning robot 2025:
+
+## Overview
+
+GR-RL is a robotic learning framework that turns a generalist vision-language-action (VLA) policy into a highly capable specialist for long-horizon dexterous manipulation.
+
+## The Problem
+
+In highly dexterous and precise manipulation tasks, human demonstrations are noisy and suboptimal. For high-precision manipulation with deformable objects, such as shoe lacing, collecting perfect demonstrations is extremely difficult, and trajectories collected by experienced teleoperators contain suboptimal fragments including erroneous attempts and hesitations.
+
+## The Solution
+
+GR-RL proposes a multi-stage training pipeline that filters, augments, and reinforces the demonstrations by reinforcement learning. The approach has three main stages:
+
+1. **Demonstration Filtering**: GR-RL learns a vision-language-conditioned task progress, filters the demonstration trajectories, and only keeps the transitions that contribute positively to the progress. Offline RL with sparse reward results in Q-values that can be treated as a robust progress function.
+
+2. **Data Augmentation**: Morphological symmetry augmentation greatly improves the generalization and performance of GR-RL.
+
+3. **Online Reinforcement Learning**: To better align the VLA policy with its deployment behaviors for high-precision control, online RL is performed by learning a latent space noise predictor.
+
+## Key Achievement
+
+GR-RL is, to the authors' knowledge, the first learning-based policy that can autonomously lace up a shoe by threading shoelaces through multiple eyelets with an 83.3% success rate, a task requiring long-horizon reasoning, millimeter-level precision, and compliant soft-body interaction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "397a652b-da66-4d7f-ac19-63429337aa4a",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "e9887bc2-3ac1-448d-bf14-97ca358a4bd5",
+  "toolUseResult": {
+    "query": "GR-RL demonstration curation reinforcement learning robot 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NoeZMKRrHoXJCTf7ysZiR6",
+        "content": [
+          {
+            "title": "[2512.01801] GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2512.01801"
+          },
+          {
+            "title": "Paper page - GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation",
+            "url": "https://huggingface.co/papers/2512.01801"
+          },
+          {
+            "title": "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation",
+            "url": "https://arxiv.org/html/2512.01801"
+          },
+          {
+            "title": "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation | alphaXiv",
+            "url": "https://www.alphaxiv.org/resources/2512.01801"
+          },
+          {
+            "title": "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation - Publications - ByteDance Seed Team",
+            "url": "https://seed.bytedance.com/en/public_papers/gr-rl-going-dexterous-and-precise-for-long-horizon-robotic-manipulation"
+          },
+          {
+            "title": "Frontiers | Solving robotics tasks with prior demonstration via exploration-efficient deep reinforcement learning",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682200/full"
+          },
+          {
+            "title": "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2512.01801"
+          },
+          {
+            "title": "Use Case: Robot Learning in Simulation Using NVIDIA Isaac Lab",
+            "url": "https://www.nvidia.com/en-us/use-cases/robot-learning/"
+          },
+          {
+            "title": "Hierarchical Learning for Robotic Assembly Tasks Leveraging Learning from Demonstration - Singh - 2025 - Advanced Robotics Research - Wiley Online Library",
+            "url": "https://advanced.onlinelibrary.wiley.com/doi/10.1002/adrr.202400024"
+          },
+          {
+            "title": "Robot policy learning from demonstrations and visual rewards for sequential manipulation tasks - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0921889025004087"
+          }
+        ]
+      },
+      "Here are the search results for GR-RL demonstration curation reinforcement learning robot 2025:\n\n## Overview\n\nGR-RL is a robotic learning framework that turns a generalist vision-language-action (VLA) policy into a highly capable specialist for long-horizon dexterous manipulation.\n\n## The Problem\n\nIn highly dexterous and precise manipulation tasks, human demonstrations are noisy and suboptimal. For high-precision manipulation with deformable objects, such as shoe lacing, collecting perfect demonstrations is extremely difficult, and trajectories collected by experienced teleoperators contain suboptimal fragments including erroneous attempts and hesitations.\n\n## The Solution\n\nGR-RL proposes a multi-stage training pipeline that filters, augments, and reinforces the demonstrations by reinforcement learning. The approach has three main stages:\n\n1. **Demonstration Filtering**: GR-RL learns a vision-language-conditioned task progress, filters the demonstration trajectories, and only keeps the transitions that contribute positively to the progress. Offline RL with sparse reward results in Q-values that can be treated as a robust progress function.\n\n2. **Data Augmentation**: Morphological symmetry augmentation greatly improves the generalization and performance of GR-RL.\n\n3. **Online Reinforcement Learning**: To better align the VLA policy with its deployment behaviors for high-precision control, online RL is performed by learning a latent space noise predictor.\n\n## Key Achievement\n\nGR-RL is, to the authors' knowledge, the first learning-based policy that can autonomously lace up a shoe by threading shoelaces through multiple eyelets with an 83.3% success rate, a task requiring long-horizon reasoning, millimeter-level precision, and compliant soft-body interaction."
+    ],
+    "durationSeconds": 7.741161205000012
+  },
+  "sourceToolAssistantUUID": "397a652b-da66-4d7f-ac19-63429337aa4a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-14T02:54:19.436Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X8treyGVwzy5qC91ZTm712`</summary>
+
+```json
+{
+  "query": "RINSE data curation robot demonstration noise filtering 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9887bc2-3ac1-448d-bf14-97ca358a4bd5",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hvWvTBZQ5MDQeghmYE",
+  "type": "assistant",
+  "uuid": "b29048ac-74c3-4731-bf1f-01209b30a897",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y68QDbavJu6yzd7imRJYfM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1114,
+      "cache_read_input_tokens": 44606,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1114,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 44606,
+          "cache_creation_input_tokens": 1114,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1114
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-14T02:54:26.781Z_
+
+<details><summary>↩ Tool result · `toolu_01X8treyGVwzy5qC91ZTm712`</summary>
+
+```text
+Web search results for query: "RINSE data curation robot demonstration noise filtering 2025"
+
+Links: [{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/abs/2603.09056"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v1"},{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623"},{"title":"Robot Data Curation with Mutual Information Estimators · Robotics: Science and Systems","url":"https://roboticsconference.org/program/papers/23/"},{"title":"Frontiers | Artificial intelligence and robotics in predictive maintenance: a comprehensive review","url":"https://www.frontiersin.org/journals/mechanical-engineering/articles/10.3389/fmech.2025.1722114/full"},{"title":"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/html/2505.09603"},{"title":"Real-time noise cancellation with deep learning - PMC - NIH","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC9678292/"},{"title":"Post-training Data Curation: The secret sauce for enterprise AI excellence","url":"https://blog.collinear.ai/p/post-training-data-curation"},{"title":"Self-Supervised Voice Denoising Network for Multi-Scenario Human–Robot Interaction - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12467738/"}]
+
+Based on the search results, I found several relevant papers on robot data curation with noise filtering and demonstration quality assessment from 2025, though I didn't find a paper specifically titled "RINSE." Here are the key findings:
+
+## Recent Robot Data Curation Research (2025)
+
+The quality of demonstration data, often collected through human teleoperation, remains a critical bottleneck for data-driven robot learning, with human errors, operational constraints, and teleoperator variability introducing noise and suboptimal behaviors.
+
+Several notable approaches addressing this challenge include:
+
+**Quality over Quantity (QoQ)** - A method that identifies high-quality data by defining data quality as the contribution of each training sample to reducing loss on validation demonstrations, introducing techniques to adapt influence functions for robot demonstrations that reduce noise and improve data coverage.
+
+**Scizor** - A self-supervised data curation framework that filters out low-quality state-action pairs by targeting two complementary sources: suboptimal data, which hinders learning with undesirable actions, and redundant data, which dilutes training with repetitive patterns.
+
+**DataMIL** - A method that extends datamodels to robotics for data-driven data selection, training a data-quality estimator using validation loss as an objective that retains sufficient correlations to true policy performance.
+
+If you're looking for a specific "RINSE" demonstration, could you provide more context about where you encountered this reference? This might help me locate the specific work you're interested in.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b29048ac-74c3-4731-bf1f-01209b30a897",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "2b2478e3-70f5-49d8-b9ea-7c7766d72299",
+  "toolUseResult": {
+    "query": "RINSE data curation robot demonstration noise filtering 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018KojKSm3GcTGJ34SoWpYTm",
+        "content": [
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          },
+          {
+            "title": "[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/abs/2603.09056"
+          },
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v1"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/html/2502.08623"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/program/papers/23/"
+          },
+          {
+            "title": "Frontiers | Artificial intelligence and robotics in predictive maintenance: a comprehensive review",
+            "url": "https://www.frontiersin.org/journals/mechanical-engineering/articles/10.3389/fmech.2025.1722114/full"
+          },
+          {
+            "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/html/2505.09603"
+          },
+          {
+            "title": "Real-time noise cancellation with deep learning - PMC - NIH",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9678292/"
+          },
+          {
+            "title": "Post-training Data Curation: The secret sauce for enterprise AI excellence",
+            "url": "https://blog.collinear.ai/p/post-training-data-curation"
+          },
+          {
+            "title": "Self-Supervised Voice Denoising Network for Multi-Scenario Human–Robot Interaction - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12467738/"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on robot data curation with noise filtering and demonstration quality assessment from 2025, though I didn't find a paper specifically titled \"RINSE.\" Here are the key findings:\n\n## Recent Robot Data Curation Research (2025)\n\nThe quality of demonstration data, often collected through human teleoperation, remains a critical bottleneck for data-driven robot learning, with human errors, operational constraints, and teleoperator variability introducing noise and suboptimal behaviors.\n\nSeveral notable approaches addressing this challenge include:\n\n**Quality over Quantity (QoQ)** - A method that identifies high-quality data by defining data quality as the contribution of each training sample to reducing loss on validation demonstrations, introducing techniques to adapt influence functions for robot demonstrations that reduce noise and improve data coverage.\n\n**Scizor** - A self-supervised data curation framework that filters out low-quality state-action pairs by targeting two complementary sources: suboptimal data, which hinders learning with undesirable actions, and redundant data, which dilutes training with repetitive patterns.\n\n**DataMIL** - A method that extends datamodels to robotics for data-driven data selection, training a data-quality estimator using validation loss as an objective that retains sufficient correlations to true policy performance.\n\nIf you're looking for a specific \"RINSE\" demonstration, could you provide more context about where you encountered this reference? This might help me locate the specific work you're interested in."
+    ],
+    "durationSeconds": 7.340622355
+  },
+  "sourceToolAssistantUUID": "b29048ac-74c3-4731-bf1f-01209b30a897",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2b2478e3-70f5-49d8-b9ea-7c7766d72299",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-14T02:54:29.998Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MBN4cAxy37kUb7BvWmBk4S`</summary>
+
+```json
+{
+  "query": "DemInf demonstration curation influence functions QoQ quality robot learning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b2478e3-70f5-49d8-b9ea-7c7766d72299",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hwVTfq4iE3xyrdVrcM",
+  "type": "assistant",
+  "uuid": "b5aeb21b-d07e-4925-9ab5-bdde9309bf4e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pJkcE9pUn8Hse7JDqCNxQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 908,
+      "cache_read_input_tokens": 45720,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 908,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 45720,
+          "cache_creation_input_tokens": 908,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 908
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-14T02:54:37.433Z_
+
+<details><summary>↩ Tool result · `toolu_01MBN4cAxy37kUb7BvWmBk4S`</summary>
+
+```text
+Web search results for query: "DemInf demonstration curation influence functions QoQ quality robot learning 2025 2026"
+
+Links: [{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/abs/2603.09056"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://cupid-curation.github.io/"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/html/2506.19121v1"},{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623"},{"title":"CUPID: Robot Data Curation via Influence Functions","url":"https://www.emergentmind.com/papers/2506.19121"},{"title":"Frontiers | Solving robotics tasks with prior demonstration via exploration-efficient deep reinforcement learning","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682200/full"},{"title":"Learning from Demonstrations in Human–Robot Collaborative Scenarios: A Survey","url":"https://www.mdpi.com/2218-6581/11/6/126"},{"title":"Proceedings of Machine Learning Research | Proceedings of The 8th Conference on Robot Learning Held in Munich, Germany on 06-09 November 2024 Published as Volume 270 by the Proceedings of Machine Learning Research on 12 January 2025. Volume Edited by: Pulkit Agrawal Oliver Kroemer Wolfram Burgard Series Editors: Neil D. Lawrence","url":"https://proceedings.mlr.press/v270/"},{"title":"Frontiers | Diffusion models for robotic manipulation: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"}]
+
+Based on the search results, here's what I found about your query regarding DemInf, demonstration curation, influence functions, and robot learning:
+
+## Key Findings
+
+**QoQ (Quality over Quantity)** is a recent method that addresses demonstration curation for robot learning. QoQ defines data quality as the contribution of each training sample to reducing loss on validation demonstrations, and it shows the most consistent ranking across seeds, demonstrating that QoQ well captures relevant information for data curation.
+
+**DemInf** is an earlier method for data curation. DemInf curates the training dataset by selecting trajectories with high mutual information between states and actions as a proxy for demonstration quality. More specifically, DemInf (Demonstration Information Estimation) was designed to work across both low- and high-data regimes in robotics by learning a structured low-dimensional representation of the state and action space using variational autoencoders.
+
+**CUPID** is another related work using influence functions. CUPID (CUrating Performance-Influencing Demonstrations) is a data curation method that uses influence functions to estimate the causal impact of each demonstration on a policy's closed-loop performance, providing a principled way to filter existing training sets and subselect helpful demos from new data. Notably, while DemInf prioritizes demonstration quality, higher demonstration quality does not always translate to higher policy success rates, whereas CUPID targets demonstrations that most strongly contribute to downstream policy performance.
+
+These methods represent the state-of-the-art in demonstration curation for robot learning in 2025-2026, with influence function-based approaches emerging as particularly promising for identifying data that directly impacts policy performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5aeb21b-d07e-4925-9ab5-bdde9309bf4e",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "012f6e62-fedc-4812-bb70-e41d39ab3570",
+  "toolUseResult": {
+    "query": "DemInf demonstration curation influence functions QoQ quality robot learning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012w4e52fzHEhcEXVskR5h9K",
+        "content": [
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          },
+          {
+            "title": "[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/abs/2603.09056"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://cupid-curation.github.io/"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/html/2506.19121v1"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/html/2502.08623"
+          },
+          {
+            "title": "CUPID: Robot Data Curation via Influence Functions",
+            "url": "https://www.emergentmind.com/papers/2506.19121"
+          },
+          {
+            "title": "Frontiers | Solving robotics tasks with prior demonstration via exploration-efficient deep reinforcement learning",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682200/full"
+          },
+          {
+            "title": "Learning from Demonstrations in Human–Robot Collaborative Scenarios: A Survey",
+            "url": "https://www.mdpi.com/2218-6581/11/6/126"
+          },
+          {
+            "title": "Proceedings of Machine Learning Research | Proceedings of The 8th Conference on Robot Learning Held in Munich, Germany on 06-09 November 2024 Published as Volume 270 by the Proceedings of Machine Learning Research on 12 January 2025. Volume Edited by: Pulkit Agrawal Oliver Kroemer Wolfram Burgard Series Editors: Neil D. Lawrence",
+            "url": "https://proceedings.mlr.press/v270/"
+          },
+          {
+            "title": "Frontiers | Diffusion models for robotic manipulation: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about your query regarding DemInf, demonstration curation, influence functions, and robot learning:\n\n## Key Findings\n\n**QoQ (Quality over Quantity)** is a recent method that addresses demonstration curation for robot learning. QoQ defines data quality as the contribution of each training sample to reducing loss on validation demonstrations, and it shows the most consistent ranking across seeds, demonstrating that QoQ well captures relevant information for data curation.\n\n**DemInf** is an earlier method for data curation. DemInf curates the training dataset by selecting trajectories with high mutual information between states and actions as a proxy for demonstration quality. More specifically, DemInf (Demonstration Information Estimation) was designed to work across both low- and high-data regimes in robotics by learning a structured low-dimensional representation of the state and action space using variational autoencoders.\n\n**CUPID** is another related work using influence functions. CUPID (CUrating Performance-Influencing Demonstrations) is a data curation method that uses influence functions to estimate the causal impact of each demonstration on a policy's closed-loop performance, providing a principled way to filter existing training sets and subselect helpful demos from new data. Notably, while DemInf prioritizes demonstration quality, higher demonstration quality does not always translate to higher policy success rates, whereas CUPID targets demonstrations that most strongly contribute to downstream policy performance.\n\nThese methods represent the state-of-the-art in demonstration curation for robot learning in 2025-2026, with influence function-based approaches emerging as particularly promising for identifying data that directly impacts policy performance."
+    ],
+    "durationSeconds": 7.43045327399997
+  },
+  "sourceToolAssistantUUID": "b5aeb21b-d07e-4925-9ab5-bdde9309bf4e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-14T02:54:40.732Z_
+
+Now let me look at the most critical counter-evidence more carefully — the "data diversity > data difficulty" finding.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "012f6e62-fedc-4812-bb70-e41d39ab3570",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hxGxdFfLUDqRG7B7cD",
+  "type": "assistant",
+  "uuid": "a2633995-2598-43cb-9971-cbabdf7533cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FN3t6Xq21K2rUjs1FdgmFE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1017,
+      "cache_read_input_tokens": 46628,
+      "output_tokens": 220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1017,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 220,
+          "cache_read_input_tokens": 46628,
+          "cache_creation_input_tokens": 1017,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1017
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-14T02:54:45.036Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01718ojRDc17jM6hoEm2P7B7`</summary>
+
+```json
+{
+  "url": "https://openreview.net/pdf/5ab5366931930eeca68bec172a8d97cdf79e1dba.pdf",
+  "prompt": "Extract the full abstract and key findings. Specifically: 1) What exactly did they test? 2) What are the results comparing difficulty-based selection to random sampling? 3) What models were tested (SmolVLA, GR00T)? 4) What are the implications for prioritized sampling during VLA training? 5) What venue was this submitted to? 6) What is the paper's main conclusion?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2633995-2598-43cb-9971-cbabdf7533cd",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hxGxdFfLUDqRG7B7cD",
+  "type": "assistant",
+  "uuid": "824c7342-5413-4a64-9491-5d3e3982fc03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FN3t6Xq21K2rUjs1FdgmFE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1017,
+      "cache_read_input_tokens": 46628,
+      "output_tokens": 220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1017,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 220,
+          "cache_read_input_tokens": 46628,
+          "cache_creation_input_tokens": 1017,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1017
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-14T02:54:50.142Z_
+
+<details><summary>↩ Tool result · `toolu_01718ojRDc17jM6hoEm2P7B7`</summary>
+
+```text
+# Analysis of the PDF Document
+
+I was unable to extract readable text from this PDF document. The content provided appears to be raw PDF binary data with embedded compressed streams and object definitions rather than accessible text content.
+
+To properly answer your specific questions about:
+1. What was tested
+2. Results comparing difficulty-based vs. random selection
+3. Models evaluated (SmolVLA, GR00T)
+4. Implications for VLA training
+5. Submission venue
+6. Main conclusions
+
+I would need either:
+- A text-extracted version of the paper
+- The paper in a different format (HTML, plain text)
+- A clearer source document
+
+**Recommendation:** If you have access to this paper, please share the abstract section directly, or provide the paper's title and authors so I can offer more specific guidance on locating the key findings you're asking about.
+
+[Binary content (application/pdf, 2.2MB) also saved to /home/ubuntu/.claude-account-2/projects/-/2d3282c2-47b7-4fcd-82c0-437d1470bad6/tool-results/webfetch-1778727286091-cqs8z0.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "824c7342-5413-4a64-9491-5d3e3982fc03",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "df6fba41-94f7-4fae-bc77-d2a5517bdc7e",
+  "toolUseResult": {
+    "bytes": 2340903,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of the PDF Document\n\nI was unable to extract readable text from this PDF document. The content provided appears to be raw PDF binary data with embedded compressed streams and object definitions rather than accessible text content.\n\nTo properly answer your specific questions about:\n1. What was tested\n2. Results comparing difficulty-based vs. random selection\n3. Models evaluated (SmolVLA, GR00T)\n4. Implications for VLA training\n5. Submission venue\n6. Main conclusions\n\nI would need either:\n- A text-extracted version of the paper\n- The paper in a different format (HTML, plain text)\n- A clearer source document\n\n**Recommendation:** If you have access to this paper, please share the abstract section directly, or provide the paper's title and authors so I can offer more specific guidance on locating the key findings you're asking about.\n\n[Binary content (application/pdf, 2.2MB) also saved to /home/ubuntu/.claude-account-2/projects/-/2d3282c2-47b7-4fcd-82c0-437d1470bad6/tool-results/webfetch-1778727286091-cqs8z0.pdf]",
+    "durationMs": 5101,
+    "url": "https://openreview.net/pdf/5ab5366931930eeca68bec172a8d97cdf79e1dba.pdf"
+  },
+  "sourceToolAssistantUUID": "824c7342-5413-4a64-9491-5d3e3982fc03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-14T02:54:53.230Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013dB22AsnCeMqBo66RyvaQn`</summary>
+
+```json
+{
+  "query": "\"On Data Redundancy in VLA Training\" SmolVLA GR00T LIBERO random sampling difficulty coreset 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df6fba41-94f7-4fae-bc77-d2a5517bdc7e",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hyDKsg7NNmAntz6xhh",
+  "type": "assistant",
+  "uuid": "5061c29b-37fc-43a4-bdda-3116d2d1b0ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SaXQszmFax7h1r5x1GTbjv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 499,
+      "cache_read_input_tokens": 47645,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 499,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 47645,
+          "cache_creation_input_tokens": 499,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 499
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-14T02:55:01.970Z_
+
+<details><summary>↩ Tool result · `toolu_013dB22AsnCeMqBo66RyvaQn`</summary>
+
+```text
+Web search results for query: ""On Data Redundancy in VLA Training" SmolVLA GR00T LIBERO random sampling difficulty coreset 2026"
+
+Links: [{"title":"ON DATA REDUNDANCY IN VLA TRAINING","url":"https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf"},{"title":"CorridorVLA: Explicit Spatial Constraints for Generative Action Heads via Sparse Anchors","url":"https://arxiv.org/html/2604.21241"},{"title":"Thousand-GPU Large-Scale Training and Optimization Recipe for AI-Native Cloud Embodied Intelligence Infrastructure","url":"https://arxiv.org/html/2603.11101"},{"title":"SmolVLA: An Open-Source Vision-Language-Action Model for Modern Robotics","url":"https://smolvla.net/index_en"},{"title":"Fine Tuning SmolVLA for New Environments (Code included!) | by Xavier O'Keefe | Toward Humanoids | Medium","url":"https://medium.com/correll-lab/fine-tuning-smolvla-for-new-environments-code-included-af266c56d632"},{"title":"SmolVLA: Efficient Vision-Language-Action Model trained on Lerobot Community Data","url":"https://huggingface.co/blog/smolvla"},{"title":"VLA Models Compared: OpenVLA vs π0 vs SmolVLA vs RT-2 (2026 Guide) | SVRC","url":"https://www.roboticscenter.ai/guides/vla-models-comparison"},{"title":"[2506.01844] SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics","url":"https://arxiv.org/abs/2506.01844"},{"title":"VLA-0-Smol","url":"https://robot-learning-collective.github.io/vla-0-smol"},{"title":"SmolVLA: compact VLA for robot policy | by Deepthi Karkada | Medium","url":"https://medium.com/@deepkarkada/smolvla-compact-vla-for-robot-policy-b30604ac23c5"}]
+
+I found a highly relevant result! The first search result is the exact paper you're looking for: "On Data Redundancy in VLA Training," which investigates data redundancy in established benchmarks, specifically LIBERO, through extensive empirical testing on both SmolVLA and GR00T N1.5 by comparing random sampling and difficulty-based sampling strategies.
+
+Key findings from the paper include:
+
+**Main Discovery:** The research reveals a critical inefficiency in current robot learning data collection: vast amounts of redundant information are being captured and stored, with random 5-10% coresets matching full dataset performance, indicating that the primary value of large datasets lies in their diversity.
+
+**Comparison of Strategies:** Despite using 64% of frames (versus 30% for random sampling), Temporal Surprise Score (TSS) underperforms random selection for both models, with SmolVLA achieving 56.25% with TSS versus 60.50% with random sampling, while GR00T achieves 74.00% versus 81.33%.
+
+**Difficulty-Based Sampling:** The findings suggest that learning from the most difficult frames does not necessarily translate to improved performance.
+
+**Methodology:** The researchers hypothesized that an effective data selection strategy should prioritize "temporal surprise," or moments where action trajectories undergo significant shifts, and proposed Temporal Surprise Score (TSS), a metric that scores frames based on weighted calculation of action change.
+
+The paper is available at the OpenReview link provided in the search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5061c29b-37fc-43a4-bdda-3116d2d1b0ed",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "65f050db-b13b-415f-8426-c6a694b51e2b",
+  "toolUseResult": {
+    "query": "\"On Data Redundancy in VLA Training\" SmolVLA GR00T LIBERO random sampling difficulty coreset 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014bqnE9CtfXyjhBXPrRrS4d",
+        "content": [
+          {
+            "title": "ON DATA REDUNDANCY IN VLA TRAINING",
+            "url": "https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf"
+          },
+          {
+            "title": "CorridorVLA: Explicit Spatial Constraints for Generative Action Heads via Sparse Anchors",
+            "url": "https://arxiv.org/html/2604.21241"
+          },
+          {
+            "title": "Thousand-GPU Large-Scale Training and Optimization Recipe for AI-Native Cloud Embodied Intelligence Infrastructure",
+            "url": "https://arxiv.org/html/2603.11101"
+          },
+          {
+            "title": "SmolVLA: An Open-Source Vision-Language-Action Model for Modern Robotics",
+            "url": "https://smolvla.net/index_en"
+          },
+          {
+            "title": "Fine Tuning SmolVLA for New Environments (Code included!) | by Xavier O'Keefe | Toward Humanoids | Medium",
+            "url": "https://medium.com/correll-lab/fine-tuning-smolvla-for-new-environments-code-included-af266c56d632"
+          },
+          {
+            "title": "SmolVLA: Efficient Vision-Language-Action Model trained on Lerobot Community Data",
+            "url": "https://huggingface.co/blog/smolvla"
+          },
+          {
+            "title": "VLA Models Compared: OpenVLA vs π0 vs SmolVLA vs RT-2 (2026 Guide) | SVRC",
+            "url": "https://www.roboticscenter.ai/guides/vla-models-comparison"
+          },
+          {
+            "title": "[2506.01844] SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics",
+            "url": "https://arxiv.org/abs/2506.01844"
+          },
+          {
+            "title": "VLA-0-Smol",
+            "url": "https://robot-learning-collective.github.io/vla-0-smol"
+          },
+          {
+            "title": "SmolVLA: compact VLA for robot policy | by Deepthi Karkada | Medium",
+            "url": "https://medium.com/@deepkarkada/smolvla-compact-vla-for-robot-policy-b30604ac23c5"
+          }
+        ]
+      },
+      "I found a highly relevant result! The first search result is the exact paper you're looking for: \"On Data Redundancy in VLA Training,\" which investigates data redundancy in established benchmarks, specifically LIBERO, through extensive empirical testing on both SmolVLA and GR00T N1.5 by comparing random sampling and difficulty-based sampling strategies.\n\nKey findings from the paper include:\n\n**Main Discovery:** The research reveals a critical inefficiency in current robot learning data collection: vast amounts of redundant information are being captured and stored, with random 5-10% coresets matching full dataset performance, indicating that the primary value of large datasets lies in their diversity.\n\n**Comparison of Strategies:** Despite using 64% of frames (versus 30% for random sampling), Temporal Surprise Score (TSS) underperforms random selection for both models, with SmolVLA achieving 56.25% with TSS versus 60.50% with random sampling, while GR00T achieves 74.00% versus 81.33%.\n\n**Difficulty-Based Sampling:** The findings suggest that learning from the most difficult frames does not necessarily translate to improved performance.\n\n**Methodology:** The researchers hypothesized that an effective data selection strategy should prioritize \"temporal surprise,\" or moments where action trajectories undergo significant shifts, and proposed Temporal Surprise Score (TSS), a metric that scores frames based on weighted calculation of action change.\n\nThe paper is available at the OpenReview link provided in the search results."
+    ],
+    "durationSeconds": 8.736397621999961
+  },
+  "sourceToolAssistantUUID": "5061c29b-37fc-43a4-bdda-3116d2d1b0ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-14T02:55:05.537Z_
+
+This is extremely important. The "On Data Redundancy in VLA Training" paper directly shows that difficulty-based sampling underperforms random sampling for VLA training on LIBERO. This is a serious challenge to PDR's core assumption. Let me now check a few more things.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65f050db-b13b-415f-8426-c6a694b51e2b",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hz5uAg13ugWdUUcrAq",
+  "type": "assistant",
+  "uuid": "086b8cbf-2c08-44bc-ad29-90aeb0cf2350",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RpJcU4Zbcpky1HtEBu6qLJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 989,
+      "cache_read_input_tokens": 48144,
+      "output_tokens": 133,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 989,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 133,
+          "cache_read_input_tokens": 48144,
+          "cache_creation_input_tokens": 989,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 989
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-14T02:55:06.172Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HoKGgmRiUF1Ykveti56c4b`</summary>
+
+```json
+{
+  "query": "FT-NCFM influence aware data distillation VLA 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "086b8cbf-2c08-44bc-ad29-90aeb0cf2350",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hz5uAg13ugWdUUcrAq",
+  "type": "assistant",
+  "uuid": "3a898d15-7be0-43fb-9534-92657edec1e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RpJcU4Zbcpky1HtEBu6qLJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 989,
+      "cache_read_input_tokens": 48144,
+      "output_tokens": 133,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 989,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 133,
+          "cache_read_input_tokens": 48144,
+          "cache_creation_input_tokens": 989,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 989
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-14T02:55:13.515Z_
+
+<details><summary>↩ Tool result · `toolu_01HoKGgmRiUF1Ykveti56c4b`</summary>
+
+```text
+Web search results for query: "FT-NCFM influence aware data distillation VLA 2025 2026"
+
+Links: [{"title":"[2511.16233] FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models","url":"https://arxiv.org/abs/2511.16233"},{"title":"FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models","url":"https://arxiv.org/html/2511.16233"},{"title":"Dataset Distillation with Neural Characteristic Function: A Minmax Perspective","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_Dataset_Distillation_with_Neural_Characteristic_Function_A_Minmax_Perspective_CVPR_2025_paper.pdf"},{"title":"Knowledge Distillation and Dataset Distillation of Large ...","url":"https://arxiv.org/pdf/2504.14772"},{"title":"GitHub - gszfwsb/NCFM: Official PyTorch implementation of the paper \"Dataset Distillation with Neural Characteristic Function: A Minmax Perspective\" (NCFM) in CVPR 2025 (Full Score, Highlight). · GitHub","url":"https://github.com/gszfwsb/NCFM"},{"title":"Knowledge distillation and dataset distillation of large language models: emerging trends, challenges, and future directions | Artificial Intelligence Review | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10462-025-11423-3"},{"title":"2026-1-27 Quantization-Aware Distillation for NVFP4 Inference Accuracy Recovery","url":"https://research.nvidia.com/labs/nemotron/files/NVFP4-QAD-Report.pdf?linkId=100000404830125"},{"title":"CVPR 2025 Open Access Repository","url":"https://openaccess.thecvf.com/content/CVPR2025/html/Wang_Dataset_Distillation_with_Neural_Characteristic_Function_A_Minmax_Perspective_CVPR_2025_paper.html"},{"title":"Knowledge distillation and dataset distillation of large language models: emerging trends, challenges, and future directions - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12634706/"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"}]
+
+I found relevant information about FT-NCFM and related research. Here's what the search revealed:
+
+## FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models
+
+FT-NCFM is an influence-aware data distillation framework for efficient Vision-Language-Action (VLA) models. The framework addresses the challenge that powerful generalization of VLA models is bottlenecked by their heavy reliance on massive, redundant, and unevenly valued datasets.
+
+### Key Components
+
+FT-NCFM is a data-centric generative data distillation framework that employs a self-contained Fact-Tracing (FT) engine combining causal attribution with programmatic contrastive verification to assess the intrinsic value of samples. Guided by these assessments, an adversarial NCFM process synthesizes a model-agnostic, information-dense, and reusable data asset.
+
+### Performance Results
+
+Experimental results on several mainstream VLA benchmarks show that models trained on just 5% of the distilled coreset achieve a success rate of 85-90% compared with training on the full dataset, while reducing training time by over 80%.
+
+### Related Background
+
+The framework builds on Influence Functions (IF), a classic technique to quantify the effect of a training sample on a model's loss, and Neural Characteristic Function Matching (NCFM), a generative method that synthesizes data by matching the distributions of real and synthetic data in a feature space through an adversarial game.
+
+The paper was posted on arXiv on November 20, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3a898d15-7be0-43fb-9534-92657edec1e1",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "2b9e1bb1-f559-4097-9141-0a7d991f0841",
+  "toolUseResult": {
+    "query": "FT-NCFM influence aware data distillation VLA 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Df73rMEWCBji8eLsNnhPUx",
+        "content": [
+          {
+            "title": "[2511.16233] FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models",
+            "url": "https://arxiv.org/abs/2511.16233"
+          },
+          {
+            "title": "FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models",
+            "url": "https://arxiv.org/html/2511.16233"
+          },
+          {
+            "title": "Dataset Distillation with Neural Characteristic Function: A Minmax Perspective",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_Dataset_Distillation_with_Neural_Characteristic_Function_A_Minmax_Perspective_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "Knowledge Distillation and Dataset Distillation of Large ...",
+            "url": "https://arxiv.org/pdf/2504.14772"
+          },
+          {
+            "title": "GitHub - gszfwsb/NCFM: Official PyTorch implementation of the paper \"Dataset Distillation with Neural Characteristic Function: A Minmax Perspective\" (NCFM) in CVPR 2025 (Full Score, Highlight). · GitHub",
+            "url": "https://github.com/gszfwsb/NCFM"
+          },
+          {
+            "title": "Knowledge distillation and dataset distillation of large language models: emerging trends, challenges, and future directions | Artificial Intelligence Review | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10462-025-11423-3"
+          },
+          {
+            "title": "2026-1-27 Quantization-Aware Distillation for NVFP4 Inference Accuracy Recovery",
+            "url": "https://research.nvidia.com/labs/nemotron/files/NVFP4-QAD-Report.pdf?linkId=100000404830125"
+          },
+          {
+            "title": "CVPR 2025 Open Access Repository",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/html/Wang_Dataset_Distillation_with_Neural_Characteristic_Function_A_Minmax_Perspective_CVPR_2025_paper.html"
+          },
+          {
+            "title": "Knowledge distillation and dataset distillation of large language models: emerging trends, challenges, and future directions - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12634706/"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          }
+        ]
+      },
+      "I found relevant information about FT-NCFM and related research. Here's what the search revealed:\n\n## FT-NCFM: An Influence-Aware Data Distillation Framework for Efficient VLA Models\n\nFT-NCFM is an influence-aware data distillation framework for efficient Vision-Language-Action (VLA) models. The framework addresses the challenge that powerful generalization of VLA models is bottlenecked by their heavy reliance on massive, redundant, and unevenly valued datasets.\n\n### Key Components\n\nFT-NCFM is a data-centric generative data distillation framework that employs a self-contained Fact-Tracing (FT) engine combining causal attribution with programmatic contrastive verification to assess the intrinsic value of samples. Guided by these assessments, an adversarial NCFM process synthesizes a model-agnostic, information-dense, and reusable data asset.\n\n### Performance Results\n\nExperimental results on several mainstream VLA benchmarks show that models trained on just 5% of the distilled coreset achieve a success rate of 85-90% compared with training on the full dataset, while reducing training time by over 80%.\n\n### Related Background\n\nThe framework builds on Influence Functions (IF), a classic technique to quantify the effect of a training sample on a model's loss, and Neural Characteristic Function Matching (NCFM), a generative method that synthesizes data by matching the distributions of real and synthetic data in a feature space through an adversarial game.\n\nThe paper was posted on arXiv on November 20, 2025."
+    ],
+    "durationSeconds": 7.340849014000036
+  },
+  "sourceToolAssistantUUID": "3a898d15-7be0-43fb-9534-92657edec1e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2b9e1bb1-f559-4097-9141-0a7d991f0841",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 93_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-14T02:55:16.403Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N3i54C9zBu6etM4iaJxgp7`</summary>
+
+```json
+{
+  "query": "loss-based prioritized sampling hurts generalization behavioral cloning overfitting hard examples"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b9e1bb1-f559-4097-9141-0a7d991f0841",
+  "isSidechain": false,
+  "requestId": "req_011Cb1hzwEYahnPyr3MmY9nZ",
+  "type": "assistant",
+  "uuid": "0959452e-2a6a-4d7f-8ea5-91d1f9e462ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WY5kHXWPDEWCRjLqHTGx4q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1251,
+      "cache_read_input_tokens": 49133,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1251,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 49133,
+          "cache_creation_input_tokens": 1251,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1251
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-14T02:55:23.207Z_
+
+<details><summary>↩ Tool result · `toolu_01N3i54C9zBu6etM4iaJxgp7`</summary>
+
+```text
+Web search results for query: "loss-based prioritized sampling hurts generalization behavioral cloning overfitting hard examples"
+
+Links: [{"title":"Goal-conditioned Behavioral Cloning with Prioritized Sampling | Request PDF","url":"https://www.researchgate.net/publication/358518070_Goal-conditioned_Behavioral_Cloning_with_Prioritized_Sampling"},{"title":"Exploring the Limitations of Behavior Cloning for Autonomous Driving","url":"https://openaccess.thecvf.com/content_ICCV_2019/papers/Codevilla_Exploring_the_Limitations_of_Behavior_Cloning_for_Autonomous_Driving_ICCV_2019_paper.pdf"},{"title":"Goal-conditioned Behavioral Cloning with Prioritized Sampling | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/9702233/"},{"title":"NeurIPS Poster Is Behavior Cloning All You Need? Understanding Horizon in Imitation Learning","url":"https://neurips.cc/virtual/2024/poster/96376"},{"title":"(PDF) Integrating Behavior Cloning and Reinforcement Learning for Improved Performance in Dense and Sparse Reward Environments","url":"https://www.researchgate.net/publication/340492801_Integrating_Behavior_Cloning_and_Reinforcement_Learning_for_Improved_Performance_in_Dense_and_Sparse_Reward_Environments"},{"title":"Integrating Behavior Cloning and Reinforcement Learning for","url":"https://arxiv.org/pdf/1910.04281"},{"title":"Is Behavior Cloning All You Need? Understanding Horizon in Imitation Learning | OpenReview","url":"https://openreview.net/forum?id=8KPyJm4gt5&noteId=cnD6DsaUrE"},{"title":"Implicit Behavioral Cloning","url":"https://proceedings.mlr.press/v164/florence22a/florence22a.pdf"},{"title":"Self-Predictive Representations for Combinatorial Generalization in Behavioral Cloning","url":"https://arxiv.org/html/2506.10137"},{"title":"[2407.15007] Is Behavior Cloning All You Need? Understanding Horizon in Imitation Learning","url":"https://arxiv.org/abs/2407.15007"}]
+
+Based on the search results, I found some information related to prioritized sampling and behavioral cloning, though the exact paper on "loss-based prioritized sampling hurts generalization behavioral cloning overfitting hard examples" doesn't appear in these results. However, I can provide what was found:
+
+The search revealed several relevant papers on behavioral cloning and sampling strategies:
+
+1. **Goal-conditioned Behavioral Cloning with Prioritized Sampling**: One study extends traditional behavioral cloning with a prioritized sampling technique and shows that the method outperforms common reinforcement learning algorithms on some image-based and hierarchical tasks.
+
+2. **Prioritized Experience Replay in Combined Learning**: In work combining behavior cloning with reinforcement learning, a fixed buffer ratio was shown to outperform Prioritized Experience Replay (PER) in the sparse reward scenario, suggesting that loss-based prioritized sampling may have limitations in certain contexts.
+
+3. **Behavior Cloning Fundamentals**: In traditional imitation learning methods like behavioral cloning, human demonstration transitions were uniformly sampled from replay buffer regardless of their different values, which is the baseline approach that prioritized sampling attempts to improve upon.
+
+The search results suggest there is research examining trade-offs with prioritized sampling strategies, but to find the specific paper you mentioned, you may want to search academic databases like arXiv or Google Scholar with the exact title or author names.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0959452e-2a6a-4d7f-8ea5-91d1f9e462ae",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "85647246-275c-40ca-b2f7-df418a22b1e8",
+  "toolUseResult": {
+    "query": "loss-based prioritized sampling hurts generalization behavioral cloning overfitting hard examples",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014HnYbV6Zf3ZRcXZdBwQ4Nx",
+        "content": [
+          {
+            "title": "Goal-conditioned Behavioral Cloning with Prioritized Sampling | Request PDF",
+            "url": "https://www.researchgate.net/publication/358518070_Goal-conditioned_Behavioral_Cloning_with_Prioritized_Sampling"
+          },
+          {
+            "title": "Exploring the Limitations of Behavior Cloning for Autonomous Driving",
+            "url": "https://openaccess.thecvf.com/content_ICCV_2019/papers/Codevilla_Exploring_the_Limitations_of_Behavior_Cloning_for_Autonomous_Driving_ICCV_2019_paper.pdf"
+          },
+          {
+            "title": "Goal-conditioned Behavioral Cloning with Prioritized Sampling | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/9702233/"
+          },
+          {
+            "title": "NeurIPS Poster Is Behavior Cloning All You Need? Understanding Horizon in Imitation Learning",
+            "url": "https://neurips.cc/virtual/2024/poster/96376"
+          },
+          {
+            "title": "(PDF) Integrating Behavior Cloning and Reinforcement Learning for Improved Performance in Dense and Sparse Reward Environments",
+            "url": "https://www.researchgate.net/publication/340492801_Integrating_Behavior_Cloning_and_Reinforcement_Learning_for_Improved_Performance_in_Dense_and_Sparse_Reward_Environments"
+          },
+          {
+            "title": "Integrating Behavior Cloning and Reinforcement Learning for",
+            "url": "https://arxiv.org/pdf/1910.04281"
+          },
+          {
+            "title": "Is Behavior Cloning All You Need? Understanding Horizon in Imitation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=8KPyJm4gt5&noteId=cnD6DsaUrE"
+          },
+          {
+            "title": "Implicit Behavioral Cloning",
+            "url": "https://proceedings.mlr.press/v164/florence22a/florence22a.pdf"
+          },
+          {
+            "title": "Self-Predictive Representations for Combinatorial Generalization in Behavioral Cloning",
+            "url": "https://arxiv.org/html/2506.10137"
+          },
+          {
+            "title": "[2407.15007] Is Behavior Cloning All You Need? Understanding Horizon in Imitation Learning",
+            "url": "https://arxiv.org/abs/2407.15007"
+          }
+        ]
+      },
+      "Based on the search results, I found some information related to prioritized sampling and behavioral cloning, though the exact paper on \"loss-based prioritized sampling hurts generalization behavioral cloning overfitting hard examples\" doesn't appear in these results. However, I can provide what was found:\n\nThe search revealed several relevant papers on behavioral cloning and sampling strategies:\n\n1. **Goal-conditioned Behavioral Cloning with Prioritized Sampling**: One study extends traditional behavioral cloning with a prioritized sampling technique and shows that the method outperforms common reinforcement learning algorithms on some image-based and hierarchical tasks.\n\n2. **Prioritized Experience Replay in Combined Learning**: In work combining behavior cloning with reinforcement learning, a fixed buffer ratio was shown to outperform Prioritized Experience Replay (PER) in the sparse reward scenario, suggesting that loss-based prioritized sampling may have limitations in certain contexts.\n\n3. **Behavior Cloning Fundamentals**: In traditional imitation learning methods like behavioral cloning, human demonstration transitions were uniformly sampled from replay buffer regardless of their different values, which is the baseline approach that prioritized sampling attempts to improve upon.\n\nThe search results suggest there is research examining trade-offs with prioritized sampling strategies, but to find the specific paper you mentioned, you may want to search academic databases like arXiv or Google Scholar with the exact title or author names."
+    ],
+    "durationSeconds": 6.797520108999976
+  },
+  "sourceToolAssistantUUID": "0959452e-2a6a-4d7f-8ea5-91d1f9e462ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 96 · 2026-05-14T02:55:23.211Z_
+
+```json
+{
+  "parentUuid": "85647246-275c-40ca-b2f7-df418a22b1e8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "95ddb8ed-ca40-4f96-bd7e-3a3df4518c7a",
+  "timestamp": "2026-05-14T02:55:23.211Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-14T02:55:26.166Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CH64Qd56usCNgcGKk8iPWy`</summary>
+
+```json
+{
+  "query": "dynamic loss-based reweighting sample reweighting imitation learning robot policy training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "95ddb8ed-ca40-4f96-bd7e-3a3df4518c7a",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i1egQyt2a4qsEQ9Pqr",
+  "type": "assistant",
+  "uuid": "3326a9c0-2110-41e2-ae92-89fea38d4ee4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BLEEvCQSmjiCpHZDmpB7re",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 50384,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1098,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 50384,
+          "cache_creation_input_tokens": 1098,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1098
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-14T02:55:33.169Z_
+
+<details><summary>↩ Tool result · `toolu_01CH64Qd56usCNgcGKk8iPWy`</summary>
+
+```text
+Web search results for query: "dynamic loss-based reweighting sample reweighting imitation learning robot policy training 2025 2026"
+
+Links: [{"title":"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining | OpenReview","url":"https://openreview.net/forum?id=gU4ZgQNsOC"},{"title":"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining","url":"https://arxiv.org/html/2502.06733v1"},{"title":"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining for ICLR 2025 - IBM Research","url":"https://research.ibm.com/publications/dynamic-loss-based-sample-reweighting-for-improved-large-language-model-pretraining"},{"title":"[2502.06733] Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining","url":"https://arxiv.org/abs/2502.06733"},{"title":"Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10514-025-10237-0"},{"title":"DYNAMIC LOSS-BASED SAMPLE REWEIGHTING FOR ...","url":"https://par.nsf.gov/servlets/purl/10599453"},{"title":"GitHub - sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025","url":"https://github.com/sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025"},{"title":"Foundation Models in Robotics: A Comprehensive Review of Methods, Models, Datasets, Challenges and Future Research Directions","url":"https://arxiv.org/html/2604.15395v1"},{"title":"ReActor: Reinforcement Learning for Physics-Aware Motion Retargeting","url":"https://arxiv.org/html/2605.06593"},{"title":"GitHub - F-JISOO/ICLR-2025-Submitted · GitHub","url":"https://github.com/F-JISOO/ICLR-2025-Submitted"}]
+
+I found several relevant research papers and resources related to your search query. Here's a summary of the key findings:
+
+## Dynamic Loss-Based Sample Reweighting for LLM Pretraining
+
+The primary work introduces novel algorithms for dynamic, instance-level data reweighting aimed at improving both the efficiency and effectiveness of LLM pretraining, where methods adjust the weight of each training sample based on its loss value in an online fashion, allowing the model to dynamically focus on more informative or important samples at the current training stage. The research develops a new theoretical framework for analyzing the impact of loss-based reweighting on the convergence of gradient-based optimization, providing the first formal characterization of how these strategies affect convergence bounds.
+
+## Robot Policy Training and Imitation Learning
+
+Regarding robot policy training, robots should be able to learn complex behaviors from human demonstrations, but in practice, these human-provided datasets are inevitably imbalanced with humans demonstrating some subtasks more frequently than others. Prior works have suggested reweighting data based on training performance, with specific approaches using held-out demonstrations to track training progress and increasing the learning weights of samples that perform poorly.
+
+## Implementation Details
+
+The code for the ICLR 2025 paper on Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining is available, and the approaches introduce lightweight reweighting strategies that can be seamlessly integrated into existing training pipelines with little to no computational overhead, assigning dynamic importance to individual data samples based on their loss values.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3326a9c0-2110-41e2-ae92-89fea38d4ee4",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "bee3c49b-75aa-4332-b10d-0c01f1f22ee8",
+  "toolUseResult": {
+    "query": "dynamic loss-based reweighting sample reweighting imitation learning robot policy training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B3r9fvHetANNLTGo7mb3bY",
+        "content": [
+          {
+            "title": "Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining | OpenReview",
+            "url": "https://openreview.net/forum?id=gU4ZgQNsOC"
+          },
+          {
+            "title": "Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining",
+            "url": "https://arxiv.org/html/2502.06733v1"
+          },
+          {
+            "title": "Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining for ICLR 2025 - IBM Research",
+            "url": "https://research.ibm.com/publications/dynamic-loss-based-sample-reweighting-for-improved-large-language-model-pretraining"
+          },
+          {
+            "title": "[2502.06733] Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining",
+            "url": "https://arxiv.org/abs/2502.06733"
+          },
+          {
+            "title": "Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10514-025-10237-0"
+          },
+          {
+            "title": "DYNAMIC LOSS-BASED SAMPLE REWEIGHTING FOR ...",
+            "url": "https://par.nsf.gov/servlets/purl/10599453"
+          },
+          {
+            "title": "GitHub - sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025",
+            "url": "https://github.com/sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025"
+          },
+          {
+            "title": "Foundation Models in Robotics: A Comprehensive Review of Methods, Models, Datasets, Challenges and Future Research Directions",
+            "url": "https://arxiv.org/html/2604.15395v1"
+          },
+          {
+            "title": "ReActor: Reinforcement Learning for Physics-Aware Motion Retargeting",
+            "url": "https://arxiv.org/html/2605.06593"
+          },
+          {
+            "title": "GitHub - F-JISOO/ICLR-2025-Submitted · GitHub",
+            "url": "https://github.com/F-JISOO/ICLR-2025-Submitted"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources related to your search query. Here's a summary of the key findings:\n\n## Dynamic Loss-Based Sample Reweighting for LLM Pretraining\n\nThe primary work introduces novel algorithms for dynamic, instance-level data reweighting aimed at improving both the efficiency and effectiveness of LLM pretraining, where methods adjust the weight of each training sample based on its loss value in an online fashion, allowing the model to dynamically focus on more informative or important samples at the current training stage. The research develops a new theoretical framework for analyzing the impact of loss-based reweighting on the convergence of gradient-based optimization, providing the first formal characterization of how these strategies affect convergence bounds.\n\n## Robot Policy Training and Imitation Learning\n\nRegarding robot policy training, robots should be able to learn complex behaviors from human demonstrations, but in practice, these human-provided datasets are inevitably imbalanced with humans demonstrating some subtasks more frequently than others. Prior works have suggested reweighting data based on training performance, with specific approaches using held-out demonstrations to track training progress and increasing the learning weights of samples that perform poorly.\n\n## Implementation Details\n\nThe code for the ICLR 2025 paper on Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining is available, and the approaches introduce lightweight reweighting strategies that can be seamlessly integrated into existing training pipelines with little to no computational overhead, assigning dynamic importance to individual data samples based on their loss values."
+    ],
+    "durationSeconds": 6.998542799999996
+  },
+  "sourceToolAssistantUUID": "3326a9c0-2110-41e2-ae92-89fea38d4ee4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-14T02:55:36.608Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014DgzjXmbxWKmWAUs8pysWd`</summary>
+
+```json
+{
+  "query": "\"balanced behavior cloning\" \"imbalanced datasets\" reweighting robot 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bee3c49b-75aa-4332-b10d-0c01f1f22ee8",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i2PFzouv2Sm1W274bb",
+  "type": "assistant",
+  "uuid": "89599792-5694-406e-8d5a-8d22c721ac12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LtvifajSZ58U8Ja1CS9F2G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 979,
+      "cache_read_input_tokens": 51482,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 979,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 51482,
+          "cache_creation_input_tokens": 979,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 979
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-14T02:55:45.367Z_
+
+<details><summary>↩ Tool result · `toolu_014DgzjXmbxWKmWAUs8pysWd`</summary>
+
+```text
+Web search results for query: ""balanced behavior cloning" "imbalanced datasets" reweighting robot 2025"
+
+Links: [{"title":"Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10514-025-10237-0"},{"title":"[2508.06319] Towards Balanced Behavior Cloning from Imbalanced Datasets","url":"https://arxiv.org/abs/2508.06319"},{"title":"Towards Balanced Behavior Cloning from Imbalanced Datasets","url":"https://arxiv.org/html/2508.06319"},{"title":"Towards Balanced Behavior Cloning from Imbalanced Datasets","url":"https://collab.me.vt.edu/pdfs/sagar_auro2025.pdf"},{"title":"Towards balanced behavior cloning from imbalanced datasets - R Discovery","url":"https://discovery.researcher.life/article/towards-balanced-behavior-cloning-from-imbalanced-datasets/59622ee489d53fe785c8e30317a36dcc"},{"title":"Achieving Balanced Behavior Cloning from Imbalanced Datasets","url":"https://bioengineer.org/achieving-balanced-behavior-cloning-from-imbalanced-datasets/"},{"title":"Researchers Develop Methods to Address Dataset Imbalance in Behavior Cloning for Robotics and AI - GeneOnline News","url":"https://www.geneonline.com/researchers-develop-methods-to-address-dataset-imbalance-in-behavior-cloning-for-robotics-and-ai/"},{"title":"[2502.02853] Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation","url":"https://arxiv.org/abs/2502.02853"},{"title":"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation | OpenReview","url":"https://openreview.net/forum?id=N2Dey442PJ"},{"title":"GitHub - BaiShuanghao/BC-IB: [ICML 2025] Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation","url":"https://github.com/BaiShuanghao/BC-IB"}]
+
+I've found relevant research on balanced behavior cloning with imbalanced datasets. Here are the key findings:
+
+## Main Research
+
+Robots should be able to learn complex behaviors from human demonstrations. In practice, these human-provided datasets are inevitably imbalanced: i.e., the human demonstrates some subtasks more frequently than others.
+
+Imbalanced data leads to imbalanced policies when each state-action pair is weighted equally; these policies emulate the most represented behaviors, and not the human's complex, multi-task demonstrations.
+
+## The Core Problem
+
+If the majority of the human's data focuses on reaching a goal, and only a few state-action pairs move to avoid an obstacle, the learning algorithm will place greater emphasis on goal reaching. This misalignment between data quantity and actual task importance creates fundamental problems for imitation learning.
+
+## Solutions Through Reweighting
+
+Reweighting the dataset can enhance the overall policy performance. The research evaluates different reweighting approaches, including:
+
+- Executing the current policy in the real world and changing weights based on observed performance
+- Reweighting the data based on training performance
+- A novel meta-gradient rebalancing algorithm that addresses the primary limitations behind existing approaches
+
+Dataset rebalancing leads to better downstream learning, improving the performance of general imitation learning algorithms without requiring additional data collection.
+
+The research titled "Towards Balanced Behavior Cloning from Imbalanced Datasets" was published in *Autonomous Robots* in January 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89599792-5694-406e-8d5a-8d22c721ac12",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "3262ee6e-e919-4a50-85ad-40f732ae681a",
+  "toolUseResult": {
+    "query": "\"balanced behavior cloning\" \"imbalanced datasets\" reweighting robot 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EjenWcuixsbFUmmT511MN5",
+        "content": [
+          {
+            "title": "Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10514-025-10237-0"
+          },
+          {
+            "title": "[2508.06319] Towards Balanced Behavior Cloning from Imbalanced Datasets",
+            "url": "https://arxiv.org/abs/2508.06319"
+          },
+          {
+            "title": "Towards Balanced Behavior Cloning from Imbalanced Datasets",
+            "url": "https://arxiv.org/html/2508.06319"
+          },
+          {
+            "title": "Towards Balanced Behavior Cloning from Imbalanced Datasets",
+            "url": "https://collab.me.vt.edu/pdfs/sagar_auro2025.pdf"
+          },
+          {
+            "title": "Towards balanced behavior cloning from imbalanced datasets - R Discovery",
+            "url": "https://discovery.researcher.life/article/towards-balanced-behavior-cloning-from-imbalanced-datasets/59622ee489d53fe785c8e30317a36dcc"
+          },
+          {
+            "title": "Achieving Balanced Behavior Cloning from Imbalanced Datasets",
+            "url": "https://bioengineer.org/achieving-balanced-behavior-cloning-from-imbalanced-datasets/"
+          },
+          {
+            "title": "Researchers Develop Methods to Address Dataset Imbalance in Behavior Cloning for Robotics and AI - GeneOnline News",
+            "url": "https://www.geneonline.com/researchers-develop-methods-to-address-dataset-imbalance-in-behavior-cloning-for-robotics-and-ai/"
+          },
+          {
+            "title": "[2502.02853] Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation",
+            "url": "https://arxiv.org/abs/2502.02853"
+          },
+          {
+            "title": "Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation | OpenReview",
+            "url": "https://openreview.net/forum?id=N2Dey442PJ"
+          },
+          {
+            "title": "GitHub - BaiShuanghao/BC-IB: [ICML 2025] Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation",
+            "url": "https://github.com/BaiShuanghao/BC-IB"
+          }
+        ]
+      },
+      "I've found relevant research on balanced behavior cloning with imbalanced datasets. Here are the key findings:\n\n## Main Research\n\nRobots should be able to learn complex behaviors from human demonstrations. In practice, these human-provided datasets are inevitably imbalanced: i.e., the human demonstrates some subtasks more frequently than others.\n\nImbalanced data leads to imbalanced policies when each state-action pair is weighted equally; these policies emulate the most represented behaviors, and not the human's complex, multi-task demonstrations.\n\n## The Core Problem\n\nIf the majority of the human's data focuses on reaching a goal, and only a few state-action pairs move to avoid an obstacle, the learning algorithm will place greater emphasis on goal reaching. This misalignment between data quantity and actual task importance creates fundamental problems for imitation learning.\n\n## Solutions Through Reweighting\n\nReweighting the dataset can enhance the overall policy performance. The research evaluates different reweighting approaches, including:\n\n- Executing the current policy in the real world and changing weights based on observed performance\n- Reweighting the data based on training performance\n- A novel meta-gradient rebalancing algorithm that addresses the primary limitations behind existing approaches\n\nDataset rebalancing leads to better downstream learning, improving the performance of general imitation learning algorithms without requiring additional data collection.\n\nThe research titled \"Towards Balanced Behavior Cloning from Imbalanced Datasets\" was published in *Autonomous Robots* in January 2026."
+    ],
+    "durationSeconds": 8.756053379999997
+  },
+  "sourceToolAssistantUUID": "89599792-5694-406e-8d5a-8d22c721ac12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101 · 2026-05-14T02:55:49.647Z_
+
+This is another very relevant paper. Let me now check the "Dynamic Loss-Based Sample Reweighting" ICLR 2025 paper more carefully since it's essentially doing loss-based dynamic reweighting (the same core idea as PDR) for LLM training.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3262ee6e-e919-4a50-85ad-40f732ae681a",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i3HQo47pMBpxDPZ2Aq",
+  "type": "assistant",
+  "uuid": "755a5ca3-319a-49bb-9ef6-c0603b2b6a44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6Ts5befXoMzDZ2bZSzyY5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1026,
+      "cache_read_input_tokens": 52461,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1026,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 52461,
+          "cache_creation_input_tokens": 1026,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1026
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-14T02:55:51.314Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XSurRPpSMMQVxpbfkKCZKs`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2502.06733",
+  "prompt": "Extract the full abstract and methodology. Specifically: 1) How does the dynamic loss-based reweighting work? 2) Is it essentially the same as prioritized experience replay adapted for supervised learning? 3) What are the key differences from PER? 4) What venue was this accepted to?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "755a5ca3-319a-49bb-9ef6-c0603b2b6a44",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i3HQo47pMBpxDPZ2Aq",
+  "type": "assistant",
+  "uuid": "4f45ed6d-e33a-4acf-8ebc-67dc1e0b1446",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6Ts5befXoMzDZ2bZSzyY5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1026,
+      "cache_read_input_tokens": 52461,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1026,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 52461,
+          "cache_creation_input_tokens": 1026,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1026
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-14T02:55:56.395Z_
+
+<details><summary>↩ Tool result · `toolu_01XSurRPpSMMQVxpbfkKCZKs`</summary>
+
+```text
+# Analysis of Dynamic Loss-Based Sample Reweighting Paper
+
+## Full Abstract
+The paper proposes novel algorithms that adjust training sample weights based on loss values during LLM pretraining. The approach "dynamically focus[es] on more informative or important samples at the current training stage" and develops a theoretical framework analyzing convergence impacts. Empirical validation spans 7B and 1.4B parameter models plus smaller-scale experiments.
+
+## Key Methodology Points
+
+**How Dynamic Loss-Based Reweighting Works:**
+The method assigns weights to samples based on their loss values in an online, adaptive manner. Rather than treating all training data equally, it "systematically devise[s] reweighting strategies deprioritizing redundant or uninformative data."
+
+**Comparison to Prioritized Experience Replay:**
+The paper does **not explicitly mention PER** in the provided content. However, the conceptual similarity is apparent—both prioritize samples based on loss/error signals. The document doesn't directly address how it differs from PER or confirm whether it's an adaptation of that approach.
+
+**Key Distinctions Highlighted:**
+The paper emphasizes its contribution operates at "instance-level" granularity rather than "group-level," providing "fine-grained" sample importance tracking. It also uniquely provides "the first formal characterization of how these strategies affect convergence bounds."
+
+## Publication Venue
+**Accepted for publication at ICLR 2025** (International Conference on Learning Representations)
+
+Code is available on GitHub as referenced in the comments section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f45ed6d-e33a-4acf-8ebc-67dc1e0b1446",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "fc46f95d-ae41-4bc2-b27b-901ba0e5ea80",
+  "toolUseResult": {
+    "bytes": 48886,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Dynamic Loss-Based Sample Reweighting Paper\n\n## Full Abstract\nThe paper proposes novel algorithms that adjust training sample weights based on loss values during LLM pretraining. The approach \"dynamically focus[es] on more informative or important samples at the current training stage\" and develops a theoretical framework analyzing convergence impacts. Empirical validation spans 7B and 1.4B parameter models plus smaller-scale experiments.\n\n## Key Methodology Points\n\n**How Dynamic Loss-Based Reweighting Works:**\nThe method assigns weights to samples based on their loss values in an online, adaptive manner. Rather than treating all training data equally, it \"systematically devise[s] reweighting strategies deprioritizing redundant or uninformative data.\"\n\n**Comparison to Prioritized Experience Replay:**\nThe paper does **not explicitly mention PER** in the provided content. However, the conceptual similarity is apparent—both prioritize samples based on loss/error signals. The document doesn't directly address how it differs from PER or confirm whether it's an adaptation of that approach.\n\n**Key Distinctions Highlighted:**\nThe paper emphasizes its contribution operates at \"instance-level\" granularity rather than \"group-level,\" providing \"fine-grained\" sample importance tracking. It also uniquely provides \"the first formal characterization of how these strategies affect convergence bounds.\"\n\n## Publication Venue\n**Accepted for publication at ICLR 2025** (International Conference on Learning Representations)\n\nCode is available on GitHub as referenced in the comments section.",
+    "durationMs": 5074,
+    "url": "https://arxiv.org/abs/2502.06733"
+  },
+  "sourceToolAssistantUUID": "4f45ed6d-e33a-4acf-8ebc-67dc1e0b1446",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 104_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "fc46f95d-ae41-4bc2-b27b-901ba0e5ea80",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-14T02:55:59.638Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YFD4aKrxBz3gNGUwsYmQbW`</summary>
+
+```json
+{
+  "query": "robot data curation mutual information estimators RSS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc46f95d-ae41-4bc2-b27b-901ba0e5ea80",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i46ahxs28pVvpe3pbw",
+  "type": "assistant",
+  "uuid": "569c9305-3e14-49ee-a14c-a104c75c165f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KiHKRmrf8cVYW7nPYyFWWV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 560,
+      "cache_read_input_tokens": 53487,
+      "output_tokens": 63,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 560,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 63,
+          "cache_read_input_tokens": 53487,
+          "cache_creation_input_tokens": 560,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 560
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-14T02:56:08.553Z_
+
+<details><summary>↩ Tool result · `toolu_01YFD4aKrxBz3gNGUwsYmQbW`</summary>
+
+```text
+Web search results for query: "robot data curation mutual information estimators RSS 2025"
+
+Links: [{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623v2"},{"title":"[2502.08623] Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/abs/2502.08623"},{"title":"Robot Data Curation with Mutual Information Estimators · Robotics: Science and Systems","url":"https://roboticsconference.org/program/papers/23/"},{"title":"[PDF] Robot Data Curation with Mutual Information Estimators | Semantic Scholar","url":"https://www.semanticscholar.org/paper/37cb83dc757f483cfd389c8709b4aee389da8dc6"},{"title":"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/html/2505.09603"},{"title":"GitHub - jhejna/demonstration-information: Code for the paper Robot Data Curation with Mutual Information Estimators","url":"https://github.com/jhejna/demonstration-information"},{"title":"Robot Data Curation with Mutual Information Estimators | alphaXiv","url":"https://www.alphaxiv.org/overview/2502.08623v3"},{"title":"Robot Data Curation","url":"https://www.roboticsproceedings.org/rss21/p023.pdf"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v1"},{"title":"GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub","url":"https://github.com/YanjieZe/Paper-List"}]
+
+I found comprehensive information about "Robot Data Curation with Mutual Information Estimators." Here are the key findings:
+
+## Overview
+
+The paper addresses how the performance of imitation learning policies often hinges on the datasets with which they are trained. The work aims to take a critical step towards addressing data quality in robotics by estimating the relative quality of individual demonstrations in terms of both action diversity and predictability.
+
+## Methodology
+
+The approach introduces a novel technique based on k-nearest neighbor estimates of mutual information on top of simple VAE embeddings of states and actions. The method proposes Demonstration Information Estimation (DemInf) for computationally estimating mutual information, where instead of considering mutual information at the distribution or dataset level, the researchers measure the contribution of individual episodes to the overall mutual information of the dataset.
+
+## Key Findings
+
+The approach is able to partition demonstration datasets by quality according to human expert scores across a diverse set of benchmarks spanning simulation and real world environments, and training policies based on data filtered by the method leads to a 5-10% improvement in RoboMimic and better performance on real ALOHA and Franka setups.
+
+## Technical Details
+
+The KSG estimator from Kraskov et al. was found to be superior to both the BiKSG estimator and the naïve application of the differential entropy estimator from Kozachenko and Leonenko.
+
+## Authors and Affiliation
+
+Researchers from Google DeepMind Robotics and Stanford University developed DemInf. The paper is by Joey Hejna, Suvir Mirchandani, Ashwin Balakrishna, Annie Xie, Ayzaan Wahid, Jonathan Tompson, Pannag Sanketi, Dhruv Shah, Coline Devin, and Dorsa Sadigh.
+
+The paper was presented at Robotics: Science and Systems XXI in June 2025 at the University of Southern California, Los Angeles.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "569c9305-3e14-49ee-a14c-a104c75c165f",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "5e282f3d-4df8-4479-bdea-1457c6cba690",
+  "toolUseResult": {
+    "query": "robot data curation mutual information estimators RSS 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TN7nrJ8TVoEoeqEotCi5tF",
+        "content": [
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/html/2502.08623v2"
+          },
+          {
+            "title": "[2502.08623] Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/abs/2502.08623"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/program/papers/23/"
+          },
+          {
+            "title": "[PDF] Robot Data Curation with Mutual Information Estimators | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/37cb83dc757f483cfd389c8709b4aee389da8dc6"
+          },
+          {
+            "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/html/2505.09603"
+          },
+          {
+            "title": "GitHub - jhejna/demonstration-information: Code for the paper Robot Data Curation with Mutual Information Estimators",
+            "url": "https://github.com/jhejna/demonstration-information"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2502.08623v3"
+          },
+          {
+            "title": "Robot Data Curation",
+            "url": "https://www.roboticsproceedings.org/rss21/p023.pdf"
+          },
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v1"
+          },
+          {
+            "title": "GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub",
+            "url": "https://github.com/YanjieZe/Paper-List"
+          }
+        ]
+      },
+      "I found comprehensive information about \"Robot Data Curation with Mutual Information Estimators.\" Here are the key findings:\n\n## Overview\n\nThe paper addresses how the performance of imitation learning policies often hinges on the datasets with which they are trained. The work aims to take a critical step towards addressing data quality in robotics by estimating the relative quality of individual demonstrations in terms of both action diversity and predictability.\n\n## Methodology\n\nThe approach introduces a novel technique based on k-nearest neighbor estimates of mutual information on top of simple VAE embeddings of states and actions. The method proposes Demonstration Information Estimation (DemInf) for computationally estimating mutual information, where instead of considering mutual information at the distribution or dataset level, the researchers measure the contribution of individual episodes to the overall mutual information of the dataset.\n\n## Key Findings\n\nThe approach is able to partition demonstration datasets by quality according to human expert scores across a diverse set of benchmarks spanning simulation and real world environments, and training policies based on data filtered by the method leads to a 5-10% improvement in RoboMimic and better performance on real ALOHA and Franka setups.\n\n## Technical Details\n\nThe KSG estimator from Kraskov et al. was found to be superior to both the BiKSG estimator and the naïve application of the differential entropy estimator from Kozachenko and Leonenko.\n\n## Authors and Affiliation\n\nResearchers from Google DeepMind Robotics and Stanford University developed DemInf. The paper is by Joey Hejna, Suvir Mirchandani, Ashwin Balakrishna, Annie Xie, Ayzaan Wahid, Jonathan Tompson, Pannag Sanketi, Dhruv Shah, Coline Devin, and Dorsa Sadigh.\n\nThe paper was presented at Robotics: Science and Systems XXI in June 2025 at the University of Southern California, Los Angeles."
+    ],
+    "durationSeconds": 8.91116208800004
+  },
+  "sourceToolAssistantUUID": "569c9305-3e14-49ee-a14c-a104c75c165f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 108 · 2026-05-14T02:56:12.958Z_
+
+Now let me also search specifically for whether anyone has already applied online/dynamic reweighting during VLA BC training (not just static pre-filtering).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e282f3d-4df8-4479-bdea-1457c6cba690",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i4za5eFteXWD89REA1",
+  "type": "assistant",
+  "uuid": "98af57e1-0fcb-42db-acee-a2407413faaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017SNgHwZMb2ShWNaLeGz4ww",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1001,
+      "cache_read_input_tokens": 54047,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 54047,
+          "cache_creation_input_tokens": 1001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-14T02:56:13.589Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JJ71eYzgDXRGGeJta4t6iF`</summary>
+
+```json
+{
+  "query": "online curriculum VLA behavioral cloning training dynamic reweighting during training 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98af57e1-0fcb-42db-acee-a2407413faaa",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i4za5eFteXWD89REA1",
+  "type": "assistant",
+  "uuid": "80759c1d-f1b2-44b5-965f-e3bd27b50060",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017SNgHwZMb2ShWNaLeGz4ww",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1001,
+      "cache_read_input_tokens": 54047,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 54047,
+          "cache_creation_input_tokens": 1001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-14T02:56:20.411Z_
+
+<details><summary>↩ Tool result · `toolu_01JJ71eYzgDXRGGeJta4t6iF`</summary>
+
+```text
+Web search results for query: "online curriculum VLA behavioral cloning training dynamic reweighting during training 2025 2026 arXiv"
+
+Links: [{"title":"[2509.25718] VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning","url":"https://arxiv.org/abs/2509.25718"},{"title":"Robotic Policy Learning via Human-assisted Action Preference Optimization","url":"https://arxiv.org/html/2506.07127v1"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/html/2505.19789v4"},{"title":"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning","url":"https://arxiv.org/html/2601.06748v1"},{"title":"Task adaptation of Vision-Language-Action model: 1st Place Solution for the 2025 BEHAVIOR Challenge","url":"https://arxiv.org/html/2512.06951v1"},{"title":"Proceedings of Machine Learning Research vol vvv:1–15, 2026","url":"https://www.arxiv.org/pdf/2511.11131"},{"title":"SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning","url":"https://arxiv.org/html/2509.09674v1"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2510.12638"},{"title":"A Survey on Efficient Vision-Language-Action Models","url":"https://arxiv.org/html/2510.24795v1"},{"title":"Human-assisted Robotic Policy Refinement via Action Preference Optimization","url":"https://arxiv.org/html/2506.07127"}]
+
+Based on the search results, I found several relevant papers from arXiv related to VLA (Vision-Language-Action) models, behavioral cloning, and training with dynamic reweighting from 2025-2026:
+
+## Key Findings:
+
+**1. VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning**
+An auxiliary behavior cloning loss is applied with a dynamically updated demonstration buffer that continually collects high-quality task trials during training, with the relative weight between the action-chunked PPO objective and the self behavior clone auxiliary loss adapted online to stabilize the post-training process. (arXiv:2509.25718, September 2025)
+
+**2. Human-assisted Action Preference Optimization (HAPO)**
+A method that proposes an adaptive reweighting algorithm to address the issues of irreversible interactions and token probability mismatch when introducing preference optimization into VLA models, facilitating model learning from binary desirability signals derived from interactions. (arXiv:2506.07127, June 2025)
+
+**3. Action Preference Optimization with Adaptive Reweighting**
+An adaptive reweighting method that guides the model to prioritize samples exhibiting large regression errors, with a normalized weighting scheme that increases the weight of samples with high action prediction errors for desirable data, and increases the weight of samples whose actions are proximate to failure actions for undesirable data.
+
+**4. SimpleVLA-RL: Scaling VLA Training via RL**
+This paper explores reinforcement learning approaches for VLA training at scale (arXiv:2509.09674, September 2025)
+
+**5. What Can RL Bring to VLA Generalization?**
+An empirical study examining reinforcement learning's role in VLA generalization (arXiv:2505.19789, January 2026)
+
+These papers demonstrate active research into online curriculum learning, dynamic reweighting during training, and behavioral cloning for VLA models in the 2025-2026 timeframe on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "80759c1d-f1b2-44b5-965f-e3bd27b50060",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "fe304ac5-8067-4dba-a425-b8c75f2f1616",
+  "toolUseResult": {
+    "query": "online curriculum VLA behavioral cloning training dynamic reweighting during training 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XM1t31Jp8XkikjC2ZuS1kx",
+        "content": [
+          {
+            "title": "[2509.25718] VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning",
+            "url": "https://arxiv.org/abs/2509.25718"
+          },
+          {
+            "title": "Robotic Policy Learning via Human-assisted Action Preference Optimization",
+            "url": "https://arxiv.org/html/2506.07127v1"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/html/2505.19789v4"
+          },
+          {
+            "title": "On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/html/2601.06748v1"
+          },
+          {
+            "title": "Task adaptation of Vision-Language-Action model: 1st Place Solution for the 2025 BEHAVIOR Challenge",
+            "url": "https://arxiv.org/html/2512.06951v1"
+          },
+          {
+            "title": "Proceedings of Machine Learning Research vol vvv:1–15, 2026",
+            "url": "https://www.arxiv.org/pdf/2511.11131"
+          },
+          {
+            "title": "SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.09674v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2510.12638"
+          },
+          {
+            "title": "A Survey on Efficient Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.24795v1"
+          },
+          {
+            "title": "Human-assisted Robotic Policy Refinement via Action Preference Optimization",
+            "url": "https://arxiv.org/html/2506.07127"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers from arXiv related to VLA (Vision-Language-Action) models, behavioral cloning, and training with dynamic reweighting from 2025-2026:\n\n## Key Findings:\n\n**1. VLA Model Post-Training via Action-Chunked PPO and Self Behavior Cloning**\nAn auxiliary behavior cloning loss is applied with a dynamically updated demonstration buffer that continually collects high-quality task trials during training, with the relative weight between the action-chunked PPO objective and the self behavior clone auxiliary loss adapted online to stabilize the post-training process. (arXiv:2509.25718, September 2025)\n\n**2. Human-assisted Action Preference Optimization (HAPO)**\nA method that proposes an adaptive reweighting algorithm to address the issues of irreversible interactions and token probability mismatch when introducing preference optimization into VLA models, facilitating model learning from binary desirability signals derived from interactions. (arXiv:2506.07127, June 2025)\n\n**3. Action Preference Optimization with Adaptive Reweighting**\nAn adaptive reweighting method that guides the model to prioritize samples exhibiting large regression errors, with a normalized weighting scheme that increases the weight of samples with high action prediction errors for desirable data, and increases the weight of samples whose actions are proximate to failure actions for undesirable data.\n\n**4. SimpleVLA-RL: Scaling VLA Training via RL**\nThis paper explores reinforcement learning approaches for VLA training at scale (arXiv:2509.09674, September 2025)\n\n**5. What Can RL Bring to VLA Generalization?**\nAn empirical study examining reinforcement learning's role in VLA generalization (arXiv:2505.19789, January 2026)\n\nThese papers demonstrate active research into online curriculum learning, dynamic reweighting during training, and behavioral cloning for VLA models in the 2025-2026 timeframe on arXiv."
+    ],
+    "durationSeconds": 6.817678086999979
+  },
+  "sourceToolAssistantUUID": "80759c1d-f1b2-44b5-965f-e3bd27b50060",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111 · 2026-05-14T02:56:24.762Z_
+
+Very interesting — the HAPO paper uses adaptive reweighting that increases weight on high-error samples. And the VLA post-training paper dynamically updates a demonstration buffer with high-quality trials. Let me check one more critical aspect.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe304ac5-8067-4dba-a425-b8c75f2f1616",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i5sF5K9vFVgQqkjDzm",
+  "type": "assistant",
+  "uuid": "0f18b134-7e70-409a-bfb7-b2d9910001ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HopZv6BvQ2ykJ5zLr4kf14",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1039,
+      "cache_read_input_tokens": 55048,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1039,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 55048,
+          "cache_creation_input_tokens": 1039,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1039
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112 · 2026-05-14T02:56:26.984Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01R46hagdhb4UcUfBJsjj9yy`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.25718",
+  "prompt": "Extract the full abstract. Specifically: Does this paper use dynamic data selection or reweighting DURING BC/SFT training (not post-training)? Does it collect high-quality demonstrations into a buffer and dynamically sample from it? How is this different from static pre-filtering?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f18b134-7e70-409a-bfb7-b2d9910001ae",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i5sF5K9vFVgQqkjDzm",
+  "type": "assistant",
+  "uuid": "b62a0a53-fbf7-462f-9b22-86bb617be132",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HopZv6BvQ2ykJ5zLr4kf14",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1039,
+      "cache_read_input_tokens": 55048,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1039,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 55048,
+          "cache_creation_input_tokens": 1039,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1039
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-14T02:56:32.373Z_
+
+<details><summary>↩ Tool result · `toolu_01R46hagdhb4UcUfBJsjj9yy`</summary>
+
+```text
+# Abstract Analysis
+
+**Full Abstract:**
+"Reinforcement learning (RL) is a promising avenue for post-training vision-language-action (VLA) models, but practical deployment is hindered by sparse rewards and unstable training. This work mitigates these challenges by introducing an action chunk based on proximal policy optimization (PPO) with behavior cloning using self-collected demonstrations. Aggregating consecutive actions into chunks improves the temporal consistency of the policy and the density of informative feedback. In addition, an auxiliary behavior cloning loss is applied with a dynamically updated demonstration buffer that continually collects high-quality task trials during training. The relative weight between the action-chunked PPO objective and the self behavior clone auxiliary loss is adapted online to stabilize the post-training process. Experiments on the MetaWorld benchmark indicate improved performance over supervised fine-tuning, achieving a high success rate (0.93) and few steps to success (42.17). These results demonstrate the viability of RL for VLA post-training and help lay the groundwork for downstream VLA applications."
+
+## Key Findings
+
+**Dynamic Data Selection During Training:** Yes. The paper explicitly uses "a dynamically updated demonstration buffer that continually collects high-quality task trials during training." Additionally, it dynamically reweights components through "the relative weight between the action-chunked PPO objective and the self behavior clone auxiliary loss is adapted online."
+
+**Difference from Static Pre-filtering:** This approach diverges fundamentally—rather than pre-filtering a fixed dataset, the system actively accumulates high-quality demonstrations throughout training and adjusts their influence dynamically, creating an adaptive rather than static training regime.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b62a0a53-fbf7-462f-9b22-86bb617be132",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "3fdac38e-93e8-40f1-8c83-4e1c7887498e",
+  "toolUseResult": {
+    "bytes": 46317,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Abstract Analysis\n\n**Full Abstract:**\n\"Reinforcement learning (RL) is a promising avenue for post-training vision-language-action (VLA) models, but practical deployment is hindered by sparse rewards and unstable training. This work mitigates these challenges by introducing an action chunk based on proximal policy optimization (PPO) with behavior cloning using self-collected demonstrations. Aggregating consecutive actions into chunks improves the temporal consistency of the policy and the density of informative feedback. In addition, an auxiliary behavior cloning loss is applied with a dynamically updated demonstration buffer that continually collects high-quality task trials during training. The relative weight between the action-chunked PPO objective and the self behavior clone auxiliary loss is adapted online to stabilize the post-training process. Experiments on the MetaWorld benchmark indicate improved performance over supervised fine-tuning, achieving a high success rate (0.93) and few steps to success (42.17). These results demonstrate the viability of RL for VLA post-training and help lay the groundwork for downstream VLA applications.\"\n\n## Key Findings\n\n**Dynamic Data Selection During Training:** Yes. The paper explicitly uses \"a dynamically updated demonstration buffer that continually collects high-quality task trials during training.\" Additionally, it dynamically reweights components through \"the relative weight between the action-chunked PPO objective and the self behavior clone auxiliary loss is adapted online.\"\n\n**Difference from Static Pre-filtering:** This approach diverges fundamentally—rather than pre-filtering a fixed dataset, the system actively accumulates high-quality demonstrations throughout training and adjusts their influence dynamically, creating an adaptive rather than static training regime.",
+    "durationMs": 5376,
+    "url": "https://arxiv.org/abs/2509.25718"
+  },
+  "sourceToolAssistantUUID": "b62a0a53-fbf7-462f-9b22-86bb617be132",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-14T02:56:36.382Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018VA9rhjeJGuJvXnpsmsbA4`</summary>
+
+```json
+{
+  "query": "adaptive data reweighting during VLA training online sample selection imitation learning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3fdac38e-93e8-40f1-8c83-4e1c7887498e",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i6kUZPGMx7TsvdxjKd",
+  "type": "assistant",
+  "uuid": "af06f960-9abf-4768-8a27-8288cd44aad4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LWKSjCDBd17nkmTYgpx9X8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 564,
+      "cache_read_input_tokens": 56087,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 564,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 56087,
+          "cache_creation_input_tokens": 564,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 564
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-14T02:56:43.006Z_
+
+<details><summary>↩ Tool result · `toolu_018VA9rhjeJGuJvXnpsmsbA4`</summary>
+
+```text
+Web search results for query: "adaptive data reweighting during VLA training online sample selection imitation learning 2026"
+
+Links: [{"title":"GitHub - PRIME-RL/SimpleVLA-RL: [ICLR 2026] SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning · GitHub","url":"https://github.com/PRIME-RL/SimpleVLA-RL"},{"title":"VLA-RFT: Vision-Language-Action Reinforcement Fine-Tuning with Verified Rewards in World Simulators | OpenReview","url":"https://openreview.net/forum?id=Jaut99EHeu"},{"title":"VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning","url":"https://arxiv.org/html/2505.18719v1"},{"title":"SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning","url":"https://arxiv.org/html/2509.09674v1"},{"title":"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning","url":"https://arxiv.org/html/2601.06748v1"},{"title":"VLA-RFT: Vision-language-action Reinforcement fine-tuning with verified rewards in world simulators","url":"https://arxiv.org/html/2510.00406v1"},{"title":"Recurrent-Depth VLA: Implicit Test-Time Compute Scaling of...","url":"https://openreview.net/forum?id=p1UF73ZvE0"},{"title":"SimpleVLA-RL: Scaling VLA Training via Reinforcement ...","url":"https://arxiv.org/pdf/2509.09674"},{"title":"[2509.20786] LiLAW: Lightweight Learnable Adaptive Weighting to Meta-Learn Sample Difficulty, Improve Noisy Training, Increase Fairness, and Effectively Use Synthetic Data","url":"https://arxiv.org/abs/2509.20786"},{"title":"Balancing Signal and Variance: Adaptive Offline RL Post-Training for VLA Flow Models","url":"https://arxiv.org/html/2509.04063v1"}]
+
+Based on the search results, I found several relevant papers and projects related to VLA training, though I should note that the exact query term "adaptive data reweighting" doesn't appear prominently in these results. Here's what I found:
+
+## Key VLA Training Research (2026)
+
+**Online RL and Sample Selection Methods:**
+
+SimpleVLA-RL is an effective RL framework for VLA models that builds upon the veRL framework and enables end-to-end online rule-based RL for VLA models through VLA-specific interactive trajectory sampling and loss computation.
+
+VLA-RL implements an adaptive curriculum that selects tasks based on the agent's current capabilities, tracking success rates around 50% success rate as the frontier of the agent's capabilities, while maintaining exposure to both mastered and challenging tasks.
+
+**Adaptive Weighting Approaches:**
+
+One approach addresses how VLA models can better understand data quality distribution through offline RL post-training, using an Adaptive Reinforced Flow Matching (ARFM) method that introduces an adaptively adjusted scaling factor in the VLA flow model loss to construct a bias-variance trade-off objective.
+
+LiLAW (Lightweight Learnable Adaptive Weighting) is a method that dynamically adjusts the loss weight of each training sample based on its evolving difficulty, categorized as easy, moderate, or hard.
+
+These recent works address the challenge of efficient VLA training through adaptive mechanisms that adjust how samples are weighted or selected during training, particularly in the context of imitation learning and reinforcement learning paradigms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af06f960-9abf-4768-8a27-8288cd44aad4",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "d4bd4426-25d4-40ed-8d19-dc183e1d9ef4",
+  "toolUseResult": {
+    "query": "adaptive data reweighting during VLA training online sample selection imitation learning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TWdxGHtBHdTXHoCKictNLm",
+        "content": [
+          {
+            "title": "GitHub - PRIME-RL/SimpleVLA-RL: [ICLR 2026] SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning · GitHub",
+            "url": "https://github.com/PRIME-RL/SimpleVLA-RL"
+          },
+          {
+            "title": "VLA-RFT: Vision-Language-Action Reinforcement Fine-Tuning with Verified Rewards in World Simulators | OpenReview",
+            "url": "https://openreview.net/forum?id=Jaut99EHeu"
+          },
+          {
+            "title": "VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning",
+            "url": "https://arxiv.org/html/2505.18719v1"
+          },
+          {
+            "title": "SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.09674v1"
+          },
+          {
+            "title": "On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/html/2601.06748v1"
+          },
+          {
+            "title": "VLA-RFT: Vision-language-action Reinforcement fine-tuning with verified rewards in world simulators",
+            "url": "https://arxiv.org/html/2510.00406v1"
+          },
+          {
+            "title": "Recurrent-Depth VLA: Implicit Test-Time Compute Scaling of...",
+            "url": "https://openreview.net/forum?id=p1UF73ZvE0"
+          },
+          {
+            "title": "SimpleVLA-RL: Scaling VLA Training via Reinforcement ...",
+            "url": "https://arxiv.org/pdf/2509.09674"
+          },
+          {
+            "title": "[2509.20786] LiLAW: Lightweight Learnable Adaptive Weighting to Meta-Learn Sample Difficulty, Improve Noisy Training, Increase Fairness, and Effectively Use Synthetic Data",
+            "url": "https://arxiv.org/abs/2509.20786"
+          },
+          {
+            "title": "Balancing Signal and Variance: Adaptive Offline RL Post-Training for VLA Flow Models",
+            "url": "https://arxiv.org/html/2509.04063v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and projects related to VLA training, though I should note that the exact query term \"adaptive data reweighting\" doesn't appear prominently in these results. Here's what I found:\n\n## Key VLA Training Research (2026)\n\n**Online RL and Sample Selection Methods:**\n\nSimpleVLA-RL is an effective RL framework for VLA models that builds upon the veRL framework and enables end-to-end online rule-based RL for VLA models through VLA-specific interactive trajectory sampling and loss computation.\n\nVLA-RL implements an adaptive curriculum that selects tasks based on the agent's current capabilities, tracking success rates around 50% success rate as the frontier of the agent's capabilities, while maintaining exposure to both mastered and challenging tasks.\n\n**Adaptive Weighting Approaches:**\n\nOne approach addresses how VLA models can better understand data quality distribution through offline RL post-training, using an Adaptive Reinforced Flow Matching (ARFM) method that introduces an adaptively adjusted scaling factor in the VLA flow model loss to construct a bias-variance trade-off objective.\n\nLiLAW (Lightweight Learnable Adaptive Weighting) is a method that dynamically adjusts the loss weight of each training sample based on its evolving difficulty, categorized as easy, moderate, or hard.\n\nThese recent works address the challenge of efficient VLA training through adaptive mechanisms that adjust how samples are weighted or selected during training, particularly in the context of imitation learning and reinforcement learning paradigms."
+    ],
+    "durationSeconds": 6.618601209999993
+  },
+  "sourceToolAssistantUUID": "af06f960-9abf-4768-8a27-8288cd44aad4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 116 · 2026-05-14T02:56:43.011Z_
+
+```json
+{
+  "parentUuid": "d4bd4426-25d4-40ed-8d19-dc183e1d9ef4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c5b0e09d-8bf4-473a-bab5-6b976ffd96c8",
+  "timestamp": "2026-05-14T02:56:43.011Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 117_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "c5b0e09d-8bf4-473a-bab5-6b976ffd96c8",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 118_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 119 · 2026-05-14T02:56:47.121Z_
+
+Very important — VLA-RL already implements an adaptive curriculum during RL training. Let me also check one more paper that seems highly relevant.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c5b0e09d-8bf4-473a-bab5-6b976ffd96c8",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i7XrZmyURGfUZHquEE",
+  "type": "assistant",
+  "uuid": "1883abae-8211-406f-a89b-b68c75a5fd98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vio8DC13RcwTiAzz7K2URJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1089,
+      "cache_read_input_tokens": 56651,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1089,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 56651,
+          "cache_creation_input_tokens": 1089,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1089
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120 · 2026-05-14T02:56:47.400Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JgN9pcVzAuAzFGuabnMjif`</summary>
+
+```json
+{
+  "query": "LiLAW lightweight learnable adaptive weighting sample difficulty noisy training 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1883abae-8211-406f-a89b-b68c75a5fd98",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i7XrZmyURGfUZHquEE",
+  "type": "assistant",
+  "uuid": "89aacaa5-67e2-442f-80d5-13dfd497123f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vio8DC13RcwTiAzz7K2URJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1089,
+      "cache_read_input_tokens": 56651,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1089,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 56651,
+          "cache_creation_input_tokens": 1089,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1089
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-14T02:56:54.008Z_
+
+<details><summary>↩ Tool result · `toolu_01JgN9pcVzAuAzFGuabnMjif`</summary>
+
+```text
+Web search results for query: "LiLAW lightweight learnable adaptive weighting sample difficulty noisy training 2025"
+
+Links: [{"title":"[2509.20786] LiLAW: Lightweight Learnable Adaptive Weighting to Meta-Learn Sample Difficulty, Improve Noisy Training, Increase Fairness, and Effectively Use Synthetic Data","url":"https://arxiv.org/abs/2509.20786"},{"title":"LiLAW: Lightweight Learnable Adaptive Weighting to Meta-Learn Sample Difficulty, Improve Noisy Training, Increase Fairness, and Effectively Use Synthetic Data","url":"https://arxiv.org/html/2509.20786"},{"title":"LILAW: LIGHTWEIGHT LEARNABLE ADAPTIVE WEIGHTING TO META-LEARN SAMPLE DIFFICULTY","url":"https://arxiv.org/pdf/2509.20786"},{"title":"LiLAW: Lightweight Learnable Adaptive Weighting to Meta-Learn Sample Difficulty, Improve Noisy Training, Increase Fairness, and Effectively Use Synthetic Data - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250920786M/abstract"},{"title":"[2509.20786v1] LiLAW: Lightweight Learnable Adaptive Weighting to Meta-Learn Sample Difficulty and Improve Noisy Training","url":"https://arxiv.org/abs/2509.20786v1"},{"title":"(PDF) LiLAW: Lightweight Learnable Adaptive Weighting to Meta-Learn Sample Difficulty and Improve Noisy Training","url":"https://www.researchgate.net/publication/395848434_LiLAW_Lightweight_Learnable_Adaptive_Weighting_to_Meta-Learn_Sample_Difficulty_and_Improve_Noisy_Training"},{"title":"Estimating Example Difficulty using Variance of Gradients | Request PDF","url":"https://www.researchgate.net/publication/363886840_Estimating_Example_Difficulty_using_Variance_of_Gradients"},{"title":"Adaptive Task Weighting in Multi-Task Learning","url":"https://www.emergentmind.com/topics/adaptive-task-weighting-in-multi-task-learning"},{"title":"Learning with Noisy Labels through Learnable Weighting and Centroid Similarity","url":"https://arxiv.org/html/2303.09470"},{"title":"Adaptively Point-weighting Curriculum Learning","url":"https://arxiv.org/html/2505.01665"}]
+
+Based on the search results, I found comprehensive information about LiLAW. Here's what I discovered:
+
+## Overview
+
+LiLAW (Lightweight Learnable Adaptive Weighting) is a method that dynamically adjusts the loss weight of each training sample based on its evolving difficulty, categorized as easy, moderate, or hard.
+
+## Key Features
+
+Using only three learnable parameters, LiLAW adaptively prioritizes informative samples during training by updating these parameters using a single gradient descent step on a validation mini-batch after each training mini-batch. The approach introduces a simple yet powerful parametrization, using three parameters pertaining to learning easy, moderate, and hard samples (α, δ, β), which are jointly optimized with a single gradient descent step on the validation set after every training mini-batch.
+
+## Applications and Performance
+
+Experiments across multiple general and medical imaging datasets, noise levels/types, loss functions, and architectures with and without pretraining demonstrate that LiLAW's effectiveness, even in high-noise environments, without excessive tuning. With LiLAW, the method recovers noiseless top-1 accuracy when training with up to 50% noise.
+
+## Efficiency
+
+LiLAW achieves results without the need for excessive hyperparameter tuning and without increasing the time and space complexity, only adding three extra trainable parameters and requiring only one additional forward and backward pass on a single validation mini-batch after each training mini-batch.
+
+The paper was published on arXiv on September 25, 2025, and was updated on March 13, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89aacaa5-67e2-442f-80d5-13dfd497123f",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "1ec289f2-923c-4fb2-a357-86a27b52dafd",
+  "toolUseResult": {
+    "query": "LiLAW lightweight learnable adaptive weighting sample difficulty noisy training 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012TYHZbY1VWHK87jnHJGo5j",
+        "content": [
+          {
+            "title": "[2509.20786] LiLAW: Lightweight Learnable Adaptive Weighting to Meta-Learn Sample Difficulty, Improve Noisy Training, Increase Fairness, and Effectively Use Synthetic Data",
+            "url": "https://arxiv.org/abs/2509.20786"
+          },
+          {
+            "title": "LiLAW: Lightweight Learnable Adaptive Weighting to Meta-Learn Sample Difficulty, Improve Noisy Training, Increase Fairness, and Effectively Use Synthetic Data",
+            "url": "https://arxiv.org/html/2509.20786"
+          },
+          {
+            "title": "LILAW: LIGHTWEIGHT LEARNABLE ADAPTIVE WEIGHTING TO META-LEARN SAMPLE DIFFICULTY",
+            "url": "https://arxiv.org/pdf/2509.20786"
+          },
+          {
+            "title": "LiLAW: Lightweight Learnable Adaptive Weighting to Meta-Learn Sample Difficulty, Improve Noisy Training, Increase Fairness, and Effectively Use Synthetic Data - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250920786M/abstract"
+          },
+          {
+            "title": "[2509.20786v1] LiLAW: Lightweight Learnable Adaptive Weighting to Meta-Learn Sample Difficulty and Improve Noisy Training",
+            "url": "https://arxiv.org/abs/2509.20786v1"
+          },
+          {
+            "title": "(PDF) LiLAW: Lightweight Learnable Adaptive Weighting to Meta-Learn Sample Difficulty and Improve Noisy Training",
+            "url": "https://www.researchgate.net/publication/395848434_LiLAW_Lightweight_Learnable_Adaptive_Weighting_to_Meta-Learn_Sample_Difficulty_and_Improve_Noisy_Training"
+          },
+          {
+            "title": "Estimating Example Difficulty using Variance of Gradients | Request PDF",
+            "url": "https://www.researchgate.net/publication/363886840_Estimating_Example_Difficulty_using_Variance_of_Gradients"
+          },
+          {
+            "title": "Adaptive Task Weighting in Multi-Task Learning",
+            "url": "https://www.emergentmind.com/topics/adaptive-task-weighting-in-multi-task-learning"
+          },
+          {
+            "title": "Learning with Noisy Labels through Learnable Weighting and Centroid Similarity",
+            "url": "https://arxiv.org/html/2303.09470"
+          },
+          {
+            "title": "Adaptively Point-weighting Curriculum Learning",
+            "url": "https://arxiv.org/html/2505.01665"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about LiLAW. Here's what I discovered:\n\n## Overview\n\nLiLAW (Lightweight Learnable Adaptive Weighting) is a method that dynamically adjusts the loss weight of each training sample based on its evolving difficulty, categorized as easy, moderate, or hard.\n\n## Key Features\n\nUsing only three learnable parameters, LiLAW adaptively prioritizes informative samples during training by updating these parameters using a single gradient descent step on a validation mini-batch after each training mini-batch. The approach introduces a simple yet powerful parametrization, using three parameters pertaining to learning easy, moderate, and hard samples (α, δ, β), which are jointly optimized with a single gradient descent step on the validation set after every training mini-batch.\n\n## Applications and Performance\n\nExperiments across multiple general and medical imaging datasets, noise levels/types, loss functions, and architectures with and without pretraining demonstrate that LiLAW's effectiveness, even in high-noise environments, without excessive tuning. With LiLAW, the method recovers noiseless top-1 accuracy when training with up to 50% noise.\n\n## Efficiency\n\nLiLAW achieves results without the need for excessive hyperparameter tuning and without increasing the time and space complexity, only adding three extra trainable parameters and requiring only one additional forward and backward pass on a single validation mini-batch after each training mini-batch.\n\nThe paper was published on arXiv on September 25, 2025, and was updated on March 13, 2026."
+    ],
+    "durationSeconds": 6.60254561500001
+  },
+  "sourceToolAssistantUUID": "89aacaa5-67e2-442f-80d5-13dfd497123f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 122 · 2026-05-14T02:56:59.410Z_
+
+Now let me verify a few more things before forming my assessment.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ec289f2-923c-4fb2-a357-86a27b52dafd",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i8LsJHfBgUijLTtbya",
+  "type": "assistant",
+  "uuid": "0d094ab4-9700-4de1-a6aa-eb86d431bb62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WaqgsuGM756Wxtg4g2bQhc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1116,
+      "cache_read_input_tokens": 57740,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1116,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 57740,
+          "cache_creation_input_tokens": 1116,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1116
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-14T02:56:59.814Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PLYGKDNcgJdQ5cA2HdDsYV`</summary>
+
+```json
+{
+  "query": "CoRL 2026 real robot experiments required simulation only acceptance rate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d094ab4-9700-4de1-a6aa-eb86d431bb62",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i8LsJHfBgUijLTtbya",
+  "type": "assistant",
+  "uuid": "fb13bd91-3b0f-4175-98f7-15b9023304e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WaqgsuGM756Wxtg4g2bQhc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1116,
+      "cache_read_input_tokens": 57740,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1116,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 57740,
+          "cache_creation_input_tokens": 1116,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1116
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-14T02:57:03.742Z_
+
+<details><summary>↩ Tool result · `toolu_01PLYGKDNcgJdQ5cA2HdDsYV`</summary>
+
+```text
+Web search results for query: "CoRL 2026 real robot experiments required simulation only acceptance rate"
+
+Links: [{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026 - Workshops","url":"https://www.corl.org/program/workshops"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"CoRL 2024 - Instruction for Reviews","url":"https://2024.corl.org/contributions/instruction-for-reviews"},{"title":"GitHub - smallfryy/corl-2025-papers: ✨ 200+ robotics papers from CoRL 2025, with TLDRs, project pages, code, and more","url":"https://github.com/smallfryy/corl-2025-papers"},{"title":"CoRL 2026 - About CoRL","url":"https://www.corl.org/about-corl"},{"title":"CoRL 2025 - Call for Papers","url":"https://2025.corl.org/contributions/call-for-papers"},{"title":"CoRL 2024 - Call for Papers","url":"https://2024.corl.org/contributions/call-for-papers"}]
+
+Based on the search results, I found information about CoRL 2026's requirements regarding robot experiments:
+
+Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots. This means that real robot experiments are not strictly required for CoRL 2026 submissions—simulation-only work is acceptable as long as authors provide evidence that their results would transfer to real robots.
+
+However, the search results do not contain information about the acceptance rate for papers with only simulation experiments versus those with real robot experiments, nor do they provide an overall acceptance rate for CoRL 2026. To find that specific data, you would need to check the conference's official statistics once they are published after the review process is complete.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb13bd91-3b0f-4175-98f7-15b9023304e8",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "7d85019f-6daf-473f-845d-8d22dc5afe79",
+  "toolUseResult": {
+    "query": "CoRL 2026 real robot experiments required simulation only acceptance rate",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NUDTFXxMgfgH3MoRmmeoou",
+        "content": [
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "CoRL 2026 - Workshops",
+            "url": "https://www.corl.org/program/workshops"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "CoRL 2024 - Instruction for Reviews",
+            "url": "https://2024.corl.org/contributions/instruction-for-reviews"
+          },
+          {
+            "title": "GitHub - smallfryy/corl-2025-papers: ✨ 200+ robotics papers from CoRL 2025, with TLDRs, project pages, code, and more",
+            "url": "https://github.com/smallfryy/corl-2025-papers"
+          },
+          {
+            "title": "CoRL 2026 - About CoRL",
+            "url": "https://www.corl.org/about-corl"
+          },
+          {
+            "title": "CoRL 2025 - Call for Papers",
+            "url": "https://2025.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL 2024 - Call for Papers",
+            "url": "https://2024.corl.org/contributions/call-for-papers"
+          }
+        ]
+      },
+      "Based on the search results, I found information about CoRL 2026's requirements regarding robot experiments:\n\nAuthors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots. This means that real robot experiments are not strictly required for CoRL 2026 submissions—simulation-only work is acceptable as long as authors provide evidence that their results would transfer to real robots.\n\nHowever, the search results do not contain information about the acceptance rate for papers with only simulation experiments versus those with real robot experiments, nor do they provide an overall acceptance rate for CoRL 2026. To find that specific data, you would need to check the conference's official statistics once they are published after the review process is complete."
+    ],
+    "durationSeconds": 3.922066011000017
+  },
+  "sourceToolAssistantUUID": "fb13bd91-3b0f-4175-98f7-15b9023304e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-14T02:57:07.472Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01G47LdJnNWx6wWkB1aSF1nz`</summary>
+
+```json
+{
+  "url": "https://www.corl.org/contributions/call-for-papers",
+  "prompt": "Extract the full call for papers. What are the exact submission deadlines? What are the requirements for experiments? Is real robot evaluation required or can papers be simulation-only? What topics are in scope?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d85019f-6daf-473f-845d-8d22dc5afe79",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i94cXciF1YfJVpHf9d",
+  "type": "assistant",
+  "uuid": "e005ddac-3c18-4e8b-a87c-3b5a9a566324",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nm9KrWpaGjtHTzN2oBtBhH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 665,
+      "cache_read_input_tokens": 58856,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 58856,
+          "cache_creation_input_tokens": 665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-14T02:57:11.131Z_
+
+<details><summary>↩ Tool result · `toolu_01G47LdJnNWx6wWkB1aSF1nz`</summary>
+
+```text
+# CoRL 2026 Call for Papers Summary
+
+## Submission Deadlines
+The webpage does not specify exact submission deadlines. It refers readers to the "Instruction for Authors" page for "paper submission format and timeline."
+
+## Experiment Requirements
+Real robot evaluation is **not strictly required**. The guidelines state: "Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots."
+
+This means simulation-only papers are acceptable if they demonstrate potential real-world applicability.
+
+## In-Scope Topics
+CoRL 2026 welcomes research across numerous areas including:
+
+- Machine learning techniques (reinforcement learning, imitation learning, model-based/model-free approaches)
+- Robotic perception, control representations, and foundation models
+- Task planning, motion planning, and human-robot interaction
+- Specific applications (manipulation, navigation, locomotion, driving, flight)
+- Hardware design, safety, and theoretical foundations
+- Datasets, benchmarks, and world models
+
+## Key Submission Requirements
+All papers must:
+- "Focus on a core robotics problem" and demonstrate relevance to robotics
+- Include a limitations section describing "limiting assumptions, failure modes, and other limitations"
+- Consider submitting supplementary materials (video, code, data)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e005ddac-3c18-4e8b-a87c-3b5a9a566324",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "0d7afa9b-1b4f-408f-b0c2-b31300dc7a77",
+  "toolUseResult": {
+    "bytes": 134370,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CoRL 2026 Call for Papers Summary\n\n## Submission Deadlines\nThe webpage does not specify exact submission deadlines. It refers readers to the \"Instruction for Authors\" page for \"paper submission format and timeline.\"\n\n## Experiment Requirements\nReal robot evaluation is **not strictly required**. The guidelines state: \"Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots.\"\n\nThis means simulation-only papers are acceptable if they demonstrate potential real-world applicability.\n\n## In-Scope Topics\nCoRL 2026 welcomes research across numerous areas including:\n\n- Machine learning techniques (reinforcement learning, imitation learning, model-based/model-free approaches)\n- Robotic perception, control representations, and foundation models\n- Task planning, motion planning, and human-robot interaction\n- Specific applications (manipulation, navigation, locomotion, driving, flight)\n- Hardware design, safety, and theoretical foundations\n- Datasets, benchmarks, and world models\n\n## Key Submission Requirements\nAll papers must:\n- \"Focus on a core robotics problem\" and demonstrate relevance to robotics\n- Include a limitations section describing \"limiting assumptions, failure modes, and other limitations\"\n- Consider submitting supplementary materials (video, code, data)",
+    "durationMs": 3655,
+    "url": "https://www.corl.org/contributions/call-for-papers"
+  },
+  "sourceToolAssistantUUID": "e005ddac-3c18-4e8b-a87c-3b5a9a566324",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 127 · 2026-05-14T02:57:14.970Z_
+
+Good. Now I have a comprehensive picture. Let me check one final thing — the goal-conditioned BC with prioritized sampling paper from 2022 that the idea mentions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d7afa9b-1b4f-408f-b0c2-b31300dc7a77",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i9c86wsK2W3sJ72zXb",
+  "type": "assistant",
+  "uuid": "b7fba6ce-160f-4f21-bbf1-4af551771fa6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DqUj1oD1b38zHFeUrMRv3p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 419,
+      "cache_read_input_tokens": 59521,
+      "output_tokens": 172,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 419,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 172,
+          "cache_read_input_tokens": 59521,
+          "cache_creation_input_tokens": 419,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 419
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 128 · 2026-05-14T02:57:16.794Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012Ri24oYEGsr8G2yUqDsBCW`</summary>
+
+```json
+{
+  "url": "https://ieeexplore.ieee.org/document/9702233/",
+  "prompt": "Extract the abstract and key details of this paper on goal-conditioned behavioral cloning with prioritized sampling. What venue and year? What did they do? Did they use loss-based or TD-error prioritization during BC training?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7fba6ce-160f-4f21-bbf1-4af551771fa6",
+  "isSidechain": false,
+  "requestId": "req_011Cb1i9c86wsK2W3sJ72zXb",
+  "type": "assistant",
+  "uuid": "289ebadb-c932-4019-9638-b1d036a9eee1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DqUj1oD1b38zHFeUrMRv3p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 419,
+      "cache_read_input_tokens": 59521,
+      "output_tokens": 172,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 419,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 172,
+          "cache_read_input_tokens": 59521,
+          "cache_creation_input_tokens": 419,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 419
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-14T02:57:17.328Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_012Ri24oYEGsr8G2yUqDsBCW`</summary>
+
+```text
+Request failed with status code 418
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "289ebadb-c932-4019-9638-b1d036a9eee1",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "a70629a9-643e-4daa-835f-801557ac98c8",
+  "toolUseResult": "Error: Request failed with status code 418",
+  "sourceToolAssistantUUID": "289ebadb-c932-4019-9638-b1d036a9eee1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-14T02:57:23.844Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y3p8FoNTvXDwqCKbUSGA4y`</summary>
+
+```json
+{
+  "query": "\"goal-conditioned behavioral cloning with prioritized sampling\" IEEE 2022 method details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a70629a9-643e-4daa-835f-801557ac98c8",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iA4bosn88VF7krZpPn",
+  "type": "assistant",
+  "uuid": "f2f7c1e0-0a04-4bf4-86d6-75980d87f5a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRxmjaSB3WN41yGS4EQPsb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 199,
+      "cache_read_input_tokens": 59940,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 199,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 59940,
+          "cache_creation_input_tokens": 199,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 199
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-14T02:57:30.240Z_
+
+<details><summary>↩ Tool result · `toolu_01Y3p8FoNTvXDwqCKbUSGA4y`</summary>
+
+```text
+Web search results for query: ""goal-conditioned behavioral cloning with prioritized sampling" IEEE 2022 method details"
+
+Links: [{"title":"Goal-conditioned Behavioral Cloning with Prioritized Sampling | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/9702233/"},{"title":"Goal-conditioned Behavioral Cloning with Prioritized Sampling | Request PDF","url":"https://www.researchgate.net/publication/358518070_Goal-conditioned_Behavioral_Cloning_with_Prioritized_Sampling"},{"title":"Goal Conditioned Imitation Learning using Score-based Diffusion Policies","url":"https://intuitive-robots.github.io/beso-website/"},{"title":"Reliable Conditioning of Behavioral Cloning for Ofﬂine Reinforcement Learning","url":"https://arxiv.org/pdf/2210.05158"},{"title":"Goal-Conditioned Imitation Learning using Score-based ...","url":"https://www.roboticsproceedings.org/rss19/p028.pdf"},{"title":"Learning to Reach Goals via Iterated Supervised Learning Dibya Ghosh∗","url":"https://arxiv.org/pdf/1912.06088"},{"title":"Ofﬂine Goal-Conditioned Reinforcement Learning via f-Advantage Regression","url":"https://papers.neurips.cc/paper_files/paper/2022/file/022a39052abf9ca467e268923057dfc0-Paper-Conference.pdf"},{"title":"Implicit Behavioral Cloning","url":"https://proceedings.mlr.press/v164/florence22a/florence22a.pdf"},{"title":"Goal-Conditioned Reinforcement Learning: Problems and Solutions","url":"https://www.ijcai.org/proceedings/2022/0770.pdf"},{"title":"Goal-conditioned Imitation Learning","url":"https://arxiv.org/pdf/1906.05838"}]
+
+Based on the search results, I found information about the paper on "Goal-Conditioned Behavioral Cloning with Prioritized Sampling." Here are the key details:
+
+## Overview
+The method introduces an additional element goal which is the difference between last state of demonstration trajectory and current state to original framework.
+
+This work appears to be published through IEEE in 2022, as indicated in the first search result from IEEE Xplore. The paper addresses goal-conditioned imitation learning by extending behavioral cloning with a prioritization mechanism for sampling.
+
+## General Context
+The paper operates in the domain of behavioral cloning, which aims at learning a policy that mimics the behavior demonstrated by an expert. Goal-conditioning enhances this approach by allowing the learned policy to be conditioned on desired goal states.
+
+Unfortunately, the search results provided limited detailed technical information about the specific prioritized sampling methodology used in this 2022 paper. The IEEE Xplore page appears to have restricted content. To get more comprehensive details about the prioritized sampling mechanism, data augmentation strategies, experimental results, and other technical specifics of this method, you may need to:
+
+1. Access the full paper directly from IEEE Xplore at: https://ieeexplore.ieee.org/document/9702233/
+2. Check if a preprint version is available on ArXiv
+3. Contact the authors directly for additional implementation details
+
+Would you like me to search for more specific aspects of goal-conditioned behavioral cloning or prioritized sampling techniques?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f2f7c1e0-0a04-4bf4-86d6-75980d87f5a1",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "190ffae8-aaf2-446b-9160-f36e459db688",
+  "toolUseResult": {
+    "query": "\"goal-conditioned behavioral cloning with prioritized sampling\" IEEE 2022 method details",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BLnds4XLotrNEBcddgcQT2",
+        "content": [
+          {
+            "title": "Goal-conditioned Behavioral Cloning with Prioritized Sampling | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/9702233/"
+          },
+          {
+            "title": "Goal-conditioned Behavioral Cloning with Prioritized Sampling | Request PDF",
+            "url": "https://www.researchgate.net/publication/358518070_Goal-conditioned_Behavioral_Cloning_with_Prioritized_Sampling"
+          },
+          {
+            "title": "Goal Conditioned Imitation Learning using Score-based Diffusion Policies",
+            "url": "https://intuitive-robots.github.io/beso-website/"
+          },
+          {
+            "title": "Reliable Conditioning of Behavioral Cloning for Ofﬂine Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2210.05158"
+          },
+          {
+            "title": "Goal-Conditioned Imitation Learning using Score-based ...",
+            "url": "https://www.roboticsproceedings.org/rss19/p028.pdf"
+          },
+          {
+            "title": "Learning to Reach Goals via Iterated Supervised Learning Dibya Ghosh∗",
+            "url": "https://arxiv.org/pdf/1912.06088"
+          },
+          {
+            "title": "Ofﬂine Goal-Conditioned Reinforcement Learning via f-Advantage Regression",
+            "url": "https://papers.neurips.cc/paper_files/paper/2022/file/022a39052abf9ca467e268923057dfc0-Paper-Conference.pdf"
+          },
+          {
+            "title": "Implicit Behavioral Cloning",
+            "url": "https://proceedings.mlr.press/v164/florence22a/florence22a.pdf"
+          },
+          {
+            "title": "Goal-Conditioned Reinforcement Learning: Problems and Solutions",
+            "url": "https://www.ijcai.org/proceedings/2022/0770.pdf"
+          },
+          {
+            "title": "Goal-conditioned Imitation Learning",
+            "url": "https://arxiv.org/pdf/1906.05838"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper on \"Goal-Conditioned Behavioral Cloning with Prioritized Sampling.\" Here are the key details:\n\n## Overview\nThe method introduces an additional element goal which is the difference between last state of demonstration trajectory and current state to original framework.\n\nThis work appears to be published through IEEE in 2022, as indicated in the first search result from IEEE Xplore. The paper addresses goal-conditioned imitation learning by extending behavioral cloning with a prioritization mechanism for sampling.\n\n## General Context\nThe paper operates in the domain of behavioral cloning, which aims at learning a policy that mimics the behavior demonstrated by an expert. Goal-conditioning enhances this approach by allowing the learned policy to be conditioned on desired goal states.\n\nUnfortunately, the search results provided limited detailed technical information about the specific prioritized sampling methodology used in this 2022 paper. The IEEE Xplore page appears to have restricted content. To get more comprehensive details about the prioritized sampling mechanism, data augmentation strategies, experimental results, and other technical specifics of this method, you may need to:\n\n1. Access the full paper directly from IEEE Xplore at: https://ieeexplore.ieee.org/document/9702233/\n2. Check if a preprint version is available on ArXiv\n3. Contact the authors directly for additional implementation details\n\nWould you like me to search for more specific aspects of goal-conditioned behavioral cloning or prioritized sampling techniques?"
+    ],
+    "durationSeconds": 6.3924960130000255
+  },
+  "sourceToolAssistantUUID": "f2f7c1e0-0a04-4bf4-86d6-75980d87f5a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 132_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "190ffae8-aaf2-446b-9160-f36e459db688",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 133_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Tool call
+
+_source line 134 · 2026-05-14T02:57:33.263Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GHfq7k4Qi7VPs4tmEwhJ6K`</summary>
+
+```json
+{
+  "query": "VLA training data efficiency noise robustness demonstration quality 2026 CoRL ICRA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "190ffae8-aaf2-446b-9160-f36e459db688",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iB1peqP1fa2Vs8URGr",
+  "type": "assistant",
+  "uuid": "170b34d7-7235-4dfd-823b-17710c4aa3ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQZxjuFhndP3BvL5tLhNNb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 60139,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 60139,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-14T02:57:40.667Z_
+
+<details><summary>↩ Tool result · `toolu_01GHfq7k4Qi7VPs4tmEwhJ6K`</summary>
+
+```text
+Web search results for query: "VLA training data efficiency noise robustness demonstration quality 2026 CoRL ICRA"
+
+Links: [{"title":"From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop","url":"https://icra2026vlapipeline.github.io/"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"GitHub - AgibotTech/ACoT-VLA: [CVPR 2026] Official implementation of \"ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models\" · GitHub","url":"https://github.com/AgibotTech/ACoT-VLA"},{"title":"AIRoA Announces ICRA 2026 Workshop — Launching a Global Competition on VLA Pipelines and Approximately 10,000 Hours of Real-World Robot Data — | AIRoA","url":"https://www.airoa.org/updates/2026-02-10"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"2026-01-28 Work in progress.","url":"https://arxiv.org/pdf/2601.15197"},{"title":"EgoVLA: Learning Vision-Language-Action Models from Egocentric Human Videos","url":"https://arxiv.org/html/2507.12440v1"},{"title":"1 Recipe for Vision-Language-Action Models in Robotic Manipulation: A Survey","url":"https://www.techrxiv.org/users/956965/articles/1326137/master/file/data/eart2025recipevla/eart2025recipevla.pdf?inline=true"},{"title":"VLA-RFT: Vision-Language-Action Reinforcement Fine-Tuning with Verified Rewards in World Simulators | OpenReview","url":"https://openreview.net/forum?id=Jaut99EHeu"},{"title":"A Vision-Language-Action-Critic Model for Robotic Real- ...","url":"https://arxiv.org/pdf/2509.15937"}]
+
+Based on the search results, I found several relevant VLA (Vision-Language-Action) research areas related to your query about training data efficiency, noise robustness, and demonstration quality in 2026 CoRL and ICRA:
+
+## ICRA 2026 VLA Workshop
+
+"From Data to Decisions: VLA Pipelines for Real Robots" has been accepted for presentation at ICRA 2026, which will be held in Vienna, Austria, from June 1–5, 2026. The workshop allows teams to train on over 10,000 hours of data and evaluate VLA systems on real robot hardware.
+
+Most VLA pipelines lack rigorous data curation, principled training regimes, and standardized evaluation, leading to inconsistent performance and safety concerns on physical robots, with performance on real robots dictated by the underlying "data engine", highlighting the importance of scalable data collection, domain randomization, procedural synthesis, and human-in-the-loop feedback.
+
+## Research on VLA Robustness and Efficiency
+
+VLA-RFT achieves greater efficiency with fewer than 400 fine-tuning steps and exhibits strong robustness under perturbed conditions, sustaining stable task execution.
+
+ACoT-VLA shows pronounced robustness under challenging perturbations like camera-viewpoint shifts and sensor noise.
+
+These research efforts align with addressing the key challenges of data efficiency, noise robustness, and demonstration quality that are central to advancing VLA systems for real-world robotic deployment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "170b34d7-7235-4dfd-823b-17710c4aa3ad",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "54a4b3b0-3bbe-463d-ab53-fbb3879a0c2d",
+  "toolUseResult": {
+    "query": "VLA training data efficiency noise robustness demonstration quality 2026 CoRL ICRA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BbcHyM1EkpVPkH3SiH1Sm1",
+        "content": [
+          {
+            "title": "From Data to Decisions: VLA Pipelines for Real Robots - ICRA 2026 Workshop",
+            "url": "https://icra2026vlapipeline.github.io/"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "GitHub - AgibotTech/ACoT-VLA: [CVPR 2026] Official implementation of \"ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models\" · GitHub",
+            "url": "https://github.com/AgibotTech/ACoT-VLA"
+          },
+          {
+            "title": "AIRoA Announces ICRA 2026 Workshop — Launching a Global Competition on VLA Pipelines and Approximately 10,000 Hours of Real-World Robot Data — | AIRoA",
+            "url": "https://www.airoa.org/updates/2026-02-10"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          },
+          {
+            "title": "2026-01-28 Work in progress.",
+            "url": "https://arxiv.org/pdf/2601.15197"
+          },
+          {
+            "title": "EgoVLA: Learning Vision-Language-Action Models from Egocentric Human Videos",
+            "url": "https://arxiv.org/html/2507.12440v1"
+          },
+          {
+            "title": "1 Recipe for Vision-Language-Action Models in Robotic Manipulation: A Survey",
+            "url": "https://www.techrxiv.org/users/956965/articles/1326137/master/file/data/eart2025recipevla/eart2025recipevla.pdf?inline=true"
+          },
+          {
+            "title": "VLA-RFT: Vision-Language-Action Reinforcement Fine-Tuning with Verified Rewards in World Simulators | OpenReview",
+            "url": "https://openreview.net/forum?id=Jaut99EHeu"
+          },
+          {
+            "title": "A Vision-Language-Action-Critic Model for Robotic Real- ...",
+            "url": "https://arxiv.org/pdf/2509.15937"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant VLA (Vision-Language-Action) research areas related to your query about training data efficiency, noise robustness, and demonstration quality in 2026 CoRL and ICRA:\n\n## ICRA 2026 VLA Workshop\n\n\"From Data to Decisions: VLA Pipelines for Real Robots\" has been accepted for presentation at ICRA 2026, which will be held in Vienna, Austria, from June 1–5, 2026. The workshop allows teams to train on over 10,000 hours of data and evaluate VLA systems on real robot hardware.\n\nMost VLA pipelines lack rigorous data curation, principled training regimes, and standardized evaluation, leading to inconsistent performance and safety concerns on physical robots, with performance on real robots dictated by the underlying \"data engine\", highlighting the importance of scalable data collection, domain randomization, procedural synthesis, and human-in-the-loop feedback.\n\n## Research on VLA Robustness and Efficiency\n\nVLA-RFT achieves greater efficiency with fewer than 400 fine-tuning steps and exhibits strong robustness under perturbed conditions, sustaining stable task execution.\n\nACoT-VLA shows pronounced robustness under challenging perturbations like camera-viewpoint shifts and sensor noise.\n\nThese research efforts align with addressing the key challenges of data efficiency, noise robustness, and demonstration quality that are central to advancing VLA systems for real-world robotic deployment."
+    ],
+    "durationSeconds": 7.396346606000035
+  },
+  "sourceToolAssistantUUID": "170b34d7-7235-4dfd-823b-17710c4aa3ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 136 · 2026-05-14T02:57:45.127Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UtGEF1rvpG2bm5W4piDscm`</summary>
+
+```json
+{
+  "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html",
+  "prompt": "What are the key VLA papers at ICLR 2026? Specifically look for any papers about data curation, data selection, sampling strategies, or curriculum learning for VLA training. List all relevant papers."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54a4b3b0-3bbe-463d-ab53-fbb3879a0c2d",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iBnP3bK475tbHZPPPo",
+  "type": "assistant",
+  "uuid": "f8b8c583-b484-43de-8df6-175f7e989e6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ta6mkQtAss5FzagcCk2Wda",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 61053,
+      "output_tokens": 137,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 137,
+          "cache_read_input_tokens": 61053,
+          "cache_creation_input_tokens": 1075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 137 · 2026-05-14T02:57:49.822Z_
+
+<details><summary>↩ Tool result · `toolu_01UtGEF1rvpG2bm5W4piDscm`</summary>
+
+```text
+# VLA Papers on Data Curation and Training Strategies at ICLR 2026
+
+Based on the blog post, **no papers specifically focused on data curation, data selection, or sampling strategies were highlighted** among the key VLA submissions.
+
+However, the author explicitly identifies this as a critical gap:
+
+> "Despite being critical for VLA performance, surprisingly few ICLR 2026 submissions focused on data collection and curation."
+
+The post notes that data quality remains "one of the most crucial unsolved problems in VLA research," yet receives minimal attention in current submissions.
+
+## Related Papers Mentioned:
+
+While not explicitly about data strategies, these papers involve training methodology:
+
+1. **X-VLA** - Includes "very insightful scaling analysis" for cross-embodiment learning
+2. **Embodied-R1** - Introduces "Embodied-Points-200K dataset" for pointing-based reasoning
+3. **RoboCasa365** - Provides "more than 2k hours of teleop data" across 365 tasks
+
+The author emphasizes that the community needs "papers that properly ablate all pretraining design decisions" and "share full pretraining recipes," but indicates this remains largely absent from ICLR 2026 submissions focused on data methodology specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8b8c583-b484-43de-8df6-175f7e989e6e",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "ff854386-08e6-4992-addf-f786fc921b3a",
+  "toolUseResult": {
+    "bytes": 62688,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# VLA Papers on Data Curation and Training Strategies at ICLR 2026\n\nBased on the blog post, **no papers specifically focused on data curation, data selection, or sampling strategies were highlighted** among the key VLA submissions.\n\nHowever, the author explicitly identifies this as a critical gap:\n\n> \"Despite being critical for VLA performance, surprisingly few ICLR 2026 submissions focused on data collection and curation.\"\n\nThe post notes that data quality remains \"one of the most crucial unsolved problems in VLA research,\" yet receives minimal attention in current submissions.\n\n## Related Papers Mentioned:\n\nWhile not explicitly about data strategies, these papers involve training methodology:\n\n1. **X-VLA** - Includes \"very insightful scaling analysis\" for cross-embodiment learning\n2. **Embodied-R1** - Introduces \"Embodied-Points-200K dataset\" for pointing-based reasoning\n3. **RoboCasa365** - Provides \"more than 2k hours of teleop data\" across 365 tasks\n\nThe author emphasizes that the community needs \"papers that properly ablate all pretraining design decisions\" and \"share full pretraining recipes,\" but indicates this remains largely absent from ICLR 2026 submissions focused on data methodology specifically.",
+    "durationMs": 4692,
+    "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+  },
+  "sourceToolAssistantUUID": "f8b8c583-b484-43de-8df6-175f7e989e6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 138 · 2026-05-14T02:57:49.824Z_
+
+```json
+{
+  "parentUuid": "ff854386-08e6-4992-addf-f786fc921b3a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "cbc4535f-1293-4942-87a5-10edd3941413",
+  "timestamp": "2026-05-14T02:57:49.824Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 139 · 2026-05-14T02:57:55.450Z_
+
+This is very telling — even a ICLR 2026 VLA survey notes data curation is "one of the most crucial unsolved problems" with surprisingly few submissions. This partially validates the gap. But let me now consider the specific counter-evidence more carefully before writing my verdict.
+
+Let me do one more critical search — looking for whether the "Dynamic Loss-Based Sample Reweighting" (ICLR 2025) concept has been applied to robotics yet.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cbc4535f-1293-4942-87a5-10edd3941413",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iCTYFXiiTegREcjN8M",
+  "type": "assistant",
+  "uuid": "3b5476ff-7cbc-488e-be5e-e713acc42091",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GRSNoUar744iYZrSehqGYJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 538,
+      "cache_read_input_tokens": 62128,
+      "output_tokens": 178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 178,
+          "cache_read_input_tokens": 62128,
+          "cache_creation_input_tokens": 538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 140 · 2026-05-14T02:57:56.018Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q9TZv2wc1v34HkAQTgqxFC`</summary>
+
+```json
+{
+  "query": "loss-based prioritized sampling robotics imitation policy training curriculum self-paced 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b5476ff-7cbc-488e-be5e-e713acc42091",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iCTYFXiiTegREcjN8M",
+  "type": "assistant",
+  "uuid": "8b684dfe-3bfd-4fd8-a4b7-66efa74d463d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GRSNoUar744iYZrSehqGYJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 538,
+      "cache_read_input_tokens": 62128,
+      "output_tokens": 178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 178,
+          "cache_read_input_tokens": 62128,
+          "cache_creation_input_tokens": 538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 141 · 2026-05-14T02:58:04.190Z_
+
+<details><summary>↩ Tool result · `toolu_01Q9TZv2wc1v34HkAQTgqxFC`</summary>
+
+```text
+Web search results for query: "loss-based prioritized sampling robotics imitation policy training curriculum self-paced 2025 2026"
+
+Links: [{"title":"Curriculum Imitation Learning of Distributed Multi-Robot Policies","url":"https://arxiv.org/pdf/2509.25097"},{"title":"Frontiers | Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682437/full"},{"title":"INSTANT POLICY: IN-CONTEXT IMITATION LEARNING ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/5692c7dbc4abcaa50f9ce609819212e5-Paper-Conference.pdf"},{"title":"TYPE Mini Review PUBLISHED 01 December 2025 DOI 10.3389/frobt.2025.1678567","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1678567/pdf"},{"title":"REVERSE FORWARD CURRICULUM LEARNING FOR ...","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/cd062f8003e38f55dcb93df55b2683d6-Paper-Conference.pdf"},{"title":"Extended Abstract - Stanford University","url":"https://cs224r.stanford.edu/projects/pdfs/CS_224R_Project_Final_Report.pdf"},{"title":"Ch. 21 - Imitation Learning - Underactuated Robotics","url":"https://underactuated.mit.edu/imitation.html"},{"title":"Hierarchical reinforcement learning with curriculum demonstrations and goal-guided policies for sequential robotic manipulation - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0952197625008668"},{"title":"GitHub - yingchengyang/Reinforcement-Learning-Papers: Related papers for reinforcement learning, including classic papers and latest papers in top conferences · GitHub","url":"https://github.com/yingchengyang/Reinforcement-Learning-Papers"},{"title":"DATA SCALING LAWS IN IMITATION LEARNING FOR ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/88b7b2c896506daabc8d3fd587055167-Paper-Conference.pdf"}]
+
+I found several relevant research papers and articles related to your search query. Here's what the search revealed:
+
+## Recent Research in Robotics Imitation Learning
+
+**Curriculum Learning for Multi-Robot Policies (2025):**
+Curriculum Learning shows increased sample-efficiency against the non-curriculum version, effectively reducing the number training iterations required to converge. One paper has been accepted for presentation and publication at the Eight Iberian Robotics Conference, 2025.
+
+**Interactive Imitation Learning with Prioritized Sampling (2025):**
+The PIER (Prioritized Interactive Experience Replay) module prioritizes using these mixed evaluative-and-corrective demonstrations during training–allowing the novice to learn both what not to do and what to do more efficiently. This appears in a Frontiers robotics survey published in December 2025.
+
+**In-Context Imitation Learning (2025):**
+In-Context Imitation Learning can be trained using procedurally generated pseudo-demonstrations.
+
+**Forward Curriculum Learning:**
+Following PLR (Jiang et al., 2021) prioritizes resetting to initial states that are at the edge of the agent's abilities before resetting to states that are too difficult to solve from or states that are already easy to solve from.
+
+**Hierarchical Reinforcement Learning with Curriculum:**
+Combining behavior cloning, imitation learning, and reinforcement learning, researchers presented the ROMAN framework, which constructs a central manipulation network to generate correct sequential actions, thereby solving long-horizon manipulation tasks.
+
+These papers collectively demonstrate active research in loss-based prioritized sampling, curriculum learning, and self-paced training strategies for robot policy learning in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8b684dfe-3bfd-4fd8-a4b7-66efa74d463d",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "fa12fa63-db43-4371-a77b-187d9a6288ee",
+  "toolUseResult": {
+    "query": "loss-based prioritized sampling robotics imitation policy training curriculum self-paced 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HXpWkXSckmTFRjzao4h2Se",
+        "content": [
+          {
+            "title": "Curriculum Imitation Learning of Distributed Multi-Robot Policies",
+            "url": "https://arxiv.org/pdf/2509.25097"
+          },
+          {
+            "title": "Frontiers | Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682437/full"
+          },
+          {
+            "title": "INSTANT POLICY: IN-CONTEXT IMITATION LEARNING ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/5692c7dbc4abcaa50f9ce609819212e5-Paper-Conference.pdf"
+          },
+          {
+            "title": "TYPE Mini Review PUBLISHED 01 December 2025 DOI 10.3389/frobt.2025.1678567",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1678567/pdf"
+          },
+          {
+            "title": "REVERSE FORWARD CURRICULUM LEARNING FOR ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/cd062f8003e38f55dcb93df55b2683d6-Paper-Conference.pdf"
+          },
+          {
+            "title": "Extended Abstract - Stanford University",
+            "url": "https://cs224r.stanford.edu/projects/pdfs/CS_224R_Project_Final_Report.pdf"
+          },
+          {
+            "title": "Ch. 21 - Imitation Learning - Underactuated Robotics",
+            "url": "https://underactuated.mit.edu/imitation.html"
+          },
+          {
+            "title": "Hierarchical reinforcement learning with curriculum demonstrations and goal-guided policies for sequential robotic manipulation - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197625008668"
+          },
+          {
+            "title": "GitHub - yingchengyang/Reinforcement-Learning-Papers: Related papers for reinforcement learning, including classic papers and latest papers in top conferences · GitHub",
+            "url": "https://github.com/yingchengyang/Reinforcement-Learning-Papers"
+          },
+          {
+            "title": "DATA SCALING LAWS IN IMITATION LEARNING FOR ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/88b7b2c896506daabc8d3fd587055167-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "I found several relevant research papers and articles related to your search query. Here's what the search revealed:\n\n## Recent Research in Robotics Imitation Learning\n\n**Curriculum Learning for Multi-Robot Policies (2025):**\nCurriculum Learning shows increased sample-efficiency against the non-curriculum version, effectively reducing the number training iterations required to converge. One paper has been accepted for presentation and publication at the Eight Iberian Robotics Conference, 2025.\n\n**Interactive Imitation Learning with Prioritized Sampling (2025):**\nThe PIER (Prioritized Interactive Experience Replay) module prioritizes using these mixed evaluative-and-corrective demonstrations during training–allowing the novice to learn both what not to do and what to do more efficiently. This appears in a Frontiers robotics survey published in December 2025.\n\n**In-Context Imitation Learning (2025):**\nIn-Context Imitation Learning can be trained using procedurally generated pseudo-demonstrations.\n\n**Forward Curriculum Learning:**\nFollowing PLR (Jiang et al., 2021) prioritizes resetting to initial states that are at the edge of the agent's abilities before resetting to states that are too difficult to solve from or states that are already easy to solve from.\n\n**Hierarchical Reinforcement Learning with Curriculum:**\nCombining behavior cloning, imitation learning, and reinforcement learning, researchers presented the ROMAN framework, which constructs a central manipulation network to generate correct sequential actions, thereby solving long-horizon manipulation tasks.\n\nThese papers collectively demonstrate active research in loss-based prioritized sampling, curriculum learning, and self-paced training strategies for robot policy learning in 2025-2026."
+    ],
+    "durationSeconds": 8.168365675000008
+  },
+  "sourceToolAssistantUUID": "8b684dfe-3bfd-4fd8-a4b7-66efa74d463d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 142 · 2026-05-14T02:58:07.099Z_
+
+The PIER result is interesting. Let me now compile my findings and write the review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa12fa63-db43-4371-a77b-187d9a6288ee",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iDWxufCFmCS3YH1GtE",
+  "type": "assistant",
+  "uuid": "2e7fdba0-71c7-4326-9646-f7cb61f5211a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNXqRK6xcneQnDQD4Dxd3G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 62666,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1190,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 62666,
+          "cache_creation_input_tokens": 1190,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1190
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-14T02:58:07.415Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UGbC2SKqsXiTsCP85PBkjb`</summary>
+
+```json
+{
+  "query": "PIER prioritized interactive experience replay imitation learning robot 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e7fdba0-71c7-4326-9646-f7cb61f5211a",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iDWxufCFmCS3YH1GtE",
+  "type": "assistant",
+  "uuid": "1bcc58dc-af5a-46e1-a4c7-680c137d6bda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNXqRK6xcneQnDQD4Dxd3G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 62666,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1190,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 62666,
+          "cache_creation_input_tokens": 1190,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1190
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-14T02:58:14.449Z_
+
+<details><summary>↩ Tool result · `toolu_01UGbC2SKqsXiTsCP85PBkjb`</summary>
+
+```text
+Web search results for query: "PIER prioritized interactive experience replay imitation learning robot 2025"
+
+Links: [{"title":"Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12757213/"},{"title":"Frontiers | Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682437/full"},{"title":"ASkDAgger: Active Skill-level Data Aggregation","url":"https://askdagger.github.io/"},{"title":"DAGGER: Multidisciplinary Algorithms & Structures","url":"https://api.emergentmind.com/topics/dagger"},{"title":"Prioritized Experience Replay: A Comprehensive Guide for 2025 - Shadecoder - 100% Invisibile AI Coding Interview Copilot","url":"https://www.shadecoder.com/topics/prioritized-experience-replay-a-comprehensive-guide-for-2025"},{"title":"Published as a conference paper at ICLR 2025 PRIORITIZED GENERATIVE REPLAY","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/74b7956113fdf0ec87288f351a1d8a34-Paper-Conference.pdf"},{"title":"Prioritized Experience Replay · SeungBack/Robot-Learning-Study-Roadmap Wiki · GitHub","url":"https://github.com/SeungBack/Robot-Learning-Study-Roadmap/wiki/Prioritized-Experience-Replay"},{"title":"Frontiers | Solving robotics tasks with prior demonstration via exploration-efficient deep reinforcement learning","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682200/full"},{"title":"Autonomous navigation via dual-priority experience replay with adaptive hybrid weighting | Intelligent Service Robotics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11370-026-00693-7"},{"title":"Prioritized experience replay based on dynamics priority - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10933423/"}]
+
+Based on the search results, I found relevant information about PIER (Prioritized Interactive Experience Replay) in the context of robot imitation learning:
+
+## PIER: Prioritized Interactive Experience Replay
+
+PIER (Prioritized Interactive Experience Replay) prioritizes using mixed evaluative-and-corrective demonstrations during training, allowing the novice to learn both what not to do and what to do more efficiently.
+
+### Key Features
+
+PIER prioritizes replay based on novice success, uncertainty, and demonstration age. More specifically, PIER computes replay priorities using a combination of uncertainty, novelty, and label age.
+
+### Context: ASkDAgger Framework
+
+PIER was introduced as part of the **Active Skill-level Data Aggregation (ASkDAgger)** framework, published in 2025. In this framework, the human teacher can provide feedback in three ways: validation, relabeling, and annotation demonstrations, which represent a combination of evaluative and corrective feedback.
+
+The framework works alongside other components: FIER (Foresight Interactive Experience Replay) integrates validation, annotation, and relabeling feedback into the demonstration dataset.
+
+### Applications
+
+The framework has been tested on simulated language-conditioned tabletop manipulation tasks, real-world assembly setups, and was integrated with built-in primitive actions on a Spot robot to perform a sorting task.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1bcc58dc-af5a-46e1-a4c7-680c137d6bda",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "657e138e-977e-4241-8d42-48b691e6d355",
+  "toolUseResult": {
+    "query": "PIER prioritized interactive experience replay imitation learning robot 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QUrtgy2FXL353ZPpp3xSzQ",
+        "content": [
+          {
+            "title": "Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12757213/"
+          },
+          {
+            "title": "Frontiers | Interactive imitation learning for dexterous robotic manipulation: challenges and perspectives—a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682437/full"
+          },
+          {
+            "title": "ASkDAgger: Active Skill-level Data Aggregation",
+            "url": "https://askdagger.github.io/"
+          },
+          {
+            "title": "DAGGER: Multidisciplinary Algorithms & Structures",
+            "url": "https://api.emergentmind.com/topics/dagger"
+          },
+          {
+            "title": "Prioritized Experience Replay: A Comprehensive Guide for 2025 - Shadecoder - 100% Invisibile AI Coding Interview Copilot",
+            "url": "https://www.shadecoder.com/topics/prioritized-experience-replay-a-comprehensive-guide-for-2025"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 PRIORITIZED GENERATIVE REPLAY",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/74b7956113fdf0ec87288f351a1d8a34-Paper-Conference.pdf"
+          },
+          {
+            "title": "Prioritized Experience Replay · SeungBack/Robot-Learning-Study-Roadmap Wiki · GitHub",
+            "url": "https://github.com/SeungBack/Robot-Learning-Study-Roadmap/wiki/Prioritized-Experience-Replay"
+          },
+          {
+            "title": "Frontiers | Solving robotics tasks with prior demonstration via exploration-efficient deep reinforcement learning",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1682200/full"
+          },
+          {
+            "title": "Autonomous navigation via dual-priority experience replay with adaptive hybrid weighting | Intelligent Service Robotics | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11370-026-00693-7"
+          },
+          {
+            "title": "Prioritized experience replay based on dynamics priority - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10933423/"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about PIER (Prioritized Interactive Experience Replay) in the context of robot imitation learning:\n\n## PIER: Prioritized Interactive Experience Replay\n\nPIER (Prioritized Interactive Experience Replay) prioritizes using mixed evaluative-and-corrective demonstrations during training, allowing the novice to learn both what not to do and what to do more efficiently.\n\n### Key Features\n\nPIER prioritizes replay based on novice success, uncertainty, and demonstration age. More specifically, PIER computes replay priorities using a combination of uncertainty, novelty, and label age.\n\n### Context: ASkDAgger Framework\n\nPIER was introduced as part of the **Active Skill-level Data Aggregation (ASkDAgger)** framework, published in 2025. In this framework, the human teacher can provide feedback in three ways: validation, relabeling, and annotation demonstrations, which represent a combination of evaluative and corrective feedback.\n\nThe framework works alongside other components: FIER (Foresight Interactive Experience Replay) integrates validation, annotation, and relabeling feedback into the demonstration dataset.\n\n### Applications\n\nThe framework has been tested on simulated language-conditioned tabletop manipulation tasks, real-world assembly setups, and was integrated with built-in primitive actions on a Spot robot to perform a sorting task."
+    ],
+    "durationSeconds": 7.025298689000017
+  },
+  "sourceToolAssistantUUID": "1bcc58dc-af5a-46e1-a4c7-680c137d6bda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 145_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "657e138e-977e-4241-8d42-48b691e6d355",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 146_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 147 · 2026-05-14T02:58:17.693Z_
+
+Now I have enough information to form a comprehensive assessment. Let me synthesize all my findings.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "657e138e-977e-4241-8d42-48b691e6d355",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iEGxZw99jqjqDCc2rL",
+  "type": "assistant",
+  "uuid": "45ec411c-37a7-4eed-b951-398f88c9e442",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GrW4DSFs5vxFE8o92SrFTb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1002,
+      "cache_read_input_tokens": 63856,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1002,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 63856,
+          "cache_creation_input_tokens": 1002,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1002
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 148 · 2026-05-14T02:58:18.498Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BsvE7BGoQuiQFkCzAQwRDt`</summary>
+
+```json
+{
+  "query": "OpenVLA-OFT fine-tuning speed success RSS 2025 LIBERO benchmark results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45ec411c-37a7-4eed-b951-398f88c9e442",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iEGxZw99jqjqDCc2rL",
+  "type": "assistant",
+  "uuid": "7bef9439-3e87-44d6-a182-d6849406f431",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GrW4DSFs5vxFE8o92SrFTb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1002,
+      "cache_read_input_tokens": 63856,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1002,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 63856,
+          "cache_creation_input_tokens": 1002,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1002
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 149 · 2026-05-14T02:58:25.934Z_
+
+<details><summary>↩ Tool result · `toolu_01BsvE7BGoQuiQFkCzAQwRDt`</summary>
+
+```text
+Web search results for query: "OpenVLA-OFT fine-tuning speed success RSS 2025 LIBERO benchmark results"
+
+Links: [{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://openvla-oft.github.io/"},{"title":"[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/abs/2502.19645"},{"title":"GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub","url":"https://github.com/moojink/openvla-oft"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success | alphaXiv","url":"https://www.alphaxiv.org/overview/2502.19645"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/html/2502.19645v1"},{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf/bf4411a9941dccca2977e464f53188af2a03a6d3.pdf"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"moojink/openvla-7b-oft-finetuned-libero-10 · Hugging Face","url":"https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-10"},{"title":"GitHub - CHELabUB/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/CHELabUB/openvla"}]
+
+Based on the search results, here are the key findings about OpenVLA-OFT fine-tuning speed and success on the LIBERO benchmark:
+
+## LIBERO Benchmark Results
+
+OpenVLA-OFT achieves state-of-the-art results in LIBERO with a 97.1% average success rate across 4 task suites, outperforming π0, MDT, Seer, DiT Policy, Octo, and Diffusion Policy.
+
+The fine-tuning approach significantly boosts OpenVLA's average success rate across four task suites from 76.5% to 97.1% while increasing action generation throughput by 26×.
+
+## Speed and Efficiency Improvements
+
+The method achieved 26× speedup, reaching 109.7 Hz with 8-step action chunks while maintaining low latency of 0.0729 seconds per action chunk.
+
+Parallel decoding with action chunking alone contributed a 14% absolute improvement in success rate, while continuous action representations added another 5% improvement.
+
+## Fine-Tuning Recipe
+
+The Optimized Fine-Tuning (OFT) recipe integrates parallel decoding, action chunking, a continuous action representation, and a simple L1 regression-based learning objective to improve inference efficiency, policy performance, and flexibility in the model's input-output specifications.
+
+## Real-World Performance
+
+In real-world evaluations on a bimanual ALOHA robot, the fine-tuning recipe enables OpenVLA to successfully execute dexterous, high-frequency control tasks and outperform other VLAs (π0 and RDT-1B) by up to 15% (absolute) in average success rate.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7bef9439-3e87-44d6-a182-d6849406f431",
+  "isSidechain": false,
+  "promptId": "b5fca642-86b0-46fb-ae27-6227a5670515",
+  "type": "user",
+  "uuid": "f2c48154-3069-42ca-aab9-5fcfdff8971f",
+  "toolUseResult": {
+    "query": "OpenVLA-OFT fine-tuning speed success RSS 2025 LIBERO benchmark results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014N9QtYLs8y55NBAKUjYZqn",
+        "content": [
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/abs/2502.19645"
+          },
+          {
+            "title": "GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub",
+            "url": "https://github.com/moojink/openvla-oft"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2502.19645"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/html/2502.19645v1"
+          },
+          {
+            "title": "000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019",
+            "url": "https://openreview.net/pdf/bf4411a9941dccca2977e464f53188af2a03a6d3.pdf"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/openvla/openvla"
+          },
+          {
+            "title": "moojink/openvla-7b-oft-finetuned-libero-10 · Hugging Face",
+            "url": "https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-10"
+          },
+          {
+            "title": "GitHub - CHELabUB/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/CHELabUB/openvla"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings about OpenVLA-OFT fine-tuning speed and success on the LIBERO benchmark:\n\n## LIBERO Benchmark Results\n\nOpenVLA-OFT achieves state-of-the-art results in LIBERO with a 97.1% average success rate across 4 task suites, outperforming π0, MDT, Seer, DiT Policy, Octo, and Diffusion Policy.\n\nThe fine-tuning approach significantly boosts OpenVLA's average success rate across four task suites from 76.5% to 97.1% while increasing action generation throughput by 26×.\n\n## Speed and Efficiency Improvements\n\nThe method achieved 26× speedup, reaching 109.7 Hz with 8-step action chunks while maintaining low latency of 0.0729 seconds per action chunk.\n\nParallel decoding with action chunking alone contributed a 14% absolute improvement in success rate, while continuous action representations added another 5% improvement.\n\n## Fine-Tuning Recipe\n\nThe Optimized Fine-Tuning (OFT) recipe integrates parallel decoding, action chunking, a continuous action representation, and a simple L1 regression-based learning objective to improve inference efficiency, policy performance, and flexibility in the model's input-output specifications.\n\n## Real-World Performance\n\nIn real-world evaluations on a bimanual ALOHA robot, the fine-tuning recipe enables OpenVLA to successfully execute dexterous, high-frequency control tasks and outperform other VLAs (π0 and RDT-1B) by up to 15% (absolute) in average success rate."
+    ],
+    "durationSeconds": 7.430969947999925
+  },
+  "sourceToolAssistantUUID": "7bef9439-3e87-44d6-a182-d6849406f431",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 150 · 2026-05-14T02:58:28.707Z_
+
+Now I have comprehensive evidence. Let me write the review verdict.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2c48154-3069-42ca-aab9-5fcfdff8971f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iF7uPNXYhayTBiEBqm",
+  "type": "assistant",
+  "uuid": "d80ae7cd-b8dd-48a0-b3f7-52a38261cc33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6enPjq4D5NVhy5vnPmSg8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1072,
+      "cache_read_input_tokens": 64858,
+      "output_tokens": 4312,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1072,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4312,
+          "cache_read_input_tokens": 64858,
+          "cache_creation_input_tokens": 1072,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1072
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 151 · 2026-05-14T02:59:29.219Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now synthesize all findings and form my review:
+
+## Summary of Key Findings
+
+### Venue Validity
+- CoRL 2026: Abstract deadline May 26, paper deadline May 29 — confirmed. The idea states May 25/28, which is slightly off (should be May 26/29). Minor issue.
+
+### Reference Verification
+- RIPT-VLA: Exists, May 2025, arXiv:2505.17016 ✓
+- ALOE: Exists, Feb 2026, arXiv:2602.12691 ✓
+- ExpReS-VLA: Exists, Nov 2025, arXiv:2511.06202 ✓
+
+
+- SCIZOR: Exists, ICRA 2026 ✓
+- CUPID: Exists, CoRL 2025 ✓
+- Demo-SCORE: Exists, RSS 2025 ✓
+- PLD: Exists, ICLR 2026 ✓
+- DataMIL: Exists, 2025 ✓
+- PER (Schaul 2015/2016): Exists ✓
+- "Prioritized Replay for RL Post-training": Exists, Jan 2026 ✓
+- GR-RL: Exists but appears to not be a data collection method as claimed — it's actually a dexterous manipulation framework that includes demonstration filtering as one component, though the idea incorrectly lists it as a curation method.
+- RINSE: Couldn't verify — mentioned in passing but no specific paper found for demonstration curation.
+- QoQ: Exists (Quality over Quantity), March 2026 ✓
+- DemInf: Exists as part of the mutual information estimators paper ✓
+
+Now looking at the gap validity issues. There's a critical problem: "On Data Redundancy in VLA Training" from 2026 directly tests difficulty-based sampling against random sampling on LIBERO with SmolVLA and GR00T N1.5, and the results show random sampling actually outperforms difficulty-based sampling, which directly contradicts the premise that difficulty-based approaches like TSS are beneficial.
+
+Beyond that, there are several other papers that already tackle similar ideas — Dynamic Loss-Based Sample Reweighting from ICLR 2025 does loss-based dynamic reweighting during LLM pretraining, which is conceptually very similar to what PDR proposes. There's also work on action-chunked PPO that uses dynamically updated demonstration buffers during training, and a recent paper on balanced behavior cloning from imbalanced datasets that specifically studies reweighting during BC training for robotics. HAPO also uses adaptive reweighting approaches.
+
+Looking at the novelty claims more carefully, the genuine contributions seem to be the specific application of prioritized experience replay to VLA behavioral cloning pre-training, combining loss-based priorities with TD-error from an auxiliary value head, and implementing it as a drop-in DistributedSampler. But dynamic loss-based reweighting during training and priority-based sampling for imitation learning aren't new concepts — they've been explored in other domains already.
+
+The core algorithmic piece is essentially a direct application of Schaul et al.'s 2016 PER work with minimal adaptation, so the novelty is fairly incremental. That said, there's a critical empirical concern: prior work on data redundancy in VLA training suggests that difficulty-based sampling might actually hurt performance, which poses a serious threat to whether this approach will work in practice.
+
+I'm also noticing the framing around existing methods being "one-shot static" is a bit of an oversimplification—methods like Demo-SCORE already iterate through train-rollout-classify cycles, and others like DataMIL and CUPID incorporate policy-aware selection mechanisms. The timeline is also extremely tight with only 17 days to the abstract deadline, making it challenging to run comprehensive experiments across LIBERO's four suites, SimplerEnv, and real robot tasks. The resource estimates seem plausible, though the auto research timeline constraints are tight.
+
+Looking at the broader impact, the core contribution feels thin—it's essentially applying a well-established RL technique (prioritized experience replay) to VLA training. The "On Data Redundancy" paper's finding that VLAs benefit from diversity rather than difficulty prioritization directly undermines the approach's premise. Even if it works, improvements would likely be incremental given the rapid progress in static curation methods. CoRL is a reasonable venue for this work, but the lack of real-robot validation would be a significant weakness, and reviewers will scrutinize novelty carefully given how crowded the data curation space has become.
+
+The novelty score is low because prioritized sampling for behavior cloning already exists in prior work, dynamic loss-based reweighting is established in LLM training, and the technical components like the TD-error head and sum-tree implementation are borrowed or standard. Feasibility is also problematic—the empirical evidence from "On Data Redundancy" suggests difficulty-based sampling actually hurts performance on LIBERO, and the timeline is extremely tight. The chicken-and-egg problem framing oversimplifies things since iterative methods like Demo-SCORE already address this. The writing is clear and the approach well-specified, though the evaluation plan cuts off mid-description.
+
+Even if the method works, the contribution feels incremental given the crowded landscape of concurrent work. The "On Data Redundancy" paper presents a direct challenge to the core hypothesis, though it tested a different difficulty measure and static selection rather than dynamic during-training selection, so there's still a narrow possibility this approach could work differently. But the fundamental novelty problem persists—the core ideas are well-established, and the marginal contribution would be small relative to existing methods.
+
+Given this is round 1 of 10, I should go with "revise" and provide specific feedback: the empirical counter-evidence from the redundancy paper is concerning, the novelty is thin (straightforward PER transfer), the framing of static methods as strawmen needs addressing, and the work needs to clearly differentiate itself from Dynamic Loss-Based Sample Reweighting and explain why loss-based prioritization would behave differently from difficulty-based coreset selection.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d80ae7cd-b8dd-48a0-b3f7-52a38261cc33",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iF7uPNXYhayTBiEBqm",
+  "type": "assistant",
+  "uuid": "690ae245-51bd-484c-a33d-7efe56061627",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6enPjq4D5NVhy5vnPmSg8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1072,
+      "cache_read_input_tokens": 64858,
+      "output_tokens": 4312,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1072,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4312,
+          "cache_read_input_tokens": 64858,
+          "cache_creation_input_tokens": 1072,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1072
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 152 · 2026-05-14T03:00:10.438Z_
+
+I've now completed extensive research. Let me synthesize my findings into a verdict.
+
+**Key findings from my independent research:**
+
+1. **Critical counter-evidence discovered**: "On Data Redundancy in VLA Training" (2026) directly tests difficulty-based vs. random sampling on LIBERO with SmolVLA and GR00T — **random sampling outperforms difficulty-based sampling** (60.5% vs 56.25% for SmolVLA). This challenges PDR's core hypothesis.
+
+2. **Thin novelty**: "Dynamic Loss-Based Sample Reweighting" (ICLR 2025) already does loss-based dynamic reweighting during training for LLMs. Goal-conditioned BC with Prioritized Sampling (IEEE 2022) already applied PER to BC. PIER/ASkDAgger (2025) uses prioritized replay in interactive imitation learning. The landscape is extremely dense.
+
+3. **Strawman framing**: The claim that "all existing methods do one-shot static filtering" is an oversimplification — Demo-SCORE does iterative train→rollout→classify→re-filter, DataMIL uses the policy itself for selection, and CUPID captures the policy's influence perspective.
+
+4. **Venue deadlines slightly off**: CoRL 2026 abstract is May 26 (not May 25), paper is May 29 (not May 28).
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 2, "rationale": "Straightforward transfer of PER (Schaul 2016) to VLA BC with minimal algorithmic innovation. Dynamic Loss-Based Sample Reweighting (ICLR 2025) already does loss-based dynamic reweighting during training for LLMs. Goal-conditioned BC with Prioritized Sampling (IEEE 2022) already applied PER to BC. The TD-error auxiliary head is borrowed from ALOE. The extremely dense concurrent landscape (SCIZOR, CUPID, Demo-SCORE, DataMIL, QoQ, FT-NCFM, PIER) further erodes novelty."},
+    "feasibility": {"score": 2, "rationale": "'On Data Redundancy in VLA Training' (2026) directly shows difficulty-based sampling underperforms random sampling on LIBERO with SmolVLA and GR00T — the exact benchmark PDR targets. This provides empirical counter-evidence against the core hypothesis. The 17-day timeline to abstract deadline is extremely tight for implementing sum-tree sampler, running LIBERO (4 suites) + SimplerEnv + real-robot Franka experiments."},
+    "clarity": {"score": 4, "rationale": "The approach is well-specified with clear algorithmic details (sum-tree, alpha/beta annealing, importance-sampling correction). Evaluation plan is comprehensive with specific benchmarks and data efficiency metrics. The framing of the gap is overstated but the technical description is precise."},
+    "impact": {"score": 2, "rationale": "Even if PDR works despite the counter-evidence, the contribution is incremental — applying a well-known 2016 technique to a new domain. The dense landscape of 6+ concurrent data curation methods (SCIZOR, CUPID, Demo-SCORE, DataMIL, QoQ, FT-NCFM) means marginal contribution would be small. The ICLR 2026 VLA survey notes data curation is understudied, but the specific approach lacks the theoretical depth or empirical novelty to stand out."}
+  },
+  "issues": [
+    "CRITICAL: 'On Data Redundancy in VLA Training' (2026) empirically demonstrates that difficulty-based sampling (Temporal Surprise Score) underperforms random sampling on LIBERO for both SmolVLA (56.25% vs 60.50%) and GR00T (74.00% vs 81.33%). While TSS differs from loss-based prioritization, this provides strong counter-evidence that prioritizing 'hard' examples may hurt VLA training by reducing diversity.",
+    "CRITICAL: The core algorithm (loss-proportional sampling with importance-sampling correction and beta annealing) is a direct application of PER (Schaul 2016) with no meaningful modification. 'Dynamic Loss-Based Sample Reweighting' (ICLR 2025) already proves this works for LLM pretraining with theoretical convergence analysis — PDR would need to demonstrate why VLA BC is fundamentally different.",
+    "The 'chicken-and-egg' framing is a strawman. Demo-SCORE (RSS 2025) already does iterative curation via train→rollout→classify→re-filter cycles. DataMIL uses the policy itself for end-to-end data selection. CUPID uses influence functions that capture policy-level effects. These are NOT simple one-shot static filters.",
+    "RINSE is cited as a curation method but could not be independently verified as a published paper. GR-RL is primarily a dexterous manipulation framework, not a data curation method (though it includes a filtering stage).",
+    "CoRL 2026 deadlines are May 26 (abstract) and May 29 (paper), not May 25/28 as stated.",
+    "The theoretical contribution is thin: PER's theory is well-established, and applying it to L1/MSE action prediction loss rather than TD error is a trivial adaptation. The auxiliary value head with ALOE-style Q-chunking is borrowed wholesale from ALOE.",
+    "The paper risks negative results: if loss-based prioritization suffers from the same diversity-reducing effect as difficulty-based selection (as suggested by the 'On Data Redundancy' paper), the approach may consistently underperform uniform sampling across benchmarks.",
+    "'Towards Balanced Behavior Cloning from Imbalanced Datasets' (Autonomous Robots, Jan 2026) already studies reweighting during BC training for robotics, addressing a closely related problem with meta-gradient rebalancing — PDR needs to position against this work."
+  ],
+  "feedback": "This idea needs fundamental rethinking, not just polishing. Three major actions required:\n\n1. **Address the diversity-vs-difficulty tradeoff head-on.** The 'On Data Redundancy in VLA Training' paper is your biggest threat. You MUST either (a) provide theoretical argument for why loss-based prioritization preserves diversity better than difficulty-based coreset selection, or (b) incorporate a diversity-preservation mechanism (e.g., hybrid priority = loss_priority × diversity_bonus) as a core contribution rather than vanilla PER transfer. Without this, reviewers familiar with the redundancy paper will immediately reject.\n\n2. **Substantially differentiate from Dynamic Loss-Based Sample Reweighting (ICLR 2025).** That paper already does instance-level, loss-based, dynamic reweighting during pretraining with theoretical convergence analysis. Your contribution cannot be 'we did the same thing but for VLA BC' — you need a VLA-specific insight (e.g., action-chunk-level vs token-level priorities behave fundamentally differently, or multi-modal observation-action pairs require different priority functions than text tokens).\n\n3. **Reframe the landscape honestly.** Drop the strawman that all existing methods are 'one-shot static.' Instead, position PDR against Demo-SCORE's iterative curation and DataMIL's policy-driven selection. The real contribution should be: PDR achieves dynamic curation WITHOUT requiring environment rollouts (unlike Demo-SCORE) and WITHOUT requiring multiple retraining rounds (unlike DataMIL). This is a genuine advantage but requires honest framing.\n\n4. **Consider a narrower, deeper contribution.** Instead of 'PER for VLA BC' (thin novelty), consider: (a) a theoretical analysis of WHEN loss-based prioritization helps vs hurts in BC (connecting to the diversity finding), (b) a novel priority function specifically designed for action-chunked VLA training (not just borrowed from PER or ALOE), or (c) an empirical study showing that the relationship between priority function choice and task complexity/data quality reveals insights not predicted by standard PER theory.\n\n5. **Missing related work to add:** 'Towards Balanced Behavior Cloning from Imbalanced Datasets' (Autonomous Robots 2026), 'On Data Redundancy in VLA Training' (2026), FT-NCFM (2025), LiLAW (2025), Freshness-Aware PER (April 2026), PIER/ASkDAgger (2025).",
+  "reason": "Core hypothesis (prioritizing hard demonstrations improves VLA BC) is directly challenged by empirical evidence, algorithmic novelty is thin (straightforward PER transfer), and the landscape framing mischaracterizes existing iterative methods as 'one-shot static.'"
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "690ae245-51bd-484c-a33d-7efe56061627",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iF7uPNXYhayTBiEBqm",
+  "type": "assistant",
+  "uuid": "70090394-bb7d-4531-a832-910821238762",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6enPjq4D5NVhy5vnPmSg8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1072,
+      "cache_read_input_tokens": 64858,
+      "output_tokens": 4312,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1072,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4312,
+          "cache_read_input_tokens": 64858,
+          "cache_creation_input_tokens": 1072,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1072
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 153_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "70090394-bb7d-4531-a832-910821238762",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 154_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 155_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "70090394-bb7d-4531-a832-910821238762",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 156_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of Prioritized Demonstration Replay for VLA Training",
+  "sessionId": "2d3282c2-47b7-4fcd-82c0-437d1470bad6"
+}
+```
+
+---

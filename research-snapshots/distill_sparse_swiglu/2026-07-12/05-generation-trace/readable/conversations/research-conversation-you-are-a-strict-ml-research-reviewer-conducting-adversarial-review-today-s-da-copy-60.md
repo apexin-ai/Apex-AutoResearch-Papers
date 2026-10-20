@@ -1,0 +1,10249 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-14 (UTC).** Your job: indep
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 144
+- **Recorded user turns:** 1
+- **Tool calls:** 44
+- **Original source:** `logs/chats/exported-trajectories/account-2/b93efa79-1a4e-4341-b5d9-c1d2967ed9c7.jsonl`
+- **Structured JSON:** [`615e07aab7b2b5e7f019.json`](../../sessions/61/615e07aab7b2b5e7f019.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T03:26:13.920Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T03:26:13.920Z",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-14 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).\nDirection：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-14?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 3/10)\n{\n  \"title\": \"Advantage-Decomposed Transition Scoring for Demonstration Curation via Dense Reward Models\",\n  \"core_problem\": \"Existing demonstration curation methods operate in a single quality dimension — trajectory-level influence (CUPID, DataMIL, QoQ), scalar mutual information (DemInf), binary progress (GR-RL), or kinematic smoothness (RINSE) — and cannot distinguish whether a poor transition stems from being in a fundamentally bad state versus taking a bad action at an otherwise good state. Training-time advantage-weighted methods (AWR, AWAC, MARWIL, VACO) implicitly perform soft curation by reweighting gradient updates with exponentiated advantage, but (a) they couple the curation criterion to the training objective, so any downstream learner (VLA, Diffusion Policy, ACT) must re-derive the weighting, (b) they produce a single scalar weight per transition without separating state quality from action quality, and (c) they do not produce a reusable curated dataset. This conflation is consequential for imitation learning specifically: in demonstrations collected by heterogeneous operators, transitions at irrecoverable states (low V) where the operator's action happens to be locally 'best-possible' (moderate-to-high A) will receive high weight under A-only scoring but are harmful training signal — they teach behavior at states the policy should never reach. Conversely, mediocre actions at high-value states (high V, moderate A) may receive similar A-only weight to genuinely good transitions, diluting the signal. No current pre-training curation method makes the V×A distinction, because all collapse transition quality into a single scalar.\",\n  \"opportunity\": \"Three developments converge to make two-dimensional, advantage-based pre-training curation both feasible and timely: (1) Pretrained dense reward models (Robometer, RSS 2026; RoboReward, Jan 2026) now provide frame-level reward signals validated across diverse embodiments, eliminating the sparse-reward degeneracy that would make naive IQL-based value decomposition encode only temporal position. Robometer's LIBERO-specific checkpoint provides calibrated rewards on the primary evaluation benchmark. (2) The theoretical machinery for causal advantage decomposition exists ('Skill or Luck?', ICLR 2024) but has never been applied to demonstration curation — it establishes that advantage captures the causal effect of the action on returns, which is precisely the decomposition needed for state-vs-action quality separation. (3) Training-time advantage-weighting methods (AWR, AWAC, MARWIL, VACO) have validated that advantage is a powerful curation signal, but remain coupled to specific training objectives and do not produce reusable curated datasets. The gap between training-time advantage weighting and pre-training 2D V×A dataset curation is the precise differentiator — and dense reward models make it realizable without requiring online interaction.\",\n  \"landscape\": \"The demonstration curation landscape has grown rapidly through 2025-2026, which we organize by mechanism and distinguish from training-time weighting: (A) Pre-training curation methods (directly competing): (A1) Influence-function methods: CUPID (CoRL 2025) estimates each demonstration's causal effect on policy return at trajectory level. QoQ (arXiv Mar 2026) uses per-sample influence with maximum-influence aggregation. (A2) Policy-driven selection: DataMIL (May 2025) trains datamodels to predict policy-level data influence across 60+ tasks including Open X-Embodiment. (A3) Statistical methods: DemInf (RSS 2025) scores trajectories by contribution to state-action mutual information via k-NN on VAE embeddings. (A4) Self-supervised methods: SCIZOR (ICRA 2026) uses temporal distance for progress prediction. Demo-SCORE (RSS 2025) trains success/failure classifiers from online rollouts. (A5) Smoothness heuristics: RINSE (ICML 2025) uses kinematic smoothness metrics (SAL, TED). (A6) Per-transition reweighting: PTR (Mar 2026) uses posterior-transition scoring via consequence encoding — reward-free and per-transition, but single-scalar weight. (B) Training-time advantage/value weighting (related but not directly competing — these modify optimization, not datasets): (B1) AWR (Peng et al. 2019) and MARWIL (Wang et al. 2018) weight BC updates by exponentiated advantage exp(A/τ). AWAC (Nair et al. 2020) extends AWR to offline-to-online settings. AW-Opt (Lu et al. 2022) scales advantage-weighted learning to real robots. (B2) VACO (ICLR 2025) uses a meta-scoring network driven by value estimation to weight each BC training sample via bi-level optimization — the most closely related training-time method. (B3) IDRL (ICLR 2025) iteratively removes zero-weight suboptimal transitions using learned visitation distribution ratios. (B4) ARFM (AAAI 2026) adaptively scales advantage signals in VLA flow matching loss; ReinboT (ICML 2025) predicts dense returns during VLA training. (C) Value-based assessment (complementary): GR-RL (Dec 2025) uses Q-values from sparse-reward offline RL as binary progress filters. 'Expert or not?' (ICLR 2026) uses Bellman-Wasserstein Distance for dataset-level quality assessment. V-GPS (CoRL 2024) uses offline RL value functions to re-rank action proposals at deployment time. (D) Reward models (infrastructure, not competing): Robometer (RSS 2026) provides dense frame-level rewards from a pretrained VLM trained on RBM-1M (1M+ trajectories), with validated LIBERO checkpoint. RoboReward (Jan 2026) provides alternative VLM-based dense rewards with RoboMimic-informed design. Key gap: All pre-training curation methods (A) produce single-scalar scores. All training-time methods (B) couple advantage weighting to specific training objectives. No method produces a reusable, 2D V×A-curated dataset that any downstream learner can consume.\",\n  \"approach\": \"We propose Advantage-Decomposed Transition Scoring (ADTS), a pre-training curation pipeline that separates state quality from action quality to produce a reusable curated dataset consumable by any downstream policy learner. Stage 1 — Dense Reward Annotation: Apply the pretrained Robometer-LIBERO checkpoint to annotate every transition with dense frame-level reward. This replaces sparse binary rewards and is critical: dense rewards ensure the downstream value decomposition captures task-relevant quality rather than mere temporal position. Stage 2 — Advantage Decomposition: Train IQL (Kostrikov et al. 2022) on the dense-reward-annotated data to jointly learn Q(s,a) and V(s) via expectile regression. Compute per-transition advantage A(s,a) = Q(s,a) - V(s). This yields a two-dimensional V×A scoring space. Stage 3 — Quadrant-Aware Curation: Apply a smooth bivariate weighting function w(V,A) that implements quadrant-aware filtering: (i) high-V/high-A: fully weighted — good states with good actions; (ii) high-V/low-A: downweighted — operator errors at recoverable states, where the state shows this is a reachable good configuration but the action is suboptimal; (iii) low-V/high-A: conditionally preserved via a tunable temperature — these are potential hard examples (best-effort actions in difficult states) but also potential traps (locally 'optimal' actions in irrecoverable states); (iv) low-V/low-A: pruned — poor states with poor actions. Key differentiation from A-only weighting (AWR-style exp(A/τ)): A-only weighting cannot distinguish quadrant (iii) from quadrant (i), because both have high A. But for imitation learning, transitions in irrecoverable states (V≈0) with moderate A are harmful — they teach behavior at states the policy should never reach. Concrete constructed example: consider a tabletop manipulation task where the robot has knocked the object off the table. The state is irrecoverable (V≈0), but the robot's subsequent 'reaching' action may score moderate-to-high A because all actions at that state yield similar low returns (making the chosen action appear relatively optimal). A-only weighting preserves these transitions; V×A curation correctly identifies them as low-V and can prune or downweight them. We will verify this type of scenario exists empirically in LIBERO demonstrations with injected noise. Semantic Validation Protocol (mandatory before downstream training): (a) Verify V(s) correlates with human-annotated state quality (Spearman ρ > 0.6) on 50 annotated transitions per task; (b) Verify A(s,a) correlates with action quality annotations; (c) Measure V-A Pearson correlation; (d) If |r| > 0.5 (degeneracy), report this transparently and evaluate whether the V dimension still contributes via ablation. Fallback: if V and A are highly correlated across all tasks, ADTS gracefully degrades to approximately 1D scoring, and the contribution becomes the diagnostic framework for detecting when 2D curation adds value. Theoretical Contribution: We prove that under a dense reward model with bounded approximation error ε, there exist demonstration distributions (specifically, distributions with mixed failure modes combining irrecoverable-state transitions and operator-error transitions) where A-only curation via any monotone f(A) threshold provably selects a suboptimal training subset, while V×A quadrant-aware curation preserves the optimal subset. This is NOT the trivial claim that '2D contains more information than 1D' — it identifies the specific distributional structure (mixed failure modes with asymmetric V-A relationships) under which the V dimension is decision-relevant. Downstream Evaluation: Fine-tune OpenVLA-OFT (the current LIBERO SOTA at 97.1%) via LoRA on LIBERO (4 suites: Spatial, Object, Goal, Long) using ADTS-curated data at multiple curation ratios (100%, 75%, 50%, 33%). Compare against: (1) CUPID, (2) DemInf, (3) PTR, (4) RINSE, (5) A-only weighting baseline (exp(A/τ) using our dense-reward IQL, directly testing V's contribution), and (6) random subsampling. Additionally, compare conceptually against VACO by including VACO as a training-time baseline to show that pre-training curation achieves comparable or better results while being policy-agnostic. Ablations: (a) V-only vs A-only vs V×A curation; (b) dense reward (Robometer) vs sparse reward IQL; (c) weighting function temperature sensitivity; (d) empirical V-A correlation analysis across LIBERO suites.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200h A100 (Robometer-LIBERO inference ~1h across 4 suites, IQL training ~3h/suite × 4, OpenVLA-OFT LoRA fine-tuning ~8h/suite × 4 suites × 7 methods, semantic validation, ablations)\",\n      \"gpu_utilization\": \"~35-40% effective; idle during analysis, annotation review, and writing\",\n      \"timeline\": \"12-15 days (targeting CoRL 2026 paper deadline May 29)\",\n      \"team\": \"1-2 researchers with existing codebase familiarity\",\n      \"estimated_gpu_cost\": \"$300 (at ~$1.50/hr)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~300h A100 (IQL expectile sweeps, weighting temperature search, all baseline runs parallelized)\",\n      \"gpu_utilization\": \"~60-70%; agent manages Robometer annotation → IQL → curation → VLA fine-tuning pipeline; idle during human semantic validation review\",\n      \"timeline\": \"10-12 days with 2 concurrent A100s\",\n      \"team\": \"1 researcher, ~1h/day for semantic validation review, quadrant analysis, and writing\",\n      \"claude_api_cost\": \"$100-200 (~1500-2500 Opus turns)\",\n      \"estimated_gpu_cost\": \"$450 (at ~$1.50/hr)\",\n      \"risk_note\": \"Primary risk is V-A correlation degeneracy — must validate within first 3 days. If |r| > 0.5 across all suites, pivot to diagnostic contribution framing.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~500h A100 (full ablation grid, all baselines, multiple curation ratios, sensitivity analysis)\",\n      \"gpu_utilization\": \"~80-85%; parallel runs across LIBERO suites\",\n      \"timeline\": \"7-10 days with 4 concurrent A100s\",\n      \"team\": \"0 (initial specification + final review + semantic validation only)\",\n      \"claude_api_cost\": \"$200-400 (~3000-5000 Opus turns)\",\n      \"estimated_gpu_cost\": \"$750 (at ~$1.50/hr)\",\n      \"speed_bottleneck\": \"GPU count and OpenVLA-OFT fine-tuning time per configuration\",\n      \"risk_note\": \"Agent may need human judgment for semantic validation of V/A decomposition quality; theoretical proof requires human verification\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract deadline May 26, paper deadline May 29 — 12-15 days, feasible with LIBERO-focused scope and reduced baseline set)\",\n    \"ICLR 2027 (expected deadline ~Sep-Oct 2026 — fallback with expanded scope: add RoboMimic via RoboReward, full 9 baseline comparison, complementarity with ARFM)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)\",\n    \"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (May 2025)\",\n    \"Robot Data Curation with Mutual Information Estimators / DemInf (RSS 2025)\",\n    \"Demo-SCORE: Curating Demonstrations using Online Experience (RSS 2025)\",\n    \"Conservative Offline Robot Policy Learning via Posterior-Transition Reweighting / PTR (arXiv Mar 2026)\",\n    \"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons (RSS 2026)\",\n    \"RoboReward: General-Purpose Vision-Language Reward Models for Robotics (Jan 2026)\",\n    \"Advantage-Weighted Regression: Simple and Scalable Off-Policy RL / AWR (Peng et al. 2019)\",\n    \"AWAC: Accelerating Online RL with Offline Datasets (Nair et al. 2020)\",\n    \"Exponentially Weighted Imitation Learning for Batched Historical Data / MARWIL (Wang et al. NeurIPS 2018)\",\n    \"AW-Opt: Learning Robotic Skills with Imitation and Reinforcement at Scale (Lu et al. 2022)\",\n    \"Value-Aligned Behavior Cloning for Offline RL via Bi-level Optimization / VACO (ICLR 2025)\",\n    \"An Optimal Discriminator Weighted Imitation Perspective for RL / IDRL (ICLR 2025)\",\n    \"Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance / V-GPS (CoRL 2024)\",\n    \"Adaptive Reinforced Flow Matching / ARFM (AAAI 2026)\",\n    \"ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning (ICML 2025)\",\n    \"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation (arXiv Dec 2025)\",\n    \"Learning from the Best: Smoothness-Driven Metrics for Data Quality / RINSE (ICML 2025)\",\n    \"SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026)\",\n    \"Quality over Quantity: Demonstration Curation via Influence Functions / QoQ (arXiv Mar 2026)\",\n    \"Expert or not? Assessing Data Quality in Offline RL (ICLR 2026)\",\n    \"Skill or Luck? Return Decomposition via Advantage Functions (ICLR 2024)\",\n    \"Offline Reinforcement Learning with Implicit Q-Learning (ICLR 2022)\",\n    \"OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024)\",\n    \"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success / OpenVLA-OFT (Feb 2025)\",\n    \"Dueling Network Architectures for Deep Reinforcement Learning (ICML 2016)\"\n  ],\n  \"description\": \"We propose Advantage-Decomposed Transition Scoring (ADTS), a pre-training demonstration curation method that uniquely separates state quality (V) from action quality (A) at each transition, producing a reusable curated dataset consumable by any downstream policy learner. Existing pre-training curation methods (CUPID, DataMIL, DemInf, PTR, RINSE, QoQ) produce single-scalar quality scores, while training-time advantage-weighting methods (AWR, AWAC, MARWIL, VACO) couple their curation signal to specific training objectives and cannot produce reusable datasets. All collapse two fundamentally different failure modes: being in a bad state versus taking a bad action at a good state. ADTS resolves this by: (1) annotating demonstrations with dense frame-level rewards from the pretrained Robometer-LIBERO checkpoint, eliminating sparse-reward degeneracy; (2) training IQL on the dense-reward-annotated data to jointly learn V(s) and Q(s,a); (3) computing per-transition advantage A(s,a) = Q(s,a) - V(s) to construct a 2D V×A scoring space; (4) applying quadrant-aware continuous weighting that differentiates operator errors at good states (high-V, low-A) from best-effort actions at difficult states (low-V, high-A) — a distinction impossible with any scalar method including A-only weighting (AWR-style exp(A/τ)). We provide a concrete theoretical result: under mixed failure modes (irrecoverable-state transitions + operator-error transitions), A-only curation provably selects a suboptimal subset because it cannot distinguish irrecoverable states (low V, moderate A from indifference) from genuinely challenging states (low V, high A from skillful recovery). A mandatory semantic validation protocol verifies V-A non-degeneracy and semantic meaningfulness before downstream use, with a transparent fallback if V and A are highly correlated. We evaluate on LIBERO (4 suites) fine-tuning OpenVLA-OFT with ADTS-curated data against 6 baselines (CUPID, DemInf, PTR, RINSE, A-only weighting, random) plus conceptual comparison with VACO, targeting CoRL 2026. All components have open-source implementations: Robometer (LIBERO checkpoint on HuggingFace), IQL, and OpenVLA-OFT.\",\n  \"project_name\": \"adv_decomp_demo_curation\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"Missing critical baselines: CUPID (CoRL 2025, influence-function curation accepted at the same venue), DataMIL (May 2025, policy-driven data selection on Open X-Embodiment), DemInf/RSS 2025 (mutual-information demo curation). These are direct competitors that must be compared against.\", \"Core assumption unvalidated: IQL with sparse binary task-completion reward may not learn meaningful V(s) vs A(s,a) decomposition — it may simply encode temporal position in the trajectory. With sparse rewards, both V(s) and Q(s,a) primarily encode 'how close to success' rather than genuine state quality vs action quality. The generator provides no theoretical or empirical evidence that the quadrant analysis produces semantically meaningful clusters.\", \"Quadrant independence assumption is fragile: V(s) and A(s,a) are likely highly correlated in practice — at low-V states (far from success), all actions tend to have near-zero advantage because the Q-values are uniformly low. The clean four-quadrant separation may degenerate into a noisy 1D ranking similar to GR-RL.\", \"Crowded competitive landscape: With CUPID at CoRL 2025, RINSE at ICML 2025, SCIZOR at ICRA 2026, QoQ on arXiv, DataMIL and DemInf at RSS 2025, the demo curation space has at least 6 strong recent methods. CoRL 2026 reviewers will likely be familiar with CUPID (same venue). The marginal novelty of '2D advantage scoring' must be clearly justified against all these.\", \"ARFM (AAAI 2026) and ReinboT use advantage/return-to-go signals in VLA training — while not for curation specifically, reviewers may question how different this approach is from advantage-weighted training losses.\", \"Timeline is dangerously tight: ~12 days to CoRL abstract, ~14 days to paper. Even in auto research mode (10-14 days estimated), this leaves zero margin for the IQL semantic validation issue or for writing. The risk of a rushed, under-validated submission is high.\", \"Open X-Embodiment IQL training is a significant unstated engineering challenge — heterogeneous embodiments, observation spaces, and action spaces make learning a unified Q/V function difficult without substantial architecture design.\", \"Resource estimates are reasonable but the GPU cost may be underestimated: the $600 manual estimate assumes efficient runs, but debugging IQL on heterogeneous data and validating advantage semantics across 6 tasks could easily double the GPU hours.\"]\nFeedback: The core idea of advantage-decomposed curation has merit but needs significant strengthening to reach CoRL-acceptance quality. Specific recommendations:\n\n1. **Address the semantic validity problem head-on**: Before any VLA fine-tuning experiments, validate that IQL's V(s) and A(s,a) are semantically meaningful on at least 2 tasks. Show visualizations of V(s) landscapes and A(s,a) distributions, demonstrate they correlate with human judgment of state quality vs action quality, not just trajectory position. Consider using dense reward shaping or hindsight relabeling instead of sparse binary reward to improve value function quality.\n\n2. **Add missing baselines**: CUPID (CoRL 2025) is the most critical omission — it was accepted at CoRL and uses influence functions at the transition level. DataMIL and DemInf must also be included. Without these, reviewers will reject for incomplete comparison.\n\n3. **Strengthen the theoretical contribution**: The current approach is 'apply IQL, decompose, threshold by quadrant.' To elevate from engineering to research, provide theoretical analysis: (a) When does advantage decomposition provably outperform scalar Q-value filtering? (b) Under what conditions on the demonstration distribution does the four-quadrant analysis recover the optimal data subset? The 'Skill or Luck?' paper (ICLR 2024) provides relevant theoretical machinery for advantage decomposition that could be adapted.\n\n4. **Reduce scope to improve depth**: Drop Open X-Embodiment (too heterogeneous for IQL) and focus on RoboMimic + LIBERO where IQL has better chances of learning meaningful values. Use the freed GPU budget for deeper ablations on the quadrant weighting scheme and V/A semantic validation.\n\n5. **Consider denser reward alternatives**: If sparse reward IQL fails to produce meaningful decompositions, consider using a pretrained reward model (like the process reward models in recent VLA-RL work) or self-supervised temporal distance as the reward signal for IQL training.\n\n6. **Realistic timeline assessment**: Given the issues above, targeting ICLR 2027 (Sep-Oct 2026 deadline) instead of CoRL 2026 would allow proper validation of the core assumption and more thorough experiments. A rushed CoRL submission risks rejection on grounds of insufficient analysis.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"VENUE MISMATCH: User requires CoRL 2026 (abstract deadline May 26, 17 days away), but the idea targets ICLR 2027/CoRL 2027/ICRA 2027. This directly violates the user's stated requirement. If the idea cannot be ready for CoRL 2026, the generator must either (a) propose a reduced-scope version feasible in 17 days, or (b) explicitly acknowledge the mismatch and justify the timeline shift.\", \"MISSING CRITICAL PRIOR ART — AWR FAMILY: Advantage Weighted Regression (Peng et al. 2019), AWAC (Nair et al. 2020), AW-Opt (Lu et al. 2022), and MARWIL (Wang et al. 2018) all weight behavioral cloning by exponentiated advantage — functionally performing advantage-based implicit data curation during training. These are not cited or discussed. While they operate at training time rather than pre-training curation, CoRL reviewers will immediately ask how ADTS differs from simply running AWR with dense rewards.\", \"MISSING CRITICAL PRIOR ART — VACO (ICLR 2025): 'Value-aligned Behavior Cloning for Offline RL via Bi-level Optimization' uses a meta-scoring network driven by value estimation to weight each BC training sample. This is the most direct competitor: it uses value functions to assess data quality for behavior cloning. Must be cited, compared against, and differentiated.\", \"MISSING PRIOR ART — IDRL (2025): 'An Optimal Discriminator Weighted Imitation Perspective for RL' iteratively removes zero-weight suboptimal transitions using learned visitation ratios. While methodologically distinct (distribution ratios vs. V/A decomposition), it directly addresses transition-level filtering for offline learning and should be discussed.\", \"ROBOMETER-ROBOMIMIC GENERALIZATION RISK: Robometer has a dedicated LIBERO checkpoint and general checkpoint, but RoboMimic is completely absent from Robometer's evaluations (not mentioned in paper, project page, or model card). ADTS proposes experiments on both LIBERO and RoboMimic, but the dense reward backbone is unvalidated on RoboMimic. If Robometer provides poor frame-level rewards on RoboMimic tasks, the IQL value decomposition becomes meaningless on half the evaluation suite.\", \"2D VS 1D ADVANTAGE: The theoretical proof shows 2D curation is 'strictly finer' than scalar scoring, but this is trivially true by construction (any 2D space contains more information than its projections). The real question is practical: does w(V,A) meaningfully outperform f(A)? A-only weighting (AWR-style exp(A/λ)) already achieves the four quadrant behaviors ADTS claims: high-A transitions get high weight regardless of V (preserving hard examples), low-A transitions get low weight (downweighting operator errors). The generator must provide concrete examples or theoretical scenarios where f(A) fails but w(V,A) succeeds.\", \"V-A CORRELATION DEGENERACY: In typical demonstration datasets, V and A may be highly correlated because operators tend to execute good actions at good states (standard demonstrations) or struggle at hard states (where both V and A are low). The semantic validation protocol checks |r| < 0.5, but what if this threshold is not met? The paper needs a fallback strategy — either demonstrating that dense Robometer rewards produce low V-A correlation, or showing graceful degradation when the dimensions are correlated.\"]\nFeedback: The idea has improved substantially from Round 1 — the dense reward integration via Robometer elegantly addresses the sparse-reward criticism, and the semantic validation protocol shows methodological rigor. However, three specific changes are needed:\n\n1. **Address the venue mismatch immediately**: The user wants CoRL 2026 (17 days). Either (a) propose a minimal viable version for CoRL 2026 (e.g., LIBERO-only evaluation using the existing Robometer checkpoint, 3-4 baselines instead of 9, and the theoretical proof — this is feasible in 17 days if the code pipeline is ready), or (b) explicitly acknowledge the mismatch and present a compelling case for why ICLR 2027 is worth the delay.\n\n2. **Add AWR/VACO/IDRL to the landscape and differentiation**: These are the most dangerous omissions. Frame the contribution precisely: 'AWR and VACO weight training samples by advantage or value — ADTS instead curates data pre-training using a 2D V×A scoring space derived from dense reward models. This decouples the curation criterion from the training objective, enabling any downstream policy learner (not just weighted BC) to benefit.' This framing is stronger and more defensible.\n\n3. **Strengthen the 2D vs 1D argument**: The theoretical proof needs a concrete, non-trivial example. Construct a synthetic demonstration distribution where A-only weighting provably selects the wrong subset: e.g., a bimodal distribution where some transitions have high A but V≈0 (actions that are locally 'optimal' but in irrecoverable states — these should be pruned, but A-only weighting preserves them). If such examples exist naturally in RoboMimic/LIBERO data, show them empirically.\n\n4. **Reduce RoboMimic risk**: Either (a) validate Robometer's general checkpoint on RoboMimic tasks BEFORE committing to full experiments (a 2-3 day pilot), or (b) use RoboReward (Jan 2026, open-source) as a backup dense reward source for RoboMimic, or (c) drop RoboMimic and go deeper on LIBERO where Robometer is validated.\n\n5. **Missing competitor to cite**: V-GPS (CoRL 2024) uses offline-RL value functions to re-rank action proposals at deployment. While not for curation, it shares the 'value functions for action quality assessment in robot manipulation' spirit and CoRL reviewers may know it.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T03:26:13.925Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T03:26:13.925Z",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+## Round 1
+
+142 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T03:26:13.957Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-14 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).
+Direction：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-14?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 3/10)
+{
+  "title": "Advantage-Decomposed Transition Scoring for Demonstration Curation via Dense Reward Models",
+  "core_problem": "Existing demonstration curation methods operate in a single quality dimension — trajectory-level influence (CUPID, DataMIL, QoQ), scalar mutual information (DemInf), binary progress (GR-RL), or kinematic smoothness (RINSE) — and cannot distinguish whether a poor transition stems from being in a fundamentally bad state versus taking a bad action at an otherwise good state. Training-time advantage-weighted methods (AWR, AWAC, MARWIL, VACO) implicitly perform soft curation by reweighting gradient updates with exponentiated advantage, but (a) they couple the curation criterion to the training objective, so any downstream learner (VLA, Diffusion Policy, ACT) must re-derive the weighting, (b) they produce a single scalar weight per transition without separating state quality from action quality, and (c) they do not produce a reusable curated dataset. This conflation is consequential for imitation learning specifically: in demonstrations collected by heterogeneous operators, transitions at irrecoverable states (low V) where the operator's action happens to be locally 'best-possible' (moderate-to-high A) will receive high weight under A-only scoring but are harmful training signal — they teach behavior at states the policy should never reach. Conversely, mediocre actions at high-value states (high V, moderate A) may receive similar A-only weight to genuinely good transitions, diluting the signal. No current pre-training curation method makes the V×A distinction, because all collapse transition quality into a single scalar.",
+  "opportunity": "Three developments converge to make two-dimensional, advantage-based pre-training curation both feasible and timely: (1) Pretrained dense reward models (Robometer, RSS 2026; RoboReward, Jan 2026) now provide frame-level reward signals validated across diverse embodiments, eliminating the sparse-reward degeneracy that would make naive IQL-based value decomposition encode only temporal position. Robometer's LIBERO-specific checkpoint provides calibrated rewards on the primary evaluation benchmark. (2) The theoretical machinery for causal advantage decomposition exists ('Skill or Luck?', ICLR 2024) but has never been applied to demonstration curation — it establishes that advantage captures the causal effect of the action on returns, which is precisely the decomposition needed for state-vs-action quality separation. (3) Training-time advantage-weighting methods (AWR, AWAC, MARWIL, VACO) have validated that advantage is a powerful curation signal, but remain coupled to specific training objectives and do not produce reusable curated datasets. The gap between training-time advantage weighting and pre-training 2D V×A dataset curation is the precise differentiator — and dense reward models make it realizable without requiring online interaction.",
+  "landscape": "The demonstration curation landscape has grown rapidly through 2025-2026, which we organize by mechanism and distinguish from training-time weighting: (A) Pre-training curation methods (directly competing): (A1) Influence-function methods: CUPID (CoRL 2025) estimates each demonstration's causal effect on policy return at trajectory level. QoQ (arXiv Mar 2026) uses per-sample influence with maximum-influence aggregation. (A2) Policy-driven selection: DataMIL (May 2025) trains datamodels to predict policy-level data influence across 60+ tasks including Open X-Embodiment. (A3) Statistical methods: DemInf (RSS 2025) scores trajectories by contribution to state-action mutual information via k-NN on VAE embeddings. (A4) Self-supervised methods: SCIZOR (ICRA 2026) uses temporal distance for progress prediction. Demo-SCORE (RSS 2025) trains success/failure classifiers from online rollouts. (A5) Smoothness heuristics: RINSE (ICML 2025) uses kinematic smoothness metrics (SAL, TED). (A6) Per-transition reweighting: PTR (Mar 2026) uses posterior-transition scoring via consequence encoding — reward-free and per-transition, but single-scalar weight. (B) Training-time advantage/value weighting (related but not directly competing — these modify optimization, not datasets): (B1) AWR (Peng et al. 2019) and MARWIL (Wang et al. 2018) weight BC updates by exponentiated advantage exp(A/τ). AWAC (Nair et al. 2020) extends AWR to offline-to-online settings. AW-Opt (Lu et al. 2022) scales advantage-weighted learning to real robots. (B2) VACO (ICLR 2025) uses a meta-scoring network driven by value estimation to weight each BC training sample via bi-level optimization — the most closely related training-time method. (B3) IDRL (ICLR 2025) iteratively removes zero-weight suboptimal transitions using learned visitation distribution ratios. (B4) ARFM (AAAI 2026) adaptively scales advantage signals in VLA flow matching loss; ReinboT (ICML 2025) predicts dense returns during VLA training. (C) Value-based assessment (complementary): GR-RL (Dec 2025) uses Q-values from sparse-reward offline RL as binary progress filters. 'Expert or not?' (ICLR 2026) uses Bellman-Wasserstein Distance for dataset-level quality assessment. V-GPS (CoRL 2024) uses offline RL value functions to re-rank action proposals at deployment time. (D) Reward models (infrastructure, not competing): Robometer (RSS 2026) provides dense frame-level rewards from a pretrained VLM trained on RBM-1M (1M+ trajectories), with validated LIBERO checkpoint. RoboReward (Jan 2026) provides alternative VLM-based dense rewards with RoboMimic-informed design. Key gap: All pre-training curation methods (A) produce single-scalar scores. All training-time methods (B) couple advantage weighting to specific training objectives. No method produces a reusable, 2D V×A-curated dataset that any downstream learner can consume.",
+  "approach": "We propose Advantage-Decomposed Transition Scoring (ADTS), a pre-training curation pipeline that separates state quality from action quality to produce a reusable curated dataset consumable by any downstream policy learner. Stage 1 — Dense Reward Annotation: Apply the pretrained Robometer-LIBERO checkpoint to annotate every transition with dense frame-level reward. This replaces sparse binary rewards and is critical: dense rewards ensure the downstream value decomposition captures task-relevant quality rather than mere temporal position. Stage 2 — Advantage Decomposition: Train IQL (Kostrikov et al. 2022) on the dense-reward-annotated data to jointly learn Q(s,a) and V(s) via expectile regression. Compute per-transition advantage A(s,a) = Q(s,a) - V(s). This yields a two-dimensional V×A scoring space. Stage 3 — Quadrant-Aware Curation: Apply a smooth bivariate weighting function w(V,A) that implements quadrant-aware filtering: (i) high-V/high-A: fully weighted — good states with good actions; (ii) high-V/low-A: downweighted — operator errors at recoverable states, where the state shows this is a reachable good configuration but the action is suboptimal; (iii) low-V/high-A: conditionally preserved via a tunable temperature — these are potential hard examples (best-effort actions in difficult states) but also potential traps (locally 'optimal' actions in irrecoverable states); (iv) low-V/low-A: pruned — poor states with poor actions. Key differentiation from A-only weighting (AWR-style exp(A/τ)): A-only weighting cannot distinguish quadrant (iii) from quadrant (i), because both have high A. But for imitation learning, transitions in irrecoverable states (V≈0) with moderate A are harmful — they teach behavior at states the policy should never reach. Concrete constructed example: consider a tabletop manipulation task where the robot has knocked the object off the table. The state is irrecoverable (V≈0), but the robot's subsequent 'reaching' action may score moderate-to-high A because all actions at that state yield similar low returns (making the chosen action appear relatively optimal). A-only weighting preserves these transitions; V×A curation correctly identifies them as low-V and can prune or downweight them. We will verify this type of scenario exists empirically in LIBERO demonstrations with injected noise. Semantic Validation Protocol (mandatory before downstream training): (a) Verify V(s) correlates with human-annotated state quality (Spearman ρ > 0.6) on 50 annotated transitions per task; (b) Verify A(s,a) correlates with action quality annotations; (c) Measure V-A Pearson correlation; (d) If |r| > 0.5 (degeneracy), report this transparently and evaluate whether the V dimension still contributes via ablation. Fallback: if V and A are highly correlated across all tasks, ADTS gracefully degrades to approximately 1D scoring, and the contribution becomes the diagnostic framework for detecting when 2D curation adds value. Theoretical Contribution: We prove that under a dense reward model with bounded approximation error ε, there exist demonstration distributions (specifically, distributions with mixed failure modes combining irrecoverable-state transitions and operator-error transitions) where A-only curation via any monotone f(A) threshold provably selects a suboptimal training subset, while V×A quadrant-aware curation preserves the optimal subset. This is NOT the trivial claim that '2D contains more information than 1D' — it identifies the specific distributional structure (mixed failure modes with asymmetric V-A relationships) under which the V dimension is decision-relevant. Downstream Evaluation: Fine-tune OpenVLA-OFT (the current LIBERO SOTA at 97.1%) via LoRA on LIBERO (4 suites: Spatial, Object, Goal, Long) using ADTS-curated data at multiple curation ratios (100%, 75%, 50%, 33%). Compare against: (1) CUPID, (2) DemInf, (3) PTR, (4) RINSE, (5) A-only weighting baseline (exp(A/τ) using our dense-reward IQL, directly testing V's contribution), and (6) random subsampling. Additionally, compare conceptually against VACO by including VACO as a training-time baseline to show that pre-training curation achieves comparable or better results while being policy-agnostic. Ablations: (a) V-only vs A-only vs V×A curation; (b) dense reward (Robometer) vs sparse reward IQL; (c) weighting function temperature sensitivity; (d) empirical V-A correlation analysis across LIBERO suites.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h A100 (Robometer-LIBERO inference ~1h across 4 suites, IQL training ~3h/suite × 4, OpenVLA-OFT LoRA fine-tuning ~8h/suite × 4 suites × 7 methods, semantic validation, ablations)",
+      "gpu_utilization": "~35-40% effective; idle during analysis, annotation review, and writing",
+      "timeline": "12-15 days (targeting CoRL 2026 paper deadline May 29)",
+      "team": "1-2 researchers with existing codebase familiarity",
+      "estimated_gpu_cost": "$300 (at ~$1.50/hr)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~300h A100 (IQL expectile sweeps, weighting temperature search, all baseline runs parallelized)",
+      "gpu_utilization": "~60-70%; agent manages Robometer annotation → IQL → curation → VLA fine-tuning pipeline; idle during human semantic validation review",
+      "timeline": "10-12 days with 2 concurrent A100s",
+      "team": "1 researcher, ~1h/day for semantic validation review, quadrant analysis, and writing",
+      "claude_api_cost": "$100-200 (~1500-2500 Opus turns)",
+      "estimated_gpu_cost": "$450 (at ~$1.50/hr)",
+      "risk_note": "Primary risk is V-A correlation degeneracy — must validate within first 3 days. If |r| > 0.5 across all suites, pivot to diagnostic contribution framing."
+    },
+    "auto_research": {
+      "gpu_hours": "~500h A100 (full ablation grid, all baselines, multiple curation ratios, sensitivity analysis)",
+      "gpu_utilization": "~80-85%; parallel runs across LIBERO suites",
+      "timeline": "7-10 days with 4 concurrent A100s",
+      "team": "0 (initial specification + final review + semantic validation only)",
+      "claude_api_cost": "$200-400 (~3000-5000 Opus turns)",
+      "estimated_gpu_cost": "$750 (at ~$1.50/hr)",
+      "speed_bottleneck": "GPU count and OpenVLA-OFT fine-tuning time per configuration",
+      "risk_note": "Agent may need human judgment for semantic validation of V/A decomposition quality; theoretical proof requires human verification"
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (abstract deadline May 26, paper deadline May 29 — 12-15 days, feasible with LIBERO-focused scope and reduced baseline set)",
+    "ICLR 2027 (expected deadline ~Sep-Oct 2026 — fallback with expanded scope: add RoboMimic via RoboReward, full 9 baseline comparison, complementarity with ARFM)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)",
+    "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (May 2025)",
+    "Robot Data Curation with Mutual Information Estimators / DemInf (RSS 2025)",
+    "Demo-SCORE: Curating Demonstrations using Online Experience (RSS 2025)",
+    "Conservative Offline Robot Policy Learning via Posterior-Transition Reweighting / PTR (arXiv Mar 2026)",
+    "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons (RSS 2026)",
+    "RoboReward: General-Purpose Vision-Language Reward Models for Robotics (Jan 2026)",
+    "Advantage-Weighted Regression: Simple and Scalable Off-Policy RL / AWR (Peng et al. 2019)",
+    "AWAC: Accelerating Online RL with Offline Datasets (Nair et al. 2020)",
+    "Exponentially Weighted Imitation Learning for Batched Historical Data / MARWIL (Wang et al. NeurIPS 2018)",
+    "AW-Opt: Learning Robotic Skills with Imitation and Reinforcement at Scale (Lu et al. 2022)",
+    "Value-Aligned Behavior Cloning for Offline RL via Bi-level Optimization / VACO (ICLR 2025)",
+    "An Optimal Discriminator Weighted Imitation Perspective for RL / IDRL (ICLR 2025)",
+    "Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance / V-GPS (CoRL 2024)",
+    "Adaptive Reinforced Flow Matching / ARFM (AAAI 2026)",
+    "ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning (ICML 2025)",
+    "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation (arXiv Dec 2025)",
+    "Learning from the Best: Smoothness-Driven Metrics for Data Quality / RINSE (ICML 2025)",
+    "SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026)",
+    "Quality over Quantity: Demonstration Curation via Influence Functions / QoQ (arXiv Mar 2026)",
+    "Expert or not? Assessing Data Quality in Offline RL (ICLR 2026)",
+    "Skill or Luck? Return Decomposition via Advantage Functions (ICLR 2024)",
+    "Offline Reinforcement Learning with Implicit Q-Learning (ICLR 2022)",
+    "OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024)",
+    "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success / OpenVLA-OFT (Feb 2025)",
+    "Dueling Network Architectures for Deep Reinforcement Learning (ICML 2016)"
+  ],
+  "description": "We propose Advantage-Decomposed Transition Scoring (ADTS), a pre-training demonstration curation method that uniquely separates state quality (V) from action quality (A) at each transition, producing a reusable curated dataset consumable by any downstream policy learner. Existing pre-training curation methods (CUPID, DataMIL, DemInf, PTR, RINSE, QoQ) produce single-scalar quality scores, while training-time advantage-weighting methods (AWR, AWAC, MARWIL, VACO) couple their curation signal to specific training objectives and cannot produce reusable datasets. All collapse two fundamentally different failure modes: being in a bad state versus taking a bad action at a good state. ADTS resolves this by: (1) annotating demonstrations with dense frame-level rewards from the pretrained Robometer-LIBERO checkpoint, eliminating sparse-reward degeneracy; (2) training IQL on the dense-reward-annotated data to jointly learn V(s) and Q(s,a); (3) computing per-transition advantage A(s,a) = Q(s,a) - V(s) to construct a 2D V×A scoring space; (4) applying quadrant-aware continuous weighting that differentiates operator errors at good states (high-V, low-A) from best-effort actions at difficult states (low-V, high-A) — a distinction impossible with any scalar method including A-only weighting (AWR-style exp(A/τ)). We provide a concrete theoretical result: under mixed failure modes (irrecoverable-state transitions + operator-error transitions), A-only curation provably selects a suboptimal subset because it cannot distinguish irrecoverable states (low V, moderate A from indifference) from genuinely challenging states (low V, high A from skillful recovery). A mandatory semantic validation protocol verifies V-A non-degeneracy and semantic meaningfulness before downstream use, with a transparent fallback if V and A are highly correlated. We evaluate on LIBERO (4 suites) fine-tuning OpenVLA-OFT with ADTS-curated data against 6 baselines (CUPID, DemInf, PTR, RINSE, A-only weighting, random) plus conceptual comparison with VACO, targeting CoRL 2026. All components have open-source implementations: Robometer (LIBERO checkpoint on HuggingFace), IQL, and OpenVLA-OFT.",
+  "project_name": "adv_decomp_demo_curation",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["Missing critical baselines: CUPID (CoRL 2025, influence-function curation accepted at the same venue), DataMIL (May 2025, policy-driven data selection on Open X-Embodiment), DemInf/RSS 2025 (mutual-information demo curation). These are direct competitors that must be compared against.", "Core assumption unvalidated: IQL with sparse binary task-completion reward may not learn meaningful V(s) vs A(s,a) decomposition — it may simply encode temporal position in the trajectory. With sparse rewards, both V(s) and Q(s,a) primarily encode 'how close to success' rather than genuine state quality vs action quality. The generator provides no theoretical or empirical evidence that the quadrant analysis produces semantically meaningful clusters.", "Quadrant independence assumption is fragile: V(s) and A(s,a) are likely highly correlated in practice — at low-V states (far from success), all actions tend to have near-zero advantage because the Q-values are uniformly low. The clean four-quadrant separation may degenerate into a noisy 1D ranking similar to GR-RL.", "Crowded competitive landscape: With CUPID at CoRL 2025, RINSE at ICML 2025, SCIZOR at ICRA 2026, QoQ on arXiv, DataMIL and DemInf at RSS 2025, the demo curation space has at least 6 strong recent methods. CoRL 2026 reviewers will likely be familiar with CUPID (same venue). The marginal novelty of '2D advantage scoring' must be clearly justified against all these.", "ARFM (AAAI 2026) and ReinboT use advantage/return-to-go signals in VLA training — while not for curation specifically, reviewers may question how different this approach is from advantage-weighted training losses.", "Timeline is dangerously tight: ~12 days to CoRL abstract, ~14 days to paper. Even in auto research mode (10-14 days estimated), this leaves zero margin for the IQL semantic validation issue or for writing. The risk of a rushed, under-validated submission is high.", "Open X-Embodiment IQL training is a significant unstated engineering challenge — heterogeneous embodiments, observation spaces, and action spaces make learning a unified Q/V function difficult without substantial architecture design.", "Resource estimates are reasonable but the GPU cost may be underestimated: the $600 manual estimate assumes efficient runs, but debugging IQL on heterogeneous data and validating advantage semantics across 6 tasks could easily double the GPU hours."]
+Feedback: The core idea of advantage-decomposed curation has merit but needs significant strengthening to reach CoRL-acceptance quality. Specific recommendations:
+
+1. **Address the semantic validity problem head-on**: Before any VLA fine-tuning experiments, validate that IQL's V(s) and A(s,a) are semantically meaningful on at least 2 tasks. Show visualizations of V(s) landscapes and A(s,a) distributions, demonstrate they correlate with human judgment of state quality vs action quality, not just trajectory position. Consider using dense reward shaping or hindsight relabeling instead of sparse binary reward to improve value function quality.
+
+2. **Add missing baselines**: CUPID (CoRL 2025) is the most critical omission — it was accepted at CoRL and uses influence functions at the transition level. DataMIL and DemInf must also be included. Without these, reviewers will reject for incomplete comparison.
+
+3. **Strengthen the theoretical contribution**: The current approach is 'apply IQL, decompose, threshold by quadrant.' To elevate from engineering to research, provide theoretical analysis: (a) When does advantage decomposition provably outperform scalar Q-value filtering? (b) Under what conditions on the demonstration distribution does the four-quadrant analysis recover the optimal data subset? The 'Skill or Luck?' paper (ICLR 2024) provides relevant theoretical machinery for advantage decomposition that could be adapted.
+
+4. **Reduce scope to improve depth**: Drop Open X-Embodiment (too heterogeneous for IQL) and focus on RoboMimic + LIBERO where IQL has better chances of learning meaningful values. Use the freed GPU budget for deeper ablations on the quadrant weighting scheme and V/A semantic validation.
+
+5. **Consider denser reward alternatives**: If sparse reward IQL fails to produce meaningful decompositions, consider using a pretrained reward model (like the process reward models in recent VLA-RL work) or self-supervised temporal distance as the reward signal for IQL training.
+
+6. **Realistic timeline assessment**: Given the issues above, targeting ICLR 2027 (Sep-Oct 2026 deadline) instead of CoRL 2026 would allow proper validation of the core assumption and more thorough experiments. A rushed CoRL submission risks rejection on grounds of insufficient analysis.
+
+### Round 2 review
+Verdict: revise
+Issues: ["VENUE MISMATCH: User requires CoRL 2026 (abstract deadline May 26, 17 days away), but the idea targets ICLR 2027/CoRL 2027/ICRA 2027. This directly violates the user's stated requirement. If the idea cannot be ready for CoRL 2026, the generator must either (a) propose a reduced-scope version feasible in 17 days, or (b) explicitly acknowledge the mismatch and justify the timeline shift.", "MISSING CRITICAL PRIOR ART — AWR FAMILY: Advantage Weighted Regression (Peng et al. 2019), AWAC (Nair et al. 2020), AW-Opt (Lu et al. 2022), and MARWIL (Wang et al. 2018) all weight behavioral cloning by exponentiated advantage — functionally performing advantage-based implicit data curation during training. These are not cited or discussed. While they operate at training time rather than pre-training curation, CoRL reviewers will immediately ask how ADTS differs from simply running AWR with dense rewards.", "MISSING CRITICAL PRIOR ART — VACO (ICLR 2025): 'Value-aligned Behavior Cloning for Offline RL via Bi-level Optimization' uses a meta-scoring network driven by value estimation to weight each BC training sample. This is the most direct competitor: it uses value functions to assess data quality for behavior cloning. Must be cited, compared against, and differentiated.", "MISSING PRIOR ART — IDRL (2025): 'An Optimal Discriminator Weighted Imitation Perspective for RL' iteratively removes zero-weight suboptimal transitions using learned visitation ratios. While methodologically distinct (distribution ratios vs. V/A decomposition), it directly addresses transition-level filtering for offline learning and should be discussed.", "ROBOMETER-ROBOMIMIC GENERALIZATION RISK: Robometer has a dedicated LIBERO checkpoint and general checkpoint, but RoboMimic is completely absent from Robometer's evaluations (not mentioned in paper, project page, or model card). ADTS proposes experiments on both LIBERO and RoboMimic, but the dense reward backbone is unvalidated on RoboMimic. If Robometer provides poor frame-level rewards on RoboMimic tasks, the IQL value decomposition becomes meaningless on half the evaluation suite.", "2D VS 1D ADVANTAGE: The theoretical proof shows 2D curation is 'strictly finer' than scalar scoring, but this is trivially true by construction (any 2D space contains more information than its projections). The real question is practical: does w(V,A) meaningfully outperform f(A)? A-only weighting (AWR-style exp(A/λ)) already achieves the four quadrant behaviors ADTS claims: high-A transitions get high weight regardless of V (preserving hard examples), low-A transitions get low weight (downweighting operator errors). The generator must provide concrete examples or theoretical scenarios where f(A) fails but w(V,A) succeeds.", "V-A CORRELATION DEGENERACY: In typical demonstration datasets, V and A may be highly correlated because operators tend to execute good actions at good states (standard demonstrations) or struggle at hard states (where both V and A are low). The semantic validation protocol checks |r| < 0.5, but what if this threshold is not met? The paper needs a fallback strategy — either demonstrating that dense Robometer rewards produce low V-A correlation, or showing graceful degradation when the dimensions are correlated."]
+Feedback: The idea has improved substantially from Round 1 — the dense reward integration via Robometer elegantly addresses the sparse-reward criticism, and the semantic validation protocol shows methodological rigor. However, three specific changes are needed:
+
+1. **Address the venue mismatch immediately**: The user wants CoRL 2026 (17 days). Either (a) propose a minimal viable version for CoRL 2026 (e.g., LIBERO-only evaluation using the existing Robometer checkpoint, 3-4 baselines instead of 9, and the theoretical proof — this is feasible in 17 days if the code pipeline is ready), or (b) explicitly acknowledge the mismatch and present a compelling case for why ICLR 2027 is worth the delay.
+
+2. **Add AWR/VACO/IDRL to the landscape and differentiation**: These are the most dangerous omissions. Frame the contribution precisely: 'AWR and VACO weight training samples by advantage or value — ADTS instead curates data pre-training using a 2D V×A scoring space derived from dense reward models. This decouples the curation criterion from the training objective, enabling any downstream policy learner (not just weighted BC) to benefit.' This framing is stronger and more defensible.
+
+3. **Strengthen the 2D vs 1D argument**: The theoretical proof needs a concrete, non-trivial example. Construct a synthetic demonstration distribution where A-only weighting provably selects the wrong subset: e.g., a bimodal distribution where some transitions have high A but V≈0 (actions that are locally 'optimal' but in irrecoverable states — these should be pruned, but A-only weighting preserves them). If such examples exist naturally in RoboMimic/LIBERO data, show them empirically.
+
+4. **Reduce RoboMimic risk**: Either (a) validate Robometer's general checkpoint on RoboMimic tasks BEFORE committing to full experiments (a 2-3 day pilot), or (b) use RoboReward (Jan 2026, open-source) as a backup dense reward source for RoboMimic, or (c) drop RoboMimic and go deeper on LIBERO where Robometer is validated.
+
+5. **Missing competitor to cite**: V-GPS (CoRL 2024) uses offline-RL value functions to re-rank action proposals at deployment. While not for curation, it shares the 'value functions for action quality assessment in robot manipulation' spirit and CoRL reviewers may know it.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "72efd2f0-b90e-4b30-8e1c-171bd0a0b67b",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T03:26:13.955Z_
+
+```json
+{
+  "parentUuid": "72efd2f0-b90e-4b30-8e1c-171bd0a0b67b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "04eabf21-cd58-442f-898e-4eee3821dea7",
+  "timestamp": "2026-05-14T03:26:13.955Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T03:26:13.955Z_
+
+```json
+{
+  "parentUuid": "04eabf21-cd58-442f-898e-4eee3821dea7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "26a7a457-3bce-48b6-a19f-28a913d8310c",
+  "timestamp": "2026-05-14T03:26:13.955Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "26a7a457-3bce-48b6-a19f-28a913d8310c",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify demonstration curation via advantage decomposition for robotics",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T03:26:20.340Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea for CoRL 2026. This is Round 3 of review, and the idea has been revised twice already. Let me conduct independent research to verify the claims, check for missing prior work, and assess feasibility.
+
+Let me start by searching for the key components:
+
+1. First, verify the current SOTA and key references
+2. Check for competing/concurrent work the generator may have missed
+3. Verify feasibility claims (Robometer availability, IQL on dense rewards, OpenVLA-OFT)
+4. Assess novelty against the landscape
+
+Let me begin my searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26a7a457-3bce-48b6-a19f-28a913d8310c",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kN62TGgCBZwSGyzG7o",
+  "type": "assistant",
+  "uuid": "07c6dc4a-52b5-4f0c-936f-c3db278f678f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhW76Wug2exE5n7BXP8ft7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16360,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 260,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16360,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 260,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16360,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16360
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T03:26:20.754Z_
+
+I'll conduct a thorough independent review of this idea. Let me start by verifying key claims and searching for competing work across multiple dimensions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07c6dc4a-52b5-4f0c-936f-c3db278f678f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kN62TGgCBZwSGyzG7o",
+  "type": "assistant",
+  "uuid": "08b21617-61f0-4bd6-b063-f26775cc0236",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhW76Wug2exE5n7BXP8ft7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16360,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 260,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16360,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 260,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16360,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16360
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T03:26:21.413Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VeW7ccP1HdJd1cTdiTXB4a`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08b21617-61f0-4bd6-b063-f26775cc0236",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kN62TGgCBZwSGyzG7o",
+  "type": "assistant",
+  "uuid": "e4e6f845-12c9-4307-a4c6-189f62c475cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhW76Wug2exE5n7BXP8ft7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16360,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 260,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16360,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 260,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16360,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16360
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T03:26:21.420Z_
+
+<details><summary>↩ Tool result · `toolu_01VeW7ccP1HdJd1cTdiTXB4a`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4e6f845-12c9-4307-a4c6-189f62c475cb",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "44ef00a9-983b-4a31-a8e7-48c113d89f8e",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "e4e6f845-12c9-4307-a4c6-189f62c475cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-14T03:26:24.623Z_
+
+Let me begin my independent verification with parallel searches across multiple dimensions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44ef00a9-983b-4a31-a8e7-48c113d89f8e",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kNdzKHdiu3TsTnXznL",
+  "type": "assistant",
+  "uuid": "9b98bb06-b01b-48d2-a094-97e26ed4d232",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Nm69T4gzdecKczfPjFhzS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1280,
+      "cache_read_input_tokens": 28201,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1280,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 28201,
+          "cache_creation_input_tokens": 1280,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1280
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T03:26:25.104Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DUgRHyqVMPKoWZbNQHAtHF`</summary>
+
+```json
+{
+  "query": "CoRL 2026 submission deadline Austin November"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b98bb06-b01b-48d2-a094-97e26ed4d232",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kNdzKHdiu3TsTnXznL",
+  "type": "assistant",
+  "uuid": "1a5e136f-c2e0-4038-9fce-f7bfd265c03d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Nm69T4gzdecKczfPjFhzS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1280,
+      "cache_read_input_tokens": 28201,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1280,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 28201,
+          "cache_creation_input_tokens": 1280,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1280
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T03:26:30.949Z_
+
+<details><summary>↩ Tool result · `toolu_01DUgRHyqVMPKoWZbNQHAtHF`</summary>
+
+```text
+Web search results for query: "CoRL 2026 submission deadline Austin November"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz","url":"https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"}]
+
+Based on the search results, here's the information about CoRL 2026 submission deadlines and venue:
+
+**Conference Dates and Location:**
+CoRL 2026 will be held November 9-12, 2026 at the JW Marriott Austin.
+
+**Submission Deadlines:**
+The abstract submission deadline is May 26, 2026 11:59 UTC and the paper submission deadline is May 29, 2026 11:59 UTC. Note that the paper submission deadline is Thursday (5/28) EOD rather than Friday according to one source, though there appears to be a slight discrepancy in the exact date.
+
+**Important Notes:**
+- The deadlines are final, and no accommodations can be made for missing the abstract or paper deadline
+- Papers should be 8 pages for the main paper
+- Papers may be submitted through OpenReview
+
+For the most up-to-date information, you can visit the official CoRL website at corl.org or the instructions for authors page.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a5e136f-c2e0-4038-9fce-f7bfd265c03d",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "06b267bf-6f8f-467f-b468-a17cd617133b",
+  "toolUseResult": {
+    "query": "CoRL 2026 submission deadline Austin November",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VA9WzDqyr7zUkfPT2QnTSV",
+        "content": [
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz",
+            "url": "https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about CoRL 2026 submission deadlines and venue:\n\n**Conference Dates and Location:**\nCoRL 2026 will be held November 9-12, 2026 at the JW Marriott Austin.\n\n**Submission Deadlines:**\nThe abstract submission deadline is May 26, 2026 11:59 UTC and the paper submission deadline is May 29, 2026 11:59 UTC. Note that the paper submission deadline is Thursday (5/28) EOD rather than Friday according to one source, though there appears to be a slight discrepancy in the exact date.\n\n**Important Notes:**\n- The deadlines are final, and no accommodations can be made for missing the abstract or paper deadline\n- Papers should be 8 pages for the main paper\n- Papers may be submitted through OpenReview\n\nFor the most up-to-date information, you can visit the official CoRL website at corl.org or the instructions for authors page."
+    ],
+    "durationSeconds": 5.8414504690000015
+  },
+  "sourceToolAssistantUUID": "1a5e136f-c2e0-4038-9fce-f7bfd265c03d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T03:26:33.218Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BjDNEMAazioDwH9bRoPG3Y`</summary>
+
+```json
+{
+  "query": "Robometer dense reward model robot manipulation RSS 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06b267bf-6f8f-467f-b468-a17cd617133b",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kPL55f53BfeuZGbEmE",
+  "type": "assistant",
+  "uuid": "855d6c1c-db95-49aa-844b-c82c1b26b7d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D9JT2gf9k83BLPvAJrUmYP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 735,
+      "cache_read_input_tokens": 29481,
+      "output_tokens": 63,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 735,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 63,
+          "cache_read_input_tokens": 29481,
+          "cache_creation_input_tokens": 735,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 735
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T03:26:38.525Z_
+
+<details><summary>↩ Tool result · `toolu_01BjDNEMAazioDwH9bRoPG3Y`</summary>
+
+```text
+Web search results for query: "Robometer dense reward model robot manipulation RSS 2026"
+
+Links: [{"title":"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://robometer.github.io/"},{"title":"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://arxiv.org/html/2603.02115v1"},{"title":"GitHub - robometer/robometer: Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons · GitHub","url":"https://github.com/robometer/robometer"},{"title":"[2603.02115] Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://arxiv.org/abs/2603.02115"},{"title":"Scaling General-Purpose Robotic Reward Models via ...","url":"https://robometer.github.io/assets/robometer.pdf"},{"title":"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons | alphaXiv","url":"https://www.alphaxiv.org/abs/2603.02115"},{"title":"[2603.02115v1] Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://arxiv.org/abs/2603.02115v1"},{"title":"Rewarding DINO: Predicting Dense Rewards with Vision Foundation Models","url":"https://arxiv.org/html/2603.16978"},{"title":"Large Reward Models: Generalizable Online Robot Reward Generation with Vision-Language Models","url":"https://arxiv.org/html/2603.16065"},{"title":"Jiahui Zhang's research works | University of Southern California and other places","url":"https://www.researchgate.net/scientific-contributions/Jiahui-Zhang-2254368611"}]
+
+Based on the search results, here's what I found about Robometer:
+
+## Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons
+
+Robometer is presented at Robotics: Science and Systems (RSS) 2026.
+
+### Overview
+Robometer is a large-scale reward model designed to provide dense reward feedback for robot learning. It provides dense, video-language-conditioned rewards for robot learning.
+
+### Technical Approach
+Robometer is trained with a dual objective: a frame-level progress loss that anchors reward magnitude on expert data, and a trajectory-comparison preference loss that imposes global ordering constraints across trajectories of the same task, enabling effective learning from both real and augmented failed trajectories.
+
+### Dataset
+To support this formulation at scale, the authors curate RBM-1M, a reward-learning dataset comprising over one million trajectories spanning diverse robot embodiments and tasks, including substantial suboptimal and failure data.
+
+### Performance and Applications
+Robometer significantly improves robot learning performance across a diverse set of downstream applications, including model-free online RL, model-based online RL, offline RL, failure detection, and data retrieval for IL.
+
+The work is led by researchers from the University of Southern California, UT Dallas, MIT, the University of Washington, and other institutions, with code and model weights publicly available.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "855d6c1c-db95-49aa-844b-c82c1b26b7d7",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "5f9f9e7f-94db-47f6-901e-0e0c58591d65",
+  "toolUseResult": {
+    "query": "Robometer dense reward model robot manipulation RSS 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BgCxji5vL34SiRciCixPar",
+        "content": [
+          {
+            "title": "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://robometer.github.io/"
+          },
+          {
+            "title": "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://arxiv.org/html/2603.02115v1"
+          },
+          {
+            "title": "GitHub - robometer/robometer: Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons · GitHub",
+            "url": "https://github.com/robometer/robometer"
+          },
+          {
+            "title": "[2603.02115] Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://arxiv.org/abs/2603.02115"
+          },
+          {
+            "title": "Scaling General-Purpose Robotic Reward Models via ...",
+            "url": "https://robometer.github.io/assets/robometer.pdf"
+          },
+          {
+            "title": "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2603.02115"
+          },
+          {
+            "title": "[2603.02115v1] Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://arxiv.org/abs/2603.02115v1"
+          },
+          {
+            "title": "Rewarding DINO: Predicting Dense Rewards with Vision Foundation Models",
+            "url": "https://arxiv.org/html/2603.16978"
+          },
+          {
+            "title": "Large Reward Models: Generalizable Online Robot Reward Generation with Vision-Language Models",
+            "url": "https://arxiv.org/html/2603.16065"
+          },
+          {
+            "title": "Jiahui Zhang's research works | University of Southern California and other places",
+            "url": "https://www.researchgate.net/scientific-contributions/Jiahui-Zhang-2254368611"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Robometer:\n\n## Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons\n\nRobometer is presented at Robotics: Science and Systems (RSS) 2026.\n\n### Overview\nRobometer is a large-scale reward model designed to provide dense reward feedback for robot learning. It provides dense, video-language-conditioned rewards for robot learning.\n\n### Technical Approach\nRobometer is trained with a dual objective: a frame-level progress loss that anchors reward magnitude on expert data, and a trajectory-comparison preference loss that imposes global ordering constraints across trajectories of the same task, enabling effective learning from both real and augmented failed trajectories.\n\n### Dataset\nTo support this formulation at scale, the authors curate RBM-1M, a reward-learning dataset comprising over one million trajectories spanning diverse robot embodiments and tasks, including substantial suboptimal and failure data.\n\n### Performance and Applications\nRobometer significantly improves robot learning performance across a diverse set of downstream applications, including model-free online RL, model-based online RL, offline RL, failure detection, and data retrieval for IL.\n\nThe work is led by researchers from the University of Southern California, UT Dallas, MIT, the University of Washington, and other institutions, with code and model weights publicly available."
+    ],
+    "durationSeconds": 5.298257245
+  },
+  "sourceToolAssistantUUID": "855d6c1c-db95-49aa-844b-c82c1b26b7d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T03:26:42.409Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B3eFu5Cs8tEjmPX4vtfQum`</summary>
+
+```json
+{
+  "query": "CUPID demonstration curation influence functions robot learning CoRL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f9f9e7f-94db-47f6-901e-0e0c58591d65",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kPtYCTJWQkHGzcsaCc",
+  "type": "assistant",
+  "uuid": "bd2a12bf-21fa-4b15-a61b-170a79be8d88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014CQn8txNsup1sKU8w6UKdf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 30216,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 868,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 30216,
+          "cache_creation_input_tokens": 868,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 868
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T03:26:49.011Z_
+
+<details><summary>↩ Tool result · `toolu_01B3eFu5Cs8tEjmPX4vtfQum`</summary>
+
+```text
+Web search results for query: "CUPID demonstration curation influence functions robot learning CoRL 2025"
+
+Links: [{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://cupid-curation.github.io/"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions | OpenReview","url":"https://openreview.net/forum?id=TqevdDMqrK"},{"title":"GitHub - agiachris/cupid: Official repository for \"CUPID: Curating Data your Robot Loves with Influence Functions,\" accepted to CoRL 2025. · GitHub","url":"https://github.com/agiachris/cupid"},{"title":"[2506.19121] CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/abs/2506.19121"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/html/2506.19121v1"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://proceedings.mlr.press/v305/agia25a.html"},{"title":"CUPID: Robot Data Curation via Influence Functions","url":"https://www.emergentmind.com/papers/2506.19121"},{"title":"[2506.19121v2] CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/abs/2506.19121v2"},{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/abs/2603.09056"}]
+
+I found comprehensive information about CUPID. Here's what the search revealed:
+
+## CUPID: Curating Data your Robot Loves with Influence Functions
+
+CUPID is a data curation method for robot imitation learning that uses influence functions to measure the causal impact of a demonstration on the policy's closed-loop performance.
+
+### Core Methodology
+
+CUPID is a robot data curation method based on a novel influence function-theoretic formulation for imitation learning policies. CUPID uses influence functions to predictively answer counterfactual questions about the effect of each demonstration on downstream policy performance, such as "How would my policy's expected return change if I upweighted or downweighted the loss on a demonstration during training?" without needing to retrain any policies.
+
+### Applications
+
+CUPID is used to curate data by 1) filtering out training demonstrations that harm policy performance and 2) subselecting newly collected trajectories that will most improve the policy.
+
+### Key Results
+
+Training with less than 33% of curated data can yield state-of-the-art diffusion policies on the simulated RoboMimic benchmark, with similar gains observed in hardware. Hardware experiments show that CUPID can identify robust strategies under distribution shift, isolate spurious correlations, and even enhance the post-training of generalist robot policies.
+
+### Publication
+
+CUPID was accepted to CoRL 2025. The official repository and additional materials are available at https://cupid-curation.github.io/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd2a12bf-21fa-4b15-a61b-170a79be8d88",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "937c2827-169f-4c04-a707-52891cf4f9ed",
+  "toolUseResult": {
+    "query": "CUPID demonstration curation influence functions robot learning CoRL 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017eVa3Ff2yZA3s9BtCqipyG",
+        "content": [
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://cupid-curation.github.io/"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions | OpenReview",
+            "url": "https://openreview.net/forum?id=TqevdDMqrK"
+          },
+          {
+            "title": "GitHub - agiachris/cupid: Official repository for \"CUPID: Curating Data your Robot Loves with Influence Functions,\" accepted to CoRL 2025. · GitHub",
+            "url": "https://github.com/agiachris/cupid"
+          },
+          {
+            "title": "[2506.19121] CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/abs/2506.19121"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/html/2506.19121v1"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://proceedings.mlr.press/v305/agia25a.html"
+          },
+          {
+            "title": "CUPID: Robot Data Curation via Influence Functions",
+            "url": "https://www.emergentmind.com/papers/2506.19121"
+          },
+          {
+            "title": "[2506.19121v2] CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/abs/2506.19121v2"
+          },
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          },
+          {
+            "title": "[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/abs/2603.09056"
+          }
+        ]
+      },
+      "I found comprehensive information about CUPID. Here's what the search revealed:\n\n## CUPID: Curating Data your Robot Loves with Influence Functions\n\nCUPID is a data curation method for robot imitation learning that uses influence functions to measure the causal impact of a demonstration on the policy's closed-loop performance.\n\n### Core Methodology\n\nCUPID is a robot data curation method based on a novel influence function-theoretic formulation for imitation learning policies. CUPID uses influence functions to predictively answer counterfactual questions about the effect of each demonstration on downstream policy performance, such as \"How would my policy's expected return change if I upweighted or downweighted the loss on a demonstration during training?\" without needing to retrain any policies.\n\n### Applications\n\nCUPID is used to curate data by 1) filtering out training demonstrations that harm policy performance and 2) subselecting newly collected trajectories that will most improve the policy.\n\n### Key Results\n\nTraining with less than 33% of curated data can yield state-of-the-art diffusion policies on the simulated RoboMimic benchmark, with similar gains observed in hardware. Hardware experiments show that CUPID can identify robust strategies under distribution shift, isolate spurious correlations, and even enhance the post-training of generalist robot policies.\n\n### Publication\n\nCUPID was accepted to CoRL 2025. The official repository and additional materials are available at https://cupid-curation.github.io/."
+    ],
+    "durationSeconds": 6.596898833999999
+  },
+  "sourceToolAssistantUUID": "bd2a12bf-21fa-4b15-a61b-170a79be8d88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-14T03:26:52.356Z_
+
+Good, now let me search for the most critical competing work and verify key claims in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "937c2827-169f-4c04-a707-52891cf4f9ed",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kQgJH4s8yg8VseJNsS",
+  "type": "assistant",
+  "uuid": "892ba827-4a9d-4fb3-8367-4146597b8ed3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrKTnqZxw1R18bbinXRoL9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 905,
+      "cache_read_input_tokens": 31084,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 31084,
+          "cache_creation_input_tokens": 905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T03:26:53.041Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CamTgCo8dtjffogsRrTnSs`</summary>
+
+```json
+{
+  "query": "VACO value-aligned behavior cloning offline RL bi-level optimization ICLR 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "892ba827-4a9d-4fb3-8367-4146597b8ed3",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kQgJH4s8yg8VseJNsS",
+  "type": "assistant",
+  "uuid": "fe00810c-d3de-4d76-94c9-7b448d68db4a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrKTnqZxw1R18bbinXRoL9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 905,
+      "cache_read_input_tokens": 31084,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 31084,
+          "cache_creation_input_tokens": 905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "fe00810c-d3de-4d76-94c9-7b448d68db4a",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify demonstration curation via advantage decomposition for robotics",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T03:26:59.203Z_
+
+<details><summary>↩ Tool result · `toolu_01CamTgCo8dtjffogsRrTnSs`</summary>
+
+```text
+Web search results for query: "VACO value-aligned behavior cloning offline RL bi-level optimization ICLR 2025"
+
+Links: [{"title":"Value-aligned Behavior Cloning for Offline Reinforcement Learning via Bi-level Optimization","url":"https://proceedings.iclr.cc/paper_files/paper/2025/hash/17ab5964d90f38b174a068646c958789-Abstract-Conference.html"},{"title":"Value-aligned Behavior Cloning for Offline Reinforcement Learning via Bi-level Optimization | OpenReview","url":"https://openreview.net/forum?id=elTJBP7Fbv"},{"title":"ICLR Poster Value-aligned Behavior Cloning for Offline Reinforcement Learning via Bi-level Optimization","url":"https://iclr.cc/virtual/2025/poster/28908"},{"title":"VALUE-ALIGNED BEHAVIOR CLONING FOR OFFLINE ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/17ab5964d90f38b174a068646c958789-Paper-Conference.pdf"},{"title":"Value-aligned Behavior Cloning for Offline Reinforcement ...","url":"https://iclr.cc/media/iclr-2025/Slides/28908.pdf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/83ac5b470f8bddc5a4cf7351318df031-Paper-Conference.pdf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://openreview.net/pdf?id=ldVkAO09Km"},{"title":"Anchor-Guided Behavior Cloning with Offline Reinforcement Learning for Robust Autonomous Driving | OpenReview","url":"https://openreview.net/forum?id=RbsLsTYi4H"},{"title":"Published as a conference paper at ICLR 2025 EFFICIENT REINFORCEMENT LEARNING","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/797be96e4481c3fe5d675c1ba5352969-Paper-Conference.pdf"},{"title":"Reward-Aligned Behavior Cloning","url":"https://www.emergentmind.com/topics/reward-aligned-behavior-cloning-ra-bc"}]
+
+I found comprehensive information about VACO. Here's what the search revealed:
+
+## VACO: Value-aligned Behavior Cloning for Offline Reinforcement Learning
+
+VACO is a novel bi-level framework that seamlessly integrates an inner loop for weighted supervised behavior cloning (BC) with an outer loop dedicated to value alignment.
+
+### Framework Structure
+
+In this framework, the inner loop employs a meta-scoring network to evaluate and appropriately weight each training sample, while the outer loop maximizes value estimation for alignment with controlled noise to facilitate limited exploration.
+
+### Key Innovation
+
+The framework integrates a simple multi-layer perception (meta-scoring network) to assign differential importance weights to various state-action sample pairs. In this way, the conventional BC loss function is transformed into a weighted summation of individual sample losses, enabling differentiated learning for varying quality samples.
+
+### Performance
+
+VACO consistently achieves superior performance compared to existing state-of-the-art methods across a variety of continuous control benchmarks in offline RL.
+
+### Publication
+
+The paper was published at ICLR 2025 and addresses the challenge of balancing out-of-distribution (OOD) issues and value alignment in offline reinforcement learning settings where behavior cloning alone may struggle to distinguish between high and low-quality data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe00810c-d3de-4d76-94c9-7b448d68db4a",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "14ce1826-6612-406c-8b7b-31377a4a715c",
+  "toolUseResult": {
+    "query": "VACO value-aligned behavior cloning offline RL bi-level optimization ICLR 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01G6ajSkpbepPq6V9nhTrPHa",
+        "content": [
+          {
+            "title": "Value-aligned Behavior Cloning for Offline Reinforcement Learning via Bi-level Optimization",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/17ab5964d90f38b174a068646c958789-Abstract-Conference.html"
+          },
+          {
+            "title": "Value-aligned Behavior Cloning for Offline Reinforcement Learning via Bi-level Optimization | OpenReview",
+            "url": "https://openreview.net/forum?id=elTJBP7Fbv"
+          },
+          {
+            "title": "ICLR Poster Value-aligned Behavior Cloning for Offline Reinforcement Learning via Bi-level Optimization",
+            "url": "https://iclr.cc/virtual/2025/poster/28908"
+          },
+          {
+            "title": "VALUE-ALIGNED BEHAVIOR CLONING FOR OFFLINE ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/17ab5964d90f38b174a068646c958789-Paper-Conference.pdf"
+          },
+          {
+            "title": "Value-aligned Behavior Cloning for Offline Reinforcement ...",
+            "url": "https://iclr.cc/media/iclr-2025/Slides/28908.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/83ac5b470f8bddc5a4cf7351318df031-Paper-Conference.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://openreview.net/pdf?id=ldVkAO09Km"
+          },
+          {
+            "title": "Anchor-Guided Behavior Cloning with Offline Reinforcement Learning for Robust Autonomous Driving | OpenReview",
+            "url": "https://openreview.net/forum?id=RbsLsTYi4H"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 EFFICIENT REINFORCEMENT LEARNING",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/797be96e4481c3fe5d675c1ba5352969-Paper-Conference.pdf"
+          },
+          {
+            "title": "Reward-Aligned Behavior Cloning",
+            "url": "https://www.emergentmind.com/topics/reward-aligned-behavior-cloning-ra-bc"
+          }
+        ]
+      },
+      "I found comprehensive information about VACO. Here's what the search revealed:\n\n## VACO: Value-aligned Behavior Cloning for Offline Reinforcement Learning\n\nVACO is a novel bi-level framework that seamlessly integrates an inner loop for weighted supervised behavior cloning (BC) with an outer loop dedicated to value alignment.\n\n### Framework Structure\n\nIn this framework, the inner loop employs a meta-scoring network to evaluate and appropriately weight each training sample, while the outer loop maximizes value estimation for alignment with controlled noise to facilitate limited exploration.\n\n### Key Innovation\n\nThe framework integrates a simple multi-layer perception (meta-scoring network) to assign differential importance weights to various state-action sample pairs. In this way, the conventional BC loss function is transformed into a weighted summation of individual sample losses, enabling differentiated learning for varying quality samples.\n\n### Performance\n\nVACO consistently achieves superior performance compared to existing state-of-the-art methods across a variety of continuous control benchmarks in offline RL.\n\n### Publication\n\nThe paper was published at ICLR 2025 and addresses the challenge of balancing out-of-distribution (OOD) issues and value alignment in offline reinforcement learning settings where behavior cloning alone may struggle to distinguish between high and low-quality data."
+    ],
+    "durationSeconds": 6.1574873420000005
+  },
+  "sourceToolAssistantUUID": "fe00810c-d3de-4d76-94c9-7b448d68db4a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T03:27:02.087Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011jb46UUhmDXx8Loa48D1fu`</summary>
+
+```json
+{
+  "query": "advantage weighted regression data curation demonstration filtering robot imitation learning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14ce1826-6612-406c-8b7b-31377a4a715c",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kRQt6y2NpDMEacws8v",
+  "type": "assistant",
+  "uuid": "b988e487-4d3c-4275-a6a6-97e773f6f370",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017fPe2ymwrwf7YUoBiojh6J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 31989,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1009,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 31989,
+          "cache_creation_input_tokens": 1009,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1009
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T03:27:10.482Z_
+
+<details><summary>↩ Tool result · `toolu_011jb46UUhmDXx8Loa48D1fu`</summary>
+
+```text
+Web search results for query: "advantage weighted regression data curation demonstration filtering robot imitation learning 2025 2026"
+
+Links: [{"title":"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/html/2505.09603"},{"title":"Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning","url":"https://arxiv.org/html/2408.14037"},{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v1"},{"title":"(PDF) SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://www.researchgate.net/publication/392167457_SCIZOR_A_Self-Supervised_Approach_to_Data_Curation_for_Large-Scale_Imitation_Learning"},{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623"},{"title":"Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks: Journal of the Chinese Institute of Engineers: Vol 48 , No 6 - Get Access","url":"https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354"},{"title":"[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/abs/2505.22626"},{"title":"A survey on imitation learning for contact-rich tasks in robotics - Toshiaki Tsuji, Yasuhiro Kato, Gokhan Solak, Heng Zhang, Tadej Petrič, Francesco Nori, Arash Ajoudani, 2026","url":"https://journals.sagepub.com/doi/10.1177/02783649261417694"},{"title":"Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10514-025-10237-0"}]
+
+Based on the web search results, I found several relevant papers and research on data curation, filtering, and imitation learning for robotics from 2025-2026:
+
+## Key Papers Found:
+
+1. **DataMIL: Selecting Data for Robot Imitation Learning with Datamodels** (May 2025)
+   DataMIL is a novel method that extends datamodels to robotics by addressing challenges of data-driven data selection, training a data-quality estimator using validation loss to predict data influence without requiring expensive real-world rollouts. The method shows a 10% performance boost compared to state-of-the-art baselines across 50 tasks in MetaWorld.
+
+2. **SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning** (May 2025)
+   SCIZOR is a self-supervised data curation framework that filters out low-quality state-action pairs, targeting suboptimal data that hinders learning with undesirable actions and redundant data that dilutes training.
+
+3. **Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning** (August 2024)
+   Re-Mix instances the data curation problem as a min-max optimization where a policy minimizes excess behavior cloning loss while domain mixture weights maximize it, with excess loss measuring improvement potential on a given domain.
+
+4. **Robot Data Curation with Mutual Information Estimators** (April 2025)
+   This work focuses on assessing data quality at fine granularity levels for robot imitation learning.
+
+5. **Quality over Quantity: Demonstration Curation via Influence Functions** (March 2026)
+   This recent paper addresses demonstration curation using influence functions for data-centric robot learning.
+
+These papers collectively address the challenge of automatically curating datasets by filtering low-quality samples, as existing robotic curation approaches rely on costly manual annotations and perform curation at coarse granularity levels rather than accounting for quality of individual state-action pairs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b988e487-4d3c-4275-a6a6-97e773f6f370",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "1e50dcbd-20fd-4da3-a8f0-eb970879dd19",
+  "toolUseResult": {
+    "query": "advantage weighted regression data curation demonstration filtering robot imitation learning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0182EKs1ehdB5BwA5LdWryY1",
+        "content": [
+          {
+            "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/html/2505.09603"
+          },
+          {
+            "title": "Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2408.14037"
+          },
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          },
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v1"
+          },
+          {
+            "title": "(PDF) SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://www.researchgate.net/publication/392167457_SCIZOR_A_Self-Supervised_Approach_to_Data_Curation_for_Large-Scale_Imitation_Learning"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/html/2502.08623"
+          },
+          {
+            "title": "Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks: Journal of the Chinese Institute of Engineers: Vol 48 , No 6 - Get Access",
+            "url": "https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354"
+          },
+          {
+            "title": "[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/abs/2505.22626"
+          },
+          {
+            "title": "A survey on imitation learning for contact-rich tasks in robotics - Toshiaki Tsuji, Yasuhiro Kato, Gokhan Solak, Heng Zhang, Tadej Petrič, Francesco Nori, Arash Ajoudani, 2026",
+            "url": "https://journals.sagepub.com/doi/10.1177/02783649261417694"
+          },
+          {
+            "title": "Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10514-025-10237-0"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and research on data curation, filtering, and imitation learning for robotics from 2025-2026:\n\n## Key Papers Found:\n\n1. **DataMIL: Selecting Data for Robot Imitation Learning with Datamodels** (May 2025)\n   DataMIL is a novel method that extends datamodels to robotics by addressing challenges of data-driven data selection, training a data-quality estimator using validation loss to predict data influence without requiring expensive real-world rollouts. The method shows a 10% performance boost compared to state-of-the-art baselines across 50 tasks in MetaWorld.\n\n2. **SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning** (May 2025)\n   SCIZOR is a self-supervised data curation framework that filters out low-quality state-action pairs, targeting suboptimal data that hinders learning with undesirable actions and redundant data that dilutes training.\n\n3. **Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning** (August 2024)\n   Re-Mix instances the data curation problem as a min-max optimization where a policy minimizes excess behavior cloning loss while domain mixture weights maximize it, with excess loss measuring improvement potential on a given domain.\n\n4. **Robot Data Curation with Mutual Information Estimators** (April 2025)\n   This work focuses on assessing data quality at fine granularity levels for robot imitation learning.\n\n5. **Quality over Quantity: Demonstration Curation via Influence Functions** (March 2026)\n   This recent paper addresses demonstration curation using influence functions for data-centric robot learning.\n\nThese papers collectively address the challenge of automatically curating datasets by filtering low-quality samples, as existing robotic curation approaches rely on costly manual annotations and perform curation at coarse granularity levels rather than accounting for quality of individual state-action pairs."
+    ],
+    "durationSeconds": 8.378802412999997
+  },
+  "sourceToolAssistantUUID": "b988e487-4d3c-4275-a6a6-97e773f6f370",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T03:27:13.425Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FKMf2MzSKepeCBPE1xLcyA`</summary>
+
+```json
+{
+  "query": "PTR posterior transition reweighting robot imitation learning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e50dcbd-20fd-4da3-a8f0-eb970879dd19",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kSFEhmFaE2DzGVsFzc",
+  "type": "assistant",
+  "uuid": "79c9abbe-fb5a-4972-a889-c7a57987c436",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B7FSx77xZatSRhce48yGhr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1159,
+      "cache_read_input_tokens": 32998,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1159,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 32998,
+          "cache_creation_input_tokens": 1159,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1159
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T03:27:20.083Z_
+
+<details><summary>↩ Tool result · `toolu_01FKMf2MzSKepeCBPE1xLcyA`</summary>
+
+```text
+Web search results for query: "PTR posterior transition reweighting robot imitation learning 2026"
+
+Links: [{"title":"Conservative Offline Robot Policy Learning via Posterior-Transition Reweighting","url":"https://arxiv.org/html/2603.16542v1"},{"title":"GitHub - Asap7772/PTR: This repository contains the implementation of the PTR algorithm described in the paper: Pre-Training for Robots: Leveraging Diverse Multitask Data via Offline Reinforcement Learning.","url":"https://github.com/Asap7772/PTR"},{"title":"Conservative Offline Robot Policy Learning via Posterior ...","url":"https://s3.dxchallenge.ai.kr/dxnews/raw/docs/f3c29c098477727a1e8f2633644bcadc7bf111b65de23eb9086f3eb7bc84d5e7.pdf"},{"title":"Foundation Models in Robotics: A Comprehensive Review of Methods, Models, Datasets, Challenges and Future Research Directions","url":"https://arxiv.org/html/2604.15395v1"},{"title":"Diffusion Trajectory-guided Policy: A Novel Framework for Long-Horizon Robot Manipulation | OpenReview","url":"https://openreview.net/forum?id=VaoeAi5CW8"},{"title":"Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10514-025-10237-0"},{"title":"Reinforcement learning for robot research: A comprehensive review and open issues - Tengteng Zhang, Hongwei Mo, 2021","url":"https://journals.sagepub.com/doi/10.1177/17298814211007305"},{"title":"PTR","url":"https://sites.google.com/view/ptr-final/"},{"title":"Deep reinforcement learning trajectory planning for robotic manipulator based on simulation-efficient training | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-93175-2"},{"title":"Advancements in humanoid robot dynamics and learning-based locomotion control methods","url":"https://www.oaepublish.com/articles/ir.2025.32"}]
+
+Based on the search results, I found relevant information about PTR (Posterior-Transition Reweighting) in the context of robot imitation learning. Here's what I found:
+
+## Overview
+
+Posterior-Transition Reweighting (PTR) is a reward-free and conservative post-training method that decides how much each training sample should influence the supervised update.
+
+## How PTR Works
+
+For each sample, PTR encodes the observed post-action consequence as a latent target, inserts it into a candidate pool of mismatched targets, and uses a separate transition scorer to estimate a softmax identification posterior over target indices. 
+
+PTR overlays standard offline post-training with a conservative reweighting mechanism, with a lightweight consequence encoder and transition scorer producing per-sample weights from observed post-action consequences, without requiring reward labels or a tractable policy likelihood.
+
+## Performance Benefits
+
+Corrupted samples typically produce less concentrated identification posteriors and therefore lose relative emphasis, while clean samples with distinctive consequences are amplified. This selective weighting helps PTR handle data quality issues better than baseline methods.
+
+## Recent Research (2026)
+
+On RoboCasa, where demonstrations span diverse kitchen scenes and object configurations, PTR outperforms supervised fine-tuning (SFT). The method appears to be particularly effective for offline post-training of robot policies on heterogeneous datasets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79c9abbe-fb5a-4972-a889-c7a57987c436",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "8021fab4-4d3e-47c7-9612-cda9e7b2c6f4",
+  "toolUseResult": {
+    "query": "PTR posterior transition reweighting robot imitation learning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FhTdeDi9EJeb2tYp89KebV",
+        "content": [
+          {
+            "title": "Conservative Offline Robot Policy Learning via Posterior-Transition Reweighting",
+            "url": "https://arxiv.org/html/2603.16542v1"
+          },
+          {
+            "title": "GitHub - Asap7772/PTR: This repository contains the implementation of the PTR algorithm described in the paper: Pre-Training for Robots: Leveraging Diverse Multitask Data via Offline Reinforcement Learning.",
+            "url": "https://github.com/Asap7772/PTR"
+          },
+          {
+            "title": "Conservative Offline Robot Policy Learning via Posterior ...",
+            "url": "https://s3.dxchallenge.ai.kr/dxnews/raw/docs/f3c29c098477727a1e8f2633644bcadc7bf111b65de23eb9086f3eb7bc84d5e7.pdf"
+          },
+          {
+            "title": "Foundation Models in Robotics: A Comprehensive Review of Methods, Models, Datasets, Challenges and Future Research Directions",
+            "url": "https://arxiv.org/html/2604.15395v1"
+          },
+          {
+            "title": "Diffusion Trajectory-guided Policy: A Novel Framework for Long-Horizon Robot Manipulation | OpenReview",
+            "url": "https://openreview.net/forum?id=VaoeAi5CW8"
+          },
+          {
+            "title": "Towards balanced behavior cloning from imbalanced datasets | Autonomous Robots | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10514-025-10237-0"
+          },
+          {
+            "title": "Reinforcement learning for robot research: A comprehensive review and open issues - Tengteng Zhang, Hongwei Mo, 2021",
+            "url": "https://journals.sagepub.com/doi/10.1177/17298814211007305"
+          },
+          {
+            "title": "PTR",
+            "url": "https://sites.google.com/view/ptr-final/"
+          },
+          {
+            "title": "Deep reinforcement learning trajectory planning for robotic manipulator based on simulation-efficient training | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-93175-2"
+          },
+          {
+            "title": "Advancements in humanoid robot dynamics and learning-based locomotion control methods",
+            "url": "https://www.oaepublish.com/articles/ir.2025.32"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about PTR (Posterior-Transition Reweighting) in the context of robot imitation learning. Here's what I found:\n\n## Overview\n\nPosterior-Transition Reweighting (PTR) is a reward-free and conservative post-training method that decides how much each training sample should influence the supervised update.\n\n## How PTR Works\n\nFor each sample, PTR encodes the observed post-action consequence as a latent target, inserts it into a candidate pool of mismatched targets, and uses a separate transition scorer to estimate a softmax identification posterior over target indices. \n\nPTR overlays standard offline post-training with a conservative reweighting mechanism, with a lightweight consequence encoder and transition scorer producing per-sample weights from observed post-action consequences, without requiring reward labels or a tractable policy likelihood.\n\n## Performance Benefits\n\nCorrupted samples typically produce less concentrated identification posteriors and therefore lose relative emphasis, while clean samples with distinctive consequences are amplified. This selective weighting helps PTR handle data quality issues better than baseline methods.\n\n## Recent Research (2026)\n\nOn RoboCasa, where demonstrations span diverse kitchen scenes and object configurations, PTR outperforms supervised fine-tuning (SFT). The method appears to be particularly effective for offline post-training of robot policies on heterogeneous datasets."
+    ],
+    "durationSeconds": 6.652787634
+  },
+  "sourceToolAssistantUUID": "79c9abbe-fb5a-4972-a889-c7a57987c436",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28 · 2026-05-14T03:27:20.085Z_
+
+```json
+{
+  "parentUuid": "8021fab4-4d3e-47c7-9612-cda9e7b2c6f4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "ad0aee5c-bce0-4dc5-93ac-4a732b8f9739",
+  "timestamp": "2026-05-14T03:27:20.085Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T03:27:23.303Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DmcUVKiQ5nMXUcK8U51WG1`</summary>
+
+```json
+{
+  "query": "OpenVLA-OFT fine-tuning LIBERO benchmark success rate 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad0aee5c-bce0-4dc5-93ac-4a732b8f9739",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kSx8abW3X1Dw4hckyt",
+  "type": "assistant",
+  "uuid": "a9942f3a-10b6-4117-90f9-58e92a522d9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186EevBt3SuQ1hEViz4hg6R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1046,
+      "cache_read_input_tokens": 34157,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1046,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 34157,
+          "cache_creation_input_tokens": 1046,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1046
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T03:27:29.397Z_
+
+<details><summary>↩ Tool result · `toolu_01DmcUVKiQ5nMXUcK8U51WG1`</summary>
+
+```text
+Web search results for query: "OpenVLA-OFT fine-tuning LIBERO benchmark success rate 2025"
+
+Links: [{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://openvla-oft.github.io/"},{"title":"[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/abs/2502.19645"},{"title":"GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub","url":"https://github.com/moojink/openvla-oft"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/html/2502.19645v1"},{"title":"Self-Improving Vision-Language-Action Models with Data ...","url":"https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"},{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf/bf4411a9941dccca2977e464f53188af2a03a6d3.pdf"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success | alphaXiv","url":"https://www.alphaxiv.org/overview/2502.19645"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"}]
+
+Based on the search results, I found detailed information about OpenVLA-OFT's performance on the LIBERO benchmark:
+
+## OpenVLA-OFT LIBERO Benchmark Success Rate
+
+OpenVLA-OFT achieves a 97.1% average success rate across 4 task suites on the LIBERO benchmark, outperforming π0, MDT, Seer, DiT Policy, Octo, and Diffusion Policy.
+
+More specifically, this represents a significant boost from OpenVLA's original 76.5% average success rate to 97.1%, demonstrating the substantial improvement achieved through the optimized fine-tuning recipe.
+
+The OFT recipe integrates parallel decoding, action chunking, a continuous action representation, and a simple L1 regression-based learning objective to improve inference efficiency, policy performance, and flexibility in the model's input-output specifications.
+
+Additionally, the fine-tuning recipe increases action generation throughput by 26×, making the model not only more accurate but also significantly faster for real-time robot control applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9942f3a-10b6-4117-90f9-58e92a522d9c",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "c4f94aa0-ace5-41eb-9cb0-e735e686eea2",
+  "toolUseResult": {
+    "query": "OpenVLA-OFT fine-tuning LIBERO benchmark success rate 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KbHcW2ofFZNvFSQ3KkRdVA",
+        "content": [
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/abs/2502.19645"
+          },
+          {
+            "title": "GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub",
+            "url": "https://github.com/moojink/openvla-oft"
+          },
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/openvla/openvla"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/html/2502.19645v1"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data ...",
+            "url": "https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"
+          },
+          {
+            "title": "000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019",
+            "url": "https://openreview.net/pdf/bf4411a9941dccca2977e464f53188af2a03a6d3.pdf"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2502.19645"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about OpenVLA-OFT's performance on the LIBERO benchmark:\n\n## OpenVLA-OFT LIBERO Benchmark Success Rate\n\nOpenVLA-OFT achieves a 97.1% average success rate across 4 task suites on the LIBERO benchmark, outperforming π0, MDT, Seer, DiT Policy, Octo, and Diffusion Policy.\n\nMore specifically, this represents a significant boost from OpenVLA's original 76.5% average success rate to 97.1%, demonstrating the substantial improvement achieved through the optimized fine-tuning recipe.\n\nThe OFT recipe integrates parallel decoding, action chunking, a continuous action representation, and a simple L1 regression-based learning objective to improve inference efficiency, policy performance, and flexibility in the model's input-output specifications.\n\nAdditionally, the fine-tuning recipe increases action generation throughput by 26×, making the model not only more accurate but also significantly faster for real-time robot control applications."
+    ],
+    "durationSeconds": 6.089815761999998
+  },
+  "sourceToolAssistantUUID": "a9942f3a-10b6-4117-90f9-58e92a522d9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "c4f94aa0-ace5-41eb-9cb0-e735e686eea2",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify demonstration curation via advantage decomposition for robotics",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-14T03:27:32.981Z_
+
+Now let me search for the most critical competing/concurrent work that the generator might have missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4f94aa0-ace5-41eb-9cb0-e735e686eea2",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kTe4fYy4Z67MdCK6rK",
+  "type": "assistant",
+  "uuid": "cd46d2dd-aa3d-467e-bbbc-65e61bbab566",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Pwm3kwtMbzgZFWCPnw7ca",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 35203,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 35203,
+          "cache_creation_input_tokens": 865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T03:27:33.706Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012PpmEX3kMSNJkYU7yvGbwE`</summary>
+
+```json
+{
+  "query": "advantage decomposition state value action quality data selection imitation learning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd46d2dd-aa3d-467e-bbbc-65e61bbab566",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kTe4fYy4Z67MdCK6rK",
+  "type": "assistant",
+  "uuid": "36f79892-ffb4-4fc5-a515-59f17a5d1649",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Pwm3kwtMbzgZFWCPnw7ca",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 35203,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 35203,
+          "cache_creation_input_tokens": 865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T03:27:40.741Z_
+
+<details><summary>↩ Tool result · `toolu_012PpmEX3kMSNJkYU7yvGbwE`</summary>
+
+```text
+Web search results for query: "advantage decomposition state value action quality data selection imitation learning 2025 2026"
+
+Links: [{"title":"Large Model Empowered Embodied AI: A Survey on Decision-Making and Embodied Learning","url":"https://arxiv.org/html/2508.10399v1"},{"title":"Learning from Suboptimal Data in Continuous Control via ...","url":"https://arxiv.org/pdf/2502.00288"},{"title":"GitHub - yingchengyang/Reinforcement-Learning-Papers: Related papers for reinforcement learning, including classic papers and latest papers in top conferences · GitHub","url":"https://github.com/yingchengyang/Reinforcement-Learning-Papers"},{"title":"Feature 14 IEEE CIRCUITS AND SYSTEMS MAGAZINE FOURTH QUARTER 2025","url":"https://mn.cs.tsinghua.edu.cn/xinwang/PDF/papers/2025_Embodied%20AI%20from%20LLMs%20to%20World%20Models.pdf"},{"title":"Frontiers | A review of embodied intelligence systems: a three-layer framework integrating multimodal perception, world modeling, and structured strategies","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1668910/full"},{"title":"Leveraging Imitation Learning and LLMs for Efficient Hierarchical Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=6y00rooi7i"},{"title":"Data Quality in Imitation Learning | OpenReview","url":"https://openreview.net/forum?id=FwmvbuDiMk&noteId=yRiDkOIoZK"},{"title":"Discovery of the reward function for embodied reinforcement learning agents | Nature Communications","url":"https://www.nature.com/articles/s41467-025-66009-y"},{"title":"Human-in-the-loop reinforcement learning with risk-aware intervention and imitation - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0957417426000321"},{"title":"[2306.02437] Data Quality in Imitation Learning","url":"https://arxiv.org/abs/2306.02437"}]
+
+Based on the search results, I found several relevant papers and research from 2025-2026 addressing aspects of your query. Here are the key findings:
+
+## Q-Function Decomposition and Action Quality
+
+Recent work on learning from suboptimal data in continuous control uses action decomposition with soft advantage functions and value functions, where Q(s, a1, a2) = Vsoft(s) + A1(s, a1) + A2(s, a1, a2). This approach addresses the problem where conventional Q-learning that estimates action dimensions independently could undervalue optimal modes when suboptimal modes are more prevalent in the dataset.
+
+## Data Selection in Imitation Learning
+
+In imitation learning, a sample efficient paradigm for robot learning using expert demonstrations, policies suffer from state distribution shift at test time due to compounding errors in action prediction. An alternative perspective is to develop new ways of assessing and curating datasets, with growing evidence that the same IL algorithms can have substantially different performance across different datasets.
+
+## Task Decomposition in Learning
+
+The cognitive positioning of embodied policy modules is evolving from "action selectors" to "structural task schedulers" to support multimodal semantic fusion, task decomposition, and dynamic module invocation, and the policy generation mechanism has evolved from action-supervised learning to structured decision generation.
+
+## Recent Advances (2025)
+
+Imitation learning allows agents to learn effective policies by emulating expert or video demonstrations, highly efficient for tasks like robotic manipulation where high-quality data is available, but its dependence on diverse demonstrations limits adaptability to new scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36f79892-ffb4-4fc5-a515-59f17a5d1649",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "f2626196-b4f9-44e4-8d3d-de533df4a0df",
+  "toolUseResult": {
+    "query": "advantage decomposition state value action quality data selection imitation learning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FCDjpXVFCqsxSz93b1MjHk",
+        "content": [
+          {
+            "title": "Large Model Empowered Embodied AI: A Survey on Decision-Making and Embodied Learning",
+            "url": "https://arxiv.org/html/2508.10399v1"
+          },
+          {
+            "title": "Learning from Suboptimal Data in Continuous Control via ...",
+            "url": "https://arxiv.org/pdf/2502.00288"
+          },
+          {
+            "title": "GitHub - yingchengyang/Reinforcement-Learning-Papers: Related papers for reinforcement learning, including classic papers and latest papers in top conferences · GitHub",
+            "url": "https://github.com/yingchengyang/Reinforcement-Learning-Papers"
+          },
+          {
+            "title": "Feature 14 IEEE CIRCUITS AND SYSTEMS MAGAZINE FOURTH QUARTER 2025",
+            "url": "https://mn.cs.tsinghua.edu.cn/xinwang/PDF/papers/2025_Embodied%20AI%20from%20LLMs%20to%20World%20Models.pdf"
+          },
+          {
+            "title": "Frontiers | A review of embodied intelligence systems: a three-layer framework integrating multimodal perception, world modeling, and structured strategies",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1668910/full"
+          },
+          {
+            "title": "Leveraging Imitation Learning and LLMs for Efficient Hierarchical Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=6y00rooi7i"
+          },
+          {
+            "title": "Data Quality in Imitation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=FwmvbuDiMk&noteId=yRiDkOIoZK"
+          },
+          {
+            "title": "Discovery of the reward function for embodied reinforcement learning agents | Nature Communications",
+            "url": "https://www.nature.com/articles/s41467-025-66009-y"
+          },
+          {
+            "title": "Human-in-the-loop reinforcement learning with risk-aware intervention and imitation - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417426000321"
+          },
+          {
+            "title": "[2306.02437] Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/abs/2306.02437"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and research from 2025-2026 addressing aspects of your query. Here are the key findings:\n\n## Q-Function Decomposition and Action Quality\n\nRecent work on learning from suboptimal data in continuous control uses action decomposition with soft advantage functions and value functions, where Q(s, a1, a2) = Vsoft(s) + A1(s, a1) + A2(s, a1, a2). This approach addresses the problem where conventional Q-learning that estimates action dimensions independently could undervalue optimal modes when suboptimal modes are more prevalent in the dataset.\n\n## Data Selection in Imitation Learning\n\nIn imitation learning, a sample efficient paradigm for robot learning using expert demonstrations, policies suffer from state distribution shift at test time due to compounding errors in action prediction. An alternative perspective is to develop new ways of assessing and curating datasets, with growing evidence that the same IL algorithms can have substantially different performance across different datasets.\n\n## Task Decomposition in Learning\n\nThe cognitive positioning of embodied policy modules is evolving from \"action selectors\" to \"structural task schedulers\" to support multimodal semantic fusion, task decomposition, and dynamic module invocation, and the policy generation mechanism has evolved from action-supervised learning to structured decision generation.\n\n## Recent Advances (2025)\n\nImitation learning allows agents to learn effective policies by emulating expert or video demonstrations, highly efficient for tasks like robotic manipulation where high-quality data is available, but its dependence on diverse demonstrations limits adaptability to new scenarios."
+    ],
+    "durationSeconds": 7.029470952000003
+  },
+  "sourceToolAssistantUUID": "36f79892-ffb4-4fc5-a515-59f17a5d1649",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T03:27:44.075Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0183s15ifxFT3gKhqaeFndKX`</summary>
+
+```json
+{
+  "query": "\"data curation\" \"value function\" \"reward model\" robot manipulation transition filtering arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2626196-b4f9-44e4-8d3d-de533df4a0df",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kUUTVoBzrDQFCBVL9x",
+  "type": "assistant",
+  "uuid": "337886a6-c6d7-4c1c-9ea9-29574188771a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017x7TJXdXetBo6JS5vnJU3c",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1026,
+      "cache_read_input_tokens": 36068,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1026,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 36068,
+          "cache_creation_input_tokens": 1026,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1026
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T03:27:53.580Z_
+
+<details><summary>↩ Tool result · `toolu_0183s15ifxFT3gKhqaeFndKX`</summary>
+
+```text
+Web search results for query: ""data curation" "value function" "reward model" robot manipulation transition filtering arXiv 2026"
+
+Links: [{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v1"},{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"OpenGVL - Benchmarking Visual Temporal Progress for Data Curation","url":"https://arxiv.org/html/2509.17321"},{"title":"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://arxiv.org/html/2603.02115v1"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2511.09173"},{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623"},{"title":"DataRater: Meta-Learned Dataset Curation","url":"https://arxiv.org/html/2505.17895"},{"title":"Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning","url":"https://arxiv.org/html/2408.14037v1"},{"title":"What Matters in Learning from Large-Scale Datasets for Robot Manipulation","url":"https://arxiv.org/html/2506.13536v1"},{"title":"[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/abs/2603.09056"}]
+
+Based on the search results, I found several highly relevant papers on data curation for robot manipulation from 2025-2026. Here are the key findings:
+
+## Recent Papers on Data Curation for Robot Manipulation
+
+**Scizor: Self-Supervised Data Curation** (May 2025)
+Scizor is a data curation framework that performs fine-grained filtering of low-quality data in a self-supervised manner to improve imitation learning policy performance. It combines a self-supervised suboptimal transitions removal module and a similarity-based state-action deduplication module that filters redundant transitions.
+
+**Robometer: Scaling Reward Models** (March 2026)
+Robometer is a scalable reward modeling framework that combines intra-trajectory progress supervision with inter-trajectory preference supervision, trained with a dual objective: a frame-level progress loss that anchors reward magnitude on expert data, and a trajectory-comparison preference loss that imposes global ordering constraints across trajectories. It is trained on RBM-1M, a large-scale reward-learning dataset containing over one million trajectories from 21 robot platforms, intentionally constructed to include substantial numbers of suboptimal and failed trajectories.
+
+**Quality over Quantity (QoQ)** (March 2026)
+QoQ defines data quality as the contribution of each training sample to reducing loss on validation demonstrations, leveraging influence functions to quantify the impact of individual training samples on model performance.
+
+**OpenGVL: Visual Temporal Progress Benchmark** (February 2026)
+OpenGVL leverages vision-language models to predict task progress from visual observations for data curation at scale.
+
+These papers address the core challenges you searched for: using reward models and value functions for filtering state-action transitions and curating robot manipulation datasets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "337886a6-c6d7-4c1c-9ea9-29574188771a",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "466a1d58-64cf-40c8-a488-e89c1c803f6d",
+  "toolUseResult": {
+    "query": "\"data curation\" \"value function\" \"reward model\" robot manipulation transition filtering arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AqJQU2XnSmdEftK7V2vAwe",
+        "content": [
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v1"
+          },
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          },
+          {
+            "title": "OpenGVL - Benchmarking Visual Temporal Progress for Data Curation",
+            "url": "https://arxiv.org/html/2509.17321"
+          },
+          {
+            "title": "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://arxiv.org/html/2603.02115v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2511.09173"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/html/2502.08623"
+          },
+          {
+            "title": "DataRater: Meta-Learned Dataset Curation",
+            "url": "https://arxiv.org/html/2505.17895"
+          },
+          {
+            "title": "Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2408.14037v1"
+          },
+          {
+            "title": "What Matters in Learning from Large-Scale Datasets for Robot Manipulation",
+            "url": "https://arxiv.org/html/2506.13536v1"
+          },
+          {
+            "title": "[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/abs/2603.09056"
+          }
+        ]
+      },
+      "Based on the search results, I found several highly relevant papers on data curation for robot manipulation from 2025-2026. Here are the key findings:\n\n## Recent Papers on Data Curation for Robot Manipulation\n\n**Scizor: Self-Supervised Data Curation** (May 2025)\nScizor is a data curation framework that performs fine-grained filtering of low-quality data in a self-supervised manner to improve imitation learning policy performance. It combines a self-supervised suboptimal transitions removal module and a similarity-based state-action deduplication module that filters redundant transitions.\n\n**Robometer: Scaling Reward Models** (March 2026)\nRobometer is a scalable reward modeling framework that combines intra-trajectory progress supervision with inter-trajectory preference supervision, trained with a dual objective: a frame-level progress loss that anchors reward magnitude on expert data, and a trajectory-comparison preference loss that imposes global ordering constraints across trajectories. It is trained on RBM-1M, a large-scale reward-learning dataset containing over one million trajectories from 21 robot platforms, intentionally constructed to include substantial numbers of suboptimal and failed trajectories.\n\n**Quality over Quantity (QoQ)** (March 2026)\nQoQ defines data quality as the contribution of each training sample to reducing loss on validation demonstrations, leveraging influence functions to quantify the impact of individual training samples on model performance.\n\n**OpenGVL: Visual Temporal Progress Benchmark** (February 2026)\nOpenGVL leverages vision-language models to predict task progress from visual observations for data curation at scale.\n\nThese papers address the core challenges you searched for: using reward models and value functions for filtering state-action transitions and curating robot manipulation datasets."
+    ],
+    "durationSeconds": 9.498995975999991
+  },
+  "sourceToolAssistantUUID": "337886a6-c6d7-4c1c-9ea9-29574188771a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T03:27:56.275Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PBG3gFFY2kmt5X4wQwkMLP`</summary>
+
+```json
+{
+  "query": "ARFM adaptive reinforced flow matching VLA AAAI 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "466a1d58-64cf-40c8-a488-e89c1c803f6d",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kVRTCUscRZNo9Pg4m6",
+  "type": "assistant",
+  "uuid": "76697fac-999b-48f9-a222-c6e85ca5c3f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015njQXGJC7avaoE8jeAsyR3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 37094,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 37094,
+          "cache_creation_input_tokens": 942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T03:28:02.292Z_
+
+<details><summary>↩ Tool result · `toolu_01PBG3gFFY2kmt5X4wQwkMLP`</summary>
+
+```text
+Web search results for query: "ARFM adaptive reinforced flow matching VLA AAAI 2026"
+
+Links: [{"title":"Balancing Signal and Variance: Adaptive Offline RL Post-Training for VLA Flow Models","url":"https://arxiv.org/html/2509.04063"},{"title":"[2509.04063] Balancing Signal and Variance: Adaptive Offline RL Post-Training for VLA Flow Models","url":"https://arxiv.org/abs/2509.04063"},{"title":"[2603.28565] StreamingVLA: Streaming Vision-Language-Action Model with Action Flow Matching and Adaptive Early Observation","url":"https://arxiv.org/abs/2603.28565"},{"title":"AsyncVLA: Asynchronous Flow Matching for Vision-Language-Action Models","url":"https://arxiv.org/html/2511.14148v1"},{"title":"Adversarial Flow Matching for Imperceptible Attacks on End-to-End Autonomous Driving","url":"https://arxiv.org/html/2605.00880"},{"title":"StreamingVLA: Streaming Vision-Language-Action Model with Action Flow Matching and Adaptive Early Observation","url":"https://arxiv.org/html/2603.28565"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"AAAI2026","url":"https://hongsong-wang.github.io/AAAI2026_Abstract/"},{"title":"Adaptive Offline RL Post-Training for VLA Flow Models","url":"https://ojs.aaai.org/index.php/AAAI/article/download/38944/42906"},{"title":"[2602.22486] Flow Matching is Adaptive to Manifold Structures","url":"https://arxiv.org/abs/2602.22486"}]
+
+Based on the search results, I found relevant information about ARFM:
+
+## ARFM: Adaptive Reinforced Flow Matching
+
+Adaptive Reinforced Flow Matching (ARFM) is a novel adaptive offline RL fine-tuning method for VLA flow models. It controls the strength of the RL signal introduced into the sample data by introducing an adaptively adjusted scaling factor in the VLA flow loss function.
+
+### Key Features
+
+By introducing an adaptively adjusted scaling factor in the VLA flow model loss, ARFM constructs a principled bias-variance trade-off objective function to optimally control the impact of RL signal on flow loss. ARFM adaptively balances RL advantage preservation and flow loss gradient variance control, resulting in a more stable and efficient fine-tuning process.
+
+### Technical Approach
+
+The method theoretically establishes the optimization objective of adaptively adjusting the scaling factor and induces a bisection iterative algorithm to update the factor in real time, thereby achieving efficient VLA flow model fine-tuning.
+
+### Performance
+
+Extensive simulation and real-world experimental results show that ARFM exhibits excellent generalization, robustness, few-shot learning, and continuous learning performance.
+
+The paper appears to have been published in September 2025 and was presented at AAAI 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76697fac-999b-48f9-a222-c6e85ca5c3f6",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "848179c4-064f-4c4f-a124-ee723fe5bbf2",
+  "toolUseResult": {
+    "query": "ARFM adaptive reinforced flow matching VLA AAAI 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01As5RUostVYyWLF1CNVCzY6",
+        "content": [
+          {
+            "title": "Balancing Signal and Variance: Adaptive Offline RL Post-Training for VLA Flow Models",
+            "url": "https://arxiv.org/html/2509.04063"
+          },
+          {
+            "title": "[2509.04063] Balancing Signal and Variance: Adaptive Offline RL Post-Training for VLA Flow Models",
+            "url": "https://arxiv.org/abs/2509.04063"
+          },
+          {
+            "title": "[2603.28565] StreamingVLA: Streaming Vision-Language-Action Model with Action Flow Matching and Adaptive Early Observation",
+            "url": "https://arxiv.org/abs/2603.28565"
+          },
+          {
+            "title": "AsyncVLA: Asynchronous Flow Matching for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2511.14148v1"
+          },
+          {
+            "title": "Adversarial Flow Matching for Imperceptible Attacks on End-to-End Autonomous Driving",
+            "url": "https://arxiv.org/html/2605.00880"
+          },
+          {
+            "title": "StreamingVLA: Streaming Vision-Language-Action Model with Action Flow Matching and Adaptive Early Observation",
+            "url": "https://arxiv.org/html/2603.28565"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          },
+          {
+            "title": "AAAI2026",
+            "url": "https://hongsong-wang.github.io/AAAI2026_Abstract/"
+          },
+          {
+            "title": "Adaptive Offline RL Post-Training for VLA Flow Models",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/download/38944/42906"
+          },
+          {
+            "title": "[2602.22486] Flow Matching is Adaptive to Manifold Structures",
+            "url": "https://arxiv.org/abs/2602.22486"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about ARFM:\n\n## ARFM: Adaptive Reinforced Flow Matching\n\nAdaptive Reinforced Flow Matching (ARFM) is a novel adaptive offline RL fine-tuning method for VLA flow models. It controls the strength of the RL signal introduced into the sample data by introducing an adaptively adjusted scaling factor in the VLA flow loss function.\n\n### Key Features\n\nBy introducing an adaptively adjusted scaling factor in the VLA flow model loss, ARFM constructs a principled bias-variance trade-off objective function to optimally control the impact of RL signal on flow loss. ARFM adaptively balances RL advantage preservation and flow loss gradient variance control, resulting in a more stable and efficient fine-tuning process.\n\n### Technical Approach\n\nThe method theoretically establishes the optimization objective of adaptively adjusting the scaling factor and induces a bisection iterative algorithm to update the factor in real time, thereby achieving efficient VLA flow model fine-tuning.\n\n### Performance\n\nExtensive simulation and real-world experimental results show that ARFM exhibits excellent generalization, robustness, few-shot learning, and continuous learning performance.\n\nThe paper appears to have been published in September 2025 and was presented at AAAI 2026."
+    ],
+    "durationSeconds": 6.012029584000003
+  },
+  "sourceToolAssistantUUID": "76697fac-999b-48f9-a222-c6e85ca5c3f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-14T03:28:05.159Z_
+
+Now let me dig deeper into competing work - specifically searching for concurrent work that uses dense rewards + value decomposition for curation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "848179c4-064f-4c4f-a124-ee723fe5bbf2",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kW4acNu2KRNF7UkQSu",
+  "type": "assistant",
+  "uuid": "cd6a00f6-8c54-44c0-8b14-4f8aa563fe02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R3npEp3H99QVAkMDaL86wv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 932,
+      "cache_read_input_tokens": 38036,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 932,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 38036,
+          "cache_creation_input_tokens": 932,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 932
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T03:28:05.653Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GCCvseVuMMvzHSN8tCq7Yp`</summary>
+
+```json
+{
+  "query": "dense reward model IQL offline RL demonstration quality filtering curation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd6a00f6-8c54-44c0-8b14-4f8aa563fe02",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kW4acNu2KRNF7UkQSu",
+  "type": "assistant",
+  "uuid": "6535fcb5-fdcb-4a26-b69e-e35628271ffe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R3npEp3H99QVAkMDaL86wv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 932,
+      "cache_read_input_tokens": 38036,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 932,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 38036,
+          "cache_creation_input_tokens": 932,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 932
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T03:28:14.607Z_
+
+<details><summary>↩ Tool result · `toolu_01GCCvseVuMMvzHSN8tCq7Yp`</summary>
+
+```text
+Web search results for query: "dense reward model IQL offline RL demonstration quality filtering curation 2025 2026"
+
+Links: [{"title":"Implicit Q-Learning in Offline RL","url":"https://www.emergentmind.com/topics/implicit-q-learning-iql"},{"title":"OFFLINE REINFORCEMENT LEARNING VIA ADAPTIVE ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/c06f788963f0ce069f5b2dbf83fe7822-Paper-Conference.pdf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/83ac5b470f8bddc5a4cf7351318df031-Paper-Conference.pdf"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2510.12638"},{"title":"Learning Reasoning Reward Models from Expert ...","url":"https://arxiv.org/pdf/2510.01857"},{"title":"Evaluating the Impact of Data Curation on Off-Policy Reinforcement Learning | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-032-04558-4_28"},{"title":"A Comparison Between Decision Transformers and Traditional Offline Reinforcement Learning Algorithms in Varying Reward Settings for Continuous Control Tasks","url":"https://arxiv.org/html/2511.16475"},{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"},{"title":"Offline Reinforcement Learning with Implicit Q-Learning","url":"https://offline-rl-neurips.github.io/2021/pdf/24.pdf"},{"title":"Sample-Efficient Policy Constraint Offline Deep Reinforcement Learning based on Sample Filtering","url":"https://arxiv.org/html/2512.20115"}]
+
+I've completed a web search for your query about dense reward models, IQL, offline RL, demonstration quality filtering, and curation from 2025-2026. Here's a summary of the relevant findings:
+
+## Key Research Areas
+
+### IQL and Offline RL Improvements (2025-2026)
+
+Recent work aims at improving IQL-style in-sample offline RL methods through V-ensemble approaches that mitigate overfitting of value functions. When datasets are skewed towards suboptimal policies or mixed with lower-quality data, prior in-sample learning methods can suffer from performance drops due to over-regularization.
+
+### Demonstration Quality and Dataset Curation
+
+A sample filtering method for offline RL evaluates the original dataset, identifies and removes data with inferior performance, and selectively keeps data with superior performance, resulting in a refined dataset that is both superior in quality and reduced in size, which can expedite the learning process.
+
+Research explores controlling the experience pool distribution in Q-value-based off-policy RL by curating experiences in the replay buffer, with curation algorithms including fast-to-compute pruning metrics based on distance to experience-prototypes and density-estimates.
+
+### Dense Reward Modeling
+
+Recent work seeks to learn dense reasoning rewards via implicit rewards and outcome-verifiable signals, learning dense, token-level rewards from expert demonstrations.
+
+### Regularization and Policy Optimization
+
+Distributional metrics can guide offline RL training without costly agent pretraining, with future work exploring their applicability to broader algorithm classes and their role in automated dataset curation.
+
+The search results reveal active research in 2025-2026 focused on improving offline RL through better dataset quality management, dense reward learning, and enhanced regularization techniques for handling suboptimal demonstration data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6535fcb5-fdcb-4a26-b69e-e35628271ffe",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "3d240aee-263b-4680-bcfe-894586869886",
+  "toolUseResult": {
+    "query": "dense reward model IQL offline RL demonstration quality filtering curation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013TDHBPJ9Fyf2mraTTxKkev",
+        "content": [
+          {
+            "title": "Implicit Q-Learning in Offline RL",
+            "url": "https://www.emergentmind.com/topics/implicit-q-learning-iql"
+          },
+          {
+            "title": "OFFLINE REINFORCEMENT LEARNING VIA ADAPTIVE ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/c06f788963f0ce069f5b2dbf83fe7822-Paper-Conference.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/83ac5b470f8bddc5a4cf7351318df031-Paper-Conference.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2510.12638"
+          },
+          {
+            "title": "Learning Reasoning Reward Models from Expert ...",
+            "url": "https://arxiv.org/pdf/2510.01857"
+          },
+          {
+            "title": "Evaluating the Impact of Data Curation on Off-Policy Reinforcement Learning | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-032-04558-4_28"
+          },
+          {
+            "title": "A Comparison Between Decision Transformers and Traditional Offline Reinforcement Learning Algorithms in Varying Reward Settings for Continuous Control Tasks",
+            "url": "https://arxiv.org/html/2511.16475"
+          },
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          },
+          {
+            "title": "Offline Reinforcement Learning with Implicit Q-Learning",
+            "url": "https://offline-rl-neurips.github.io/2021/pdf/24.pdf"
+          },
+          {
+            "title": "Sample-Efficient Policy Constraint Offline Deep Reinforcement Learning based on Sample Filtering",
+            "url": "https://arxiv.org/html/2512.20115"
+          }
+        ]
+      },
+      "I've completed a web search for your query about dense reward models, IQL, offline RL, demonstration quality filtering, and curation from 2025-2026. Here's a summary of the relevant findings:\n\n## Key Research Areas\n\n### IQL and Offline RL Improvements (2025-2026)\n\nRecent work aims at improving IQL-style in-sample offline RL methods through V-ensemble approaches that mitigate overfitting of value functions. When datasets are skewed towards suboptimal policies or mixed with lower-quality data, prior in-sample learning methods can suffer from performance drops due to over-regularization.\n\n### Demonstration Quality and Dataset Curation\n\nA sample filtering method for offline RL evaluates the original dataset, identifies and removes data with inferior performance, and selectively keeps data with superior performance, resulting in a refined dataset that is both superior in quality and reduced in size, which can expedite the learning process.\n\nResearch explores controlling the experience pool distribution in Q-value-based off-policy RL by curating experiences in the replay buffer, with curation algorithms including fast-to-compute pruning metrics based on distance to experience-prototypes and density-estimates.\n\n### Dense Reward Modeling\n\nRecent work seeks to learn dense reasoning rewards via implicit rewards and outcome-verifiable signals, learning dense, token-level rewards from expert demonstrations.\n\n### Regularization and Policy Optimization\n\nDistributional metrics can guide offline RL training without costly agent pretraining, with future work exploring their applicability to broader algorithm classes and their role in automated dataset curation.\n\nThe search results reveal active research in 2025-2026 focused on improving offline RL through better dataset quality management, dense reward learning, and enhanced regularization techniques for handling suboptimal demonstration data."
+    ],
+    "durationSeconds": 8.949505751999997
+  },
+  "sourceToolAssistantUUID": "6535fcb5-fdcb-4a26-b69e-e35628271ffe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3d240aee-263b-4680-bcfe-894586869886",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify demonstration curation via advantage decomposition for robotics",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T03:28:18.298Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0174dEjNiXZudStdcy16Vd1E`</summary>
+
+```json
+{
+  "query": "Robometer LIBERO checkpoint huggingface available pretrained model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d240aee-263b-4680-bcfe-894586869886",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kWyG9ziGutuAzHBNFK",
+  "type": "assistant",
+  "uuid": "bd06d3c1-9347-493b-a9d0-1d4744eb5843",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X2mMk8x37Vz5JdjXNpuZho",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 38968,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1012,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 38968,
+          "cache_creation_input_tokens": 1012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1012
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T03:28:23.076Z_
+
+<details><summary>↩ Tool result · `toolu_0174dEjNiXZudStdcy16Vd1E`</summary>
+
+```text
+Web search results for query: "Robometer LIBERO checkpoint huggingface available pretrained model"
+
+Links: [{"title":"aliangdw/Robometer-4B-LIBERO · Hugging Face","url":"https://huggingface.co/aliangdw/Robometer-4B-LIBERO"},{"title":"GitHub - robometer/robometer: Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons · GitHub","url":"https://github.com/robometer/robometer"},{"title":"moojink/openvla-7b-oft-finetuned-libero-10 · Hugging Face","url":"https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-10"},{"title":"LIBERO","url":"https://huggingface.co/docs/lerobot/en/libero"},{"title":"LIBERO-plus · Hugging Face","url":"https://huggingface.co/docs/lerobot/main/libero_plus"},{"title":"lerobot/pi0_libero_base · Hugging Face","url":"https://huggingface.co/lerobot/pi0_libero_base"},{"title":"lerobot/pi05_libero_base · Hugging Face","url":"https://huggingface.co/lerobot/pi05_libero_base"},{"title":"lerobot/xvla-libero · Hugging Face","url":"https://huggingface.co/lerobot/xvla-libero"},{"title":"What is checkpoint in Hugging Face Transformers? | by Sujatha Mudadla | Medium","url":"https://medium.com/@sujathamudadla1213/what-is-checkpoint-in-hugging-face-transformers-d67e6b0db5b9"},{"title":"X-VLA: The First Soft-Prompted Robot Foundation Model for Any Robot, Any Task · Hugging Face","url":"https://huggingface.co/docs/lerobot/xvla"}]
+
+Based on the search results, yes, there is a Robometer LIBERO checkpoint available as a pretrained model on Hugging Face.
+
+The Robometer-4B-LIBERO model is trained on LIBERO-10/Spatial/Object/Goal datasets, and it is available on Hugging Face. You can run the model locally by loading the checkpoint from Hugging Face using the model path `robometer/Robometer-4B-LIBERO`.
+
+The model can be accessed at: https://huggingface.co/aliangdw/Robometer-4B-LIBERO
+
+For full setup, example scripts, and configs, you can refer to the GitHub repository at github.com/aliang8/robometer.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd06d3c1-9347-493b-a9d0-1d4744eb5843",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "5a292ff6-a36d-4c14-8922-9ffa6258125e",
+  "toolUseResult": {
+    "query": "Robometer LIBERO checkpoint huggingface available pretrained model",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MMZDvTH3w41SWSsbH9ED32",
+        "content": [
+          {
+            "title": "aliangdw/Robometer-4B-LIBERO · Hugging Face",
+            "url": "https://huggingface.co/aliangdw/Robometer-4B-LIBERO"
+          },
+          {
+            "title": "GitHub - robometer/robometer: Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons · GitHub",
+            "url": "https://github.com/robometer/robometer"
+          },
+          {
+            "title": "moojink/openvla-7b-oft-finetuned-libero-10 · Hugging Face",
+            "url": "https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-10"
+          },
+          {
+            "title": "LIBERO",
+            "url": "https://huggingface.co/docs/lerobot/en/libero"
+          },
+          {
+            "title": "LIBERO-plus · Hugging Face",
+            "url": "https://huggingface.co/docs/lerobot/main/libero_plus"
+          },
+          {
+            "title": "lerobot/pi0_libero_base · Hugging Face",
+            "url": "https://huggingface.co/lerobot/pi0_libero_base"
+          },
+          {
+            "title": "lerobot/pi05_libero_base · Hugging Face",
+            "url": "https://huggingface.co/lerobot/pi05_libero_base"
+          },
+          {
+            "title": "lerobot/xvla-libero · Hugging Face",
+            "url": "https://huggingface.co/lerobot/xvla-libero"
+          },
+          {
+            "title": "What is checkpoint in Hugging Face Transformers? | by Sujatha Mudadla | Medium",
+            "url": "https://medium.com/@sujathamudadla1213/what-is-checkpoint-in-hugging-face-transformers-d67e6b0db5b9"
+          },
+          {
+            "title": "X-VLA: The First Soft-Prompted Robot Foundation Model for Any Robot, Any Task · Hugging Face",
+            "url": "https://huggingface.co/docs/lerobot/xvla"
+          }
+        ]
+      },
+      "Based on the search results, yes, there is a Robometer LIBERO checkpoint available as a pretrained model on Hugging Face.\n\nThe Robometer-4B-LIBERO model is trained on LIBERO-10/Spatial/Object/Goal datasets, and it is available on Hugging Face. You can run the model locally by loading the checkpoint from Hugging Face using the model path `robometer/Robometer-4B-LIBERO`.\n\nThe model can be accessed at: https://huggingface.co/aliangdw/Robometer-4B-LIBERO\n\nFor full setup, example scripts, and configs, you can refer to the GitHub repository at github.com/aliang8/robometer."
+    ],
+    "durationSeconds": 4.772671732999996
+  },
+  "sourceToolAssistantUUID": "bd06d3c1-9347-493b-a9d0-1d4744eb5843",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-14T03:28:29.766Z_
+
+Good - Robometer LIBERO checkpoint exists. Now let me search for the most dangerous concurrent work and do deeper checks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a292ff6-a36d-4c14-8922-9ffa6258125e",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kXbU1JVRBkmQmNQ119",
+  "type": "assistant",
+  "uuid": "6d22943d-2fe0-4d3b-b81b-47d1b9664bcf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HXzzct97ScmxvBauEe2gxN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 39980,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 778,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 39980,
+          "cache_creation_input_tokens": 778,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 778
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-14T03:28:30.771Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H9o7KVx5Gwm7umopf3Fyv3`</summary>
+
+```json
+{
+  "query": "transition-level scoring reward weighting pre-training curation VLA policy 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d22943d-2fe0-4d3b-b81b-47d1b9664bcf",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kXbU1JVRBkmQmNQ119",
+  "type": "assistant",
+  "uuid": "75ee7fcf-bdc2-46a6-89b3-63c32671526f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HXzzct97ScmxvBauEe2gxN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 39980,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 778,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 39980,
+          "cache_creation_input_tokens": 778,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 778
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T03:28:37.965Z_
+
+<details><summary>↩ Tool result · `toolu_01H9o7KVx5Gwm7umopf3Fyv3`</summary>
+
+```text
+Web search results for query: "transition-level scoring reward weighting pre-training curation VLA policy 2026 arXiv"
+
+Links: [{"title":"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models","url":"https://arxiv.org/html/2511.01331"},{"title":"IRL-VLA: Training an Vision-Language-Action Policy via Reward World Model","url":"https://arxiv.org/html/2508.06571v1"},{"title":"VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning","url":"https://arxiv.org/html/2505.18719v1"},{"title":"[2508.06571] IRL-VLA: Training an Vision-Language-Action Policy via Reward World Model","url":"https://arxiv.org/abs/2508.06571"},{"title":"IRL-VLA: Training an Vision-Language-Action Policy via Reward World Model","url":"https://www.arxiv.org/pdf/2508.06571"},{"title":"[2602.16444] RoboGene: Boosting VLA Pre-training via Diversity-Driven Agentic Framework for Real-World Task Generation","url":"https://arxiv.org/abs/2602.16444"},{"title":"Reinforcement Learning Meets Large Language Models: A Survey of Advancements and Applications Across the LLM Lifecycle","url":"https://arxiv.org/html/2509.16679v1"},{"title":"SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning","url":"https://arxiv.org/html/2509.09674v1"},{"title":"GitHub - Ed1sonChen/DailyArxiv · GitHub","url":"https://github.com/Ed1sonChen/DailyArxiv"},{"title":"From Data-Centric to Sample-Centric: Enhancing LLM Reasoning via Progressive Optimization","url":"https://arxiv.org/html/2507.06573v1"}]
+
+I found several relevant arXiv papers related to VLA (Vision-Language-Action) models, pre-training, and reward weighting. Here's what the search revealed:
+
+## Key Research Papers
+
+**Recent VLA and Reinforcement Learning Studies:**
+
+One approach involves reformulating reward modeling as a next-token prediction problem leveraging the auto-regressive nature of pretrained vision-language models, where a Robotic Process Reward Model predicts the likelihood of successful action sequences.
+
+SimpleVLA-RL introduces an efficient RL framework tailored for VLA models, building upon veRL with VLA-specific trajectory sampling, scalable parallelization, multi-environment rendering, and optimized loss computation.
+
+**Data Curation and Pre-training:**
+
+Automated task curation remains a critical challenge, addressed by RoboGene, an agentic framework designed to automate the generation of diverse, physically plausible manipulation tasks that integrates diversity-driven sampling for broad task coverage, self-reflection mechanisms to enforce physical constraints, and human-in-the-loop refinement.
+
+**Sample Weighting and Optimization:**
+
+Learning-progress weighting is a dynamic strategy that adjusts each training sample's influence based on model progression, implemented by applying a dynamic scaling factor determined by the model's learning progress on that sample.
+
+These papers represent advances in VLA training methodologies focusing on reward design, data curation, and adaptive weighting strategies from 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "75ee7fcf-bdc2-46a6-89b3-63c32671526f",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "39f856e5-b901-4d7f-8022-620b6b96ce7b",
+  "toolUseResult": {
+    "query": "transition-level scoring reward weighting pre-training curation VLA policy 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y4dnfCoXo45gvbosBsNqwv",
+        "content": [
+          {
+            "title": "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2511.01331"
+          },
+          {
+            "title": "IRL-VLA: Training an Vision-Language-Action Policy via Reward World Model",
+            "url": "https://arxiv.org/html/2508.06571v1"
+          },
+          {
+            "title": "VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning",
+            "url": "https://arxiv.org/html/2505.18719v1"
+          },
+          {
+            "title": "[2508.06571] IRL-VLA: Training an Vision-Language-Action Policy via Reward World Model",
+            "url": "https://arxiv.org/abs/2508.06571"
+          },
+          {
+            "title": "IRL-VLA: Training an Vision-Language-Action Policy via Reward World Model",
+            "url": "https://www.arxiv.org/pdf/2508.06571"
+          },
+          {
+            "title": "[2602.16444] RoboGene: Boosting VLA Pre-training via Diversity-Driven Agentic Framework for Real-World Task Generation",
+            "url": "https://arxiv.org/abs/2602.16444"
+          },
+          {
+            "title": "Reinforcement Learning Meets Large Language Models: A Survey of Advancements and Applications Across the LLM Lifecycle",
+            "url": "https://arxiv.org/html/2509.16679v1"
+          },
+          {
+            "title": "SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.09674v1"
+          },
+          {
+            "title": "GitHub - Ed1sonChen/DailyArxiv · GitHub",
+            "url": "https://github.com/Ed1sonChen/DailyArxiv"
+          },
+          {
+            "title": "From Data-Centric to Sample-Centric: Enhancing LLM Reasoning via Progressive Optimization",
+            "url": "https://arxiv.org/html/2507.06573v1"
+          }
+        ]
+      },
+      "I found several relevant arXiv papers related to VLA (Vision-Language-Action) models, pre-training, and reward weighting. Here's what the search revealed:\n\n## Key Research Papers\n\n**Recent VLA and Reinforcement Learning Studies:**\n\nOne approach involves reformulating reward modeling as a next-token prediction problem leveraging the auto-regressive nature of pretrained vision-language models, where a Robotic Process Reward Model predicts the likelihood of successful action sequences.\n\nSimpleVLA-RL introduces an efficient RL framework tailored for VLA models, building upon veRL with VLA-specific trajectory sampling, scalable parallelization, multi-environment rendering, and optimized loss computation.\n\n**Data Curation and Pre-training:**\n\nAutomated task curation remains a critical challenge, addressed by RoboGene, an agentic framework designed to automate the generation of diverse, physically plausible manipulation tasks that integrates diversity-driven sampling for broad task coverage, self-reflection mechanisms to enforce physical constraints, and human-in-the-loop refinement.\n\n**Sample Weighting and Optimization:**\n\nLearning-progress weighting is a dynamic strategy that adjusts each training sample's influence based on model progression, implemented by applying a dynamic scaling factor determined by the model's learning progress on that sample.\n\nThese papers represent advances in VLA training methodologies focusing on reward design, data curation, and adaptive weighting strategies from 2025-2026."
+    ],
+    "durationSeconds": 7.1884589290000145
+  },
+  "sourceToolAssistantUUID": "75ee7fcf-bdc2-46a6-89b3-63c32671526f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50 · 2026-05-14T03:28:37.969Z_
+
+```json
+{
+  "parentUuid": "39f856e5-b901-4d7f-8022-620b6b96ce7b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "df30eb26-4e41-48b0-a645-ec4a02746455",
+  "timestamp": "2026-05-14T03:28:37.969Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T03:28:40.363Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018APG8v1DGUyHeYPcxLhBFV`</summary>
+
+```json
+{
+  "query": "\"Skill or Luck\" return decomposition advantage functions ICLR 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df30eb26-4e41-48b0-a645-ec4a02746455",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kYh77kVwuLjupmnFix",
+  "type": "assistant",
+  "uuid": "f0708f89-f495-4451-ac44-47657d1fec41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NjFVXqJQweHMZwSTEd8DsJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1056,
+      "cache_read_input_tokens": 40758,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1056,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 40758,
+          "cache_creation_input_tokens": 1056,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1056
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T03:28:46.333Z_
+
+<details><summary>↩ Tool result · `toolu_018APG8v1DGUyHeYPcxLhBFV`</summary>
+
+```text
+Web search results for query: ""Skill or Luck" return decomposition advantage functions ICLR 2024"
+
+Links: [{"title":"Skill or Luck? Return Decomposition via Advantage Functions | OpenReview","url":"https://openreview.net/forum?id=ZFMiHfZwIf"},{"title":"ICLR Poster Skill or Luck? Return Decomposition via Advantage Functions","url":"https://iclr.cc/virtual/2024/poster/18406"},{"title":"[2402.12874] Skill or Luck? Return Decomposition via Advantage Functions","url":"https://arxiv.org/abs/2402.12874"},{"title":"SKILL OR LUCK? RETURN DECOMPOSITION VIA AD","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/277628cff838927d869cd1f671328ce0-Paper-Conference.pdf"},{"title":"Skill or Luck? Return Decomposition via Advantage Functions","url":"https://arxiv.org/html/2402.12874v1"},{"title":"Computer Science Feb 2024","url":"https://web3.arxiv.org/list/cs/2024-02?skip=6000&show=1000"},{"title":"Structured Difference-of-Q via Orthogonal Learning","url":"https://arxiv.org/pdf/2406.08697"},{"title":"Skill or Luck? Return Decomposition via Advantage Functions Hsiao-Ru Pan","url":"https://openreview.net/pdf?id=AEwuWKjH-S"},{"title":"ICLR 2024 Papers","url":"https://iclr.cc/virtual/2024/papers.html"},{"title":"ICML 2024 Papers","url":"https://icml.cc/virtual/2024/papers.html"}]
+
+Based on the search results, here's what I found about "Skill or Luck? Return Decomposition via Advantage Functions" at ICLR 2024:
+
+## Overview
+
+The paper shows that the advantage function can be understood as the causal effect of an action on the return, allowing the return of a trajectory to be decomposed into parts caused by the agent's actions (skill) and parts outside of the agent's control (luck). Furthermore, this decomposition enables extending Direct Advantage Estimation (DAE) to off-policy settings (Off-policy DAE).
+
+## Key Contributions
+
+The resulting method can learn from off-policy trajectories without relying on importance sampling techniques or truncating off-policy actions, and draws connections between Off-policy DAE and previous methods to demonstrate how it can speed up learning and when the proposed off-policy corrections are important.
+
+## Authors and Venue
+
+The paper is by Hsiao-Ru Pan and Bernhard Schölkopf and was accepted to ICLR 2024.
+
+## Technical Details
+
+The Off-policy DAE is an on-policy multi-step learning method extended to off-policy settings that makes minimal assumptions about the behavior (data-collecting) policy and shows strong empirical performance.
+
+The paper provides a formal mathematical framework for decomposing returns into skill and luck components and demonstrates the practical benefits of this decomposition for off-policy reinforcement learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f0708f89-f495-4451-ac44-47657d1fec41",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "6cd029fa-d212-45f3-8f14-3e079944b0ff",
+  "toolUseResult": {
+    "query": "\"Skill or Luck\" return decomposition advantage functions ICLR 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RStMn8uxs3sujgvTDZ7QBj",
+        "content": [
+          {
+            "title": "Skill or Luck? Return Decomposition via Advantage Functions | OpenReview",
+            "url": "https://openreview.net/forum?id=ZFMiHfZwIf"
+          },
+          {
+            "title": "ICLR Poster Skill or Luck? Return Decomposition via Advantage Functions",
+            "url": "https://iclr.cc/virtual/2024/poster/18406"
+          },
+          {
+            "title": "[2402.12874] Skill or Luck? Return Decomposition via Advantage Functions",
+            "url": "https://arxiv.org/abs/2402.12874"
+          },
+          {
+            "title": "SKILL OR LUCK? RETURN DECOMPOSITION VIA AD",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/277628cff838927d869cd1f671328ce0-Paper-Conference.pdf"
+          },
+          {
+            "title": "Skill or Luck? Return Decomposition via Advantage Functions",
+            "url": "https://arxiv.org/html/2402.12874v1"
+          },
+          {
+            "title": "Computer Science Feb 2024",
+            "url": "https://web3.arxiv.org/list/cs/2024-02?skip=6000&show=1000"
+          },
+          {
+            "title": "Structured Difference-of-Q via Orthogonal Learning",
+            "url": "https://arxiv.org/pdf/2406.08697"
+          },
+          {
+            "title": "Skill or Luck? Return Decomposition via Advantage Functions Hsiao-Ru Pan",
+            "url": "https://openreview.net/pdf?id=AEwuWKjH-S"
+          },
+          {
+            "title": "ICLR 2024 Papers",
+            "url": "https://iclr.cc/virtual/2024/papers.html"
+          },
+          {
+            "title": "ICML 2024 Papers",
+            "url": "https://icml.cc/virtual/2024/papers.html"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about \"Skill or Luck? Return Decomposition via Advantage Functions\" at ICLR 2024:\n\n## Overview\n\nThe paper shows that the advantage function can be understood as the causal effect of an action on the return, allowing the return of a trajectory to be decomposed into parts caused by the agent's actions (skill) and parts outside of the agent's control (luck). Furthermore, this decomposition enables extending Direct Advantage Estimation (DAE) to off-policy settings (Off-policy DAE).\n\n## Key Contributions\n\nThe resulting method can learn from off-policy trajectories without relying on importance sampling techniques or truncating off-policy actions, and draws connections between Off-policy DAE and previous methods to demonstrate how it can speed up learning and when the proposed off-policy corrections are important.\n\n## Authors and Venue\n\nThe paper is by Hsiao-Ru Pan and Bernhard Schölkopf and was accepted to ICLR 2024.\n\n## Technical Details\n\nThe Off-policy DAE is an on-policy multi-step learning method extended to off-policy settings that makes minimal assumptions about the behavior (data-collecting) policy and shows strong empirical performance.\n\nThe paper provides a formal mathematical framework for decomposing returns into skill and luck components and demonstrates the practical benefits of this decomposition for off-policy reinforcement learning."
+    ],
+    "durationSeconds": 5.96708805999998
+  },
+  "sourceToolAssistantUUID": "f0708f89-f495-4451-ac44-47657d1fec41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T03:28:49.296Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011LLnMA4QuA5L9wrHyzat9U`</summary>
+
+```json
+{
+  "query": "RoboReward general-purpose vision-language reward model robotics January 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6cd029fa-d212-45f3-8f14-3e079944b0ff",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kZJyscEyszJot2CHYy",
+  "type": "assistant",
+  "uuid": "eb1a8727-73c4-46d3-b612-da91d7fceac2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019wf888wKZPaTosyZgcsV4q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 864,
+      "cache_read_input_tokens": 41814,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 864,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 41814,
+          "cache_creation_input_tokens": 864,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 864
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T03:28:56.543Z_
+
+<details><summary>↩ Tool result · `toolu_011LLnMA4QuA5L9wrHyzat9U`</summary>
+
+```text
+Web search results for query: "RoboReward general-purpose vision-language reward model robotics January 2026"
+
+Links: [{"title":"[2601.00675] RoboReward: General-Purpose Vision-Language Reward Models for Robotics","url":"https://arxiv.org/abs/2601.00675"},{"title":"New RoboReward dataset and models automate robotic training and evaluation","url":"https://techxplore.com/news/2026-01-roboreward-dataset-automate-robotic.html"},{"title":"[Paper Note] RoboReward: General-Purpose Vision-Language Reward Models for Robotics, Tony Lee+, arXiv'26, 2026.01 · Issue #4160 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/4160"},{"title":"Iip","url":"https://arxivai.iip.com.ua/en/paper/Um9ib1Jld2FyZCUzQSUy"},{"title":"RoboReward: General-Purpose Vision-Language Reward Models for Robotics (Jan 2026) - YouTube","url":"https://www.youtube.com/watch?v=7fpunDFgWdQ"},{"title":"Large Reward Models: Generalizable Online Robot Reward Generation with Vision-Language Models","url":"https://arxiv.org/html/2603.16065"},{"title":"Vision-language models evaluated on RoboRewardBench and their overall... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Vision-language-models-evaluated-on-RoboRewardBench-and-their-overall-results-Rows-are_tbl3_399438415"},{"title":"(PDF) RoboReward: General-Purpose Vision-Language Reward Models for Robotics","url":"https://www.researchgate.net/publication/399438415_RoboReward_General-Purpose_Vision-Language_Reward_Models_for_Robotics"},{"title":"RoboReward","url":"https://openreview.net/pdf/0f7c964ef51527714b3964df61f35567d94b0e7b.pdf"},{"title":"teetone/RoboReward-8B · Hugging Face","url":"https://huggingface.co/teetone/RoboReward-8B"}]
+
+Based on the web search results, here's what I found about RoboReward:
+
+## Overview
+
+RoboReward is a robotics reward dataset and benchmark built on large-scale real-robot corpora from Open X-Embodiment (OXE) and RoboArena, along with vision-language reward models trained on this dataset (RoboReward 4B/8B).
+
+## Key Features
+
+The team trained general-purpose 4B- and 8B-parameter models that outperform much larger VLMs in assigning rewards for short-horizon robotic tasks, and deployed the 8B model in real-robot reinforcement learning where it improves policy learning over Gemini Robotics-ER 1.5.
+
+## Dataset Innovation
+
+The RoboReward dataset contains many videos showing real robots completing various real-world tasks, coupled with plain-language text descriptions and progress scores, and is designed for training VLMs to judge how well robots completed specific tasks. The dataset was built by augmenting existing success-heavy robot demonstration datasets with realistic failures and near-misses.
+
+## Release
+
+The full dataset, trained reward models, and evaluation suite were released on the project website to advance the development of general-purpose reward models in robotics. The paper was published on arXiv in early January 2026, with versions submitted on January 2 and January 8, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eb1a8727-73c4-46d3-b612-da91d7fceac2",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "d7dffedf-027c-42cc-bf1a-39db64f69a2d",
+  "toolUseResult": {
+    "query": "RoboReward general-purpose vision-language reward model robotics January 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017ukyv22uXow9sjtVG5qjMk",
+        "content": [
+          {
+            "title": "[2601.00675] RoboReward: General-Purpose Vision-Language Reward Models for Robotics",
+            "url": "https://arxiv.org/abs/2601.00675"
+          },
+          {
+            "title": "New RoboReward dataset and models automate robotic training and evaluation",
+            "url": "https://techxplore.com/news/2026-01-roboreward-dataset-automate-robotic.html"
+          },
+          {
+            "title": "[Paper Note] RoboReward: General-Purpose Vision-Language Reward Models for Robotics, Tony Lee+, arXiv'26, 2026.01 · Issue #4160 · AkihikoWatanabe/paper_notes",
+            "url": "https://github.com/AkihikoWatanabe/paper_notes/issues/4160"
+          },
+          {
+            "title": "Iip",
+            "url": "https://arxivai.iip.com.ua/en/paper/Um9ib1Jld2FyZCUzQSUy"
+          },
+          {
+            "title": "RoboReward: General-Purpose Vision-Language Reward Models for Robotics (Jan 2026) - YouTube",
+            "url": "https://www.youtube.com/watch?v=7fpunDFgWdQ"
+          },
+          {
+            "title": "Large Reward Models: Generalizable Online Robot Reward Generation with Vision-Language Models",
+            "url": "https://arxiv.org/html/2603.16065"
+          },
+          {
+            "title": "Vision-language models evaluated on RoboRewardBench and their overall... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Vision-language-models-evaluated-on-RoboRewardBench-and-their-overall-results-Rows-are_tbl3_399438415"
+          },
+          {
+            "title": "(PDF) RoboReward: General-Purpose Vision-Language Reward Models for Robotics",
+            "url": "https://www.researchgate.net/publication/399438415_RoboReward_General-Purpose_Vision-Language_Reward_Models_for_Robotics"
+          },
+          {
+            "title": "RoboReward",
+            "url": "https://openreview.net/pdf/0f7c964ef51527714b3964df61f35567d94b0e7b.pdf"
+          },
+          {
+            "title": "teetone/RoboReward-8B · Hugging Face",
+            "url": "https://huggingface.co/teetone/RoboReward-8B"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about RoboReward:\n\n## Overview\n\nRoboReward is a robotics reward dataset and benchmark built on large-scale real-robot corpora from Open X-Embodiment (OXE) and RoboArena, along with vision-language reward models trained on this dataset (RoboReward 4B/8B).\n\n## Key Features\n\nThe team trained general-purpose 4B- and 8B-parameter models that outperform much larger VLMs in assigning rewards for short-horizon robotic tasks, and deployed the 8B model in real-robot reinforcement learning where it improves policy learning over Gemini Robotics-ER 1.5.\n\n## Dataset Innovation\n\nThe RoboReward dataset contains many videos showing real robots completing various real-world tasks, coupled with plain-language text descriptions and progress scores, and is designed for training VLMs to judge how well robots completed specific tasks. The dataset was built by augmenting existing success-heavy robot demonstration datasets with realistic failures and near-misses.\n\n## Release\n\nThe full dataset, trained reward models, and evaluation suite were released on the project website to advance the development of general-purpose reward models in robotics. The paper was published on arXiv in early January 2026, with versions submitted on January 2 and January 8, 2026."
+    ],
+    "durationSeconds": 7.242060326999985
+  },
+  "sourceToolAssistantUUID": "eb1a8727-73c4-46d3-b612-da91d7fceac2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-14T03:29:00.456Z_
+
+Now let me look for the most critical potential competitors the generator might have missed — specifically work that combines reward models with offline RL value decomposition for data curation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7dffedf-027c-42cc-bf1a-39db64f69a2d",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ka4Yjmub2KTjn6e5jj",
+  "type": "assistant",
+  "uuid": "856f9010-b936-4664-9a02-747e7ac54abf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KRfTBYd1JB5aG5rj1vPmsx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1018,
+      "cache_read_input_tokens": 42678,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1018,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 42678,
+          "cache_creation_input_tokens": 1018,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1018
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-14T03:29:01.298Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FCeAdKVBV94Q7BnE7KRwAV`</summary>
+
+```json
+{
+  "query": "reward-guided data selection offline imitation learning V(s) Q(s,a) decomposition robot 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "856f9010-b936-4664-9a02-747e7ac54abf",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ka4Yjmub2KTjn6e5jj",
+  "type": "assistant",
+  "uuid": "e77e44ca-2dd2-4b0a-94e8-773d2619a04e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KRfTBYd1JB5aG5rj1vPmsx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1018,
+      "cache_read_input_tokens": 42678,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1018,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 42678,
+          "cache_creation_input_tokens": 1018,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1018
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e77e44ca-2dd2-4b0a-94e8-773d2619a04e",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify demonstration curation via advantage decomposition for robotics",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-14T03:29:09.530Z_
+
+<details><summary>↩ Tool result · `toolu_01FCeAdKVBV94Q7BnE7KRwAV`</summary>
+
+```text
+Web search results for query: "reward-guided data selection offline imitation learning V(s) Q(s,a) decomposition robot 2025 2026"
+
+Links: [{"title":"Large Reward Models: Generalizable Online Robot Reward Generation with Vision-Language Models","url":"https://arxiv.org/html/2603.16065"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/83ac5b470f8bddc5a4cf7351318df031-Paper-Conference.pdf"},{"title":"Publications | Chenjia Bai","url":"http://baichenjia.cn/publication/"},{"title":"Imitation learning for legged robot locomotion: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1678567/pdf"},{"title":"TOPReward: Token Probabilities as Hidden Zero-Shot Rewards for Robotics","url":"https://arxiv.org/html/2602.19313v1"},{"title":"Reinforcement learning for robot research: A comprehensive review and open issues - Tengteng Zhang, Hongwei Mo, 2021","url":"https://journals.sagepub.com/doi/10.1177/17298814211007305"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"[2505.09603] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/abs/2505.09603"},{"title":"Structure-Preserving Imitation Learning With Delayed Reward: An Evaluation Within the RoboCup Soccer 2D Simulation Environment - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7805756/"},{"title":"Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks: Journal of the Chinese Institute of Engineers: Vol 48 , No 6 - Get Access","url":"https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354"}]
+
+I found several relevant research papers and works related to your query about reward-guided data selection and offline imitation learning for robotics. Here's what the search revealed:
+
+## Key Findings:
+
+### Data Selection for Imitation Learning
+DataMIL is a policy-driven data selection framework built on the datamodels paradigm that reasons about data selection in an end-to-end manner, using the policy itself to identify which data points will most improve performance. This work addresses the challenge of selecting optimal data subsets from large diverse datasets for robot imitation learning.
+
+### Discriminator-Weighted Offline Imitation Learning
+A discriminator is introduced to the behavioral cloning method, which analytically weighs all data to distinguish between optimal and suboptimal instances, with this discriminative weighting influencing policy learning and preventing suboptimal behavior.
+
+### Reward Models for Robotics
+More recently, generalist reward models such as RoboReward and RoboDopamine are trained on large-scale datasets of successes and failures to predict progress scores or distance-to-goal estimates. Additionally, recent literature has converged on progress estimation as a primary proxy for value, as it provides the dense temporal signal necessary for agents to learn and adapt, functioning as a temporal value function that monotonically increases as a task nears completion.
+
+### Vision-Language Reward Models
+One approach leverages VLMs to formulate a multifaceted reward signal comprising process, completion, and temporal contrastive rewards based on current visual observations, initializing with a base policy trained via Imitation Learning and employing these VLM rewards to guide the model to correct sub-optimal behaviors in a closed-loop manner.
+
+The search results show active research in this area for 2025-2026, though I didn't find a paper specifically combining all the exact elements you mentioned (V(s) Q(s,a) decomposition with reward-guided data selection).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e77e44ca-2dd2-4b0a-94e8-773d2619a04e",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "38ac4fc3-7f75-4b60-af13-cc13959689c7",
+  "toolUseResult": {
+    "query": "reward-guided data selection offline imitation learning V(s) Q(s,a) decomposition robot 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016rHccVX43H4rpEJFzXF9Hb",
+        "content": [
+          {
+            "title": "Large Reward Models: Generalizable Online Robot Reward Generation with Vision-Language Models",
+            "url": "https://arxiv.org/html/2603.16065"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/83ac5b470f8bddc5a4cf7351318df031-Paper-Conference.pdf"
+          },
+          {
+            "title": "Publications | Chenjia Bai",
+            "url": "http://baichenjia.cn/publication/"
+          },
+          {
+            "title": "Imitation learning for legged robot locomotion: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1678567/pdf"
+          },
+          {
+            "title": "TOPReward: Token Probabilities as Hidden Zero-Shot Rewards for Robotics",
+            "url": "https://arxiv.org/html/2602.19313v1"
+          },
+          {
+            "title": "Reinforcement learning for robot research: A comprehensive review and open issues - Tengteng Zhang, Hongwei Mo, 2021",
+            "url": "https://journals.sagepub.com/doi/10.1177/17298814211007305"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          },
+          {
+            "title": "[2505.09603] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/abs/2505.09603"
+          },
+          {
+            "title": "Structure-Preserving Imitation Learning With Delayed Reward: An Evaluation Within the RoboCup Soccer 2D Simulation Environment - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7805756/"
+          },
+          {
+            "title": "Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks: Journal of the Chinese Institute of Engineers: Vol 48 , No 6 - Get Access",
+            "url": "https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354"
+          }
+        ]
+      },
+      "I found several relevant research papers and works related to your query about reward-guided data selection and offline imitation learning for robotics. Here's what the search revealed:\n\n## Key Findings:\n\n### Data Selection for Imitation Learning\nDataMIL is a policy-driven data selection framework built on the datamodels paradigm that reasons about data selection in an end-to-end manner, using the policy itself to identify which data points will most improve performance. This work addresses the challenge of selecting optimal data subsets from large diverse datasets for robot imitation learning.\n\n### Discriminator-Weighted Offline Imitation Learning\nA discriminator is introduced to the behavioral cloning method, which analytically weighs all data to distinguish between optimal and suboptimal instances, with this discriminative weighting influencing policy learning and preventing suboptimal behavior.\n\n### Reward Models for Robotics\nMore recently, generalist reward models such as RoboReward and RoboDopamine are trained on large-scale datasets of successes and failures to predict progress scores or distance-to-goal estimates. Additionally, recent literature has converged on progress estimation as a primary proxy for value, as it provides the dense temporal signal necessary for agents to learn and adapt, functioning as a temporal value function that monotonically increases as a task nears completion.\n\n### Vision-Language Reward Models\nOne approach leverages VLMs to formulate a multifaceted reward signal comprising process, completion, and temporal contrastive rewards based on current visual observations, initializing with a base policy trained via Imitation Learning and employing these VLM rewards to guide the model to correct sub-optimal behaviors in a closed-loop manner.\n\nThe search results show active research in this area for 2025-2026, though I didn't find a paper specifically combining all the exact elements you mentioned (V(s) Q(s,a) decomposition with reward-guided data selection)."
+    ],
+    "durationSeconds": 8.227116955000005
+  },
+  "sourceToolAssistantUUID": "e77e44ca-2dd2-4b0a-94e8-773d2619a04e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-14T03:29:12.788Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JWcjqKnc1RfTPTXmFvrhvJ`</summary>
+
+```json
+{
+  "query": "GR-RL Q-value progress filter dexterous manipulation December 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38ac4fc3-7f75-4b60-af13-cc13959689c7",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kb2bCHd6ECGaqSugdv",
+  "type": "assistant",
+  "uuid": "ee69319e-2152-49c6-8687-12eceb364c7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LuFaJwpUM1DVL66jUosibJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1187,
+      "cache_read_input_tokens": 43696,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1187,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 43696,
+          "cache_creation_input_tokens": 1187,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1187
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-14T03:29:19.582Z_
+
+<details><summary>↩ Tool result · `toolu_01JWcjqKnc1RfTPTXmFvrhvJ`</summary>
+
+```text
+Web search results for query: "GR-RL Q-value progress filter dexterous manipulation December 2025"
+
+Links: [{"title":"[2512.01801] GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation","url":"https://arxiv.org/abs/2512.01801"},{"title":"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation","url":"https://arxiv.org/html/2512.01801v1"},{"title":"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation | alphaXiv","url":"https://www.alphaxiv.org/resources/2512.01801"},{"title":"Paper page - GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation","url":"https://huggingface.co/papers/2512.01801"},{"title":"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation | Request PDF","url":"https://www.researchgate.net/publication/398225857_GR-RL_Going_Dexterous_and_Precise_for_Long-Horizon_Robotic_Manipulation"},{"title":"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation - Publications - ByteDance Seed Team","url":"https://seed.bytedance.com/en/public_papers/gr-rl-going-dexterous-and-precise-for-long-horizon-robotic-manipulation"},{"title":"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2512.01801"},{"title":"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/gr-rl-going-dexterous-precise-long-horizon"},{"title":"GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation - Paper Details","url":"https://www.chatpaper.ai/dashboard/paper/61839c4b-d8dd-493b-841f-ac23a4473c87"},{"title":"GR-RL: A Breakthrough in Dexterous Manipulation, ...","url":"https://seed.bytedance.com/en/blog/seed-research-gr-rl-released-a-breakthrough-in-high-precision-manipulation-for-vla-models-applying-real-world-reinforcement-learning-to-shoe-lacing-for-the-first-time"}]
+
+Based on the web search results, here's what I found about GR-RL and the Q-value progress filter for dexterous manipulation:
+
+## Overview
+
+GR-RL is a robotic learning framework that turns a generalist vision-language-action (VLA) policy into a highly capable specialist for long-horizon dexterous manipulation.
+
+## Q-Value Progress Filter
+
+The progress filter is a key innovation in GR-RL's approach. By directly applying offline RL with sparse reward, the resulting Q-values can be treated as a robust progress function. More specifically, the paper uses offline reinforcement learning to compute Q-values and treats those as a progress signal, where Q-values represent how "good" a state is: how much reward you expect from that point forward.
+
+GR-RL learns a vision-language-conditioned task progress, filters the demonstration trajectories, and only keeps the transitions that contribute positively to the progress.
+
+## Why This Approach Works
+
+The research shows that a standard regression-based critic tended to over-smooth its predictions and wasn't sensitive enough to detect small but critical errors. The distributional critic, by predicting a distribution of possible values between zero and one, was far more robust in this sparse reward setting, providing a more accurate signal of task progress.
+
+## Results
+
+Compared to the previous supervised learning model GR-3, GR-RL boosts the shoe-lacing success rate from 45.7% to 83.3%, reducing failures by nearly 70%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee69319e-2152-49c6-8687-12eceb364c7c",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "c6d4d1b2-6d16-408c-95fd-0acdd389a43a",
+  "toolUseResult": {
+    "query": "GR-RL Q-value progress filter dexterous manipulation December 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QkhtfYi2d1he2qJzGVn2kA",
+        "content": [
+          {
+            "title": "[2512.01801] GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2512.01801"
+          },
+          {
+            "title": "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation",
+            "url": "https://arxiv.org/html/2512.01801v1"
+          },
+          {
+            "title": "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation | alphaXiv",
+            "url": "https://www.alphaxiv.org/resources/2512.01801"
+          },
+          {
+            "title": "Paper page - GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation",
+            "url": "https://huggingface.co/papers/2512.01801"
+          },
+          {
+            "title": "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation | Request PDF",
+            "url": "https://www.researchgate.net/publication/398225857_GR-RL_Going_Dexterous_and_Precise_for_Long-Horizon_Robotic_Manipulation"
+          },
+          {
+            "title": "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation - Publications - ByteDance Seed Team",
+            "url": "https://seed.bytedance.com/en/public_papers/gr-rl-going-dexterous-and-precise-for-long-horizon-robotic-manipulation"
+          },
+          {
+            "title": "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2512.01801"
+          },
+          {
+            "title": "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/gr-rl-going-dexterous-precise-long-horizon"
+          },
+          {
+            "title": "GR-RL: Going Dexterous and Precise for Long-Horizon Robotic Manipulation - Paper Details",
+            "url": "https://www.chatpaper.ai/dashboard/paper/61839c4b-d8dd-493b-841f-ac23a4473c87"
+          },
+          {
+            "title": "GR-RL: A Breakthrough in Dexterous Manipulation, ...",
+            "url": "https://seed.bytedance.com/en/blog/seed-research-gr-rl-released-a-breakthrough-in-high-precision-manipulation-for-vla-models-applying-real-world-reinforcement-learning-to-shoe-lacing-for-the-first-time"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about GR-RL and the Q-value progress filter for dexterous manipulation:\n\n## Overview\n\nGR-RL is a robotic learning framework that turns a generalist vision-language-action (VLA) policy into a highly capable specialist for long-horizon dexterous manipulation.\n\n## Q-Value Progress Filter\n\nThe progress filter is a key innovation in GR-RL's approach. By directly applying offline RL with sparse reward, the resulting Q-values can be treated as a robust progress function. More specifically, the paper uses offline reinforcement learning to compute Q-values and treats those as a progress signal, where Q-values represent how \"good\" a state is: how much reward you expect from that point forward.\n\nGR-RL learns a vision-language-conditioned task progress, filters the demonstration trajectories, and only keeps the transitions that contribute positively to the progress.\n\n## Why This Approach Works\n\nThe research shows that a standard regression-based critic tended to over-smooth its predictions and wasn't sensitive enough to detect small but critical errors. The distributional critic, by predicting a distribution of possible values between zero and one, was far more robust in this sparse reward setting, providing a more accurate signal of task progress.\n\n## Results\n\nCompared to the previous supervised learning model GR-3, GR-RL boosts the shoe-lacing success rate from 45.7% to 83.3%, reducing failures by nearly 70%."
+    ],
+    "durationSeconds": 6.787633642999979
+  },
+  "sourceToolAssistantUUID": "ee69319e-2152-49c6-8687-12eceb364c7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-14T03:29:23.463Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011EaVnLVFtCyQXYjPFWP5Bs`</summary>
+
+```json
+{
+  "query": "\"Expert or not\" Bellman Wasserstein distance dataset quality offline RL ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6d4d1b2-6d16-408c-95fd-0acdd389a43a",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kbm4aB2P8Xpwk4UxTt",
+  "type": "assistant",
+  "uuid": "36d820cd-e209-4046-8cb3-818b6b0aca1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NWarAS5JZYzYJ3e9BDibJa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1116,
+      "cache_read_input_tokens": 44883,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1116,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 44883,
+          "cache_creation_input_tokens": 1116,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1116
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-14T03:29:29.592Z_
+
+<details><summary>↩ Tool result · `toolu_011EaVnLVFtCyQXYjPFWP5Bs`</summary>
+
+```text
+Web search results for query: ""Expert or not" Bellman Wasserstein distance dataset quality offline RL ICLR 2026"
+
+Links: [{"title":"expert or not? assessing data quality in","url":"https://arxiv.org/pdf/2510.12638"},{"title":"Expert or not? assessing data quality in offline reinforcement learning","url":"https://arxiv.org/html/2510.12638"},{"title":"[2510.12638] Expert or not? assessing data quality in offline reinforcement learning","url":"https://arxiv.org/abs/2510.12638"},{"title":"(PDF) Expert or not? assessing data quality in offline reinforcement learning","url":"https://www.researchgate.net/publication/396499911_Expert_or_not_assessing_data_quality_in_offline_reinforcement_learning"}]
+
+I found relevant research on this topic. Here's what I found:
+
+The paper "Expert or not? assessing data quality in offline reinforcement learning" addresses the problem of estimating offline dataset quality without training an agent, introducing the Bellman Wasserstein distance (BWD), a value-aware optimal transport score that measures how dissimilar a dataset's behavioral policy is from a random reference policy.
+
+In practice, offline RL datasets vary widely in quality, often mixing expert, suboptimal, and even random trajectories, with algorithm choice depending on dataset fidelity. However, in the wild it is difficult to assess dataset quality a priori because the data's provenance and skill composition are unknown.
+
+The paper studies a spectrum of proxies—from simple cumulative rewards to learned value-based estimators—and introduces the Bellman–Wasserstein distance (BWD), a value-aware optimal-transport score that measures how dissimilar a dataset's behavioral policy is from a random reference policy.
+
+Experiments demonstrated that incorporating BWD as a regularization term during policy optimization improves performance across locomotion tasks, particularly in datasets with mixed-quality trajectories, validating that dissimilarity to random policies correlates with data quality.
+
+The paper was posted to arXiv in October 2025, so it appears to be recent research related to the ICLR 2026 conference cycle.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36d820cd-e209-4046-8cb3-818b6b0aca1b",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "833e882c-6233-4fe4-9f89-8d2db4d72500",
+  "toolUseResult": {
+    "query": "\"Expert or not\" Bellman Wasserstein distance dataset quality offline RL ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KMNUv9zhBHbC1hEUJCcgZm",
+        "content": [
+          {
+            "title": "expert or not? assessing data quality in",
+            "url": "https://arxiv.org/pdf/2510.12638"
+          },
+          {
+            "title": "Expert or not? assessing data quality in offline reinforcement learning",
+            "url": "https://arxiv.org/html/2510.12638"
+          },
+          {
+            "title": "[2510.12638] Expert or not? assessing data quality in offline reinforcement learning",
+            "url": "https://arxiv.org/abs/2510.12638"
+          },
+          {
+            "title": "(PDF) Expert or not? assessing data quality in offline reinforcement learning",
+            "url": "https://www.researchgate.net/publication/396499911_Expert_or_not_assessing_data_quality_in_offline_reinforcement_learning"
+          }
+        ]
+      },
+      "I found relevant research on this topic. Here's what I found:\n\nThe paper \"Expert or not? assessing data quality in offline reinforcement learning\" addresses the problem of estimating offline dataset quality without training an agent, introducing the Bellman Wasserstein distance (BWD), a value-aware optimal transport score that measures how dissimilar a dataset's behavioral policy is from a random reference policy.\n\nIn practice, offline RL datasets vary widely in quality, often mixing expert, suboptimal, and even random trajectories, with algorithm choice depending on dataset fidelity. However, in the wild it is difficult to assess dataset quality a priori because the data's provenance and skill composition are unknown.\n\nThe paper studies a spectrum of proxies—from simple cumulative rewards to learned value-based estimators—and introduces the Bellman–Wasserstein distance (BWD), a value-aware optimal-transport score that measures how dissimilar a dataset's behavioral policy is from a random reference policy.\n\nExperiments demonstrated that incorporating BWD as a regularization term during policy optimization improves performance across locomotion tasks, particularly in datasets with mixed-quality trajectories, validating that dissimilarity to random policies correlates with data quality.\n\nThe paper was posted to arXiv in October 2025, so it appears to be recent research related to the ICLR 2026 conference cycle."
+    ],
+    "durationSeconds": 6.12470148399999
+  },
+  "sourceToolAssistantUUID": "36d820cd-e209-4046-8cb3-818b6b0aca1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-14T03:29:33.024Z_
+
+Now let me do the critical search — looking for very recent concurrent work that might directly threaten novelty.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "833e882c-6233-4fe4-9f89-8d2db4d72500",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kcVqKSP5tgDPdbR8yA",
+  "type": "assistant",
+  "uuid": "889b9951-2556-4a21-b352-63474a0bbdb4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XRuGSbpECViVFS91LimrNr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 611,
+      "cache_read_input_tokens": 45999,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 611,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 45999,
+          "cache_creation_input_tokens": 611,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 611
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-14T03:29:33.986Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NNfeFbVyPX3nQ8XPoiZz8Y`</summary>
+
+```json
+{
+  "query": "two-dimensional data quality scoring state action decomposition demonstration curation robotics arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "889b9951-2556-4a21-b352-63474a0bbdb4",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kcVqKSP5tgDPdbR8yA",
+  "type": "assistant",
+  "uuid": "58be3379-cce7-4868-ad85-32a8fa47d18f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XRuGSbpECViVFS91LimrNr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 611,
+      "cache_read_input_tokens": 45999,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 611,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 45999,
+          "cache_creation_input_tokens": 611,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 611
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T03:29:40.170Z_
+
+<details><summary>↩ Tool result · `toolu_01NNfeFbVyPX3nQ8XPoiZz8Y`</summary>
+
+```text
+Web search results for query: "two-dimensional data quality scoring state action decomposition demonstration curation robotics arXiv 2026"
+
+Links: [{"title":"[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/abs/2603.09056"},{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623"},{"title":"1 Introduction","url":"https://arxiv.org/html/2602.00919v1"},{"title":"Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration","url":"https://arxiv.org/html/2412.14309v1"},{"title":"Quantifying Demonstration Quality for Robot Learning and Generalization","url":"https://arxiv.org/pdf/2203.13843"},{"title":"A Decade of Action Quality Assessment: Largest Systematic Survey of Trends, Challenges, and Future Directions","url":"https://arxiv.org/html/2502.02817v1"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=3050&show=2000"},{"title":"Artificial Intelligence Feb 2025","url":"https://arxiv.org/list/cs.AI/2025-02?skip=875&show=1000"},{"title":"A Comprehensive Survey of Action Quality Assessment: Method and Benchmark","url":"https://arxiv.org/html/2412.11149v1"}]
+
+Based on the search results, I found highly relevant work on your query. The most directly related paper appears to be:
+
+## Key Finding
+
+**"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning"** (arXiv 2603.09056)
+
+This paper addresses demonstration curation for robotics and contains the core concepts from your query:
+
+- **Data Quality Scoring**: The approach defines data quality as the contribution of each training sample to reducing loss on validation demonstrations
+
+- **State-Action Decomposition**: The method uses two key techniques: (i) using maximum influence across validation samples to capture the most relevant state-action pairs, and (ii) aggregating influence scores of state-action pairs within the same trajectory to reduce noise and improve data coverage
+
+- **Demonstration Curation**: Experiments in both simulated and real-world settings show that QoQ consistently improves policy performances over prior data selection methods
+
+- **Publication Date**: The paper was submitted on Tue, 10 Mar 2026
+
+The paper leverages influence functions to systematically identify and curate high-quality robot demonstrations, directly addressing the problem of data quality assessment in robot learning from demonstration.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "58be3379-cce7-4868-ad85-32a8fa47d18f",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "24e78499-6a71-404a-8745-af8948a80bd5",
+  "toolUseResult": {
+    "query": "two-dimensional data quality scoring state action decomposition demonstration curation robotics arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011o7FzhSZBjKTjKdjwv7pF1",
+        "content": [
+          {
+            "title": "[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/abs/2603.09056"
+          },
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/html/2502.08623"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2602.00919v1"
+          },
+          {
+            "title": "Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration",
+            "url": "https://arxiv.org/html/2412.14309v1"
+          },
+          {
+            "title": "Quantifying Demonstration Quality for Robot Learning and Generalization",
+            "url": "https://arxiv.org/pdf/2203.13843"
+          },
+          {
+            "title": "A Decade of Action Quality Assessment: Largest Systematic Survey of Trends, Challenges, and Future Directions",
+            "url": "https://arxiv.org/html/2502.02817v1"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=3050&show=2000"
+          },
+          {
+            "title": "Artificial Intelligence Feb 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-02?skip=875&show=1000"
+          },
+          {
+            "title": "A Comprehensive Survey of Action Quality Assessment: Method and Benchmark",
+            "url": "https://arxiv.org/html/2412.11149v1"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant work on your query. The most directly related paper appears to be:\n\n## Key Finding\n\n**\"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning\"** (arXiv 2603.09056)\n\nThis paper addresses demonstration curation for robotics and contains the core concepts from your query:\n\n- **Data Quality Scoring**: The approach defines data quality as the contribution of each training sample to reducing loss on validation demonstrations\n\n- **State-Action Decomposition**: The method uses two key techniques: (i) using maximum influence across validation samples to capture the most relevant state-action pairs, and (ii) aggregating influence scores of state-action pairs within the same trajectory to reduce noise and improve data coverage\n\n- **Demonstration Curation**: Experiments in both simulated and real-world settings show that QoQ consistently improves policy performances over prior data selection methods\n\n- **Publication Date**: The paper was submitted on Tue, 10 Mar 2026\n\nThe paper leverages influence functions to systematically identify and curate high-quality robot demonstrations, directly addressing the problem of data quality assessment in robot learning from demonstration."
+    ],
+    "durationSeconds": 6.178325577999989
+  },
+  "sourceToolAssistantUUID": "58be3379-cce7-4868-ad85-32a8fa47d18f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "24e78499-6a71-404a-8745-af8948a80bd5",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify demonstration curation via advantage decomposition for robotics",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T03:29:43.626Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MqRGorFsGHPHqE1jobuqsN`</summary>
+
+```json
+{
+  "query": "RINSE smoothness-driven data quality metrics robot imitation learning ICML 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24e78499-6a71-404a-8745-af8948a80bd5",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kdH5tKmf6K1JEQtbx2",
+  "type": "assistant",
+  "uuid": "68c5f691-39b3-4f4e-ab91-a85a65938b9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qxMAifehWQwSyd3hvEG4i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 46610,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 816,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 46610,
+          "cache_creation_input_tokens": 816,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 816
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T03:29:50.790Z_
+
+<details><summary>↩ Tool result · `toolu_01MqRGorFsGHPHqE1jobuqsN`</summary>
+
+```text
+Web search results for query: "RINSE smoothness-driven data quality metrics robot imitation learning ICML 2025"
+
+Links: [{"title":"ICML Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://icml.cc/virtual/2025/48703"},{"title":"Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://arxiv.org/html/2604.23000"},{"title":"[2604.23000] Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://arxiv.org/abs/2604.23000"},{"title":"Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://escholarship.org/uc/item/7d43m7q3"},{"title":"DATA SCALING LAWS IN IMITATION LEARNING FOR ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/88b7b2c896506daabc8d3fd587055167-Paper-Conference.pdf"},{"title":"ICML 2025 Papers","url":"https://icml.cc/virtual/2025/papers.html"},{"title":"Robotic Manipulation via Imitation Learning: Taxonomy, Evolution, Benchmark, and Challenges","url":"https://arxiv.org/html/2508.17449v1"},{"title":"ICLR 2025 Papers","url":"https://iclr.cc/virtual/2025/papers.html"},{"title":"Feature 14 IEEE CIRCUITS AND SYSTEMS MAGAZINE FOURTH QUARTER 2025","url":"https://mn.cs.tsinghua.edu.cn/xinwang/PDF/papers/2025_Embodied%20AI%20from%20LLMs%20to%20World%20Models.pdf"},{"title":"Yuke Zhu GDC 3.422, 2317 Speedway, Austin, TX, 78712 USA https://yukezhu.me","url":"https://yukezhu.me/documents/yukez.pdf"}]
+
+Based on the search results, here's what I found about RINSE and smoothness-driven data quality metrics for robot imitation learning at ICML 2025:
+
+## Overview
+
+RINSE (Ranking and INdexing Smooth Examples) is a general-purpose method for filtering demonstration data based on trajectory smoothness, addressing a key challenge in imitation learning where policy performance is fundamentally limited by demonstration data quality, as real-world datasets contain trajectories of varying quality due to operator skill differences, teleoperation artifacts, and procedural inconsistencies.
+
+## Key Metrics
+
+RINSE employs two complementary metrics: Spectral Arc Length (SAL), a clinically validated smoothness metric from rehabilitation science that is adapted for robot data curation, and Trajectory-Envelope Distance (TED), a novel spatial metric that measures geometric deviation from a contact-aware Bézier-smoothed reference in Cartesian space. Both metrics are reference-free, require no policy training, and run in sub-second time per demonstration.
+
+## Performance Results
+
+The method demonstrates significant improvements across various settings:
+- On RoboMimic benchmarks, SAL filtering achieves 16% higher success using one-sixth of the data
+- On real-world manipulation, TED filtering achieves 20% improvement with half the data
+- As a retrieval-stage filter within STRAP on LIBERO-10, RINSE re-ranking improves mean success by 5.6%
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68c5f691-39b3-4f4e-ab91-a85a65938b9c",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "8e233a44-785e-4777-8f1a-40658b6962e9",
+  "toolUseResult": {
+    "query": "RINSE smoothness-driven data quality metrics robot imitation learning ICML 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018ag8pbsRyb8fEeuznVwX9q",
+        "content": [
+          {
+            "title": "ICML Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://icml.cc/virtual/2025/48703"
+          },
+          {
+            "title": "Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/html/2604.23000"
+          },
+          {
+            "title": "[2604.23000] Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/abs/2604.23000"
+          },
+          {
+            "title": "Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://escholarship.org/uc/item/7d43m7q3"
+          },
+          {
+            "title": "DATA SCALING LAWS IN IMITATION LEARNING FOR ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/88b7b2c896506daabc8d3fd587055167-Paper-Conference.pdf"
+          },
+          {
+            "title": "ICML 2025 Papers",
+            "url": "https://icml.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "Robotic Manipulation via Imitation Learning: Taxonomy, Evolution, Benchmark, and Challenges",
+            "url": "https://arxiv.org/html/2508.17449v1"
+          },
+          {
+            "title": "ICLR 2025 Papers",
+            "url": "https://iclr.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "Feature 14 IEEE CIRCUITS AND SYSTEMS MAGAZINE FOURTH QUARTER 2025",
+            "url": "https://mn.cs.tsinghua.edu.cn/xinwang/PDF/papers/2025_Embodied%20AI%20from%20LLMs%20to%20World%20Models.pdf"
+          },
+          {
+            "title": "Yuke Zhu GDC 3.422, 2317 Speedway, Austin, TX, 78712 USA https://yukezhu.me",
+            "url": "https://yukezhu.me/documents/yukez.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about RINSE and smoothness-driven data quality metrics for robot imitation learning at ICML 2025:\n\n## Overview\n\nRINSE (Ranking and INdexing Smooth Examples) is a general-purpose method for filtering demonstration data based on trajectory smoothness, addressing a key challenge in imitation learning where policy performance is fundamentally limited by demonstration data quality, as real-world datasets contain trajectories of varying quality due to operator skill differences, teleoperation artifacts, and procedural inconsistencies.\n\n## Key Metrics\n\nRINSE employs two complementary metrics: Spectral Arc Length (SAL), a clinically validated smoothness metric from rehabilitation science that is adapted for robot data curation, and Trajectory-Envelope Distance (TED), a novel spatial metric that measures geometric deviation from a contact-aware Bézier-smoothed reference in Cartesian space. Both metrics are reference-free, require no policy training, and run in sub-second time per demonstration.\n\n## Performance Results\n\nThe method demonstrates significant improvements across various settings:\n- On RoboMimic benchmarks, SAL filtering achieves 16% higher success using one-sixth of the data\n- On real-world manipulation, TED filtering achieves 20% improvement with half the data\n- As a retrieval-stage filter within STRAP on LIBERO-10, RINSE re-ranking improves mean success by 5.6%"
+    ],
+    "durationSeconds": 7.157735171999986
+  },
+  "sourceToolAssistantUUID": "68c5f691-39b3-4f4e-ab91-a85a65938b9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-14T03:29:54.685Z_
+
+Let me now fetch the Robometer paper to verify the LIBERO checkpoint claim and check if it provides per-frame rewards suitable for IQL training.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e233a44-785e-4777-8f1a-40658b6962e9",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ke4UP3bC3tYZbQr2Fd",
+  "type": "assistant",
+  "uuid": "cca981cc-0b70-42ff-b718-1bf9d5a5a3cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7133njBWa5bFr4aMFPm7R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 948,
+      "cache_read_input_tokens": 47426,
+      "output_tokens": 188,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 948,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 188,
+          "cache_read_input_tokens": 47426,
+          "cache_creation_input_tokens": 948,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 948
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-14T03:29:57.284Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KkytjmJ66YdHAyxfw35ty6`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.02115",
+  "prompt": "Extract the following details: 1) Does Robometer provide dense frame-level rewards? 2) Is there a LIBERO-specific checkpoint? 3) What benchmarks/tasks was it evaluated on? 4) Can the reward model be used to annotate individual transitions in demonstration datasets? 5) Is code/model publicly available?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cca981cc-0b70-42ff-b718-1bf9d5a5a3cd",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ke4UP3bC3tYZbQr2Fd",
+  "type": "assistant",
+  "uuid": "8854546f-95e1-4e40-9406-8ff255d47dae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7133njBWa5bFr4aMFPm7R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 948,
+      "cache_read_input_tokens": 47426,
+      "output_tokens": 188,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 948,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 188,
+          "cache_read_input_tokens": 47426,
+          "cache_creation_input_tokens": 948,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 948
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-14T03:30:01.044Z_
+
+<details><summary>↩ Tool result · `toolu_01KkytjmJ66YdHAyxfw35ty6`</summary>
+
+```text
+Based on the arXiv page content provided, here's what can be determined:
+
+1) **Dense frame-level rewards**: The abstract indicates Robometer uses "a frame-level progress loss," suggesting it does provide frame-level supervision, though it's combined with trajectory-level comparisons rather than being purely dense.
+
+2) **LIBERO-specific checkpoint**: Not mentioned in the provided content.
+
+3) **Benchmarks/tasks**: The page states the method was evaluated "across benchmarks and real-world evaluations" but doesn't specify which ones in the visible text.
+
+4) **Annotating individual transitions**: Not addressed in the provided content.
+
+5) **Public availability**: Yes. The abstract states "Code, model weights, and videos" are available at a provided URL (robometer.github.io).
+
+The available excerpt primarily contains metadata and the abstract. For comprehensive answers to questions 2-4, the full paper PDF or website would be necessary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8854546f-95e1-4e40-9406-8ff255d47dae",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "f6bfc130-65bd-4d54-83b7-765812faebf7",
+  "toolUseResult": {
+    "bytes": 48945,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the arXiv page content provided, here's what can be determined:\n\n1) **Dense frame-level rewards**: The abstract indicates Robometer uses \"a frame-level progress loss,\" suggesting it does provide frame-level supervision, though it's combined with trajectory-level comparisons rather than being purely dense.\n\n2) **LIBERO-specific checkpoint**: Not mentioned in the provided content.\n\n3) **Benchmarks/tasks**: The page states the method was evaluated \"across benchmarks and real-world evaluations\" but doesn't specify which ones in the visible text.\n\n4) **Annotating individual transitions**: Not addressed in the provided content.\n\n5) **Public availability**: Yes. The abstract states \"Code, model weights, and videos\" are available at a provided URL (robometer.github.io).\n\nThe available excerpt primarily contains metadata and the abstract. For comprehensive answers to questions 2-4, the full paper PDF or website would be necessary.",
+    "durationMs": 3756,
+    "url": "https://arxiv.org/abs/2603.02115"
+  },
+  "sourceToolAssistantUUID": "8854546f-95e1-4e40-9406-8ff255d47dae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 74 · 2026-05-14T03:30:01.046Z_
+
+```json
+{
+  "parentUuid": "f6bfc130-65bd-4d54-83b7-765812faebf7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "6aecb49d-837b-4fc5-9223-4efb1604d667",
+  "timestamp": "2026-05-14T03:30:01.046Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-14T03:30:05.866Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FStwSL5iYc6fnHQNGDH9iv`</summary>
+
+```json
+{
+  "url": "https://robometer.github.io/",
+  "prompt": "Extract: 1) Does Robometer provide per-frame dense rewards? 2) Is there a LIBERO-specific checkpoint? 3) What downstream applications does it support? 4) Can it annotate offline demonstration datasets transition-by-transition? 5) What benchmarks is it tested on? 6) Is it tested on data retrieval or curation tasks?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6aecb49d-837b-4fc5-9223-4efb1604d667",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kepJ8BWo8eyz1VqLgs",
+  "type": "assistant",
+  "uuid": "186b507d-6af3-49d7-845e-0cdde5a97132",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EU1prz8wXXeRR1eZeHwpif",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 510,
+      "cache_read_input_tokens": 48374,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 510,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 48374,
+          "cache_creation_input_tokens": 510,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 510
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-14T03:30:11.263Z_
+
+<details><summary>↩ Tool result · `toolu_01FStwSL5iYc6fnHQNGDH9iv`</summary>
+
+```text
+# Robometer Capability Questions
+
+**1) Per-frame dense rewards?**
+Yes. The method includes "Frame-Level Progress and Success Prediction" that provides "dense supervision at the intra-trajectory level" through per-frame progress and success regression on expert demonstrations.
+
+**2) LIBERO-specific checkpoint?**
+Not mentioned. The page references evaluation on "Libero (90)" as part of benchmark testing but does not indicate a task-specific model checkpoint.
+
+**3) Downstream applications?**
+Five applications are supported: "online RL, model-based online RL, offline RL, failure detection, and data retrieval for IL." The model functions as a plug-in without task-specific fine-tuning.
+
+**4) Transition-by-transition annotation?**
+Not explicitly stated for offline datasets. The model predicts per-frame rewards but the document doesn't describe systematic annotation of demonstration datasets at the transition level.
+
+**5) Benchmarks tested?**
+Three primary benchmarks: VOC (Value Order Correlation) with Kendall tau ranking on RBM-EVAL datasets, RoboRewardBench (mean absolute error evaluation), and preference accuracy comparisons on different quality and different task scenarios.
+
+**6) Data retrieval/curation tasks?**
+Yes. One application uses Robometer to "retrieve the most relevant subtrajectories for a task instruction" from unlabeled play datasets, improving downstream imitation learning performance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "186b507d-6af3-49d7-845e-0cdde5a97132",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "52c1de7f-7b91-464b-8771-4d77a14422c5",
+  "toolUseResult": {
+    "bytes": 102011,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Robometer Capability Questions\n\n**1) Per-frame dense rewards?**\nYes. The method includes \"Frame-Level Progress and Success Prediction\" that provides \"dense supervision at the intra-trajectory level\" through per-frame progress and success regression on expert demonstrations.\n\n**2) LIBERO-specific checkpoint?**\nNot mentioned. The page references evaluation on \"Libero (90)\" as part of benchmark testing but does not indicate a task-specific model checkpoint.\n\n**3) Downstream applications?**\nFive applications are supported: \"online RL, model-based online RL, offline RL, failure detection, and data retrieval for IL.\" The model functions as a plug-in without task-specific fine-tuning.\n\n**4) Transition-by-transition annotation?**\nNot explicitly stated for offline datasets. The model predicts per-frame rewards but the document doesn't describe systematic annotation of demonstration datasets at the transition level.\n\n**5) Benchmarks tested?**\nThree primary benchmarks: VOC (Value Order Correlation) with Kendall tau ranking on RBM-EVAL datasets, RoboRewardBench (mean absolute error evaluation), and preference accuracy comparisons on different quality and different task scenarios.\n\n**6) Data retrieval/curation tasks?**\nYes. One application uses Robometer to \"retrieve the most relevant subtrajectories for a task instruction\" from unlabeled play datasets, improving downstream imitation learning performance.",
+    "durationMs": 5395,
+    "url": "https://robometer.github.io/"
+  },
+  "sourceToolAssistantUUID": "186b507d-6af3-49d7-845e-0cdde5a97132",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-14T03:30:14.658Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GTvZsy65wLYdmQDrZX6jeK`</summary>
+
+```json
+{
+  "query": "Robometer LIBERO checkpoint model evaluation code github"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "52c1de7f-7b91-464b-8771-4d77a14422c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kfa3AJrpbuy4oVA7WK",
+  "type": "assistant",
+  "uuid": "1f2c41fb-d609-4f7d-a405-ea9a78f96494",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015gMnZrJKzYFYFj2J8VaPKL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 490,
+      "cache_read_input_tokens": 48884,
+      "output_tokens": 62,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 490,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 62,
+          "cache_read_input_tokens": 48884,
+          "cache_creation_input_tokens": 490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 490
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-14T03:30:20.438Z_
+
+<details><summary>↩ Tool result · `toolu_01GTvZsy65wLYdmQDrZX6jeK`</summary>
+
+```text
+Web search results for query: "Robometer LIBERO checkpoint model evaluation code github"
+
+Links: [{"title":"GitHub - robometer/robometer: Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons · GitHub","url":"https://github.com/robometer/robometer"},{"title":"aliangdw/Robometer-4B-LIBERO · Hugging Face","url":"https://huggingface.co/aliangdw/Robometer-4B-LIBERO"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/html/2510.03827v1"},{"title":"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://robometer.github.io/"},{"title":"GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub","url":"https://github.com/Lifelong-Robot-Learning/LIBERO"},{"title":"openpi/examples/libero/README.md at main · Physical-Intelligence/openpi","url":"https://github.com/Physical-Intelligence/openpi/blob/main/examples/libero/README.md"},{"title":"GitHub - ginwind/VLA-JEPA: VLA-JEPA: Enhancing Vision-Language-Action Model with Latent World Model · GitHub","url":"https://github.com/ginwind/VLA-JEPA"},{"title":"ROBOMETER: Scaling General-Purpose Robotic","url":"https://robometer.github.io/assets/robometer.pdf"},{"title":"AgiBot-World/evaluate/libero/README.md at main · OpenDriveLab/AgiBot-World","url":"https://github.com/OpenDriveLab/AgiBot-World/blob/main/evaluate/libero/README.md"},{"title":"GitHub - Zxy-MLlab/LIBERO-PRO: LIBERO-PRO is the official repository of the LIBERO-PRO — an evaluation extension of the original LIBERO benchmark","url":"https://github.com/Zxy-MLlab/LIBERO-PRO"}]
+
+Based on the search results, I found information about Robometer and LIBERO checkpoint model evaluation. Here's what I found:
+
+## Robometer GitHub Repository
+
+The main Robometer GitHub repository is located at https://github.com/robometer/robometer, which includes code for evaluating models on LIBERO-90.
+
+## Key Evaluation Code Resources
+
+For model evaluation and checkpoint usage:
+
+1. **Local Inference**: To run the model locally (which loads checkpoint from Hugging Face), you can use the command with the script `scripts/example_inference_local.py`.
+
+2. **Evaluation Server**: You can run an evaluation server with the code at `robometer/evals/eval_server.py`.
+
+3. **Training and Evaluation Configuration**: Example configurations for training with LIBERO are available, showing how to set up training with LIBERO datasets using distributed training.
+
+## Pre-trained LIBERO Checkpoint
+
+For the LIBERO-specific checkpoint, the Robometer-4B-LIBERO model is available on Hugging Face, and you can run it locally or use an evaluation server.
+
+The main repository contains the implementation code, configuration files, and scripts needed for evaluating the checkpoint models on LIBERO benchmarks. You can access the full codebase and detailed documentation at the GitHub repository mentioned above.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f2c41fb-d609-4f7d-a405-ea9a78f96494",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "ca6b183e-ad59-4b5e-8a94-40ffc4e590c1",
+  "toolUseResult": {
+    "query": "Robometer LIBERO checkpoint model evaluation code github",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01J7mpRQtJfKmTUyqD1Z3kwR",
+        "content": [
+          {
+            "title": "GitHub - robometer/robometer: Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons · GitHub",
+            "url": "https://github.com/robometer/robometer"
+          },
+          {
+            "title": "aliangdw/Robometer-4B-LIBERO · Hugging Face",
+            "url": "https://huggingface.co/aliangdw/Robometer-4B-LIBERO"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/html/2510.03827v1"
+          },
+          {
+            "title": "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://robometer.github.io/"
+          },
+          {
+            "title": "GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub",
+            "url": "https://github.com/Lifelong-Robot-Learning/LIBERO"
+          },
+          {
+            "title": "openpi/examples/libero/README.md at main · Physical-Intelligence/openpi",
+            "url": "https://github.com/Physical-Intelligence/openpi/blob/main/examples/libero/README.md"
+          },
+          {
+            "title": "GitHub - ginwind/VLA-JEPA: VLA-JEPA: Enhancing Vision-Language-Action Model with Latent World Model · GitHub",
+            "url": "https://github.com/ginwind/VLA-JEPA"
+          },
+          {
+            "title": "ROBOMETER: Scaling General-Purpose Robotic",
+            "url": "https://robometer.github.io/assets/robometer.pdf"
+          },
+          {
+            "title": "AgiBot-World/evaluate/libero/README.md at main · OpenDriveLab/AgiBot-World",
+            "url": "https://github.com/OpenDriveLab/AgiBot-World/blob/main/evaluate/libero/README.md"
+          },
+          {
+            "title": "GitHub - Zxy-MLlab/LIBERO-PRO: LIBERO-PRO is the official repository of the LIBERO-PRO — an evaluation extension of the original LIBERO benchmark",
+            "url": "https://github.com/Zxy-MLlab/LIBERO-PRO"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Robometer and LIBERO checkpoint model evaluation. Here's what I found:\n\n## Robometer GitHub Repository\n\nThe main Robometer GitHub repository is located at https://github.com/robometer/robometer, which includes code for evaluating models on LIBERO-90.\n\n## Key Evaluation Code Resources\n\nFor model evaluation and checkpoint usage:\n\n1. **Local Inference**: To run the model locally (which loads checkpoint from Hugging Face), you can use the command with the script `scripts/example_inference_local.py`.\n\n2. **Evaluation Server**: You can run an evaluation server with the code at `robometer/evals/eval_server.py`.\n\n3. **Training and Evaluation Configuration**: Example configurations for training with LIBERO are available, showing how to set up training with LIBERO datasets using distributed training.\n\n## Pre-trained LIBERO Checkpoint\n\nFor the LIBERO-specific checkpoint, the Robometer-4B-LIBERO model is available on Hugging Face, and you can run it locally or use an evaluation server.\n\nThe main repository contains the implementation code, configuration files, and scripts needed for evaluating the checkpoint models on LIBERO benchmarks. You can access the full codebase and detailed documentation at the GitHub repository mentioned above."
+    ],
+    "durationSeconds": 5.775335694000009
+  },
+  "sourceToolAssistantUUID": "1f2c41fb-d609-4f7d-a405-ea9a78f96494",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-14T03:30:24.598Z_
+
+Good - the LIBERO checkpoint exists. Now let me search for critical concurrent/competing work one more time with different keywords.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca6b183e-ad59-4b5e-8a94-40ffc4e590c1",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kgFE6LNmQS4LLk7VF9",
+  "type": "assistant",
+  "uuid": "fbb3be99-2147-4773-84c4-dc1885acc8cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFHrYrZJSJs452tXDSnqdh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 49374,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 49374,
+          "cache_creation_input_tokens": 931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-14T03:30:25.453Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W7a4UKEjorkZYQBopFskhn`</summary>
+
+```json
+{
+  "query": "offline RL value function data quality filtering demonstration selection pre-training reusable dataset 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbb3be99-2147-4773-84c4-dc1885acc8cc",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kgFE6LNmQS4LLk7VF9",
+  "type": "assistant",
+  "uuid": "3cec0c69-d59d-4000-a716-2fcb74d932d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFHrYrZJSJs452tXDSnqdh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 49374,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 49374,
+          "cache_creation_input_tokens": 931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-14T03:30:32.906Z_
+
+<details><summary>↩ Tool result · `toolu_01W7a4UKEjorkZYQBopFskhn`</summary>
+
+```text
+Web search results for query: "offline RL value function data quality filtering demonstration selection pre-training reusable dataset 2025 2026"
+
+Links: [{"title":"Using offline data to speed up Reinforcement Learning in procedurally generated environments - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0925231224018502"},{"title":"Efficient offline-to-online reinforcement learning with pre-reduced out-of-distribution Q-values - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0893608025008287"},{"title":"A Dataset Perspective on Offline Reinforcement Learning","url":"https://kschweig.github.io/OfflineRL/"},{"title":"Data Valuation for Offline Reinforcement Learning","url":"https://arxiv.org/pdf/2205.09550"},{"title":"expert or not? assessing data quality in","url":"https://arxiv.org/pdf/2510.12638"},{"title":"(PDF) Measuring Data Quality for Dataset Selection in Offline Reinforcement Learning","url":"https://www.researchgate.net/publication/356603025_Measuring_Data_Quality_for_Dataset_Selection_in_Offline_Reinforcement_Learning"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/83ac5b470f8bddc5a4cf7351318df031-Paper-Conference.pdf"},{"title":"A Minimalist Approach to Offline Reinforcement Learning","url":"https://openreview.net/pdf?id=Q32U7dzWXpc"},{"title":"Scaling Offline Model-Based RL via Jointly-Optimized World-Action Model Pretraining | OpenReview","url":"https://openreview.net/forum?id=T1OvCSFaum"},{"title":"Fewer May Be Better: Enhancing Offline Reinforcement Learning with Reduced Dataset | OpenReview","url":"https://openreview.net/forum?id=zqtql1YmlS"}]
+
+I've completed the web search for your query on offline RL value function data quality filtering demonstration selection pre-training reusable dataset. Here's a summary of the key findings:
+
+## Recent Research Findings (2024-2026)
+
+**Data Quality and Dataset Selection:**
+Research analyzes the impact of the quality (optimality of trajectories), quantity and diversity of available offline trajectories on the effectiveness of offline RL approaches. Notably, diversity in demonstration trajectories is more beneficial for generalization than high-quality, near-optimal trajectories.
+
+**Value Function Quality Assessment:**
+Recent work introduces the Bellman-Wasserstein Distance (BWD), which leverages the Q-function to quantify dataset quality and can effectively estimate dataset quality using only a small fraction of the dataset.
+
+**Data Filtering and Pre-training:**
+Pre-Reduced Q-Learning (PRQL) trains a middle policy to seek actions that are overestimated by the offline Q-network, addressing the challenge of out-of-distribution actions in offline-to-online RL.
+
+**Dataset Selection Approaches:**
+A critical challenge in offline RL is determining the subset of the offline dataset to improve algorithm performance, with approaches formulating this as a gradient approximation optimization problem.
+
+**Pre-training with Reusable Datasets:**
+JOWA (Jointly-Optimized World-Action model) demonstrates offline model-based RL pre-trained on multiple games with 6 billion tokens of data, achieving efficient transfer to novel games with minimal fine-tuning data.
+
+The search results show active research in these areas with publications from late 2024 through 2025, addressing key challenges in data quality assessment, filtering, and reusable pre-training datasets for offline RL.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3cec0c69-d59d-4000-a716-2fcb74d932d8",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "936f6416-b479-4622-a3c6-48ed539fa53c",
+  "toolUseResult": {
+    "query": "offline RL value function data quality filtering demonstration selection pre-training reusable dataset 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0113Eu5hxkjyqiUirg3CiWwM",
+        "content": [
+          {
+            "title": "Using offline data to speed up Reinforcement Learning in procedurally generated environments - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0925231224018502"
+          },
+          {
+            "title": "Efficient offline-to-online reinforcement learning with pre-reduced out-of-distribution Q-values - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0893608025008287"
+          },
+          {
+            "title": "A Dataset Perspective on Offline Reinforcement Learning",
+            "url": "https://kschweig.github.io/OfflineRL/"
+          },
+          {
+            "title": "Data Valuation for Offline Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2205.09550"
+          },
+          {
+            "title": "expert or not? assessing data quality in",
+            "url": "https://arxiv.org/pdf/2510.12638"
+          },
+          {
+            "title": "(PDF) Measuring Data Quality for Dataset Selection in Offline Reinforcement Learning",
+            "url": "https://www.researchgate.net/publication/356603025_Measuring_Data_Quality_for_Dataset_Selection_in_Offline_Reinforcement_Learning"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/83ac5b470f8bddc5a4cf7351318df031-Paper-Conference.pdf"
+          },
+          {
+            "title": "A Minimalist Approach to Offline Reinforcement Learning",
+            "url": "https://openreview.net/pdf?id=Q32U7dzWXpc"
+          },
+          {
+            "title": "Scaling Offline Model-Based RL via Jointly-Optimized World-Action Model Pretraining | OpenReview",
+            "url": "https://openreview.net/forum?id=T1OvCSFaum"
+          },
+          {
+            "title": "Fewer May Be Better: Enhancing Offline Reinforcement Learning with Reduced Dataset | OpenReview",
+            "url": "https://openreview.net/forum?id=zqtql1YmlS"
+          }
+        ]
+      },
+      "I've completed the web search for your query on offline RL value function data quality filtering demonstration selection pre-training reusable dataset. Here's a summary of the key findings:\n\n## Recent Research Findings (2024-2026)\n\n**Data Quality and Dataset Selection:**\nResearch analyzes the impact of the quality (optimality of trajectories), quantity and diversity of available offline trajectories on the effectiveness of offline RL approaches. Notably, diversity in demonstration trajectories is more beneficial for generalization than high-quality, near-optimal trajectories.\n\n**Value Function Quality Assessment:**\nRecent work introduces the Bellman-Wasserstein Distance (BWD), which leverages the Q-function to quantify dataset quality and can effectively estimate dataset quality using only a small fraction of the dataset.\n\n**Data Filtering and Pre-training:**\nPre-Reduced Q-Learning (PRQL) trains a middle policy to seek actions that are overestimated by the offline Q-network, addressing the challenge of out-of-distribution actions in offline-to-online RL.\n\n**Dataset Selection Approaches:**\nA critical challenge in offline RL is determining the subset of the offline dataset to improve algorithm performance, with approaches formulating this as a gradient approximation optimization problem.\n\n**Pre-training with Reusable Datasets:**\nJOWA (Jointly-Optimized World-Action model) demonstrates offline model-based RL pre-trained on multiple games with 6 billion tokens of data, achieving efficient transfer to novel games with minimal fine-tuning data.\n\nThe search results show active research in these areas with publications from late 2024 through 2025, addressing key challenges in data quality assessment, filtering, and reusable pre-training datasets for offline RL."
+    ],
+    "durationSeconds": 7.445861115000007
+  },
+  "sourceToolAssistantUUID": "3cec0c69-d59d-4000-a716-2fcb74d932d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "936f6416-b479-4622-a3c6-48ed539fa53c",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify demonstration curation via advantage decomposition for robotics",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-14T03:30:35.916Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01M3MJX5B3jASV1LSrrc2fRn`</summary>
+
+```json
+{
+  "query": "IDRL optimal discriminator weighted imitation reinforcement learning ICLR 2025 transition removal"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "936f6416-b479-4622-a3c6-48ed539fa53c",
+  "isSidechain": false,
+  "requestId": "req_011Cb1khAYbGaKPf7xRYXA4e",
+  "type": "assistant",
+  "uuid": "2a3f2c8c-dbd5-4af0-bb4c-585f58c7faa7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BYpSqXpQVdnhbofgDEsg6T",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 50305,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1038,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 50305,
+          "cache_creation_input_tokens": 1038,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1038
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-14T03:30:43.829Z_
+
+<details><summary>↩ Tool result · `toolu_01M3MJX5B3jASV1LSrrc2fRn`</summary>
+
+```text
+Web search results for query: "IDRL optimal discriminator weighted imitation reinforcement learning ICLR 2025 transition removal"
+
+Links: [{"title":"An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=9JtG4nN7ql"},{"title":"An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning","url":"https://proceedings.iclr.cc/paper_files/paper/2025/hash/3ef61f7e4afacf9a2c5b71c726172b86-Abstract-Conference.html"},{"title":"[2504.13368] An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning","url":"https://arxiv.org/abs/2504.13368"},{"title":"An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning","url":"https://arxiv.org/html/2504.13368v1"},{"title":"AN OPTIMAL DISCRIMINATOR WEIGHTED IMITATION ...","url":"https://openreview.net/pdf/599e783547a2ce1b35d5540a0162a0641b26f45b.pdf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://openreview.net/pdf?id=0e2pcSxQJS"},{"title":"Discriminator-Weighted Offline Imitation Learning from ...","url":"https://proceedings.mlr.press/v162/xu22l/xu22l.pdf"},{"title":"arXiv:2506.20307v1 [cs.LG] 25 Jun 2025","url":"https://arxiv.org/pdf/2506.20307"},{"title":"Downloads 2025","url":"https://iclr.cc/Downloads/2025"},{"title":"ICLR 2025 Papers","url":"https://iclr.cc/virtual/2025/papers.html"}]
+
+I found comprehensive information about the paper you're searching for. Here are the key findings:
+
+## Paper Overview
+
+The paper "An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning" was published at ICLR 2025.
+
+## Main Contribution
+
+The paper introduces Iterative Dual Reinforcement Learning (IDRL), a new method that takes an optimal discriminator-weighted imitation view of solving RL. The method is motivated by a simple experiment in which training a discriminator using the offline dataset plus an additional expert dataset and then performing discriminator-weighted behavior cloning gives strong results on various types of datasets.
+
+## Transition Removal Mechanism
+
+During each iteration, IDRL removes zero-weight suboptimal transitions using the learned ratio from the previous iteration and runs Dual-RL on the remaining subdataset. This can be seen as replacing the behavior visitation distribution with the optimized visitation distribution from the previous iteration, which theoretically gives a curriculum of improved visitation distribution ratios that are closer to the optimal discriminator weight.
+
+## Performance Results
+
+The method's effectiveness is verified on various kinds of offline datasets, including D4RL datasets and more realistic corrupted demonstrations, and IDRL beats strong Primal-RL and Dual-RL baselines in terms of both performance and stability, on all datasets.
+
+The paper is available on OpenReview, arXiv (2504.13368), and the ICLR 2025 proceedings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a3f2c8c-dbd5-4af0-bb4c-585f58c7faa7",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "69465f1a-d33e-44ab-9cee-245007b76423",
+  "toolUseResult": {
+    "query": "IDRL optimal discriminator weighted imitation reinforcement learning ICLR 2025 transition removal",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VuVHUGz5DTTvGJmv4fknih",
+        "content": [
+          {
+            "title": "An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=9JtG4nN7ql"
+          },
+          {
+            "title": "An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/3ef61f7e4afacf9a2c5b71c726172b86-Abstract-Conference.html"
+          },
+          {
+            "title": "[2504.13368] An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2504.13368"
+          },
+          {
+            "title": "An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning",
+            "url": "https://arxiv.org/html/2504.13368v1"
+          },
+          {
+            "title": "AN OPTIMAL DISCRIMINATOR WEIGHTED IMITATION ...",
+            "url": "https://openreview.net/pdf/599e783547a2ce1b35d5540a0162a0641b26f45b.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://openreview.net/pdf?id=0e2pcSxQJS"
+          },
+          {
+            "title": "Discriminator-Weighted Offline Imitation Learning from ...",
+            "url": "https://proceedings.mlr.press/v162/xu22l/xu22l.pdf"
+          },
+          {
+            "title": "arXiv:2506.20307v1 [cs.LG] 25 Jun 2025",
+            "url": "https://arxiv.org/pdf/2506.20307"
+          },
+          {
+            "title": "Downloads 2025",
+            "url": "https://iclr.cc/Downloads/2025"
+          },
+          {
+            "title": "ICLR 2025 Papers",
+            "url": "https://iclr.cc/virtual/2025/papers.html"
+          }
+        ]
+      },
+      "I found comprehensive information about the paper you're searching for. Here are the key findings:\n\n## Paper Overview\n\nThe paper \"An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning\" was published at ICLR 2025.\n\n## Main Contribution\n\nThe paper introduces Iterative Dual Reinforcement Learning (IDRL), a new method that takes an optimal discriminator-weighted imitation view of solving RL. The method is motivated by a simple experiment in which training a discriminator using the offline dataset plus an additional expert dataset and then performing discriminator-weighted behavior cloning gives strong results on various types of datasets.\n\n## Transition Removal Mechanism\n\nDuring each iteration, IDRL removes zero-weight suboptimal transitions using the learned ratio from the previous iteration and runs Dual-RL on the remaining subdataset. This can be seen as replacing the behavior visitation distribution with the optimized visitation distribution from the previous iteration, which theoretically gives a curriculum of improved visitation distribution ratios that are closer to the optimal discriminator weight.\n\n## Performance Results\n\nThe method's effectiveness is verified on various kinds of offline datasets, including D4RL datasets and more realistic corrupted demonstrations, and IDRL beats strong Primal-RL and Dual-RL baselines in terms of both performance and stability, on all datasets.\n\nThe paper is available on OpenReview, arXiv (2504.13368), and the ICLR 2025 proceedings."
+    ],
+    "durationSeconds": 7.908412818000012
+  },
+  "sourceToolAssistantUUID": "2a3f2c8c-dbd5-4af0-bb4c-585f58c7faa7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-14T03:30:47.362Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RpDroFPBxmS7GnvfXZebrp`</summary>
+
+```json
+{
+  "query": "V-GPS value guidance policy selection robot manipulation CoRL 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69465f1a-d33e-44ab-9cee-245007b76423",
+  "isSidechain": false,
+  "requestId": "req_011Cb1khyHCiXCPZyaofPXjb",
+  "type": "assistant",
+  "uuid": "2059881a-9862-4d90-b728-568becfd1a51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qv2g5kNAonJNzGfSSV9bhY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 919,
+      "cache_read_input_tokens": 51343,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 919,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 51343,
+          "cache_creation_input_tokens": 919,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 919
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-14T03:30:53.061Z_
+
+<details><summary>↩ Tool result · `toolu_01RpDroFPBxmS7GnvfXZebrp`</summary>
+
+```text
+Web search results for query: "V-GPS value guidance policy selection robot manipulation CoRL 2024"
+
+Links: [{"title":"V-GPS: Value-Guided Policy Steering","url":"https://nakamotoo.github.io/V-GPS/"},{"title":"GitHub - nakamotoo/V-GPS: official implementation for our paper Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance (CoRL 2024)","url":"https://github.com/nakamotoo/V-GPS"},{"title":"Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance | OpenReview","url":"https://openreview.net/forum?id=6FGlpzC9Po"},{"title":"Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance","url":"https://arxiv.org/html/2410.13816"},{"title":"[2410.13816v2] Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance","url":"https://arxiv.org/abs/2410.13816v2"},{"title":"CoRL.2024 | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/CoRL.2024"},{"title":"[2410.13816] Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance","url":"https://arxiv.org/abs/2410.13816"},{"title":"Workshop on Generalizable Priors for Robot Manipulation | CoRL 2025","url":"https://corl25-genpriors.github.io/"},{"title":"Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance (V-GPS) - YouTube","url":"https://www.youtube.com/watch?v=d5Yd_gJoZo0"},{"title":"Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance | Oier Mees","url":"https://www.oiermees.com/publication/vgps/"}]
+
+I found relevant information about V-GPS. Here's what the search revealed:
+
+## V-GPS: Value-Guided Policy Steering (CoRL 2024)
+
+V-GPS was presented by Mitsuhiko Nakamoto, Oier Mees, Aviral Kumar, and Sergey Levine at the Conference on Robot Learning (CoRL) 2024.
+
+### Overview
+
+V-GPS is a general and broadly applicable approach that enhances the performance of generalist robot policies at deployment time by re-ranking their actions according to a value function learned via offline RL. 
+
+### Key Features
+
+V-GPS is compatible with a wide range of different generalist policies, without needing to fine-tune or even access the weights of the policy. The same single value function can be combined with any off-the-shelf generalist policy in a plug-and-play manner, improving downstream performance across multiple robotic platforms.
+
+### Experimental Results
+
+The same value function improved the performance of five different state-of-the-art policies with different architectures, even though they were trained on distinct datasets, attaining consistent performance improvement on multiple robotic platforms across a total of 12 tasks. V-GPS was evaluated on five generalist policies including Octo-small, Octo-base, Octo-small-1.5, RT1-X, and OpenVLA, in SIMPLER simulation environments, across two different robot platforms: WidowX and Google Robot.
+
+You can find more details, code, and videos at the official project page: https://nakamotoo.github.io/V-GPS/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2059881a-9862-4d90-b728-568becfd1a51",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "d6c82716-ac73-4368-8af0-b87ce3598717",
+  "toolUseResult": {
+    "query": "V-GPS value guidance policy selection robot manipulation CoRL 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WMYct4WUCDvSPMvEAhQGjd",
+        "content": [
+          {
+            "title": "V-GPS: Value-Guided Policy Steering",
+            "url": "https://nakamotoo.github.io/V-GPS/"
+          },
+          {
+            "title": "GitHub - nakamotoo/V-GPS: official implementation for our paper Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance (CoRL 2024)",
+            "url": "https://github.com/nakamotoo/V-GPS"
+          },
+          {
+            "title": "Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance | OpenReview",
+            "url": "https://openreview.net/forum?id=6FGlpzC9Po"
+          },
+          {
+            "title": "Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance",
+            "url": "https://arxiv.org/html/2410.13816"
+          },
+          {
+            "title": "[2410.13816v2] Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance",
+            "url": "https://arxiv.org/abs/2410.13816v2"
+          },
+          {
+            "title": "CoRL.2024 | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/CoRL.2024"
+          },
+          {
+            "title": "[2410.13816] Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance",
+            "url": "https://arxiv.org/abs/2410.13816"
+          },
+          {
+            "title": "Workshop on Generalizable Priors for Robot Manipulation | CoRL 2025",
+            "url": "https://corl25-genpriors.github.io/"
+          },
+          {
+            "title": "Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance (V-GPS) - YouTube",
+            "url": "https://www.youtube.com/watch?v=d5Yd_gJoZo0"
+          },
+          {
+            "title": "Steering Your Generalists: Improving Robotic Foundation Models via Value Guidance | Oier Mees",
+            "url": "https://www.oiermees.com/publication/vgps/"
+          }
+        ]
+      },
+      "I found relevant information about V-GPS. Here's what the search revealed:\n\n## V-GPS: Value-Guided Policy Steering (CoRL 2024)\n\nV-GPS was presented by Mitsuhiko Nakamoto, Oier Mees, Aviral Kumar, and Sergey Levine at the Conference on Robot Learning (CoRL) 2024.\n\n### Overview\n\nV-GPS is a general and broadly applicable approach that enhances the performance of generalist robot policies at deployment time by re-ranking their actions according to a value function learned via offline RL. \n\n### Key Features\n\nV-GPS is compatible with a wide range of different generalist policies, without needing to fine-tune or even access the weights of the policy. The same single value function can be combined with any off-the-shelf generalist policy in a plug-and-play manner, improving downstream performance across multiple robotic platforms.\n\n### Experimental Results\n\nThe same value function improved the performance of five different state-of-the-art policies with different architectures, even though they were trained on distinct datasets, attaining consistent performance improvement on multiple robotic platforms across a total of 12 tasks. V-GPS was evaluated on five generalist policies including Octo-small, Octo-base, Octo-small-1.5, RT1-X, and OpenVLA, in SIMPLER simulation environments, across two different robot platforms: WidowX and Google Robot.\n\nYou can find more details, code, and videos at the official project page: https://nakamotoo.github.io/V-GPS/"
+    ],
+    "durationSeconds": 5.692515394000045
+  },
+  "sourceToolAssistantUUID": "2059881a-9862-4d90-b728-568becfd1a51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88 · 2026-05-14T03:30:57.418Z_
+
+Now let me do the most critical adversarial search — looking for work that directly combines dense reward models with advantage decomposition for data curation, which would be a direct scoop.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6c82716-ac73-4368-8af0-b87ce3598717",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kietwZpErRGi4tCR3F",
+  "type": "assistant",
+  "uuid": "14b64fa8-d7c2-41fd-90d6-5bcc6e77983f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KJJswCzjQPaAAchgMHUxm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 52262,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 52262,
+          "cache_creation_input_tokens": 941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-14T03:30:58.157Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012NVDKdfunwHLSvjEM5eQuA`</summary>
+
+```json
+{
+  "query": "\"advantage function\" OR \"V(s) A(s,a)\" demonstration curation filtering robot learning arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14b64fa8-d7c2-41fd-90d6-5bcc6e77983f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kietwZpErRGi4tCR3F",
+  "type": "assistant",
+  "uuid": "c2f39a50-30e3-4593-af85-68509d3a6be4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KJJswCzjQPaAAchgMHUxm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 52262,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 52262,
+          "cache_creation_input_tokens": 941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-14T03:31:06.575Z_
+
+<details><summary>↩ Tool result · `toolu_012NVDKdfunwHLSvjEM5eQuA`</summary>
+
+```text
+Web search results for query: ""advantage function" OR "V(s) A(s,a)" demonstration curation filtering robot learning arXiv 2026"
+
+Links: [{"title":"[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/abs/2603.09056"},{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/html/2506.19121v1"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v1"},{"title":"RoboPCA: Pose-centered Affordance Learning from Human Demonstrations for Robot Manipulation","url":"https://arxiv.org/html/2603.07691"},{"title":"[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/abs/2505.22626"},{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623v1"},{"title":"Foundation Models in Robotics: A Comprehensive Review of Methods, Models, Datasets, Challenges and Future Research Directions","url":"https://arxiv.org/html/2604.15395v1"},{"title":"World Model for Robot Learning: A Comprehensive Survey","url":"https://arxiv.org/html/2605.00080v1"},{"title":"Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning","url":"https://arxiv.org/html/2408.14037v1"}]
+
+I found several relevant papers on demonstration curation and filtering for robot learning from arXiv. Here are the key results:
+
+## Top Results
+
+**1. Quality over Quantity: Demonstration Curation via Influence Functions (arXiv 2603.09056, March 2026)**
+
+Learning from demonstrations has emerged as a promising paradigm for end-to-end robot control, particularly when scaled to diverse and large datasets, though the quality of demonstration data remains a critical bottleneck for effective data-driven robot learning. The paper proposes Quality over Quantity (QoQ), which identifies high-quality data by defining data quality as the contribution of each training sample to reducing loss on validation demonstrations, leveraging influence functions to quantify the impact of individual training samples on model performance.
+
+**2. CUPID: Curating Data your Robot Loves with Influence Functions (arXiv 2506.19121, June 2025)**
+
+CUPID is a robot data curation method based on influence function-theoretic formulation that estimates the influence of each training demonstration on the policy's expected return, enabling ranking and selection of demonstrations according to their impact on the policy's closed-loop performance. A demonstration's influence on expected return decomposes into a tractable sum over its state-action transitions and can be efficiently approximated using a REINFORCE-style estimator.
+
+**3. SCIZOR: A Self-Supervised Approach to Data Curation (arXiv 2505.22626, May 2025)**
+
+SCIZOR proposes a unified framework for data curation that filters both suboptimal and redundant state-action pairs in large-scale imitation learning datasets.
+
+**4. Robot Data Curation with Mutual Information Estimators (arXiv 2502.08623, February 2025)**
+
+This paper introduces DemInf, which uses mutual information between states and actions as a quality metric for demonstration curation.
+
+These papers appear to directly address the intersection of advantage functions, state-action value decomposition (V(s) and A(s,a)), demonstration curation, and filtering for robot learning applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c2f39a50-30e3-4593-af85-68509d3a6be4",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "f525c62d-c62c-46b4-ac91-d1fbcfecbf7b",
+  "toolUseResult": {
+    "query": "\"advantage function\" OR \"V(s) A(s,a)\" demonstration curation filtering robot learning arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LCpdTdwQDiQN3pKmmKEZq5",
+        "content": [
+          {
+            "title": "[2603.09056] Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/abs/2603.09056"
+          },
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/html/2506.19121v1"
+          },
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v1"
+          },
+          {
+            "title": "RoboPCA: Pose-centered Affordance Learning from Human Demonstrations for Robot Manipulation",
+            "url": "https://arxiv.org/html/2603.07691"
+          },
+          {
+            "title": "[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/abs/2505.22626"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/html/2502.08623v1"
+          },
+          {
+            "title": "Foundation Models in Robotics: A Comprehensive Review of Methods, Models, Datasets, Challenges and Future Research Directions",
+            "url": "https://arxiv.org/html/2604.15395v1"
+          },
+          {
+            "title": "World Model for Robot Learning: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2605.00080v1"
+          },
+          {
+            "title": "Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2408.14037v1"
+          }
+        ]
+      },
+      "I found several relevant papers on demonstration curation and filtering for robot learning from arXiv. Here are the key results:\n\n## Top Results\n\n**1. Quality over Quantity: Demonstration Curation via Influence Functions (arXiv 2603.09056, March 2026)**\n\nLearning from demonstrations has emerged as a promising paradigm for end-to-end robot control, particularly when scaled to diverse and large datasets, though the quality of demonstration data remains a critical bottleneck for effective data-driven robot learning. The paper proposes Quality over Quantity (QoQ), which identifies high-quality data by defining data quality as the contribution of each training sample to reducing loss on validation demonstrations, leveraging influence functions to quantify the impact of individual training samples on model performance.\n\n**2. CUPID: Curating Data your Robot Loves with Influence Functions (arXiv 2506.19121, June 2025)**\n\nCUPID is a robot data curation method based on influence function-theoretic formulation that estimates the influence of each training demonstration on the policy's expected return, enabling ranking and selection of demonstrations according to their impact on the policy's closed-loop performance. A demonstration's influence on expected return decomposes into a tractable sum over its state-action transitions and can be efficiently approximated using a REINFORCE-style estimator.\n\n**3. SCIZOR: A Self-Supervised Approach to Data Curation (arXiv 2505.22626, May 2025)**\n\nSCIZOR proposes a unified framework for data curation that filters both suboptimal and redundant state-action pairs in large-scale imitation learning datasets.\n\n**4. Robot Data Curation with Mutual Information Estimators (arXiv 2502.08623, February 2025)**\n\nThis paper introduces DemInf, which uses mutual information between states and actions as a quality metric for demonstration curation.\n\nThese papers appear to directly address the intersection of advantage functions, state-action value decomposition (V(s) and A(s,a)), demonstration curation, and filtering for robot learning applications."
+    ],
+    "durationSeconds": 8.41544690500002
+  },
+  "sourceToolAssistantUUID": "c2f39a50-30e3-4593-af85-68509d3a6be4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-14T03:31:14.933Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019P8KNndsyFzVpRYUFwpSrz`</summary>
+
+```json
+{
+  "query": "quadrant scoring state value action advantage pre-training curation dataset reusable policy-agnostic 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f525c62d-c62c-46b4-ac91-d1fbcfecbf7b",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kjeSw1U4SuuaMXUeT5",
+  "type": "assistant",
+  "uuid": "b5ba19e8-5601-485f-be19-5b733cf098fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcB1uG316dhiqft4aG64VM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 53203,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1091,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 53203,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1091
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-14T03:31:23.905Z_
+
+<details><summary>↩ Tool result · `toolu_019P8KNndsyFzVpRYUFwpSrz`</summary>
+
+```text
+Web search results for query: "quadrant scoring state value action advantage pre-training curation dataset reusable policy-agnostic 2025 2026"
+
+Links: [{"title":"10 Best Data Curation Tools for Computer Vision [2026]","url":"https://www.lightly.ai/blog/best-data-curation-tools"},{"title":"Active Data Curation Effectively Distills Large-Scale Multimodal Models","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Udandarao_Active_Data_Curation_Effectively_Distills_Large-Scale_Multimodal_Models_CVPR_2025_paper.pdf"},{"title":"Gartner Magic Quadrant for Data and Analytics Governance platforms 2026 explained: What changed this year | Ataccama","url":"https://www.ataccama.com/blog/gartner-magic-quadrant-for-data-and-analytics-governance-platforms-2026-explained-what-changed-this-year"},{"title":"The How-To Guide to Data Curation in Machine Learning","url":"https://www.lightly.ai/blog/data-curation"},{"title":"Data Curation in 2026: Key Concepts and Best Practices","url":"https://research.aimultiple.com/data-curation/"},{"title":"AI Career Advice: Roles, Interviews & Strategy for 2025-2026","url":"https://www.sundeepteki.org/advice"},{"title":"Scaling Laws, Foundation Models, and the AI Singularity","url":"https://journalwjarr.com/sites/default/files/fulltext_pdf/WJARR-2026-0011.pdf"},{"title":"Dataset curation tips: optimize AI training quality in 2026","url":"https://dotdatalabs.ai/dataset-curation-tips-optimize-ai-training-quality-2026/"},{"title":"Published as a conference paper at ICLR 2025","url":"https://arxiv.org/pdf/2410.07064"},{"title":"ScoreFlow: Mastering LLM Agent Workflows via Score- ...","url":"https://i-newcar.com/uploads/allimg/20250221/2-2502211GH2A1.pdf"}]
+
+I found several results related to your search query about data curation, pre-training, and dataset optimization from 2025-2026. Here are the key findings:
+
+## Data Curation and Pre-training
+
+Contemporary work increasingly treats "scaling" not as a single universal law, but as a family of empirical regularities that hold under specific regimes, where the training pipeline, data curation, and evaluation protocol remain sufficiently stable.
+
+Work on large curated datasets argues that predictable improvements increasingly require deliberate corpus construction that raises informational density per token rather than merely increasing token counts.
+
+## Advanced Curation Methods
+
+EcoDatum selects the top 40% of samples using ensemble curation combined with quality-guided deduplication, achieving performance gains that match or exceed training on full datasets. This method works by scoring each sample through multiple quality metrics, then removing near-duplicates that dilute training signal. The result is a concentrated subset that maximizes learning efficiency while reducing computational costs.
+
+PDS achieves 2.0 times acceleration in terms of training-time computation compared to conventional pre-training.
+
+## Reusable Datasets
+
+The main objective is to generate FAIR (Findable, Accessible, Interoperable, and Reusable) and analyzable data, and good metadata management makes datasets findable, accessible, interoperable, and reusable (FAIR).
+
+## Policy-Agnostic Governance
+
+Your search included governance-related terms. The Gartner Magic Quadrant for data and analytics governance platforms assesses vendors that provide integrated business and technology capabilities to support governance policy setting and policy enforcement. These platforms help business users define, manage, and operationalize governance across a wide range of data and analytics assets.
+
+The search results cover data curation strategies, pre-training optimization, and governance frameworks relevant to 2025-2026, though the specific technical combination of all your search terms may require more specialized research papers or technical documentation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5ba19e8-5601-485f-be19-5b733cf098fb",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "99054797-84d9-4ce0-979a-74e48c769d78",
+  "toolUseResult": {
+    "query": "quadrant scoring state value action advantage pre-training curation dataset reusable policy-agnostic 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K1GBaBSLGWKWuEnDGi6Cxr",
+        "content": [
+          {
+            "title": "10 Best Data Curation Tools for Computer Vision [2026]",
+            "url": "https://www.lightly.ai/blog/best-data-curation-tools"
+          },
+          {
+            "title": "Active Data Curation Effectively Distills Large-Scale Multimodal Models",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Udandarao_Active_Data_Curation_Effectively_Distills_Large-Scale_Multimodal_Models_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "Gartner Magic Quadrant for Data and Analytics Governance platforms 2026 explained: What changed this year | Ataccama",
+            "url": "https://www.ataccama.com/blog/gartner-magic-quadrant-for-data-and-analytics-governance-platforms-2026-explained-what-changed-this-year"
+          },
+          {
+            "title": "The How-To Guide to Data Curation in Machine Learning",
+            "url": "https://www.lightly.ai/blog/data-curation"
+          },
+          {
+            "title": "Data Curation in 2026: Key Concepts and Best Practices",
+            "url": "https://research.aimultiple.com/data-curation/"
+          },
+          {
+            "title": "AI Career Advice: Roles, Interviews & Strategy for 2025-2026",
+            "url": "https://www.sundeepteki.org/advice"
+          },
+          {
+            "title": "Scaling Laws, Foundation Models, and the AI Singularity",
+            "url": "https://journalwjarr.com/sites/default/files/fulltext_pdf/WJARR-2026-0011.pdf"
+          },
+          {
+            "title": "Dataset curation tips: optimize AI training quality in 2026",
+            "url": "https://dotdatalabs.ai/dataset-curation-tips-optimize-ai-training-quality-2026/"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://arxiv.org/pdf/2410.07064"
+          },
+          {
+            "title": "ScoreFlow: Mastering LLM Agent Workflows via Score- ...",
+            "url": "https://i-newcar.com/uploads/allimg/20250221/2-2502211GH2A1.pdf"
+          }
+        ]
+      },
+      "I found several results related to your search query about data curation, pre-training, and dataset optimization from 2025-2026. Here are the key findings:\n\n## Data Curation and Pre-training\n\nContemporary work increasingly treats \"scaling\" not as a single universal law, but as a family of empirical regularities that hold under specific regimes, where the training pipeline, data curation, and evaluation protocol remain sufficiently stable.\n\nWork on large curated datasets argues that predictable improvements increasingly require deliberate corpus construction that raises informational density per token rather than merely increasing token counts.\n\n## Advanced Curation Methods\n\nEcoDatum selects the top 40% of samples using ensemble curation combined with quality-guided deduplication, achieving performance gains that match or exceed training on full datasets. This method works by scoring each sample through multiple quality metrics, then removing near-duplicates that dilute training signal. The result is a concentrated subset that maximizes learning efficiency while reducing computational costs.\n\nPDS achieves 2.0 times acceleration in terms of training-time computation compared to conventional pre-training.\n\n## Reusable Datasets\n\nThe main objective is to generate FAIR (Findable, Accessible, Interoperable, and Reusable) and analyzable data, and good metadata management makes datasets findable, accessible, interoperable, and reusable (FAIR).\n\n## Policy-Agnostic Governance\n\nYour search included governance-related terms. The Gartner Magic Quadrant for data and analytics governance platforms assesses vendors that provide integrated business and technology capabilities to support governance policy setting and policy enforcement. These platforms help business users define, manage, and operationalize governance across a wide range of data and analytics assets.\n\nThe search results cover data curation strategies, pre-training optimization, and governance frameworks relevant to 2025-2026, though the specific technical combination of all your search terms may require more specialized research papers or technical documentation."
+    ],
+    "durationSeconds": 8.964505607999978
+  },
+  "sourceToolAssistantUUID": "b5ba19e8-5601-485f-be19-5b733cf098fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 93_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "99054797-84d9-4ce0-979a-74e48c769d78",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 94_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify demonstration curation via advantage decomposition for robotics",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 95 · 2026-05-14T03:31:29.814Z_
+
+Good — no direct scoop found. Let me now fetch the PTR paper and the QoQ paper to understand how close they are to ADTS.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99054797-84d9-4ce0-979a-74e48c769d78",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kkvZaRZFMoqLdnpjD4",
+  "type": "assistant",
+  "uuid": "64cf78d4-4de9-44d9-a9f5-07807b8fe297",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KfbUB1Pu11m1rVT8Q8UwAb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 54294,
+      "output_tokens": 196,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1091,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 196,
+          "cache_read_input_tokens": 54294,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1091
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-14T03:31:32.011Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01L5eQPefpScyzeMsCDdp37s`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.16542",
+  "prompt": "Extract the key details of this paper: 1) What is the core method? 2) Does it use per-transition scoring? 3) Does it decompose state quality from action quality? 4) How does it handle noisy demonstrations? 5) What benchmarks is it evaluated on? 6) How does it relate to advantage decomposition or V/A separation?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64cf78d4-4de9-44d9-a9f5-07807b8fe297",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kkvZaRZFMoqLdnpjD4",
+  "type": "assistant",
+  "uuid": "39b16cda-111c-4c1a-968f-ebdc4eb1cb88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KfbUB1Pu11m1rVT8Q8UwAb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 54294,
+      "output_tokens": 196,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1091,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 196,
+          "cache_read_input_tokens": 54294,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1091
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-14T03:31:37.525Z_
+
+<details><summary>↩ Tool result · `toolu_01L5eQPefpScyzeMsCDdp37s`</summary>
+
+```text
+# Paper Analysis: Conservative Offline Robot Policy Learning via Posterior-Transition Reweighting
+
+**1) Core Method:**
+The paper presents Posterior-Transition Reweighting (PTR), described as a "reward-free and conservative post-training method that decides how much each training sample should influence the supervised update." PTR encodes post-action consequences as latent targets and uses a transition scorer to estimate identification posteriors over target indices.
+
+**2) Per-Transition Scoring:**
+Yes. The method explicitly applies scoring at the transition level—"For each sample, PTR encodes the observed post-action consequence as a latent target" and generates sample-specific weights via "self-normalized weighted regression."
+
+**3) State vs. Action Quality Decomposition:**
+No evidence of this in the provided content. The method focuses on reweighting samples based on post-action consequence attribution rather than decomposing state and action quality separately.
+
+**4) Handling Noisy Demonstrations:**
+The approach addresses dataset heterogeneity by "reallocat[ing] credit according to how attributable each sample's post-action consequence is," implicitly downweighting low-quality or conflicting samples rather than treating all trajectories uniformly.
+
+**5) Benchmarks:**
+The abstract does not specify evaluation benchmarks—only that it improves "conservative offline adaptation to heterogeneous robot data."
+
+**6) Relation to Advantage Decomposition/V-A Separation:**
+No connection mentioned. The method avoids "tractable policy likelihood" requirements and remains compatible with "diffusion and flow-matching action heads" but does not employ value function decomposition.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39b16cda-111c-4c1a-968f-ebdc4eb1cb88",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "a6c6801b-d84e-48e5-b582-1c3136676d0c",
+  "toolUseResult": {
+    "bytes": 47453,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis: Conservative Offline Robot Policy Learning via Posterior-Transition Reweighting\n\n**1) Core Method:**\nThe paper presents Posterior-Transition Reweighting (PTR), described as a \"reward-free and conservative post-training method that decides how much each training sample should influence the supervised update.\" PTR encodes post-action consequences as latent targets and uses a transition scorer to estimate identification posteriors over target indices.\n\n**2) Per-Transition Scoring:**\nYes. The method explicitly applies scoring at the transition level—\"For each sample, PTR encodes the observed post-action consequence as a latent target\" and generates sample-specific weights via \"self-normalized weighted regression.\"\n\n**3) State vs. Action Quality Decomposition:**\nNo evidence of this in the provided content. The method focuses on reweighting samples based on post-action consequence attribution rather than decomposing state and action quality separately.\n\n**4) Handling Noisy Demonstrations:**\nThe approach addresses dataset heterogeneity by \"reallocat[ing] credit according to how attributable each sample's post-action consequence is,\" implicitly downweighting low-quality or conflicting samples rather than treating all trajectories uniformly.\n\n**5) Benchmarks:**\nThe abstract does not specify evaluation benchmarks—only that it improves \"conservative offline adaptation to heterogeneous robot data.\"\n\n**6) Relation to Advantage Decomposition/V-A Separation:**\nNo connection mentioned. The method avoids \"tractable policy likelihood\" requirements and remains compatible with \"diffusion and flow-matching action heads\" but does not employ value function decomposition.",
+    "durationMs": 5510,
+    "url": "https://arxiv.org/abs/2603.16542"
+  },
+  "sourceToolAssistantUUID": "39b16cda-111c-4c1a-968f-ebdc4eb1cb88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 98 · 2026-05-14T03:31:37.527Z_
+
+```json
+{
+  "parentUuid": "a6c6801b-d84e-48e5-b582-1c3136676d0c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d0015a9c-1583-490c-8f76-d2ee8dbd84e1",
+  "timestamp": "2026-05-14T03:31:37.527Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-14T03:31:42.824Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KxmbbG67cbCCanFfJWVJgj`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.09056",
+  "prompt": "Extract key details: 1) What is the core method of QoQ? 2) Does it do per-transition scoring? 3) Does it separate state quality from action quality? 4) How does it differ from CUPID? 5) What benchmarks? 6) Does it produce a reusable curated dataset or is it training-coupled?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0015a9c-1583-490c-8f76-d2ee8dbd84e1",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kmvriXDye5esi8vUhe",
+  "type": "assistant",
+  "uuid": "03d56cc6-1e0d-4ebe-bec8-f38e54a3a794",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018SHazvh8ztxrPKAPA3ARVn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 671,
+      "cache_read_input_tokens": 55385,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 671,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 55385,
+          "cache_creation_input_tokens": 671,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 671
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-14T03:31:47.862Z_
+
+<details><summary>↩ Tool result · `toolu_01KxmbbG67cbCCanFfJWVJgj`</summary>
+
+```text
+# QoQ Analysis
+
+## 1) Core Method
+QoQ uses **influence functions** to identify high-quality demonstrations by "defining data quality as the contribution of each training sample to reducing loss on validation demonstrations."
+
+## 2) Per-Transition Scoring
+Yes, it performs per-transition analysis. The method includes "aggregating influence scores of state-action pairs within the same trajectory to reduce noise."
+
+## 3) State vs. Action Quality
+The provided content does not indicate separate scoring for state quality versus action quality. It treats "state-action pairs" as unified units.
+
+## 4) Comparison to CUPID
+The abstract does not mention CUPID or provide comparative analysis against it.
+
+## 5) Benchmarks
+The page only states results were demonstrated in "both simulated and real-world settings" but doesn't specify particular benchmark datasets or environments. The full paper (not provided) would contain this detail.
+
+## 6) Dataset Reusability
+The abstract provides insufficient information about whether QoQ generates a standalone curated dataset or if the approach is inherently coupled to specific training runs.
+
+**Note:** These answers reflect only content visible on the abstract page; the full paper would provide additional methodological and experimental details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03d56cc6-1e0d-4ebe-bec8-f38e54a3a794",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "8e618dbb-1818-475a-9f0e-44d2cd40ce64",
+  "toolUseResult": {
+    "bytes": 46273,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# QoQ Analysis\n\n## 1) Core Method\nQoQ uses **influence functions** to identify high-quality demonstrations by \"defining data quality as the contribution of each training sample to reducing loss on validation demonstrations.\"\n\n## 2) Per-Transition Scoring\nYes, it performs per-transition analysis. The method includes \"aggregating influence scores of state-action pairs within the same trajectory to reduce noise.\"\n\n## 3) State vs. Action Quality\nThe provided content does not indicate separate scoring for state quality versus action quality. It treats \"state-action pairs\" as unified units.\n\n## 4) Comparison to CUPID\nThe abstract does not mention CUPID or provide comparative analysis against it.\n\n## 5) Benchmarks\nThe page only states results were demonstrated in \"both simulated and real-world settings\" but doesn't specify particular benchmark datasets or environments. The full paper (not provided) would contain this detail.\n\n## 6) Dataset Reusability\nThe abstract provides insufficient information about whether QoQ generates a standalone curated dataset or if the approach is inherently coupled to specific training runs.\n\n**Note:** These answers reflect only content visible on the abstract page; the full paper would provide additional methodological and experimental details.",
+    "durationMs": 5035,
+    "url": "https://arxiv.org/abs/2603.09056"
+  },
+  "sourceToolAssistantUUID": "03d56cc6-1e0d-4ebe-bec8-f38e54a3a794",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101 · 2026-05-14T03:31:52.311Z_
+
+Let me now do one more critical search for the self-improving VLA and reinforcement learning post-training literature, which is the adjacent competitive threat.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e618dbb-1818-475a-9f0e-44d2cd40ce64",
+  "isSidechain": false,
+  "requestId": "req_011Cb1knh6G9WgeVMHgHyXJe",
+  "type": "assistant",
+  "uuid": "ca53e156-99c2-4202-852b-d97896fb7a29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SJ5H6o8E6AZMJnQRkENzKx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 440,
+      "cache_read_input_tokens": 56056,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 56056,
+          "cache_creation_input_tokens": 440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-14T03:31:53.044Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UVJ7PPYKX4Fc5Cj4SNTbGX`</summary>
+
+```json
+{
+  "query": "ReinboT amplifying robot VLA reinforcement learning dense returns ICML 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca53e156-99c2-4202-852b-d97896fb7a29",
+  "isSidechain": false,
+  "requestId": "req_011Cb1knh6G9WgeVMHgHyXJe",
+  "type": "assistant",
+  "uuid": "8c3d15e3-203c-4214-9fbe-076cced5c1b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SJ5H6o8E6AZMJnQRkENzKx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 440,
+      "cache_read_input_tokens": 56056,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 56056,
+          "cache_creation_input_tokens": 440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-14T03:31:57.654Z_
+
+<details><summary>↩ Tool result · `toolu_01UVJ7PPYKX4Fc5Cj4SNTbGX`</summary>
+
+```text
+Web search results for query: "ReinboT amplifying robot VLA reinforcement learning dense returns ICML 2025"
+
+Links: [{"title":"ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=Mzz4BhdIFb"},{"title":"ICML Poster ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning","url":"https://icml.cc/virtual/2025/poster/45523"},{"title":"[2505.07395] ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning","url":"https://arxiv.org/abs/2505.07395"},{"title":"ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning","url":"https://arxiv.org/html/2505.07395v1"},{"title":"[2505.07395v1] ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning","url":"https://arxiv.org/abs/2505.07395v1"},{"title":"ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning","url":"https://proceedings.mlr.press/v267/zhang25dr.html"},{"title":"[Literature Review] ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning","url":"https://www.themoonlight.io/en/review/reinbot-amplifying-robot-visual-language-manipulation-with-reinforcement-learning"},{"title":"GitHub - COST-97/reinboT","url":"https://github.com/COST-97/reinboT"},{"title":"Machine Intelligence Lab (MiLAB)","url":"https://milab.westlake.edu.cn/publications.html"},{"title":"ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning","url":"https://paperreading.club/page?id=305080"}]
+
+Based on the search results, here's what I found about ReinboT:
+
+## Overview
+
+ReinboT is a novel end-to-end VLA model that integrates the RL principles of maximizing cumulative reward, and was presented at ICML 2025.
+
+## Key Innovation
+
+ReinboT is a novel end-to-end VLA model that integrates the RL principle of maximizing cumulative reward, and achieves a deeper understanding of the data quality distribution by predicting dense returns that capture the nuances of manipulation tasks.
+
+## Problem It Addresses
+
+Vision-Language-Action (VLA) models have shown great potential in general robotic decision-making tasks via imitation learning, however, the variable quality of training data often constrains the performance of these models. Offline Reinforcement Learning (RL) excels at learning robust policy models from mixed-quality data.
+
+## Performance
+
+ReinboT achieves state-of-the-art performance on the CALVIN mixed-quality dataset and exhibits superior few-shot learning and out-of-distribution generalization capabilities.
+
+## How It Works
+
+The dense return prediction capability enables the robot to generate more robust decision-making actions, oriented towards maximizing future benefits.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c3d15e3-203c-4214-9fbe-076cced5c1b5",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "0766285d-cab3-4d67-a2db-78202bf00248",
+  "toolUseResult": {
+    "query": "ReinboT amplifying robot VLA reinforcement learning dense returns ICML 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017uWfPjz88vhZpQyP1eJuvy",
+        "content": [
+          {
+            "title": "ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=Mzz4BhdIFb"
+          },
+          {
+            "title": "ICML Poster ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning",
+            "url": "https://icml.cc/virtual/2025/poster/45523"
+          },
+          {
+            "title": "[2505.07395] ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2505.07395"
+          },
+          {
+            "title": "ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning",
+            "url": "https://arxiv.org/html/2505.07395v1"
+          },
+          {
+            "title": "[2505.07395v1] ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2505.07395v1"
+          },
+          {
+            "title": "ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning",
+            "url": "https://proceedings.mlr.press/v267/zhang25dr.html"
+          },
+          {
+            "title": "[Literature Review] ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning",
+            "url": "https://www.themoonlight.io/en/review/reinbot-amplifying-robot-visual-language-manipulation-with-reinforcement-learning"
+          },
+          {
+            "title": "GitHub - COST-97/reinboT",
+            "url": "https://github.com/COST-97/reinboT"
+          },
+          {
+            "title": "Machine Intelligence Lab (MiLAB)",
+            "url": "https://milab.westlake.edu.cn/publications.html"
+          },
+          {
+            "title": "ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning",
+            "url": "https://paperreading.club/page?id=305080"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ReinboT:\n\n## Overview\n\nReinboT is a novel end-to-end VLA model that integrates the RL principles of maximizing cumulative reward, and was presented at ICML 2025.\n\n## Key Innovation\n\nReinboT is a novel end-to-end VLA model that integrates the RL principle of maximizing cumulative reward, and achieves a deeper understanding of the data quality distribution by predicting dense returns that capture the nuances of manipulation tasks.\n\n## Problem It Addresses\n\nVision-Language-Action (VLA) models have shown great potential in general robotic decision-making tasks via imitation learning, however, the variable quality of training data often constrains the performance of these models. Offline Reinforcement Learning (RL) excels at learning robust policy models from mixed-quality data.\n\n## Performance\n\nReinboT achieves state-of-the-art performance on the CALVIN mixed-quality dataset and exhibits superior few-shot learning and out-of-distribution generalization capabilities.\n\n## How It Works\n\nThe dense return prediction capability enables the robot to generate more robust decision-making actions, oriented towards maximizing future benefits."
+    ],
+    "durationSeconds": 4.606723976999987
+  },
+  "sourceToolAssistantUUID": "8c3d15e3-203c-4214-9fbe-076cced5c1b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104 · 2026-05-14T03:32:01.833Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JajQbVs4Fu9SJUF5vXHdy2`</summary>
+
+```json
+{
+  "query": "self-improving VLA data curation reward model reinforcement post-training demonstration quality 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0766285d-cab3-4d67-a2db-78202bf00248",
+  "isSidechain": false,
+  "requestId": "req_011Cb1koS4fJQYcrK1EP1pMR",
+  "type": "assistant",
+  "uuid": "a7b0e6ba-20b2-458d-a8dc-8be8038d2423",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkXjzHHush5iLsEkoaHCNj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 887,
+      "cache_read_input_tokens": 56496,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 887,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 56496,
+          "cache_creation_input_tokens": 887,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 887
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-14T03:32:15.871Z_
+
+<details><summary>↩ Tool result · `toolu_01JajQbVs4Fu9SJUF5vXHdy2`</summary>
+
+```text
+Web search results for query: "self-improving VLA data curation reward model reinforcement post-training demonstration quality 2026"
+
+Links: [{"title":"Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | OpenReview","url":"https://openreview.net/forum?id=eUGoqrZ6Ea"},{"title":"VLA-RFT: Vision-Language-Action Reinforcement Fine-Tuning with Verified Rewards in World Simulators | OpenReview","url":"https://openreview.net/forum?id=Jaut99EHeu"},{"title":"Self-Improving Vision-Language-Action Models with Data Generation via Residual RL","url":"https://arxiv.org/html/2511.00091v1"},{"title":"GitHub - PRIME-RL/SimpleVLA-RL: [ICLR 2026] SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning · GitHub","url":"https://github.com/PRIME-RL/SimpleVLA-RL"},{"title":"PLD: Self-Improving Vision-Language-Action Models (ICLR 2026)","url":"https://wenlixiao.com/self-improve-VLA-PLD"},{"title":"2025-9-18 ThinkAct: Vision-Language-Action Reasoning via","url":"https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"},{"title":"Self-Improving Vision-Language-Action Models with Data ...","url":"https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models","url":"https://arxiv.org/html/2511.01331"},{"title":"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning","url":"https://arxiv.org/html/2601.06748v1"}]
+
+Based on the search results, here are the key findings related to your query on self-improving VLA data curation with reward models and reinforcement post-training:
+
+## Key Research Works
+
+**PLD (Probe, Learn, Distill)** is a prominent framework in this area. PLD is a plug-and-play framework that improves VLAs through residual reinforcement learning and distribution-aware data collection. The three-stage framework includes specialist acquisition where lightweight residual actors are trained via off-policy RL, specialists that take over in states where the base policy fails, and a hybrid rollout scheme that biases residual interventions toward states frequently visited by the base policy, aligning collected trajectories with the generalist's deployment distribution.
+
+RL-generated, policy-aligned data can surpass teleoperation-only demonstrations, offering a scalable path toward self-improving VLA models. PLD achieves a near-saturated 99% task success rate on the LIBERO benchmark, delivers over 50% performance gains in SimplerEnv, and demonstrates practicality on real-world Franka arm manipulation tasks.
+
+**VLA-RFT** is another notable approach. VLA-RFT is a Reinforcement Fine-Tuning framework that leverages a data-driven world model as a controllable simulator, where the simulator predicts future visual observations conditioned on actions, allowing policy rollouts with dense, trajectory-level rewards derived from goal-achieving references. World-model-based RFT is established as a practical post-training paradigm to enhance the generalization and robustness of VLA models.
+
+**SimpleVLA-RL** represents recent work in this space. This framework extends reinforcement learning capabilities specifically for VLA training at scale, incorporating modular components for environment creation, action generation, and trajectory collection.
+
+These approaches represent emerging best practices for autonomous VLA improvement through reinforcement learning post-training with curated data collection in 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a7b0e6ba-20b2-458d-a8dc-8be8038d2423",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "31c02fa0-98b2-48d6-bdfa-51280e0ae502",
+  "toolUseResult": {
+    "query": "self-improving VLA data curation reward model reinforcement post-training demonstration quality 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RDuvYsSJDKZK15mPNi4kwX",
+        "content": [
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | OpenReview",
+            "url": "https://openreview.net/forum?id=eUGoqrZ6Ea"
+          },
+          {
+            "title": "VLA-RFT: Vision-Language-Action Reinforcement Fine-Tuning with Verified Rewards in World Simulators | OpenReview",
+            "url": "https://openreview.net/forum?id=Jaut99EHeu"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data Generation via Residual RL",
+            "url": "https://arxiv.org/html/2511.00091v1"
+          },
+          {
+            "title": "GitHub - PRIME-RL/SimpleVLA-RL: [ICLR 2026] SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning · GitHub",
+            "url": "https://github.com/PRIME-RL/SimpleVLA-RL"
+          },
+          {
+            "title": "PLD: Self-Improving Vision-Language-Action Models (ICLR 2026)",
+            "url": "https://wenlixiao.com/self-improve-VLA-PLD"
+          },
+          {
+            "title": "2025-9-18 ThinkAct: Vision-Language-Action Reasoning via",
+            "url": "https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data ...",
+            "url": "https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2511.01331"
+          },
+          {
+            "title": "On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/html/2601.06748v1"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to your query on self-improving VLA data curation with reward models and reinforcement post-training:\n\n## Key Research Works\n\n**PLD (Probe, Learn, Distill)** is a prominent framework in this area. PLD is a plug-and-play framework that improves VLAs through residual reinforcement learning and distribution-aware data collection. The three-stage framework includes specialist acquisition where lightweight residual actors are trained via off-policy RL, specialists that take over in states where the base policy fails, and a hybrid rollout scheme that biases residual interventions toward states frequently visited by the base policy, aligning collected trajectories with the generalist's deployment distribution.\n\nRL-generated, policy-aligned data can surpass teleoperation-only demonstrations, offering a scalable path toward self-improving VLA models. PLD achieves a near-saturated 99% task success rate on the LIBERO benchmark, delivers over 50% performance gains in SimplerEnv, and demonstrates practicality on real-world Franka arm manipulation tasks.\n\n**VLA-RFT** is another notable approach. VLA-RFT is a Reinforcement Fine-Tuning framework that leverages a data-driven world model as a controllable simulator, where the simulator predicts future visual observations conditioned on actions, allowing policy rollouts with dense, trajectory-level rewards derived from goal-achieving references. World-model-based RFT is established as a practical post-training paradigm to enhance the generalization and robustness of VLA models.\n\n**SimpleVLA-RL** represents recent work in this space. This framework extends reinforcement learning capabilities specifically for VLA training at scale, incorporating modular components for environment creation, action generation, and trajectory collection.\n\nThese approaches represent emerging best practices for autonomous VLA improvement through reinforcement learning post-training with curated data collection in 2026."
+    ],
+    "durationSeconds": 14.032068364000006
+  },
+  "sourceToolAssistantUUID": "a7b0e6ba-20b2-458d-a8dc-8be8038d2423",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 106 · 2026-05-14T03:32:27.094Z_
+
+This is very important — PLD achieves 99% on LIBERO! Let me verify this claim.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31c02fa0-98b2-48d6-bdfa-51280e0ae502",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kpkooiaes3a6Vfrk7h",
+  "type": "assistant",
+  "uuid": "7db97e06-0ed6-42d7-a587-4a1fef062f79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SRAEFbfT7vspRhneKD9fxf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1083,
+      "cache_read_input_tokens": 57383,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1083,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 57383,
+          "cache_creation_input_tokens": 1083,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1083
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-14T03:32:27.402Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JgiZRraThrGSzSqUAD4sW8`</summary>
+
+```json
+{
+  "url": "https://wenlixiao.com/self-improve-VLA-PLD",
+  "prompt": "What is PLD's success rate on LIBERO benchmark? What are the specific LIBERO suite results (Spatial, Object, Goal, Long)? How does it compare to OpenVLA-OFT? Is PLD published at ICLR 2026?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7db97e06-0ed6-42d7-a587-4a1fef062f79",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kpkooiaes3a6Vfrk7h",
+  "type": "assistant",
+  "uuid": "481d7e1e-7f58-4cf9-9d0b-c95dbfe8ade3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SRAEFbfT7vspRhneKD9fxf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1083,
+      "cache_read_input_tokens": 57383,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1083,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 57383,
+          "cache_creation_input_tokens": 1083,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1083
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 108_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "481d7e1e-7f58-4cf9-9d0b-c95dbfe8ade3",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 109_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify demonstration curation via advantage decomposition for robotics",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-14T03:32:30.885Z_
+
+<details><summary>↩ Tool result · `toolu_01JgiZRraThrGSzSqUAD4sW8`</summary>
+
+```text
+# PLD Performance Summary
+
+Based on the provided content, here's what can be confirmed:
+
+**LIBERO Success Rate:**
+The paper reports achieving a "near-saturated 99% task success rate on the LIBERO benchmark."
+
+**Specific Suite Results:**
+The webpage does not provide breakdowns for individual LIBERO suites (Spatial, Object, Goal, Long).
+
+**OpenVLA-OFT Comparison:**
+No comparison with OpenVLA-OFT is mentioned in the provided content.
+
+**Publication Status:**
+Yes, PLD is confirmed as "Accepted at ICLR 2026" according to the document header.
+
+The available information focuses on the aggregate LIBERO performance rather than suite-specific results. For detailed comparisons and granular benchmark data, you would need to consult the full paper (linked as "/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf").
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "481d7e1e-7f58-4cf9-9d0b-c95dbfe8ade3",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "3b5f598c-519a-413c-9fd1-81afa216b861",
+  "toolUseResult": {
+    "bytes": 46467,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# PLD Performance Summary\n\nBased on the provided content, here's what can be confirmed:\n\n**LIBERO Success Rate:**\nThe paper reports achieving a \"near-saturated 99% task success rate on the LIBERO benchmark.\"\n\n**Specific Suite Results:**\nThe webpage does not provide breakdowns for individual LIBERO suites (Spatial, Object, Goal, Long).\n\n**OpenVLA-OFT Comparison:**\nNo comparison with OpenVLA-OFT is mentioned in the provided content.\n\n**Publication Status:**\nYes, PLD is confirmed as \"Accepted at ICLR 2026\" according to the document header.\n\nThe available information focuses on the aggregate LIBERO performance rather than suite-specific results. For detailed comparisons and granular benchmark data, you would need to consult the full paper (linked as \"/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf\").",
+    "durationMs": 3479,
+    "url": "https://wenlixiao.com/self-improve-VLA-PLD"
+  },
+  "sourceToolAssistantUUID": "481d7e1e-7f58-4cf9-9d0b-c95dbfe8ade3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-14T03:32:34.390Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015CYTevsJexYaSHzCGiSMbR`</summary>
+
+```json
+{
+  "query": "LIBERO benchmark state of the art success rate 2026 VLA best results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b5f598c-519a-413c-9fd1-81afa216b861",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kqruwrx4WZdGk6ZoJx",
+  "type": "assistant",
+  "uuid": "1791ad4f-0ed6-41a1-aa81-e89a1949c059",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013HVKsm89hFTmSNmDLZG5kP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 389,
+      "cache_read_input_tokens": 58466,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 389,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 58466,
+          "cache_creation_input_tokens": 389,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 389
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-14T03:32:41.257Z_
+
+<details><summary>↩ Tool result · `toolu_015CYTevsJexYaSHzCGiSMbR`</summary>
+
+```text
+Web search results for query: "LIBERO benchmark state of the art success rate 2026 VLA best results"
+
+Links: [{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of ...","url":"https://arxiv.org/pdf/2510.03827"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"LIBERO vs CALVIN (2026): Benchmark Comparison | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/datasets/compare/libero-vs-calvin"},{"title":"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://arxiv.org/html/2603.28301"},{"title":"[2603.28301] LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://arxiv.org/abs/2603.28301"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"}]
+
+Based on the search results, here's what I found about LIBERO benchmark state-of-the-art success rates for VLA models in 2026:
+
+## Current SOTA Performance
+
+Strong 2025-era VLA policies (OpenVLA, pi0, Octo variants) typically land in the 70-90 percent success range on Spatial, Object, and Goal suites, and 30-60 percent on LIBERO-100 depending on training recipe.
+
+## Important Context About Reported Success Rates
+
+While Visual–Language–Action (VLA) models report impressive success rates exceeding 95% on robotic manipulation benchmarks, this headline number masks significant limitations. Reported SOTA figures (>95% success) reflect performance under clean, nearly identically distributed train/test splits, whereas systematic robustness analyses reveal significant brittleness and a tendency toward memorization.
+
+## Key Finding on Robustness
+
+Recent robustness evaluations using extended LIBERO benchmarks have revealed critical weaknesses: models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.
+
+## Important Note
+
+The spread is interesting: policies that do well on the first three suites sometimes fall off a cliff on LIBERO-100, which reveals a generalization gap that a single averaged number would hide. When you read a new paper, always check the per-suite breakdown rather than the mean.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1791ad4f-0ed6-41a1-aa81-e89a1949c059",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "4c9f40d2-f9db-423c-a094-c95993107a47",
+  "toolUseResult": {
+    "query": "LIBERO benchmark state of the art success rate 2026 VLA best results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LAdmsapGC5B44VHAHBFLiV",
+        "content": [
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of ...",
+            "url": "https://arxiv.org/pdf/2510.03827"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2510.13626"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "LIBERO vs CALVIN (2026): Benchmark Comparison | Silicon Valley Robotics Center",
+            "url": "https://www.roboticscenter.ai/datasets/compare/libero-vs-calvin"
+          },
+          {
+            "title": "LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://arxiv.org/html/2603.28301"
+          },
+          {
+            "title": "[2603.28301] LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://arxiv.org/abs/2603.28301"
+          },
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LIBERO benchmark state-of-the-art success rates for VLA models in 2026:\n\n## Current SOTA Performance\n\nStrong 2025-era VLA policies (OpenVLA, pi0, Octo variants) typically land in the 70-90 percent success range on Spatial, Object, and Goal suites, and 30-60 percent on LIBERO-100 depending on training recipe.\n\n## Important Context About Reported Success Rates\n\nWhile Visual–Language–Action (VLA) models report impressive success rates exceeding 95% on robotic manipulation benchmarks, this headline number masks significant limitations. Reported SOTA figures (>95% success) reflect performance under clean, nearly identically distributed train/test splits, whereas systematic robustness analyses reveal significant brittleness and a tendency toward memorization.\n\n## Key Finding on Robustness\n\nRecent robustness evaluations using extended LIBERO benchmarks have revealed critical weaknesses: models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.\n\n## Important Note\n\nThe spread is interesting: policies that do well on the first three suites sometimes fall off a cliff on LIBERO-100, which reveals a generalization gap that a single averaged number would hide. When you read a new paper, always check the per-suite breakdown rather than the mean."
+    ],
+    "durationSeconds": 6.85898618300003
+  },
+  "sourceToolAssistantUUID": "1791ad4f-0ed6-41a1-aa81-e89a1949c059",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-14T03:32:44.828Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JjbH7xnbmXdN3vmuD8CaVf`</summary>
+
+```json
+{
+  "query": "DataMIL selecting data robot imitation learning datamodels May 2025 benchmark results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c9f40d2-f9db-423c-a094-c95993107a47",
+  "isSidechain": false,
+  "requestId": "req_011Cb1krdHvMn449qkmpkuFE",
+  "type": "assistant",
+  "uuid": "1cc0ca41-dc09-4ffe-844f-714be682e01d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PRJ2zE5phXiKdA9aBE2qm3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 58855,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 924,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 58855,
+          "cache_creation_input_tokens": 924,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 924
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-14T03:32:53.025Z_
+
+<details><summary>↩ Tool result · `toolu_01JjbH7xnbmXdN3vmuD8CaVf`</summary>
+
+```text
+Web search results for query: "DataMIL selecting data robot imitation learning datamodels May 2025 benchmark results"
+
+Links: [{"title":"[2505.09603] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/abs/2505.09603"},{"title":"GitHub - UT-Austin-RobIn/datamil: Code release for -- DataMIL: Selecting Data for Robot Imitation Learning with Datamodels · GitHub","url":"https://github.com/UT-Austin-RobIn/datamil"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with ...","url":"https://arxiv.org/pdf/2505.09603"},{"title":"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/html/2505.09603"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://openreview.net/pdf/d1836285b655f13b1f86918922a074b725fa137b.pdf"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels | OpenReview","url":"https://openreview.net/forum?id=AcTsKglDdh"},{"title":"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels","url":"https://robin-lab.cs.utexas.edu/datamodels4imitation/"},{"title":"DATAMIL: SELECTING DATA FOR ROBOT IMITATION ...","url":"https://openreview.net/pdf/82e6c304571ad1e85b44780f29e82e7042b2743f.pdf"},{"title":"Robotics May 2025","url":"https://www.arxiv.org/list/cs.RO/2025-05?skip=325&show=500"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"}]
+
+I found comprehensive information about DataMIL and its May 2025 benchmark results. Here's a summary of the key findings:
+
+## Overview
+
+DataMIL is a policy-driven data selection framework built on the datamodels paradigm that reasons about data selection in an end-to-end manner, using the policy itself to identify which data points will most improve performance.
+
+## Key Technical Approach
+
+Unlike standard practices that filter data using human notions of quality (e.g., based on semantic or visual similarity), DataMIL directly optimizes data selection for task success, allowing us to select data that enhance the policy while dropping data that degrade it. To avoid performing expensive rollouts in the environment during selection, DataMIL uses a novel surrogate loss function on task-specific data, allowing it to be used in the real world without degrading performance.
+
+## Benchmark Results
+
+The research demonstrated strong performance across multiple benchmarks:
+
+- **MetaWorld**: Across the 50 tasks in MetaWorld, DataMIL shows a 10% performance boost compared to the state-of-the-art baselines.
+
+- **LIBERO**: The LIBERO benchmark consists of 100 tasks with diverse objects, layouts and scenes, and DataMIL was tested on 10 long-horizon tasks from the LIBERO-10 setting, using LIBERO-90 (comprising 4500 human-teleoperated demonstrations) as the prior dataset and selecting 10% of the data.
+
+- **Real-World Testing**: DataMIL was validated on a suite of more than 60 simulation and real-world manipulation tasks - most notably showing successful data selection from the Open X-Embodiment datasets-demonstrating consistent gains in success rates and superior performance over multiple baselines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1cc0ca41-dc09-4ffe-844f-714be682e01d",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "bd0aaa88-1f8d-442b-a7f2-d1d5cae8a04d",
+  "toolUseResult": {
+    "query": "DataMIL selecting data robot imitation learning datamodels May 2025 benchmark results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0151oGMX9LkoGzWej1uLX2R5",
+        "content": [
+          {
+            "title": "[2505.09603] DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/abs/2505.09603"
+          },
+          {
+            "title": "GitHub - UT-Austin-RobIn/datamil: Code release for -- DataMIL: Selecting Data for Robot Imitation Learning with Datamodels · GitHub",
+            "url": "https://github.com/UT-Austin-RobIn/datamil"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with ...",
+            "url": "https://arxiv.org/pdf/2505.09603"
+          },
+          {
+            "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/html/2505.09603"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://openreview.net/pdf/d1836285b655f13b1f86918922a074b725fa137b.pdf"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels | OpenReview",
+            "url": "https://openreview.net/forum?id=AcTsKglDdh"
+          },
+          {
+            "title": "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://robin-lab.cs.utexas.edu/datamodels4imitation/"
+          },
+          {
+            "title": "DATAMIL: SELECTING DATA FOR ROBOT IMITATION ...",
+            "url": "https://openreview.net/pdf/82e6c304571ad1e85b44780f29e82e7042b2743f.pdf"
+          },
+          {
+            "title": "Robotics May 2025",
+            "url": "https://www.arxiv.org/list/cs.RO/2025-05?skip=325&show=500"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          }
+        ]
+      },
+      "I found comprehensive information about DataMIL and its May 2025 benchmark results. Here's a summary of the key findings:\n\n## Overview\n\nDataMIL is a policy-driven data selection framework built on the datamodels paradigm that reasons about data selection in an end-to-end manner, using the policy itself to identify which data points will most improve performance.\n\n## Key Technical Approach\n\nUnlike standard practices that filter data using human notions of quality (e.g., based on semantic or visual similarity), DataMIL directly optimizes data selection for task success, allowing us to select data that enhance the policy while dropping data that degrade it. To avoid performing expensive rollouts in the environment during selection, DataMIL uses a novel surrogate loss function on task-specific data, allowing it to be used in the real world without degrading performance.\n\n## Benchmark Results\n\nThe research demonstrated strong performance across multiple benchmarks:\n\n- **MetaWorld**: Across the 50 tasks in MetaWorld, DataMIL shows a 10% performance boost compared to the state-of-the-art baselines.\n\n- **LIBERO**: The LIBERO benchmark consists of 100 tasks with diverse objects, layouts and scenes, and DataMIL was tested on 10 long-horizon tasks from the LIBERO-10 setting, using LIBERO-90 (comprising 4500 human-teleoperated demonstrations) as the prior dataset and selecting 10% of the data.\n\n- **Real-World Testing**: DataMIL was validated on a suite of more than 60 simulation and real-world manipulation tasks - most notably showing successful data selection from the Open X-Embodiment datasets-demonstrating consistent gains in success rates and superior performance over multiple baselines."
+    ],
+    "durationSeconds": 8.192608267000002
+  },
+  "sourceToolAssistantUUID": "1cc0ca41-dc09-4ffe-844f-714be682e01d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 115 · 2026-05-14T03:32:56.986Z_
+
+Now let me verify whether PLD (ICLR 2026, 99% on LIBERO) makes the "OpenVLA-OFT at 97.1% is SOTA" claim outdated.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd0aaa88-1f8d-442b-a7f2-d1d5cae8a04d",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ksVeaKgRBRfS9SkWsy",
+  "type": "assistant",
+  "uuid": "5a687c38-aae3-4066-831a-22c16b07dbbe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7uYEBXYmYizGXXqMASx49",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 59779,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 59779,
+          "cache_creation_input_tokens": 1077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-14T03:32:57.470Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019PsPoBi1T7m6eKnjaKTaVu`</summary>
+
+```json
+{
+  "query": "PLD self-improving VLA ICLR 2026 LIBERO 99% residual RL data generation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a687c38-aae3-4066-831a-22c16b07dbbe",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ksVeaKgRBRfS9SkWsy",
+  "type": "assistant",
+  "uuid": "0815f990-9bfa-4a6b-bb46-3f8bafd0bfd0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7uYEBXYmYizGXXqMASx49",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 59779,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 59779,
+          "cache_creation_input_tokens": 1077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-14T03:33:04.369Z_
+
+<details><summary>↩ Tool result · `toolu_019PsPoBi1T7m6eKnjaKTaVu`</summary>
+
+```text
+Web search results for query: "PLD self-improving VLA ICLR 2026 LIBERO 99% residual RL data generation"
+
+Links: [{"title":"PLD: Self-Improving Vision-Language-Action Models (ICLR 2026)","url":"https://wenlixiao.com/self-improve-VLA-PLD"},{"title":"Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | OpenReview","url":"https://openreview.net/forum?id=eUGoqrZ6Ea"},{"title":"Self-Improving Vision-Language-Action Models with Data Generation via Residual RL","url":"https://arxiv.org/html/2511.00091v1"},{"title":"ICLR Poster Self-Improving Vision-Language-Action Models with Data Generation via Residual RL","url":"https://iclr.cc/virtual/2026/poster/10008318"},{"title":"Self-Improving Vision-Language-Action Models with Data ...","url":"https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"},{"title":"SELF-IMPROVING VISION-LANGUAGE-ACTION","url":"https://arxiv.org/pdf/2511.00091"},{"title":"[2511.00091] Self-Improving Vision-Language-Action Models with Data Generation via Residual RL","url":"https://arxiv.org/abs/2511.00091"},{"title":"(PDF) Self-Improving Vision-Language-Action Models with Data Generation via Residual RL","url":"https://www.researchgate.net/publication/397231758_Self-Improving_Vision-Language-Action_Models_with_Data_Generation_via_Residual_RL"},{"title":"Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2511.00091"},{"title":"GitHub - PRIME-RL/SimpleVLA-RL: [ICLR 2026] SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning · GitHub","url":"https://github.com/PRIME-RL/SimpleVLA-RL"}]
+
+Based on the search results, I found detailed information about PLD, a paper presented at ICLR 2026:
+
+## PLD: Self-Improving Vision-Language-Action Models
+
+PLD consists of a three-stage pipeline: learning specialist residual policies for each task via online off-policy RL guided by a frozen VLA generalist, automatic generation of hybrid trajectories through VLA rollout followed by specialist takeover to generate recovery data, supervised fine-tuning using collected multi-task PLD data, and deployment of the fine-tuned generalist to diverse manipulation tasks in zero-shot.
+
+### Key Results
+
+PLD achieves a near-saturated 99% task success rate on the LIBERO benchmark, delivers over 50% performance gains in SimplerEnv, and demonstrates a 100% success rate on real-world Franka arm and YAM arm dexterous manipulation tasks.
+
+### Data Generation Approach
+
+The method uses residual policy probing and distribution-aware replay to collect deployment-aligned data that improves VLAs' capabilities on both seen and unseen tasks, with RL-generated, policy-aligned data demonstrating it can surpass teleoperation-only demonstrations as a scalable path toward self-improving VLA models.
+
+VLA SFT on PLD data achieves better generalization performance compared to human teleoperation data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0815f990-9bfa-4a6b-bb46-3f8bafd0bfd0",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "b7631756-2e54-4f50-ab8f-2e62647d7652",
+  "toolUseResult": {
+    "query": "PLD self-improving VLA ICLR 2026 LIBERO 99% residual RL data generation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ScQW5Lmq64kp9p1uXm2d9v",
+        "content": [
+          {
+            "title": "PLD: Self-Improving Vision-Language-Action Models (ICLR 2026)",
+            "url": "https://wenlixiao.com/self-improve-VLA-PLD"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | OpenReview",
+            "url": "https://openreview.net/forum?id=eUGoqrZ6Ea"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data Generation via Residual RL",
+            "url": "https://arxiv.org/html/2511.00091v1"
+          },
+          {
+            "title": "ICLR Poster Self-Improving Vision-Language-Action Models with Data Generation via Residual RL",
+            "url": "https://iclr.cc/virtual/2026/poster/10008318"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data ...",
+            "url": "https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"
+          },
+          {
+            "title": "SELF-IMPROVING VISION-LANGUAGE-ACTION",
+            "url": "https://arxiv.org/pdf/2511.00091"
+          },
+          {
+            "title": "[2511.00091] Self-Improving Vision-Language-Action Models with Data Generation via Residual RL",
+            "url": "https://arxiv.org/abs/2511.00091"
+          },
+          {
+            "title": "(PDF) Self-Improving Vision-Language-Action Models with Data Generation via Residual RL",
+            "url": "https://www.researchgate.net/publication/397231758_Self-Improving_Vision-Language-Action_Models_with_Data_Generation_via_Residual_RL"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data Generation via Residual RL | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2511.00091"
+          },
+          {
+            "title": "GitHub - PRIME-RL/SimpleVLA-RL: [ICLR 2026] SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning · GitHub",
+            "url": "https://github.com/PRIME-RL/SimpleVLA-RL"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about PLD, a paper presented at ICLR 2026:\n\n## PLD: Self-Improving Vision-Language-Action Models\n\nPLD consists of a three-stage pipeline: learning specialist residual policies for each task via online off-policy RL guided by a frozen VLA generalist, automatic generation of hybrid trajectories through VLA rollout followed by specialist takeover to generate recovery data, supervised fine-tuning using collected multi-task PLD data, and deployment of the fine-tuned generalist to diverse manipulation tasks in zero-shot.\n\n### Key Results\n\nPLD achieves a near-saturated 99% task success rate on the LIBERO benchmark, delivers over 50% performance gains in SimplerEnv, and demonstrates a 100% success rate on real-world Franka arm and YAM arm dexterous manipulation tasks.\n\n### Data Generation Approach\n\nThe method uses residual policy probing and distribution-aware replay to collect deployment-aligned data that improves VLAs' capabilities on both seen and unseen tasks, with RL-generated, policy-aligned data demonstrating it can surpass teleoperation-only demonstrations as a scalable path toward self-improving VLA models.\n\nVLA SFT on PLD data achieves better generalization performance compared to human teleoperation data."
+    ],
+    "durationSeconds": 6.894087116999959
+  },
+  "sourceToolAssistantUUID": "0815f990-9bfa-4a6b-bb46-3f8bafd0bfd0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 118 · 2026-05-14T03:33:04.371Z_
+
+```json
+{
+  "parentUuid": "b7631756-2e54-4f50-ab8f-2e62647d7652",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "637d7eaa-8861-45e0-b1ef-28174259a1d9",
+  "timestamp": "2026-05-14T03:33:04.371Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-14T03:33:07.552Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013pkfujHmNb39ANrAXvQfR1`</summary>
+
+```json
+{
+  "query": "LIBERO benchmark leaderboard best method 2026 success rate comparison pi0 OpenVLA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "637d7eaa-8861-45e0-b1ef-28174259a1d9",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ktLDpDXthsxu6yVsHe",
+  "type": "assistant",
+  "uuid": "9dd76593-95e9-473e-877e-606449122226",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XeyhNeGoyCLnsCwNkiXzz9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1114,
+      "cache_read_input_tokens": 60856,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1114,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 60856,
+          "cache_creation_input_tokens": 1114,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1114
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-14T03:33:15.921Z_
+
+<details><summary>↩ Tool result · `toolu_013pkfujHmNb39ANrAXvQfR1`</summary>
+
+```text
+Web search results for query: "LIBERO benchmark leaderboard best method 2026 success rate comparison pi0 OpenVLA"
+
+Links: [{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/html/2510.03827v1"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://openvla-oft.github.io/"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"Success rates of OpenVLA, pi0, pi0.5, and univla under object position... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Success-rates-of-OpenVLA-pi0-pi05-and-univla-under-object-position-perturbations_fig1_396249917"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of ...","url":"https://arxiv.org/pdf/2510.03827"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"LIBERO vs CALVIN (2026): Benchmark Comparison | Silicon Valley Robotics Center","url":"https://www.roboticscenter.ai/datasets/compare/libero-vs-calvin"},{"title":"VLA & Dexterous Manipulation SOTA Leaderboard","url":"https://github.com/MINT-SJTU/Evo-SOTA.io/blob/main/README.md"},{"title":"LIBERO Leaderboard - a Hugging Face Space by HuggingFaceVLA","url":"https://huggingface.co/spaces/HuggingFaceVLA/libero-vla-leaderboard"}]
+
+Based on the web search results, here's what I found about the LIBERO benchmark leaderboard, best methods, and success rate comparisons:
+
+## Standard LIBERO Benchmark Performance
+
+OpenVLA-OFT achieves state-of-the-art results in LIBERO with a 97.1% average success rate across 4 task suites, outperforming π0, MDT, Seer, DiT Policy, Octo, and Diffusion Policy. On LIBERO, strong 2025-era VLA policies (OpenVLA, pi0, Octo variants) typically land in the 70-90 percent success range on Spatial, Object, and Goal, and 30-60 percent on LIBERO-100 depending on training recipe.
+
+## Robustness Evaluation: LIBERO-PRO Results
+
+However, a more rigorous evaluation using LIBERO-PRO reveals significant differences when models face perturbations. While most models fail under perturbations, Pi0.5 achieves a 0.38 success rate in the libero-goal task under position changes, compared to 0 for OpenVLA and Pi0, revealing differences masked by standard benchmark scores.
+
+Despite achieving success rates above 90% on the standard LIBERO benchmark, models nearly collapse under changes to object positions or minor task modifications, even when constructed from training components.
+
+## LIBERO-Plus Leaderboard
+
+A post-training method achieves the highest overall success rate (79.6%), outperforming all baseline models across nearly all perturbation types on the LIBERO-Plus benchmark, which includes more challenging robustness evaluations.
+
+The key takeaway is that while OpenVLA-OFT achieves the highest scores on standard LIBERO benchmarks, the newer LIBERO-PRO and LIBERO-Plus benchmarks reveal that current models still struggle with real-world perturbations and generalization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9dd76593-95e9-473e-877e-606449122226",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "0ab82061-de75-40ae-baf8-b27cd68eef06",
+  "toolUseResult": {
+    "query": "LIBERO benchmark leaderboard best method 2026 success rate comparison pi0 OpenVLA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01URgtbALfhtMLMWuFJKd3kb",
+        "content": [
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/html/2510.03827v1"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "Success rates of OpenVLA, pi0, pi0.5, and univla under object position... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Success-rates-of-OpenVLA-pi0-pi05-and-univla-under-object-position-perturbations_fig1_396249917"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of ...",
+            "url": "https://arxiv.org/pdf/2510.03827"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "LIBERO vs CALVIN (2026): Benchmark Comparison | Silicon Valley Robotics Center",
+            "url": "https://www.roboticscenter.ai/datasets/compare/libero-vs-calvin"
+          },
+          {
+            "title": "VLA & Dexterous Manipulation SOTA Leaderboard",
+            "url": "https://github.com/MINT-SJTU/Evo-SOTA.io/blob/main/README.md"
+          },
+          {
+            "title": "LIBERO Leaderboard - a Hugging Face Space by HuggingFaceVLA",
+            "url": "https://huggingface.co/spaces/HuggingFaceVLA/libero-vla-leaderboard"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about the LIBERO benchmark leaderboard, best methods, and success rate comparisons:\n\n## Standard LIBERO Benchmark Performance\n\nOpenVLA-OFT achieves state-of-the-art results in LIBERO with a 97.1% average success rate across 4 task suites, outperforming π0, MDT, Seer, DiT Policy, Octo, and Diffusion Policy. On LIBERO, strong 2025-era VLA policies (OpenVLA, pi0, Octo variants) typically land in the 70-90 percent success range on Spatial, Object, and Goal, and 30-60 percent on LIBERO-100 depending on training recipe.\n\n## Robustness Evaluation: LIBERO-PRO Results\n\nHowever, a more rigorous evaluation using LIBERO-PRO reveals significant differences when models face perturbations. While most models fail under perturbations, Pi0.5 achieves a 0.38 success rate in the libero-goal task under position changes, compared to 0 for OpenVLA and Pi0, revealing differences masked by standard benchmark scores.\n\nDespite achieving success rates above 90% on the standard LIBERO benchmark, models nearly collapse under changes to object positions or minor task modifications, even when constructed from training components.\n\n## LIBERO-Plus Leaderboard\n\nA post-training method achieves the highest overall success rate (79.6%), outperforming all baseline models across nearly all perturbation types on the LIBERO-Plus benchmark, which includes more challenging robustness evaluations.\n\nThe key takeaway is that while OpenVLA-OFT achieves the highest scores on standard LIBERO benchmarks, the newer LIBERO-PRO and LIBERO-Plus benchmarks reveal that current models still struggle with real-world perturbations and generalization."
+    ],
+    "durationSeconds": 8.363584789999994
+  },
+  "sourceToolAssistantUUID": "9dd76593-95e9-473e-877e-606449122226",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 121_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0ab82061-de75-40ae-baf8-b27cd68eef06",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 122_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify demonstration curation via advantage decomposition for robotics",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 123 · 2026-05-14T03:33:19.495Z_
+
+Important finding: PLD (ICLR 2026) claims 99% on LIBERO, surpassing OpenVLA-OFT's 97.1%. Let me check the HuggingFace leaderboard for the most current comparison.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ab82061-de75-40ae-baf8-b27cd68eef06",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kuBWijDgw8WqbB2jez",
+  "type": "assistant",
+  "uuid": "0ad16d39-2146-4923-85b9-88b2c20aac5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SdeS6mfGUpMN6HvE5Urs9d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1094,
+      "cache_read_input_tokens": 61970,
+      "output_tokens": 203,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1094,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 203,
+          "cache_read_input_tokens": 61970,
+          "cache_creation_input_tokens": 1094,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1094
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124 · 2026-05-14T03:33:21.019Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01BjM5AxKJVCKkgWjvjHGKUp`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/spaces/HuggingFaceVLA/libero-vla-leaderboard",
+  "prompt": "What are the top-performing methods on the LIBERO leaderboard? List the methods and their average success rates. What is the current SOTA? Does PLD appear? Does OpenVLA-OFT appear?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ad16d39-2146-4923-85b9-88b2c20aac5e",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kuBWijDgw8WqbB2jez",
+  "type": "assistant",
+  "uuid": "26eaec0c-b8bc-4ea8-938b-1b633dad756d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SdeS6mfGUpMN6HvE5Urs9d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1094,
+      "cache_read_input_tokens": 61970,
+      "output_tokens": 203,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1094,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 203,
+          "cache_read_input_tokens": 61970,
+          "cache_creation_input_tokens": 1094,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1094
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-14T03:33:25.008Z_
+
+<details><summary>↩ Tool result · `toolu_01BjM5AxKJVCKkgWjvjHGKUp`</summary>
+
+```text
+# LIBERO Leaderboard Response
+
+Based on the web page content provided, I cannot provide the specific information you're requesting because:
+
+1. **The page content does not include actual leaderboard data** - The snippet shows only the page structure and header information for the LIBERO Leaderboard Space on Hugging Face.
+
+2. **No rankings or methods are visible** - The content shows metadata is "Fetching from the HF Docker repository" and "Refreshing," indicating the actual leaderboard results are not included in the provided excerpt.
+
+3. **Specific questions cannot be answered:**
+   - Top-performing methods and their success rates: **Not provided**
+   - Current SOTA (State-of-the-Art): **Not provided**
+   - Whether PLD appears: **Not provided**
+   - Whether OpenVLA-OFT appears: **Not provided**
+
+## To get this information, you would need to:
+
+- Visit the actual leaderboard at: [https://huggingface.co/spaces/HuggingFaceVLA/libero-vla-leaderboard](https://huggingface.co/spaces/HuggingFaceVLA/libero-vla-leaderboard)
+- Wait for the page to fully load and refresh the leaderboard data
+- View the rendered table/visualization with the actual method rankings and success rates
+
+Please share the actual leaderboard table content if you'd like me to analyze the specific methods and their performance metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "26eaec0c-b8bc-4ea8-938b-1b633dad756d",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "d2480f7c-964a-46f8-a38f-c359628f6ace",
+  "toolUseResult": {
+    "bytes": 45231,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LIBERO Leaderboard Response\n\nBased on the web page content provided, I cannot provide the specific information you're requesting because:\n\n1. **The page content does not include actual leaderboard data** - The snippet shows only the page structure and header information for the LIBERO Leaderboard Space on Hugging Face.\n\n2. **No rankings or methods are visible** - The content shows metadata is \"Fetching from the HF Docker repository\" and \"Refreshing,\" indicating the actual leaderboard results are not included in the provided excerpt.\n\n3. **Specific questions cannot be answered:**\n   - Top-performing methods and their success rates: **Not provided**\n   - Current SOTA (State-of-the-Art): **Not provided**\n   - Whether PLD appears: **Not provided**\n   - Whether OpenVLA-OFT appears: **Not provided**\n\n## To get this information, you would need to:\n\n- Visit the actual leaderboard at: [https://huggingface.co/spaces/HuggingFaceVLA/libero-vla-leaderboard](https://huggingface.co/spaces/HuggingFaceVLA/libero-vla-leaderboard)\n- Wait for the page to fully load and refresh the leaderboard data\n- View the rendered table/visualization with the actual method rankings and success rates\n\nPlease share the actual leaderboard table content if you'd like me to analyze the specific methods and their performance metrics.",
+    "durationMs": 3981,
+    "url": "https://huggingface.co/spaces/HuggingFaceVLA/libero-vla-leaderboard"
+  },
+  "sourceToolAssistantUUID": "26eaec0c-b8bc-4ea8-938b-1b633dad756d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-14T03:33:28.094Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ps9C5qMzxwxTvRkq6C8EN3`</summary>
+
+```json
+{
+  "query": "site:paperswithcode.com LIBERO benchmark leaderboard robot manipulation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2480f7c-964a-46f8-a38f-c359628f6ace",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kurN4ZUER3GGqXEm4N",
+  "type": "assistant",
+  "uuid": "12178266-c9c8-4c0f-b448-57c895060381",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019h16XDZLQmVEHhqz7tKPWo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 549,
+      "cache_read_input_tokens": 63064,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 549,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 63064,
+          "cache_creation_input_tokens": 549,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 549
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-14T03:33:34.654Z_
+
+<details><summary>↩ Tool result · `toolu_01Ps9C5qMzxwxTvRkq6C8EN3`</summary>
+
+```text
+Web search results for query: "site:paperswithcode.com LIBERO benchmark leaderboard robot manipulation"
+
+Links: [{"title":"Papers with Code - LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://paperswithcode.com/paper/libero-benchmarking-knowledge-transfer-for"},{"title":"RLBench Benchmark (Robot Manipulation)","url":"https://paperswithcode.com/sota/robot-manipulation-on-rlbench"},{"title":"Papers with Code - Paper tables with annotated results for LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://paperswithcode.com/paper/libero-benchmarking-knowledge-transfer-for/review/"},{"title":"The COLOSSEUM Benchmark (Robot Manipulation Generalization) | Papers With Code","url":"https://paperswithcode.com/sota/robot-manipulation-generalization-on-the"},{"title":"LIBERO-10 Dataset","url":"https://paperswithcode.com/dataset/libero-10"},{"title":"LIBERO-90 Dataset","url":"https://paperswithcode.com/dataset/libero-90"},{"title":"Robot Manipulation Generalization | Papers With Code","url":"https://paperswithcode.com/task/robot-manipulation-generalization"},{"title":"Robot Manipulation","url":"https://paperswithcode.com/task/robot-manipulation"},{"title":"RLBench Benchmark (Robot Manipulation) | Papers With Code","url":"https://paperswithcode.com/sota/robot-manipulation-on-rlbench?p=3d-diffuser-actor-policy-diffusion-with-3d"},{"title":"Papers with Code - LIBERO-10 Benchmark ()","url":"https://paperswithcode.com/sota/on-libero-10"}]
+
+Based on the search results, I found information about the LIBERO benchmark on Papers with Code:
+
+LIBERO consists of four task suites with 130 tasks in total, designed for benchmarking knowledge transfer in robot manipulation. The benchmark provides high-quality human-teleoperated demonstration data for all tasks to support sample-efficient learning.
+
+The search results show there are leaderboard pages for LIBERO benchmarks on Papers with Code. Specifically, I found:
+
+- The current state-of-the-art on LIBERO-10 is MoDE
+
+The benchmark includes related datasets like LIBERO-10 and LIBERO-90, which are also tracked on Papers with Code. Code and datasets are available at https://libero-project.github.io
+
+If you're looking for the full leaderboard rankings with all submissions and their scores, you may want to visit the specific LIBERO benchmark pages directly on Papers with Code to see the complete rankings and detailed results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12178266-c9c8-4c0f-b448-57c895060381",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "1ea02e0f-18aa-4cc7-9e19-56cfd07e78c2",
+  "toolUseResult": {
+    "query": "site:paperswithcode.com LIBERO benchmark leaderboard robot manipulation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PrZvagrduBGJF64k53qyqR",
+        "content": [
+          {
+            "title": "Papers with Code - LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://paperswithcode.com/paper/libero-benchmarking-knowledge-transfer-for"
+          },
+          {
+            "title": "RLBench Benchmark (Robot Manipulation)",
+            "url": "https://paperswithcode.com/sota/robot-manipulation-on-rlbench"
+          },
+          {
+            "title": "Papers with Code - Paper tables with annotated results for LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://paperswithcode.com/paper/libero-benchmarking-knowledge-transfer-for/review/"
+          },
+          {
+            "title": "The COLOSSEUM Benchmark (Robot Manipulation Generalization) | Papers With Code",
+            "url": "https://paperswithcode.com/sota/robot-manipulation-generalization-on-the"
+          },
+          {
+            "title": "LIBERO-10 Dataset",
+            "url": "https://paperswithcode.com/dataset/libero-10"
+          },
+          {
+            "title": "LIBERO-90 Dataset",
+            "url": "https://paperswithcode.com/dataset/libero-90"
+          },
+          {
+            "title": "Robot Manipulation Generalization | Papers With Code",
+            "url": "https://paperswithcode.com/task/robot-manipulation-generalization"
+          },
+          {
+            "title": "Robot Manipulation",
+            "url": "https://paperswithcode.com/task/robot-manipulation"
+          },
+          {
+            "title": "RLBench Benchmark (Robot Manipulation) | Papers With Code",
+            "url": "https://paperswithcode.com/sota/robot-manipulation-on-rlbench?p=3d-diffuser-actor-policy-diffusion-with-3d"
+          },
+          {
+            "title": "Papers with Code - LIBERO-10 Benchmark ()",
+            "url": "https://paperswithcode.com/sota/on-libero-10"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the LIBERO benchmark on Papers with Code:\n\nLIBERO consists of four task suites with 130 tasks in total, designed for benchmarking knowledge transfer in robot manipulation. The benchmark provides high-quality human-teleoperated demonstration data for all tasks to support sample-efficient learning.\n\nThe search results show there are leaderboard pages for LIBERO benchmarks on Papers with Code. Specifically, I found:\n\n- The current state-of-the-art on LIBERO-10 is MoDE\n\nThe benchmark includes related datasets like LIBERO-10 and LIBERO-90, which are also tracked on Papers with Code. Code and datasets are available at https://libero-project.github.io\n\nIf you're looking for the full leaderboard rankings with all submissions and their scores, you may want to visit the specific LIBERO benchmark pages directly on Papers with Code to see the complete rankings and detailed results."
+    ],
+    "durationSeconds": 6.55589368400001
+  },
+  "sourceToolAssistantUUID": "12178266-c9c8-4c0f-b448-57c895060381",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 128 · 2026-05-14T03:33:39.000Z_
+
+Now I have enough information. Let me do one final search to check for any very recent (last 3 months) work that combines dense reward models with value decomposition for data curation — the exact novelty claim.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ea02e0f-18aa-4cc7-9e19-56cfd07e78c2",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kvZa3j8DhWoMM4q432",
+  "type": "assistant",
+  "uuid": "cae1dd4a-bbca-4da4-8dce-3e590b4b6cff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G9a8JAPgUxegsZ74bpS3TQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 756,
+      "cache_read_input_tokens": 63613,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 756,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 63613,
+          "cache_creation_input_tokens": 756,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 756
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-14T03:33:39.808Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0127Qo4u9vbHYxqv4iLLygRc`</summary>
+
+```json
+{
+  "query": "\"dense reward\" \"value decomposition\" OR \"advantage decomposition\" OR \"V and A\" curation OR filtering demonstration 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cae1dd4a-bbca-4da4-8dce-3e590b4b6cff",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kvZa3j8DhWoMM4q432",
+  "type": "assistant",
+  "uuid": "d2b75d2c-a2d9-47d9-848e-0699e283f8f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G9a8JAPgUxegsZ74bpS3TQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 756,
+      "cache_read_input_tokens": 63613,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 756,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 63613,
+          "cache_creation_input_tokens": 756,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 756
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-14T03:33:46.659Z_
+
+<details><summary>↩ Tool result · `toolu_0127Qo4u9vbHYxqv4iLLygRc`</summary>
+
+```text
+Web search results for query: ""dense reward" "value decomposition" OR "advantage decomposition" OR "V and A" curation OR filtering demonstration 2026"
+
+Links: [{"title":"VGN: Value Decomposition With Graph Attention Networks for Multiagent Reinforcement Learning | IEEE Journals & Magazine | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/9777847/"},{"title":"[2601.20218] DenseGRPO: From Sparse to Dense Reward for Flow Matching Model Alignment","url":"https://arxiv.org/abs/2601.20218"},{"title":"Simple changes to content curation algorithms affect the beliefs people form in a collaborative filtering experiment | Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems","url":"https://dl.acm.org/doi/10.1145/3772318.3790602"},{"title":"[2604.00055] Generalizable Dense Reward for Long-Horizon Robotic Tasks","url":"https://arxiv.org/abs/2604.00055"},{"title":"Explainable Reinforcement Learning via Reward Decomposition","url":"https://web.engr.oregonstate.edu/~erwig/papers/ExplainableRL_XAI19.pdf"},{"title":"Value-Decomposition Networks For Cooperative Multi-Agent Learning Peter Sunehag","url":"https://arxiv.org/pdf/1706.05296"},{"title":"Value Function Decomposition for Iterative Design of ...","url":"https://proceedings.neurips.cc/paper_files/paper/2022/file/4eb2c0adafbe71269f3a772c130f9e53-Paper-Conference.pdf"},{"title":"Decomposable Reward Modeling and Realistic Environment Design for Reinforcement Learning-Based Forex Trading","url":"https://arxiv.org/html/2604.00031v1"},{"title":"GitHub - opendilab/awesome-exploration-rl: A curated list of awesome exploration RL resources (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-exploration-rl"},{"title":"DenseGRPO: From Sparse to Dense Reward for Flow Matching Model Alignment | OpenReview","url":"https://openreview.net/forum?id=nIwFge9nW0"}]
+
+Based on the web search results, here's what I found related to your query about dense rewards, value decomposition, advantage decomposition, and related concepts with 2026 demonstrations:
+
+## Dense Reward Research (2026)
+
+Recent work on "DenseGRPO: From Sparse to Dense Reward for Flow Matching Model Alignment" proposes a reward-aware scheme to calibrate exploration space, with experiments demonstrating the effectiveness of the proposed DenseGRPO and highlighting the critical role of valid dense rewards in flow matching model alignment. This work was updated in February 2026.
+
+There is also research on "Generalizable Dense Reward for Long-Horizon Robotic Tasks" addressing how robotic foundation policies trained via large-scale imitation learning often struggle with long-horizon tasks due to distribution shift and error accumulation. This paper was published in March 2026.
+
+## Value and Advantage Decomposition
+
+Value and advantage decomposition are combined to compute a Q-function as Q(s, a) = V (s) + A(s, a).
+
+Research on "VGN: Value Decomposition With Graph Attention Networks" developed a method to solve value functions by introducing dynamical relationships between agents.
+
+## Content Curation and Filtering Demonstration (2026)
+
+A 2026 CHI Conference study demonstrated in a preregistered collaborative filtering experiment that simple changes to how posts are sampled and ranked can affect the beliefs people form, showing that simple changes to content curation algorithms can affect what people come to believe about the world.
+
+The search results primarily focused on reinforcement learning decomposition methods and algorithmic content curation, with 2026 being a recent year for the updated research cited.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2b75d2c-a2d9-47d9-848e-0699e283f8f6",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "442b3ddd-5264-473c-936f-5b44f2911a2d",
+  "toolUseResult": {
+    "query": "\"dense reward\" \"value decomposition\" OR \"advantage decomposition\" OR \"V and A\" curation OR filtering demonstration 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TfTdBiY693xzc6cTq4roSv",
+        "content": [
+          {
+            "title": "VGN: Value Decomposition With Graph Attention Networks for Multiagent Reinforcement Learning | IEEE Journals & Magazine | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/9777847/"
+          },
+          {
+            "title": "[2601.20218] DenseGRPO: From Sparse to Dense Reward for Flow Matching Model Alignment",
+            "url": "https://arxiv.org/abs/2601.20218"
+          },
+          {
+            "title": "Simple changes to content curation algorithms affect the beliefs people form in a collaborative filtering experiment | Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3772318.3790602"
+          },
+          {
+            "title": "[2604.00055] Generalizable Dense Reward for Long-Horizon Robotic Tasks",
+            "url": "https://arxiv.org/abs/2604.00055"
+          },
+          {
+            "title": "Explainable Reinforcement Learning via Reward Decomposition",
+            "url": "https://web.engr.oregonstate.edu/~erwig/papers/ExplainableRL_XAI19.pdf"
+          },
+          {
+            "title": "Value-Decomposition Networks For Cooperative Multi-Agent Learning Peter Sunehag",
+            "url": "https://arxiv.org/pdf/1706.05296"
+          },
+          {
+            "title": "Value Function Decomposition for Iterative Design of ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2022/file/4eb2c0adafbe71269f3a772c130f9e53-Paper-Conference.pdf"
+          },
+          {
+            "title": "Decomposable Reward Modeling and Realistic Environment Design for Reinforcement Learning-Based Forex Trading",
+            "url": "https://arxiv.org/html/2604.00031v1"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-exploration-rl: A curated list of awesome exploration RL resources (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-exploration-rl"
+          },
+          {
+            "title": "DenseGRPO: From Sparse to Dense Reward for Flow Matching Model Alignment | OpenReview",
+            "url": "https://openreview.net/forum?id=nIwFge9nW0"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found related to your query about dense rewards, value decomposition, advantage decomposition, and related concepts with 2026 demonstrations:\n\n## Dense Reward Research (2026)\n\nRecent work on \"DenseGRPO: From Sparse to Dense Reward for Flow Matching Model Alignment\" proposes a reward-aware scheme to calibrate exploration space, with experiments demonstrating the effectiveness of the proposed DenseGRPO and highlighting the critical role of valid dense rewards in flow matching model alignment. This work was updated in February 2026.\n\nThere is also research on \"Generalizable Dense Reward for Long-Horizon Robotic Tasks\" addressing how robotic foundation policies trained via large-scale imitation learning often struggle with long-horizon tasks due to distribution shift and error accumulation. This paper was published in March 2026.\n\n## Value and Advantage Decomposition\n\nValue and advantage decomposition are combined to compute a Q-function as Q(s, a) = V (s) + A(s, a).\n\nResearch on \"VGN: Value Decomposition With Graph Attention Networks\" developed a method to solve value functions by introducing dynamical relationships between agents.\n\n## Content Curation and Filtering Demonstration (2026)\n\nA 2026 CHI Conference study demonstrated in a preregistered collaborative filtering experiment that simple changes to how posts are sampled and ranked can affect the beliefs people form, showing that simple changes to content curation algorithms can affect what people come to believe about the world.\n\nThe search results primarily focused on reinforcement learning decomposition methods and algorithmic content curation, with 2026 being a recent year for the updated research cited."
+    ],
+    "durationSeconds": 6.847501534999989
+  },
+  "sourceToolAssistantUUID": "d2b75d2c-a2d9-47d9-848e-0699e283f8f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-14T03:33:50.474Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q1YEi6ce6GMHzRNfAK2yRG`</summary>
+
+```json
+{
+  "query": "Robometer data retrieval imitation learning demonstration curation application results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "442b3ddd-5264-473c-936f-5b44f2911a2d",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kwSvUQgUoNRD7PzjVH",
+  "type": "assistant",
+  "uuid": "dd8562ac-5548-4c07-ba73-637dd99d60a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0122aKyFuANJyRdCSDHVhKgH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1100,
+      "cache_read_input_tokens": 64369,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1100,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 64369,
+          "cache_creation_input_tokens": 1100,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1100
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-14T03:33:57.344Z_
+
+<details><summary>↩ Tool result · `toolu_01Q1YEi6ce6GMHzRNfAK2yRG`</summary>
+
+```text
+Web search results for query: "Robometer data retrieval imitation learning demonstration curation application results"
+
+Links: [{"title":"ROBOMETER: Scaling General-Purpose Robotic","url":"https://robometer.github.io/assets/robometer.pdf"},{"title":"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://robometer.github.io/"},{"title":"DataMIL : Selecting Data for Robot Imitation Learning with Datamodels","url":"https://arxiv.org/html/2505.09603v1"},{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623"},{"title":"CUPID: Curating Data your Robot Loves with Influence Functions","url":"https://arxiv.org/html/2506.19121"},{"title":"SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning","url":"https://ut-austin-rpl.github.io/SCIZOR/"},{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"Curating Demonstrations using Online Experience","url":"https://arxiv.org/html/2503.03707"},{"title":"Learning and Retrieval from Prior Data for Skill-based Imitation Learning | OpenReview","url":"https://openreview.net/forum?id=QgXArq7RIh"},{"title":"Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/html/2505.22626v1"}]
+
+Based on the web search results, here's what I found regarding Robometer and data retrieval for imitation learning demonstration curation with application results:
+
+## Robometer Overview
+
+Robometer is a scalable reward modeling framework that combines intra-trajectory progress supervision with inter-trajectory preference supervision. Robometer enables scalable training of rewards on both reward-labeled/expert demonstrations and reward-unlabeled, suboptimal trajectories.
+
+## Data Retrieval and Applications
+
+Robometer supports diverse downstream applications such as offline & online RL, imitation learning data filtering and retrieval, and automated failure detection. Robometer significantly improves robot learning performance across a diverse set of downstream applications, including model-free online RL, model-based online RL, offline RL, failure detection, and data retrieval for IL.
+
+## Dataset and Training Approach
+
+RBM-1M, a large-scale reward-learning dataset comprising over one million trajectories spanning diverse robot embodiments and tasks, including substantial suboptimal and failure data.
+
+## Technical Framework
+
+Robometer is trained with a dual objective: a frame-level progress loss that anchors reward magnitude on expert data, and a trajectory-comparison preference loss that imposes global ordering constraints across trajectories of the same task.
+
+The framework addresses the challenge of scaling reward modeling beyond expert demonstrations to handle large heterogeneous datasets with varied demonstration quality, making it particularly useful for demonstration curation and data retrieval in imitation learning applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd8562ac-5548-4c07-ba73-637dd99d60a3",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "ac03aec3-b428-481a-bbbb-a90536a879fc",
+  "toolUseResult": {
+    "query": "Robometer data retrieval imitation learning demonstration curation application results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011Nb5zBFP3yaqt1nvYxntUh",
+        "content": [
+          {
+            "title": "ROBOMETER: Scaling General-Purpose Robotic",
+            "url": "https://robometer.github.io/assets/robometer.pdf"
+          },
+          {
+            "title": "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://robometer.github.io/"
+          },
+          {
+            "title": "DataMIL : Selecting Data for Robot Imitation Learning with Datamodels",
+            "url": "https://arxiv.org/html/2505.09603v1"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/html/2502.08623"
+          },
+          {
+            "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+            "url": "https://arxiv.org/html/2506.19121"
+          },
+          {
+            "title": "SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning",
+            "url": "https://ut-austin-rpl.github.io/SCIZOR/"
+          },
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience",
+            "url": "https://arxiv.org/html/2503.03707"
+          },
+          {
+            "title": "Learning and Retrieval from Prior Data for Skill-based Imitation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=QgXArq7RIh"
+          },
+          {
+            "title": "Scizor: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/html/2505.22626v1"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding Robometer and data retrieval for imitation learning demonstration curation with application results:\n\n## Robometer Overview\n\nRobometer is a scalable reward modeling framework that combines intra-trajectory progress supervision with inter-trajectory preference supervision. Robometer enables scalable training of rewards on both reward-labeled/expert demonstrations and reward-unlabeled, suboptimal trajectories.\n\n## Data Retrieval and Applications\n\nRobometer supports diverse downstream applications such as offline & online RL, imitation learning data filtering and retrieval, and automated failure detection. Robometer significantly improves robot learning performance across a diverse set of downstream applications, including model-free online RL, model-based online RL, offline RL, failure detection, and data retrieval for IL.\n\n## Dataset and Training Approach\n\nRBM-1M, a large-scale reward-learning dataset comprising over one million trajectories spanning diverse robot embodiments and tasks, including substantial suboptimal and failure data.\n\n## Technical Framework\n\nRobometer is trained with a dual objective: a frame-level progress loss that anchors reward magnitude on expert data, and a trajectory-comparison preference loss that imposes global ordering constraints across trajectories of the same task.\n\nThe framework addresses the challenge of scaling reward modeling beyond expert demonstrations to handle large heterogeneous datasets with varied demonstration quality, making it particularly useful for demonstration curation and data retrieval in imitation learning applications."
+    ],
+    "durationSeconds": 6.865606266000017
+  },
+  "sourceToolAssistantUUID": "dd8562ac-5548-4c07-ba73-637dd99d60a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-14T03:34:02.867Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CLFrRdzTRiEcTUKscN7xZf`</summary>
+
+```json
+{
+  "url": "https://robometer.github.io/assets/robometer.pdf",
+  "prompt": "Focus on: 1) The data retrieval for IL experiment - what exactly was done and what were the results? 2) Does Robometer's data retrieval already function as a demonstration curation method? 3) Is there a LIBERO-specific checkpoint and what tasks does it cover? 4) How does Robometer score individual frames vs trajectories? 5) Could Robometer alone serve as a data curation signal without needing IQL?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac03aec3-b428-481a-bbbb-a90536a879fc",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kxEfZMWrQ4CAYPTzpW",
+  "type": "assistant",
+  "uuid": "96b11075-2efa-41f2-90e2-bbd25001074e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QareJqq4zaeooTRDQ6dLzY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 841,
+      "cache_read_input_tokens": 65469,
+      "output_tokens": 182,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 841,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 182,
+          "cache_read_input_tokens": 65469,
+          "cache_creation_input_tokens": 841,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 841
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 134_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "96b11075-2efa-41f2-90e2-bbd25001074e",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 135_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify demonstration curation via advantage decomposition for robotics",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-14T03:34:03.131Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01CLFrRdzTRiEcTUKscN7xZf`</summary>
+
+```text
+maxContentLength size of 10485760 exceeded
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "96b11075-2efa-41f2-90e2-bbd25001074e",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "a65627be-06a8-4a7e-8dad-9ddd34fbf9da",
+  "toolUseResult": "Error: maxContentLength size of 10485760 exceeded",
+  "sourceToolAssistantUUID": "96b11075-2efa-41f2-90e2-bbd25001074e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-14T03:34:06.529Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014tF7jSibFiRc6jYWZjCQmp`</summary>
+
+```json
+{
+  "query": "Robometer data retrieval IL experiment results LIBERO subtrajectory play data curation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a65627be-06a8-4a7e-8dad-9ddd34fbf9da",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kxfTZgsBasJmBpMKqS",
+  "type": "assistant",
+  "uuid": "721e08d5-7367-43ef-986e-8a2d7cf96f3e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U5NeJnzK53zqynnoaXFjRX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 213,
+      "cache_read_input_tokens": 66310,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 66310,
+          "cache_creation_input_tokens": 213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-14T03:34:14.134Z_
+
+<details><summary>↩ Tool result · `toolu_014tF7jSibFiRc6jYWZjCQmp`</summary>
+
+```text
+Web search results for query: "Robometer data retrieval IL experiment results LIBERO subtrajectory play data curation"
+
+Links: [{"title":"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://robometer.github.io/"},{"title":"GitHub - robometer/robometer: Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons · GitHub","url":"https://github.com/robometer/robometer"},{"title":"GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub","url":"https://github.com/Lifelong-Robot-Learning/LIBERO"},{"title":"STRAP: Robot Sub-Trajectory Retrieval for Augmented Policy Learning","url":"https://weirdlabuw.github.io/strap/"},{"title":"ROBOMETER: Scaling General-Purpose Robotic","url":"https://robometer.github.io/assets/robometer.pdf"},{"title":"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://arxiv.org/html/2603.02115v1"},{"title":"aliangdw/Robometer-4B-LIBERO · Hugging Face","url":"https://huggingface.co/aliangdw/Robometer-4B-LIBERO"},{"title":"LIBERO: simulation benchmark for the study of lifelong robot learning | by Deepthi Karkada | Medium","url":"https://medium.com/@deepkarkada/libero-simulation-benchmark-for-the-study-of-lifelong-robot-learning-583b786a96f6"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/8c3c666820ea055a77726d66fc7d447f-Paper-Datasets_and_Benchmarks.pdf"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning | OpenReview","url":"https://openreview.net/forum?id=xzEtNSuDJk"}]
+
+Based on the web search results, here's what I found about Robometer data retrieval, IL experiment results, LIBERO, and play data curation:
+
+## Robometer Overview
+
+Robometer is a general-purpose robotic reward model trained on trajectory comparisons from the RBM-1M dataset that provides dense, video-language-conditioned rewards for robot learning.
+
+## Data Retrieval and Subtrajectory Approach
+
+Given a multi-task, unlabeled play dataset, Robometer retrieves the most relevant subtrajectories for a task instruction using either preference-based pairwise trajectory comparisons or progress-based ranking via per-timestep reward predictions and value–order correlation.
+
+## LIBERO Integration
+
+Robometer-LIBERO is a fine-tuned Robometer checkpoint on LIBERO-90, Object, Goal, Spatial, 10 + associated failure data, and is recommended if you need to do LIBERO-90 RL or if the default Robometer checkpoint doesn't perform as well.
+
+## Play Data Curation
+
+To support this formulation at scale, researchers curate RBM-1M, a reward-learning dataset comprising over one million trajectories spanning diverse robot embodiments and tasks, including substantial suboptimal and failure data. This formulation enables learning from previously unusable suboptimal data by requiring only relative comparisons—curated without additional human annotation—rather than absolute scores.
+
+The search results indicate this research was published for Robotics: Science and Systems (RSS) 2026 and focuses on scaling reward models through trajectory comparison supervision.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "721e08d5-7367-43ef-986e-8a2d7cf96f3e",
+  "isSidechain": false,
+  "promptId": "d9e5cf7d-a72a-4ef8-97ab-9717cf9a19d8",
+  "type": "user",
+  "uuid": "77ea8bc3-5dd1-4678-88d2-8ed9bbe98292",
+  "toolUseResult": {
+    "query": "Robometer data retrieval IL experiment results LIBERO subtrajectory play data curation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S8fZhVesJBA1YvcJ5XbAo3",
+        "content": [
+          {
+            "title": "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://robometer.github.io/"
+          },
+          {
+            "title": "GitHub - robometer/robometer: Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons · GitHub",
+            "url": "https://github.com/robometer/robometer"
+          },
+          {
+            "title": "GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub",
+            "url": "https://github.com/Lifelong-Robot-Learning/LIBERO"
+          },
+          {
+            "title": "STRAP: Robot Sub-Trajectory Retrieval for Augmented Policy Learning",
+            "url": "https://weirdlabuw.github.io/strap/"
+          },
+          {
+            "title": "ROBOMETER: Scaling General-Purpose Robotic",
+            "url": "https://robometer.github.io/assets/robometer.pdf"
+          },
+          {
+            "title": "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://arxiv.org/html/2603.02115v1"
+          },
+          {
+            "title": "aliangdw/Robometer-4B-LIBERO · Hugging Face",
+            "url": "https://huggingface.co/aliangdw/Robometer-4B-LIBERO"
+          },
+          {
+            "title": "LIBERO: simulation benchmark for the study of lifelong robot learning | by Deepthi Karkada | Medium",
+            "url": "https://medium.com/@deepkarkada/libero-simulation-benchmark-for-the-study-of-lifelong-robot-learning-583b786a96f6"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/8c3c666820ea055a77726d66fc7d447f-Paper-Datasets_and_Benchmarks.pdf"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=xzEtNSuDJk"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about Robometer data retrieval, IL experiment results, LIBERO, and play data curation:\n\n## Robometer Overview\n\nRobometer is a general-purpose robotic reward model trained on trajectory comparisons from the RBM-1M dataset that provides dense, video-language-conditioned rewards for robot learning.\n\n## Data Retrieval and Subtrajectory Approach\n\nGiven a multi-task, unlabeled play dataset, Robometer retrieves the most relevant subtrajectories for a task instruction using either preference-based pairwise trajectory comparisons or progress-based ranking via per-timestep reward predictions and value–order correlation.\n\n## LIBERO Integration\n\nRobometer-LIBERO is a fine-tuned Robometer checkpoint on LIBERO-90, Object, Goal, Spatial, 10 + associated failure data, and is recommended if you need to do LIBERO-90 RL or if the default Robometer checkpoint doesn't perform as well.\n\n## Play Data Curation\n\nTo support this formulation at scale, researchers curate RBM-1M, a reward-learning dataset comprising over one million trajectories spanning diverse robot embodiments and tasks, including substantial suboptimal and failure data. This formulation enables learning from previously unusable suboptimal data by requiring only relative comparisons—curated without additional human annotation—rather than absolute scores.\n\nThe search results indicate this research was published for Robotics: Science and Systems (RSS) 2026 and focuses on scaling reward models through trajectory comparison supervision."
+    ],
+    "durationSeconds": 7.598572389999987
+  },
+  "sourceToolAssistantUUID": "721e08d5-7367-43ef-986e-8a2d7cf96f3e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 139 · 2026-05-14T03:35:43.441Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very important. Robometer already has a "data retrieval for IL" application where it retrieves relevant subtrajectories from play datasets. This means Robometer's dense reward signals are already being used for a form of data curation/selection. The question is: does ADTS add meaningfully beyond what Robometer alone could do for curation?
+
+Let me think through this carefully:
+
+1. Robometer provides per-frame rewards and can rank/retrieve trajectories
+2. ADTS proposes to use Robometer rewards → IQL → V(s) and A(s,a) decomposition → 2D quadrant curation
+
+
+3. The core tension: Robometer's per-frame rewards already encode progress signals, but IQL's V/A decomposition could distinguish between state quality and action quality in ways the raw rewards don't—allowing us to separate "bad state, good action" from "good state, bad action" scenarios. However, I need to think about whether this decomposition actually provides practical value for curation beyond what ranking by Robometer's dense rewards alone would achieve.
+
+Now checking the venue and SOTA landscape: CoRL 2026 is the right target with those deadlines, but I'm seeing that PLD (ICLR 2026) already claims 99% on LIBERO using residual RL and data generation—a different approach than what I'm proposing, but still pushing the frontier higher than OpenVLA-OFT's 97.1%.
+
+The curation baselines all check out as real and current work. On the novelty front, the V×A decomposition for dataset curation does seem genuinely unexplored—I haven't found prior work doing this specifically—though the gap feels somewhat narrow since Robometer already handles data retrieval for IL, AWR/AWAC implicitly weight by advantage during training, and VACO uses value-driven meta-scoring, so the contribution is really in how these ideas combine for curation rather than being entirely new.
+
+The approach has some genuine strengths: leveraging dense reward models to enable meaningful value decomposition, the 2D quadrant framework that's conceptually cleaner than scalar methods, a theoretical result showing A-only curation can be suboptimal under mixed failure modes, and a policy-agnostic reusable dataset that beats VACO/AWR in practice. But I'm concerned the V/A decomposition might not diverge meaningfully from just using Robometer rewards directly since value is essentially smoothed cumulative rewards, the quadrants could collapse if V and A correlate strongly, and the theoretical contribution is fairly incremental—just identifying when certain distributional conditions make A-only curation fail.
+
+On feasibility, the pieces are there: Robometer-LIBERO exists on HuggingFace, IQL has solid open implementations, OpenVLA-OFT is available, and 12-15 days for CoRL is tight but doable with a focused scope. The semantic validation adds credibility and GPU costs look manageable. The real problem is PLD hitting 99% on LIBERO—that leaves almost no room for improvement through data curation alone, and even if ADTS pushes OpenVLA-OFT from 97.1% to 98%, PLD's fundamentally different approach with residual RL and data generation already dominates.
+
+The counterargument that data curation complements RL post-training has merit, but there's a simpler baseline I'm worried the paper needs: just using Robometer's per-frame rewards directly as a curation signal. If ranking and pruning transitions by reward doesn't get substantially outperformed by the V/A decomposition, then the whole IQL pipeline becomes unnecessary complexity. And there's a deeper concern about V-A correlation degeneracy—with dense Robometer rewards, the value function will likely just track the running sum of rewards, making the decomposition meaningless.
+
+Beyond the technical issues, the evaluation scope is quite narrow. LIBERO-only testing is a real limitation compared to papers like DataMIL covering 60+ tasks or CUPID spanning RoboMimic and hardware. The novelty itself is moderate—the V×A curation framework is a genuine contribution, but it's essentially combining existing pieces (Robometer, IQL, quadrant filtering), and the theoretical grounding is thin. The main differentiation from prior work like AWR or VACO seems to be the framing around pre-training curation versus training-time approaches.
+
+On feasibility, the approach looks solid—all components are open-source, the LIBERO focus is realistic for the timeline, and the semantic validation protocol addresses the main risk of V-A degeneracy. The 12-15 day schedule is tight but doable. The presentation is clear too, with good framing and an intuitive quadrant framework. But the impact is limited by LIBERO's saturation (already hitting 99% with prior methods), which caps how much improvement is actually possible. The approach doesn't fundamentally advance the field beyond incremental gains on a benchmark that's nearly solved.
+
+Averaging these scores gives 3.625, which falls short of the 4.0 bar. The core problems remain: PLD already dominates LIBERO, there's no simpler baseline to compare against, the V-A decomposition hasn't been validated to avoid degeneracy, and testing on just one benchmark feels narrow for a venue like CoRL. The work reads more as engineering—stacking Robometer with IQL and filtering—rather than a conceptual breakthrough.
+
+But the user's comment shifts things: they'd accept skipping real-robot validation if the theoretical angle is solid. The paper does claim that A-only curation provably selects suboptimal subsets under mixed failure modes, which could be the differentiator. The issue is that this theoretical contribution is still fairly narrow—it just characterizes when 2D beats 1D. A deeper analysis of convergence rates or sample complexity under different curation strategies would be much stronger.
+
+Weighing this for CoRL 2026, the framework has real appeal: data curation is trending, the V×A visualization is intuitive, and dense reward models open up new possibilities. The semantic validation adds rigor. But LIBERO's saturation is a real ceiling, CoRL typically expects real-robot work, and the method chains together existing pieces. I'm settling on "revise" with concrete fixes: add a Robometer-reward-only baseline, tackle the LIBERO saturation problem head-on, and strengthen the theoretical analysis.
+
+Reading the user's actual direction more carefully though—they're proposing an RL-based scoring mechanism to filter noisy real-world data without needing real robots, using the data itself to validate and prune low-quality actions. That's actually a solid theoretical angle that could justify skipping real-robot experiments if executed well.
+
+The core question is whether this hits CoRL standards. I think it needs a cleaner evaluation approach to avoid the LIBERO saturation problem, a strong Robometer-only baseline to validate the filtering mechanism itself, and a bit more theoretical rigor. Let me also think through the OpenVLA-OFT fine-tuning setup—if we're re-fine-tuning on ADTS-curated data after it's already been trained on LIBERO, I need to understand what that experimental flow actually demonstrates.
+
+The real story here is data efficiency: maintaining or improving performance with 33-50% of the original data. That's a solid narrative and aligns with work like CUPID and DataMIL. The catch is that PLD already hits 99% on LIBERO with additional RL data, so ADTS can't claim SOTA—just efficiency gains. That's still publishable at CoRL if framed correctly, but it changes the positioning.
+
+Looking at the scores: novelty is 3.5 because the V×A framework is new for curation but it's really combining existing pieces (Robometer, IQL, filtering) without a fundamental methodological leap. Feasibility is solid at 4—all components exist, timeline is tight but manageable, and the V-A degeneracy risk has a mitigation plan. Clarity scores well at 4 with good structure, landscape analysis, and ablations. Impact drops to 3 though, mainly because the evaluation is LIBERO-only, LIBERO's already saturating at 99%, and it's unclear whether the V/A decomposition actually matters compared to simpler filtering approaches. That averages to 3.625, which falls short of the 4.0 bar, so the proposal needs revision. The core issue is PLD's 99% performance on LIBERO—that's a hard ceiling to work around.
+
+The biggest gap is missing a direct comparison: just using Robometer rewards as a curation signal without the IQL decomposition. If simple reward thresholding gets similar results, the whole V×A pipeline becomes unnecessary. Beyond that, the evaluation scope is too narrow for CoRL standards—competing work like DataMIL and CUPID test across multiple benchmarks, but this is LIBERO-only. There's also a risk the contribution reads as engineering (gluing Robometer + IQL together) rather than methodological unless the theoretical angle gets stronger. And since Robometer already does reward-based data retrieval for imitation learning, the proposal needs to clearly articulate why adding IQL decomposition on top of that is the right move.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77ea8bc3-5dd1-4678-88d2-8ed9bbe98292",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kyUS4bEwZDKdjK58aR",
+  "type": "assistant",
+  "uuid": "b736dbd2-6bb0-4893-b255-02b8c8013ae6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aps7XjkzjUv94ADND4JTwU",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 992,
+      "cache_read_input_tokens": 66523,
+      "output_tokens": 5353,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 992,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5353,
+          "cache_read_input_tokens": 66523,
+          "cache_creation_input_tokens": 992,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 992
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 140 · 2026-05-14T03:36:20.698Z_
+
+Now I have enough evidence for a thorough review. Let me synthesize my findings.
+
+Key findings from my research:
+- **CoRL 2026 deadlines confirmed**: Abstract May 26, Paper May 29
+- **Robometer-LIBERO checkpoint verified**: exists on HuggingFace, provides dense frame-level rewards, and already includes a "data retrieval for IL" application
+- **PLD (ICLR 2026)** achieves ~99% on LIBERO, surpassing OpenVLA-OFT's 97.1%
+- **All cited references verified** as real papers at correct venues
+- **No direct scoop found**: No paper combines dense reward + IQL V/A decomposition for pre-training curation
+- **Robometer already does data retrieval/curation** using its reward signal directly
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3, "rationale": "The 2D V×A curation framework is conceptually new for pre-training curation, but it is a pipeline integration of existing components (Robometer + IQL + quadrant filtering). The differentiation from AWR/VACO is real but narrow (pre-training vs training-time), and critically, Robometer itself already demonstrates a 'data retrieval for IL' application — the paper must show IQL decomposition adds meaningful value beyond Robometer's native per-frame reward as a curation signal."},
+    "feasibility": {"score": 4, "rationale": "All components are open-source and verified (Robometer-LIBERO checkpoint on HuggingFace, IQL, OpenVLA-OFT). The 12-15 day CoRL timeline is tight but plausible for LIBERO-only scope. The semantic validation protocol with V-A correlation fallback demonstrates methodological maturity. Resource estimates (~200h A100, $300) are realistic."},
+    "clarity": {"score": 4, "rationale": "The idea is well-structured with a comprehensive landscape analysis, clear baselines, ablation plan, and validation protocol. The quadrant framework is intuitive and the AWR/VACO differentiation is explicitly addressed. The theoretical claim is precisely stated with conditions under which 2D outperforms 1D."},
+    "impact": {"score": 3, "rationale": "PLD (ICLR 2026) achieves ~99% on LIBERO, leaving almost no headroom for curation-based improvement over OpenVLA-OFT's 97.1%. LIBERO-only evaluation is narrow for CoRL (CUPID covers RoboMimic+hardware, DataMIL covers 60+ tasks). The practical impact hinges entirely on whether V/A decomposition is empirically non-degenerate, which is unvalidated."}
+  },
+  "issues": [
+    "LIBERO SATURATION: PLD (ICLR 2026, same conference cycle) achieves ~99% on LIBERO using residual RL + data generation, making OpenVLA-OFT's 97.1% no longer the undisputed SOTA. The ceiling for curation-based improvements on LIBERO is extremely small (~2.9% maximum headroom). The paper needs to reframe around data efficiency (same/better performance with 33-50% data) rather than absolute performance gains, or show complementarity with RL post-training.",
+    "MISSING CRITICAL BASELINE — Robometer-reward-only curation: Robometer already demonstrates 'data retrieval for IL' as an application. The most natural baseline is using per-frame Robometer rewards directly as a curation signal (rank transitions by reward, prune low-reward ones) WITHOUT the IQL step. If this simple baseline performs comparably to ADTS's full V×A pipeline, the entire IQL decomposition is unnecessary overhead. This baseline is essential for justifying the method's complexity.",
+    "NARROW EVALUATION SCOPE: LIBERO-only evaluation is a limitation for CoRL, where competing methods demonstrate broader applicability (DataMIL: 60+ tasks including Open X-Embodiment; CUPID: RoboMimic + real hardware). A single-benchmark paper needs exceptionally strong results and analysis to be accepted. Consider adding at least one additional benchmark (RoboMimic where Robometer's general checkpoint could be used).",
+    "V/A DECOMPOSITION vs REWARD SIGNAL REDUNDANCY: With dense Robometer rewards, V(s) will essentially learn a smoothed cumulative reward (progress), and A(s,a) will capture deviations from expected progress. This may be highly correlated with simply using Robometer's per-frame reward and its temporal derivative. The paper must empirically demonstrate that IQL's V/A decomposition captures genuinely different information than what the raw reward signal already provides.",
+    "THEORETICAL CONTRIBUTION NEEDS STRENGTHENING: The current theoretical result (A-only curation is suboptimal under mixed failure modes) is valid but modest — it identifies conditions under which 2D > 1D, which is somewhat expected. To strengthen: (a) provide sample complexity bounds showing V×A curation requires fewer demonstrations to achieve target performance, or (b) prove tighter characterization of when the V dimension is decision-relevant in terms of demonstration distribution statistics (e.g., mixture weights, state coverage overlap between failure modes)."
+  ],
+  "feedback": "The idea has improved substantially across three rounds — the dense reward integration, semantic validation protocol, and AWR/VACO differentiation are all well-handled. Three specific changes would bring this to pass quality:\n\n1. **Add Robometer-reward-only baseline and reframe contribution**: Include a baseline that uses Robometer's per-frame rewards directly for curation (e.g., prune transitions with reward below threshold, or weight by reward). This is the most dangerous ablation for the paper — if it works well, the IQL pipeline is unnecessary. But if ADTS significantly outperforms it, this becomes the paper's strongest evidence. Either way, intellectual honesty requires this comparison. Reframe around data efficiency rather than absolute LIBERO performance given PLD's 99%.\n\n2. **Address LIBERO saturation explicitly**: Acknowledge PLD's ~99% result and frame ADTS as (a) complementary to RL post-training (curated data → better initialization → even RL benefits), (b) policy-agnostic (works with any downstream learner, not just the specific VLA used in PLD), and (c) focused on data efficiency (achieving comparable performance with less data). Show experiments at aggressive curation ratios (33%, 25%) where the value of intelligent curation is clearest.\n\n3. **Add a second evaluation domain**: If timeline permits, add RoboMimic using Robometer's general checkpoint (not the LIBERO-specific one). Even 2-3 RoboMimic tasks would significantly strengthen the paper by demonstrating generalization beyond LIBERO. If not feasible for CoRL, at minimum acknowledge this limitation and present ICLR 2027 as the expanded evaluation target.\n\n4. **Strengthen the ablation story**: The most compelling result would be: at 33% data retention, ADTS outperforms Robometer-reward-only curation, A-only weighting, random subsampling, AND the full-data baseline. This would simultaneously demonstrate that (a) curation matters, (b) 2D scoring matters, and (c) the V dimension specifically contributes. Structure the experiments around this narrative.\n\n5. **Cite PLD and position carefully**: PLD (ICLR 2026) must be cited. Position ADTS as operating at a different level of the pipeline (data curation vs. policy optimization). Note that PLD's 99% is achieved with additional RL interaction + data generation, while ADTS works purely on existing demonstrations — different resource assumptions entirely.",
+  "reason": "Solid pipeline idea with verified components, but LIBERO near-saturation (PLD 99%), missing Robometer-reward-only baseline, and narrow single-benchmark scope keep it below the 4.0 average threshold for CoRL acceptance."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b736dbd2-6bb0-4893-b255-02b8c8013ae6",
+  "isSidechain": false,
+  "requestId": "req_011Cb1kyUS4bEwZDKdjK58aR",
+  "type": "assistant",
+  "uuid": "19803ad0-8011-4366-96c0-3d90dba73fed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aps7XjkzjUv94ADND4JTwU",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 992,
+      "cache_read_input_tokens": 66523,
+      "output_tokens": 5353,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 992,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5353,
+          "cache_read_input_tokens": 66523,
+          "cache_creation_input_tokens": 992,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 992
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 141_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "19803ad0-8011-4366-96c0-3d90dba73fed",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 142_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify demonstration curation via advantage decomposition for robotics",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 143_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "19803ad0-8011-4366-96c0-3d90dba73fed",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 144_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify demonstration curation via advantage decomposition for robotics",
+  "sessionId": "b93efa79-1a4e-4341-b5d9-c1d2967ed9c7"
+}
+```
+
+---

@@ -1,0 +1,5147 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-13 (UTC).** ## Original idea { "tit
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 83
+- **Recorded user turns:** 1
+- **Tool calls:** 23
+- **Original source:** `logs/chats/exported-trajectories/account-2/b50fcfc1-2c98-4e1a-ade5-3447630520f9.jsonl`
+- **Structured JSON:** [`f468177149feb0100c3d.json`](../../sessions/f4/f468177149feb0100c3d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-13T17:56:54.835Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T17:56:54.835Z",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-13 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasserstein Consensus\",\n  \"core_problem\": \"How should we curate multimodal demonstration datasets that contain multiple valid strategies of varying quality? Diversity-maximizing approaches (FAKTUAL) improve average performance but explicitly fail when demonstrations contain conflicting strategies — blindly including diverse-but-poor demonstrations degrades learning. Quality-scoring approaches (CUPID, DataMIL) work well but require expensive policy training, validation rollouts, or influence function estimation. The field lacks a policy-free quality scoring method that is *mode-aware* — one that discovers distinct strategy modes in the data and scores quality within each mode, rather than treating all demonstrations as drawn from a single distribution.\",\n  \"opportunity\": \"The demonstration curation landscape has crystallized into three camps: (1) *policy-dependent quality methods* (CUPID, DataMIL, Demo-SCORE, QoQ) that achieve SOTA but require trained policies or validation rollouts; (2) *policy-free quality proxies* (DemInf, RINSE, SCIZOR) that use scalar metrics (MI, smoothness, progress) but collapse distributional structure and are mode-agnostic; and (3) *policy-free diversity methods* (FAKTUAL) that maximize trajectory entropy but explicitly acknowledge 'promoting diversity may actually be harmful when the model is not capable of capturing multimodality in the data.' This reveals a fundamental tension: diversity-based curation fails precisely when demonstrations are multimodal (multiple valid strategies), because it retains low-quality demonstrations from each mode for the sake of coverage. Empirically, FAKTUAL performs only modestly above random selection on RoboMimic MH, well below quality-based methods. The key gap: no existing policy-free method provides *mode-aware quality scoring* — discovering strategy modes and assessing quality relative to mode-specific consensus, rather than against a single global reference or via a mode-agnostic scalar proxy. Optimal transport geometry fills this gap naturally: Sliced Wasserstein distances define a metric space over trajectory distributions that captures shape, spread, and temporal structure; clustering in this space discovers strategy modes; and distance from each mode's robust barycenter provides a geometrically grounded, mode-aware quality score. This fills the 'good methods to quantify data quality' gap (ICLR 2026 VLA blog) with an approach that is simultaneously policy-free, mode-aware, and distributional — complementary to both diversity-based (FAKTUAL) and policy-dependent (CUPID) SOTA.\",\n  \"landscape\": \"**Policy-dependent quality methods**: CUPID (CoRL 2025) uses influence functions estimating each demonstration's causal impact on closed-loop policy return, achieving SOTA on RoboMimic with <33% of curated data; requires a trained policy and evaluation rollouts. DataMIL (ICLR 2026) uses the datamodels paradigm for end-to-end policy-driven selection validated on 60+ tasks including OXE; requires surrogate loss computation with policy training. Demo-SCORE (RSS 2025) trains classifiers on online rollout success/failure to self-curate, achieving 15-35% gains; requires online robot interaction. QoQ (arXiv Mar 2026) uses influence functions with theoretical analysis but requires a validation set and scales O(n²). **Policy-free quality proxies**: DemInf (RSS 2025) estimates trajectory-level mutual information between states and actions via k-NN estimators with VAE embeddings, achieving 5-10% gains on RoboMimic; captures information content but collapses distributional structure to a scalar and is mode-agnostic. RINSE (ICML 2025) uses Spectral Arc Length (SAL) and Trajectory-Envelope Distance (TED) smoothness metrics achieving 16-20% success gains; assumes smoothness universally correlates with quality, failing for tasks where jerky motions are correct. SCIZOR (ICRA 2026) combines self-supervised task progress prediction with deduplication, achieving 15.4% average improvement across RoboMimic/OXE/Sirius-Fleet; no theoretical guarantees and conflates lack of progress with low quality. S2I (ICRA 2025) performs segment-level selection using contrastive learning with 3 expert reference demonstrations; requires expert references and cannot operate fully unsupervised. Consistency Matters (ACM THRI 2025) proposes 10 motion-based consistency metrics with 76-91% success prediction accuracy; limited to geometric consistency without distributional analysis. **Policy-free diversity methods**: FAKTUAL (arXiv Mar 2026, 2603.11634) uses signature kernel entropy for diversity-based curation; fully model-free and tested on RoboMimic MH and MetaWorld. Compared against CUPID, DemInf, and Demo-SCORE. FAKTUAL performs modestly above random but below quality-based methods, and *explicitly acknowledges* that 'promoting diversity may actually be harmful when the model is not capable of capturing multimodality in the data.' This is the precise weakness OT-Consensus targets. **OT-based quality/distance methods (adjacent)**: BWD/'Expert or not?' (arXiv Oct 2025, 2510.12638) introduces Bellman Wasserstein Distance for quality scoring in offline RL — value-aware OT requiring a behavioral critic; operates in RL, not IL. SWAD (Pallage & Lesage-Landry, arXiv Apr 2025, 2504.12918) uses sliced-Wasserstein distance for unsupervised anomaly detection on i.i.d. tabular data; operates on individual data points, not trajectory measures. LWAIL (ICLR 2026, 2603.05440) uses Wasserstein for state-only distribution matching in adversarial IL policy learning — addresses policy learning, not data curation. **OT in robot learning (not curation)**: OTR (ICLR 2023) assigns rewards via OT. Temporal OT Reward (NeurIPS 2024) extends with temporal ordering. GWIL (ICLR 2022) uses OT for cross-domain imitation. ROT (NeurIPS 2022) uses regularized OT for trajectory matching. **Complementary approaches**: Learning from Imperfect Demonstrations via Temporal BT-Guided Trajectory Repair (arXiv Apr 2026, 2604.04225) repairs suboptimal trajectories rather than filtering them — complementary to curation approaches. **OT theory**: Robust Wasserstein Barycenter (arXiv Mar 2026) proves existence and consistency of outlier-robust barycenters. Outlier-Robust OT (Nietert et al., AISTATS 2022) provides minimax estimation rates for robust Wasserstein distances under ε-contamination. k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024) gives constant-factor approximations. s-OTDD (ICML 2025) demonstrates scalable sliced OT for dataset distance. **Gap**: No existing method provides policy-free, mode-aware quality scoring using distributional OT geometry. FAKTUAL is mode-agnostic (diversity); DemInf/RINSE/SCIZOR are mode-agnostic (scalar quality proxies); CUPID/DataMIL are mode-aware in principle but policy-dependent. OT-Consensus uniquely combines mode awareness, quality scoring, and policy-free operation.\",\n  \"approach\": \"**Overview**: OT-Consensus is a policy-free, mode-aware demonstration quality scoring method. We reframe the demonstration curation problem as: *given multimodal demonstrations, score quality within each strategy mode rather than globally.* The core conceptual contribution is that quality should be assessed relative to mode-specific consensus, not global diversity or global statistics — and that Sliced Wasserstein geometry naturally enables this by providing a metric space where trajectories cluster by strategy and quality is measured by distributional distance from each mode's robust center. We target a focused empirical contribution for CoRL 2026 with formal theoretical analysis deferred. **Representation design**: Each demonstration trajectory τ = {(o_t, a_t, t/T)}_{t=1}^{T} is mapped to a discrete probability measure μ_τ over an embedding space. Visual observations o_t are encoded via a frozen pre-trained visual encoder into d-dimensional features; actions a_t remain in raw action space (typically 7D for manipulation); normalized timestep t/T provides temporal grounding. The ground metric is a weighted sum: c((v₁,a₁,t₁), (v₂,a₂,t₂)) = λ_v‖v₁−v₂‖² + λ_a‖a₁−a₂‖² + λ_t|t₁−t₂|², with λ weights selected via validation on a held-out task (not held-out demonstrations within the same task). **Encoder choice and transparency**: The default encoder is SigLIP-SO400M — deliberately chosen because it is SmolVLA's own vision encoder, meaning the quality metric operates in the same representation space the downstream policy will learn from. This is a design feature: OT-Consensus scores quality in the space *relevant to the policy*, not an arbitrary embedding space. However, this creates a potential confound — results might reflect representation overlap rather than the OT scoring itself. We therefore include DINOv2 as a mandatory ablation to demonstrate that the method generalizes beyond SmolVLA's own encoder. **Scalable pairwise distances**: We use Sliced Wasserstein-2 (SW2) distances — projecting measures onto random 1D subspaces and averaging closed-form 1D OT solutions, achieving O(Ln log n) per pair where L is the number of projections (50–200) and n is trajectory length. For RoboMimic (300 demos), the N² pairwise matrix is computationally tractable. **Mode discovery and quality scoring**: (1) Compute SW2 pairwise distance matrix over all trajectory measures. (2) Perform k-medoid clustering in SW2-distance space to discover strategy modes (k selected via silhouette analysis). (3) Within each cluster, compute the robust barycenter using trimmed-mean OT (trimming ε-fraction of mass). (4) Score each trajectory by its SW2-distance to its cluster's robust barycenter — lower distance = higher quality (closer to mode consensus). **Why mode-aware quality beats mode-agnostic diversity — explicit hypotheses**: (H1) *Mode-aware quality vs. mode-agnostic diversity*: FAKTUAL maximizes global entropy, which on multimodal data retains low-quality demonstrations from each mode for coverage. OT-Consensus scores quality within each discovered mode, correctly deprioritizing within-mode outliers while preserving cross-mode diversity. Prediction: on RoboMimic MH, FAKTUAL retains Worse-operator demonstrations because they're 'diverse' (different from Better operators), while OT-Consensus correctly identifies them as low-quality within their strategy mode. (H2) *Distributional shape vs. scalar proxies*: MI (DemInf) computes a scalar dependency between states and actions, collapsing distributional structure. Two trajectories with identical MI but different spatiotemporal shapes are indistinguishable under MI but distinguishable under SW2. (H3) *Temporal structure preservation*: The time component of the ground metric captures temporal alignment — a trajectory with correct actions at wrong timings scores differently from one with correct timing. Smoothness metrics (RINSE) ignore whether temporally smooth trajectories are actually performing the task correctly. (H4) *Variable-length handling*: Representing trajectories as measures naturally handles variable-length demonstrations without padding or truncation. (H5) *No learned components*: Unlike DemInf (k-NN estimator + VAE), SCIZOR (self-supervised predictor), S2I (contrastive learning + expert demos), or FAKTUAL (signature kernel computation), OT-Consensus uses only a frozen visual encoder and closed-form OT — fully deterministic scoring with no training beyond the frozen encoder. **Key differentiations vs. related OT work**: Unlike BWD, we require no value functions, rewards, or behavioral critic — we operate purely on trajectory geometry. Unlike SWAD, we represent each trajectory as a probability measure (not a single point) and compute SW2 between measures, capturing trajectory structure. Unlike LWAIL, we address data curation, not policy learning. **Theoretical motivation (informal for CoRL, formal in extended version)**: Under an ε-contamination noise model where (1−ε) of demonstrations are 'clean' and ε are corrupted, the robust barycenter β* converges to the clean barycenter. Clean trajectories concentrate around β* while corrupted trajectories deviate. Extending Nietert et al.'s robust OT estimation guarantees to detection guarantees (false-positive/negative rates for outlier identification) constitutes non-trivial theoretical work deferred to AAAI 2027. **Evaluation design — two tiers for timeline management**: **Tier A (Minimal Viable Paper — commit by May 21)**: (a) *Primary experiment — quality metric comparison*: Compute OT-Consensus, FAKTUAL (entropy), DemInf (MI), RINSE (smoothness), and SCIZOR (progress) scores on all 300 RoboMimic MH demos. Evaluate each metric's correlation with known operator proficiency (Spearman rank correlation, AUC for separating Better vs. Worse operators). Critically: analyze what each metric does with the 6 operators' different strategies — does FAKTUAL retain Worse-operator demos for diversity? Does OT-Consensus correctly identify within-mode quality? (b) *Downstream policy performance*: Fine-tune SmolVLA (450M) on filtered subsets (top-50% by each metric) on 2 tasks (Can, Square — chosen for difficulty spread) × 1 seed per baseline. Compare OT-Consensus vs. FAKTUAL, DemInf, RINSE, SCIZOR, random filtering. (c) *Essential ablation*: SigLIP vs. DINOv2 encoder on metric comparison to show results aren't artifacts of encoder-policy representation overlap. **Tier B (Full Paper — expand if on track by May 21)**: Add Lift and Transport tasks, increase to 3 seeds, add top-33% filtering threshold, add ablations (k-medoid in SW2 vs. k-means in SigLIP embedding space; ground metric weight sensitivity; SW2 projection count sensitivity). **Extended version (AAAI 2027)**: Add OpenVLA-OFT (7B), LIBERO benchmark, formal theoretical analysis, S2I and CUPID as additional baselines, comprehensive ablations.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200h A100 for CoRL Tier A (OT computation: ~15h — SW2 pairwise over 300 trajectories with frozen encoders; FAKTUAL signature kernel: ~5h; baseline score computation: ~15h; SmolVLA fine-tuning: ~4h/run × 2 tasks × 6 conditions × 1 seed = 48h; DINOv2 ablation: ~20h; buffer: ~30h). Tier B adds ~100h (2 more tasks × 6 conditions × 3 seeds = 144h, but many reusable from Tier A). Extended AAAI version adds ~700h (OpenVLA-OFT + LIBERO + ablations).\",\n      \"gpu_utilization\": \"~70% for CoRL sprint — researcher implementing SW2 + FAKTUAL pipelines, analyzing clustering results, and writing paper between experiment batches.\",\n      \"timeline\": \"CoRL 2026: 15-day sprint (May 13–28, paper deadline May 28 Thursday EOD). Tier A commit point: May 21. Tier B expansion: May 22–27. Writing: continuous. AAAI 2027 extension: additional 6–8 weeks for theory + extended experiments.\",\n      \"team\": \"CoRL: 1 researcher, full-time sprint with pre-existing GPU access and familiarity with lerobot/POT/geomloss. Must also install/run FAKTUAL signature kernel code. AAAI extension: +1 collaborator for theoretical proofs.\",\n      \"estimated_gpu_cost\": \"CoRL Tier A: $300 (200h × $1.50/h). Tier B: +$150. AAAI extension: +$1,050. Total if all: $1,500.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~180h A100 for CoRL Tier A\",\n      \"gpu_utilization\": \"~85% — agent handles SW2 pipeline implementation using POT/geomloss, FAKTUAL reproduction, SmolVLA fine-tuning orchestration, and baseline reproduction; human focuses on experiment design, result interpretation, and paper writing\",\n      \"timeline\": \"CoRL: 13 days (with 2-day buffer). Tier A by May 21. AAAI extension: +4–6 weeks.\",\n      \"team\": \"1 researcher, ~4–5h/day during CoRL sprint for experiment design, analysis, and writing; agent handles implementation and job orchestration\",\n      \"claude_api_cost\": \"$100–200 for CoRL (750–1500 turns). +$150–300 for AAAI extension.\",\n      \"estimated_gpu_cost\": \"CoRL Tier A: $270 (180h × $1.50/h). Tier B: +$120. AAAI extension: +$900.\",\n      \"risk_note\": \"CoRL sprint is tight at 15 days. Tier A (minimal viable paper) is designed to be completable in 8 days of compute, leaving 7 days for expansion and writing. Key risk: FAKTUAL code availability — if signature kernel code isn't publicly released, must re-implement from paper, adding 1-2 days.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~300h A100 for CoRL Tier A+B\",\n      \"gpu_utilization\": \"~90% — agent queues experiments continuously; parallel ablations across SW2 hyperparameters and SmolVLA fine-tuning runs\",\n      \"timeline\": \"CoRL: 10–12 days with 4 concurrent A100 GPUs. AAAI extension: +2–3 weeks.\",\n      \"team\": \"0 for CoRL experiments (initial setup: configure dataset paths, GPU access, library installation). Theory for AAAI requires human mathematician.\",\n      \"claude_api_cost\": \"$200–400 for CoRL. +$200–400 for AAAI extension.\",\n      \"estimated_gpu_cost\": \"CoRL: $450 (300h × $1.50/h). AAAI extension: +$1,500.\",\n      \"speed_bottleneck\": \"GPU count for parallel SmolVLA fine-tuning (each run needs 1 A100). With 4 A100s, Tier A experiments complete in ~24h compute. FAKTUAL reproduction may require installing signature kernel libraries.\",\n      \"risk_note\": \"Agent may over-explore hyperparameters without converging; FAKTUAL reproduction requires understanding signature kernel implementations. Theory for AAAI version cannot be automated.\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract deadline May 26, paper deadline May 28 Thursday EOD — primary target, empirical-focused version: mode-aware SW2 scoring vs. FAKTUAL diversity + metric comparison + SmolVLA on RoboMimic, 8 pages, no formal theory)\",\n    \"AAAI 2027 (deadline expected ~August 2026 — extended version with formal outlier detection theory, OpenVLA-OFT experiments, and LIBERO benchmark)\",\n    \"ICLR 2027 (deadline expected ~October 2026 — most complete version, backup if AAAI timeline is insufficient for theory)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Diversity You Can Actually Measure: A Fast, Model-Free Diversity Metric for Robotics Datasets [FAKTUAL] (arXiv Mar 2026, 2603.11634)\",\n    \"CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)\",\n    \"Robot Data Curation with Mutual Information Estimators [DemInf] (RSS 2025)\",\n    \"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (ICLR 2026)\",\n    \"Curating Demonstrations using Online Experience [Demo-SCORE] (RSS 2025)\",\n    \"SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026)\",\n    \"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning [QoQ] (arXiv Mar 2026)\",\n    \"Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning [RINSE] (ICML 2025)\",\n    \"S2I: Select Segments to Imitate — Segment-Level Selection and Optimization for Mixed-Quality Demonstrations (ICRA 2025)\",\n    \"Expert or not? Assessing Data Quality in Offline Reinforcement Learning [BWD] (arXiv Oct 2025, 2510.12638)\",\n    \"Sliced-Wasserstein Distance-based Data Selection [SWAD] (Pallage & Lesage-Landry, arXiv Apr 2025, 2504.12918)\",\n    \"Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration (ACM THRI 2025)\",\n    \"Latent Wasserstein Adversarial Imitation Learning [LWAIL] (ICLR 2026, 2603.05440)\",\n    \"Learning from Imperfect Demonstrations via Temporal BT-Guided Trajectory Repair (arXiv Apr 2026, 2604.04225)\",\n    \"Optimal Transport for Offline Imitation Learning [OTR] (ICLR 2023)\",\n    \"Robot Policy Learning with Temporal Optimal Transport Reward (NeurIPS 2024)\",\n    \"Cross-Domain Imitation Learning via Optimal Transport [GWIL] (ICLR 2022)\",\n    \"Watch and Match: Supercharging Imitation with Regularized Optimal Transport [ROT] (NeurIPS 2022)\",\n    \"Outlier-Robust Optimal Transport: Duality, Structure, and Statistical Analysis (Nietert et al., AISTATS 2022)\",\n    \"Robust Wasserstein Barycenter (arXiv Mar 2026)\",\n    \"Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024)\",\n    \"Barycenters in the Wasserstein Space (SIAM J. Math. Anal. 2011)\",\n    \"Lightspeed Geometric Dataset Distance via Sliced Optimal Transport [s-OTDD] (ICML 2025)\",\n    \"Minibatch Optimal Transport Distances: Analysis and Applications (Fatras et al., arXiv 2021, 2101.01792)\",\n    \"Unbalanced Minibatch Optimal Transport; Applications to Domain Adaptation (Fatras et al., ICML 2021)\",\n    \"Prioritized Experience Replay (ICLR 2016)\"\n  ],\n  \"description\": \"We propose OT-Consensus, a policy-free, mode-aware method for scoring demonstration quality in robot learning datasets using optimal transport geometry. The central insight is that quality should be assessed relative to mode-specific consensus, not maximized globally as diversity — directly addressing the acknowledged limitation of diversity-based curation (FAKTUAL) that 'promoting diversity may be harmful when data contains multiple strategies.' Each trajectory is represented as a discrete measure over visual-encoder-embedded state-action-time tuples (using frozen SigLIP or DINOv2 features), and pairwise Sliced Wasserstein-2 (SW2) distances capture distributional similarity at O(Ln log n) per pair. We perform k-medoid clustering in SW2 space to discover strategy modes, then score each demonstration by its SW2-distance from its cluster's robust barycenter (computed via trimmed outlier-robust OT). Unlike FAKTUAL (which maximizes diversity and retains low-quality demonstrations from each mode for coverage), OT-Consensus provides mode-aware quality scoring — it preserves cross-mode diversity while filtering within-mode noise. Unlike policy-dependent methods (CUPID, DataMIL), it requires no trained policy, validation set, or online rollouts. Unlike scalar proxy methods (DemInf's MI, RINSE's smoothness), it captures full distributional shape and temporal structure. We explicitly test the diversity-vs-quality hypothesis via a head-to-head metric comparison on RoboMimic multi-human (300 demos from 6 operators across 3 proficiency levels), where ground-truth labels enable direct evaluation of which approach better separates good from bad demonstrations when multiple valid strategies coexist. We transparently address the encoder choice (SigLIP-SO400M is SmolVLA's own encoder, creating representation alignment that is a design feature, with DINOv2 ablation proving generalization). The paper follows a tiered plan: Tier A (minimal viable paper by May 21 — metric comparison + 2-task downstream + encoder ablation) and Tier B (full paper by May 28 — 4 tasks × 3 seeds + comprehensive ablations). Formal outlier detection theory is deferred to an extended AAAI 2027 version.\",\n  \"project_name\": \"ot_traj_consensus\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 5)\nIssues: [\"MAJOR (missing competitor, persists from Round 4): Robometer (RSS 2026, arXiv 2603.02115) remains absent from the landscape and key_references. Robometer is a policy-free trajectory quality scorer (VLM-based reward model) used for demonstration dataset filtering and retrieval, achieving strong results on data curation tasks. While it requires 1M+ training trajectories (unlike OT-Consensus's training-free approach), it directly competes with the 'policy-free quality scoring' value proposition. Must be cited with clear differentiation: Robometer is learned/data-hungry but potentially more accurate; OT-Consensus is geometric/training-free but mode-aware. This issue was raised in Round 4 and remains unaddressed.\", \"MAJOR (missing methodological precursor, persists from Round 4): sWk-means (Luan & Hamp, arXiv 2310.01285, published in Data Science in Finance and Economics 2025) uses exactly Sliced Wasserstein distances + k-means clustering for regime detection in multidimensional time series — the core algorithmic pipeline (compute SW distances between distributional representations of sequential data, then cluster in SW space) is near-identical to the first two steps of OT-Consensus. Must be cited with clear articulation of what OT-Consensus adds: (a) robust barycenters for quality scoring (not just clustering), (b) trajectory-as-measure representation design for robot demonstrations, (c) mode-aware filtering pipeline. This issue was also raised in Round 4 and remains unaddressed.\", \"MODERATE (deadline discrepancy): The proposal states 'paper deadline May 28 Thursday EOD' in target_venues. The official CoRL Instruction for Authors page says 'Thursday (5/28) EOD,' but the HuggingFace AI deadlines tracker and OpenReview list the paper deadline as May 29, 2026 at 11:59 UTC. The user's original requirement states May 29. Since May 28 is Thursday and May 29 is Friday, and the official site explicitly says Thursday, the actual deadline is likely May 28 — but this should be verified and stated consistently. The abstract deadline (May 26) is consistent across sources.\", \"MODERATE (additional missing related work): 'On Data Redundancy in VLA Training' (DATA-FM Workshop @ ICLR 2026) introduces Temporal Surprise Score (TSS) for frame-level data selection in VLA training, finding that random 30% sampling matches full-dataset performance on LIBERO with SmolVLA. While TSS operates at frame-level (not trajectory-level), it directly addresses data redundancy in VLA training on the same model (SmolVLA) and benchmark family. Should be discussed as it provides context on how much redundancy exists in VLA training data.\", \"MODERATE (no minimum success criterion): The proposal does not define what empirical result would validate the approach vs. invalidate it. If SW2 quality scoring achieves only marginally better Spearman correlation than RINSE's smoothness or DemInf's MI, the added complexity of OT computation + clustering + barycenter estimation is unjustified. State a concrete minimum improvement threshold (e.g., >0.1 Spearman correlation improvement over best scalar proxy, or >5% absolute success rate improvement in downstream policy).\", \"MINOR (FAKTUAL reproduction timeline risk underestimated): FAKTUAL requires signature kernel computation via libraries like 'signatory' or 'iisignature.' The proposal acknowledges code availability as a risk but estimates only '1-2 days' for re-implementation. Signature kernel entropy estimation is mathematically non-trivial — realistic re-implementation from the paper could take 3-4 days, consuming ~20-25% of the sprint.\"]\nFeedback: The proposal has matured significantly across 5 rounds and the core novelty is verified as genuine. Two actionable revisions remain to reach pass quality:\n\n1. **Add Robometer and sWk-means (both flagged in Round 4, still missing)**: Add Robometer to the landscape under a new category 'Policy-free learned quality methods' — differentiate clearly: Robometer is a learned VLM-based scorer requiring 1M+ training trajectories for pre-training, while OT-Consensus is training-free and geometric. Note that Robometer is NOT mode-aware, which is OT-Consensus's key advantage. For sWk-means, add it under 'OT-based quality/distance methods' and explicitly state that OT-Consensus extends the SW+clustering pipeline with (a) robust barycenters for quality scoring rather than just regime identification, (b) the curation-specific filtering pipeline, and (c) the trajectory-as-measure representation design for robot demonstrations.\n\n2. **Define a minimum success criterion**: Add an explicit statement like: 'We consider the method validated if OT-Consensus achieves Spearman correlation with operator proficiency ≥0.1 higher than the best mode-agnostic proxy (DemInf MI or RINSE smoothness), AND downstream SmolVLA success rate improvement ≥5% absolute over the best policy-free baseline. If these thresholds are not met, the contribution reduces to a negative result showing that distributional trajectory distances do not outperform simpler scalar proxies for this task.' This shows intellectual honesty and gives reviewers a clear evaluation framework.\n\n3. **Minor additions**: Cite 'On Data Redundancy in VLA Training' (TSS) as context for data redundancy in VLA training with SmolVLA. Verify and state the CoRL deadline consistently (the official instruction page says May 28 Thursday EOD; the OpenReview/HuggingFace tracker says May 29).\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 5 轮修订，近 3 轮的平均分从 3.2 到 3.5，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T17:56:54.840Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-13T17:56:54.840Z",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+## Round 1
+
+81 recorded events
+
+### User
+
+_source line 3 · 2026-05-13T17:56:54.869Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-13 (UTC).**
+
+## Original idea
+{
+  "title": "Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasserstein Consensus",
+  "core_problem": "How should we curate multimodal demonstration datasets that contain multiple valid strategies of varying quality? Diversity-maximizing approaches (FAKTUAL) improve average performance but explicitly fail when demonstrations contain conflicting strategies — blindly including diverse-but-poor demonstrations degrades learning. Quality-scoring approaches (CUPID, DataMIL) work well but require expensive policy training, validation rollouts, or influence function estimation. The field lacks a policy-free quality scoring method that is *mode-aware* — one that discovers distinct strategy modes in the data and scores quality within each mode, rather than treating all demonstrations as drawn from a single distribution.",
+  "opportunity": "The demonstration curation landscape has crystallized into three camps: (1) *policy-dependent quality methods* (CUPID, DataMIL, Demo-SCORE, QoQ) that achieve SOTA but require trained policies or validation rollouts; (2) *policy-free quality proxies* (DemInf, RINSE, SCIZOR) that use scalar metrics (MI, smoothness, progress) but collapse distributional structure and are mode-agnostic; and (3) *policy-free diversity methods* (FAKTUAL) that maximize trajectory entropy but explicitly acknowledge 'promoting diversity may actually be harmful when the model is not capable of capturing multimodality in the data.' This reveals a fundamental tension: diversity-based curation fails precisely when demonstrations are multimodal (multiple valid strategies), because it retains low-quality demonstrations from each mode for the sake of coverage. Empirically, FAKTUAL performs only modestly above random selection on RoboMimic MH, well below quality-based methods. The key gap: no existing policy-free method provides *mode-aware quality scoring* — discovering strategy modes and assessing quality relative to mode-specific consensus, rather than against a single global reference or via a mode-agnostic scalar proxy. Optimal transport geometry fills this gap naturally: Sliced Wasserstein distances define a metric space over trajectory distributions that captures shape, spread, and temporal structure; clustering in this space discovers strategy modes; and distance from each mode's robust barycenter provides a geometrically grounded, mode-aware quality score. This fills the 'good methods to quantify data quality' gap (ICLR 2026 VLA blog) with an approach that is simultaneously policy-free, mode-aware, and distributional — complementary to both diversity-based (FAKTUAL) and policy-dependent (CUPID) SOTA.",
+  "landscape": "**Policy-dependent quality methods**: CUPID (CoRL 2025) uses influence functions estimating each demonstration's causal impact on closed-loop policy return, achieving SOTA on RoboMimic with <33% of curated data; requires a trained policy and evaluation rollouts. DataMIL (ICLR 2026) uses the datamodels paradigm for end-to-end policy-driven selection validated on 60+ tasks including OXE; requires surrogate loss computation with policy training. Demo-SCORE (RSS 2025) trains classifiers on online rollout success/failure to self-curate, achieving 15-35% gains; requires online robot interaction. QoQ (arXiv Mar 2026) uses influence functions with theoretical analysis but requires a validation set and scales O(n²). **Policy-free quality proxies**: DemInf (RSS 2025) estimates trajectory-level mutual information between states and actions via k-NN estimators with VAE embeddings, achieving 5-10% gains on RoboMimic; captures information content but collapses distributional structure to a scalar and is mode-agnostic. RINSE (ICML 2025) uses Spectral Arc Length (SAL) and Trajectory-Envelope Distance (TED) smoothness metrics achieving 16-20% success gains; assumes smoothness universally correlates with quality, failing for tasks where jerky motions are correct. SCIZOR (ICRA 2026) combines self-supervised task progress prediction with deduplication, achieving 15.4% average improvement across RoboMimic/OXE/Sirius-Fleet; no theoretical guarantees and conflates lack of progress with low quality. S2I (ICRA 2025) performs segment-level selection using contrastive learning with 3 expert reference demonstrations; requires expert references and cannot operate fully unsupervised. Consistency Matters (ACM THRI 2025) proposes 10 motion-based consistency metrics with 76-91% success prediction accuracy; limited to geometric consistency without distributional analysis. **Policy-free diversity methods**: FAKTUAL (arXiv Mar 2026, 2603.11634) uses signature kernel entropy for diversity-based curation; fully model-free and tested on RoboMimic MH and MetaWorld. Compared against CUPID, DemInf, and Demo-SCORE. FAKTUAL performs modestly above random but below quality-based methods, and *explicitly acknowledges* that 'promoting diversity may actually be harmful when the model is not capable of capturing multimodality in the data.' This is the precise weakness OT-Consensus targets. **OT-based quality/distance methods (adjacent)**: BWD/'Expert or not?' (arXiv Oct 2025, 2510.12638) introduces Bellman Wasserstein Distance for quality scoring in offline RL — value-aware OT requiring a behavioral critic; operates in RL, not IL. SWAD (Pallage & Lesage-Landry, arXiv Apr 2025, 2504.12918) uses sliced-Wasserstein distance for unsupervised anomaly detection on i.i.d. tabular data; operates on individual data points, not trajectory measures. LWAIL (ICLR 2026, 2603.05440) uses Wasserstein for state-only distribution matching in adversarial IL policy learning — addresses policy learning, not data curation. **OT in robot learning (not curation)**: OTR (ICLR 2023) assigns rewards via OT. Temporal OT Reward (NeurIPS 2024) extends with temporal ordering. GWIL (ICLR 2022) uses OT for cross-domain imitation. ROT (NeurIPS 2022) uses regularized OT for trajectory matching. **Complementary approaches**: Learning from Imperfect Demonstrations via Temporal BT-Guided Trajectory Repair (arXiv Apr 2026, 2604.04225) repairs suboptimal trajectories rather than filtering them — complementary to curation approaches. **OT theory**: Robust Wasserstein Barycenter (arXiv Mar 2026) proves existence and consistency of outlier-robust barycenters. Outlier-Robust OT (Nietert et al., AISTATS 2022) provides minimax estimation rates for robust Wasserstein distances under ε-contamination. k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024) gives constant-factor approximations. s-OTDD (ICML 2025) demonstrates scalable sliced OT for dataset distance. **Gap**: No existing method provides policy-free, mode-aware quality scoring using distributional OT geometry. FAKTUAL is mode-agnostic (diversity); DemInf/RINSE/SCIZOR are mode-agnostic (scalar quality proxies); CUPID/DataMIL are mode-aware in principle but policy-dependent. OT-Consensus uniquely combines mode awareness, quality scoring, and policy-free operation.",
+  "approach": "**Overview**: OT-Consensus is a policy-free, mode-aware demonstration quality scoring method. We reframe the demonstration curation problem as: *given multimodal demonstrations, score quality within each strategy mode rather than globally.* The core conceptual contribution is that quality should be assessed relative to mode-specific consensus, not global diversity or global statistics — and that Sliced Wasserstein geometry naturally enables this by providing a metric space where trajectories cluster by strategy and quality is measured by distributional distance from each mode's robust center. We target a focused empirical contribution for CoRL 2026 with formal theoretical analysis deferred. **Representation design**: Each demonstration trajectory τ = {(o_t, a_t, t/T)}_{t=1}^{T} is mapped to a discrete probability measure μ_τ over an embedding space. Visual observations o_t are encoded via a frozen pre-trained visual encoder into d-dimensional features; actions a_t remain in raw action space (typically 7D for manipulation); normalized timestep t/T provides temporal grounding. The ground metric is a weighted sum: c((v₁,a₁,t₁), (v₂,a₂,t₂)) = λ_v‖v₁−v₂‖² + λ_a‖a₁−a₂‖² + λ_t|t₁−t₂|², with λ weights selected via validation on a held-out task (not held-out demonstrations within the same task). **Encoder choice and transparency**: The default encoder is SigLIP-SO400M — deliberately chosen because it is SmolVLA's own vision encoder, meaning the quality metric operates in the same representation space the downstream policy will learn from. This is a design feature: OT-Consensus scores quality in the space *relevant to the policy*, not an arbitrary embedding space. However, this creates a potential confound — results might reflect representation overlap rather than the OT scoring itself. We therefore include DINOv2 as a mandatory ablation to demonstrate that the method generalizes beyond SmolVLA's own encoder. **Scalable pairwise distances**: We use Sliced Wasserstein-2 (SW2) distances — projecting measures onto random 1D subspaces and averaging closed-form 1D OT solutions, achieving O(Ln log n) per pair where L is the number of projections (50–200) and n is trajectory length. For RoboMimic (300 demos), the N² pairwise matrix is computationally tractable. **Mode discovery and quality scoring**: (1) Compute SW2 pairwise distance matrix over all trajectory measures. (2) Perform k-medoid clustering in SW2-distance space to discover strategy modes (k selected via silhouette analysis). (3) Within each cluster, compute the robust barycenter using trimmed-mean OT (trimming ε-fraction of mass). (4) Score each trajectory by its SW2-distance to its cluster's robust barycenter — lower distance = higher quality (closer to mode consensus). **Why mode-aware quality beats mode-agnostic diversity — explicit hypotheses**: (H1) *Mode-aware quality vs. mode-agnostic diversity*: FAKTUAL maximizes global entropy, which on multimodal data retains low-quality demonstrations from each mode for coverage. OT-Consensus scores quality within each discovered mode, correctly deprioritizing within-mode outliers while preserving cross-mode diversity. Prediction: on RoboMimic MH, FAKTUAL retains Worse-operator demonstrations because they're 'diverse' (different from Better operators), while OT-Consensus correctly identifies them as low-quality within their strategy mode. (H2) *Distributional shape vs. scalar proxies*: MI (DemInf) computes a scalar dependency between states and actions, collapsing distributional structure. Two trajectories with identical MI but different spatiotemporal shapes are indistinguishable under MI but distinguishable under SW2. (H3) *Temporal structure preservation*: The time component of the ground metric captures temporal alignment — a trajectory with correct actions at wrong timings scores differently from one with correct timing. Smoothness metrics (RINSE) ignore whether temporally smooth trajectories are actually performing the task correctly. (H4) *Variable-length handling*: Representing trajectories as measures naturally handles variable-length demonstrations without padding or truncation. (H5) *No learned components*: Unlike DemInf (k-NN estimator + VAE), SCIZOR (self-supervised predictor), S2I (contrastive learning + expert demos), or FAKTUAL (signature kernel computation), OT-Consensus uses only a frozen visual encoder and closed-form OT — fully deterministic scoring with no training beyond the frozen encoder. **Key differentiations vs. related OT work**: Unlike BWD, we require no value functions, rewards, or behavioral critic — we operate purely on trajectory geometry. Unlike SWAD, we represent each trajectory as a probability measure (not a single point) and compute SW2 between measures, capturing trajectory structure. Unlike LWAIL, we address data curation, not policy learning. **Theoretical motivation (informal for CoRL, formal in extended version)**: Under an ε-contamination noise model where (1−ε) of demonstrations are 'clean' and ε are corrupted, the robust barycenter β* converges to the clean barycenter. Clean trajectories concentrate around β* while corrupted trajectories deviate. Extending Nietert et al.'s robust OT estimation guarantees to detection guarantees (false-positive/negative rates for outlier identification) constitutes non-trivial theoretical work deferred to AAAI 2027. **Evaluation design — two tiers for timeline management**: **Tier A (Minimal Viable Paper — commit by May 21)**: (a) *Primary experiment — quality metric comparison*: Compute OT-Consensus, FAKTUAL (entropy), DemInf (MI), RINSE (smoothness), and SCIZOR (progress) scores on all 300 RoboMimic MH demos. Evaluate each metric's correlation with known operator proficiency (Spearman rank correlation, AUC for separating Better vs. Worse operators). Critically: analyze what each metric does with the 6 operators' different strategies — does FAKTUAL retain Worse-operator demos for diversity? Does OT-Consensus correctly identify within-mode quality? (b) *Downstream policy performance*: Fine-tune SmolVLA (450M) on filtered subsets (top-50% by each metric) on 2 tasks (Can, Square — chosen for difficulty spread) × 1 seed per baseline. Compare OT-Consensus vs. FAKTUAL, DemInf, RINSE, SCIZOR, random filtering. (c) *Essential ablation*: SigLIP vs. DINOv2 encoder on metric comparison to show results aren't artifacts of encoder-policy representation overlap. **Tier B (Full Paper — expand if on track by May 21)**: Add Lift and Transport tasks, increase to 3 seeds, add top-33% filtering threshold, add ablations (k-medoid in SW2 vs. k-means in SigLIP embedding space; ground metric weight sensitivity; SW2 projection count sensitivity). **Extended version (AAAI 2027)**: Add OpenVLA-OFT (7B), LIBERO benchmark, formal theoretical analysis, S2I and CUPID as additional baselines, comprehensive ablations.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h A100 for CoRL Tier A (OT computation: ~15h — SW2 pairwise over 300 trajectories with frozen encoders; FAKTUAL signature kernel: ~5h; baseline score computation: ~15h; SmolVLA fine-tuning: ~4h/run × 2 tasks × 6 conditions × 1 seed = 48h; DINOv2 ablation: ~20h; buffer: ~30h). Tier B adds ~100h (2 more tasks × 6 conditions × 3 seeds = 144h, but many reusable from Tier A). Extended AAAI version adds ~700h (OpenVLA-OFT + LIBERO + ablations).",
+      "gpu_utilization": "~70% for CoRL sprint — researcher implementing SW2 + FAKTUAL pipelines, analyzing clustering results, and writing paper between experiment batches.",
+      "timeline": "CoRL 2026: 15-day sprint (May 13–28, paper deadline May 28 Thursday EOD). Tier A commit point: May 21. Tier B expansion: May 22–27. Writing: continuous. AAAI 2027 extension: additional 6–8 weeks for theory + extended experiments.",
+      "team": "CoRL: 1 researcher, full-time sprint with pre-existing GPU access and familiarity with lerobot/POT/geomloss. Must also install/run FAKTUAL signature kernel code. AAAI extension: +1 collaborator for theoretical proofs.",
+      "estimated_gpu_cost": "CoRL Tier A: $300 (200h × $1.50/h). Tier B: +$150. AAAI extension: +$1,050. Total if all: $1,500."
+    },
+    "human_in_loop": {
+      "gpu_hours": "~180h A100 for CoRL Tier A",
+      "gpu_utilization": "~85% — agent handles SW2 pipeline implementation using POT/geomloss, FAKTUAL reproduction, SmolVLA fine-tuning orchestration, and baseline reproduction; human focuses on experiment design, result interpretation, and paper writing",
+      "timeline": "CoRL: 13 days (with 2-day buffer). Tier A by May 21. AAAI extension: +4–6 weeks.",
+      "team": "1 researcher, ~4–5h/day during CoRL sprint for experiment design, analysis, and writing; agent handles implementation and job orchestration",
+      "claude_api_cost": "$100–200 for CoRL (750–1500 turns). +$150–300 for AAAI extension.",
+      "estimated_gpu_cost": "CoRL Tier A: $270 (180h × $1.50/h). Tier B: +$120. AAAI extension: +$900.",
+      "risk_note": "CoRL sprint is tight at 15 days. Tier A (minimal viable paper) is designed to be completable in 8 days of compute, leaving 7 days for expansion and writing. Key risk: FAKTUAL code availability — if signature kernel code isn't publicly released, must re-implement from paper, adding 1-2 days."
+    },
+    "auto_research": {
+      "gpu_hours": "~300h A100 for CoRL Tier A+B",
+      "gpu_utilization": "~90% — agent queues experiments continuously; parallel ablations across SW2 hyperparameters and SmolVLA fine-tuning runs",
+      "timeline": "CoRL: 10–12 days with 4 concurrent A100 GPUs. AAAI extension: +2–3 weeks.",
+      "team": "0 for CoRL experiments (initial setup: configure dataset paths, GPU access, library installation). Theory for AAAI requires human mathematician.",
+      "claude_api_cost": "$200–400 for CoRL. +$200–400 for AAAI extension.",
+      "estimated_gpu_cost": "CoRL: $450 (300h × $1.50/h). AAAI extension: +$1,500.",
+      "speed_bottleneck": "GPU count for parallel SmolVLA fine-tuning (each run needs 1 A100). With 4 A100s, Tier A experiments complete in ~24h compute. FAKTUAL reproduction may require installing signature kernel libraries.",
+      "risk_note": "Agent may over-explore hyperparameters without converging; FAKTUAL reproduction requires understanding signature kernel implementations. Theory for AAAI version cannot be automated."
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (abstract deadline May 26, paper deadline May 28 Thursday EOD — primary target, empirical-focused version: mode-aware SW2 scoring vs. FAKTUAL diversity + metric comparison + SmolVLA on RoboMimic, 8 pages, no formal theory)",
+    "AAAI 2027 (deadline expected ~August 2026 — extended version with formal outlier detection theory, OpenVLA-OFT experiments, and LIBERO benchmark)",
+    "ICLR 2027 (deadline expected ~October 2026 — most complete version, backup if AAAI timeline is insufficient for theory)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Diversity You Can Actually Measure: A Fast, Model-Free Diversity Metric for Robotics Datasets [FAKTUAL] (arXiv Mar 2026, 2603.11634)",
+    "CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)",
+    "Robot Data Curation with Mutual Information Estimators [DemInf] (RSS 2025)",
+    "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (ICLR 2026)",
+    "Curating Demonstrations using Online Experience [Demo-SCORE] (RSS 2025)",
+    "SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026)",
+    "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning [QoQ] (arXiv Mar 2026)",
+    "Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning [RINSE] (ICML 2025)",
+    "S2I: Select Segments to Imitate — Segment-Level Selection and Optimization for Mixed-Quality Demonstrations (ICRA 2025)",
+    "Expert or not? Assessing Data Quality in Offline Reinforcement Learning [BWD] (arXiv Oct 2025, 2510.12638)",
+    "Sliced-Wasserstein Distance-based Data Selection [SWAD] (Pallage & Lesage-Landry, arXiv Apr 2025, 2504.12918)",
+    "Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration (ACM THRI 2025)",
+    "Latent Wasserstein Adversarial Imitation Learning [LWAIL] (ICLR 2026, 2603.05440)",
+    "Learning from Imperfect Demonstrations via Temporal BT-Guided Trajectory Repair (arXiv Apr 2026, 2604.04225)",
+    "Optimal Transport for Offline Imitation Learning [OTR] (ICLR 2023)",
+    "Robot Policy Learning with Temporal Optimal Transport Reward (NeurIPS 2024)",
+    "Cross-Domain Imitation Learning via Optimal Transport [GWIL] (ICLR 2022)",
+    "Watch and Match: Supercharging Imitation with Regularized Optimal Transport [ROT] (NeurIPS 2022)",
+    "Outlier-Robust Optimal Transport: Duality, Structure, and Statistical Analysis (Nietert et al., AISTATS 2022)",
+    "Robust Wasserstein Barycenter (arXiv Mar 2026)",
+    "Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024)",
+    "Barycenters in the Wasserstein Space (SIAM J. Math. Anal. 2011)",
+    "Lightspeed Geometric Dataset Distance via Sliced Optimal Transport [s-OTDD] (ICML 2025)",
+    "Minibatch Optimal Transport Distances: Analysis and Applications (Fatras et al., arXiv 2021, 2101.01792)",
+    "Unbalanced Minibatch Optimal Transport; Applications to Domain Adaptation (Fatras et al., ICML 2021)",
+    "Prioritized Experience Replay (ICLR 2016)"
+  ],
+  "description": "We propose OT-Consensus, a policy-free, mode-aware method for scoring demonstration quality in robot learning datasets using optimal transport geometry. The central insight is that quality should be assessed relative to mode-specific consensus, not maximized globally as diversity — directly addressing the acknowledged limitation of diversity-based curation (FAKTUAL) that 'promoting diversity may be harmful when data contains multiple strategies.' Each trajectory is represented as a discrete measure over visual-encoder-embedded state-action-time tuples (using frozen SigLIP or DINOv2 features), and pairwise Sliced Wasserstein-2 (SW2) distances capture distributional similarity at O(Ln log n) per pair. We perform k-medoid clustering in SW2 space to discover strategy modes, then score each demonstration by its SW2-distance from its cluster's robust barycenter (computed via trimmed outlier-robust OT). Unlike FAKTUAL (which maximizes diversity and retains low-quality demonstrations from each mode for coverage), OT-Consensus provides mode-aware quality scoring — it preserves cross-mode diversity while filtering within-mode noise. Unlike policy-dependent methods (CUPID, DataMIL), it requires no trained policy, validation set, or online rollouts. Unlike scalar proxy methods (DemInf's MI, RINSE's smoothness), it captures full distributional shape and temporal structure. We explicitly test the diversity-vs-quality hypothesis via a head-to-head metric comparison on RoboMimic multi-human (300 demos from 6 operators across 3 proficiency levels), where ground-truth labels enable direct evaluation of which approach better separates good from bad demonstrations when multiple valid strategies coexist. We transparently address the encoder choice (SigLIP-SO400M is SmolVLA's own encoder, creating representation alignment that is a design feature, with DINOv2 ablation proving generalization). The paper follows a tiered plan: Tier A (minimal viable paper by May 21 — metric comparison + 2-task downstream + encoder ablation) and Tier B (full paper by May 28 — 4 tasks × 3 seeds + comprehensive ablations). Formal outlier detection theory is deferred to an extended AAAI 2027 version.",
+  "project_name": "ot_traj_consensus",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 5)
+Issues: ["MAJOR (missing competitor, persists from Round 4): Robometer (RSS 2026, arXiv 2603.02115) remains absent from the landscape and key_references. Robometer is a policy-free trajectory quality scorer (VLM-based reward model) used for demonstration dataset filtering and retrieval, achieving strong results on data curation tasks. While it requires 1M+ training trajectories (unlike OT-Consensus's training-free approach), it directly competes with the 'policy-free quality scoring' value proposition. Must be cited with clear differentiation: Robometer is learned/data-hungry but potentially more accurate; OT-Consensus is geometric/training-free but mode-aware. This issue was raised in Round 4 and remains unaddressed.", "MAJOR (missing methodological precursor, persists from Round 4): sWk-means (Luan & Hamp, arXiv 2310.01285, published in Data Science in Finance and Economics 2025) uses exactly Sliced Wasserstein distances + k-means clustering for regime detection in multidimensional time series — the core algorithmic pipeline (compute SW distances between distributional representations of sequential data, then cluster in SW space) is near-identical to the first two steps of OT-Consensus. Must be cited with clear articulation of what OT-Consensus adds: (a) robust barycenters for quality scoring (not just clustering), (b) trajectory-as-measure representation design for robot demonstrations, (c) mode-aware filtering pipeline. This issue was also raised in Round 4 and remains unaddressed.", "MODERATE (deadline discrepancy): The proposal states 'paper deadline May 28 Thursday EOD' in target_venues. The official CoRL Instruction for Authors page says 'Thursday (5/28) EOD,' but the HuggingFace AI deadlines tracker and OpenReview list the paper deadline as May 29, 2026 at 11:59 UTC. The user's original requirement states May 29. Since May 28 is Thursday and May 29 is Friday, and the official site explicitly says Thursday, the actual deadline is likely May 28 — but this should be verified and stated consistently. The abstract deadline (May 26) is consistent across sources.", "MODERATE (additional missing related work): 'On Data Redundancy in VLA Training' (DATA-FM Workshop @ ICLR 2026) introduces Temporal Surprise Score (TSS) for frame-level data selection in VLA training, finding that random 30% sampling matches full-dataset performance on LIBERO with SmolVLA. While TSS operates at frame-level (not trajectory-level), it directly addresses data redundancy in VLA training on the same model (SmolVLA) and benchmark family. Should be discussed as it provides context on how much redundancy exists in VLA training data.", "MODERATE (no minimum success criterion): The proposal does not define what empirical result would validate the approach vs. invalidate it. If SW2 quality scoring achieves only marginally better Spearman correlation than RINSE's smoothness or DemInf's MI, the added complexity of OT computation + clustering + barycenter estimation is unjustified. State a concrete minimum improvement threshold (e.g., >0.1 Spearman correlation improvement over best scalar proxy, or >5% absolute success rate improvement in downstream policy).", "MINOR (FAKTUAL reproduction timeline risk underestimated): FAKTUAL requires signature kernel computation via libraries like 'signatory' or 'iisignature.' The proposal acknowledges code availability as a risk but estimates only '1-2 days' for re-implementation. Signature kernel entropy estimation is mathematically non-trivial — realistic re-implementation from the paper could take 3-4 days, consuming ~20-25% of the sprint."]
+Feedback: The proposal has matured significantly across 5 rounds and the core novelty is verified as genuine. Two actionable revisions remain to reach pass quality:
+
+1. **Add Robometer and sWk-means (both flagged in Round 4, still missing)**: Add Robometer to the landscape under a new category 'Policy-free learned quality methods' — differentiate clearly: Robometer is a learned VLM-based scorer requiring 1M+ training trajectories for pre-training, while OT-Consensus is training-free and geometric. Note that Robometer is NOT mode-aware, which is OT-Consensus's key advantage. For sWk-means, add it under 'OT-based quality/distance methods' and explicitly state that OT-Consensus extends the SW+clustering pipeline with (a) robust barycenters for quality scoring rather than just regime identification, (b) the curation-specific filtering pipeline, and (c) the trajectory-as-measure representation design for robot demonstrations.
+
+2. **Define a minimum success criterion**: Add an explicit statement like: 'We consider the method validated if OT-Consensus achieves Spearman correlation with operator proficiency ≥0.1 higher than the best mode-agnostic proxy (DemInf MI or RINSE smoothness), AND downstream SmolVLA success rate improvement ≥5% absolute over the best policy-free baseline. If these thresholds are not met, the contribution reduces to a negative result showing that distributional trajectory distances do not outperform simpler scalar proxies for this task.' This shows intellectual honesty and gives reviewers a clear evaluation framework.
+
+3. **Minor additions**: Cite 'On Data Redundancy in VLA Training' (TSS) as context for data redundancy in VLA training with SmolVLA. Verify and state the CoRL deadline consistently (the official instruction page says May 28 Thursday EOD; the OpenReview/HuggingFace tracker says May 29).
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 5 轮修订，近 3 轮的平均分从 3.2 到 3.5，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "40755f4b-8a56-4caa-947b-35b8ff85d965",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-13T17:56:54.868Z_
+
+```json
+{
+  "parentUuid": "40755f4b-8a56-4caa-947b-35b8ff85d965",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "9d0e042c-a87e-4e71-b7a1-426bd667aa8b",
+  "timestamp": "2026-05-13T17:56:54.868Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-13T17:56:54.868Z_
+
+```json
+{
+  "parentUuid": "9d0e042c-a87e-4e71-b7a1-426bd667aa8b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "e96946d9-ba00-420b-83e8-2b7fd804bc69",
+  "timestamp": "2026-05-13T17:56:54.868Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasse…",
+  "leafUuid": "e96946d9-ba00-420b-83e8-2b7fd804bc69",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OT-Consensus with mode-aware quality scoring for robot learning",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-13T17:57:04.532Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully before diving into research. The key issues are:
+
+1. **MAJOR**: Robometer (RSS 2026, arXiv 2603.02115) - missing competitor, flagged twice
+2. **MAJOR**: sWk-means (arXiv 2310.01285) - missing methodological precursor, flagged twice
+3. **MODERATE**: Deadline discrepancy (May 28 vs May 29)
+
+
+4. **MODERATE**: "On Data Redundancy in VLA Training" - missing related work
+5. **MODERATE**: No minimum success criterion defined
+6. **MINOR**: FAKTUAL reproduction timeline risk
+
+The stagnation pattern across five rounds with scores hovering between 3.2 and 3.5 suggests I need to address these gaps systematically rather than with incremental tweaks. The two flagged-twice issues are critical since they've persisted through multiple rounds, while adding an explicit success criterion would strengthen the intellectual rigor of the work.
+
+Since the reviewer confirmed the core novelty is legitimate, I should focus on filling in the literature review gaps and defining clearer success metrics rather than reconsidering the fundamental approach. Let me start by tracking down those missing citations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e96946d9-ba00-420b-83e8-2b7fd804bc69",
+  "isSidechain": false,
+  "requestId": "req_011Cazzx4rLBVJm7E7cfn84k",
+  "type": "assistant",
+  "uuid": "cd4de61f-a99a-40b8-be94-b4d6aec6d3e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jdhaxJ6LSbwoGVNHNBgcw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14082,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 442,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 442,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-13T17:57:04.572Z_
+
+I'll research the missing papers and related work flagged by the reviewer, then revise the proposal. Let me start with parallel searches for all the key items.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd4de61f-a99a-40b8-be94-b4d6aec6d3e1",
+  "isSidechain": false,
+  "requestId": "req_011Cazzx4rLBVJm7E7cfn84k",
+  "type": "assistant",
+  "uuid": "eb2d84e4-2dbc-45f2-8177-730fd5b8d797",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jdhaxJ6LSbwoGVNHNBgcw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14082,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 442,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 442,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T17:57:04.681Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011tKzBax5aKb2jmbDFQQr9R`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eb2d84e4-2dbc-45f2-8177-730fd5b8d797",
+  "isSidechain": false,
+  "requestId": "req_011Cazzx4rLBVJm7E7cfn84k",
+  "type": "assistant",
+  "uuid": "56f9c9be-26ed-4aa4-a65d-2874c7001c8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jdhaxJ6LSbwoGVNHNBgcw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14082,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 442,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 442,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T17:57:04.687Z_
+
+<details><summary>↩ Tool result · `toolu_011tKzBax5aKb2jmbDFQQr9R`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "56f9c9be-26ed-4aa4-a65d-2874c7001c8c",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "6068447e-6ee1-41ec-a741-e14404f0b7aa",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "56f9c9be-26ed-4aa4-a65d-2874c7001c8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-13T17:57:07.742Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now search for all the missing papers and references in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6068447e-6ee1-41ec-a741-e14404f0b7aa",
+  "isSidechain": false,
+  "requestId": "req_011CazzxoLi7c1b8TR6uqbii",
+  "type": "assistant",
+  "uuid": "a64d4d7b-9672-4e7f-b8a0-0959d672beca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LRfqDj42ifyL1RJ8ZVCnBk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1461,
+      "cache_read_input_tokens": 25923,
+      "output_tokens": 117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1461,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 117,
+          "cache_read_input_tokens": 25923,
+          "cache_creation_input_tokens": 1461,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1461
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-13T17:57:08.359Z_
+
+Let me research all the flagged items in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a64d4d7b-9672-4e7f-b8a0-0959d672beca",
+  "isSidechain": false,
+  "requestId": "req_011CazzxoLi7c1b8TR6uqbii",
+  "type": "assistant",
+  "uuid": "30c503a2-d6d1-45d2-8746-f086921acf3e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LRfqDj42ifyL1RJ8ZVCnBk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1461,
+      "cache_read_input_tokens": 25923,
+      "output_tokens": 117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1461,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 117,
+          "cache_read_input_tokens": 25923,
+          "cache_creation_input_tokens": 1461,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1461
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-13T17:57:08.875Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01L4NaWhhkmKu3ZZM5BfQ6TY`</summary>
+
+```json
+{
+  "query": "Robometer RSS 2026 arXiv 2603.02115 VLM trajectory quality scoring"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30c503a2-d6d1-45d2-8746-f086921acf3e",
+  "isSidechain": false,
+  "requestId": "req_011CazzxoLi7c1b8TR6uqbii",
+  "type": "assistant",
+  "uuid": "d83e3c3d-f325-4bbe-8543-4221bbfbc931",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LRfqDj42ifyL1RJ8ZVCnBk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1461,
+      "cache_read_input_tokens": 25923,
+      "output_tokens": 117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1461,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 117,
+          "cache_read_input_tokens": 25923,
+          "cache_creation_input_tokens": 1461,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1461
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-13T17:57:17.057Z_
+
+<details><summary>↩ Tool result · `toolu_01L4NaWhhkmKu3ZZM5BfQ6TY`</summary>
+
+```text
+Web search results for query: "Robometer RSS 2026 arXiv 2603.02115 VLM trajectory quality scoring"
+
+Links: [{"title":"[2603.02115] Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://arxiv.org/abs/2603.02115"},{"title":"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://arxiv.org/html/2603.02115"},{"title":"[2603.02115v1] Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://arxiv.org/abs/2603.02115v1"},{"title":"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://robometer.github.io/"},{"title":"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons | alphaXiv","url":"https://www.alphaxiv.org/overview/2603.02115"},{"title":"ROBOMETER: Scaling General-Purpose Robotic","url":"https://robometer.github.io/assets/robometer.pdf"},{"title":"GitHub - robometer/robometer: Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons · GitHub","url":"https://github.com/robometer/robometer"},{"title":"SAIL: Test-Time Scaling for In-Context Imitation Learning with VLM","url":"https://arxiv.org/html/2603.08269"},{"title":"VLM-Social-Nav: Socially Aware Robot Navigation through Scoring using Vision-Language Models","url":"https://arxiv.org/html/2404.00210v3"},{"title":"Trajectory Prediction for Autonomous Driving: Progress, Limitations, and Future Directions","url":"https://arxiv.org/html/2503.03262v1"}]
+
+Based on the search results, here's what I found about the paper:
+
+## Robometer: RSS 2026 Paper (arXiv 2603.02115)
+
+Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons was published at Robotics: Science and Systems (RSS) 2026.
+
+### Overview
+
+Robometer is a scalable reward modeling framework that combines intra-trajectory progress supervision with inter-trajectory preference supervision, trained with a dual objective: a frame-level progress loss that anchors reward magnitude on expert data, and a trajectory-comparison preference loss that imposes global ordering constraints across trajectories of the same task.
+
+### VLM-Based Approach
+
+The approach relies on three pillars: a diverse 1M-trajectory dataset (RBM-1M) which includes unlabeled failure trajectories, a pre-trained VLM backbone for cross-task generalization, and a hybrid training objective that combines dense, per-frame progress with global trajectory preferences. Specifically, Robometer builds upon a base VLM, Qwen3-VL-4B-Instruct, and inserts additional learnable tokens to predict preference, progress, and success.
+
+### Dataset and Results
+
+The framework includes RBM-1M, a reward-learning dataset comprising over one million trajectories spanning diverse robot embodiments and tasks, including substantial suboptimal and failure data. Across benchmarks and real-world evaluations, Robometer learns more generalizable reward functions than prior methods and improves robot learning performance across a diverse set of downstream applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d83e3c3d-f325-4bbe-8543-4221bbfbc931",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "c8c38f41-7248-47dd-9891-233dcd277c31",
+  "toolUseResult": {
+    "query": "Robometer RSS 2026 arXiv 2603.02115 VLM trajectory quality scoring",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EtXs8E8hhXvrcn2mpp8gxJ",
+        "content": [
+          {
+            "title": "[2603.02115] Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://arxiv.org/abs/2603.02115"
+          },
+          {
+            "title": "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://arxiv.org/html/2603.02115"
+          },
+          {
+            "title": "[2603.02115v1] Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://arxiv.org/abs/2603.02115v1"
+          },
+          {
+            "title": "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://robometer.github.io/"
+          },
+          {
+            "title": "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2603.02115"
+          },
+          {
+            "title": "ROBOMETER: Scaling General-Purpose Robotic",
+            "url": "https://robometer.github.io/assets/robometer.pdf"
+          },
+          {
+            "title": "GitHub - robometer/robometer: Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons · GitHub",
+            "url": "https://github.com/robometer/robometer"
+          },
+          {
+            "title": "SAIL: Test-Time Scaling for In-Context Imitation Learning with VLM",
+            "url": "https://arxiv.org/html/2603.08269"
+          },
+          {
+            "title": "VLM-Social-Nav: Socially Aware Robot Navigation through Scoring using Vision-Language Models",
+            "url": "https://arxiv.org/html/2404.00210v3"
+          },
+          {
+            "title": "Trajectory Prediction for Autonomous Driving: Progress, Limitations, and Future Directions",
+            "url": "https://arxiv.org/html/2503.03262v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper:\n\n## Robometer: RSS 2026 Paper (arXiv 2603.02115)\n\nRobometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons was published at Robotics: Science and Systems (RSS) 2026.\n\n### Overview\n\nRobometer is a scalable reward modeling framework that combines intra-trajectory progress supervision with inter-trajectory preference supervision, trained with a dual objective: a frame-level progress loss that anchors reward magnitude on expert data, and a trajectory-comparison preference loss that imposes global ordering constraints across trajectories of the same task.\n\n### VLM-Based Approach\n\nThe approach relies on three pillars: a diverse 1M-trajectory dataset (RBM-1M) which includes unlabeled failure trajectories, a pre-trained VLM backbone for cross-task generalization, and a hybrid training objective that combines dense, per-frame progress with global trajectory preferences. Specifically, Robometer builds upon a base VLM, Qwen3-VL-4B-Instruct, and inserts additional learnable tokens to predict preference, progress, and success.\n\n### Dataset and Results\n\nThe framework includes RBM-1M, a reward-learning dataset comprising over one million trajectories spanning diverse robot embodiments and tasks, including substantial suboptimal and failure data. Across benchmarks and real-world evaluations, Robometer learns more generalizable reward functions than prior methods and improves robot learning performance across a diverse set of downstream applications."
+    ],
+    "durationSeconds": 8.176268755
+  },
+  "sourceToolAssistantUUID": "d83e3c3d-f325-4bbe-8543-4221bbfbc931",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T17:57:19.888Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JN3CtjTJ8v4aeGL4MrhQkH`</summary>
+
+```json
+{
+  "query": "sWk-means sliced Wasserstein k-means clustering arXiv 2310.01285 time series"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8c38f41-7248-47dd-9891-233dcd277c31",
+  "isSidechain": false,
+  "requestId": "req_011CazzyhYjARQU3MKkMCSNc",
+  "type": "assistant",
+  "uuid": "74a5e64c-76d7-479a-845e-971d05f54496",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T9Actcyd955CybRvBUf2Zg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 982,
+      "cache_read_input_tokens": 27384,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 982,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 27384,
+          "cache_creation_input_tokens": 982,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 982
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-13T17:57:26.152Z_
+
+<details><summary>↩ Tool result · `toolu_01JN3CtjTJ8v4aeGL4MrhQkH`</summary>
+
+```text
+Web search results for query: "sWk-means sliced Wasserstein k-means clustering arXiv 2310.01285 time series"
+
+Links: [{"title":"[2310.01285] Automated regime detection in multidimensional time series data using sliced Wasserstein k-means clustering","url":"https://arxiv.org/abs/2310.01285"},{"title":"Automated regime detection in multidimensional time series data using sliced Wasserstein k-means clustering","url":"https://ideas.repec.org/p/arx/papers/2310.01285.html"},{"title":"Automated regime detection in multidimensional time series data using sliced Wasserstein k-means clustering - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv231001285L/abstract"},{"title":"GitHub - NickS785/WKmeans: A clustering algorithm using the Wasserstein distance to estimate","url":"https://github.com/NickS785/WKmeans"},{"title":"Automated Regime Detection in Multidimensional Time Series Data Using Sliced Wasserstein K-Means Clustering by Qinmeng Luan, James Hamp :: SSRN","url":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4587877"},{"title":"Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering","url":"https://ideas.repec.org/p/ehl/lserod/129537.html"},{"title":"Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering","url":"http://www.aimspress.com/article/doi/10.3934/DSFE.2025016"},{"title":"Automated Regime Detection in Multidimensional Time Series Data Using Sliced Wasserstein K-Means Clustering","url":"https://www.rebellionresearch.com/automated-regime-detection-in-multidimensional-time-series-data-using-sliced-wasserstein-k-means-clustering"},{"title":"(PDF) Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering","url":"https://www.researchgate.net/publication/395045782_Automated_regime_classification_in_multidimensional_time_series_data_using_sliced_Wasserstein_k-means_clustering"},{"title":"[2602.06539] Revisiting the Sliced Wasserstein Kernel for persistence diagrams: a Figalli-Gigli approach","url":"https://arxiv.org/abs/2602.06539"}]
+
+Based on the search results, I found detailed information about the paper you're looking for:
+
+## Overview
+
+The paper introduces sliced Wasserstein k-means (sWk-means) clustering, which extends Wasserstein k-means clustering to multidimensional time series data by approximating the multidimensional Wasserstein distance as a sliced Wasserstein distance.
+
+## Main Contributions
+
+The paper begins by studying in detail the behavior of Wasserstein k-means clustering applied to synthetic one-dimensional time series data, examining the algorithm dynamics and how varying hyperparameters impacts performance for different random initializations.
+
+The sWk-means clustering method is applied to the problem of automated regime detection in multidimensional time series data, using synthetic data to demonstrate the approach's validity, and the method proves effective in identifying distinct market regimes in real multidimensional financial time series, using foreign exchange spot rate data as a case study.
+
+## Key Features
+
+The algorithm successfully captures subtle differences between regimes that exhibit similar means and covariances. However, the authors acknowledge limitations, particularly in handling very high-dimensional data due to computational constraints.
+
+The paper was submitted to arXiv on October 2, 2023, and has since been published in peer-reviewed journals on the topic of automated regime classification in financial time series.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "74a5e64c-76d7-479a-845e-971d05f54496",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "edf604ca-8539-437d-94bf-0b94a6c11b08",
+  "toolUseResult": {
+    "query": "sWk-means sliced Wasserstein k-means clustering arXiv 2310.01285 time series",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PjNd7VoYiJ5TdmCeeEwMfb",
+        "content": [
+          {
+            "title": "[2310.01285] Automated regime detection in multidimensional time series data using sliced Wasserstein k-means clustering",
+            "url": "https://arxiv.org/abs/2310.01285"
+          },
+          {
+            "title": "Automated regime detection in multidimensional time series data using sliced Wasserstein k-means clustering",
+            "url": "https://ideas.repec.org/p/arx/papers/2310.01285.html"
+          },
+          {
+            "title": "Automated regime detection in multidimensional time series data using sliced Wasserstein k-means clustering - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv231001285L/abstract"
+          },
+          {
+            "title": "GitHub - NickS785/WKmeans: A clustering algorithm using the Wasserstein distance to estimate",
+            "url": "https://github.com/NickS785/WKmeans"
+          },
+          {
+            "title": "Automated Regime Detection in Multidimensional Time Series Data Using Sliced Wasserstein K-Means Clustering by Qinmeng Luan, James Hamp :: SSRN",
+            "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4587877"
+          },
+          {
+            "title": "Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering",
+            "url": "https://ideas.repec.org/p/ehl/lserod/129537.html"
+          },
+          {
+            "title": "Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering",
+            "url": "http://www.aimspress.com/article/doi/10.3934/DSFE.2025016"
+          },
+          {
+            "title": "Automated Regime Detection in Multidimensional Time Series Data Using Sliced Wasserstein K-Means Clustering",
+            "url": "https://www.rebellionresearch.com/automated-regime-detection-in-multidimensional-time-series-data-using-sliced-wasserstein-k-means-clustering"
+          },
+          {
+            "title": "(PDF) Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering",
+            "url": "https://www.researchgate.net/publication/395045782_Automated_regime_classification_in_multidimensional_time_series_data_using_sliced_Wasserstein_k-means_clustering"
+          },
+          {
+            "title": "[2602.06539] Revisiting the Sliced Wasserstein Kernel for persistence diagrams: a Figalli-Gigli approach",
+            "url": "https://arxiv.org/abs/2602.06539"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the paper you're looking for:\n\n## Overview\n\nThe paper introduces sliced Wasserstein k-means (sWk-means) clustering, which extends Wasserstein k-means clustering to multidimensional time series data by approximating the multidimensional Wasserstein distance as a sliced Wasserstein distance.\n\n## Main Contributions\n\nThe paper begins by studying in detail the behavior of Wasserstein k-means clustering applied to synthetic one-dimensional time series data, examining the algorithm dynamics and how varying hyperparameters impacts performance for different random initializations.\n\nThe sWk-means clustering method is applied to the problem of automated regime detection in multidimensional time series data, using synthetic data to demonstrate the approach's validity, and the method proves effective in identifying distinct market regimes in real multidimensional financial time series, using foreign exchange spot rate data as a case study.\n\n## Key Features\n\nThe algorithm successfully captures subtle differences between regimes that exhibit similar means and covariances. However, the authors acknowledge limitations, particularly in handling very high-dimensional data due to computational constraints.\n\nThe paper was submitted to arXiv on October 2, 2023, and has since been published in peer-reviewed journals on the topic of automated regime classification in financial time series."
+    ],
+    "durationSeconds": 6.259500554999999
+  },
+  "sourceToolAssistantUUID": "74a5e64c-76d7-479a-845e-971d05f54496",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-13T17:57:29.136Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0138w9bMn4X1Sccw2EoNyaHR`</summary>
+
+```json
+{
+  "query": "\"On Data Redundancy in VLA Training\" Temporal Surprise Score DATA-FM ICLR 2026 SmolVLA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "edf604ca-8539-437d-94bf-0b94a6c11b08",
+  "isSidechain": false,
+  "requestId": "req_011CazzzNPLDqT7qUgjGcMBt",
+  "type": "assistant",
+  "uuid": "bdcc6dac-d9ef-41eb-9d35-fc7b7c8758ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Reu6jcoSEbYCppnreBcZQJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1054,
+      "cache_read_input_tokens": 28366,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1054,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 28366,
+          "cache_creation_input_tokens": 1054,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1054
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T17:57:36.514Z_
+
+<details><summary>↩ Tool result · `toolu_0138w9bMn4X1Sccw2EoNyaHR`</summary>
+
+```text
+Web search results for query: ""On Data Redundancy in VLA Training" Temporal Surprise Score DATA-FM ICLR 2026 SmolVLA"
+
+Links: [{"title":"ON DATA REDUNDANCY IN VLA TRAINING","url":"https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"ICLR 2026 Workshop DATA-FM | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2026%2FWorkshop%2FDATA-FM"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"},{"title":"GitHub - PRIME-RL/SimpleVLA-RL: [ICLR 2026] SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning · GitHub","url":"https://github.com/PRIME-RL/SimpleVLA-RL"},{"title":"MemoryVLA: Perceptual-Cognitive Memory in Vision-Language-Action Models for Robotic Manipulation | OpenReview","url":"https://openreview.net/forum?id=54U3XHf7qq"},{"title":"Downloads 2026","url":"https://iclr.cc/Downloads/2026"},{"title":"ICLR 2026 Papers","url":"https://iclr.cc/virtual/2026/papers.html"},{"title":"Motivation 1: Noisy & Redundant Memory Input","url":"https://iclr.cc/media/iclr-2026/Slides/10008366.pdf"},{"title":"DATA-FM @ ICLR 2026","url":"https://data-fm-iclr2026.github.io/"}]
+
+Great! I found relevant information about your search query. Here are the results:
+
+## "On Data Redundancy in VLA Training"
+
+This paper investigates and highlights the extent of data redundancy in established benchmarks, specifically LIBERO.
+
+### Key Research Questions and Approach
+
+The paper asks the question: Can we achieve better performance with less, but higher-quality, data? The researchers compare two data selection strategies: random sampling (random downsampling) and difficulty-based sampling on both SmolVLA and GR00T N1.5 NVIDIA by testing extensively.
+
+### Temporal Surprise Score (TSS)
+
+The researchers hypothesize that an effective data selection strategy should prioritize "temporal surprise", or moments where action trajectories undergo significant shifts, and propose Temporal Surprise Score (TSS), a metric that scores frames based on a weighted calculation of action change.
+
+### Key Findings
+
+Random sampling reveals dramatic data redundancy in LIBERO, and the performance of models trained on coresets of different proportions remains relatively stable, until its decline past 5%. However, TSS underperformed random selection, suggesting that learning from the most difficult frames does not necessarily translate to improved performance.
+
+### Context: DATA-FM @ ICLR 2026
+
+The DATA-FM workshop was co-located with ICLR 2026 and took place on April 26th, 2026 in Rio de Janeiro, Brazil. Topics of interest included data curation: collection, cleaning, deduplication, selection, and mixture optimization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bdcc6dac-d9ef-41eb-9d35-fc7b7c8758ad",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "af423bdb-c72a-438d-809d-5d08590c1ef6",
+  "toolUseResult": {
+    "query": "\"On Data Redundancy in VLA Training\" Temporal Surprise Score DATA-FM ICLR 2026 SmolVLA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MaSGUQgVmWsxx9z6MkidHb",
+        "content": [
+          {
+            "title": "ON DATA REDUNDANCY IN VLA TRAINING",
+            "url": "https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "ICLR 2026 Workshop DATA-FM | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc%2F2026%2FWorkshop%2FDATA-FM"
+          },
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          },
+          {
+            "title": "GitHub - PRIME-RL/SimpleVLA-RL: [ICLR 2026] SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning · GitHub",
+            "url": "https://github.com/PRIME-RL/SimpleVLA-RL"
+          },
+          {
+            "title": "MemoryVLA: Perceptual-Cognitive Memory in Vision-Language-Action Models for Robotic Manipulation | OpenReview",
+            "url": "https://openreview.net/forum?id=54U3XHf7qq"
+          },
+          {
+            "title": "Downloads 2026",
+            "url": "https://iclr.cc/Downloads/2026"
+          },
+          {
+            "title": "ICLR 2026 Papers",
+            "url": "https://iclr.cc/virtual/2026/papers.html"
+          },
+          {
+            "title": "Motivation 1: Noisy & Redundant Memory Input",
+            "url": "https://iclr.cc/media/iclr-2026/Slides/10008366.pdf"
+          },
+          {
+            "title": "DATA-FM @ ICLR 2026",
+            "url": "https://data-fm-iclr2026.github.io/"
+          }
+        ]
+      },
+      "Great! I found relevant information about your search query. Here are the results:\n\n## \"On Data Redundancy in VLA Training\"\n\nThis paper investigates and highlights the extent of data redundancy in established benchmarks, specifically LIBERO.\n\n### Key Research Questions and Approach\n\nThe paper asks the question: Can we achieve better performance with less, but higher-quality, data? The researchers compare two data selection strategies: random sampling (random downsampling) and difficulty-based sampling on both SmolVLA and GR00T N1.5 NVIDIA by testing extensively.\n\n### Temporal Surprise Score (TSS)\n\nThe researchers hypothesize that an effective data selection strategy should prioritize \"temporal surprise\", or moments where action trajectories undergo significant shifts, and propose Temporal Surprise Score (TSS), a metric that scores frames based on a weighted calculation of action change.\n\n### Key Findings\n\nRandom sampling reveals dramatic data redundancy in LIBERO, and the performance of models trained on coresets of different proportions remains relatively stable, until its decline past 5%. However, TSS underperformed random selection, suggesting that learning from the most difficult frames does not necessarily translate to improved performance.\n\n### Context: DATA-FM @ ICLR 2026\n\nThe DATA-FM workshop was co-located with ICLR 2026 and took place on April 26th, 2026 in Rio de Janeiro, Brazil. Topics of interest included data curation: collection, cleaning, deduplication, selection, and mixture optimization."
+    ],
+    "durationSeconds": 7.373169398999998
+  },
+  "sourceToolAssistantUUID": "bdcc6dac-d9ef-41eb-9d35-fc7b7c8758ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasse…",
+  "leafUuid": "af423bdb-c72a-438d-809d-5d08590c1ef6",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OT-Consensus with mode-aware quality scoring for robot learning",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-13T17:57:39.476Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014JmEVCAUd3ymVMJes3tsSK`</summary>
+
+```json
+{
+  "query": "CoRL 2026 paper deadline May 2026 official submission date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af423bdb-c72a-438d-809d-5d08590c1ef6",
+  "isSidechain": false,
+  "requestId": "req_011Cb1118j5fLhbz6ibjbfKw",
+  "type": "assistant",
+  "uuid": "c082cde7-99e6-439b-89b6-941b578ff415",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JERPuiz2JuxrppF5oYpj3k",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 29420,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 29420,
+          "cache_creation_input_tokens": 954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-13T17:57:42.624Z_
+
+<details><summary>↩ Tool result · `toolu_014JmEVCAUd3ymVMJes3tsSK`</summary>
+
+```text
+Web search results for query: "CoRL 2026 paper deadline May 2026 official submission date"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"Refactor conference data · huggingface/ai-deadlines at f3cc2d7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"},{"title":"CoRL 2026 - Annoucements","url":"https://www.corl.org/annoucements"}]
+
+Based on the search results, here are the official CoRL 2026 paper submission deadlines for May 2026:
+
+The abstract submission deadline is May 26, 2026 at 11:59 UTC, and the paper submission deadline is May 29, 2026 at 11:59 UTC.
+
+The CoRL 2026 conference will be held November 9-12, 2026 in Austin, Texas, US.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c082cde7-99e6-439b-89b6-941b578ff415",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "888387cf-a1d7-46d3-874c-716d9a478e0b",
+  "toolUseResult": {
+    "query": "CoRL 2026 paper deadline May 2026 official submission date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019pjUtXAt91iZCjQpRCADrf",
+        "content": [
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "Refactor conference data · huggingface/ai-deadlines at f3cc2d7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"
+          },
+          {
+            "title": "CoRL 2026 - Annoucements",
+            "url": "https://www.corl.org/annoucements"
+          }
+        ]
+      },
+      "Based on the search results, here are the official CoRL 2026 paper submission deadlines for May 2026:\n\nThe abstract submission deadline is May 26, 2026 at 11:59 UTC, and the paper submission deadline is May 29, 2026 at 11:59 UTC.\n\nThe CoRL 2026 conference will be held November 9-12, 2026 in Austin, Texas, US."
+    ],
+    "durationSeconds": 3.144524659000002
+  },
+  "sourceToolAssistantUUID": "c082cde7-99e6-439b-89b6-941b578ff415",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-13T17:57:45.498Z_
+
+Now let me fetch the actual papers for deeper reading.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "888387cf-a1d7-46d3-874c-716d9a478e0b",
+  "isSidechain": false,
+  "requestId": "req_011Cb111asCW14jWHuBTArRQ",
+  "type": "assistant",
+  "uuid": "19ca7b77-2572-4891-a561-b1078d92396d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EBXGPhMAHehNUVxzHtwJoc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 642,
+      "cache_read_input_tokens": 30374,
+      "output_tokens": 166,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 642,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 166,
+          "cache_read_input_tokens": 30374,
+          "cache_creation_input_tokens": 642,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 642
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T17:57:48.299Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01YT2qQVxejypV4NAstgymWU`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.02115",
+  "prompt": "Extract the full abstract, key method details, what tasks/benchmarks it was evaluated on, what downstream applications it was used for (especially data curation/filtering), and any results on RoboMimic or demonstration quality scoring. Also note the model size, training data requirements, and whether it is mode-aware (handles multiple valid strategies)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19ca7b77-2572-4891-a561-b1078d92396d",
+  "isSidechain": false,
+  "requestId": "req_011Cb111asCW14jWHuBTArRQ",
+  "type": "assistant",
+  "uuid": "820857d0-93f0-4db7-84d2-55c8138aded0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EBXGPhMAHehNUVxzHtwJoc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 642,
+      "cache_read_input_tokens": 30374,
+      "output_tokens": 166,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 642,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 166,
+          "cache_read_input_tokens": 30374,
+          "cache_creation_input_tokens": 642,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 642
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T17:57:53.861Z_
+
+<details><summary>↩ Tool result · `toolu_01YT2qQVxejypV4NAstgymWU`</summary>
+
+```text
+# Robometer: Scaling General-Purpose Robotic Reward Models
+
+## Abstract
+The paper introduces a scalable reward modeling framework combining intra-trajectory progress supervision with inter-trajectory preference supervision. The system "is trained with a dual objective: a frame-level progress loss" anchoring reward magnitude on expert data, plus "a trajectory-comparison preference loss" that enforces global ordering across trajectories of the same task, enabling learning from failed and suboptimal trajectories.
+
+## Key Method Details
+- **Dual objective approach**: Frame-level progress loss + trajectory-comparison preference loss
+- **Dataset**: RBM-1M dataset with over one million trajectories across diverse robot embodiments and tasks, including substantial suboptimal and failure data
+- **Learning paradigm**: Combines local, frame-level supervision with global trajectory ordering constraints
+
+## Evaluation & Applications
+The abstract indicates evaluation across "benchmarks and real-world evaluations" demonstrating that Robometer "learns more generalizable reward functions than prior methods and improves robot learning performance across a diverse set of downstream applications."
+
+However, the provided content does not specify:
+- Specific benchmark names (e.g., RoboMimic results)
+- Particular downstream applications
+- Data curation/filtering uses
+- Model size parameters
+- Whether the system is mode-aware
+- Demonstration quality scoring methodology
+
+**Resources**: Code, model weights, and videos are available at robometer.github.io (as referenced in the abstract).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "820857d0-93f0-4db7-84d2-55c8138aded0",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "ad2e38f9-fa4e-4b73-8dc5-405d8480ccf7",
+  "toolUseResult": {
+    "bytes": 48945,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Robometer: Scaling General-Purpose Robotic Reward Models\n\n## Abstract\nThe paper introduces a scalable reward modeling framework combining intra-trajectory progress supervision with inter-trajectory preference supervision. The system \"is trained with a dual objective: a frame-level progress loss\" anchoring reward magnitude on expert data, plus \"a trajectory-comparison preference loss\" that enforces global ordering across trajectories of the same task, enabling learning from failed and suboptimal trajectories.\n\n## Key Method Details\n- **Dual objective approach**: Frame-level progress loss + trajectory-comparison preference loss\n- **Dataset**: RBM-1M dataset with over one million trajectories across diverse robot embodiments and tasks, including substantial suboptimal and failure data\n- **Learning paradigm**: Combines local, frame-level supervision with global trajectory ordering constraints\n\n## Evaluation & Applications\nThe abstract indicates evaluation across \"benchmarks and real-world evaluations\" demonstrating that Robometer \"learns more generalizable reward functions than prior methods and improves robot learning performance across a diverse set of downstream applications.\"\n\nHowever, the provided content does not specify:\n- Specific benchmark names (e.g., RoboMimic results)\n- Particular downstream applications\n- Data curation/filtering uses\n- Model size parameters\n- Whether the system is mode-aware\n- Demonstration quality scoring methodology\n\n**Resources**: Code, model weights, and videos are available at robometer.github.io (as referenced in the abstract).",
+    "durationMs": 5558,
+    "url": "https://arxiv.org/abs/2603.02115"
+  },
+  "sourceToolAssistantUUID": "820857d0-93f0-4db7-84d2-55c8138aded0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-13T17:57:58.376Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NHUCBwKf2mh9xEBCqjvySG`</summary>
+
+```json
+{
+  "url": "https://robometer.github.io/",
+  "prompt": "Extract: (1) What model backbone does Robometer use and what size? (2) How much training data does it need? (3) What downstream applications is it used for — specifically is it used for demonstration dataset filtering/curation? (4) What benchmarks is it evaluated on? (5) Does it handle multiple valid strategies (mode-awareness)? (6) Any results on RoboMimic? (7) How does it compare to other quality scoring methods?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad2e38f9-fa4e-4b73-8dc5-405d8480ccf7",
+  "isSidechain": false,
+  "requestId": "req_011Cb112QrDvepiV4uzE2ZAc",
+  "type": "assistant",
+  "uuid": "52173837-18ae-49b8-9271-da2b50a13cd3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AfpY2HunFiJXzBV1jGxsBq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 499,
+      "cache_read_input_tokens": 31016,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 499,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 31016,
+          "cache_creation_input_tokens": 499,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 499
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T17:58:04.377Z_
+
+<details><summary>↩ Tool result · `toolu_01NHUCBwKf2mh9xEBCqjvySG`</summary>
+
+```text
+# Robometer Analysis
+
+## (1) Model Backbone & Size
+Robometer uses Qwen3-VL as its backbone, available in a 4B parameter version. The paper mentions "Robometer-4B" as the primary model evaluated.
+
+## (2) Training Data Requirements
+The model trains on "RBM-1M, a large-scale reward-learning dataset comprising over one million trajectories" spanning diverse robot embodiments and tasks.
+
+## (3) Downstream Applications
+Robometer is evaluated on five applications: online RL, offline RL, model-based RL, failure detection, and "data retrieval for IL." However, **it is not explicitly used for demonstration dataset filtering or curation**—the data retrieval application retrieves subtrajectories for imitation learning but doesn't filter training datasets.
+
+## (4) Benchmarks
+Robometer is evaluated on:
+- RBM-EVAL (in-distribution and out-of-distribution)
+- RoboRewardBench
+- Value Order Correlation (VOC Pearson r)
+- Kendall's τ (trajectory ranking)
+- Preference accuracy metrics
+
+## (5) Mode-Awareness
+The document does not discuss handling multiple valid strategies or mode-awareness.
+
+## (6) RoboMimic Results
+No RoboMimic results are reported in this content.
+
+## (7) Comparison to Quality Scoring Methods
+Robometer is compared primarily to reward models (RoboReward, GVL, VLAC, RoboDopamine, TOPReward, ReWiND) rather than explicit quality scoring methods. Direct comparisons to alternative quality-scoring approaches aren't highlighted.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "52173837-18ae-49b8-9271-da2b50a13cd3",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "0b4beae8-8acd-48c7-83dc-7c2b86587e47",
+  "toolUseResult": {
+    "bytes": 102011,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Robometer Analysis\n\n## (1) Model Backbone & Size\nRobometer uses Qwen3-VL as its backbone, available in a 4B parameter version. The paper mentions \"Robometer-4B\" as the primary model evaluated.\n\n## (2) Training Data Requirements\nThe model trains on \"RBM-1M, a large-scale reward-learning dataset comprising over one million trajectories\" spanning diverse robot embodiments and tasks.\n\n## (3) Downstream Applications\nRobometer is evaluated on five applications: online RL, offline RL, model-based RL, failure detection, and \"data retrieval for IL.\" However, **it is not explicitly used for demonstration dataset filtering or curation**—the data retrieval application retrieves subtrajectories for imitation learning but doesn't filter training datasets.\n\n## (4) Benchmarks\nRobometer is evaluated on:\n- RBM-EVAL (in-distribution and out-of-distribution)\n- RoboRewardBench\n- Value Order Correlation (VOC Pearson r)\n- Kendall's τ (trajectory ranking)\n- Preference accuracy metrics\n\n## (5) Mode-Awareness\nThe document does not discuss handling multiple valid strategies or mode-awareness.\n\n## (6) RoboMimic Results\nNo RoboMimic results are reported in this content.\n\n## (7) Comparison to Quality Scoring Methods\nRobometer is compared primarily to reward models (RoboReward, GVL, VLAC, RoboDopamine, TOPReward, ReWiND) rather than explicit quality scoring methods. Direct comparisons to alternative quality-scoring approaches aren't highlighted.",
+    "durationMs": 5995,
+    "url": "https://robometer.github.io/"
+  },
+  "sourceToolAssistantUUID": "52173837-18ae-49b8-9271-da2b50a13cd3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-13T17:58:04.381Z_
+
+```json
+{
+  "parentUuid": "0b4beae8-8acd-48c7-83dc-7c2b86587e47",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2f71cdcc-1a92-420d-8462-154927f0d4e7",
+  "timestamp": "2026-05-13T17:58:04.381Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-13T17:58:08.874Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QzVNvxGh6Bb1ACF3uJvMKb`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2310.01285",
+  "prompt": "Extract the full abstract, the algorithmic pipeline (how they compute sliced Wasserstein distances between time series segments and how they cluster), what domain they apply it to, their key results, and any discussion of quality scoring or outlier detection (beyond just clustering). Note whether they compute barycenters or just cluster assignments."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f71cdcc-1a92-420d-8462-154927f0d4e7",
+  "isSidechain": false,
+  "requestId": "req_011Cb113BpvSLS6rGrpapxWR",
+  "type": "assistant",
+  "uuid": "e54d16c9-da08-4b45-a8f6-1dedb4380502",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0172NaFfFzLCSmkb42AK2MhF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 677,
+      "cache_read_input_tokens": 31515,
+      "output_tokens": 149,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 677,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 149,
+          "cache_read_input_tokens": 31515,
+          "cache_creation_input_tokens": 677,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 677
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T17:58:14.946Z_
+
+<details><summary>↩ Tool result · `toolu_01QzVNvxGh6Bb1ACF3uJvMKb`</summary>
+
+```text
+# Research Summary: Sliced Wasserstein k-means Clustering for Regime Detection
+
+## Full Abstract
+"Recent work has proposed Wasserstein k-means (Wk-means) clustering as a powerful method to identify regimes in time series data, and one-dimensional asset returns in particular. In this paper, we begin by studying in detail the behaviour of the Wasserstein k-means clustering algorithm applied to synthetic one-dimensional time series data. We study the dynamics of the algorithm and investigate how varying different hyperparameters impacts the performance of the clustering algorithm for different random initialisations. We compute simple metrics that we find are useful in identifying high-quality clusterings. Then, we extend the technique of Wasserstein k-means clustering to multidimensional time series data by approximating the multidimensional Wasserstein distance as a sliced Wasserstein distance, resulting in a method we call `sliced Wasserstein k-means (sWk-means) clustering'. We apply the sWk-means clustering method to the problem of automated regime detection in multidimensional time series data, using synthetic data to demonstrate the validity of the approach. Finally, we show that the sWk-means method is effective in identifying distinct market regimes in real multidimensional financial time series, using publicly available foreign exchange spot rate data as a case study. We conclude with remarks about some limitations of our approach and potential complementary or alternative approaches."
+
+## Algorithmic Approach
+The authors extend one-dimensional Wasserstein k-means to multidimensional data by "approximating the multidimensional Wasserstein distance as a sliced Wasserstein distance." The pipeline involves computing distances between time series segments and performing clustering assignments.
+
+## Application Domain
+Foreign exchange (FX) spot rate data for identifying distinct market regimes in financial time series.
+
+## Key Results
+The sWk-means method successfully identifies market regimes in real multidimensional financial data and performs well on synthetic validation data.
+
+## Quality Metrics & Additional Features
+Authors "compute simple metrics that we find are useful in identifying high-quality clusterings." No mention of barycenter computation—the output is cluster assignments only.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e54d16c9-da08-4b45-a8f6-1dedb4380502",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "2ae8fa9e-dd19-47bc-b1db-10b9a6584d0a",
+  "toolUseResult": {
+    "bytes": 47653,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Summary: Sliced Wasserstein k-means Clustering for Regime Detection\n\n## Full Abstract\n\"Recent work has proposed Wasserstein k-means (Wk-means) clustering as a powerful method to identify regimes in time series data, and one-dimensional asset returns in particular. In this paper, we begin by studying in detail the behaviour of the Wasserstein k-means clustering algorithm applied to synthetic one-dimensional time series data. We study the dynamics of the algorithm and investigate how varying different hyperparameters impacts the performance of the clustering algorithm for different random initialisations. We compute simple metrics that we find are useful in identifying high-quality clusterings. Then, we extend the technique of Wasserstein k-means clustering to multidimensional time series data by approximating the multidimensional Wasserstein distance as a sliced Wasserstein distance, resulting in a method we call `sliced Wasserstein k-means (sWk-means) clustering'. We apply the sWk-means clustering method to the problem of automated regime detection in multidimensional time series data, using synthetic data to demonstrate the validity of the approach. Finally, we show that the sWk-means method is effective in identifying distinct market regimes in real multidimensional financial time series, using publicly available foreign exchange spot rate data as a case study. We conclude with remarks about some limitations of our approach and potential complementary or alternative approaches.\"\n\n## Algorithmic Approach\nThe authors extend one-dimensional Wasserstein k-means to multidimensional data by \"approximating the multidimensional Wasserstein distance as a sliced Wasserstein distance.\" The pipeline involves computing distances between time series segments and performing clustering assignments.\n\n## Application Domain\nForeign exchange (FX) spot rate data for identifying distinct market regimes in financial time series.\n\n## Key Results\nThe sWk-means method successfully identifies market regimes in real multidimensional financial data and performs well on synthetic validation data.\n\n## Quality Metrics & Additional Features\nAuthors \"compute simple metrics that we find are useful in identifying high-quality clusterings.\" No mention of barycenter computation—the output is cluster assignments only.",
+    "durationMs": 6068,
+    "url": "https://arxiv.org/abs/2310.01285"
+  },
+  "sourceToolAssistantUUID": "e54d16c9-da08-4b45-a8f6-1dedb4380502",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-13T17:58:19.926Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018zW1Hx7aqxW2UH16FFVVfm`</summary>
+
+```json
+{
+  "url": "https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf",
+  "prompt": "Extract: (1) Full abstract or introduction summary, (2) What is the Temporal Surprise Score (TSS) exactly — how is it computed? (3) Key finding about data redundancy in LIBERO with SmolVLA — specifically what fraction of data matches full-dataset performance? (4) Did TSS outperform or underperform random selection? (5) What models were tested (SmolVLA, GR00T)? (6) Any conclusions about frame-level vs trajectory-level selection?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ae8fa9e-dd19-47bc-b1db-10b9a6584d0a",
+  "isSidechain": false,
+  "requestId": "req_011Cb113y4jmVkHe2e54bWxR",
+  "type": "assistant",
+  "uuid": "3b184eda-53ed-4568-84f0-de4eb88a2ffd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MxfYHsqGYGQsFFAD3aqd1X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 32192,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 640,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 32192,
+          "cache_creation_input_tokens": 640,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 640
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-13T17:58:20.320Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_018zW1Hx7aqxW2UH16FFVVfm`</summary>
+
+```text
+Request failed with status code 404
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b184eda-53ed-4568-84f0-de4eb88a2ffd",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "be9d69ce-8082-430e-8303-9834ba61208b",
+  "toolUseResult": "Error: Request failed with status code 404",
+  "sourceToolAssistantUUID": "3b184eda-53ed-4568-84f0-de4eb88a2ffd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-13T17:58:22.968Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S4TnamshPtubf7e78pMsHu`</summary>
+
+```json
+{
+  "query": "\"On Data Redundancy in VLA Training\" Temporal Surprise Score openreview PDF 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be9d69ce-8082-430e-8303-9834ba61208b",
+  "isSidechain": false,
+  "requestId": "req_011Cb114MytW55PvEMwNQytT",
+  "type": "assistant",
+  "uuid": "bc61af0b-461c-48b5-9627-a368144724d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SGQvwiwyxY5DZ3fmGqPAhN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 242,
+      "cache_read_input_tokens": 32832,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 242,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 32832,
+          "cache_creation_input_tokens": 242,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 242
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-13T17:58:29.547Z_
+
+<details><summary>↩ Tool result · `toolu_01S4TnamshPtubf7e78pMsHu`</summary>
+
+```text
+Web search results for query: ""On Data Redundancy in VLA Training" Temporal Surprise Score openreview PDF 2026"
+
+Links: [{"title":"ON DATA REDUNDANCY IN VLA TRAINING","url":"https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf"},{"title":"EfficientVLA: Training-Free Acceleration and Compression ...","url":"https://openreview.net/pdf?id=SELYlDHZk2"},{"title":"MemoryVLA: Perceptual-Cognitive Memory in Vision-Language-Action Models for Robotic Manipulation | OpenReview","url":"https://openreview.net/forum?id=54U3XHf7qq"},{"title":"VLA-Cache: Efficient Vision-Language-Action Manipulation ...","url":"https://openreview.net/pdf/ab187b19e4f174f9a6c3f7d82d52c8f6f1abfafb.pdf"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf?id=54U3XHf7qq"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks | OpenReview","url":"https://openreview.net/forum?id=y5SGBsndWv"},{"title":"Spatially Guided Training for Vision-Language-Action Model | OpenReview","url":"https://openreview.net/forum?id=eKhOrQWAVJ"},{"title":"EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models | OpenReview","url":"https://openreview.net/forum?id=SELYlDHZk2"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"}]
+
+I found the paper you're looking for! Here's the information about "On Data Redundancy in VLA Training":
+
+The paper is titled "Less is More: On Data Redundancy in VLA Training" and is under review as a paper at the DATA-FM workshop @ ICLR 2026.
+
+**Key Findings:**
+
+The research empirically verifies and quantifies data redundancy on the popular LIBERO benchmark by evaluating two distinct data selection methods: random sampling and difficulty-based sampling.
+
+Through random frame downsampling, the authors found that a sparse 30% coverage of the dataset is sufficient to match the performance of the full dataset.
+
+**Temporal Surprise Score (TSS):**
+
+The paper investigates whether difficulty-based sampling can improve performance by implementing a temporal surprise score (TSS), described as a metric that scores frames based on a weighted calculation of action change.
+
+TSS identifies high-volatility action frames and selects them as dense, continuous clusters (including temporal neighbors).
+
+The PDF is available directly from OpenReview at: https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc61af0b-461c-48b5-9627-a368144724d5",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "18a8475f-6065-4595-b35a-48babd876034",
+  "toolUseResult": {
+    "query": "\"On Data Redundancy in VLA Training\" Temporal Surprise Score openreview PDF 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XaCY5YinkNSQE7YkMgFVCV",
+        "content": [
+          {
+            "title": "ON DATA REDUNDANCY IN VLA TRAINING",
+            "url": "https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf"
+          },
+          {
+            "title": "EfficientVLA: Training-Free Acceleration and Compression ...",
+            "url": "https://openreview.net/pdf?id=SELYlDHZk2"
+          },
+          {
+            "title": "MemoryVLA: Perceptual-Cognitive Memory in Vision-Language-Action Models for Robotic Manipulation | OpenReview",
+            "url": "https://openreview.net/forum?id=54U3XHf7qq"
+          },
+          {
+            "title": "VLA-Cache: Efficient Vision-Language-Action Manipulation ...",
+            "url": "https://openreview.net/pdf/ab187b19e4f174f9a6c3f7d82d52c8f6f1abfafb.pdf"
+          },
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf?id=54U3XHf7qq"
+          },
+          {
+            "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks | OpenReview",
+            "url": "https://openreview.net/forum?id=y5SGBsndWv"
+          },
+          {
+            "title": "Spatially Guided Training for Vision-Language-Action Model | OpenReview",
+            "url": "https://openreview.net/forum?id=eKhOrQWAVJ"
+          },
+          {
+            "title": "EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models | OpenReview",
+            "url": "https://openreview.net/forum?id=SELYlDHZk2"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's the information about \"On Data Redundancy in VLA Training\":\n\nThe paper is titled \"Less is More: On Data Redundancy in VLA Training\" and is under review as a paper at the DATA-FM workshop @ ICLR 2026.\n\n**Key Findings:**\n\nThe research empirically verifies and quantifies data redundancy on the popular LIBERO benchmark by evaluating two distinct data selection methods: random sampling and difficulty-based sampling.\n\nThrough random frame downsampling, the authors found that a sparse 30% coverage of the dataset is sufficient to match the performance of the full dataset.\n\n**Temporal Surprise Score (TSS):**\n\nThe paper investigates whether difficulty-based sampling can improve performance by implementing a temporal surprise score (TSS), described as a metric that scores frames based on a weighted calculation of action change.\n\nTSS identifies high-volatility action frames and selects them as dense, continuous clusters (including temporal neighbors).\n\nThe PDF is available directly from OpenReview at: https://openreview.net/pdf/ab993a111c866b80680b9e9ba5a435cf58ea3408.pdf"
+    ],
+    "durationSeconds": 6.57550891199999
+  },
+  "sourceToolAssistantUUID": "bc61af0b-461c-48b5-9627-a368144724d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasse…",
+  "leafUuid": "18a8475f-6065-4595-b35a-48babd876034",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OT-Consensus with mode-aware quality scoring for robot learning",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-13T17:58:33.300Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VS4hkbdEot7fbGdZUYVP7J`</summary>
+
+```json
+{
+  "url": "https://www.corl.org/contributions/instruction-for-authors",
+  "prompt": "Extract the exact paper submission deadline — what date and time is the full paper due? Also extract the abstract deadline. Note whether it says May 28 or May 29."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18a8475f-6065-4595-b35a-48babd876034",
+  "isSidechain": false,
+  "requestId": "req_011Cb1153Tgp3wT7nFrQGtxv",
+  "type": "assistant",
+  "uuid": "0579446f-322e-4600-a42b-29dab314d587",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FVUFvSUyKQfA3nt6x4UqXB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 33074,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 33074,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-13T17:58:36.895Z_
+
+<details><summary>↩ Tool result · `toolu_01VS4hkbdEot7fbGdZUYVP7J`</summary>
+
+```text
+# Paper Submission Deadlines
+
+Based on the document provided:
+
+**Full Paper Deadline:** The exact date and time are not explicitly stated in the visible content. However, there is a note indicating "the paper submission deadline is Thursday (5/28) EOD rather than Friday," which suggests **May 28th at end of day**. The document does not specify an exact time.
+
+**Abstract Deadline:** The abstract deadline is not provided in this excerpt. The document mentions that "Authors may update the title and abstract on OpenReview after the abstract deadline," but the specific deadline date is not listed in the key dates section shown.
+
+The document emphasizes: "Please keep in mind that the deadlines are final, and we cannot make any accommodations for missing the abstract deadline or paper deadline."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0579446f-322e-4600-a42b-29dab314d587",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "034e8e14-b2d0-409a-a6c1-c8d93093bae2",
+  "toolUseResult": {
+    "bytes": 176871,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Submission Deadlines\n\nBased on the document provided:\n\n**Full Paper Deadline:** The exact date and time are not explicitly stated in the visible content. However, there is a note indicating \"the paper submission deadline is Thursday (5/28) EOD rather than Friday,\" which suggests **May 28th at end of day**. The document does not specify an exact time.\n\n**Abstract Deadline:** The abstract deadline is not provided in this excerpt. The document mentions that \"Authors may update the title and abstract on OpenReview after the abstract deadline,\" but the specific deadline date is not listed in the key dates section shown.\n\nThe document emphasizes: \"Please keep in mind that the deadlines are final, and we cannot make any accommodations for missing the abstract deadline or paper deadline.\"",
+    "durationMs": 3591,
+    "url": "https://www.corl.org/contributions/instruction-for-authors"
+  },
+  "sourceToolAssistantUUID": "0579446f-322e-4600-a42b-29dab314d587",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-13T17:58:40.333Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01EJbfCPWPCsZLDxHXt8fa9T`</summary>
+
+```json
+{
+  "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference",
+  "prompt": "Extract the exact submission deadlines — abstract deadline and paper deadline, with exact dates and times (timezone). Note whether it says May 28 or May 29 for the paper deadline."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "034e8e14-b2d0-409a-a6c1-c8d93093bae2",
+  "isSidechain": false,
+  "requestId": "req_011Cb115aqKqJqGg2GMU3o1B",
+  "type": "assistant",
+  "uuid": "abc9acf3-8ec5-4551-a3a3-4b563eb0ae9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AzqXHNm57vkGSksmHsMauD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 298,
+      "cache_read_input_tokens": 33971,
+      "output_tokens": 138,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 298,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 138,
+          "cache_read_input_tokens": 33971,
+          "cache_creation_input_tokens": 298,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 298
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-13T17:58:43.269Z_
+
+<details><summary>↩ Tool result · `toolu_01EJbfCPWPCsZLDxHXt8fa9T`</summary>
+
+```text
+The web page content provided does not contain any submission deadlines, abstract deadline dates, paper deadline dates, or timezone information for the CoRL 2026 Conference. The page appears to be a navigation and footer section of OpenReview.net, without the actual conference details or deadline information visible in the extracted text.
+
+To find the specific submission deadlines you're looking for, you would need to access the full CoRL 2026 Conference page on OpenReview.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "abc9acf3-8ec5-4551-a3a3-4b563eb0ae9f",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "f0cc888d-38a6-4612-abaf-48ac143fcfb6",
+  "toolUseResult": {
+    "bytes": 57999,
+    "code": 200,
+    "codeText": "OK",
+    "result": "The web page content provided does not contain any submission deadlines, abstract deadline dates, paper deadline dates, or timezone information for the CoRL 2026 Conference. The page appears to be a navigation and footer section of OpenReview.net, without the actual conference details or deadline information visible in the extracted text.\n\nTo find the specific submission deadlines you're looking for, you would need to access the full CoRL 2026 Conference page on OpenReview.",
+    "durationMs": 2932,
+    "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+  },
+  "sourceToolAssistantUUID": "abc9acf3-8ec5-4551-a3a3-4b563eb0ae9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-13T17:58:46.431Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014yjTAqVHxKzSsKEWCxzL3c`</summary>
+
+```json
+{
+  "url": "https://www.corl.org/contributions/call-for-papers",
+  "prompt": "Extract the exact submission deadlines — abstract deadline and paper deadline, with exact dates and times (timezone). Is the paper deadline May 28 or May 29?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0cc888d-38a6-4612-abaf-48ac143fcfb6",
+  "isSidechain": false,
+  "requestId": "req_011Cb116489k1LE3GPBbRmLD",
+  "type": "assistant",
+  "uuid": "cf62b076-1415-4166-87b1-0d02a5db5703",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UT5wQETBxPDRHxKNN8zS3t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 247,
+      "cache_read_input_tokens": 34269,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 247,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 34269,
+          "cache_creation_input_tokens": 247,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 247
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-13T17:58:48.551Z_
+
+<details><summary>↩ Tool result · `toolu_014yjTAqVHxKzSsKEWCxzL3c`</summary>
+
+```text
+Based on the content provided, I cannot extract the specific submission deadlines you're asking about. The page does not include exact dates, times, or timezone information for abstract or paper deadlines. 
+
+The Call for Papers section directs readers to consult "Instruction for Authors" for "paper submission format and timeline," but that detailed information is not included in the webpage content you've shared.
+
+To find the deadline information and determine whether the paper deadline is May 28 or May 29, you would need to visit the [Instruction for Authors](/contributions/instruction-for-authors) page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cf62b076-1415-4166-87b1-0d02a5db5703",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "6e511f9c-db86-45d2-b006-5100aebc817e",
+  "toolUseResult": {
+    "bytes": 134252,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the content provided, I cannot extract the specific submission deadlines you're asking about. The page does not include exact dates, times, or timezone information for abstract or paper deadlines. \n\nThe Call for Papers section directs readers to consult \"Instruction for Authors\" for \"paper submission format and timeline,\" but that detailed information is not included in the webpage content you've shared.\n\nTo find the deadline information and determine whether the paper deadline is May 28 or May 29, you would need to visit the [Instruction for Authors](/contributions/instruction-for-authors) page.",
+    "durationMs": 2117,
+    "url": "https://www.corl.org/contributions/call-for-papers"
+  },
+  "sourceToolAssistantUUID": "cf62b076-1415-4166-87b1-0d02a5db5703",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-13T17:58:51.568Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017GuLZJr5gas82kHuAWYvwV`</summary>
+
+```json
+{
+  "query": "CoRL 2026 OpenReview submission deadline \"May 29\" OR \"May 28\" exact time UTC"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e511f9c-db86-45d2-b006-5100aebc817e",
+  "isSidechain": false,
+  "requestId": "req_011Cb116SgUACnTz43LAYY9p",
+  "type": "assistant",
+  "uuid": "3ae9addf-62bd-465e-bd6c-3e7ef1025df9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013JvcByXceyT3Dg7h28TxvK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 254,
+      "cache_read_input_tokens": 34516,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 254,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 34516,
+          "cache_creation_input_tokens": 254,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 254
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-13T17:58:56.421Z_
+
+<details><summary>↩ Tool result · `toolu_017GuLZJr5gas82kHuAWYvwV`</summary>
+
+```text
+Web search results for query: "CoRL 2026 OpenReview submission deadline "May 29" OR "May 28" exact time UTC"
+
+Links: [{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"CoRL 2026 | OpenReview","url":"https://openreview.net/group?id=robot-learning.org/CoRL/2026"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"AI Conference Deadlines","url":"https://mldeadlines.com/"},{"title":"Refactor conference data · huggingface/ai-deadlines at f3cc2d7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf"},{"title":"2026 Dates and Deadlines","url":"https://cvpr.thecvf.com/Conferences/2026/Dates"},{"title":"CoRL | OpenReview","url":"https://openreview.net/group?id=robot-learning.org/CoRL"}]
+
+Based on the search results, here is the information about the CoRL 2026 OpenReview submission deadline:
+
+The paper submission deadline is May 29, 2026 at 11:59 UTC. However, there's some variation in how the deadline is described across different sources:
+
+- The official CoRL website notes that the paper submission deadline is Thursday (5/28) EOD rather than Friday
+- Another source mentions the paper deadline as May 28, 2026 (AoE) (Anywhere on Earth)
+
+The discrepancy appears to be between:
+1. **May 29, 2026 at 11:59 UTC** (as listed in the AI Deadlines database)
+2. **May 28, 2026 EOD in the local timezone** (as mentioned on the CoRL website), which converts to May 29, 2026 at 11:59 UTC
+
+So the exact UTC deadline time is 11:59 UTC on May 29, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ae9addf-62bd-465e-bd6c-3e7ef1025df9",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "1cf3e0cd-c741-4401-a2a2-623037c9e1fd",
+  "toolUseResult": {
+    "query": "CoRL 2026 OpenReview submission deadline \"May 29\" OR \"May 28\" exact time UTC",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XNiKrpTLgJN5u4ie5SeRfm",
+        "content": [
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "CoRL 2026 | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org/CoRL/2026"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mldeadlines.com/"
+          },
+          {
+            "title": "Refactor conference data · huggingface/ai-deadlines at f3cc2d7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://cvpr.thecvf.com/Conferences/2026/Dates"
+          },
+          {
+            "title": "CoRL | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org/CoRL"
+          }
+        ]
+      },
+      "Based on the search results, here is the information about the CoRL 2026 OpenReview submission deadline:\n\nThe paper submission deadline is May 29, 2026 at 11:59 UTC. However, there's some variation in how the deadline is described across different sources:\n\n- The official CoRL website notes that the paper submission deadline is Thursday (5/28) EOD rather than Friday\n- Another source mentions the paper deadline as May 28, 2026 (AoE) (Anywhere on Earth)\n\nThe discrepancy appears to be between:\n1. **May 29, 2026 at 11:59 UTC** (as listed in the AI Deadlines database)\n2. **May 28, 2026 EOD in the local timezone** (as mentioned on the CoRL website), which converts to May 29, 2026 at 11:59 UTC\n\nSo the exact UTC deadline time is 11:59 UTC on May 29, 2026."
+    ],
+    "durationSeconds": 4.850005313000001
+  },
+  "sourceToolAssistantUUID": "3ae9addf-62bd-465e-bd6c-3e7ef1025df9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-13T17:59:00.706Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Y3jDccZjSupYaEdzBXNAe6`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf",
+  "prompt": "Extract the exact CoRL 2026 deadlines listed here — abstract deadline and paper deadline with exact dates and times."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1cf3e0cd-c741-4401-a2a2-623037c9e1fd",
+  "isSidechain": false,
+  "requestId": "req_011Cb1172PzrEuG7WnjpQLq8",
+  "type": "assistant",
+  "uuid": "c43aa69a-1588-49fb-9e85-e9bbf4e3be6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYPnfHSisF4mLUTgWZKD2B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 801,
+      "cache_read_input_tokens": 34770,
+      "output_tokens": 139,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 801,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 139,
+          "cache_read_input_tokens": 34770,
+          "cache_creation_input_tokens": 801,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 801
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-13T17:59:03.406Z_
+
+<details><summary>↩ Tool result · `toolu_01Y3jDccZjSupYaEdzBXNAe6`</summary>
+
+```text
+# CoRL 2026 Deadlines
+
+Based on the conference update, here are the exact deadlines for CoRL 2026:
+
+## Abstract Submission Deadline
+- **Date & Time:** May 26, 2026 at 11:59 UTC
+- **Format:** 2026-05-26 11:59:00 UTC
+
+## Paper Submission Deadline
+- **Date & Time:** May 29, 2026 at 11:59 UTC
+- **Format:** 2026-05-29 11:59:00 UTC
+
+## Additional Conference Details
+- **Conference Dates:** November 9-12, 2026
+- **Venue:** JW Marriott Austin, 110 E 2nd St, Austin, TX 78701
+- **Schedule:** Workshops on Nov 9, main conference Nov 10-12
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c43aa69a-1588-49fb-9e85-e9bbf4e3be6e",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "61baad86-15f0-409f-a481-f2c1125fc66c",
+  "toolUseResult": {
+    "bytes": 60013,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CoRL 2026 Deadlines\n\nBased on the conference update, here are the exact deadlines for CoRL 2026:\n\n## Abstract Submission Deadline\n- **Date & Time:** May 26, 2026 at 11:59 UTC\n- **Format:** 2026-05-26 11:59:00 UTC\n\n## Paper Submission Deadline\n- **Date & Time:** May 29, 2026 at 11:59 UTC\n- **Format:** 2026-05-29 11:59:00 UTC\n\n## Additional Conference Details\n- **Conference Dates:** November 9-12, 2026\n- **Venue:** JW Marriott Austin, 110 E 2nd St, Austin, TX 78701\n- **Schedule:** Workshops on Nov 9, main conference Nov 10-12",
+    "durationMs": 2697,
+    "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+  },
+  "sourceToolAssistantUUID": "c43aa69a-1588-49fb-9e85-e9bbf4e3be6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-13T17:59:11.350Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me reconcile the deadline information:
+- The official CoRL instruction page says "Thursday (5/28) EOD"
+- The HuggingFace AI deadlines tracker says May 29, 2026 at 11:59 UTC
+- May 28, 2026 is a Thursday. May 29, 2026 is a Friday.
+- "Thursday 5/28 EOD" in AoE (Anywhere on Earth = UTC-12) would correspond to May 29 11:59 UTC
+
+
+- Both sources are actually aligned—the deadline is May 29, 2026 at 11:59 UTC, which is Thursday EOD in the AoE timezone.
+
+Now I need to look into how Robometer is specifically used for data curation and filtering, and whether it accounts for mode-awareness, to better understand what differentiates it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61baad86-15f0-409f-a481-f2c1125fc66c",
+  "isSidechain": false,
+  "requestId": "req_011Cb117YC8Z5hDgGUfihpXP",
+  "type": "assistant",
+  "uuid": "0a3410d0-781c-40d2-bf80-6a6caff507c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ATT8duqSBbDHErXn6hCeNB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 346,
+      "cache_read_input_tokens": 35571,
+      "output_tokens": 319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 346,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 35571,
+          "cache_creation_input_tokens": 346,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 346
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-13T17:59:11.351Z_
+
+Good — I now have a clear picture of all the flagged items. Let me do a couple more targeted searches for completeness.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a3410d0-781c-40d2-bf80-6a6caff507c6",
+  "isSidechain": false,
+  "requestId": "req_011Cb117YC8Z5hDgGUfihpXP",
+  "type": "assistant",
+  "uuid": "a5c64534-ba34-4e24-b771-adc54e7c8c85",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ATT8duqSBbDHErXn6hCeNB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 346,
+      "cache_read_input_tokens": 35571,
+      "output_tokens": 319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 346,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 35571,
+          "cache_creation_input_tokens": 346,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 346
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-13T17:59:11.474Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K3yomYAgRkZ2DK6UnWSnDk`</summary>
+
+```json
+{
+  "query": "Robometer data curation filtering demonstration quality scoring imitation learning retrieval"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5c64534-ba34-4e24-b771-adc54e7c8c85",
+  "isSidechain": false,
+  "requestId": "req_011Cb117YC8Z5hDgGUfihpXP",
+  "type": "assistant",
+  "uuid": "1f7f55a2-a2af-40b8-b2c9-b6d3d95b1d64",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ATT8duqSBbDHErXn6hCeNB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 346,
+      "cache_read_input_tokens": 35571,
+      "output_tokens": 319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 346,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 35571,
+          "cache_creation_input_tokens": 346,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 346
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-13T17:59:19.244Z_
+
+<details><summary>↩ Tool result · `toolu_01K3yomYAgRkZ2DK6UnWSnDk`</summary>
+
+```text
+Web search results for query: "Robometer data curation filtering demonstration quality scoring imitation learning retrieval"
+
+Links: [{"title":"[2604.23000] Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://arxiv.org/abs/2604.23000"},{"title":"ROBOMETER: Scaling General-Purpose Robotic","url":"https://robometer.github.io/assets/robometer.pdf"},{"title":"[2306.02437] Data Quality in Imitation Learning","url":"https://arxiv.org/abs/2306.02437"},{"title":"Behavior Retrieval: Few-Shot Imitation Learning by Querying Unlabeled Datasets | Request PDF","url":"https://www.researchgate.net/publication/372799957_Behavior_Retrieval_Few-Shot_Imitation_Learning_by_Querying_Unlabeled_Datasets"},{"title":"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning","url":"https://arxiv.org/html/2603.09056"},{"title":"Data Quality in Imitation Learning | OpenReview","url":"https://openreview.net/forum?id=FwmvbuDiMk&noteId=yRiDkOIoZK"},{"title":"Curating Demonstrations using Online Experience","url":"https://arxiv.org/html/2503.03707"},{"title":"Robot Data Curation with Mutual Information Estimators","url":"https://arxiv.org/html/2502.08623"},{"title":"[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning","url":"https://arxiv.org/abs/2505.22626"},{"title":"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons","url":"https://robometer.github.io/"}]
+
+Based on the web search results, here's what I found about Robometer and related data curation, filtering, and quality scoring approaches for imitation learning:
+
+## ROBOMETER Overview
+
+ROBOMETER is trained on RBM-1M, a 1M-trajectory dataset spanning 21 robot embodiments, containing both reward-labeled/expert trajectories and reward-unlabeled, failed trajectories. The model is supervised with a dual objective: predicting frame-level task progress (reward) and learning trajectory-level preferences from pairwise comparisons, and is also trained to predict per-frame task success.
+
+This training recipe enables scalable reward learning and supports diverse downstream applications such as offline & online RL, imitation learning data filtering and retrieval, and automated failure detection.
+
+## Data Quality Scoring and Filtering
+
+Beyond ROBOMETER, research in this area addresses a broader challenge: Imitation learning is a sample efficient paradigm for robot learning using expert demonstrations, but policies learned through IL suffer from state distribution shift at test time due to compounding errors in action prediction.
+
+Recent approaches for quality scoring include:
+
+- **Smoothness-based metrics**: RINSE is a lightweight framework for scoring demonstrations based on trajectory smoothness using Spectral Arc Length (SAL), a spectral measure of frequency-domain regularity, and Trajectory-Envelope Distance (TED), a spatial measure of contact-aware geometry.
+
+- **Retrieval applications**: As a retrieval-stage filter within STRAP on LIBERO-10, RINSE re-ranking improves mean success by 5.6%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f7f55a2-a2af-40b8-b2c9-b6d3d95b1d64",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "5f2c2b91-2c88-45ff-b241-baeed021b80c",
+  "toolUseResult": {
+    "query": "Robometer data curation filtering demonstration quality scoring imitation learning retrieval",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AA1e1aSLdhjvQXXfF6j12j",
+        "content": [
+          {
+            "title": "[2604.23000] Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/abs/2604.23000"
+          },
+          {
+            "title": "ROBOMETER: Scaling General-Purpose Robotic",
+            "url": "https://robometer.github.io/assets/robometer.pdf"
+          },
+          {
+            "title": "[2306.02437] Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/abs/2306.02437"
+          },
+          {
+            "title": "Behavior Retrieval: Few-Shot Imitation Learning by Querying Unlabeled Datasets | Request PDF",
+            "url": "https://www.researchgate.net/publication/372799957_Behavior_Retrieval_Few-Shot_Imitation_Learning_by_Querying_Unlabeled_Datasets"
+          },
+          {
+            "title": "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning",
+            "url": "https://arxiv.org/html/2603.09056"
+          },
+          {
+            "title": "Data Quality in Imitation Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=FwmvbuDiMk&noteId=yRiDkOIoZK"
+          },
+          {
+            "title": "Curating Demonstrations using Online Experience",
+            "url": "https://arxiv.org/html/2503.03707"
+          },
+          {
+            "title": "Robot Data Curation with Mutual Information Estimators",
+            "url": "https://arxiv.org/html/2502.08623"
+          },
+          {
+            "title": "[2505.22626] SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning",
+            "url": "https://arxiv.org/abs/2505.22626"
+          },
+          {
+            "title": "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons",
+            "url": "https://robometer.github.io/"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about Robometer and related data curation, filtering, and quality scoring approaches for imitation learning:\n\n## ROBOMETER Overview\n\nROBOMETER is trained on RBM-1M, a 1M-trajectory dataset spanning 21 robot embodiments, containing both reward-labeled/expert trajectories and reward-unlabeled, failed trajectories. The model is supervised with a dual objective: predicting frame-level task progress (reward) and learning trajectory-level preferences from pairwise comparisons, and is also trained to predict per-frame task success.\n\nThis training recipe enables scalable reward learning and supports diverse downstream applications such as offline & online RL, imitation learning data filtering and retrieval, and automated failure detection.\n\n## Data Quality Scoring and Filtering\n\nBeyond ROBOMETER, research in this area addresses a broader challenge: Imitation learning is a sample efficient paradigm for robot learning using expert demonstrations, but policies learned through IL suffer from state distribution shift at test time due to compounding errors in action prediction.\n\nRecent approaches for quality scoring include:\n\n- **Smoothness-based metrics**: RINSE is a lightweight framework for scoring demonstrations based on trajectory smoothness using Spectral Arc Length (SAL), a spectral measure of frequency-domain regularity, and Trajectory-Envelope Distance (TED), a spatial measure of contact-aware geometry.\n\n- **Retrieval applications**: As a retrieval-stage filter within STRAP on LIBERO-10, RINSE re-ranking improves mean success by 5.6%."
+    ],
+    "durationSeconds": 7.766658831999987
+  },
+  "sourceToolAssistantUUID": "1f7f55a2-a2af-40b8-b2c9-b6d3d95b1d64",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52 · 2026-05-13T17:59:19.249Z_
+
+```json
+{
+  "parentUuid": "5f2c2b91-2c88-45ff-b241-baeed021b80c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d90c27d5-9def-4665-9234-72533625ab0c",
+  "timestamp": "2026-05-13T17:59:19.249Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasse…",
+  "leafUuid": "d90c27d5-9def-4665-9234-72533625ab0c",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OT-Consensus with mode-aware quality scoring for robot learning",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-13T17:59:24.855Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XqDjHy63kiwS6aRWXpuKPE`</summary>
+
+```json
+{
+  "url": "https://robometer.github.io/assets/robometer.pdf",
+  "prompt": "Focus on: (1) The \"data retrieval for IL\" application — how exactly does Robometer score and filter demonstrations? (2) Does it handle multimodal demonstrations (multiple valid strategies)? Is it mode-aware? (3) What benchmarks are used for the data retrieval evaluation? (4) How does it compare to other demonstration quality methods? (5) What are the training requirements (how many trajectories, GPU hours)? (6) What are its limitations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d90c27d5-9def-4665-9234-72533625ab0c",
+  "isSidechain": false,
+  "requestId": "req_011Cb118jhDYG8JnotxbSmMk",
+  "type": "assistant",
+  "uuid": "1adbf948-18a0-4dc9-837c-08e38b2a49dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Foq6EqLMj3Kk1KwqUtSt3F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1277,
+      "cache_read_input_tokens": 35917,
+      "output_tokens": 186,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1277,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 186,
+          "cache_read_input_tokens": 35917,
+          "cache_creation_input_tokens": 1277,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1277
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-13T17:59:25.095Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01XqDjHy63kiwS6aRWXpuKPE`</summary>
+
+```text
+maxContentLength size of 10485760 exceeded
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1adbf948-18a0-4dc9-837c-08e38b2a49dd",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "383b0236-c53b-4fb2-9bf4-c79d63683ea2",
+  "toolUseResult": "Error: maxContentLength size of 10485760 exceeded",
+  "sourceToolAssistantUUID": "1adbf948-18a0-4dc9-837c-08e38b2a49dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-13T17:59:35.375Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HAYWK4EjMQCgH31QEbGdi7`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2603.02115",
+  "prompt": "Focus on: (1) The \"data retrieval for IL\" application — how exactly does Robometer score and filter demonstrations? (2) Does it handle multimodal demonstrations (multiple valid strategies)? Is it mode-aware? (3) What benchmarks are used for data retrieval evaluation? (4) Training requirements (how many trajectories, GPU hours)? (5) Limitations? (6) Any comparison to CUPID, DemInf, RINSE, SCIZOR, FAKTUAL?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "383b0236-c53b-4fb2-9bf4-c79d63683ea2",
+  "isSidechain": false,
+  "requestId": "req_011Cb1199Hnn2UeGqKVSq3Uo",
+  "type": "assistant",
+  "uuid": "8c7738f2-7a35-4005-8799-e6de9866fe9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019uKfzAg9ZkTU2LzvQrsCJG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 217,
+      "cache_read_input_tokens": 37194,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 217,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 37194,
+          "cache_creation_input_tokens": 217,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 217
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-13T17:59:47.851Z_
+
+<details><summary>↩ Tool result · `toolu_01HAYWK4EjMQCgH31QEbGdi7`</summary>
+
+```text
+# Robometer: Data Retrieval and Demonstration Filtering Analysis
+
+## (1) Data Retrieval Scoring Mechanism
+
+Robometer filters demonstrations using two complementary approaches:
+
+- **Progress-based scoring**: Computing per-timestep progress values and each trajectory's "value-order correlation" to rank subtrajectories
+- **Preference-based scoring**: Using pairwise trajectory comparisons to identify task-relevant segments
+
+The system retrieves top-ranked subtrajectories matching a given task instruction from unannotated multi-task datasets.
+
+## (2) Multimodal/Mode-Aware Handling
+
+The paper does **not** explicitly address multimodal demonstrations or mode-awareness. Robometer treats trajectories comparatively through preference prediction but shows no discussion of distinguishing between equally valid alternative strategies for the same task. The system appears strategy-agnostic.
+
+## (3) Evaluation Benchmarks
+
+Data retrieval evaluation uses:
+- **Dataset**: "Play" dataset (unannotated, multi-task trajectories on Trossen AI setup, not in RBM-1M)
+- **Metrics**: Proportion of task-relevant subtrajectories retrieved from 100 queries
+- **Downstream validation**: LoRA fine-tuning success rates on retrieved segments
+- **Baselines**: RoboReward, pre-trained SigLIP, STRAP (retrieval-specific baseline)
+
+Results show "4.5× higher success rate than best baseline."
+
+## (4) Training Requirements
+
+Specific resource details provided:
+- **Dataset size**: 1 million trajectories across 21 robot embodiments
+- **Storage**: Approximately 6 TB after downsampling (max 32 frames, shortest edge 240 pixels)
+- **Model**: Qwen3-VL-4B-Instruct backbone with inserted learnable tokens
+- **Compute**: Training on UW Hyak and USC CARC clusters; fine-tuning single GPU feasible via LoRA
+
+Training epochs and GPU hours not explicitly stated.
+
+## (5) Limitations
+
+The paper acknowledges several constraints:
+
+- **Temporal resolution**: Frame-based design on subsampled video limits capturing fine-grained dynamics
+- **Rare failure modes**: "Real-world robot executions exhibit wide diversity of failure modes, many rare or task-specific"; training data may not fully capture this breadth
+- **Latent state access**: Lacks direct access to contact forces, grasp stability, or compliance; relies on visual observability
+- **Dataset bias**: Preference annotations limited; dense per-frame progress labels for failures expensive
+
+## (6) Comparisons to Related Methods
+
+**None of the methods you mentioned (CUPID, DemInf, RINSE, SCIZOR, FAKTUAL) appear in this paper.** 
+
+Robometer compares against:
+- VLAC, GVL, RoboDopamine, RoboReward (VLM-based reward models)
+- ReWiND (transformer-based progress prediction)
+- SigLIP, STRAP (for retrieval tasks only)
+
+The paper does not cite or evaluate against the data filtering/curriculum learning methods you referenced.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c7738f2-7a35-4005-8799-e6de9866fe9e",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "f3e549ca-4dca-4273-b2b3-50a2cdb5a7d4",
+  "toolUseResult": {
+    "bytes": 611573,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Robometer: Data Retrieval and Demonstration Filtering Analysis\n\n## (1) Data Retrieval Scoring Mechanism\n\nRobometer filters demonstrations using two complementary approaches:\n\n- **Progress-based scoring**: Computing per-timestep progress values and each trajectory's \"value-order correlation\" to rank subtrajectories\n- **Preference-based scoring**: Using pairwise trajectory comparisons to identify task-relevant segments\n\nThe system retrieves top-ranked subtrajectories matching a given task instruction from unannotated multi-task datasets.\n\n## (2) Multimodal/Mode-Aware Handling\n\nThe paper does **not** explicitly address multimodal demonstrations or mode-awareness. Robometer treats trajectories comparatively through preference prediction but shows no discussion of distinguishing between equally valid alternative strategies for the same task. The system appears strategy-agnostic.\n\n## (3) Evaluation Benchmarks\n\nData retrieval evaluation uses:\n- **Dataset**: \"Play\" dataset (unannotated, multi-task trajectories on Trossen AI setup, not in RBM-1M)\n- **Metrics**: Proportion of task-relevant subtrajectories retrieved from 100 queries\n- **Downstream validation**: LoRA fine-tuning success rates on retrieved segments\n- **Baselines**: RoboReward, pre-trained SigLIP, STRAP (retrieval-specific baseline)\n\nResults show \"4.5× higher success rate than best baseline.\"\n\n## (4) Training Requirements\n\nSpecific resource details provided:\n- **Dataset size**: 1 million trajectories across 21 robot embodiments\n- **Storage**: Approximately 6 TB after downsampling (max 32 frames, shortest edge 240 pixels)\n- **Model**: Qwen3-VL-4B-Instruct backbone with inserted learnable tokens\n- **Compute**: Training on UW Hyak and USC CARC clusters; fine-tuning single GPU feasible via LoRA\n\nTraining epochs and GPU hours not explicitly stated.\n\n## (5) Limitations\n\nThe paper acknowledges several constraints:\n\n- **Temporal resolution**: Frame-based design on subsampled video limits capturing fine-grained dynamics\n- **Rare failure modes**: \"Real-world robot executions exhibit wide diversity of failure modes, many rare or task-specific\"; training data may not fully capture this breadth\n- **Latent state access**: Lacks direct access to contact forces, grasp stability, or compliance; relies on visual observability\n- **Dataset bias**: Preference annotations limited; dense per-frame progress labels for failures expensive\n\n## (6) Comparisons to Related Methods\n\n**None of the methods you mentioned (CUPID, DemInf, RINSE, SCIZOR, FAKTUAL) appear in this paper.** \n\nRobometer compares against:\n- VLAC, GVL, RoboDopamine, RoboReward (VLM-based reward models)\n- ReWiND (transformer-based progress prediction)\n- SigLIP, STRAP (for retrieval tasks only)\n\nThe paper does not cite or evaluate against the data filtering/curriculum learning methods you referenced.",
+    "durationMs": 12472,
+    "url": "https://arxiv.org/html/2603.02115"
+  },
+  "sourceToolAssistantUUID": "8c7738f2-7a35-4005-8799-e6de9866fe9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-13T17:59:51.755Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a very thorough understanding of all the missing references. Let me also search for the publication details of the sWk-means paper in its published venue, since the reviewer mentioned it was published in "Data Science in Finance and Economics 2025."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f3e549ca-4dca-4273-b2b3-50a2cdb5a7d4",
+  "isSidechain": false,
+  "requestId": "req_011Cb11ApQHWvL55DoK98ceY",
+  "type": "assistant",
+  "uuid": "6ef2b9b5-3dc9-4ca0-bd37-159c69e048eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFy2VDQvW82rZk5deG8wuM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 925,
+      "cache_read_input_tokens": 37411,
+      "output_tokens": 182,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 182,
+          "cache_read_input_tokens": 37411,
+          "cache_creation_input_tokens": 925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-13T17:59:52.736Z_
+
+Now let me verify the sWk-means publication details and search for any work that cites it in robotics contexts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ef2b9b5-3dc9-4ca0-bd37-159c69e048eb",
+  "isSidechain": false,
+  "requestId": "req_011Cb11ApQHWvL55DoK98ceY",
+  "type": "assistant",
+  "uuid": "9722a5a9-673c-42ea-bb38-54d17704eb4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFy2VDQvW82rZk5deG8wuM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 925,
+      "cache_read_input_tokens": 37411,
+      "output_tokens": 182,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 182,
+          "cache_read_input_tokens": 37411,
+          "cache_creation_input_tokens": 925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-13T17:59:53.449Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018V467yVaBJkJZxU8yhBnzX`</summary>
+
+```json
+{
+  "query": "sWk-means \"sliced Wasserstein k-means\" \"Data Science in Finance and Economics\" 2025 Luan Hamp published"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9722a5a9-673c-42ea-bb38-54d17704eb4b",
+  "isSidechain": false,
+  "requestId": "req_011Cb11ApQHWvL55DoK98ceY",
+  "type": "assistant",
+  "uuid": "4bd96254-5fd5-4805-8b48-1de87a2aebc4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFy2VDQvW82rZk5deG8wuM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 925,
+      "cache_read_input_tokens": 37411,
+      "output_tokens": 182,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 182,
+          "cache_read_input_tokens": 37411,
+          "cache_creation_input_tokens": 925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-13T17:59:58.945Z_
+
+<details><summary>↩ Tool result · `toolu_018V467yVaBJkJZxU8yhBnzX`</summary>
+
+```text
+Web search results for query: "sWk-means "sliced Wasserstein k-means" "Data Science in Finance and Economics" 2025 Luan Hamp published"
+
+Links: [{"title":"Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering","url":"http://www.aimspress.com/article/doi/10.3934/DSFE.2025016"},{"title":"Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering","url":"https://ideas.repec.org/p/ehl/lserod/129537.html"},{"title":"(PDF) Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering","url":"https://www.researchgate.net/publication/395045782_Automated_regime_classification_in_multidimensional_time_series_data_using_sliced_Wasserstein_k-means_clustering"},{"title":"https://www.aimspress.com/journal/dsfe DSFE, 5(3): 387–418.","url":"https://www.aimspress.com/aimspress-data/dsfe/2025/3/PDF/DSFE-05-03-016.pdf"},{"title":"[2310.01285] Automated regime detection in multidimensional time series data using sliced Wasserstein k-means clustering","url":"https://arxiv.org/abs/2310.01285"},{"title":"Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering - LSE Research Online","url":"http://eprints.lse.ac.uk/129537/"},{"title":"Automated regime detection in multidimensional time series data using sliced Wasserstein k-means clustering - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv231001285L/abstract"},{"title":"Automated Regime Detection in Multidimensional Time Series Data Using Sliced Wasserstein K-Means Clustering by Qinmeng Luan, James Hamp :: SSRN","url":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4587877"},{"title":"Automated Regime Detection in Multidimensional Time Series Data Using Sliced Wasserstein K-Means Clustering","url":"https://www.rebellionresearch.com/automated-regime-detection-in-multidimensional-time-series-data-using-sliced-wasserstein-k-means-clustering"},{"title":"The Geometry of Financial Institutions -Wasserstein Clustering of Financial Data | Mathematics and Financial Economics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11579-025-00394-2"}]
+
+I found the research you're looking for. The paper "Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering" was published by Qinmeng Luan and James Hamp in Data Science in Finance and Economics in 2025, Volume 5, Issue 3, pages 387-418.
+
+The paper extends Wasserstein k-means clustering to multidimensional time series data by approximating the multidimensional Wasserstein distance as a sliced Wasserstein distance, resulting in a method called 'sliced Wasserstein k-means (sWk-means) clustering'. The sWk-means method is able to identify distinct market regimes in real multidimensional financial time series, using publicly available foreign exchange spot rate data as a case study.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4bd96254-5fd5-4805-8b48-1de87a2aebc4",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "38fa60a6-4bc0-402c-8129-f699e436a681",
+  "toolUseResult": {
+    "query": "sWk-means \"sliced Wasserstein k-means\" \"Data Science in Finance and Economics\" 2025 Luan Hamp published",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GsoR5oyVU3vh4L87yzt3Ra",
+        "content": [
+          {
+            "title": "Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering",
+            "url": "http://www.aimspress.com/article/doi/10.3934/DSFE.2025016"
+          },
+          {
+            "title": "Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering",
+            "url": "https://ideas.repec.org/p/ehl/lserod/129537.html"
+          },
+          {
+            "title": "(PDF) Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering",
+            "url": "https://www.researchgate.net/publication/395045782_Automated_regime_classification_in_multidimensional_time_series_data_using_sliced_Wasserstein_k-means_clustering"
+          },
+          {
+            "title": "https://www.aimspress.com/journal/dsfe DSFE, 5(3): 387–418.",
+            "url": "https://www.aimspress.com/aimspress-data/dsfe/2025/3/PDF/DSFE-05-03-016.pdf"
+          },
+          {
+            "title": "[2310.01285] Automated regime detection in multidimensional time series data using sliced Wasserstein k-means clustering",
+            "url": "https://arxiv.org/abs/2310.01285"
+          },
+          {
+            "title": "Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering - LSE Research Online",
+            "url": "http://eprints.lse.ac.uk/129537/"
+          },
+          {
+            "title": "Automated regime detection in multidimensional time series data using sliced Wasserstein k-means clustering - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv231001285L/abstract"
+          },
+          {
+            "title": "Automated Regime Detection in Multidimensional Time Series Data Using Sliced Wasserstein K-Means Clustering by Qinmeng Luan, James Hamp :: SSRN",
+            "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4587877"
+          },
+          {
+            "title": "Automated Regime Detection in Multidimensional Time Series Data Using Sliced Wasserstein K-Means Clustering",
+            "url": "https://www.rebellionresearch.com/automated-regime-detection-in-multidimensional-time-series-data-using-sliced-wasserstein-k-means-clustering"
+          },
+          {
+            "title": "The Geometry of Financial Institutions -Wasserstein Clustering of Financial Data | Mathematics and Financial Economics | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11579-025-00394-2"
+          }
+        ]
+      },
+      "I found the research you're looking for. The paper \"Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering\" was published by Qinmeng Luan and James Hamp in Data Science in Finance and Economics in 2025, Volume 5, Issue 3, pages 387-418.\n\nThe paper extends Wasserstein k-means clustering to multidimensional time series data by approximating the multidimensional Wasserstein distance as a sliced Wasserstein distance, resulting in a method called 'sliced Wasserstein k-means (sWk-means) clustering'. The sWk-means method is able to identify distinct market regimes in real multidimensional financial time series, using publicly available foreign exchange spot rate data as a case study."
+    ],
+    "durationSeconds": 5.492005197999999
+  },
+  "sourceToolAssistantUUID": "4bd96254-5fd5-4805-8b48-1de87a2aebc4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-13T18:00:03.780Z_
+
+Good. Now I have all the information needed to make the revisions. Let me also quickly check if RINSE (arXiv 2604.23000) has been updated since it was first cited — the search result above showed a new arXiv ID.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38fa60a6-4bc0-402c-8129-f699e436a681",
+  "isSidechain": false,
+  "requestId": "req_011Cb11Bdef3rYwvWbe9373J",
+  "type": "assistant",
+  "uuid": "a05de348-4a5d-4831-af4a-851e9afbd648",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M4PyfXoa4pBm1zAahneFxa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1089,
+      "cache_read_input_tokens": 38336,
+      "output_tokens": 138,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1089,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 138,
+          "cache_read_input_tokens": 38336,
+          "cache_creation_input_tokens": 1089,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1089
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-13T18:00:04.282Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017HVVmT2vpv9qNP5fDpBMXL`</summary>
+
+```json
+{
+  "query": "RINSE \"Learning from the Best\" smoothness imitation learning arXiv 2604.23000 ICML 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a05de348-4a5d-4831-af4a-851e9afbd648",
+  "isSidechain": false,
+  "requestId": "req_011Cb11Bdef3rYwvWbe9373J",
+  "type": "assistant",
+  "uuid": "50afc83e-2d87-4854-9795-005dd8afe173",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M4PyfXoa4pBm1zAahneFxa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1089,
+      "cache_read_input_tokens": 38336,
+      "output_tokens": 138,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1089,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 138,
+          "cache_read_input_tokens": 38336,
+          "cache_creation_input_tokens": 1089,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1089
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-13T18:00:11.442Z_
+
+<details><summary>↩ Tool result · `toolu_017HVVmT2vpv9qNP5fDpBMXL`</summary>
+
+```text
+Web search results for query: "RINSE "Learning from the Best" smoothness imitation learning arXiv 2604.23000 ICML 2025"
+
+Links: [{"title":"[2604.23000] Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://arxiv.org/abs/2604.23000"},{"title":"Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://arxiv.org/html/2604.23000"},{"title":"ICML Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning","url":"https://icml.cc/virtual/2025/48703"}]
+
+I found the paper you're searching for! Here's what the search revealed:
+
+"RINSE (Ranking and INdexing Smooth Examples) is a lightweight framework for scoring demonstrations based on trajectory smoothness that is policy-architecture-agnostic and operates on trajectory data alone, with TED additionally using a phase-boundary/contact signal."
+
+The framework is grounded in motor control theory and uses two complementary metrics: Spectral Arc Length (SAL), a spectral measure of frequency-domain regularity, and Trajectory-Envelope Distance (TED), a spatial measure of contact-aware geometric deviation.
+
+The paper demonstrates strong empirical results: On RoboMimic benchmarks, SAL filtering achieves 16% higher success using one-sixth of the data, and on real-world manipulation, TED filtering achieves 20% improvement with half the data.
+
+The paper was authored by Soham Kulkarni, Raayan Dhar, and Yuchen Cui from UCLA and was posted to arXiv on April 24, 2026. The paper is also being presented at ICML 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50afc83e-2d87-4854-9795-005dd8afe173",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "747bdd4f-72ee-4ce7-b4d3-c7387cc36446",
+  "toolUseResult": {
+    "query": "RINSE \"Learning from the Best\" smoothness imitation learning arXiv 2604.23000 ICML 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013nDNcHToi8yQUBcQZk6sjg",
+        "content": [
+          {
+            "title": "[2604.23000] Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/abs/2604.23000"
+          },
+          {
+            "title": "Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://arxiv.org/html/2604.23000"
+          },
+          {
+            "title": "ICML Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning",
+            "url": "https://icml.cc/virtual/2025/48703"
+          }
+        ]
+      },
+      "I found the paper you're searching for! Here's what the search revealed:\n\n\"RINSE (Ranking and INdexing Smooth Examples) is a lightweight framework for scoring demonstrations based on trajectory smoothness that is policy-architecture-agnostic and operates on trajectory data alone, with TED additionally using a phase-boundary/contact signal.\"\n\nThe framework is grounded in motor control theory and uses two complementary metrics: Spectral Arc Length (SAL), a spectral measure of frequency-domain regularity, and Trajectory-Envelope Distance (TED), a spatial measure of contact-aware geometric deviation.\n\nThe paper demonstrates strong empirical results: On RoboMimic benchmarks, SAL filtering achieves 16% higher success using one-sixth of the data, and on real-world manipulation, TED filtering achieves 20% improvement with half the data.\n\nThe paper was authored by Soham Kulkarni, Raayan Dhar, and Yuchen Cui from UCLA and was posted to arXiv on April 24, 2026. The paper is also being presented at ICML 2025."
+    ],
+    "durationSeconds": 7.1562192330000105
+  },
+  "sourceToolAssistantUUID": "50afc83e-2d87-4854-9795-005dd8afe173",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-13T18:00:36.180Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me synthesize my findings and draft the revised proposal.
+
+Key findings from research:
+
+1. **Robometer (RSS 2026, arXiv 2603.02115)**:
+   - VLM-based reward model (Qwen3-VL-4B backbone)
+   - Trained on RBM-1M (1M+ trajectories, 21 embodiments)
+   - Dual objective: frame-level progress + trajectory-level preference
+   - Has a "data retrieval for IL" application — retrieves task-relevant subtrajectories
+   - Lacks mode-awareness and wasn't benchmarked against CUPID, DemInf, RINSE, SCIZOR, FAKTUAL; instead compared to other VLM reward models like RoboReward and GVL
+   - Demands substantial training resources (1M trajectories, ~6TB), whereas OT-Consensus achieves mode-awareness through geometry without requiring training data
+
+2. **sWk-means (Luan & Hamp, arXiv 2310.01285, DSFE 2025)**:
+   - Uses sliced Wasserstein distance for clustering...
+
+Examining the data redundancy findings...
+
+frame-level sampling shows that random selection of 30% of frames performs as well as using the full dataset, which is striking evidence that VLA training contains substantial redundancy and that thoughtful data curation could yield significant improvements.
+
+For CoRL 2026, the deadline confusion resolves to May 28 Thursday EOD in any timezone being equivalent to May 29 at 11:59 UTC, with abstracts due May 26. The reviewer confirms the core novelty is solid, but I'm still facing four concrete blockers: two persistent citation gaps, the deadline clarification, missing related work on the TSS paper, and the lack of a minimum success baseline.
+
+These are all fixable in a minor revision without changing the fundamental approach—I just need to properly integrate the missing citations, define success criteria, and correct the deadline statement. The stagnation from 3.2 to 3.5 likely stems from repeatedly overlooking those two citations, so addressing them should resolve the major friction points. Now I'm putting together the revised JSON with these corrections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "747bdd4f-72ee-4ce7-b4d3-c7387cc36446",
+  "isSidechain": false,
+  "requestId": "req_011Cb11CZ4cQRQjj9SLCTSE3",
+  "type": "assistant",
+  "uuid": "e4d4a5d8-31ee-4eda-ab09-80e6e612bddd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013EvH7UZ5bt1ajNxJ5szei7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 39425,
+      "output_tokens": 9099,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 600,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9099,
+          "cache_read_input_tokens": 39425,
+          "cache_creation_input_tokens": 600,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 600
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-13T18:00:38.635Z_
+
+I now have thorough research on all flagged items. Let me synthesize what I've found:
+
+1. **Robometer**: VLM-based reward model (Qwen3-VL-4B), trained on 1M+ trajectories, has "data retrieval for IL" application but is NOT mode-aware and requires massive training data
+2. **sWk-means**: SW distances + k-means for financial regime detection — same SW+clustering pipeline but NO barycenters, NO quality scoring, NO robotics
+3. **CoRL deadline**: May 28 Thursday EOD AoE = May 29 11:59 UTC (consistent across sources)
+4. **TSS paper**: Random 30% of LIBERO matches full dataset with SmolVLA; TSS underperformed random selection
+
+The reviewer confirmed the core novelty is genuine — the issues are missing citations and a success criterion. This is a minor revision. Let me compose the complete revised JSON.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4d4a5d8-31ee-4eda-ab09-80e6e612bddd",
+  "isSidechain": false,
+  "requestId": "req_011Cb11CZ4cQRQjj9SLCTSE3",
+  "type": "assistant",
+  "uuid": "42369e1b-9744-4218-b9c4-9b92edd4be85",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013EvH7UZ5bt1ajNxJ5szei7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 39425,
+      "output_tokens": 9099,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 600,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9099,
+          "cache_read_input_tokens": 39425,
+          "cache_creation_input_tokens": 600,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 600
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-13T18:03:51.566Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01TU12W7eM7Shps291Sz2ege`</summary>
+
+```json
+{
+  "file_path": "/tmp/revised_idea.json",
+  "content": "{\n  \"title\": \"Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasserstein Consensus\",\n  \"change_type\": \"minor\",\n  \"core_problem\": \"How should we curate multimodal demonstration datasets that contain multiple valid strategies of varying quality? Diversity-maximizing approaches (FAKTUAL) improve average performance but explicitly fail when demonstrations contain conflicting strategies — blindly including diverse-but-poor demonstrations degrades learning. Quality-scoring approaches (CUPID, DataMIL) work well but require expensive policy training, validation rollouts, or influence function estimation. Learned reward models (Robometer) can score trajectory quality without a task-specific policy but require 1M+ training trajectories and are not mode-aware. The field lacks a training-free quality scoring method that is *mode-aware* — one that discovers distinct strategy modes in the data and scores quality within each mode, rather than treating all demonstrations as drawn from a single distribution.\",\n  \"opportunity\": \"The demonstration curation landscape has crystallized into four camps: (1) *policy-dependent quality methods* (CUPID, DataMIL, Demo-SCORE, QoQ) that achieve SOTA but require trained policies or validation rollouts; (2) *policy-free learned quality methods* (Robometer) that train general-purpose reward models on massive trajectory datasets to score quality without a task-specific policy, but require 1M+ training trajectories for pre-training and are not mode-aware — they assign a global quality score without distinguishing between multiple valid strategies; (3) *policy-free quality proxies* (DemInf, RINSE, SCIZOR) that use scalar metrics (MI, smoothness, progress) but collapse distributional structure and are mode-agnostic; and (4) *policy-free diversity methods* (FAKTUAL) that maximize trajectory entropy but explicitly acknowledge 'promoting diversity may actually be harmful when the model is not capable of capturing multimodality in the data.' This reveals a fundamental tension: diversity-based curation fails precisely when demonstrations are multimodal (multiple valid strategies), because it retains low-quality demonstrations from each mode for the sake of coverage. Recent evidence further motivates intelligent curation: 'On Data Redundancy in VLA Training' (DATA-FM @ ICLR 2026) shows that random 30% sampling of LIBERO matches full-dataset SmolVLA performance, revealing massive data redundancy — but their difficulty-based Temporal Surprise Score underperformed random selection, suggesting that naive quality proxies can be counterproductive. Empirically, FAKTUAL performs only modestly above random selection on RoboMimic MH, well below quality-based methods. The key gap: no existing training-free method provides *mode-aware quality scoring* — discovering strategy modes and assessing quality relative to mode-specific consensus, rather than against a single global reference, via a mode-agnostic scalar proxy, or through a learned reward model that treats all demonstrations as a single population. Optimal transport geometry fills this gap naturally: Sliced Wasserstein distances define a metric space over trajectory distributions that captures shape, spread, and temporal structure; clustering in this space discovers strategy modes; and distance from each mode's robust barycenter provides a geometrically grounded, mode-aware quality score. This fills the 'good methods to quantify data quality' gap (ICLR 2026 VLA blog) with an approach that is simultaneously training-free, mode-aware, and distributional — complementary to learned scorers (Robometer), diversity-based methods (FAKTUAL), and policy-dependent methods (CUPID).\",\n  \"landscape\": \"**Policy-dependent quality methods**: CUPID (CoRL 2025) uses influence functions estimating each demonstration's causal impact on closed-loop policy return, achieving SOTA on RoboMimic with <33% of curated data; requires a trained policy and evaluation rollouts. DataMIL (ICLR 2026) uses the datamodels paradigm for end-to-end policy-driven selection validated on 60+ tasks including OXE; requires surrogate loss computation with policy training. Demo-SCORE (RSS 2025) trains classifiers on online rollout success/failure to self-curate, achieving 15-35% gains; requires online robot interaction. QoQ (arXiv Mar 2026) uses influence functions with theoretical analysis but requires a validation set and scales O(n²). **Policy-free learned quality methods**: Robometer (RSS 2026, arXiv 2603.02115) trains a general-purpose VLM-based reward model (Qwen3-VL-4B) on RBM-1M (1M+ trajectories across 21 embodiments) using a dual objective of frame-level progress supervision and trajectory-level preference learning. Achieves strong results on reward benchmarks and supports data retrieval for IL (4.5× higher success rate than baselines on retrieval tasks). However, Robometer (a) requires 1M+ training trajectories (~6TB) for pre-training — infeasible when curating smaller datasets without pre-existing large-scale data; (b) is NOT mode-aware — it assigns a single global quality score per trajectory without distinguishing between multiple valid strategies; (c) was not evaluated against demonstration curation methods (CUPID, DemInf, RINSE, SCIZOR, FAKTUAL) — its comparisons are against VLM reward models (RoboReward, GVL, VLAC). OT-Consensus is complementary: training-free, mode-aware, and geometric, requiring no pre-training data. **Policy-free quality proxies**: DemInf (RSS 2025) estimates trajectory-level mutual information between states and actions via k-NN estimators with VAE embeddings, achieving 5-10% gains on RoboMimic; captures information content but collapses distributional structure to a scalar and is mode-agnostic. RINSE (ICML 2025, arXiv 2604.23000) uses Spectral Arc Length (SAL) and Trajectory-Envelope Distance (TED) smoothness metrics achieving 16-20% success gains; assumes smoothness universally correlates with quality, failing for tasks where jerky motions are correct. SCIZOR (ICRA 2026) combines self-supervised task progress prediction with deduplication, achieving 15.4% average improvement across RoboMimic/OXE/Sirius-Fleet; no theoretical guarantees and conflates lack of progress with low quality. S2I (ICRA 2025) performs segment-level selection using contrastive learning with 3 expert reference demonstrations; requires expert references and cannot operate fully unsupervised. Consistency Matters (ACM THRI 2025) proposes 10 motion-based consistency metrics with 76-91% success prediction accuracy; limited to geometric consistency without distributional analysis. **Policy-free diversity methods**: FAKTUAL (arXiv Mar 2026, 2603.11634) uses signature kernel entropy for diversity-based curation; fully model-free and tested on RoboMimic MH and MetaWorld. Compared against CUPID, DemInf, and Demo-SCORE. FAKTUAL performs modestly above random but below quality-based methods, and *explicitly acknowledges* that 'promoting diversity may actually be harmful when the model is not capable of capturing multimodality in the data.' This is the precise weakness OT-Consensus targets. **Data redundancy in VLA training**: 'On Data Redundancy in VLA Training' (DATA-FM Workshop @ ICLR 2026) shows that random 30% frame sampling of LIBERO matches full-dataset performance for SmolVLA and GR00T N1.5, revealing massive data redundancy. Their Temporal Surprise Score (TSS), a frame-level difficulty-based selection metric, actually underperformed random selection — suggesting that naive quality proxies can be counterproductive and motivating more principled curation approaches. Note: TSS operates at frame-level, while OT-Consensus operates at trajectory-level. **OT-based quality/distance methods (adjacent)**: sWk-means (Luan & Hamp, arXiv 2310.01285, Data Science in Finance and Economics 2025) uses sliced Wasserstein distances + k-means clustering for automated regime detection in multidimensional financial time series. The core algorithmic pipeline — compute SW distances between distributional representations of sequential data, then cluster in SW space — is a methodological precursor to OT-Consensus's first two steps. However, sWk-means (a) stops at cluster assignment and does not compute barycenters or score quality within clusters; (b) operates on financial time series regimes, not robot trajectory measures; (c) has no filtering or curation pipeline. OT-Consensus extends this SW+clustering pipeline with three key additions: robust barycenters for within-mode quality scoring, the trajectory-as-measure representation design for robot demonstrations (visual-encoder features + actions + temporal grounding), and the mode-aware curation pipeline that filters within modes while preserving cross-mode diversity. BWD/'Expert or not?' (arXiv Oct 2025, 2510.12638) introduces Bellman Wasserstein Distance for quality scoring in offline RL — value-aware OT requiring a behavioral critic; operates in RL, not IL. SWAD (Pallage & Lesage-Landry, arXiv Apr 2025, 2504.12918) uses sliced-Wasserstein distance for unsupervised anomaly detection on i.i.d. tabular data; operates on individual data points, not trajectory measures. LWAIL (ICLR 2026, 2603.05440) uses Wasserstein for state-only distribution matching in adversarial IL policy learning — addresses policy learning, not data curation. **OT in robot learning (not curation)**: OTR (ICLR 2023) assigns rewards via OT. Temporal OT Reward (NeurIPS 2024) extends with temporal ordering. GWIL (ICLR 2022) uses OT for cross-domain imitation. ROT (NeurIPS 2022) uses regularized OT for trajectory matching. **Complementary approaches**: Learning from Imperfect Demonstrations via Temporal BT-Guided Trajectory Repair (arXiv Apr 2026, 2604.04225) repairs suboptimal trajectories rather than filtering them — complementary to curation approaches. **OT theory**: Robust Wasserstein Barycenter (arXiv Mar 2026) proves existence and consistency of outlier-robust barycenters. Outlier-Robust OT (Nietert et al., AISTATS 2022) provides minimax estimation rates for robust Wasserstein distances under ε-contamination. k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024) gives constant-factor approximations. s-OTDD (ICML 2025) demonstrates scalable sliced OT for dataset distance. **Gap**: No existing method provides training-free, mode-aware quality scoring using distributional OT geometry. FAKTUAL is mode-agnostic (diversity); DemInf/RINSE/SCIZOR are mode-agnostic (scalar quality proxies); Robometer is a learned scorer but not mode-aware and requires 1M+ trajectories; CUPID/DataMIL are mode-aware in principle but policy-dependent; sWk-means uses SW+clustering but stops at regime identification without quality scoring. OT-Consensus uniquely combines mode awareness, quality scoring, and training-free operation.\",\n  \"approach\": \"**Overview**: OT-Consensus is a training-free, mode-aware demonstration quality scoring method. We reframe the demonstration curation problem as: *given multimodal demonstrations, score quality within each strategy mode rather than globally.* The core conceptual contribution is that quality should be assessed relative to mode-specific consensus, not global diversity or global statistics — and that Sliced Wasserstein geometry naturally enables this by providing a metric space where trajectories cluster by strategy and quality is measured by distributional distance from each mode's robust center. This extends the SW+clustering pipeline introduced by sWk-means (Luan & Hamp, DSFE 2025) from financial regime detection to robot demonstration curation, with three key additions: robust barycenters for quality scoring, trajectory-as-measure representation for robot demonstrations, and mode-aware filtering. We target a focused empirical contribution for CoRL 2026 with formal theoretical analysis deferred. **Representation design**: Each demonstration trajectory τ = {(o_t, a_t, t/T)}_{t=1}^{T} is mapped to a discrete probability measure μ_τ over an embedding space. Visual observations o_t are encoded via a frozen pre-trained visual encoder into d-dimensional features; actions a_t remain in raw action space (typically 7D for manipulation); normalized timestep t/T provides temporal grounding. The ground metric is a weighted sum: c((v₁,a₁,t₁), (v₂,a₂,t₂)) = λ_v‖v₁−v₂‖² + λ_a‖a₁−a₂‖² + λ_t|t₁−t₂|², with λ weights selected via validation on a held-out task (not held-out demonstrations within the same task). **Encoder choice and transparency**: The default encoder is SigLIP-SO400M — deliberately chosen because it is SmolVLA's own vision encoder, meaning the quality metric operates in the same representation space the downstream policy will learn from. This is a design feature: OT-Consensus scores quality in the space *relevant to the policy*, not an arbitrary embedding space. However, this creates a potential confound — results might reflect representation overlap rather than the OT scoring itself. We therefore include DINOv2 as a mandatory ablation to demonstrate that the method generalizes beyond SmolVLA's own encoder. **Scalable pairwise distances**: We use Sliced Wasserstein-2 (SW2) distances — projecting measures onto random 1D subspaces and averaging closed-form 1D OT solutions, achieving O(Ln log n) per pair where L is the number of projections (50–200) and n is trajectory length. For RoboMimic (300 demos), the N² pairwise matrix is computationally tractable. **Mode discovery and quality scoring**: (1) Compute SW2 pairwise distance matrix over all trajectory measures. (2) Perform k-medoid clustering in SW2-distance space to discover strategy modes (k selected via silhouette analysis). (3) Within each cluster, compute the robust barycenter using trimmed-mean OT (trimming ε-fraction of mass). (4) Score each trajectory by its SW2-distance to its cluster's robust barycenter — lower distance = higher quality (closer to mode consensus). **Relationship to sWk-means**: Steps 1-2 share the SW-distance + clustering pipeline with sWk-means (Luan & Hamp, DSFE 2025), which uses it for financial regime detection. OT-Consensus extends this with: (a) the trajectory-as-measure representation (visual features + actions + temporal grounding), designed for robot demonstrations rather than financial distributions; (b) robust barycenter computation within each cluster (step 3), which sWk-means does not perform; (c) the quality scoring and filtering pipeline (step 4), which transforms cluster membership into actionable curation decisions. **Why mode-aware quality beats mode-agnostic diversity — explicit hypotheses**: (H1) *Mode-aware quality vs. mode-agnostic diversity*: FAKTUAL maximizes global entropy, which on multimodal data retains low-quality demonstrations from each mode for coverage. OT-Consensus scores quality within each discovered mode, correctly deprioritizing within-mode outliers while preserving cross-mode diversity. Prediction: on RoboMimic MH, FAKTUAL retains Worse-operator demonstrations because they're 'diverse' (different from Better operators), while OT-Consensus correctly identifies them as low-quality within their strategy mode. (H2) *Distributional shape vs. scalar proxies*: MI (DemInf) computes a scalar dependency between states and actions, collapsing distributional structure. Two trajectories with identical MI but different spatiotemporal shapes are indistinguishable under MI but distinguishable under SW2. (H3) *Temporal structure preservation*: The time component of the ground metric captures temporal alignment — a trajectory with correct actions at wrong timings scores differently from one with correct timing. Smoothness metrics (RINSE) ignore whether temporally smooth trajectories are actually performing the task correctly. (H4) *Variable-length handling*: Representing trajectories as measures naturally handles variable-length demonstrations without padding or truncation. (H5) *No learned components*: Unlike DemInf (k-NN estimator + VAE), SCIZOR (self-supervised predictor), S2I (contrastive learning + expert demos), FAKTUAL (signature kernel computation), or Robometer (VLM pre-trained on 1M+ trajectories), OT-Consensus uses only a frozen visual encoder and closed-form OT — fully deterministic scoring with no training beyond the frozen encoder. **Key differentiations vs. related OT work**: Unlike BWD, we require no value functions, rewards, or behavioral critic — we operate purely on trajectory geometry. Unlike SWAD, we represent each trajectory as a probability measure (not a single point) and compute SW2 between measures, capturing trajectory structure. Unlike LWAIL, we address data curation, not policy learning. Unlike Robometer, we require no pre-training on large-scale trajectory datasets and are mode-aware by construction. **Minimum success criterion**: We consider the method validated if OT-Consensus achieves Spearman correlation with operator proficiency ≥0.1 higher than the best mode-agnostic proxy (DemInf MI or RINSE smoothness), AND downstream SmolVLA success rate improvement ≥5% absolute over the best policy-free baseline on the evaluated tasks. If these thresholds are not met, the contribution reduces to a negative result showing that distributional trajectory distances do not outperform simpler scalar proxies for demonstration curation — which is itself informative for the field but would not constitute a positive contribution. **Theoretical motivation (informal for CoRL, formal in extended version)**: Under an ε-contamination noise model where (1−ε) of demonstrations are 'clean' and ε are corrupted, the robust barycenter β* converges to the clean barycenter. Clean trajectories concentrate around β* while corrupted trajectories deviate. Extending Nietert et al.'s robust OT estimation guarantees to detection guarantees (false-positive/negative rates for outlier identification) constitutes non-trivial theoretical work deferred to AAAI 2027. **Evaluation design — two tiers for timeline management**: **Tier A (Minimal Viable Paper — commit by May 22)**: (a) *Primary experiment — quality metric comparison*: Compute OT-Consensus, FAKTUAL (entropy), DemInf (MI), RINSE (smoothness), and SCIZOR (progress) scores on all 300 RoboMimic MH demos. Evaluate each metric's correlation with known operator proficiency (Spearman rank correlation, AUC for separating Better vs. Worse operators). Critically: analyze what each metric does with the 6 operators' different strategies — does FAKTUAL retain Worse-operator demos for diversity? Does OT-Consensus correctly identify within-mode quality? (b) *Downstream policy performance*: Fine-tune SmolVLA (450M) on filtered subsets (top-50% by each metric) on 2 tasks (Can, Square — chosen for difficulty spread) × 1 seed per baseline. Compare OT-Consensus vs. FAKTUAL, DemInf, RINSE, SCIZOR, random filtering. (c) *Essential ablation*: SigLIP vs. DINOv2 encoder on metric comparison to show results aren't artifacts of encoder-policy representation overlap. **Tier B (Full Paper — expand if on track by May 22)**: Add Lift and Transport tasks, increase to 3 seeds, add top-33% filtering threshold, add ablations (k-medoid in SW2 vs. k-means in SigLIP embedding space; ground metric weight sensitivity; SW2 projection count sensitivity). **Extended version (AAAI 2027)**: Add OpenVLA-OFT (7B), LIBERO benchmark, formal theoretical analysis, S2I and CUPID as additional baselines, Robometer as an additional comparison, comprehensive ablations.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200h A100 for CoRL Tier A (OT computation: ~15h — SW2 pairwise over 300 trajectories with frozen encoders; FAKTUAL signature kernel: ~5h; baseline score computation: ~15h; SmolVLA fine-tuning: ~4h/run × 2 tasks × 6 conditions × 1 seed = 48h; DINOv2 ablation: ~20h; buffer: ~30h). Tier B adds ~100h (2 more tasks × 6 conditions × 3 seeds = 144h, but many reusable from Tier A). Extended AAAI version adds ~700h (OpenVLA-OFT + LIBERO + Robometer comparison + ablations).\",\n      \"gpu_utilization\": \"~70% for CoRL sprint — researcher implementing SW2 + FAKTUAL pipelines, analyzing clustering results, and writing paper between experiment batches.\",\n      \"timeline\": \"CoRL 2026: 16-day sprint (May 13–29, abstract deadline May 26 11:59 UTC, paper deadline May 29 11:59 UTC). Tier A commit point: May 22. Tier B expansion: May 23–28. Writing: continuous. AAAI 2027 extension: additional 6–8 weeks for theory + extended experiments.\",\n      \"team\": \"CoRL: 1 researcher, full-time sprint with pre-existing GPU access and familiarity with lerobot/POT/geomloss. Must also install/run FAKTUAL signature kernel code. AAAI extension: +1 collaborator for theoretical proofs.\",\n      \"estimated_gpu_cost\": \"CoRL Tier A: $300 (200h × $1.50/h). Tier B: +$150. AAAI extension: +$1,050. Total if all: $1,500.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~180h A100 for CoRL Tier A\",\n      \"gpu_utilization\": \"~85% — agent handles SW2 pipeline implementation using POT/geomloss, FAKTUAL reproduction, SmolVLA fine-tuning orchestration, and baseline reproduction; human focuses on experiment design, result interpretation, and paper writing\",\n      \"timeline\": \"CoRL: 14 days (with 2-day buffer). Tier A by May 22. AAAI extension: +4–6 weeks.\",\n      \"team\": \"1 researcher, ~4–5h/day during CoRL sprint for experiment design, analysis, and writing; agent handles implementation and job orchestration\",\n      \"claude_api_cost\": \"$100–200 for CoRL (750–1500 turns). +$150–300 for AAAI extension.\",\n      \"estimated_gpu_cost\": \"CoRL Tier A: $270 (180h × $1.50/h). Tier B: +$120. AAAI extension: +$900.\",\n      \"risk_note\": \"CoRL sprint is tight at 16 days. Tier A (minimal viable paper) is designed to be completable in 9 days of compute, leaving 7 days for expansion and writing. Key risk: FAKTUAL code availability — if signature kernel code isn't publicly released, must re-implement from paper, adding 3-4 days (signature kernel entropy estimation is mathematically non-trivial, requiring careful handling of truncation level and kernel bandwidth).\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~300h A100 for CoRL Tier A+B\",\n      \"gpu_utilization\": \"~90% — agent queues experiments continuously; parallel ablations across SW2 hyperparameters and SmolVLA fine-tuning runs\",\n      \"timeline\": \"CoRL: 10–12 days with 4 concurrent A100 GPUs. AAAI extension: +2–3 weeks.\",\n      \"team\": \"0 for CoRL experiments (initial setup: configure dataset paths, GPU access, library installation). Theory for AAAI requires human mathematician.\",\n      \"claude_api_cost\": \"$200–400 for CoRL. +$200–400 for AAAI extension.\",\n      \"estimated_gpu_cost\": \"CoRL: $450 (300h × $1.50/h). AAAI extension: +$1,500.\",\n      \"speed_bottleneck\": \"GPU count for parallel SmolVLA fine-tuning (each run needs 1 A100). With 4 A100s, Tier A experiments complete in ~24h compute. FAKTUAL reproduction may require installing signature kernel libraries.\",\n      \"risk_note\": \"Agent may over-explore hyperparameters without converging; FAKTUAL reproduction requires understanding signature kernel implementations (3-4 days if re-implementing from scratch). Theory for AAAI version cannot be automated.\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract deadline May 26 11:59 UTC, paper deadline May 29 11:59 UTC — note: official Instruction for Authors page states 'Thursday 5/28 EOD' which corresponds to May 29 11:59 UTC; primary target, empirical-focused version: mode-aware SW2 scoring vs. FAKTUAL diversity + metric comparison + SmolVLA on RoboMimic, 8 pages, no formal theory)\",\n    \"AAAI 2027 (deadline expected ~August 2026 — extended version with formal outlier detection theory, OpenVLA-OFT experiments, LIBERO benchmark, and Robometer comparison)\",\n    \"ICLR 2027 (deadline expected ~October 2026 — most complete version, backup if AAAI timeline is insufficient for theory)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Diversity You Can Actually Measure: A Fast, Model-Free Diversity Metric for Robotics Datasets [FAKTUAL] (arXiv Mar 2026, 2603.11634)\",\n    \"CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)\",\n    \"Robot Data Curation with Mutual Information Estimators [DemInf] (RSS 2025)\",\n    \"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (ICLR 2026)\",\n    \"Curating Demonstrations using Online Experience [Demo-SCORE] (RSS 2025)\",\n    \"SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026)\",\n    \"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning [QoQ] (arXiv Mar 2026)\",\n    \"Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning [RINSE] (ICML 2025, arXiv 2604.23000)\",\n    \"S2I: Select Segments to Imitate — Segment-Level Selection and Optimization for Mixed-Quality Demonstrations (ICRA 2025)\",\n    \"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons (RSS 2026, arXiv 2603.02115)\",\n    \"Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering [sWk-means] (Luan & Hamp, arXiv 2310.01285, Data Science in Finance and Economics 2025)\",\n    \"On Data Redundancy in VLA Training [TSS] (DATA-FM Workshop @ ICLR 2026)\",\n    \"Expert or not? Assessing Data Quality in Offline Reinforcement Learning [BWD] (arXiv Oct 2025, 2510.12638)\",\n    \"Sliced-Wasserstein Distance-based Data Selection [SWAD] (Pallage & Lesage-Landry, arXiv Apr 2025, 2504.12918)\",\n    \"Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration (ACM THRI 2025)\",\n    \"Latent Wasserstein Adversarial Imitation Learning [LWAIL] (ICLR 2026, 2603.05440)\",\n    \"Learning from Imperfect Demonstrations via Temporal BT-Guided Trajectory Repair (arXiv Apr 2026, 2604.04225)\",\n    \"Optimal Transport for Offline Imitation Learning [OTR] (ICLR 2023)\",\n    \"Robot Policy Learning with Temporal Optimal Transport Reward (NeurIPS 2024)\",\n    \"Cross-Domain Imitation Learning via Optimal Transport [GWIL] (ICLR 2022)\",\n    \"Watch and Match: Supercharging Imitation with Regularized Optimal Transport [ROT] (NeurIPS 2022)\",\n    \"Outlier-Robust Optimal Transport: Duality, Structure, and Statistical Analysis (Nietert et al., AISTATS 2022)\",\n    \"Robust Wasserstein Barycenter (arXiv Mar 2026)\",\n    \"Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024)\",\n    \"Barycenters in the Wasserstein Space (SIAM J. Math. Anal. 2011)\",\n    \"Lightspeed Geometric Dataset Distance via Sliced Optimal Transport [s-OTDD] (ICML 2025)\",\n    \"Minibatch Optimal Transport Distances: Analysis and Applications (Fatras et al., arXiv 2021, 2101.01792)\",\n    \"Unbalanced Minibatch Optimal Transport; Applications to Domain Adaptation (Fatras et al., ICML 2021)\",\n    \"Prioritized Experience Replay (ICLR 2016)\"\n  ],\n  \"description\": \"We propose OT-Consensus, a training-free, mode-aware method for scoring demonstration quality in robot learning datasets using optimal transport geometry. The central insight is that quality should be assessed relative to mode-specific consensus, not maximized globally as diversity — directly addressing the acknowledged limitation of diversity-based curation (FAKTUAL) that 'promoting diversity may be harmful when data contains multiple strategies.' Each trajectory is represented as a discrete measure over visual-encoder-embedded state-action-time tuples (using frozen SigLIP or DINOv2 features), and pairwise Sliced Wasserstein-2 (SW2) distances capture distributional similarity at O(Ln log n) per pair. We perform k-medoid clustering in SW2 space to discover strategy modes, then score each demonstration by its SW2-distance from its cluster's robust barycenter (computed via trimmed outlier-robust OT). The SW+clustering pipeline extends sWk-means (Luan & Hamp, DSFE 2025) — originally used for financial regime detection — with three key additions: robust barycenters for quality scoring, trajectory-as-measure representation for robot demonstrations, and mode-aware filtering. Unlike FAKTUAL (which maximizes diversity and retains low-quality demonstrations from each mode for coverage), OT-Consensus provides mode-aware quality scoring — it preserves cross-mode diversity while filtering within-mode noise. Unlike policy-dependent methods (CUPID, DataMIL), it requires no trained policy, validation set, or online rollouts. Unlike learned reward models (Robometer), it requires no pre-training on 1M+ trajectories and is mode-aware by construction. Unlike scalar proxy methods (DemInf's MI, RINSE's smoothness), it captures full distributional shape and temporal structure. We define a concrete minimum success criterion: Spearman correlation with operator proficiency ≥0.1 above the best mode-agnostic proxy AND ≥5% absolute downstream success rate improvement over the best policy-free baseline; failure to meet these thresholds yields an informative negative result. We explicitly test the diversity-vs-quality hypothesis via a head-to-head metric comparison on RoboMimic multi-human (300 demos from 6 operators across 3 proficiency levels), where ground-truth labels enable direct evaluation of which approach better separates good from bad demonstrations when multiple valid strategies coexist. We transparently address the encoder choice (SigLIP-SO400M is SmolVLA's own encoder, creating representation alignment that is a design feature, with DINOv2 ablation proving generalization). The paper follows a tiered plan: Tier A (minimal viable paper by May 22 — metric comparison + 2-task downstream + encoder ablation) and Tier B (full paper by May 28 — 4 tasks × 3 seeds + comprehensive ablations). Formal outlier detection theory is deferred to an extended AAAI 2027 version.\",\n  \"project_name\": \"ot_traj_consensus\",\n  \"source\": \"web_research\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42369e1b-9744-4218-b9c4-9b92edd4be85",
+  "isSidechain": false,
+  "requestId": "req_011Cb11CZ4cQRQjj9SLCTSE3",
+  "type": "assistant",
+  "uuid": "0653b1c6-0e4d-4969-92ef-a6b4b31b51bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013EvH7UZ5bt1ajNxJ5szei7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 39425,
+      "output_tokens": 9099,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 600,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9099,
+          "cache_read_input_tokens": 39425,
+          "cache_creation_input_tokens": 600,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 600
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-13T18:03:51.577Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01TU12W7eM7Shps291Sz2ege`</summary>
+
+```text
+Claude requested permissions to write to /tmp/revised_idea.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0653b1c6-0e4d-4969-92ef-a6b4b31b51bd",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "bbd841dd-5088-4142-bdb2-a78e1009e904",
+  "toolUseResult": "Error: Claude requested permissions to write to /tmp/revised_idea.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "0653b1c6-0e4d-4969-92ef-a6b4b31b51bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasse…",
+  "leafUuid": "bbd841dd-5088-4142-bdb2-a78e1009e904",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OT-Consensus with mode-aware quality scoring for robot learning",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-13T18:06:04.149Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01SAG84ToBZWj383BsV5pxDj`</summary>
+
+```json
+{
+  "file_path": "/tmp/revised_idea.json",
+  "content": "{\n  \"title\": \"Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasserstein Consensus\",\n  \"change_type\": \"minor\",\n  \"core_problem\": \"How should we curate multimodal demonstration datasets that contain multiple valid strategies of varying quality? Diversity-maximizing approaches (FAKTUAL) improve average performance but explicitly fail when demonstrations contain conflicting strategies — blindly including diverse-but-poor demonstrations degrades learning. Quality-scoring approaches (CUPID, DataMIL) work well but require expensive policy training, validation rollouts, or influence function estimation. Learned reward models (Robometer) can score trajectory quality without a task-specific policy but require 1M+ training trajectories and are not mode-aware. The field lacks a training-free quality scoring method that is *mode-aware* — one that discovers distinct strategy modes in the data and scores quality within each mode, rather than treating all demonstrations as drawn from a single distribution.\",\n  \"opportunity\": \"The demonstration curation landscape has crystallized into four camps: (1) *policy-dependent quality methods* (CUPID, DataMIL, Demo-SCORE, QoQ) that achieve SOTA but require trained policies or validation rollouts; (2) *policy-free learned quality methods* (Robometer) that train general-purpose reward models on massive trajectory datasets to score quality without a task-specific policy, but require 1M+ training trajectories for pre-training and are not mode-aware — they assign a global quality score without distinguishing between multiple valid strategies; (3) *policy-free quality proxies* (DemInf, RINSE, SCIZOR) that use scalar metrics (MI, smoothness, progress) but collapse distributional structure and are mode-agnostic; and (4) *policy-free diversity methods* (FAKTUAL) that maximize trajectory entropy but explicitly acknowledge 'promoting diversity may actually be harmful when the model is not capable of capturing multimodality in the data.' This reveals a fundamental tension: diversity-based curation fails precisely when demonstrations are multimodal (multiple valid strategies), because it retains low-quality demonstrations from each mode for the sake of coverage. Recent evidence further motivates intelligent curation: 'On Data Redundancy in VLA Training' (DATA-FM @ ICLR 2026) shows that random 30% sampling of LIBERO matches full-dataset SmolVLA performance, revealing massive data redundancy — but their difficulty-based Temporal Surprise Score underperformed random selection, suggesting that naive quality proxies can be counterproductive. Empirically, FAKTUAL performs only modestly above random selection on RoboMimic MH, well below quality-based methods. The key gap: no existing training-free method provides *mode-aware quality scoring* — discovering strategy modes and assessing quality relative to mode-specific consensus, rather than against a single global reference, via a mode-agnostic scalar proxy, or through a learned reward model that treats all demonstrations as a single population. Optimal transport geometry fills this gap naturally: Sliced Wasserstein distances define a metric space over trajectory distributions that captures shape, spread, and temporal structure; clustering in this space discovers strategy modes; and distance from each mode's robust barycenter provides a geometrically grounded, mode-aware quality score. This fills the 'good methods to quantify data quality' gap (ICLR 2026 VLA blog) with an approach that is simultaneously training-free, mode-aware, and distributional — complementary to learned scorers (Robometer), diversity-based methods (FAKTUAL), and policy-dependent methods (CUPID).\",\n  \"landscape\": \"**Policy-dependent quality methods**: CUPID (CoRL 2025) uses influence functions estimating each demonstration's causal impact on closed-loop policy return, achieving SOTA on RoboMimic with <33% of curated data; requires a trained policy and evaluation rollouts. DataMIL (ICLR 2026) uses the datamodels paradigm for end-to-end policy-driven selection validated on 60+ tasks including OXE; requires surrogate loss computation with policy training. Demo-SCORE (RSS 2025) trains classifiers on online rollout success/failure to self-curate, achieving 15-35% gains; requires online robot interaction. QoQ (arXiv Mar 2026) uses influence functions with theoretical analysis but requires a validation set and scales O(n²). **Policy-free learned quality methods**: Robometer (RSS 2026, arXiv 2603.02115) trains a general-purpose VLM-based reward model (Qwen3-VL-4B) on RBM-1M (1M+ trajectories across 21 embodiments) using a dual objective of frame-level progress supervision and trajectory-level preference learning. Achieves strong results on reward benchmarks and supports data retrieval for IL (4.5× higher success rate than baselines on retrieval tasks). However, Robometer (a) requires 1M+ training trajectories (~6TB) for pre-training — infeasible when curating smaller datasets without pre-existing large-scale data; (b) is NOT mode-aware — it assigns a single global quality score per trajectory without distinguishing between multiple valid strategies; (c) was not evaluated against demonstration curation methods (CUPID, DemInf, RINSE, SCIZOR, FAKTUAL) — its comparisons are against VLM reward models (RoboReward, GVL, VLAC). OT-Consensus is complementary: training-free, mode-aware, and geometric, requiring no pre-training data. **Policy-free quality proxies**: DemInf (RSS 2025) estimates trajectory-level mutual information between states and actions via k-NN estimators with VAE embeddings, achieving 5-10% gains on RoboMimic; captures information content but collapses distributional structure to a scalar and is mode-agnostic. RINSE (ICML 2025, arXiv 2604.23000) uses Spectral Arc Length (SAL) and Trajectory-Envelope Distance (TED) smoothness metrics achieving 16-20% success gains; assumes smoothness universally correlates with quality, failing for tasks where jerky motions are correct. SCIZOR (ICRA 2026) combines self-supervised task progress prediction with deduplication, achieving 15.4% average improvement across RoboMimic/OXE/Sirius-Fleet; no theoretical guarantees and conflates lack of progress with low quality. S2I (ICRA 2025) performs segment-level selection using contrastive learning with 3 expert reference demonstrations; requires expert references and cannot operate fully unsupervised. Consistency Matters (ACM THRI 2025) proposes 10 motion-based consistency metrics with 76-91% success prediction accuracy; limited to geometric consistency without distributional analysis. **Policy-free diversity methods**: FAKTUAL (arXiv Mar 2026, 2603.11634) uses signature kernel entropy for diversity-based curation; fully model-free and tested on RoboMimic MH and MetaWorld. Compared against CUPID, DemInf, and Demo-SCORE. FAKTUAL performs modestly above random but below quality-based methods, and *explicitly acknowledges* that 'promoting diversity may actually be harmful when the model is not capable of capturing multimodality in the data.' This is the precise weakness OT-Consensus targets. **Data redundancy in VLA training**: 'On Data Redundancy in VLA Training' (DATA-FM Workshop @ ICLR 2026) shows that random 30% frame sampling of LIBERO matches full-dataset performance for SmolVLA and GR00T N1.5, revealing massive data redundancy. Their Temporal Surprise Score (TSS), a frame-level difficulty-based selection metric, actually underperformed random selection — suggesting that naive quality proxies can be counterproductive and motivating more principled curation approaches. Note: TSS operates at frame-level, while OT-Consensus operates at trajectory-level. **OT-based quality/distance methods (adjacent)**: sWk-means (Luan & Hamp, arXiv 2310.01285, Data Science in Finance and Economics 2025) uses sliced Wasserstein distances + k-means clustering for automated regime detection in multidimensional financial time series. The core algorithmic pipeline — compute SW distances between distributional representations of sequential data, then cluster in SW space — is a methodological precursor to OT-Consensus's first two steps. However, sWk-means (a) stops at cluster assignment and does not compute barycenters or score quality within clusters; (b) operates on financial time series regimes, not robot trajectory measures; (c) has no filtering or curation pipeline. OT-Consensus extends this SW+clustering pipeline with three key additions: robust barycenters for within-mode quality scoring, the trajectory-as-measure representation design for robot demonstrations (visual-encoder features + actions + temporal grounding), and the mode-aware curation pipeline that filters within modes while preserving cross-mode diversity. BWD/'Expert or not?' (arXiv Oct 2025, 2510.12638) introduces Bellman Wasserstein Distance for quality scoring in offline RL — value-aware OT requiring a behavioral critic; operates in RL, not IL. SWAD (Pallage & Lesage-Landry, arXiv Apr 2025, 2504.12918) uses sliced-Wasserstein distance for unsupervised anomaly detection on i.i.d. tabular data; operates on individual data points, not trajectory measures. LWAIL (ICLR 2026, 2603.05440) uses Wasserstein for state-only distribution matching in adversarial IL policy learning — addresses policy learning, not data curation. **OT in robot learning (not curation)**: OTR (ICLR 2023) assigns rewards via OT. Temporal OT Reward (NeurIPS 2024) extends with temporal ordering. GWIL (ICLR 2022) uses OT for cross-domain imitation. ROT (NeurIPS 2022) uses regularized OT for trajectory matching. **Complementary approaches**: Learning from Imperfect Demonstrations via Temporal BT-Guided Trajectory Repair (arXiv Apr 2026, 2604.04225) repairs suboptimal trajectories rather than filtering them — complementary to curation approaches. **OT theory**: Robust Wasserstein Barycenter (arXiv Mar 2026) proves existence and consistency of outlier-robust barycenters. Outlier-Robust OT (Nietert et al., AISTATS 2022) provides minimax estimation rates for robust Wasserstein distances under ε-contamination. k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024) gives constant-factor approximations. s-OTDD (ICML 2025) demonstrates scalable sliced OT for dataset distance. **Gap**: No existing method provides training-free, mode-aware quality scoring using distributional OT geometry. FAKTUAL is mode-agnostic (diversity); DemInf/RINSE/SCIZOR are mode-agnostic (scalar quality proxies); Robometer is a learned scorer but not mode-aware and requires 1M+ trajectories; CUPID/DataMIL are mode-aware in principle but policy-dependent; sWk-means uses SW+clustering but stops at regime identification without quality scoring. OT-Consensus uniquely combines mode awareness, quality scoring, and training-free operation.\",\n  \"approach\": \"**Overview**: OT-Consensus is a training-free, mode-aware demonstration quality scoring method. We reframe the demonstration curation problem as: *given multimodal demonstrations, score quality within each strategy mode rather than globally.* The core conceptual contribution is that quality should be assessed relative to mode-specific consensus, not global diversity or global statistics — and that Sliced Wasserstein geometry naturally enables this by providing a metric space where trajectories cluster by strategy and quality is measured by distributional distance from each mode's robust center. This extends the SW+clustering pipeline introduced by sWk-means (Luan & Hamp, DSFE 2025) from financial regime detection to robot demonstration curation, with three key additions: robust barycenters for quality scoring, trajectory-as-measure representation for robot demonstrations, and mode-aware filtering. We target a focused empirical contribution for CoRL 2026 with formal theoretical analysis deferred. **Representation design**: Each demonstration trajectory τ = {(o_t, a_t, t/T)}_{t=1}^{T} is mapped to a discrete probability measure μ_τ over an embedding space. Visual observations o_t are encoded via a frozen pre-trained visual encoder into d-dimensional features; actions a_t remain in raw action space (typically 7D for manipulation); normalized timestep t/T provides temporal grounding. The ground metric is a weighted sum: c((v₁,a₁,t₁), (v₂,a₂,t₂)) = λ_v‖v₁−v₂‖² + λ_a‖a₁−a₂‖² + λ_t|t₁−t₂|², with λ weights selected via validation on a held-out task (not held-out demonstrations within the same task). **Encoder choice and transparency**: The default encoder is SigLIP-SO400M — deliberately chosen because it is SmolVLA's own vision encoder, meaning the quality metric operates in the same representation space the downstream policy will learn from. This is a design feature: OT-Consensus scores quality in the space *relevant to the policy*, not an arbitrary embedding space. However, this creates a potential confound — results might reflect representation overlap rather than the OT scoring itself. We therefore include DINOv2 as a mandatory ablation to demonstrate that the method generalizes beyond SmolVLA's own encoder. **Scalable pairwise distances**: We use Sliced Wasserstein-2 (SW2) distances — projecting measures onto random 1D subspaces and averaging closed-form 1D OT solutions, achieving O(Ln log n) per pair where L is the number of projections (50–200) and n is trajectory length. For RoboMimic (300 demos), the N² pairwise matrix is computationally tractable. **Mode discovery and quality scoring**: (1) Compute SW2 pairwise distance matrix over all trajectory measures. (2) Perform k-medoid clustering in SW2-distance space to discover strategy modes (k selected via silhouette analysis). (3) Within each cluster, compute the robust barycenter using trimmed-mean OT (trimming ε-fraction of mass). (4) Score each trajectory by its SW2-distance to its cluster's robust barycenter — lower distance = higher quality (closer to mode consensus). **Relationship to sWk-means**: Steps 1-2 share the SW-distance + clustering pipeline with sWk-means (Luan & Hamp, DSFE 2025), which uses it for financial regime detection. OT-Consensus extends this with: (a) the trajectory-as-measure representation (visual features + actions + temporal grounding), designed for robot demonstrations rather than financial distributions; (b) robust barycenter computation within each cluster (step 3), which sWk-means does not perform; (c) the quality scoring and filtering pipeline (step 4), which transforms cluster membership into actionable curation decisions. **Why mode-aware quality beats mode-agnostic diversity — explicit hypotheses**: (H1) *Mode-aware quality vs. mode-agnostic diversity*: FAKTUAL maximizes global entropy, which on multimodal data retains low-quality demonstrations from each mode for coverage. OT-Consensus scores quality within each discovered mode, correctly deprioritizing within-mode outliers while preserving cross-mode diversity. Prediction: on RoboMimic MH, FAKTUAL retains Worse-operator demonstrations because they're 'diverse' (different from Better operators), while OT-Consensus correctly identifies them as low-quality within their strategy mode. (H2) *Distributional shape vs. scalar proxies*: MI (DemInf) computes a scalar dependency between states and actions, collapsing distributional structure. Two trajectories with identical MI but different spatiotemporal shapes are indistinguishable under MI but distinguishable under SW2. (H3) *Temporal structure preservation*: The time component of the ground metric captures temporal alignment — a trajectory with correct actions at wrong timings scores differently from one with correct timing. Smoothness metrics (RINSE) ignore whether temporally smooth trajectories are actually performing the task correctly. (H4) *Variable-length handling*: Representing trajectories as measures naturally handles variable-length demonstrations without padding or truncation. (H5) *No learned components*: Unlike DemInf (k-NN estimator + VAE), SCIZOR (self-supervised predictor), S2I (contrastive learning + expert demos), FAKTUAL (signature kernel computation), or Robometer (VLM pre-trained on 1M+ trajectories), OT-Consensus uses only a frozen visual encoder and closed-form OT — fully deterministic scoring with no training beyond the frozen encoder. **Key differentiations vs. related OT work**: Unlike BWD, we require no value functions, rewards, or behavioral critic — we operate purely on trajectory geometry. Unlike SWAD, we represent each trajectory as a probability measure (not a single point) and compute SW2 between measures, capturing trajectory structure. Unlike LWAIL, we address data curation, not policy learning. Unlike Robometer, we require no pre-training on large-scale trajectory datasets and are mode-aware by construction. **Minimum success criterion**: We consider the method validated if OT-Consensus achieves Spearman correlation with operator proficiency ≥0.1 higher than the best mode-agnostic proxy (DemInf MI or RINSE smoothness), AND downstream SmolVLA success rate improvement ≥5% absolute over the best policy-free baseline on the evaluated tasks. If these thresholds are not met, the contribution reduces to a negative result showing that distributional trajectory distances do not outperform simpler scalar proxies for demonstration curation — which is itself informative for the field but would not constitute a positive contribution. **Theoretical motivation (informal for CoRL, formal in extended version)**: Under an ε-contamination noise model where (1−ε) of demonstrations are 'clean' and ε are corrupted, the robust barycenter β* converges to the clean barycenter. Clean trajectories concentrate around β* while corrupted trajectories deviate. Extending Nietert et al.'s robust OT estimation guarantees to detection guarantees (false-positive/negative rates for outlier identification) constitutes non-trivial theoretical work deferred to AAAI 2027. **Evaluation design — two tiers for timeline management**: **Tier A (Minimal Viable Paper — commit by May 22)**: (a) *Primary experiment — quality metric comparison*: Compute OT-Consensus, FAKTUAL (entropy), DemInf (MI), RINSE (smoothness), and SCIZOR (progress) scores on all 300 RoboMimic MH demos. Evaluate each metric's correlation with known operator proficiency (Spearman rank correlation, AUC for separating Better vs. Worse operators). Critically: analyze what each metric does with the 6 operators' different strategies — does FAKTUAL retain Worse-operator demos for diversity? Does OT-Consensus correctly identify within-mode quality? (b) *Downstream policy performance*: Fine-tune SmolVLA (450M) on filtered subsets (top-50% by each metric) on 2 tasks (Can, Square — chosen for difficulty spread) × 1 seed per baseline. Compare OT-Consensus vs. FAKTUAL, DemInf, RINSE, SCIZOR, random filtering. (c) *Essential ablation*: SigLIP vs. DINOv2 encoder on metric comparison to show results aren't artifacts of encoder-policy representation overlap. **Tier B (Full Paper — expand if on track by May 22)**: Add Lift and Transport tasks, increase to 3 seeds, add top-33% filtering threshold, add ablations (k-medoid in SW2 vs. k-means in SigLIP embedding space; ground metric weight sensitivity; SW2 projection count sensitivity). **Extended version (AAAI 2027)**: Add OpenVLA-OFT (7B), LIBERO benchmark, formal theoretical analysis, S2I and CUPID as additional baselines, Robometer as an additional comparison, comprehensive ablations.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200h A100 for CoRL Tier A (OT computation: ~15h — SW2 pairwise over 300 trajectories with frozen encoders; FAKTUAL signature kernel: ~5h; baseline score computation: ~15h; SmolVLA fine-tuning: ~4h/run × 2 tasks × 6 conditions × 1 seed = 48h; DINOv2 ablation: ~20h; buffer: ~30h). Tier B adds ~100h (2 more tasks × 6 conditions × 3 seeds = 144h, but many reusable from Tier A). Extended AAAI version adds ~700h (OpenVLA-OFT + LIBERO + Robometer comparison + ablations).\",\n      \"gpu_utilization\": \"~70% for CoRL sprint — researcher implementing SW2 + FAKTUAL pipelines, analyzing clustering results, and writing paper between experiment batches.\",\n      \"timeline\": \"CoRL 2026: 16-day sprint (May 13–29, abstract deadline May 26 11:59 UTC, paper deadline May 29 11:59 UTC). Tier A commit point: May 22. Tier B expansion: May 23–28. Writing: continuous. AAAI 2027 extension: additional 6–8 weeks for theory + extended experiments.\",\n      \"team\": \"CoRL: 1 researcher, full-time sprint with pre-existing GPU access and familiarity with lerobot/POT/geomloss. Must also install/run FAKTUAL signature kernel code. AAAI extension: +1 collaborator for theoretical proofs.\",\n      \"estimated_gpu_cost\": \"CoRL Tier A: $300 (200h × $1.50/h). Tier B: +$150. AAAI extension: +$1,050. Total if all: $1,500.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~180h A100 for CoRL Tier A\",\n      \"gpu_utilization\": \"~85% — agent handles SW2 pipeline implementation using POT/geomloss, FAKTUAL reproduction, SmolVLA fine-tuning orchestration, and baseline reproduction; human focuses on experiment design, result interpretation, and paper writing\",\n      \"timeline\": \"CoRL: 14 days (with 2-day buffer). Tier A by May 22. AAAI extension: +4–6 weeks.\",\n      \"team\": \"1 researcher, ~4–5h/day during CoRL sprint for experiment design, analysis, and writing; agent handles implementation and job orchestration\",\n      \"claude_api_cost\": \"$100–200 for CoRL (750–1500 turns). +$150–300 for AAAI extension.\",\n      \"estimated_gpu_cost\": \"CoRL Tier A: $270 (180h × $1.50/h). Tier B: +$120. AAAI extension: +$900.\",\n      \"risk_note\": \"CoRL sprint is tight at 16 days. Tier A (minimal viable paper) is designed to be completable in 9 days of compute, leaving 7 days for expansion and writing. Key risk: FAKTUAL code availability — if signature kernel code isn't publicly released, must re-implement from paper, adding 3-4 days (signature kernel entropy estimation is mathematically non-trivial, requiring careful handling of truncation level and kernel bandwidth).\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~300h A100 for CoRL Tier A+B\",\n      \"gpu_utilization\": \"~90% — agent queues experiments continuously; parallel ablations across SW2 hyperparameters and SmolVLA fine-tuning runs\",\n      \"timeline\": \"CoRL: 10–12 days with 4 concurrent A100 GPUs. AAAI extension: +2–3 weeks.\",\n      \"team\": \"0 for CoRL experiments (initial setup: configure dataset paths, GPU access, library installation). Theory for AAAI requires human mathematician.\",\n      \"claude_api_cost\": \"$200–400 for CoRL. +$200–400 for AAAI extension.\",\n      \"estimated_gpu_cost\": \"CoRL: $450 (300h × $1.50/h). AAAI extension: +$1,500.\",\n      \"speed_bottleneck\": \"GPU count for parallel SmolVLA fine-tuning (each run needs 1 A100). With 4 A100s, Tier A experiments complete in ~24h compute. FAKTUAL reproduction may require installing signature kernel libraries.\",\n      \"risk_note\": \"Agent may over-explore hyperparameters without converging; FAKTUAL reproduction requires understanding signature kernel implementations (3-4 days if re-implementing from scratch). Theory for AAAI version cannot be automated.\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract deadline May 26 11:59 UTC, paper deadline May 29 11:59 UTC — note: official Instruction for Authors page states 'Thursday 5/28 EOD' which corresponds to May 29 11:59 UTC when interpreted as AoE; primary target, empirical-focused version: mode-aware SW2 scoring vs. FAKTUAL diversity + metric comparison + SmolVLA on RoboMimic, 8 pages, no formal theory)\",\n    \"AAAI 2027 (deadline expected ~August 2026 — extended version with formal outlier detection theory, OpenVLA-OFT experiments, LIBERO benchmark, and Robometer comparison)\",\n    \"ICLR 2027 (deadline expected ~October 2026 — most complete version, backup if AAAI timeline is insufficient for theory)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Diversity You Can Actually Measure: A Fast, Model-Free Diversity Metric for Robotics Datasets [FAKTUAL] (arXiv Mar 2026, 2603.11634)\",\n    \"CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)\",\n    \"Robot Data Curation with Mutual Information Estimators [DemInf] (RSS 2025)\",\n    \"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (ICLR 2026)\",\n    \"Curating Demonstrations using Online Experience [Demo-SCORE] (RSS 2025)\",\n    \"SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026)\",\n    \"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning [QoQ] (arXiv Mar 2026)\",\n    \"Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning [RINSE] (ICML 2025, arXiv 2604.23000)\",\n    \"S2I: Select Segments to Imitate — Segment-Level Selection and Optimization for Mixed-Quality Demonstrations (ICRA 2025)\",\n    \"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons (RSS 2026, arXiv 2603.02115)\",\n    \"Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering [sWk-means] (Luan & Hamp, arXiv 2310.01285, Data Science in Finance and Economics 2025)\",\n    \"On Data Redundancy in VLA Training [TSS] (DATA-FM Workshop @ ICLR 2026)\",\n    \"Expert or not? Assessing Data Quality in Offline Reinforcement Learning [BWD] (arXiv Oct 2025, 2510.12638)\",\n    \"Sliced-Wasserstein Distance-based Data Selection [SWAD] (Pallage & Lesage-Landry, arXiv Apr 2025, 2504.12918)\",\n    \"Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration (ACM THRI 2025)\",\n    \"Latent Wasserstein Adversarial Imitation Learning [LWAIL] (ICLR 2026, 2603.05440)\",\n    \"Learning from Imperfect Demonstrations via Temporal BT-Guided Trajectory Repair (arXiv Apr 2026, 2604.04225)\",\n    \"Optimal Transport for Offline Imitation Learning [OTR] (ICLR 2023)\",\n    \"Robot Policy Learning with Temporal Optimal Transport Reward (NeurIPS 2024)\",\n    \"Cross-Domain Imitation Learning via Optimal Transport [GWIL] (ICLR 2022)\",\n    \"Watch and Match: Supercharging Imitation with Regularized Optimal Transport [ROT] (NeurIPS 2022)\",\n    \"Outlier-Robust Optimal Transport: Duality, Structure, and Statistical Analysis (Nietert et al., AISTATS 2022)\",\n    \"Robust Wasserstein Barycenter (arXiv Mar 2026)\",\n    \"Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024)\",\n    \"Barycenters in the Wasserstein Space (SIAM J. Math. Anal. 2011)\",\n    \"Lightspeed Geometric Dataset Distance via Sliced Optimal Transport [s-OTDD] (ICML 2025)\",\n    \"Minibatch Optimal Transport Distances: Analysis and Applications (Fatras et al., arXiv 2021, 2101.01792)\",\n    \"Unbalanced Minibatch Optimal Transport; Applications to Domain Adaptation (Fatras et al., ICML 2021)\",\n    \"Prioritized Experience Replay (ICLR 2016)\"\n  ],\n  \"description\": \"We propose OT-Consensus, a training-free, mode-aware method for scoring demonstration quality in robot learning datasets using optimal transport geometry. The central insight is that quality should be assessed relative to mode-specific consensus, not maximized globally as diversity — directly addressing the acknowledged limitation of diversity-based curation (FAKTUAL) that 'promoting diversity may be harmful when data contains multiple strategies.' Each trajectory is represented as a discrete measure over visual-encoder-embedded state-action-time tuples (using frozen SigLIP or DINOv2 features), and pairwise Sliced Wasserstein-2 (SW2) distances capture distributional similarity at O(Ln log n) per pair. We perform k-medoid clustering in SW2 space to discover strategy modes, then score each demonstration by its SW2-distance from its cluster's robust barycenter (computed via trimmed outlier-robust OT). The SW+clustering pipeline extends sWk-means (Luan & Hamp, DSFE 2025) — originally used for financial regime detection — with three key additions: robust barycenters for quality scoring, trajectory-as-measure representation for robot demonstrations, and mode-aware filtering. Unlike FAKTUAL (which maximizes diversity and retains low-quality demonstrations from each mode for coverage), OT-Consensus provides mode-aware quality scoring — it preserves cross-mode diversity while filtering within-mode noise. Unlike policy-dependent methods (CUPID, DataMIL), it requires no trained policy, validation set, or online rollouts. Unlike learned reward models (Robometer), it requires no pre-training on 1M+ trajectories and is mode-aware by construction. Unlike scalar proxy methods (DemInf's MI, RINSE's smoothness), it captures full distributional shape and temporal structure. We define a concrete minimum success criterion: Spearman correlation with operator proficiency ≥0.1 above the best mode-agnostic proxy AND ≥5% absolute downstream success rate improvement over the best policy-free baseline; failure to meet these thresholds yields an informative negative result. We explicitly test the diversity-vs-quality hypothesis via a head-to-head metric comparison on RoboMimic multi-human (300 demos from 6 operators across 3 proficiency levels), where ground-truth labels enable direct evaluation of which approach better separates good from bad demonstrations when multiple valid strategies coexist. We transparently address the encoder choice (SigLIP-SO400M is SmolVLA's own encoder, creating representation alignment that is a design feature, with DINOv2 ablation proving generalization). The paper follows a tiered plan: Tier A (minimal viable paper by May 22 — metric comparison + 2-task downstream + encoder ablation) and Tier B (full paper by May 28 — 4 tasks × 3 seeds + comprehensive ablations). Formal outlier detection theory is deferred to an extended AAAI 2027 version.\",\n  \"project_name\": \"ot_traj_consensus\",\n  \"source\": \"web_research\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbd841dd-5088-4142-bdb2-a78e1009e904",
+  "isSidechain": false,
+  "requestId": "req_011Cb11UnYfxHFngaqdG4HQn",
+  "type": "assistant",
+  "uuid": "f31e0d50-e029-48d1-a913-b46c616495a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VWV47s1pNzNmjB83enS5TH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9140,
+      "cache_read_input_tokens": 40025,
+      "output_tokens": 8015,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9140,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8015,
+          "cache_read_input_tokens": 40025,
+          "cache_creation_input_tokens": 9140,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9140
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-13T18:06:04.161Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01SAG84ToBZWj383BsV5pxDj`</summary>
+
+```text
+Claude requested permissions to write to /tmp/revised_idea.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f31e0d50-e029-48d1-a913-b46c616495a9",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "ab2b64a0-5dc2-45c5-9cf1-7159ddb92d39",
+  "toolUseResult": "Error: Claude requested permissions to write to /tmp/revised_idea.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "f31e0d50-e029-48d1-a913-b46c616495a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-13T18:08:15.773Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01W9mPNJNfMRa4FDYRAJHdem`</summary>
+
+```json
+{
+  "file_path": "/tmp/revised_idea.json",
+  "content": "{\n  \"title\": \"Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasserstein Consensus\",\n  \"change_type\": \"minor\",\n  \"core_problem\": \"How should we curate multimodal demonstration datasets that contain multiple valid strategies of varying quality? Diversity-maximizing approaches (FAKTUAL) improve average performance but explicitly fail when demonstrations contain conflicting strategies — blindly including diverse-but-poor demonstrations degrades learning. Quality-scoring approaches (CUPID, DataMIL) work well but require expensive policy training, validation rollouts, or influence function estimation. Learned reward models (Robometer) can score trajectory quality without a task-specific policy but require 1M+ training trajectories and are not mode-aware. The field lacks a training-free quality scoring method that is *mode-aware* — one that discovers distinct strategy modes in the data and scores quality within each mode, rather than treating all demonstrations as drawn from a single distribution.\",\n  \"opportunity\": \"The demonstration curation landscape has crystallized into four camps: (1) *policy-dependent quality methods* (CUPID, DataMIL, Demo-SCORE, QoQ) that achieve SOTA but require trained policies or validation rollouts; (2) *policy-free learned quality methods* (Robometer) that train general-purpose reward models on massive trajectory datasets to score quality without a task-specific policy, but require 1M+ training trajectories for pre-training and are not mode-aware — they assign a global quality score without distinguishing between multiple valid strategies; (3) *policy-free quality proxies* (DemInf, RINSE, SCIZOR) that use scalar metrics (MI, smoothness, progress) but collapse distributional structure and are mode-agnostic; and (4) *policy-free diversity methods* (FAKTUAL) that maximize trajectory entropy but explicitly acknowledge 'promoting diversity may actually be harmful when the model is not capable of capturing multimodality in the data.' This reveals a fundamental tension: diversity-based curation fails precisely when demonstrations are multimodal (multiple valid strategies), because it retains low-quality demonstrations from each mode for the sake of coverage. Recent evidence further motivates intelligent curation: 'On Data Redundancy in VLA Training' (DATA-FM @ ICLR 2026) shows that random 30% sampling of LIBERO matches full-dataset SmolVLA performance, revealing massive data redundancy — but their difficulty-based Temporal Surprise Score underperformed random selection, suggesting that naive quality proxies can be counterproductive. Empirically, FAKTUAL performs only modestly above random selection on RoboMimic MH, well below quality-based methods. The key gap: no existing training-free method provides *mode-aware quality scoring* — discovering strategy modes and assessing quality relative to mode-specific consensus, rather than against a single global reference, via a mode-agnostic scalar proxy, or through a learned reward model that treats all demonstrations as a single population. Optimal transport geometry fills this gap naturally: Sliced Wasserstein distances define a metric space over trajectory distributions that captures shape, spread, and temporal structure; clustering in this space discovers strategy modes; and distance from each mode's robust barycenter provides a geometrically grounded, mode-aware quality score. This fills the 'good methods to quantify data quality' gap (ICLR 2026 VLA blog) with an approach that is simultaneously training-free, mode-aware, and distributional — complementary to learned scorers (Robometer), diversity-based methods (FAKTUAL), and policy-dependent methods (CUPID).\",\n  \"landscape\": \"**Policy-dependent quality methods**: CUPID (CoRL 2025) uses influence functions estimating each demonstration's causal impact on closed-loop policy return, achieving SOTA on RoboMimic with <33% of curated data; requires a trained policy and evaluation rollouts. DataMIL (ICLR 2026) uses the datamodels paradigm for end-to-end policy-driven selection validated on 60+ tasks including OXE; requires surrogate loss computation with policy training. Demo-SCORE (RSS 2025) trains classifiers on online rollout success/failure to self-curate, achieving 15-35% gains; requires online robot interaction. QoQ (arXiv Mar 2026) uses influence functions with theoretical analysis but requires a validation set and scales O(n²). **Policy-free learned quality methods**: Robometer (RSS 2026, arXiv 2603.02115) trains a general-purpose VLM-based reward model (Qwen3-VL-4B) on RBM-1M (1M+ trajectories across 21 embodiments) using a dual objective of frame-level progress supervision and trajectory-level preference learning. Achieves strong results on reward benchmarks and supports data retrieval for IL (4.5× higher success rate than baselines on retrieval tasks). However, Robometer (a) requires 1M+ training trajectories (~6TB) for pre-training — infeasible when curating smaller datasets without pre-existing large-scale data; (b) is NOT mode-aware — it assigns a single global quality score per trajectory without distinguishing between multiple valid strategies; (c) was not evaluated against demonstration curation methods (CUPID, DemInf, RINSE, SCIZOR, FAKTUAL) — its comparisons are against VLM reward models (RoboReward, GVL, VLAC). OT-Consensus is complementary: training-free, mode-aware, and geometric, requiring no pre-training data. **Policy-free quality proxies**: DemInf (RSS 2025) estimates trajectory-level mutual information between states and actions via k-NN estimators with VAE embeddings, achieving 5-10% gains on RoboMimic; captures information content but collapses distributional structure to a scalar and is mode-agnostic. RINSE (ICML 2025, arXiv 2604.23000) uses Spectral Arc Length (SAL) and Trajectory-Envelope Distance (TED) smoothness metrics achieving 16-20% success gains; assumes smoothness universally correlates with quality, failing for tasks where jerky motions are correct. SCIZOR (ICRA 2026) combines self-supervised task progress prediction with deduplication, achieving 15.4% average improvement across RoboMimic/OXE/Sirius-Fleet; no theoretical guarantees and conflates lack of progress with low quality. S2I (ICRA 2025) performs segment-level selection using contrastive learning with 3 expert reference demonstrations; requires expert references and cannot operate fully unsupervised. Consistency Matters (ACM THRI 2025) proposes 10 motion-based consistency metrics with 76-91% success prediction accuracy; limited to geometric consistency without distributional analysis. **Policy-free diversity methods**: FAKTUAL (arXiv Mar 2026, 2603.11634) uses signature kernel entropy for diversity-based curation; fully model-free and tested on RoboMimic MH and MetaWorld. Compared against CUPID, DemInf, and Demo-SCORE. FAKTUAL performs modestly above random but below quality-based methods, and *explicitly acknowledges* that 'promoting diversity may actually be harmful when the model is not capable of capturing multimodality in the data.' This is the precise weakness OT-Consensus targets. **Data redundancy in VLA training**: 'On Data Redundancy in VLA Training' (DATA-FM Workshop @ ICLR 2026) shows that random 30% frame sampling of LIBERO matches full-dataset performance for SmolVLA and GR00T N1.5, revealing massive data redundancy. Their Temporal Surprise Score (TSS), a frame-level difficulty-based selection metric, actually underperformed random selection — suggesting that naive quality proxies can be counterproductive and motivating more principled curation approaches. Note: TSS operates at frame-level, while OT-Consensus operates at trajectory-level. **OT-based quality/distance methods (adjacent)**: sWk-means (Luan & Hamp, arXiv 2310.01285, Data Science in Finance and Economics 2025) uses sliced Wasserstein distances + k-means clustering for automated regime detection in multidimensional financial time series. The core algorithmic pipeline — compute SW distances between distributional representations of sequential data, then cluster in SW space — is a methodological precursor to OT-Consensus's first two steps. However, sWk-means (a) stops at cluster assignment and does not compute barycenters or score quality within clusters; (b) operates on financial time series regimes, not robot trajectory measures; (c) has no filtering or curation pipeline. OT-Consensus extends this SW+clustering pipeline with three key additions: robust barycenters for within-mode quality scoring, the trajectory-as-measure representation design for robot demonstrations (visual-encoder features + actions + temporal grounding), and the mode-aware curation pipeline that filters within modes while preserving cross-mode diversity. BWD/'Expert or not?' (arXiv Oct 2025, 2510.12638) introduces Bellman Wasserstein Distance for quality scoring in offline RL — value-aware OT requiring a behavioral critic; operates in RL, not IL. SWAD (Pallage & Lesage-Landry, arXiv Apr 2025, 2504.12918) uses sliced-Wasserstein distance for unsupervised anomaly detection on i.i.d. tabular data; operates on individual data points, not trajectory measures. LWAIL (ICLR 2026, 2603.05440) uses Wasserstein for state-only distribution matching in adversarial IL policy learning — addresses policy learning, not data curation. **OT in robot learning (not curation)**: OTR (ICLR 2023) assigns rewards via OT. Temporal OT Reward (NeurIPS 2024) extends with temporal ordering. GWIL (ICLR 2022) uses OT for cross-domain imitation. ROT (NeurIPS 2022) uses regularized OT for trajectory matching. **Complementary approaches**: Learning from Imperfect Demonstrations via Temporal BT-Guided Trajectory Repair (arXiv Apr 2026, 2604.04225) repairs suboptimal trajectories rather than filtering them — complementary to curation approaches. **OT theory**: Robust Wasserstein Barycenter (arXiv Mar 2026) proves existence and consistency of outlier-robust barycenters. Outlier-Robust OT (Nietert et al., AISTATS 2022) provides minimax estimation rates for robust Wasserstein distances under ε-contamination. k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024) gives constant-factor approximations. s-OTDD (ICML 2025) demonstrates scalable sliced OT for dataset distance. **Gap**: No existing method provides training-free, mode-aware quality scoring using distributional OT geometry. FAKTUAL is mode-agnostic (diversity); DemInf/RINSE/SCIZOR are mode-agnostic (scalar quality proxies); Robometer is a learned scorer but not mode-aware and requires 1M+ trajectories; CUPID/DataMIL are mode-aware in principle but policy-dependent; sWk-means uses SW+clustering but stops at regime identification without quality scoring. OT-Consensus uniquely combines mode awareness, quality scoring, and training-free operation.\",\n  \"approach\": \"**Overview**: OT-Consensus is a training-free, mode-aware demonstration quality scoring method. We reframe the demonstration curation problem as: *given multimodal demonstrations, score quality within each strategy mode rather than globally.* The core conceptual contribution is that quality should be assessed relative to mode-specific consensus, not global diversity or global statistics — and that Sliced Wasserstein geometry naturally enables this by providing a metric space where trajectories cluster by strategy and quality is measured by distributional distance from each mode's robust center. This extends the SW+clustering pipeline introduced by sWk-means (Luan & Hamp, DSFE 2025) from financial regime detection to robot demonstration curation, with three key additions: robust barycenters for quality scoring, trajectory-as-measure representation for robot demonstrations, and mode-aware filtering. We target a focused empirical contribution for CoRL 2026 with formal theoretical analysis deferred. **Representation design**: Each demonstration trajectory τ = {(o_t, a_t, t/T)}_{t=1}^{T} is mapped to a discrete probability measure μ_τ over an embedding space. Visual observations o_t are encoded via a frozen pre-trained visual encoder into d-dimensional features; actions a_t remain in raw action space (typically 7D for manipulation); normalized timestep t/T provides temporal grounding. The ground metric is a weighted sum: c((v₁,a₁,t₁), (v₂,a₂,t₂)) = λ_v‖v₁−v₂‖² + λ_a‖a₁−a₂‖² + λ_t|t₁−t₂|², with λ weights selected via validation on a held-out task (not held-out demonstrations within the same task). **Encoder choice and transparency**: The default encoder is SigLIP-SO400M — deliberately chosen because it is SmolVLA's own vision encoder, meaning the quality metric operates in the same representation space the downstream policy will learn from. This is a design feature: OT-Consensus scores quality in the space *relevant to the policy*, not an arbitrary embedding space. However, this creates a potential confound — results might reflect representation overlap rather than the OT scoring itself. We therefore include DINOv2 as a mandatory ablation to demonstrate that the method generalizes beyond SmolVLA's own encoder. **Scalable pairwise distances**: We use Sliced Wasserstein-2 (SW2) distances — projecting measures onto random 1D subspaces and averaging closed-form 1D OT solutions, achieving O(Ln log n) per pair where L is the number of projections (50–200) and n is trajectory length. For RoboMimic (300 demos), the N² pairwise matrix is computationally tractable. **Mode discovery and quality scoring**: (1) Compute SW2 pairwise distance matrix over all trajectory measures. (2) Perform k-medoid clustering in SW2-distance space to discover strategy modes (k selected via silhouette analysis). (3) Within each cluster, compute the robust barycenter using trimmed-mean OT (trimming ε-fraction of mass). (4) Score each trajectory by its SW2-distance to its cluster's robust barycenter — lower distance = higher quality (closer to mode consensus). **Relationship to sWk-means**: Steps 1-2 share the SW-distance + clustering pipeline with sWk-means (Luan & Hamp, DSFE 2025), which uses it for financial regime detection. OT-Consensus extends this with: (a) the trajectory-as-measure representation (visual features + actions + temporal grounding), designed for robot demonstrations rather than financial distributions; (b) robust barycenter computation within each cluster (step 3), which sWk-means does not perform; (c) the quality scoring and filtering pipeline (step 4), which transforms cluster membership into actionable curation decisions. **Why mode-aware quality beats mode-agnostic diversity — explicit hypotheses**: (H1) *Mode-aware quality vs. mode-agnostic diversity*: FAKTUAL maximizes global entropy, which on multimodal data retains low-quality demonstrations from each mode for coverage. OT-Consensus scores quality within each discovered mode, correctly deprioritizing within-mode outliers while preserving cross-mode diversity. Prediction: on RoboMimic MH, FAKTUAL retains Worse-operator demonstrations because they're 'diverse' (different from Better operators), while OT-Consensus correctly identifies them as low-quality within their strategy mode. (H2) *Distributional shape vs. scalar proxies*: MI (DemInf) computes a scalar dependency between states and actions, collapsing distributional structure. Two trajectories with identical MI but different spatiotemporal shapes are indistinguishable under MI but distinguishable under SW2. (H3) *Temporal structure preservation*: The time component of the ground metric captures temporal alignment — a trajectory with correct actions at wrong timings scores differently from one with correct timing. Smoothness metrics (RINSE) ignore whether temporally smooth trajectories are actually performing the task correctly. (H4) *Variable-length handling*: Representing trajectories as measures naturally handles variable-length demonstrations without padding or truncation. (H5) *No learned components*: Unlike DemInf (k-NN estimator + VAE), SCIZOR (self-supervised predictor), S2I (contrastive learning + expert demos), FAKTUAL (signature kernel computation), or Robometer (VLM pre-trained on 1M+ trajectories), OT-Consensus uses only a frozen visual encoder and closed-form OT — fully deterministic scoring with no training beyond the frozen encoder. **Key differentiations vs. related OT work**: Unlike BWD, we require no value functions, rewards, or behavioral critic — we operate purely on trajectory geometry. Unlike SWAD, we represent each trajectory as a probability measure (not a single point) and compute SW2 between measures, capturing trajectory structure. Unlike LWAIL, we address data curation, not policy learning. Unlike Robometer, we require no pre-training on large-scale trajectory datasets and are mode-aware by construction. **Minimum success criterion**: We consider the method validated if OT-Consensus achieves Spearman correlation with operator proficiency ≥0.1 higher than the best mode-agnostic proxy (DemInf MI or RINSE smoothness), AND downstream SmolVLA success rate improvement ≥5% absolute over the best policy-free baseline on the evaluated tasks. If these thresholds are not met, the contribution reduces to a negative result showing that distributional trajectory distances do not outperform simpler scalar proxies for demonstration curation — which is itself informative for the field but would not constitute a positive contribution. **Theoretical motivation (informal for CoRL, formal in extended version)**: Under an ε-contamination noise model where (1−ε) of demonstrations are 'clean' and ε are corrupted, the robust barycenter β* converges to the clean barycenter. Clean trajectories concentrate around β* while corrupted trajectories deviate. Extending Nietert et al.'s robust OT estimation guarantees to detection guarantees (false-positive/negative rates for outlier identification) constitutes non-trivial theoretical work deferred to AAAI 2027. **Evaluation design — two tiers for timeline management**: **Tier A (Minimal Viable Paper — commit by May 22)**: (a) *Primary experiment — quality metric comparison*: Compute OT-Consensus, FAKTUAL (entropy), DemInf (MI), RINSE (smoothness), and SCIZOR (progress) scores on all 300 RoboMimic MH demos. Evaluate each metric's correlation with known operator proficiency (Spearman rank correlation, AUC for separating Better vs. Worse operators). Critically: analyze what each metric does with the 6 operators' different strategies — does FAKTUAL retain Worse-operator demos for diversity? Does OT-Consensus correctly identify within-mode quality? (b) *Downstream policy performance*: Fine-tune SmolVLA (450M) on filtered subsets (top-50% by each metric) on 2 tasks (Can, Square — chosen for difficulty spread) × 1 seed per baseline. Compare OT-Consensus vs. FAKTUAL, DemInf, RINSE, SCIZOR, random filtering. (c) *Essential ablation*: SigLIP vs. DINOv2 encoder on metric comparison to show results aren't artifacts of encoder-policy representation overlap. **Tier B (Full Paper — expand if on track by May 22)**: Add Lift and Transport tasks, increase to 3 seeds, add top-33% filtering threshold, add ablations (k-medoid in SW2 vs. k-means in SigLIP embedding space; ground metric weight sensitivity; SW2 projection count sensitivity). **Extended version (AAAI 2027)**: Add OpenVLA-OFT (7B), LIBERO benchmark, formal theoretical analysis, S2I and CUPID as additional baselines, Robometer as an additional comparison, comprehensive ablations.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200h A100 for CoRL Tier A (OT computation: ~15h — SW2 pairwise over 300 trajectories with frozen encoders; FAKTUAL signature kernel: ~5h; baseline score computation: ~15h; SmolVLA fine-tuning: ~4h/run × 2 tasks × 6 conditions × 1 seed = 48h; DINOv2 ablation: ~20h; buffer: ~30h). Tier B adds ~100h (2 more tasks × 6 conditions × 3 seeds = 144h, but many reusable from Tier A). Extended AAAI version adds ~700h (OpenVLA-OFT + LIBERO + Robometer comparison + ablations).\",\n      \"gpu_utilization\": \"~70% for CoRL sprint — researcher implementing SW2 + FAKTUAL pipelines, analyzing clustering results, and writing paper between experiment batches.\",\n      \"timeline\": \"CoRL 2026: 16-day sprint (May 13–29, abstract deadline May 26 11:59 UTC, paper deadline May 29 11:59 UTC). Tier A commit point: May 22. Tier B expansion: May 23–28. Writing: continuous. AAAI 2027 extension: additional 6–8 weeks for theory + extended experiments.\",\n      \"team\": \"CoRL: 1 researcher, full-time sprint with pre-existing GPU access and familiarity with lerobot/POT/geomloss. Must also install/run FAKTUAL signature kernel code. AAAI extension: +1 collaborator for theoretical proofs.\",\n      \"estimated_gpu_cost\": \"CoRL Tier A: $300 (200h × $1.50/h). Tier B: +$150. AAAI extension: +$1,050. Total if all: $1,500.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~180h A100 for CoRL Tier A\",\n      \"gpu_utilization\": \"~85% — agent handles SW2 pipeline implementation using POT/geomloss, FAKTUAL reproduction, SmolVLA fine-tuning orchestration, and baseline reproduction; human focuses on experiment design, result interpretation, and paper writing\",\n      \"timeline\": \"CoRL: 14 days (with 2-day buffer). Tier A by May 22. AAAI extension: +4–6 weeks.\",\n      \"team\": \"1 researcher, ~4–5h/day during CoRL sprint for experiment design, analysis, and writing; agent handles implementation and job orchestration\",\n      \"claude_api_cost\": \"$100–200 for CoRL (750–1500 turns). +$150–300 for AAAI extension.\",\n      \"estimated_gpu_cost\": \"CoRL Tier A: $270 (180h × $1.50/h). Tier B: +$120. AAAI extension: +$900.\",\n      \"risk_note\": \"CoRL sprint is tight at 16 days. Tier A (minimal viable paper) is designed to be completable in 9 days of compute, leaving 7 days for expansion and writing. Key risk: FAKTUAL code availability — if signature kernel code isn't publicly released, must re-implement from paper, adding 3-4 days (signature kernel entropy estimation is mathematically non-trivial, requiring careful handling of truncation level and kernel bandwidth).\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~300h A100 for CoRL Tier A+B\",\n      \"gpu_utilization\": \"~90% — agent queues experiments continuously; parallel ablations across SW2 hyperparameters and SmolVLA fine-tuning runs\",\n      \"timeline\": \"CoRL: 10–12 days with 4 concurrent A100 GPUs. AAAI extension: +2–3 weeks.\",\n      \"team\": \"0 for CoRL experiments (initial setup: configure dataset paths, GPU access, library installation). Theory for AAAI requires human mathematician.\",\n      \"claude_api_cost\": \"$200–400 for CoRL. +$200–400 for AAAI extension.\",\n      \"estimated_gpu_cost\": \"CoRL: $450 (300h × $1.50/h). AAAI extension: +$1,500.\",\n      \"speed_bottleneck\": \"GPU count for parallel SmolVLA fine-tuning (each run needs 1 A100). With 4 A100s, Tier A experiments complete in ~24h compute. FAKTUAL reproduction may require installing signature kernel libraries.\",\n      \"risk_note\": \"Agent may over-explore hyperparameters without converging; FAKTUAL reproduction requires understanding signature kernel implementations (3-4 days if re-implementing from scratch). Theory for AAAI version cannot be automated.\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract deadline May 26 11:59 UTC, paper deadline May 29 11:59 UTC — note: official Instruction for Authors page states 'Thursday 5/28 EOD' which corresponds to May 29 11:59 UTC when interpreted as AoE; primary target, empirical-focused version: mode-aware SW2 scoring vs. FAKTUAL diversity + metric comparison + SmolVLA on RoboMimic, 8 pages, no formal theory)\",\n    \"AAAI 2027 (deadline expected ~August 2026 — extended version with formal outlier detection theory, OpenVLA-OFT experiments, LIBERO benchmark, and Robometer comparison)\",\n    \"ICLR 2027 (deadline expected ~October 2026 — most complete version, backup if AAAI timeline is insufficient for theory)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Diversity You Can Actually Measure: A Fast, Model-Free Diversity Metric for Robotics Datasets [FAKTUAL] (arXiv Mar 2026, 2603.11634)\",\n    \"CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)\",\n    \"Robot Data Curation with Mutual Information Estimators [DemInf] (RSS 2025)\",\n    \"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (ICLR 2026)\",\n    \"Curating Demonstrations using Online Experience [Demo-SCORE] (RSS 2025)\",\n    \"SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026)\",\n    \"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning [QoQ] (arXiv Mar 2026)\",\n    \"Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning [RINSE] (ICML 2025, arXiv 2604.23000)\",\n    \"S2I: Select Segments to Imitate — Segment-Level Selection and Optimization for Mixed-Quality Demonstrations (ICRA 2025)\",\n    \"Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons (RSS 2026, arXiv 2603.02115)\",\n    \"Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering [sWk-means] (Luan & Hamp, arXiv 2310.01285, Data Science in Finance and Economics 2025)\",\n    \"On Data Redundancy in VLA Training [TSS] (DATA-FM Workshop @ ICLR 2026)\",\n    \"Expert or not? Assessing Data Quality in Offline Reinforcement Learning [BWD] (arXiv Oct 2025, 2510.12638)\",\n    \"Sliced-Wasserstein Distance-based Data Selection [SWAD] (Pallage & Lesage-Landry, arXiv Apr 2025, 2504.12918)\",\n    \"Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration (ACM THRI 2025)\",\n    \"Latent Wasserstein Adversarial Imitation Learning [LWAIL] (ICLR 2026, 2603.05440)\",\n    \"Learning from Imperfect Demonstrations via Temporal BT-Guided Trajectory Repair (arXiv Apr 2026, 2604.04225)\",\n    \"Optimal Transport for Offline Imitation Learning [OTR] (ICLR 2023)\",\n    \"Robot Policy Learning with Temporal Optimal Transport Reward (NeurIPS 2024)\",\n    \"Cross-Domain Imitation Learning via Optimal Transport [GWIL] (ICLR 2022)\",\n    \"Watch and Match: Supercharging Imitation with Regularized Optimal Transport [ROT] (NeurIPS 2022)\",\n    \"Outlier-Robust Optimal Transport: Duality, Structure, and Statistical Analysis (Nietert et al., AISTATS 2022)\",\n    \"Robust Wasserstein Barycenter (arXiv Mar 2026)\",\n    \"Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024)\",\n    \"Barycenters in the Wasserstein Space (SIAM J. Math. Anal. 2011)\",\n    \"Lightspeed Geometric Dataset Distance via Sliced Optimal Transport [s-OTDD] (ICML 2025)\",\n    \"Minibatch Optimal Transport Distances: Analysis and Applications (Fatras et al., arXiv 2021, 2101.01792)\",\n    \"Unbalanced Minibatch Optimal Transport; Applications to Domain Adaptation (Fatras et al., ICML 2021)\",\n    \"Prioritized Experience Replay (ICLR 2016)\"\n  ],\n  \"description\": \"We propose OT-Consensus, a training-free, mode-aware method for scoring demonstration quality in robot learning datasets using optimal transport geometry. The central insight is that quality should be assessed relative to mode-specific consensus, not maximized globally as diversity — directly addressing the acknowledged limitation of diversity-based curation (FAKTUAL) that 'promoting diversity may be harmful when data contains multiple strategies.' Each trajectory is represented as a discrete measure over visual-encoder-embedded state-action-time tuples (using frozen SigLIP or DINOv2 features), and pairwise Sliced Wasserstein-2 (SW2) distances capture distributional similarity at O(Ln log n) per pair. We perform k-medoid clustering in SW2 space to discover strategy modes, then score each demonstration by its SW2-distance from its cluster's robust barycenter (computed via trimmed outlier-robust OT). The SW+clustering pipeline extends sWk-means (Luan & Hamp, DSFE 2025) — originally used for financial regime detection — with three key additions: robust barycenters for quality scoring, trajectory-as-measure representation for robot demonstrations, and mode-aware filtering. Unlike FAKTUAL (which maximizes diversity and retains low-quality demonstrations from each mode for coverage), OT-Consensus provides mode-aware quality scoring — it preserves cross-mode diversity while filtering within-mode noise. Unlike policy-dependent methods (CUPID, DataMIL), it requires no trained policy, validation set, or online rollouts. Unlike learned reward models (Robometer), it requires no pre-training on 1M+ trajectories and is mode-aware by construction. Unlike scalar proxy methods (DemInf's MI, RINSE's smoothness), it captures full distributional shape and temporal structure. We define a concrete minimum success criterion: Spearman correlation with operator proficiency ≥0.1 above the best mode-agnostic proxy AND ≥5% absolute downstream success rate improvement over the best policy-free baseline; failure to meet these thresholds yields an informative negative result. We explicitly test the diversity-vs-quality hypothesis via a head-to-head metric comparison on RoboMimic multi-human (300 demos from 6 operators across 3 proficiency levels), where ground-truth labels enable direct evaluation of which approach better separates good from bad demonstrations when multiple valid strategies coexist. We transparently address the encoder choice (SigLIP-SO400M is SmolVLA's own encoder, creating representation alignment that is a design feature, with DINOv2 ablation proving generalization). The paper follows a tiered plan: Tier A (minimal viable paper by May 22 — metric comparison + 2-task downstream + encoder ablation) and Tier B (full paper by May 28 — 4 tasks × 3 seeds + comprehensive ablations). Formal outlier detection theory is deferred to an extended AAAI 2027 version.\",\n  \"project_name\": \"ot_traj_consensus\",\n  \"source\": \"web_research\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab2b64a0-5dc2-45c5-9cf1-7159ddb92d39",
+  "isSidechain": false,
+  "requestId": "req_011Cb11eZ9o1ysqeqce4Ga8e",
+  "type": "assistant",
+  "uuid": "dc5c4d8a-8ce9-48e9-a59c-5d162d5bb702",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012vjdgoqoCoMPZWmVBm2GW4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8057,
+      "cache_read_input_tokens": 49165,
+      "output_tokens": 8015,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8057,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8015,
+          "cache_read_input_tokens": 49165,
+          "cache_creation_input_tokens": 8057,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8057
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-13T18:08:15.778Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01W9mPNJNfMRa4FDYRAJHdem`</summary>
+
+```text
+Claude requested permissions to write to /tmp/revised_idea.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc5c4d8a-8ce9-48e9-a59c-5d162d5bb702",
+  "isSidechain": false,
+  "promptId": "efbcdf95-1896-490e-8911-2a6d528cefee",
+  "type": "user",
+  "uuid": "f122c6d6-ca1f-4e04-b378-4aaff1108cbe",
+  "toolUseResult": "Error: Claude requested permissions to write to /tmp/revised_idea.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "dc5c4d8a-8ce9-48e9-a59c-5d162d5bb702",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 76 · 2026-05-13T18:08:15.793Z_
+
+```json
+{
+  "parentUuid": "f122c6d6-ca1f-4e04-b378-4aaff1108cbe",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d310f1cc-ef3b-45c4-afb6-73ca93a85f6b",
+  "timestamp": "2026-05-13T18:08:15.793Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasse…",
+  "leafUuid": "d310f1cc-ef3b-45c4-afb6-73ca93a85f6b",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OT-Consensus with mode-aware quality scoring for robot learning",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-13T18:14:44.166Z_
+
+Here is the complete revised JSON:
+
+```json
+{
+  "title": "Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasserstein Consensus",
+  "change_type": "minor",
+  "core_problem": "How should we curate multimodal demonstration datasets that contain multiple valid strategies of varying quality? Diversity-maximizing approaches (FAKTUAL) improve average performance but explicitly fail when demonstrations contain conflicting strategies — blindly including diverse-but-poor demonstrations degrades learning. Quality-scoring approaches (CUPID, DataMIL) work well but require expensive policy training, validation rollouts, or influence function estimation. Learned reward models (Robometer) can score trajectory quality without a task-specific policy but require 1M+ training trajectories and are not mode-aware. The field lacks a training-free quality scoring method that is *mode-aware* — one that discovers distinct strategy modes in the data and scores quality within each mode, rather than treating all demonstrations as drawn from a single distribution.",
+  "opportunity": "The demonstration curation landscape has crystallized into four camps: (1) *policy-dependent quality methods* (CUPID, DataMIL, Demo-SCORE, QoQ) that achieve SOTA but require trained policies or validation rollouts; (2) *policy-free learned quality methods* (Robometer) that train general-purpose reward models on massive trajectory datasets to score quality without a task-specific policy, but require 1M+ training trajectories for pre-training and are not mode-aware — they assign a global quality score without distinguishing between multiple valid strategies; (3) *policy-free quality proxies* (DemInf, RINSE, SCIZOR) that use scalar metrics (MI, smoothness, progress) but collapse distributional structure and are mode-agnostic; and (4) *policy-free diversity methods* (FAKTUAL) that maximize trajectory entropy but explicitly acknowledge 'promoting diversity may actually be harmful when the model is not capable of capturing multimodality in the data.' This reveals a fundamental tension: diversity-based curation fails precisely when demonstrations are multimodal (multiple valid strategies), because it retains low-quality demonstrations from each mode for the sake of coverage. Recent evidence further motivates intelligent curation: 'On Data Redundancy in VLA Training' (DATA-FM @ ICLR 2026) shows that random 30% sampling of LIBERO matches full-dataset SmolVLA performance, revealing massive data redundancy — but their difficulty-based Temporal Surprise Score underperformed random selection, suggesting that naive quality proxies can be counterproductive. Empirically, FAKTUAL performs only modestly above random selection on RoboMimic MH, well below quality-based methods. The key gap: no existing training-free method provides *mode-aware quality scoring* — discovering strategy modes and assessing quality relative to mode-specific consensus, rather than against a single global reference, via a mode-agnostic scalar proxy, or through a learned reward model that treats all demonstrations as a single population. Optimal transport geometry fills this gap naturally: Sliced Wasserstein distances define a metric space over trajectory distributions that captures shape, spread, and temporal structure; clustering in this space discovers strategy modes; and distance from each mode's robust barycenter provides a geometrically grounded, mode-aware quality score. This fills the 'good methods to quantify data quality' gap (ICLR 2026 VLA blog) with an approach that is simultaneously training-free, mode-aware, and distributional — complementary to learned scorers (Robometer), diversity-based methods (FAKTUAL), and policy-dependent methods (CUPID).",
+  "landscape": "**Policy-dependent quality methods**: CUPID (CoRL 2025) uses influence functions estimating each demonstration's causal impact on closed-loop policy return, achieving SOTA on RoboMimic with <33% of curated data; requires a trained policy and evaluation rollouts. DataMIL (ICLR 2026) uses the datamodels paradigm for end-to-end policy-driven selection validated on 60+ tasks including OXE; requires surrogate loss computation with policy training. Demo-SCORE (RSS 2025) trains classifiers on online rollout success/failure to self-curate, achieving 15-35% gains; requires online robot interaction. QoQ (arXiv Mar 2026) uses influence functions with theoretical analysis but requires a validation set and scales O(n²). **Policy-free learned quality methods**: Robometer (RSS 2026, arXiv 2603.02115) trains a general-purpose VLM-based reward model (Qwen3-VL-4B) on RBM-1M (1M+ trajectories across 21 embodiments) using a dual objective of frame-level progress supervision and trajectory-level preference learning. Achieves strong results on reward benchmarks and supports data retrieval for IL (4.5× higher success rate than baselines on retrieval tasks). However, Robometer (a) requires 1M+ training trajectories (~6TB) for pre-training — infeasible when curating smaller datasets without pre-existing large-scale data; (b) is NOT mode-aware — it assigns a single global quality score per trajectory without distinguishing between multiple valid strategies; (c) was not evaluated against demonstration curation methods (CUPID, DemInf, RINSE, SCIZOR, FAKTUAL) — its comparisons are against VLM reward models (RoboReward, GVL, VLAC). OT-Consensus is complementary: training-free, mode-aware, and geometric, requiring no pre-training data. **Policy-free quality proxies**: DemInf (RSS 2025) estimates trajectory-level mutual information between states and actions via k-NN estimators with VAE embeddings, achieving 5-10% gains on RoboMimic; captures information content but collapses distributional structure to a scalar and is mode-agnostic. RINSE (ICML 2025, arXiv 2604.23000) uses Spectral Arc Length (SAL) and Trajectory-Envelope Distance (TED) smoothness metrics achieving 16-20% success gains; assumes smoothness universally correlates with quality, failing for tasks where jerky motions are correct. SCIZOR (ICRA 2026) combines self-supervised task progress prediction with deduplication, achieving 15.4% average improvement across RoboMimic/OXE/Sirius-Fleet; no theoretical guarantees and conflates lack of progress with low quality. S2I (ICRA 2025) performs segment-level selection using contrastive learning with 3 expert reference demonstrations; requires expert references and cannot operate fully unsupervised. Consistency Matters (ACM THRI 2025) proposes 10 motion-based consistency metrics with 76-91% success prediction accuracy; limited to geometric consistency without distributional analysis. **Policy-free diversity methods**: FAKTUAL (arXiv Mar 2026, 2603.11634) uses signature kernel entropy for diversity-based curation; fully model-free and tested on RoboMimic MH and MetaWorld. Compared against CUPID, DemInf, and Demo-SCORE. FAKTUAL performs modestly above random but below quality-based methods, and *explicitly acknowledges* that 'promoting diversity may actually be harmful when the model is not capable of capturing multimodality in the data.' This is the precise weakness OT-Consensus targets. **Data redundancy in VLA training**: 'On Data Redundancy in VLA Training' (DATA-FM Workshop @ ICLR 2026) shows that random 30% frame sampling of LIBERO matches full-dataset performance for SmolVLA and GR00T N1.5, revealing massive data redundancy. Their Temporal Surprise Score (TSS), a frame-level difficulty-based selection metric, actually underperformed random selection — suggesting that naive quality proxies can be counterproductive and motivating more principled curation approaches. Note: TSS operates at frame-level, while OT-Consensus operates at trajectory-level. **OT-based quality/distance methods (adjacent)**: sWk-means (Luan & Hamp, arXiv 2310.01285, Data Science in Finance and Economics 2025) uses sliced Wasserstein distances + k-means clustering for automated regime detection in multidimensional financial time series. The core algorithmic pipeline — compute SW distances between distributional representations of sequential data, then cluster in SW space — is a methodological precursor to OT-Consensus's first two steps. However, sWk-means (a) stops at cluster assignment and does not compute barycenters or score quality within clusters; (b) operates on financial time series regimes, not robot trajectory measures; (c) has no filtering or curation pipeline. OT-Consensus extends this SW+clustering pipeline with three key additions: robust barycenters for within-mode quality scoring, the trajectory-as-measure representation design for robot demonstrations (visual-encoder features + actions + temporal grounding), and the mode-aware curation pipeline that filters within modes while preserving cross-mode diversity. BWD/'Expert or not?' (arXiv Oct 2025, 2510.12638) introduces Bellman Wasserstein Distance for quality scoring in offline RL — value-aware OT requiring a behavioral critic; operates in RL, not IL. SWAD (Pallage & Lesage-Landry, arXiv Apr 2025, 2504.12918) uses sliced-Wasserstein distance for unsupervised anomaly detection on i.i.d. tabular data; operates on individual data points, not trajectory measures. LWAIL (ICLR 2026, 2603.05440) uses Wasserstein for state-only distribution matching in adversarial IL policy learning — addresses policy learning, not data curation. **OT in robot learning (not curation)**: OTR (ICLR 2023) assigns rewards via OT. Temporal OT Reward (NeurIPS 2024) extends with temporal ordering. GWIL (ICLR 2022) uses OT for cross-domain imitation. ROT (NeurIPS 2022) uses regularized OT for trajectory matching. **Complementary approaches**: Learning from Imperfect Demonstrations via Temporal BT-Guided Trajectory Repair (arXiv Apr 2026, 2604.04225) repairs suboptimal trajectories rather than filtering them — complementary to curation approaches. **OT theory**: Robust Wasserstein Barycenter (arXiv Mar 2026) proves existence and consistency of outlier-robust barycenters. Outlier-Robust OT (Nietert et al., AISTATS 2022) provides minimax estimation rates for robust Wasserstein distances under ε-contamination. k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024) gives constant-factor approximations. s-OTDD (ICML 2025) demonstrates scalable sliced OT for dataset distance. **Gap**: No existing method provides training-free, mode-aware quality scoring using distributional OT geometry. FAKTUAL is mode-agnostic (diversity); DemInf/RINSE/SCIZOR are mode-agnostic (scalar quality proxies); Robometer is a learned scorer but not mode-aware and requires 1M+ trajectories; CUPID/DataMIL are mode-aware in principle but policy-dependent; sWk-means uses SW+clustering but stops at regime identification without quality scoring. OT-Consensus uniquely combines mode awareness, quality scoring, and training-free operation.",
+  "approach": "**Overview**: OT-Consensus is a training-free, mode-aware demonstration quality scoring method. We reframe the demonstration curation problem as: *given multimodal demonstrations, score quality within each strategy mode rather than globally.* The core conceptual contribution is that quality should be assessed relative to mode-specific consensus, not global diversity or global statistics — and that Sliced Wasserstein geometry naturally enables this by providing a metric space where trajectories cluster by strategy and quality is measured by distributional distance from each mode's robust center. This extends the SW+clustering pipeline introduced by sWk-means (Luan & Hamp, DSFE 2025) from financial regime detection to robot demonstration curation, with three key additions: robust barycenters for quality scoring, trajectory-as-measure representation for robot demonstrations, and mode-aware filtering. We target a focused empirical contribution for CoRL 2026 with formal theoretical analysis deferred. **Representation design**: Each demonstration trajectory τ = {(o_t, a_t, t/T)}_{t=1}^{T} is mapped to a discrete probability measure μ_τ over an embedding space. Visual observations o_t are encoded via a frozen pre-trained visual encoder into d-dimensional features; actions a_t remain in raw action space (typically 7D for manipulation); normalized timestep t/T provides temporal grounding. The ground metric is a weighted sum: c((v₁,a₁,t₁), (v₂,a₂,t₂)) = λ_v‖v₁−v₂‖² + λ_a‖a₁−a₂‖² + λ_t|t₁−t₂|², with λ weights selected via validation on a held-out task (not held-out demonstrations within the same task). **Encoder choice and transparency**: The default encoder is SigLIP-SO400M — deliberately chosen because it is SmolVLA's own vision encoder, meaning the quality metric operates in the same representation space the downstream policy will learn from. This is a design feature: OT-Consensus scores quality in the space *relevant to the policy*, not an arbitrary embedding space. However, this creates a potential confound — results might reflect representation overlap rather than the OT scoring itself. We therefore include DINOv2 as a mandatory ablation to demonstrate that the method generalizes beyond SmolVLA's own encoder. **Scalable pairwise distances**: We use Sliced Wasserstein-2 (SW2) distances — projecting measures onto random 1D subspaces and averaging closed-form 1D OT solutions, achieving O(Ln log n) per pair where L is the number of projections (50–200) and n is trajectory length. For RoboMimic (300 demos), the N² pairwise matrix is computationally tractable. **Mode discovery and quality scoring**: (1) Compute SW2 pairwise distance matrix over all trajectory measures. (2) Perform k-medoid clustering in SW2-distance space to discover strategy modes (k selected via silhouette analysis). (3) Within each cluster, compute the robust barycenter using trimmed-mean OT (trimming ε-fraction of mass). (4) Score each trajectory by its SW2-distance to its cluster's robust barycenter — lower distance = higher quality (closer to mode consensus). **Relationship to sWk-means**: Steps 1-2 share the SW-distance + clustering pipeline with sWk-means (Luan & Hamp, DSFE 2025), which uses it for financial regime detection. OT-Consensus extends this with: (a) the trajectory-as-measure representation (visual features + actions + temporal grounding), designed for robot demonstrations rather than financial distributions; (b) robust barycenter computation within each cluster (step 3), which sWk-means does not perform; (c) the quality scoring and filtering pipeline (step 4), which transforms cluster membership into actionable curation decisions. **Why mode-aware quality beats mode-agnostic diversity — explicit hypotheses**: (H1) *Mode-aware quality vs. mode-agnostic diversity*: FAKTUAL maximizes global entropy, which on multimodal data retains low-quality demonstrations from each mode for coverage. OT-Consensus scores quality within each discovered mode, correctly deprioritizing within-mode outliers while preserving cross-mode diversity. Prediction: on RoboMimic MH, FAKTUAL retains Worse-operator demonstrations because they're 'diverse' (different from Better operators), while OT-Consensus correctly identifies them as low-quality within their strategy mode. (H2) *Distributional shape vs. scalar proxies*: MI (DemInf) computes a scalar dependency between states and actions, collapsing distributional structure. Two trajectories with identical MI but different spatiotemporal shapes are indistinguishable under MI but distinguishable under SW2. (H3) *Temporal structure preservation*: The time component of the ground metric captures temporal alignment — a trajectory with correct actions at wrong timings scores differently from one with correct timing. Smoothness metrics (RINSE) ignore whether temporally smooth trajectories are actually performing the task correctly. (H4) *Variable-length handling*: Representing trajectories as measures naturally handles variable-length demonstrations without padding or truncation. (H5) *No learned components*: Unlike DemInf (k-NN estimator + VAE), SCIZOR (self-supervised predictor), S2I (contrastive learning + expert demos), FAKTUAL (signature kernel computation), or Robometer (VLM pre-trained on 1M+ trajectories), OT-Consensus uses only a frozen visual encoder and closed-form OT — fully deterministic scoring with no training beyond the frozen encoder. **Key differentiations vs. related OT work**: Unlike BWD, we require no value functions, rewards, or behavioral critic — we operate purely on trajectory geometry. Unlike SWAD, we represent each trajectory as a probability measure (not a single point) and compute SW2 between measures, capturing trajectory structure. Unlike LWAIL, we address data curation, not policy learning. Unlike Robometer, we require no pre-training on large-scale trajectory datasets and are mode-aware by construction. **Minimum success criterion**: We consider the method validated if OT-Consensus achieves Spearman correlation with operator proficiency ≥0.1 higher than the best mode-agnostic proxy (DemInf MI or RINSE smoothness), AND downstream SmolVLA success rate improvement ≥5% absolute over the best policy-free baseline on the evaluated tasks. If these thresholds are not met, the contribution reduces to a negative result showing that distributional trajectory distances do not outperform simpler scalar proxies for demonstration curation — which is itself informative for the field but would not constitute a positive contribution. **Theoretical motivation (informal for CoRL, formal in extended version)**: Under an ε-contamination noise model where (1−ε) of demonstrations are 'clean' and ε are corrupted, the robust barycenter β* converges to the clean barycenter. Clean trajectories concentrate around β* while corrupted trajectories deviate. Extending Nietert et al.'s robust OT estimation guarantees to detection guarantees (false-positive/negative rates for outlier identification) constitutes non-trivial theoretical work deferred to AAAI 2027. **Evaluation design — two tiers for timeline management**: **Tier A (Minimal Viable Paper — commit by May 22)**: (a) *Primary experiment — quality metric comparison*: Compute OT-Consensus, FAKTUAL (entropy), DemInf (MI), RINSE (smoothness), and SCIZOR (progress) scores on all 300 RoboMimic MH demos. Evaluate each metric's correlation with known operator proficiency (Spearman rank correlation, AUC for separating Better vs. Worse operators). Critically: analyze what each metric does with the 6 operators' different strategies — does FAKTUAL retain Worse-operator demos for diversity? Does OT-Consensus correctly identify within-mode quality? (b) *Downstream policy performance*: Fine-tune SmolVLA (450M) on filtered subsets (top-50% by each metric) on 2 tasks (Can, Square — chosen for difficulty spread) × 1 seed per baseline. Compare OT-Consensus vs. FAKTUAL, DemInf, RINSE, SCIZOR, random filtering. (c) *Essential ablation*: SigLIP vs. DINOv2 encoder on metric comparison to show results aren't artifacts of encoder-policy representation overlap. **Tier B (Full Paper — expand if on track by May 22)**: Add Lift and Transport tasks, increase to 3 seeds, add top-33% filtering threshold, add ablations (k-medoid in SW2 vs. k-means in SigLIP embedding space; ground metric weight sensitivity; SW2 projection count sensitivity). **Extended version (AAAI 2027)**: Add OpenVLA-OFT (7B), LIBERO benchmark, formal theoretical analysis, S2I and CUPID as additional baselines, Robometer as an additional comparison, comprehensive ablations.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h A100 for CoRL Tier A (OT computation: ~15h — SW2 pairwise over 300 trajectories with frozen encoders; FAKTUAL signature kernel: ~5h; baseline score computation: ~15h; SmolVLA fine-tuning: ~4h/run × 2 tasks × 6 conditions × 1 seed = 48h; DINOv2 ablation: ~20h; buffer: ~30h). Tier B adds ~100h (2 more tasks × 6 conditions × 3 seeds = 144h, but many reusable from Tier A). Extended AAAI version adds ~700h (OpenVLA-OFT + LIBERO + Robometer comparison + ablations).",
+      "gpu_utilization": "~70% for CoRL sprint — researcher implementing SW2 + FAKTUAL pipelines, analyzing clustering results, and writing paper between experiment batches.",
+      "timeline": "CoRL 2026: 16-day sprint (May 13–29, abstract deadline May 26 11:59 UTC, paper deadline May 29 11:59 UTC). Tier A commit point: May 22. Tier B expansion: May 23–28. Writing: continuous. AAAI 2027 extension: additional 6–8 weeks for theory + extended experiments.",
+      "team": "CoRL: 1 researcher, full-time sprint with pre-existing GPU access and familiarity with lerobot/POT/geomloss. Must also install/run FAKTUAL signature kernel code. AAAI extension: +1 collaborator for theoretical proofs.",
+      "estimated_gpu_cost": "CoRL Tier A: $300 (200h × $1.50/h). Tier B: +$150. AAAI extension: +$1,050. Total if all: $1,500."
+    },
+    "human_in_loop": {
+      "gpu_hours": "~180h A100 for CoRL Tier A",
+      "gpu_utilization": "~85% — agent handles SW2 pipeline implementation using POT/geomloss, FAKTUAL reproduction, SmolVLA fine-tuning orchestration, and baseline reproduction; human focuses on experiment design, result interpretation, and paper writing",
+      "timeline": "CoRL: 14 days (with 2-day buffer). Tier A by May 22. AAAI extension: +4–6 weeks.",
+      "team": "1 researcher, ~4–5h/day during CoRL sprint for experiment design, analysis, and writing; agent handles implementation and job orchestration",
+      "claude_api_cost": "$100–200 for CoRL (750–1500 turns). +$150–300 for AAAI extension.",
+      "estimated_gpu_cost": "CoRL Tier A: $270 (180h × $1.50/h). Tier B: +$120. AAAI extension: +$900.",
+      "risk_note": "CoRL sprint is tight at 16 days. Tier A (minimal viable paper) is designed to be completable in 9 days of compute, leaving 7 days for expansion and writing. Key risk: FAKTUAL code availability — if signature kernel code isn't publicly released, must re-implement from paper, adding 3-4 days (signature kernel entropy estimation is mathematically non-trivial, requiring careful handling of truncation level and kernel bandwidth)."
+    },
+    "auto_research": {
+      "gpu_hours": "~300h A100 for CoRL Tier A+B",
+      "gpu_utilization": "~90% — agent queues experiments continuously; parallel ablations across SW2 hyperparameters and SmolVLA fine-tuning runs",
+      "timeline": "CoRL: 10–12 days with 4 concurrent A100 GPUs. AAAI extension: +2–3 weeks.",
+      "team": "0 for CoRL experiments (initial setup: configure dataset paths, GPU access, library installation). Theory for AAAI requires human mathematician.",
+      "claude_api_cost": "$200–400 for CoRL. +$200–400 for AAAI extension.",
+      "estimated_gpu_cost": "CoRL: $450 (300h × $1.50/h). AAAI extension: +$1,500.",
+      "speed_bottleneck": "GPU count for parallel SmolVLA fine-tuning (each run needs 1 A100). With 4 A100s, Tier A experiments complete in ~24h compute. FAKTUAL reproduction may require installing signature kernel libraries.",
+      "risk_note": "Agent may over-explore hyperparameters without converging; FAKTUAL reproduction requires understanding signature kernel implementations (3-4 days if re-implementing from scratch). Theory for AAAI version cannot be automated."
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (abstract deadline May 26 11:59 UTC, paper deadline May 29 11:59 UTC — note: official Instruction for Authors page states 'Thursday 5/28 EOD' which corresponds to May 29 11:59 UTC when interpreted as AoE; primary target, empirical-focused version: mode-aware SW2 scoring vs. FAKTUAL diversity + metric comparison + SmolVLA on RoboMimic, 8 pages, no formal theory)",
+    "AAAI 2027 (deadline expected ~August 2026 — extended version with formal outlier detection theory, OpenVLA-OFT experiments, LIBERO benchmark, and Robometer comparison)",
+    "ICLR 2027 (deadline expected ~October 2026 — most complete version, backup if AAAI timeline is insufficient for theory)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Diversity You Can Actually Measure: A Fast, Model-Free Diversity Metric for Robotics Datasets [FAKTUAL] (arXiv Mar 2026, 2603.11634)",
+    "CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025)",
+    "Robot Data Curation with Mutual Information Estimators [DemInf] (RSS 2025)",
+    "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (ICLR 2026)",
+    "Curating Demonstrations using Online Experience [Demo-SCORE] (RSS 2025)",
+    "SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026)",
+    "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning [QoQ] (arXiv Mar 2026)",
+    "Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning [RINSE] (ICML 2025, arXiv 2604.23000)",
+    "S2I: Select Segments to Imitate — Segment-Level Selection and Optimization for Mixed-Quality Demonstrations (ICRA 2025)",
+    "Robometer: Scaling General-Purpose Robotic Reward Models via Trajectory Comparisons (RSS 2026, arXiv 2603.02115)",
+    "Automated regime classification in multidimensional time series data using sliced Wasserstein k-means clustering [sWk-means] (Luan & Hamp, arXiv 2310.01285, Data Science in Finance and Economics 2025)",
+    "On Data Redundancy in VLA Training [TSS] (DATA-FM Workshop @ ICLR 2026)",
+    "Expert or not? Assessing Data Quality in Offline Reinforcement Learning [BWD] (arXiv Oct 2025, 2510.12638)",
+    "Sliced-Wasserstein Distance-based Data Selection [SWAD] (Pallage & Lesage-Landry, arXiv Apr 2025, 2504.12918)",
+    "Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration (ACM THRI 2025)",
+    "Latent Wasserstein Adversarial Imitation Learning [LWAIL] (ICLR 2026, 2603.05440)",
+    "Learning from Imperfect Demonstrations via Temporal BT-Guided Trajectory Repair (arXiv Apr 2026, 2604.04225)",
+    "Optimal Transport for Offline Imitation Learning [OTR] (ICLR 2023)",
+    "Robot Policy Learning with Temporal Optimal Transport Reward (NeurIPS 2024)",
+    "Cross-Domain Imitation Learning via Optimal Transport [GWIL] (ICLR 2022)",
+    "Watch and Match: Supercharging Imitation with Regularized Optimal Transport [ROT] (NeurIPS 2022)",
+    "Outlier-Robust Optimal Transport: Duality, Structure, and Statistical Analysis (Nietert et al., AISTATS 2022)",
+    "Robust Wasserstein Barycenter (arXiv Mar 2026)",
+    "Approximate Algorithms for k-Sparse Wasserstein Barycenter with Outliers (IJCAI 2024)",
+    "Barycenters in the Wasserstein Space (SIAM J. Math. Anal. 2011)",
+    "Lightspeed Geometric Dataset Distance via Sliced Optimal Transport [s-OTDD] (ICML 2025)",
+    "Minibatch Optimal Transport Distances: Analysis and Applications (Fatras et al., arXiv 2021, 2101.01792)",
+    "Unbalanced Minibatch Optimal Transport; Applications to Domain Adaptation (Fatras et al., ICML 2021)",
+    "Prioritized Experience Replay (ICLR 2016)"
+  ],
+  "description": "We propose OT-Consensus, a training-free, mode-aware method for scoring demonstration quality in robot learning datasets using optimal transport geometry. The central insight is that quality should be assessed relative to mode-specific consensus, not maximized globally as diversity — directly addressing the acknowledged limitation of diversity-based curation (FAKTUAL) that 'promoting diversity may be harmful when data contains multiple strategies.' Each trajectory is represented as a discrete measure over visual-encoder-embedded state-action-time tuples (using frozen SigLIP or DINOv2 features), and pairwise Sliced Wasserstein-2 (SW2) distances capture distributional similarity at O(Ln log n) per pair. We perform k-medoid clustering in SW2 space to discover strategy modes, then score each demonstration by its SW2-distance from its cluster's robust barycenter (computed via trimmed outlier-robust OT). The SW+clustering pipeline extends sWk-means (Luan & Hamp, DSFE 2025) — originally used for financial regime detection — with three key additions: robust barycenters for quality scoring, trajectory-as-measure representation for robot demonstrations, and mode-aware filtering. Unlike FAKTUAL (which maximizes diversity and retains low-quality demonstrations from each mode for coverage), OT-Consensus provides mode-aware quality scoring — it preserves cross-mode diversity while filtering within-mode noise. Unlike policy-dependent methods (CUPID, DataMIL), it requires no trained policy, validation set, or online rollouts. Unlike learned reward models (Robometer), it requires no pre-training on 1M+ trajectories and is mode-aware by construction. Unlike scalar proxy methods (DemInf's MI, RINSE's smoothness), it captures full distributional shape and temporal structure. We define a concrete minimum success criterion: Spearman correlation with operator proficiency ≥0.1 above the best mode-agnostic proxy AND ≥5% absolute downstream success rate improvement over the best policy-free baseline; failure to meet these thresholds yields an informative negative result. We explicitly test the diversity-vs-quality hypothesis via a head-to-head metric comparison on RoboMimic multi-human (300 demos from 6 operators across 3 proficiency levels), where ground-truth labels enable direct evaluation of which approach better separates good from bad demonstrations when multiple valid strategies coexist. We transparently address the encoder choice (SigLIP-SO400M is SmolVLA's own encoder, creating representation alignment that is a design feature, with DINOv2 ablation proving generalization). The paper follows a tiered plan: Tier A (minimal viable paper by May 22 — metric comparison + 2-task downstream + encoder ablation) and Tier B (full paper by May 28 — 4 tasks × 3 seeds + comprehensive ablations). Formal outlier detection theory is deferred to an extended AAAI 2027 version.",
+  "project_name": "ot_traj_consensus",
+  "source": "web_research"
+}
+```
+
+## Summary of changes (minor revision)
+
+**Issue-by-issue resolution:**
+
+1. **MAJOR — Robometer (persisted from R4)**: Added new landscape category "**Policy-free learned quality methods**" with detailed Robometer analysis. Differentiation: Robometer is learned/data-hungry (Qwen3-VL-4B trained on 1M+ trajectories, ~6TB), NOT mode-aware, and was never evaluated against curation methods. OT-Consensus is training-free, geometric, and mode-aware by construction. Added to `key_references`.
+
+2. **MAJOR — sWk-means (persisted from R4)**: Added under "OT-based quality/distance methods" with explicit acknowledgment that the SW+clustering pipeline is a methodological precursor. Clearly articulated three extensions: (a) robust barycenters for quality scoring (sWk-means stops at cluster assignment), (b) trajectory-as-measure representation for robot demonstrations, (c) mode-aware filtering pipeline. Also referenced in the approach section's "Relationship to sWk-means" paragraph. Added to `key_references`.
+
+3. **MODERATE — Deadline discrepancy**: Resolved. The official Instruction for Authors says "Thursday 5/28 EOD" and the HuggingFace/OpenReview tracker says May 29 11:59 UTC — these are consistent (Thursday May 28 EOD AoE = May 29 11:59 UTC). Updated `target_venues` to state both dates with explanation. Timeline updated to 16-day sprint (May 13–29).
+
+4. **MODERATE — "On Data Redundancy in VLA Training"**: Added as new landscape subsection "Data redundancy in VLA training" with key findings: random 30% matches full-dataset SmolVLA performance, TSS underperformed random selection. Used to motivate principled curation. Added to `key_references`.
+
+5. **MODERATE — Minimum success criterion**: Added explicit paragraph in approach: Spearman ≥0.1 above best mode-agnostic proxy AND ≥5% absolute downstream success rate over best policy-free baseline. Explicitly states failure = negative result.
+
+6. **MINOR — FAKTUAL reproduction risk**: Updated timeline estimate from "1-2 days" to "3-4 days" across all resource estimates, noting signature kernel entropy estimation is mathematically non-trivial.
+
+Sources:
+- [Robometer (arXiv 2603.02115)](https://arxiv.org/abs/2603.02115)
+- [Robometer project page](https://robometer.github.io/)
+- [sWk-means (arXiv 2310.01285)](https://arxiv.org/abs/2310.01285)
+- [sWk-means published version (DSFE 2025)](http://www.aimspress.com/article/doi/10.3934/DSFE.2025016)
+- [CoRL 2026 Instruction for Authors](https://www.corl.org/contributions/instruction-for-authors)
+- [CoRL 2026 deadlines (HuggingFace)](https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf)
+- [DATA-FM Workshop @ ICLR 2026](https://data-fm-iclr2026.github.io/)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d310f1cc-ef3b-45c4-afb6-73ca93a85f6b",
+  "isSidechain": false,
+  "requestId": "req_011Cb125C5Duy86WjewjFvoF",
+  "type": "assistant",
+  "uuid": "b4ea4bf4-062a-44a4-8ffa-d98dd8364e11",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPrKXKzBfP3BWtuTUDDY92",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 65383,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8774,
+          "cache_read_input_tokens": 65383,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "output_tokens": 8774,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": {
+      "applied_edits": []
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasse…",
+  "leafUuid": "b4ea4bf4-062a-44a4-8ffa-d98dd8364e11",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OT-Consensus with mode-aware quality scoring for robot learning",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-13 (UTC).**  ## Original idea {   \"title\": \"Mode-Aware Quality Scoring for Demonstration Curation via Sliced Wasse…",
+  "leafUuid": "b4ea4bf4-062a-44a4-8ffa-d98dd8364e11",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OT-Consensus with mode-aware quality scoring for robot learning",
+  "sessionId": "b50fcfc1-2c98-4e1a-ade5-3447630520f9"
+}
+```
+
+---

@@ -1,0 +1,3327 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-13 (UTC).** Your job: indep
+
+**Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 1
+- **Tool calls:** 8
+- **Original source:** `logs/chats/exported-trajectories/account-2/d420c8fc-73ad-49e5-a076-6b52b56c836b.jsonl`
+- **Structured JSON:** [`1f16f6b04b657f5969ee.json`](../../sessions/1f/1f16f6b04b657f5969ee.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-13T19:39:15.098Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T19:39:15.098Z",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-13 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).\nDirection：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 4/10)\n{\n  \"title\": \"Do VLA Encoders Preserve Density-Ratio Structure? Calibrating Importance-Weighted Fine-Tuning from Noisy Demonstrations\",\n  \"core_problem\": \"Do pretrained VLA encoders preserve sufficient density-ratio structure in their latent representations to enable discriminator-based data quality estimation for noisy demonstration filtering? Specifically, (a) can a discriminator trained in a frozen VLA encoder's latent space reliably distinguish expert from corrupted trajectories with bounded distortion β, (b) do these quality estimates remain valid after LoRA fine-tuning changes the encoder, and (c) what are the practical implications for importance-weighted VLA fine-tuning at scale?\",\n  \"opportunity\": \"The VLA data curation landscape (CUPID, DemInf, SCIZOR, RINSE, QoQ, DataMIL, Seed2Scale, ReinboT) is thriving but entirely empirical—no method provides formal guarantees against demonstration corruption. Meanwhile, discriminator-weighted BC has a rich lineage: DWBC (ICML 2022) demonstrates practical effectiveness but lacks theory, IDRL (ICLR 2025) formalizes the optimal discriminator-weighted imitation perspective with iterative refinement and monotonic improvement guarantees, and DR-WBC (arXiv 2510.01479) establishes contamination-rate-independent convergence but only in low-dimensional state spaces. All three operate in low-dimensional settings—none has been tested with high-dimensional visual observations or VLA-scale models. The fundamental question that determines whether this entire paradigm can scale to VLAs has never been asked: do VLA encoders preserve the density-ratio structure that these methods require? This is both practically important (datasets like DROID and Open X-Embodiment contain demonstrations of highly variable quality) and scientifically interesting (it reveals whether pretrained visual representations encode enough distributional information for importance weighting). A separate but complementary line of work—RobustVLA—addresses VLA perturbation robustness through RL post-training with Jacobian/smoothness regularization, providing an alternative paradigm that achieves robustness through training-time regularization rather than data-time curation. Understanding which approach (or combination) is superior requires first understanding whether data-curation-based approaches are even viable at VLA scale, which is exactly the question our calibration study answers.\",\n  \"landscape\": \"Data curation for robot imitation learning is rapidly maturing, with 10+ complementary methods published at top venues in 2024-2026:\\n\\n**(1) Discriminator-weighted methods:** DWBC (ICML 2022) uses a binary discriminator to weight BC loss from suboptimal demonstrations—peer-reviewed, code public (github.com/ryanxhr/DWBC), but NO theoretical analysis, tested only on D4RL MuJoCo. IDRL (ICLR 2025, UT Austin/UMass) takes an optimal discriminator-weighted imitation view of RL: it iteratively removes zero-weight suboptimal transitions using learned visitation distribution ratios, with a monotonic improvement guarantee (Theorem 4). IDRL does not require expert demonstrations, uses Dual-RL to approximate optimal density ratios, and is tested on D4RL + corrupted demonstrations. However, IDRL operates in low-dimensional state spaces and addresses RL (not BC), with no VLA-scale experiments. ADR-BC (arXiv 2024) uses adversarial density estimation with VQ-VAE. DR-WBC (arXiv 2510.01479, Oct 2025) makes density-ratio convergence explicit with contamination-rate-independent bounds but remains an unvetted preprint tested on 4 MuJoCo tasks only. **Our work differs from IDRL** in three ways: (i) we focus on the BC setting (VLA fine-tuning) rather than RL, (ii) we specifically investigate whether density-ratio estimation works in VLA latent spaces (high-dimensional visual observations), and (iii) our primary contribution is the empirical calibration study characterizing encoder properties, not the optimization algorithm.\\n\\n**(2) Influence-function methods:** CUPID (CoRL 2025) estimates causal demonstration impact via influence functions, shown to improve π₀ post-training—the strongest existing VLA data curation baseline. QoQ (arXiv Mar 2026) extends influence functions with maximum-influence aggregation and trajectory-level scoring.\\n\\n**(3) Self-supervised/unsupervised methods:** SCIZOR (ICRA 2026) filters suboptimal and redundant data at scale (1M+ OXE trajectories, Octo VLA). DemInf (RSS 2025) uses k-NN mutual information estimators with real-robot validation. RINSE (ICML 2025) uses spectral arc length and trajectory-envelope distance as smoothness proxies.\\n\\n**(4) Learning-based weighting:** VACO (ICLR 2025) uses meta-scoring via bi-level optimization for offline RL. ReinboT (ICML 2025) predicts dense returns for VLA data quality understanding.\\n\\n**(5) Robustness via post-training:** RobustVLA (arXiv 2511.01331) addresses VLA perturbation robustness through online RL post-training with Jacobian regularization (mitigating observation noise sensitivity) and smoothness regularization (stabilizing under action perturbations). This represents an orthogonal approach to the same problem: achieving robustness through training-time regularization rather than data curation. Our approaches are complementary—CDR-VLA improves training data quality while RobustVLA regularizes the trained policy.\\n\\n**(6) Other approaches:** Purified Demonstrations (ICML 2024) uses diffusion denoising with bounds, limited to MuJoCo/RoboSuite. DataMIL (arXiv 2025) uses datamodels across 60+ tasks including OXE. Seed2Scale (arXiv Mar 2026) uses Qwen3-VL for automated trajectory quality scoring.\\n\\n**(7) Evaluation landscape:** Standard LIBERO is near-saturated (OpenVLA-OFT: 97.1%). LIBERO-Plus (CVPR 2026) reveals VLA models drop from 95% to below 30% under perturbations across 7 dimensions, with 10,030 tasks. LIBERO-PRO provides complementary 4-dimension robustness evaluation.\\n\\n**The gap we address:** Despite this rich landscape, a fundamental empirical question remains unanswered: do VLA encoder representations preserve sufficient density-ratio structure for importance-weighted methods to work? All discriminator-weighted methods (DWBC, IDRL, DR-WBC) have only been validated in low-dimensional settings. Whether their core mechanism—density-ratio estimation via learned discriminators—transfers to VLA-scale latent spaces is unknown. This is not merely a scaling question; VLA encoders are trained with multimodal objectives (vision + language) on diverse data, which may create latent geometries that either facilitate or fundamentally obstruct density-ratio estimation. Our calibration study provides the first empirical answer.\",\n  \"approach\": \"We propose CDR-VLA (Calibrated Density-Ratio Weighted VLA Fine-Tuning), reframed as an empirical investigation with theoretical support. The central contribution is a calibration study that answers whether VLA encoders preserve density-ratio structure—a question that determines the viability of an entire class of data curation methods at VLA scale. We cleanly separate **quality assessment** (using the frozen encoder, where density-ratio theory applies) from **policy training** (standard VLA LoRA fine-tuning with encoder unfrozen, using pre-computed quality weights).\\n\\n**Phase 0: Encoder Calibration Study (PRIMARY CONTRIBUTION, Days 1-5).** We characterize the density-ratio structure of OpenVLA-OFT's pretrained encoder (SigLIP + DinoV2 backbone, 768-dim latent). Using a curated set of LIBERO trajectories with known labels (expert vs. corrupted at controlled rates), we: (a) Train binary discriminators in the encoder's latent space to distinguish reference from corrupted data. (b) Measure bounded distortion β = sup_τ |log(r_latent(τ)/r_true(τ))| across encoder layers (early vision, mid-fusion, final representation). (c) Measure intrinsic dimensionality using participation ratio of PCA eigenvalues and maximum likelihood estimators. (d) Analyze latent-space geometry: class separability (Fisher discriminant ratio), manifold structure (local PCA rank), and density-ratio smoothness. **Go/no-go:** β < 2 for any layer → proceed with full paper. β ∈ [2,5) → proceed but with weaker claims. β ≥ 5 → abort CoRL, publish calibration results as a negative finding at a workshop. The calibration results are valuable regardless of outcome: if β is small, we validate the paradigm; if β is large, we reveal a fundamental limitation that guides the community away from importance-weighting approaches for VLAs.\\n\\n**Phase 0.5: Dynamic β Tracking Under LoRA Adaptation (NOVEL CONTRIBUTION, Days 4-7).** This phase directly addresses the frozen-vs-fine-tuned encoder disconnect. We monitor how β evolves during standard OpenVLA-OFT LoRA fine-tuning (rank 32, encoder unfrozen with ~25M additional parameters). At checkpoints throughout training (every 500 steps), we re-estimate density ratios and measure: (a) β_t at training step t, (b) Spearman rank correlation between pre-computed quality weights and re-estimated weights, (c) CKA similarity between frozen and adapted encoder representations. We provide three complementary analyses: (i) **Empirical trajectory:** How does β_t evolve? Does it monotonically increase, stabilize, or oscillate? (ii) **LoRA stability bound (theoretical):** We prove that for an encoder E_θ with LoRA perturbation ΔW = BA (rank r), the density-ratio distortion satisfies |β_{θ+ΔW} − β_θ| ≤ 2·L_E·||ΔW||_op / σ_gap, where L_E is the encoder's local Lipschitz constant and σ_gap captures the separation between expert and corrupted distributions in latent space. For LoRA rank 32 on a 768-dim encoder, this predicts Δβ is small when the Frobenius norm of LoRA updates (typically 0.1-1.0 for standard training) is small relative to the density gap. (iii) **Practical validation:** We show that rank correlation between initial and final quality weights exceeds 0.9 (or report honestly if it doesn't), confirming that the quality assessment is robust to encoder adaptation.\\n\\n**The key architectural insight** that resolves the frozen encoder concern: CDR-VLA uses a two-stage pipeline. Stage 1 (Quality Assessment) uses the frozen encoder to compute trajectory-level density ratios, producing a fixed vector of quality weights w = [w_1, ..., w_N]. Stage 2 (Weighted Fine-Tuning) performs standard VLA LoRA fine-tuning with the encoder unfrozen, weighting the BC loss by the pre-computed w_i. The frozen encoder assumption is only needed for quality assessment, NOT for policy training. Data quality (expert vs. corrupted) is a property of the trajectory, not the encoder—a corrupted demonstration remains corrupted regardless of representation. The calibration experiment validates that the frozen encoder is sufficient for quality assessment; the dynamic β tracking in Phase 0.5 provides additional assurance.\\n\\n**Phase 1: Supporting Theory (Days 5-10).** Our theoretical contribution has two parts:\\n\\n*(1a) Latent-space transfer theorem (adapted from existing techniques).* We adapt DR-WBC's convergence framework to the latent setting: the clipped density-ratio weighted BC loss in latent space approximates the clean-data BC loss with additive representation error Δ(β). We are transparent that the proof technique (change-of-measure with bounded distortion) is standard—the contribution is applying it to the VLA setting with measured β values.\\n\\n*(1b) LoRA stability theorem (novel).* We prove that density-ratio distortion changes are bounded under low-rank perturbations: |β_{θ+ΔW} − β_θ| ≤ f(r, ||ΔW||, L_E, σ_gap). This is a new result that connects the LoRA fine-tuning literature with density-ratio estimation theory. It provides a formal basis for the 'calibrate-then-fine-tune' protocol: if β_0 is small at initialization, it remains bounded during LoRA training.\\n\\n*(1c) Reference set size bounds.* For intrinsic dimensionality d_eff (measured, not assumed), we require M ≥ C_0 · d_eff · log(d_eff/δ) / ε² reference trajectories. We report the empirical d_eff and its implications transparently. Expected range: d_eff ∈ [20, 200], yielding M ∈ [100, 1000+]. We ablate from M=20 to M=500 to determine the practical threshold.\\n\\n**Phase 2: Experiments (Days 6-13).** All experiments use OpenVLA-OFT (7B).\\n\\n*(2a) LIBERO-Plus evaluation (primary).* LIBERO-Plus (CVPR 2026) as primary benchmark: standard LIBERO is saturated (97.1%), while LIBERO-Plus tests robustness across 7 perturbation dimensions where VLAs drop to 0-30%. Synthetic corruption at α ∈ {0.1, 0.2, 0.3, 0.5} using four protocols: action noise, state perturbation, random rollouts, trajectory splicing.\\n\\n*(2b) Two-stage pipeline evaluation.* Compare: (i) Vanilla BC (all data equally weighted), (ii) CDR-VLA (frozen-encoder quality weights → standard LoRA fine-tuning), (iii) DWBC (reproduced in VLA setting), (iv) CUPID, SCIZOR, DemInf, RINSE (published results + LIBERO-Plus reproduction where needed). We also compare CDR-VLA against RobustVLA's RL post-training approach (where possible from published results) to understand when data curation vs. training regularization is more effective.\\n\\n*(2c) Calibration analysis as core results.* β measurements across encoder layers, d_eff, dynamic β evolution during training, weight stability analysis—these are reported as primary results, not supplementary material.\\n\\n**Scope for CoRL 2026 (8 pages):** Single VLA backbone (OpenVLA-OFT), LIBERO-Plus, synthetic corruption, no real robot. **Full ICLR 2027 version adds:** Octo backbone (testing scale dependence of β), DROID subsets, real-robot validation, investigation of whether multimodal pretraining objectives create favorable density-ratio geometry.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~280h A100 for CoRL (calibration + dynamic β tracking ~40h, discriminator training ~30h, VLA LoRA fine-tuning 30 runs × 3h ~90h, baseline reproduction ~50h, ablations + β checkpointing ~70h). Full ICLR version adds ~500h.\",\n      \"gpu_utilization\": \"Moderate-High (~55-75%): calibration/theory phases overlap with GPU experiments.\",\n      \"timeline\": \"CoRL 2026 sprint: 15 days (Phase 0 calibration: days 1-5 with go/no-go on day 5; Phase 0.5 dynamic β: days 4-7; theory: days 5-10; experiments: days 6-13; writing: days 10-15; abstract submission May 25 AoE, paper May 28 AoE). Full ICLR 2027: additional 3-4 months.\",\n      \"team\": \"CoRL: 1-2 researchers full-time for 15 days. Full version: 2 researchers (1 empirical/theory + 1 systems/robot).\",\n      \"estimated_gpu_cost\": \"CoRL: $420-560 (A100 at ~$1.50/hr). Full version adds ~$750.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~380h A100 for CoRL (agent handles experiment orchestration, β measurement automation, baseline reproduction; 35% more runs for comprehensive β tracking).\",\n      \"gpu_utilization\": \"High (~65-85%): agent parallelizes β checkpoint evaluation.\",\n      \"timeline\": \"CoRL: 13-15 days. Full version: 2.5-3 months.\",\n      \"team\": \"1 researcher with VLA + representation analysis expertise, ~4hr/day. Agent handles code adaptation, β tracking scripts, LaTeX drafting.\",\n      \"claude_api_cost\": \"CoRL: $80-150. Full version adds $150-250.\",\n      \"estimated_gpu_cost\": \"CoRL: $570-650. Full version adds $850-1,100.\",\n      \"risk_note\": \"LoRA stability proof requires careful bounding of encoder Lipschitz constants; agent can draft but human must verify. The go/no-go calibration interpretation requires human judgment.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~650h A100 for CoRL (comprehensive β sweeps across layers × training steps × corruption rates × reference sizes).\",\n      \"gpu_utilization\": \"High (~85-95%).\",\n      \"timeline\": \"CoRL: 10-12 days compute with 4 A100s; proofs add 4-6 days human involvement.\",\n      \"team\": \"1 researcher part-time (~3hr/day) for proof verification and calibration interpretation.\",\n      \"claude_api_cost\": \"$200-400 for CoRL. Full version adds $300-500.\",\n      \"estimated_gpu_cost\": \"CoRL: $975-1,150. Full version adds $1,350-1,800.\",\n      \"speed_bottleneck\": \"Proof verification and calibration interpretation remain on the critical path.\",\n      \"risk_note\": \"Dynamic β tracking requires careful checkpointing infrastructure; agent may over-measure at the expense of paper writing.\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract: May 25 AoE, paper: May 28 AoE — 12 days to abstract, 15 to paper. Tight but feasible with scoped-down version: single VLA backbone, LIBERO-Plus only, no real robot. Go/no-go by May 18 based on calibration. 8-page limit suits focused calibration study + theory paper.)\",\n    \"ICLR 2027 (deadline likely ~Sep 2026 — comfortable timeline for full version with Octo backbone, DROID, real-robot validation, and deeper theoretical investigation. PRIMARY TARGET if CoRL 2026 aborted.)\",\n    \"RSS 2027 (deadline likely ~Jan 2027 — backup for comprehensive version with real-robot results)\"\n  ],\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"Discriminator-Weighted Offline Imitation Learning from Suboptimal Demonstrations (ICML 2022) — DWBC: peer-reviewed foundation for discriminator-weighted BC. Code: github.com/ryanxhr/DWBC\",\n    \"An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning (ICLR 2025, arXiv 2504.13368) — IDRL: peer-reviewed work formalizing optimal discriminator-weighted imitation with iterative refinement, monotonic improvement guarantees, tested on corrupted demonstrations. Key differentiation target.\",\n    \"Density-Ratio Weighted Behavioral Cloning: Learning Control Policies from Corrupted Datasets (arXiv 2510.01479, Oct 2025) — DR-WBC: convergence theory for density-ratio weighted BC, tested only on MuJoCo\",\n    \"RobustVLA: Robustness-Aware Reinforcement Post-Training for VLA Models (arXiv 2511.01331) — orthogonal approach to VLA robustness via Jacobian/smoothness regularization in RL post-training\",\n    \"CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025) — strongest VLA data curation baseline, shown to improve π₀ post-training\",\n    \"Quality over Quantity: Demonstration Curation via Influence Functions (arXiv 2603.09056, Mar 2026) — QoQ: concurrent influence-function work\",\n    \"SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026) — scales to OXE/Octo VLA\",\n    \"Robot Data Curation with Mutual Information Estimators (RSS 2025) — DemInf: unsupervised baseline with real-robot results\",\n    \"Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning (ICML 2025) — RINSE: reference-free baseline\",\n    \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026) — primary evaluation benchmark\",\n    \"Value-Aligned Behavior Cloning for Offline RL via Bi-level Optimization (ICLR 2025) — VACO: meta-scoring for comparison\",\n    \"ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning (ICML 2025) — dense return prediction for VLA data quality\",\n    \"Imitation Learning from Purified Demonstrations (ICML 2024) — diffusion denoising with theoretical bounds\",\n    \"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (arXiv 2505.09603, May 2025) — datamodel-based selection across 60+ tasks\",\n    \"Seed2Scale: A Self-Evolving Data Engine for Embodied AI (arXiv 2603.08260, Mar 2026) — VLM verifier for trajectory quality scoring\",\n    \"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success (OpenVLA-OFT, 2025) — VLA backbone, frozen vs. unfrozen encoder ablation\",\n    \"OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024) — base VLA model\",\n    \"ExpReS-VLA: Specializing VLA Models Through Experience Replay and Retrieval (arXiv 2511.06202) — uses frozen VLA backbone for embedding storage, precedent for frozen-encoder utility\",\n    \"LoRA Subtraction for Drift-Resistant Space in Exemplar-Free Continual Learning (arXiv 2503.18985) — LoRA representation drift analysis\",\n    \"Telescoping Density-Ratio Estimation (NeurIPS 2020) — foundational density ratio estimation\",\n    \"DROID: A Large-Scale In-The-Wild Robot Manipulation Dataset (RSS 2024) — noisy real-world dataset for full version\",\n    \"LIBERO-PRO: Towards Robust and Fair Evaluation (arXiv 2510.03827, Oct 2025) — complementary VLA robustness benchmark\",\n    \"LoRA: Low-Rank Adaptation of Large Language Models (ICLR 2022) — foundational LoRA technique\"\n  ],\n  \"description\": \"We reframe CDR-VLA as an empirical investigation with theoretical support, asking a question no prior work has addressed: do VLA encoders preserve density-ratio structure sufficient for importance-weighted fine-tuning from noisy demonstrations? This question determines the viability of an entire class of data curation methods (DWBC, IDRL, DR-WBC) at VLA scale. Our approach cleanly separates quality assessment (using the frozen encoder, where density-ratio theory applies) from policy training (standard LoRA fine-tuning with encoder unfrozen), resolving the critical tension between frozen-encoder theory and unfrozen-encoder practice. The paper makes four contributions: (1) The first encoder calibration study measuring bounded distortion β and intrinsic dimensionality across VLA encoder layers (SigLIP + DinoV2 backbone), establishing whether discriminator-based quality estimation is viable in VLA latent spaces—a result that is valuable regardless of sign. (2) Dynamic β tracking during LoRA fine-tuning that empirically characterizes how density-ratio structure evolves as the encoder adapts, providing the community with the first data on representation stability under VLA adaptation. (3) A LoRA stability theorem bounding |Δβ| under low-rank perturbations, connecting LoRA fine-tuning theory with density-ratio estimation for the first time. (4) A practical two-stage pipeline (calibrate quality weights with frozen encoder → train policy with unfrozen encoder using fixed weights) evaluated on LIBERO-Plus (CVPR 2026), compared against DWBC, CUPID, DemInf, SCIZOR, and RINSE. We differentiate from IDRL (ICLR 2025, closest peer-reviewed work) by focusing on the BC setting for VLA fine-tuning, investigating high-dimensional visual latent spaces, and centering the empirical calibration question rather than the optimization algorithm. We differentiate from RobustVLA by addressing data-time curation rather than training-time regularization—approaches that are complementary. CoRL 2026 version uses OpenVLA-OFT only; ICLR 2027 full version adds Octo backbone, DROID, and real-robot validation.\",\n  \"project_name\": \"cdr_vla_noisy_demos\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"FATAL TIMELINE: 15-16 days to paper deadline is completely incompatible with the generator's own estimates (4-6 months manual, 4-8 weeks auto). Novel convergence proofs alone are estimated at 6-8 weeks. CoRL 2026 is not realistic; ICLR 2027 (~Sep 2026 deadline) is the viable target.\", \"MISSING CRITICAL RELATED WORK: (1) DWBC - Discriminator-Weighted Offline Imitation Learning from Suboptimal Demonstrations (ICML 2022) uses discriminator outputs directly as BC weights—conceptually very similar to the proposed density-ratio weighting approach; (2) ADR-BC - Adversarial Density Weighted Regression BC (arXiv 2024) uses density-based action support estimation; (3) VACO - Value-Aligned BC (ICLR 2025) uses meta-scoring network to weight BC samples; (4) 'Imitation Learning from Purified Demonstrations' (ICML 2024) uses diffusion models to denoise imperfect demonstrations with theoretical bounds; (5) DemInf/Robot Data Curation with Mutual Information Estimators (RSS 2025); (6) CUPID (CoRL 2025) - influence function-based demonstration curation; (7) ReinboT (ICML 2025) - VLA model that predicts dense returns to understand data quality distribution.\", \"FOUNDATION PAPER RISK: The Density-Ratio Weighted BC paper (arXiv 2510.01479) is from Rochester Institute of Technology, tested only on low-dimensional MuJoCo D4RL benchmarks (HalfCheetah, Ant, Hopper, Walker2d), uses 20% expert data as clean reference (not 5-10 demos), and has NOT been peer-reviewed at any top venue. Building a theoretical extension on an unvetted foundation is risky for a top venue submission.\", \"CLEAN REFERENCE SET SIZE DISCREPANCY: The proposal claims '5-10 verified gold demonstrations per task' suffice, but the original DR-WBC paper uses 20% of expert trajectories. Density ratio estimation in high-dimensional VLA latent spaces with only 5-10 clean trajectories may suffer severe variance—no evidence this is sufficient.\", \"NOVELTY OVER DWBC IS UNCLEAR: Xu et al. (ICML 2022) already use a binary discriminator to weight BC from suboptimal demonstrations. The proposed method's core pipeline (discriminator → density ratios → weighted BC) is structurally identical. The theoretical contribution (latent-space convergence transfer) needs to be clearly differentiated from and positioned against this established baseline.\", \"CoRL SIMULATION-ONLY RISK: CoRL 2026 CFP states 'authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots.' A purely theoretical + LIBERO simulation paper may face reviewer resistance, especially given that the theoretical guarantees rely on bounded-distortion assumptions that are hard to verify on real robots.\"]\nFeedback: The core idea—bringing formal robustness guarantees to VLA training via density-ratio theory—addresses a real gap, but the submission needs substantial revision across multiple dimensions:\n\n1. **Retarget to ICLR 2027** (expected deadline ~Sep 2026): The CoRL 2026 timeline is impossible. This gives 4 months to properly develop proofs, run experiments, and iterate.\n\n2. **Critically differentiate from DWBC (ICML 2022)**: Xu et al. already use discriminator-weighted BC from suboptimal demonstrations. You MUST explain what your density-ratio formulation provides beyond DWBC's discriminator weighting. The convergence guarantee is the obvious differentiator, but it must be explicitly positioned.\n\n3. **Address the 7+ missing related works**: DWBC, ADR-BC, VACO, Purified Demonstrations (ICML 2024), DemInf (RSS 2025), CUPID (CoRL 2025), and ReinboT (ICML 2025) all address noisy/suboptimal demonstration handling. Several should become additional baselines (especially CUPID and DemInf which are robot-specific). The landscape section currently overstates the novelty by omitting these.\n\n4. **Validate the foundation**: Before building on arXiv 2510.01479, independently verify its theoretical claims. If the proofs don't hold up or the method doesn't scale, your entire contribution collapses. Consider also building on the more established DWBC (ICML 2022) theoretical framework instead.\n\n5. **Justify the 5-10 clean demo claim**: The original paper uses 20% expert data. You need either (a) theoretical justification for why far fewer suffice in the latent setting, or (b) empirical ablation showing the minimum viable clean set size. This is a key practical selling point—don't overclaim.\n\n6. **Add real robot results for CoRL/ICLR**: Even a small-scale real-robot validation (e.g., on a single DROID task family with curated clean references) would dramatically strengthen the submission.\n\n7. **Strengthen the theoretical contribution**: The bounded-distortion → additive error decomposition proof technique is fairly standard in representation learning. Consider whether you can prove something stronger—e.g., that the VLA encoder's pretrained structure provides favorable density-ratio estimation properties beyond generic bounded distortion.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"FATAL TIMELINE: User explicitly targets CoRL 2026 (paper deadline May 29, 16 days away). The generator retargeted to ICLR 2027 (~Sep 2026, date not yet announced) without addressing whether any viable CoRL 2026 submission is possible. The user stated theory-focused work without real robots is acceptable ('如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的'), but even theory-only with novel proofs in 16 days is infeasible per the generator's own 4-5 week estimate for proofs alone.\", \"UNVETTED FOUNDATION RISK PERSISTS: DR-WBC (arXiv 2510.01479) remains a non-peer-reviewed preprint from a cybersecurity department at RIT, tested only on 4 MuJoCo tasks with 20% expert data. No conference acceptance found as of May 2026. If DR-WBC's proofs contain errors, the entire theoretical contribution collapses. The generator should independently verify DR-WBC's Theorem 1 or build on the more established DWBC (ICML 2022) framework.\", \"BOUNDED-DISTORTION ASSUMPTION IS LOAD-BEARING BUT UNVALIDATED: The entire theoretical contribution rests on the assumption that VLA encoders preserve density ratios up to multiplicative factor β. No evidence is provided that current VLA encoders (OpenVLA, Octo) satisfy this. If β is large, the additive representation error O(β−1) dominates and the guarantee is practically useless. 'Empirically verifiable via calibration analysis' is promised but no preliminary evidence is offered.\", \"TASK-RELEVANT CONCENTRATION IS SPECULATIVE: This property ('trajectories semantically similar in task space map to nearby latent representations') is introduced informally without rigorous definition, verification protocol, or evidence it holds for any existing VLA encoder. It's the strongest theoretical claim but the weakest in justification.\", \"LIBERO BENCHMARK NEAR-SATURATION: OpenVLA-OFT achieves 97.1% on standard LIBERO. Demonstrating meaningful gains from data curation on a nearly-saturated benchmark is difficult. LIBERO-Plus and LIBERO-PRO show VLAs drop to 0-30% under perturbations—these harder benchmarks would be more informative but are not mentioned in the evaluation plan.\", \"NOVELTY IS INCREMENTAL: The progression DWBC→DR-WBC→LDR-VLA follows a predictable pattern: (1) heuristic discriminator weighting, (2) formal density-ratio convergence theory, (3) latent-space transfer for high-dim. Step (3) is a standard representation-learning argument (bounded-distortion → additive error), not a deep theoretical insight. The 'most comprehensive comparison of VLA data curation methods' is empirical completeness, not theoretical novelty.\", \"REFERENCE SET SIZE BOUND MAY BE MISLEADINGLY OPTIMISTIC: The claim that O(d·log(1/δ)) reference trajectories suffice (suggesting 20-100) ignores constant factors. VLA latent dims of 768-4096 are not 'low-dimensional'—density estimation in 768+ dimensions still requires substantial data. The generator should provide tighter bounds or acknowledge that the constant factor could push requirements to hundreds or thousands of trajectories.\"]\nFeedback: The Round 2 revision significantly improved related work coverage and positioning, but critical issues remain:\n\n1. **Address the CoRL 2026 timeline honestly**: Either (a) propose a drastically scoped-down version viable in 16 days (e.g., extending existing DR-WBC proofs to latent space with minimal new theory + LIBERO-only experiments using existing DWBC code), or (b) explicitly acknowledge CoRL 2026 is impossible and explain to the user why. The user seems open to theory-only work—explore whether existing DWBC+DR-WBC code can be adapted quickly with a focused theoretical contribution.\n\n2. **Validate the foundation before building on it**: Before writing new proofs, independently verify DR-WBC's core theorems. If the proofs are solid, great. If not, reformulate your contribution as formalizing DWBC (ICML 2022, peer-reviewed) rather than extending DR-WBC.\n\n3. **Provide preliminary evidence for bounded distortion**: Run a quick calibration experiment with OpenVLA's frozen encoder to estimate β empirically. If β is close to 1, the theory has teeth. If β >> 1, the guarantees are vacuous and you need to rethink the approach. This is a make-or-break experiment that should happen before investing in proofs.\n\n4. **Rigorously define task-relevant concentration**: Formalize this property with a mathematical definition, not just an informal description. Propose a concrete verification protocol (e.g., specific probing tasks, distance metrics in latent vs. task space).\n\n5. **Use harder benchmarks**: Replace or supplement standard LIBERO with LIBERO-Plus or LIBERO-PRO, which test robustness under perturbations. These align better with the 'noisy/corrupted data' narrative and aren't saturated.\n\n6. **Strengthen the novelty argument**: The bounded-distortion transfer is standard. Consider whether you can prove something about the geometry of VLA latent spaces specifically (not just generic representation learning). For example: do transformer-based VLA encoders have provably favorable density-ratio estimation properties due to their attention structure?\n\n7. **Be transparent about reference set size**: Provide concrete bounds with constants, not just asymptotic O(·) notation. If the bound says 500 trajectories for a 768-dim latent space at ε=0.1, δ=0.05, say so explicitly.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"CRITICAL — FROZEN ENCODER ASSUMPTION CONFLICTS WITH VLA BEST PRACTICES: OpenVLA research explicitly shows that 'freezing the vision encoder leads to poor performance' and that fine-tuning the vision encoder is crucial for downstream task success. The entire CDR-VLA framework (Phase 0 calibration, latent-space transfer theorem, reference set size bounds) assumes density ratios are computed in a FROZEN encoder's latent space. If the encoder must be fine-tuned during VLA training for practical performance, the frozen-encoder density-ratio analysis may not hold—the latent space changes during training, invalidating the pre-computed density ratios and β measurements. This is a fundamental architectural disconnect that undermines the practical relevance of the theoretical contribution.\", \"MISSING RELATED WORK — IDRL (ICLR 2025): 'An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning' (arXiv:2504.13368) was accepted at ICLR 2025. It directly takes a discriminator-weighted imitation view of RL, iteratively removes zero-weight suboptimal transitions using learned visitation distribution ratios, and is tested on corrupted demonstrations. This is a peer-reviewed work at a top venue that is highly relevant to the proposed density-ratio discriminator-weighted BC formalization and must be cited and differentiated from.\", \"MISSING RELATED WORK — RobustVLA (arXiv 2511.01331): RobustVLA is a robustness-aware reinforcement post-training method for VLA models that addresses exactly the perturbation robustness narrative CDR-VLA claims to serve. It uses Jacobian and smoothness regularization to mitigate VLA sensitivity to observation noise and action perturbations, with real robot results. This directly competes with the 'robustness under perturbations' framing used to motivate LIBERO-Plus evaluation.\", \"DEADLINE DATE ERROR: CoRL 2026 actual deadlines are Abstract May 25 and Paper May 28 (AoE), not May 26/29 as stated. This means 12 days to abstract, 15 to paper—even tighter than claimed. The CFP also states 'deadlines are final' with no accommodations.\", \"THEORETICAL CONTRIBUTION REMAINS STANDARD: The bounded-distortion → additive error decomposition is a well-known technique in representation learning theory. The specific contribution—showing that density-ratio distortion through a frozen encoder propagates as an additive Δ(β) term—follows directly from standard change-of-measure arguments. The claim of 'first convergence-certified VLA fine-tuning method' is technically true but the certification quality depends entirely on β, which is unknown and may be large.\", \"REFERENCE SET SIZE BOUND STILL SPECULATIVE: The revised claim of 200-500 reference trajectories is more honest than the previous 20-100, but still depends on unmeasured intrinsic dimensionality d_eff. The proposal acknowledges this ('if d_eff turns out to be 200+, required set size grows to 1000+') but presents the 200-500 estimate as the expected case without evidence. For a 768-dim ambient latent space, even with dimensional reduction, the constant factors in density estimation bounds could push requirements significantly higher.\"]\nFeedback: The Round 3 revision shows substantial improvement—comprehensive landscape coverage, honest risk assessment, and the calibration-first experimental design is well-motivated. However, one critical issue remains that must be resolved before this can pass:\n\n1. **Resolve the frozen vs. fine-tuned encoder disconnect (CRITICAL)**: The entire theoretical framework assumes frozen encoder representations, but OpenVLA fine-tuning research shows frozen encoders yield poor task performance. You must either: (a) Develop theory that accounts for encoder adaptation during training (e.g., prove that if β is small at initialization, it remains bounded under LoRA fine-tuning with bounded parameter updates), (b) Empirically show that frozen-encoder VLA training achieves competitive performance on LIBERO-Plus (contradicting current evidence), or (c) Reframe the contribution: the calibration experiment measures β for the frozen encoder, the theory holds for the frozen encoder, and you provide a separate empirical analysis showing how β changes during fine-tuning with an informal argument for why the guarantees remain approximately valid. Option (c) is most feasible for the CoRL timeline.\n\n2. **Add IDRL (ICLR 2025) and RobustVLA to references**: IDRL directly formalizes discriminator-weighted imitation and iteratively removes suboptimal transitions—it should be a baseline and differentiation target. RobustVLA addresses VLA perturbation robustness with a different approach (RL post-training) and should be discussed as an alternative paradigm.\n\n3. **Correct deadline dates**: Abstract May 25, Paper May 28 AoE. You have 12 days to abstract, not 13.\n\n4. **Strengthen the novelty beyond standard representation learning**: The calibration experiment (measuring β across encoder layers, intrinsic dimensionality analysis) is your most novel and independently valuable contribution. Consider making this the primary contribution rather than the transfer theorem. A paper titled 'Do VLA Encoders Preserve Density-Ratio Structure? Implications for Importance-Weighted Fine-Tuning' with calibration as the centerpiece and the theory as supporting analysis would be more distinctive and less vulnerable to the 'standard technique' criticism.\n\n5. **Address the fine-tuning dynamics**: Even a brief theoretical remark about how LoRA fine-tuning (small perturbation to frozen weights) affects β would significantly strengthen the paper. If LoRA updates are bounded by ε in operator norm, can you bound the change in β?\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T19:39:15.104Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-13T19:39:15.104Z",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b"
+}
+```
+
+---
+
+## Round 1
+
+39 recorded events
+
+### User
+
+_source line 3 · 2026-05-13T19:39:15.142Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-13 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).
+Direction：因为真实数据采样的时候会有很多噪声，比如收集时的冗余动作等，如何避免训练数据中的噪声影响vla的训练，可以使用一个经验池的形式来训练，借助强化学习的思想，用数据本身的信息来给收集的动作对打分或筛选，再适当过滤掉一些低分数的冗余动作，如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-13?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 4/10)
+{
+  "title": "Do VLA Encoders Preserve Density-Ratio Structure? Calibrating Importance-Weighted Fine-Tuning from Noisy Demonstrations",
+  "core_problem": "Do pretrained VLA encoders preserve sufficient density-ratio structure in their latent representations to enable discriminator-based data quality estimation for noisy demonstration filtering? Specifically, (a) can a discriminator trained in a frozen VLA encoder's latent space reliably distinguish expert from corrupted trajectories with bounded distortion β, (b) do these quality estimates remain valid after LoRA fine-tuning changes the encoder, and (c) what are the practical implications for importance-weighted VLA fine-tuning at scale?",
+  "opportunity": "The VLA data curation landscape (CUPID, DemInf, SCIZOR, RINSE, QoQ, DataMIL, Seed2Scale, ReinboT) is thriving but entirely empirical—no method provides formal guarantees against demonstration corruption. Meanwhile, discriminator-weighted BC has a rich lineage: DWBC (ICML 2022) demonstrates practical effectiveness but lacks theory, IDRL (ICLR 2025) formalizes the optimal discriminator-weighted imitation perspective with iterative refinement and monotonic improvement guarantees, and DR-WBC (arXiv 2510.01479) establishes contamination-rate-independent convergence but only in low-dimensional state spaces. All three operate in low-dimensional settings—none has been tested with high-dimensional visual observations or VLA-scale models. The fundamental question that determines whether this entire paradigm can scale to VLAs has never been asked: do VLA encoders preserve the density-ratio structure that these methods require? This is both practically important (datasets like DROID and Open X-Embodiment contain demonstrations of highly variable quality) and scientifically interesting (it reveals whether pretrained visual representations encode enough distributional information for importance weighting). A separate but complementary line of work—RobustVLA—addresses VLA perturbation robustness through RL post-training with Jacobian/smoothness regularization, providing an alternative paradigm that achieves robustness through training-time regularization rather than data-time curation. Understanding which approach (or combination) is superior requires first understanding whether data-curation-based approaches are even viable at VLA scale, which is exactly the question our calibration study answers.",
+  "landscape": "Data curation for robot imitation learning is rapidly maturing, with 10+ complementary methods published at top venues in 2024-2026:\n\n**(1) Discriminator-weighted methods:** DWBC (ICML 2022) uses a binary discriminator to weight BC loss from suboptimal demonstrations—peer-reviewed, code public (github.com/ryanxhr/DWBC), but NO theoretical analysis, tested only on D4RL MuJoCo. IDRL (ICLR 2025, UT Austin/UMass) takes an optimal discriminator-weighted imitation view of RL: it iteratively removes zero-weight suboptimal transitions using learned visitation distribution ratios, with a monotonic improvement guarantee (Theorem 4). IDRL does not require expert demonstrations, uses Dual-RL to approximate optimal density ratios, and is tested on D4RL + corrupted demonstrations. However, IDRL operates in low-dimensional state spaces and addresses RL (not BC), with no VLA-scale experiments. ADR-BC (arXiv 2024) uses adversarial density estimation with VQ-VAE. DR-WBC (arXiv 2510.01479, Oct 2025) makes density-ratio convergence explicit with contamination-rate-independent bounds but remains an unvetted preprint tested on 4 MuJoCo tasks only. **Our work differs from IDRL** in three ways: (i) we focus on the BC setting (VLA fine-tuning) rather than RL, (ii) we specifically investigate whether density-ratio estimation works in VLA latent spaces (high-dimensional visual observations), and (iii) our primary contribution is the empirical calibration study characterizing encoder properties, not the optimization algorithm.\n\n**(2) Influence-function methods:** CUPID (CoRL 2025) estimates causal demonstration impact via influence functions, shown to improve π₀ post-training—the strongest existing VLA data curation baseline. QoQ (arXiv Mar 2026) extends influence functions with maximum-influence aggregation and trajectory-level scoring.\n\n**(3) Self-supervised/unsupervised methods:** SCIZOR (ICRA 2026) filters suboptimal and redundant data at scale (1M+ OXE trajectories, Octo VLA). DemInf (RSS 2025) uses k-NN mutual information estimators with real-robot validation. RINSE (ICML 2025) uses spectral arc length and trajectory-envelope distance as smoothness proxies.\n\n**(4) Learning-based weighting:** VACO (ICLR 2025) uses meta-scoring via bi-level optimization for offline RL. ReinboT (ICML 2025) predicts dense returns for VLA data quality understanding.\n\n**(5) Robustness via post-training:** RobustVLA (arXiv 2511.01331) addresses VLA perturbation robustness through online RL post-training with Jacobian regularization (mitigating observation noise sensitivity) and smoothness regularization (stabilizing under action perturbations). This represents an orthogonal approach to the same problem: achieving robustness through training-time regularization rather than data curation. Our approaches are complementary—CDR-VLA improves training data quality while RobustVLA regularizes the trained policy.\n\n**(6) Other approaches:** Purified Demonstrations (ICML 2024) uses diffusion denoising with bounds, limited to MuJoCo/RoboSuite. DataMIL (arXiv 2025) uses datamodels across 60+ tasks including OXE. Seed2Scale (arXiv Mar 2026) uses Qwen3-VL for automated trajectory quality scoring.\n\n**(7) Evaluation landscape:** Standard LIBERO is near-saturated (OpenVLA-OFT: 97.1%). LIBERO-Plus (CVPR 2026) reveals VLA models drop from 95% to below 30% under perturbations across 7 dimensions, with 10,030 tasks. LIBERO-PRO provides complementary 4-dimension robustness evaluation.\n\n**The gap we address:** Despite this rich landscape, a fundamental empirical question remains unanswered: do VLA encoder representations preserve sufficient density-ratio structure for importance-weighted methods to work? All discriminator-weighted methods (DWBC, IDRL, DR-WBC) have only been validated in low-dimensional settings. Whether their core mechanism—density-ratio estimation via learned discriminators—transfers to VLA-scale latent spaces is unknown. This is not merely a scaling question; VLA encoders are trained with multimodal objectives (vision + language) on diverse data, which may create latent geometries that either facilitate or fundamentally obstruct density-ratio estimation. Our calibration study provides the first empirical answer.",
+  "approach": "We propose CDR-VLA (Calibrated Density-Ratio Weighted VLA Fine-Tuning), reframed as an empirical investigation with theoretical support. The central contribution is a calibration study that answers whether VLA encoders preserve density-ratio structure—a question that determines the viability of an entire class of data curation methods at VLA scale. We cleanly separate **quality assessment** (using the frozen encoder, where density-ratio theory applies) from **policy training** (standard VLA LoRA fine-tuning with encoder unfrozen, using pre-computed quality weights).\n\n**Phase 0: Encoder Calibration Study (PRIMARY CONTRIBUTION, Days 1-5).** We characterize the density-ratio structure of OpenVLA-OFT's pretrained encoder (SigLIP + DinoV2 backbone, 768-dim latent). Using a curated set of LIBERO trajectories with known labels (expert vs. corrupted at controlled rates), we: (a) Train binary discriminators in the encoder's latent space to distinguish reference from corrupted data. (b) Measure bounded distortion β = sup_τ |log(r_latent(τ)/r_true(τ))| across encoder layers (early vision, mid-fusion, final representation). (c) Measure intrinsic dimensionality using participation ratio of PCA eigenvalues and maximum likelihood estimators. (d) Analyze latent-space geometry: class separability (Fisher discriminant ratio), manifold structure (local PCA rank), and density-ratio smoothness. **Go/no-go:** β < 2 for any layer → proceed with full paper. β ∈ [2,5) → proceed but with weaker claims. β ≥ 5 → abort CoRL, publish calibration results as a negative finding at a workshop. The calibration results are valuable regardless of outcome: if β is small, we validate the paradigm; if β is large, we reveal a fundamental limitation that guides the community away from importance-weighting approaches for VLAs.\n\n**Phase 0.5: Dynamic β Tracking Under LoRA Adaptation (NOVEL CONTRIBUTION, Days 4-7).** This phase directly addresses the frozen-vs-fine-tuned encoder disconnect. We monitor how β evolves during standard OpenVLA-OFT LoRA fine-tuning (rank 32, encoder unfrozen with ~25M additional parameters). At checkpoints throughout training (every 500 steps), we re-estimate density ratios and measure: (a) β_t at training step t, (b) Spearman rank correlation between pre-computed quality weights and re-estimated weights, (c) CKA similarity between frozen and adapted encoder representations. We provide three complementary analyses: (i) **Empirical trajectory:** How does β_t evolve? Does it monotonically increase, stabilize, or oscillate? (ii) **LoRA stability bound (theoretical):** We prove that for an encoder E_θ with LoRA perturbation ΔW = BA (rank r), the density-ratio distortion satisfies |β_{θ+ΔW} − β_θ| ≤ 2·L_E·||ΔW||_op / σ_gap, where L_E is the encoder's local Lipschitz constant and σ_gap captures the separation between expert and corrupted distributions in latent space. For LoRA rank 32 on a 768-dim encoder, this predicts Δβ is small when the Frobenius norm of LoRA updates (typically 0.1-1.0 for standard training) is small relative to the density gap. (iii) **Practical validation:** We show that rank correlation between initial and final quality weights exceeds 0.9 (or report honestly if it doesn't), confirming that the quality assessment is robust to encoder adaptation.\n\n**The key architectural insight** that resolves the frozen encoder concern: CDR-VLA uses a two-stage pipeline. Stage 1 (Quality Assessment) uses the frozen encoder to compute trajectory-level density ratios, producing a fixed vector of quality weights w = [w_1, ..., w_N]. Stage 2 (Weighted Fine-Tuning) performs standard VLA LoRA fine-tuning with the encoder unfrozen, weighting the BC loss by the pre-computed w_i. The frozen encoder assumption is only needed for quality assessment, NOT for policy training. Data quality (expert vs. corrupted) is a property of the trajectory, not the encoder—a corrupted demonstration remains corrupted regardless of representation. The calibration experiment validates that the frozen encoder is sufficient for quality assessment; the dynamic β tracking in Phase 0.5 provides additional assurance.\n\n**Phase 1: Supporting Theory (Days 5-10).** Our theoretical contribution has two parts:\n\n*(1a) Latent-space transfer theorem (adapted from existing techniques).* We adapt DR-WBC's convergence framework to the latent setting: the clipped density-ratio weighted BC loss in latent space approximates the clean-data BC loss with additive representation error Δ(β). We are transparent that the proof technique (change-of-measure with bounded distortion) is standard—the contribution is applying it to the VLA setting with measured β values.\n\n*(1b) LoRA stability theorem (novel).* We prove that density-ratio distortion changes are bounded under low-rank perturbations: |β_{θ+ΔW} − β_θ| ≤ f(r, ||ΔW||, L_E, σ_gap). This is a new result that connects the LoRA fine-tuning literature with density-ratio estimation theory. It provides a formal basis for the 'calibrate-then-fine-tune' protocol: if β_0 is small at initialization, it remains bounded during LoRA training.\n\n*(1c) Reference set size bounds.* For intrinsic dimensionality d_eff (measured, not assumed), we require M ≥ C_0 · d_eff · log(d_eff/δ) / ε² reference trajectories. We report the empirical d_eff and its implications transparently. Expected range: d_eff ∈ [20, 200], yielding M ∈ [100, 1000+]. We ablate from M=20 to M=500 to determine the practical threshold.\n\n**Phase 2: Experiments (Days 6-13).** All experiments use OpenVLA-OFT (7B).\n\n*(2a) LIBERO-Plus evaluation (primary).* LIBERO-Plus (CVPR 2026) as primary benchmark: standard LIBERO is saturated (97.1%), while LIBERO-Plus tests robustness across 7 perturbation dimensions where VLAs drop to 0-30%. Synthetic corruption at α ∈ {0.1, 0.2, 0.3, 0.5} using four protocols: action noise, state perturbation, random rollouts, trajectory splicing.\n\n*(2b) Two-stage pipeline evaluation.* Compare: (i) Vanilla BC (all data equally weighted), (ii) CDR-VLA (frozen-encoder quality weights → standard LoRA fine-tuning), (iii) DWBC (reproduced in VLA setting), (iv) CUPID, SCIZOR, DemInf, RINSE (published results + LIBERO-Plus reproduction where needed). We also compare CDR-VLA against RobustVLA's RL post-training approach (where possible from published results) to understand when data curation vs. training regularization is more effective.\n\n*(2c) Calibration analysis as core results.* β measurements across encoder layers, d_eff, dynamic β evolution during training, weight stability analysis—these are reported as primary results, not supplementary material.\n\n**Scope for CoRL 2026 (8 pages):** Single VLA backbone (OpenVLA-OFT), LIBERO-Plus, synthetic corruption, no real robot. **Full ICLR 2027 version adds:** Octo backbone (testing scale dependence of β), DROID subsets, real-robot validation, investigation of whether multimodal pretraining objectives create favorable density-ratio geometry.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~280h A100 for CoRL (calibration + dynamic β tracking ~40h, discriminator training ~30h, VLA LoRA fine-tuning 30 runs × 3h ~90h, baseline reproduction ~50h, ablations + β checkpointing ~70h). Full ICLR version adds ~500h.",
+      "gpu_utilization": "Moderate-High (~55-75%): calibration/theory phases overlap with GPU experiments.",
+      "timeline": "CoRL 2026 sprint: 15 days (Phase 0 calibration: days 1-5 with go/no-go on day 5; Phase 0.5 dynamic β: days 4-7; theory: days 5-10; experiments: days 6-13; writing: days 10-15; abstract submission May 25 AoE, paper May 28 AoE). Full ICLR 2027: additional 3-4 months.",
+      "team": "CoRL: 1-2 researchers full-time for 15 days. Full version: 2 researchers (1 empirical/theory + 1 systems/robot).",
+      "estimated_gpu_cost": "CoRL: $420-560 (A100 at ~$1.50/hr). Full version adds ~$750."
+    },
+    "human_in_loop": {
+      "gpu_hours": "~380h A100 for CoRL (agent handles experiment orchestration, β measurement automation, baseline reproduction; 35% more runs for comprehensive β tracking).",
+      "gpu_utilization": "High (~65-85%): agent parallelizes β checkpoint evaluation.",
+      "timeline": "CoRL: 13-15 days. Full version: 2.5-3 months.",
+      "team": "1 researcher with VLA + representation analysis expertise, ~4hr/day. Agent handles code adaptation, β tracking scripts, LaTeX drafting.",
+      "claude_api_cost": "CoRL: $80-150. Full version adds $150-250.",
+      "estimated_gpu_cost": "CoRL: $570-650. Full version adds $850-1,100.",
+      "risk_note": "LoRA stability proof requires careful bounding of encoder Lipschitz constants; agent can draft but human must verify. The go/no-go calibration interpretation requires human judgment."
+    },
+    "auto_research": {
+      "gpu_hours": "~650h A100 for CoRL (comprehensive β sweeps across layers × training steps × corruption rates × reference sizes).",
+      "gpu_utilization": "High (~85-95%).",
+      "timeline": "CoRL: 10-12 days compute with 4 A100s; proofs add 4-6 days human involvement.",
+      "team": "1 researcher part-time (~3hr/day) for proof verification and calibration interpretation.",
+      "claude_api_cost": "$200-400 for CoRL. Full version adds $300-500.",
+      "estimated_gpu_cost": "CoRL: $975-1,150. Full version adds $1,350-1,800.",
+      "speed_bottleneck": "Proof verification and calibration interpretation remain on the critical path.",
+      "risk_note": "Dynamic β tracking requires careful checkpointing infrastructure; agent may over-measure at the expense of paper writing."
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (abstract: May 25 AoE, paper: May 28 AoE — 12 days to abstract, 15 to paper. Tight but feasible with scoped-down version: single VLA backbone, LIBERO-Plus only, no real robot. Go/no-go by May 18 based on calibration. 8-page limit suits focused calibration study + theory paper.)",
+    "ICLR 2027 (deadline likely ~Sep 2026 — comfortable timeline for full version with Octo backbone, DROID, real-robot validation, and deeper theoretical investigation. PRIMARY TARGET if CoRL 2026 aborted.)",
+    "RSS 2027 (deadline likely ~Jan 2027 — backup for comprehensive version with real-robot results)"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "Discriminator-Weighted Offline Imitation Learning from Suboptimal Demonstrations (ICML 2022) — DWBC: peer-reviewed foundation for discriminator-weighted BC. Code: github.com/ryanxhr/DWBC",
+    "An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning (ICLR 2025, arXiv 2504.13368) — IDRL: peer-reviewed work formalizing optimal discriminator-weighted imitation with iterative refinement, monotonic improvement guarantees, tested on corrupted demonstrations. Key differentiation target.",
+    "Density-Ratio Weighted Behavioral Cloning: Learning Control Policies from Corrupted Datasets (arXiv 2510.01479, Oct 2025) — DR-WBC: convergence theory for density-ratio weighted BC, tested only on MuJoCo",
+    "RobustVLA: Robustness-Aware Reinforcement Post-Training for VLA Models (arXiv 2511.01331) — orthogonal approach to VLA robustness via Jacobian/smoothness regularization in RL post-training",
+    "CUPID: Curating Data your Robot Loves with Influence Functions (CoRL 2025) — strongest VLA data curation baseline, shown to improve π₀ post-training",
+    "Quality over Quantity: Demonstration Curation via Influence Functions (arXiv 2603.09056, Mar 2026) — QoQ: concurrent influence-function work",
+    "SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning (ICRA 2026) — scales to OXE/Octo VLA",
+    "Robot Data Curation with Mutual Information Estimators (RSS 2025) — DemInf: unsupervised baseline with real-robot results",
+    "Learning from the Best: Smoothness-Driven Metrics for Data Quality in Imitation Learning (ICML 2025) — RINSE: reference-free baseline",
+    "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026) — primary evaluation benchmark",
+    "Value-Aligned Behavior Cloning for Offline RL via Bi-level Optimization (ICLR 2025) — VACO: meta-scoring for comparison",
+    "ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning (ICML 2025) — dense return prediction for VLA data quality",
+    "Imitation Learning from Purified Demonstrations (ICML 2024) — diffusion denoising with theoretical bounds",
+    "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels (arXiv 2505.09603, May 2025) — datamodel-based selection across 60+ tasks",
+    "Seed2Scale: A Self-Evolving Data Engine for Embodied AI (arXiv 2603.08260, Mar 2026) — VLM verifier for trajectory quality scoring",
+    "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success (OpenVLA-OFT, 2025) — VLA backbone, frozen vs. unfrozen encoder ablation",
+    "OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024) — base VLA model",
+    "ExpReS-VLA: Specializing VLA Models Through Experience Replay and Retrieval (arXiv 2511.06202) — uses frozen VLA backbone for embedding storage, precedent for frozen-encoder utility",
+    "LoRA Subtraction for Drift-Resistant Space in Exemplar-Free Continual Learning (arXiv 2503.18985) — LoRA representation drift analysis",
+    "Telescoping Density-Ratio Estimation (NeurIPS 2020) — foundational density ratio estimation",
+    "DROID: A Large-Scale In-The-Wild Robot Manipulation Dataset (RSS 2024) — noisy real-world dataset for full version",
+    "LIBERO-PRO: Towards Robust and Fair Evaluation (arXiv 2510.03827, Oct 2025) — complementary VLA robustness benchmark",
+    "LoRA: Low-Rank Adaptation of Large Language Models (ICLR 2022) — foundational LoRA technique"
+  ],
+  "description": "We reframe CDR-VLA as an empirical investigation with theoretical support, asking a question no prior work has addressed: do VLA encoders preserve density-ratio structure sufficient for importance-weighted fine-tuning from noisy demonstrations? This question determines the viability of an entire class of data curation methods (DWBC, IDRL, DR-WBC) at VLA scale. Our approach cleanly separates quality assessment (using the frozen encoder, where density-ratio theory applies) from policy training (standard LoRA fine-tuning with encoder unfrozen), resolving the critical tension between frozen-encoder theory and unfrozen-encoder practice. The paper makes four contributions: (1) The first encoder calibration study measuring bounded distortion β and intrinsic dimensionality across VLA encoder layers (SigLIP + DinoV2 backbone), establishing whether discriminator-based quality estimation is viable in VLA latent spaces—a result that is valuable regardless of sign. (2) Dynamic β tracking during LoRA fine-tuning that empirically characterizes how density-ratio structure evolves as the encoder adapts, providing the community with the first data on representation stability under VLA adaptation. (3) A LoRA stability theorem bounding |Δβ| under low-rank perturbations, connecting LoRA fine-tuning theory with density-ratio estimation for the first time. (4) A practical two-stage pipeline (calibrate quality weights with frozen encoder → train policy with unfrozen encoder using fixed weights) evaluated on LIBERO-Plus (CVPR 2026), compared against DWBC, CUPID, DemInf, SCIZOR, and RINSE. We differentiate from IDRL (ICLR 2025, closest peer-reviewed work) by focusing on the BC setting for VLA fine-tuning, investigating high-dimensional visual latent spaces, and centering the empirical calibration question rather than the optimization algorithm. We differentiate from RobustVLA by addressing data-time curation rather than training-time regularization—approaches that are complementary. CoRL 2026 version uses OpenVLA-OFT only; ICLR 2027 full version adds Octo backbone, DROID, and real-robot validation.",
+  "project_name": "cdr_vla_noisy_demos",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["FATAL TIMELINE: 15-16 days to paper deadline is completely incompatible with the generator's own estimates (4-6 months manual, 4-8 weeks auto). Novel convergence proofs alone are estimated at 6-8 weeks. CoRL 2026 is not realistic; ICLR 2027 (~Sep 2026 deadline) is the viable target.", "MISSING CRITICAL RELATED WORK: (1) DWBC - Discriminator-Weighted Offline Imitation Learning from Suboptimal Demonstrations (ICML 2022) uses discriminator outputs directly as BC weights—conceptually very similar to the proposed density-ratio weighting approach; (2) ADR-BC - Adversarial Density Weighted Regression BC (arXiv 2024) uses density-based action support estimation; (3) VACO - Value-Aligned BC (ICLR 2025) uses meta-scoring network to weight BC samples; (4) 'Imitation Learning from Purified Demonstrations' (ICML 2024) uses diffusion models to denoise imperfect demonstrations with theoretical bounds; (5) DemInf/Robot Data Curation with Mutual Information Estimators (RSS 2025); (6) CUPID (CoRL 2025) - influence function-based demonstration curation; (7) ReinboT (ICML 2025) - VLA model that predicts dense returns to understand data quality distribution.", "FOUNDATION PAPER RISK: The Density-Ratio Weighted BC paper (arXiv 2510.01479) is from Rochester Institute of Technology, tested only on low-dimensional MuJoCo D4RL benchmarks (HalfCheetah, Ant, Hopper, Walker2d), uses 20% expert data as clean reference (not 5-10 demos), and has NOT been peer-reviewed at any top venue. Building a theoretical extension on an unvetted foundation is risky for a top venue submission.", "CLEAN REFERENCE SET SIZE DISCREPANCY: The proposal claims '5-10 verified gold demonstrations per task' suffice, but the original DR-WBC paper uses 20% of expert trajectories. Density ratio estimation in high-dimensional VLA latent spaces with only 5-10 clean trajectories may suffer severe variance—no evidence this is sufficient.", "NOVELTY OVER DWBC IS UNCLEAR: Xu et al. (ICML 2022) already use a binary discriminator to weight BC from suboptimal demonstrations. The proposed method's core pipeline (discriminator → density ratios → weighted BC) is structurally identical. The theoretical contribution (latent-space convergence transfer) needs to be clearly differentiated from and positioned against this established baseline.", "CoRL SIMULATION-ONLY RISK: CoRL 2026 CFP states 'authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots.' A purely theoretical + LIBERO simulation paper may face reviewer resistance, especially given that the theoretical guarantees rely on bounded-distortion assumptions that are hard to verify on real robots."]
+Feedback: The core idea—bringing formal robustness guarantees to VLA training via density-ratio theory—addresses a real gap, but the submission needs substantial revision across multiple dimensions:
+
+1. **Retarget to ICLR 2027** (expected deadline ~Sep 2026): The CoRL 2026 timeline is impossible. This gives 4 months to properly develop proofs, run experiments, and iterate.
+
+2. **Critically differentiate from DWBC (ICML 2022)**: Xu et al. already use discriminator-weighted BC from suboptimal demonstrations. You MUST explain what your density-ratio formulation provides beyond DWBC's discriminator weighting. The convergence guarantee is the obvious differentiator, but it must be explicitly positioned.
+
+3. **Address the 7+ missing related works**: DWBC, ADR-BC, VACO, Purified Demonstrations (ICML 2024), DemInf (RSS 2025), CUPID (CoRL 2025), and ReinboT (ICML 2025) all address noisy/suboptimal demonstration handling. Several should become additional baselines (especially CUPID and DemInf which are robot-specific). The landscape section currently overstates the novelty by omitting these.
+
+4. **Validate the foundation**: Before building on arXiv 2510.01479, independently verify its theoretical claims. If the proofs don't hold up or the method doesn't scale, your entire contribution collapses. Consider also building on the more established DWBC (ICML 2022) theoretical framework instead.
+
+5. **Justify the 5-10 clean demo claim**: The original paper uses 20% expert data. You need either (a) theoretical justification for why far fewer suffice in the latent setting, or (b) empirical ablation showing the minimum viable clean set size. This is a key practical selling point—don't overclaim.
+
+6. **Add real robot results for CoRL/ICLR**: Even a small-scale real-robot validation (e.g., on a single DROID task family with curated clean references) would dramatically strengthen the submission.
+
+7. **Strengthen the theoretical contribution**: The bounded-distortion → additive error decomposition proof technique is fairly standard in representation learning. Consider whether you can prove something stronger—e.g., that the VLA encoder's pretrained structure provides favorable density-ratio estimation properties beyond generic bounded distortion.
+
+### Round 2 review
+Verdict: revise
+Issues: ["FATAL TIMELINE: User explicitly targets CoRL 2026 (paper deadline May 29, 16 days away). The generator retargeted to ICLR 2027 (~Sep 2026, date not yet announced) without addressing whether any viable CoRL 2026 submission is possible. The user stated theory-focused work without real robots is acceptable ('如果是从一些底层理论角度提出了筛选方法 感觉不用真机也是可以接受的'), but even theory-only with novel proofs in 16 days is infeasible per the generator's own 4-5 week estimate for proofs alone.", "UNVETTED FOUNDATION RISK PERSISTS: DR-WBC (arXiv 2510.01479) remains a non-peer-reviewed preprint from a cybersecurity department at RIT, tested only on 4 MuJoCo tasks with 20% expert data. No conference acceptance found as of May 2026. If DR-WBC's proofs contain errors, the entire theoretical contribution collapses. The generator should independently verify DR-WBC's Theorem 1 or build on the more established DWBC (ICML 2022) framework.", "BOUNDED-DISTORTION ASSUMPTION IS LOAD-BEARING BUT UNVALIDATED: The entire theoretical contribution rests on the assumption that VLA encoders preserve density ratios up to multiplicative factor β. No evidence is provided that current VLA encoders (OpenVLA, Octo) satisfy this. If β is large, the additive representation error O(β−1) dominates and the guarantee is practically useless. 'Empirically verifiable via calibration analysis' is promised but no preliminary evidence is offered.", "TASK-RELEVANT CONCENTRATION IS SPECULATIVE: This property ('trajectories semantically similar in task space map to nearby latent representations') is introduced informally without rigorous definition, verification protocol, or evidence it holds for any existing VLA encoder. It's the strongest theoretical claim but the weakest in justification.", "LIBERO BENCHMARK NEAR-SATURATION: OpenVLA-OFT achieves 97.1% on standard LIBERO. Demonstrating meaningful gains from data curation on a nearly-saturated benchmark is difficult. LIBERO-Plus and LIBERO-PRO show VLAs drop to 0-30% under perturbations—these harder benchmarks would be more informative but are not mentioned in the evaluation plan.", "NOVELTY IS INCREMENTAL: The progression DWBC→DR-WBC→LDR-VLA follows a predictable pattern: (1) heuristic discriminator weighting, (2) formal density-ratio convergence theory, (3) latent-space transfer for high-dim. Step (3) is a standard representation-learning argument (bounded-distortion → additive error), not a deep theoretical insight. The 'most comprehensive comparison of VLA data curation methods' is empirical completeness, not theoretical novelty.", "REFERENCE SET SIZE BOUND MAY BE MISLEADINGLY OPTIMISTIC: The claim that O(d·log(1/δ)) reference trajectories suffice (suggesting 20-100) ignores constant factors. VLA latent dims of 768-4096 are not 'low-dimensional'—density estimation in 768+ dimensions still requires substantial data. The generator should provide tighter bounds or acknowledge that the constant factor could push requirements to hundreds or thousands of trajectories."]
+Feedback: The Round 2 revision significantly improved related work coverage and positioning, but critical issues remain:
+
+1. **Address the CoRL 2026 timeline honestly**: Either (a) propose a drastically scoped-down version viable in 16 days (e.g., extending existing DR-WBC proofs to latent space with minimal new theory + LIBERO-only experiments using existing DWBC code), or (b) explicitly acknowledge CoRL 2026 is impossible and explain to the user why. The user seems open to theory-only work—explore whether existing DWBC+DR-WBC code can be adapted quickly with a focused theoretical contribution.
+
+2. **Validate the foundation before building on it**: Before writing new proofs, independently verify DR-WBC's core theorems. If the proofs are solid, great. If not, reformulate your contribution as formalizing DWBC (ICML 2022, peer-reviewed) rather than extending DR-WBC.
+
+3. **Provide preliminary evidence for bounded distortion**: Run a quick calibration experiment with OpenVLA's frozen encoder to estimate β empirically. If β is close to 1, the theory has teeth. If β >> 1, the guarantees are vacuous and you need to rethink the approach. This is a make-or-break experiment that should happen before investing in proofs.
+
+4. **Rigorously define task-relevant concentration**: Formalize this property with a mathematical definition, not just an informal description. Propose a concrete verification protocol (e.g., specific probing tasks, distance metrics in latent vs. task space).
+
+5. **Use harder benchmarks**: Replace or supplement standard LIBERO with LIBERO-Plus or LIBERO-PRO, which test robustness under perturbations. These align better with the 'noisy/corrupted data' narrative and aren't saturated.
+
+6. **Strengthen the novelty argument**: The bounded-distortion transfer is standard. Consider whether you can prove something about the geometry of VLA latent spaces specifically (not just generic representation learning). For example: do transformer-based VLA encoders have provably favorable density-ratio estimation properties due to their attention structure?
+
+7. **Be transparent about reference set size**: Provide concrete bounds with constants, not just asymptotic O(·) notation. If the bound says 500 trajectories for a 768-dim latent space at ε=0.1, δ=0.05, say so explicitly.
+
+### Round 3 review
+Verdict: revise
+Issues: ["CRITICAL — FROZEN ENCODER ASSUMPTION CONFLICTS WITH VLA BEST PRACTICES: OpenVLA research explicitly shows that 'freezing the vision encoder leads to poor performance' and that fine-tuning the vision encoder is crucial for downstream task success. The entire CDR-VLA framework (Phase 0 calibration, latent-space transfer theorem, reference set size bounds) assumes density ratios are computed in a FROZEN encoder's latent space. If the encoder must be fine-tuned during VLA training for practical performance, the frozen-encoder density-ratio analysis may not hold—the latent space changes during training, invalidating the pre-computed density ratios and β measurements. This is a fundamental architectural disconnect that undermines the practical relevance of the theoretical contribution.", "MISSING RELATED WORK — IDRL (ICLR 2025): 'An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning' (arXiv:2504.13368) was accepted at ICLR 2025. It directly takes a discriminator-weighted imitation view of RL, iteratively removes zero-weight suboptimal transitions using learned visitation distribution ratios, and is tested on corrupted demonstrations. This is a peer-reviewed work at a top venue that is highly relevant to the proposed density-ratio discriminator-weighted BC formalization and must be cited and differentiated from.", "MISSING RELATED WORK — RobustVLA (arXiv 2511.01331): RobustVLA is a robustness-aware reinforcement post-training method for VLA models that addresses exactly the perturbation robustness narrative CDR-VLA claims to serve. It uses Jacobian and smoothness regularization to mitigate VLA sensitivity to observation noise and action perturbations, with real robot results. This directly competes with the 'robustness under perturbations' framing used to motivate LIBERO-Plus evaluation.", "DEADLINE DATE ERROR: CoRL 2026 actual deadlines are Abstract May 25 and Paper May 28 (AoE), not May 26/29 as stated. This means 12 days to abstract, 15 to paper—even tighter than claimed. The CFP also states 'deadlines are final' with no accommodations.", "THEORETICAL CONTRIBUTION REMAINS STANDARD: The bounded-distortion → additive error decomposition is a well-known technique in representation learning theory. The specific contribution—showing that density-ratio distortion through a frozen encoder propagates as an additive Δ(β) term—follows directly from standard change-of-measure arguments. The claim of 'first convergence-certified VLA fine-tuning method' is technically true but the certification quality depends entirely on β, which is unknown and may be large.", "REFERENCE SET SIZE BOUND STILL SPECULATIVE: The revised claim of 200-500 reference trajectories is more honest than the previous 20-100, but still depends on unmeasured intrinsic dimensionality d_eff. The proposal acknowledges this ('if d_eff turns out to be 200+, required set size grows to 1000+') but presents the 200-500 estimate as the expected case without evidence. For a 768-dim ambient latent space, even with dimensional reduction, the constant factors in density estimation bounds could push requirements significantly higher."]
+Feedback: The Round 3 revision shows substantial improvement—comprehensive landscape coverage, honest risk assessment, and the calibration-first experimental design is well-motivated. However, one critical issue remains that must be resolved before this can pass:
+
+1. **Resolve the frozen vs. fine-tuned encoder disconnect (CRITICAL)**: The entire theoretical framework assumes frozen encoder representations, but OpenVLA fine-tuning research shows frozen encoders yield poor task performance. You must either: (a) Develop theory that accounts for encoder adaptation during training (e.g., prove that if β is small at initialization, it remains bounded under LoRA fine-tuning with bounded parameter updates), (b) Empirically show that frozen-encoder VLA training achieves competitive performance on LIBERO-Plus (contradicting current evidence), or (c) Reframe the contribution: the calibration experiment measures β for the frozen encoder, the theory holds for the frozen encoder, and you provide a separate empirical analysis showing how β changes during fine-tuning with an informal argument for why the guarantees remain approximately valid. Option (c) is most feasible for the CoRL timeline.
+
+2. **Add IDRL (ICLR 2025) and RobustVLA to references**: IDRL directly formalizes discriminator-weighted imitation and iteratively removes suboptimal transitions—it should be a baseline and differentiation target. RobustVLA addresses VLA perturbation robustness with a different approach (RL post-training) and should be discussed as an alternative paradigm.
+
+3. **Correct deadline dates**: Abstract May 25, Paper May 28 AoE. You have 12 days to abstract, not 13.
+
+4. **Strengthen the novelty beyond standard representation learning**: The calibration experiment (measuring β across encoder layers, intrinsic dimensionality analysis) is your most novel and independently valuable contribution. Consider making this the primary contribution rather than the transfer theorem. A paper titled 'Do VLA Encoders Preserve Density-Ratio Structure? Implications for Importance-Weighted Fine-Tuning' with calibration as the centerpiece and the theory as supporting analysis would be more distinctive and less vulnerable to the 'standard technique' criticism.
+
+5. **Address the fine-tuning dynamics**: Even a brief theoretical remark about how LoRA fine-tuning (small perturbation to frozen weights) affects β would significantly strengthen the paper. If LoRA updates are bounded by ε in operator norm, can you bound the change in β?
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "5b46ad89-389b-47f2-a018-96735126287a",
+  "type": "user",
+  "uuid": "e6716e5a-dc0f-4df1-927c-a04b514a4fc2",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-13T19:39:15.137Z_
+
+```json
+{
+  "parentUuid": "e6716e5a-dc0f-4df1-927c-a04b514a4fc2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "db90a992-9758-4951-aa47-919b544f55dc",
+  "timestamp": "2026-05-13T19:39:15.137Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-13T19:39:15.138Z_
+
+```json
+{
+  "parentUuid": "db90a992-9758-4951-aa47-919b544f55dc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "51a3fa9d-8626-4636-b648-895bef150156",
+  "timestamp": "2026-05-13T19:39:15.138Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "51a3fa9d-8626-4636-b648-895bef150156",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrating importance-weighted VLA fine-tuning via frozen encoder density-ratio analysis",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-13T19:39:26.178Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea for CoRL 2026. This is round 4/10, and the idea has been revised three times already. Let me conduct thorough independent research to verify the claims and assess the quality.
+
+Let me start by understanding what's being proposed:
+- CDR-VLA: Calibrated Density-Ratio Weighted VLA Fine-Tuning
+- Core question: Do VLA encoders preserve density-ratio structure for importance-weighted fine-tuning?
+- They've now reframed it as a calibration study (primary contribution) with theory support
+
+
+- They've addressed the frozen vs. fine-tuned encoder disconnect with a two-stage pipeline and dynamic β tracking, added IDRL and RobustVLA references, and corrected the deadline dates. Now I need to verify whether IDRL and RobustVLA actually exist, check if the CoRL 2026 deadlines are accurate, and assess whether the two-stage approach genuinely resolves the encoder inconsistency, along with evaluating novelty, feasibility, and any gaps in related work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51a3fa9d-8626-4636-b648-895bef150156",
+  "isSidechain": false,
+  "requestId": "req_011Cb18khseLgGfAd1p7RzWW",
+  "type": "assistant",
+  "uuid": "3e72b0cd-6e1b-41ff-afaf-caa1eb97700f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TRs63tXnmSH6fFiEYa8ARq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 19234,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1284,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19234,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1284,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 19234,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19234
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-13T19:39:26.184Z_
+
+I'll conduct an independent review of this idea. Let me start by verifying key claims and searching for related/competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e72b0cd-6e1b-41ff-afaf-caa1eb97700f",
+  "isSidechain": false,
+  "requestId": "req_011Cb18khseLgGfAd1p7RzWW",
+  "type": "assistant",
+  "uuid": "8f1f2a4b-b863-4ce7-bd0b-8687ccc5a325",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TRs63tXnmSH6fFiEYa8ARq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 19234,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1284,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19234,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1284,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 19234,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19234
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T19:39:28.451Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01ABYnksojjDmxsaEb2ADguU`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify CoRL 2026 deadlines",
+  "prompt": "Search the web for \"CoRL 2026 deadlines\" and \"CoRL 2026 call for papers\" and \"CoRL 2026 Austin submission deadline\". I need to verify whether CoRL 2026 has abstract deadline May 25 and paper deadline May 28 (AoE). Also check if the conference is in Austin, Nov 9-12, 2026. Report exact dates and URLs found."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f1f2a4b-b863-4ce7-bd0b-8687ccc5a325",
+  "isSidechain": false,
+  "requestId": "req_011Cb18khseLgGfAd1p7RzWW",
+  "type": "assistant",
+  "uuid": "705052b4-95fd-47e4-8601-54d96a9b1328",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TRs63tXnmSH6fFiEYa8ARq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 19234,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1284,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19234,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1284,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 19234,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19234
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-13T19:39:31.755Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Wq3vS73h7bWL1X54j2sVPM`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify IDRL ICLR 2025",
+  "prompt": "Search the web for the paper \"An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning\" with arXiv ID 2504.13368. I need to verify: (1) Does this paper actually exist? (2) Was it actually accepted at ICLR 2025? (3) What exactly does it do? Search on arxiv.org, openreview.net, and Google Scholar. Also search for \"IDRL discriminator weighted imitation ICLR 2025\". Report what you find with URLs."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "705052b4-95fd-47e4-8601-54d96a9b1328",
+  "isSidechain": false,
+  "requestId": "req_011Cb18khseLgGfAd1p7RzWW",
+  "type": "assistant",
+  "uuid": "99ba97b1-71b8-4e66-bdf2-ae1bbdf7d30f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TRs63tXnmSH6fFiEYa8ARq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 19234,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1284,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19234,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1284,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 19234,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19234
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-13T19:39:36.337Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01D9ou61kNtdT363NFvvkL7C`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify DR-WBC and RobustVLA",
+  "prompt": "Search the web for two papers:\n\n1. \"Density-Ratio Weighted Behavioral Cloning\" arXiv 2510.01479 - I need to know: Does it exist? Has it been accepted at any venue as of May 2026? What institution is it from? What tasks is it tested on?\n\n2. \"RobustVLA\" arXiv 2511.01331 - Search for \"RobustVLA robustness reinforcement post-training VLA\" and verify: Does it exist? What does it do exactly? Has it been accepted anywhere?\n\nAlso search for \"density ratio weighted behavioral cloning peer review\" and \"DR-WBC accepted conference 2025 2026\".\n\nReport findings with URLs."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99ba97b1-71b8-4e66-bdf2-ae1bbdf7d30f",
+  "isSidechain": false,
+  "requestId": "req_011Cb18khseLgGfAd1p7RzWW",
+  "type": "assistant",
+  "uuid": "9754edb7-4f69-4cea-aa9f-72e32507ea73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TRs63tXnmSH6fFiEYa8ARq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 19234,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1284,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19234,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1284,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 19234,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19234
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-13T19:39:41.976Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Pwa4pw9h55esxmSq632SRz`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search concurrent VLA data curation",
+  "prompt": "Search the web for recent work (2025-2026) on data curation/filtering for Vision-Language-Action (VLA) models. I need to find work the generator may have missed. Use these searches:\n\n1. \"VLA data curation 2026 site:arxiv.org\"\n2. \"vision language action noisy demonstrations filtering 2025 2026\"\n3. \"importance weighting robot imitation learning 2025 2026\"\n4. \"density ratio estimation robot learning 2025 2026\"\n5. \"discriminator weighted imitation learning VLA\"\n6. \"VLA fine-tuning data quality 2026\"\n7. \"demonstration quality scoring robot manipulation 2026\"\n\nFor each relevant paper found, report: title, venue/status, what it does, and how it relates to density-ratio weighted BC for VLA training. Focus especially on papers from the last 6 months (Dec 2025 - May 2026)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9754edb7-4f69-4cea-aa9f-72e32507ea73",
+  "isSidechain": false,
+  "requestId": "req_011Cb18khseLgGfAd1p7RzWW",
+  "type": "assistant",
+  "uuid": "d4b7dc35-3bbe-4018-ba75-de0f327dce6c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TRs63tXnmSH6fFiEYa8ARq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 19234,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1284,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19234,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1284,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 19234,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19234
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T19:40:18.957Z_
+
+<details><summary>↩ Tool result · `toolu_01ABYnksojjDmxsaEb2ADguU`</summary>
+
+```text
+Here are my findings from all sources consulted:
+
+---
+
+**CoRL 2026 -- Verified Deadlines and Details**
+
+**Your dates are NOT exactly correct.** The actual deadlines are slightly different from what you stated:
+
+| Item | You stated | Actual (per official sources) |
+|---|---|---|
+| Abstract deadline | May 25 | **May 26, 2026** (11:59 UTC) |
+| Paper deadline | May 28 (AoE) | **May 29, 2026** (11:59 UTC) |
+| Timezone | AoE | **UTC** (11:59 UTC, not AoE) |
+| Conference dates | Nov 9-12, 2026 | **Nov 9-12, 2026** (confirmed) |
+| Location | Austin | **Austin, TX** at JW Marriott Austin (confirmed) |
+
+**Key details:**
+
+- **Abstract submission deadline:** May 26, 2026, 11:59 UTC
+- **Paper submission deadline:** May 29, 2026, 11:59 UTC (the official "Instruction for Authors" page notes this is a Thursday, not a Friday)
+- **Camera-ready deadline:** October 12, 2026, 23:59 AoE
+- **Conference:** November 9-12, 2026 (Workshops Nov 9, Main conference Nov 10-12)
+- **Venue:** JW Marriott Austin, 110 E 2nd St, Austin, TX 78701, USA
+
+**Important notes:**
+1. The deadlines use **UTC** (11:59 UTC), not AoE (Anywhere on Earth). The only deadline listed in AoE is the camera-ready deadline (Oct 12).
+2. Both dates are off by one day compared to what you had -- May 26 (not 25) for abstracts and May 29 (not 28) for papers.
+3. The conference dates (Nov 9-12) and Austin location are confirmed correct.
+
+Sources:
+- [CoRL 2026 Official Website](https://www.corl.org/)
+- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [CoRL 2026 - Instruction for Authors](https://www.corl.org/contributions/instruction-for-authors)
+- [CoRL 2026 Conference on OpenReview](https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference)
+- [HuggingFace AI Deadlines - CoRL 2026 Update](https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf)
+
+agentId: aa05b92fb476faf02 (use SendMessage with to: 'aa05b92fb476faf02' to continue this agent)
+&lt;usage>total_tokens: 15298
+tool_uses: 9
+duration_ms: 50499&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "705052b4-95fd-47e4-8601-54d96a9b1328",
+  "isSidechain": false,
+  "promptId": "5b46ad89-389b-47f2-a018-96735126287a",
+  "type": "user",
+  "uuid": "91ddd96e-4e0f-421e-9673-da8301c3f5e1",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for \"CoRL 2026 deadlines\" and \"CoRL 2026 call for papers\" and \"CoRL 2026 Austin submission deadline\". I need to verify whether CoRL 2026 has abstract deadline May 25 and paper deadline May 28 (AoE). Also check if the conference is in Austin, Nov 9-12, 2026. Report exact dates and URLs found.",
+    "agentId": "aa05b92fb476faf02",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are my findings from all sources consulted:\n\n---\n\n**CoRL 2026 -- Verified Deadlines and Details**\n\n**Your dates are NOT exactly correct.** The actual deadlines are slightly different from what you stated:\n\n| Item | You stated | Actual (per official sources) |\n|---|---|---|\n| Abstract deadline | May 25 | **May 26, 2026** (11:59 UTC) |\n| Paper deadline | May 28 (AoE) | **May 29, 2026** (11:59 UTC) |\n| Timezone | AoE | **UTC** (11:59 UTC, not AoE) |\n| Conference dates | Nov 9-12, 2026 | **Nov 9-12, 2026** (confirmed) |\n| Location | Austin | **Austin, TX** at JW Marriott Austin (confirmed) |\n\n**Key details:**\n\n- **Abstract submission deadline:** May 26, 2026, 11:59 UTC\n- **Paper submission deadline:** May 29, 2026, 11:59 UTC (the official \"Instruction for Authors\" page notes this is a Thursday, not a Friday)\n- **Camera-ready deadline:** October 12, 2026, 23:59 AoE\n- **Conference:** November 9-12, 2026 (Workshops Nov 9, Main conference Nov 10-12)\n- **Venue:** JW Marriott Austin, 110 E 2nd St, Austin, TX 78701, USA\n\n**Important notes:**\n1. The deadlines use **UTC** (11:59 UTC), not AoE (Anywhere on Earth). The only deadline listed in AoE is the camera-ready deadline (Oct 12).\n2. Both dates are off by one day compared to what you had -- May 26 (not 25) for abstracts and May 29 (not 28) for papers.\n3. The conference dates (Nov 9-12) and Austin location are confirmed correct.\n\nSources:\n- [CoRL 2026 Official Website](https://www.corl.org/)\n- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [CoRL 2026 - Instruction for Authors](https://www.corl.org/contributions/instruction-for-authors)\n- [CoRL 2026 Conference on OpenReview](https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference)\n- [HuggingFace AI Deadlines - CoRL 2026 Update](https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf)"
+      }
+    ],
+    "totalDurationMs": 50499,
+    "totalTokens": 15298,
+    "totalToolUseCount": 9,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 289,
+      "cache_read_input_tokens": 14329,
+      "output_tokens": 679,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 289
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 679,
+          "cache_read_input_tokens": 14329,
+          "cache_creation_input_tokens": 289,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 289,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 9
+    }
+  },
+  "sourceToolAssistantUUID": "705052b4-95fd-47e4-8601-54d96a9b1328",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-13T19:40:25.429Z_
+
+<details><summary>↩ Tool result · `toolu_01Wq3vS73h7bWL1X54j2sVPM`</summary>
+
+```text
+Here are the findings from searching across all requested sources:
+
+---
+
+## (1) Does the paper exist? -- YES
+
+The paper **"An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning"** with arXiv ID **2504.13368** is real and verified across multiple sources:
+
+- **arXiv:** [https://arxiv.org/abs/2504.13368](https://arxiv.org/abs/2504.13368) -- Submitted April 17, 2025. Categories: cs.LG, cs.AI.
+- **OpenReview:** [https://openreview.net/forum?id=9JtG4nN7ql](https://openreview.net/forum?id=9JtG4nN7ql)
+- **ICLR 2025 Proceedings:** [https://proceedings.iclr.cc/paper_files/paper/2025/hash/3ef61f7e4afacf9a2c5b71c726172b86-Abstract-Conference.html](https://proceedings.iclr.cc/paper_files/paper/2025/hash/3ef61f7e4afacf9a2c5b71c726172b86-Abstract-Conference.html)
+
+**Authors:** Haoran Xu, Shuozhe Li, Harshit Sikchi, Scott Niekum, Amy Zhang (affiliations include UT Austin, UMass Amherst, and Meta AI).
+
+---
+
+## (2) Was it accepted at ICLR 2025? -- YES
+
+The paper was **accepted as a poster at ICLR 2025**. This is confirmed by:
+
+- The OpenReview page explicitly lists it under the ICLR 2025 Conference venue, with acceptance status as a poster paper (published January 22, 2025).
+- It appears in the official ICLR 2025 proceedings at `proceedings.iclr.cc`.
+- The arXiv page itself notes it as an ICLR 2025 paper.
+
+---
+
+## (3) What does it do?
+
+The paper introduces **Iterative Dual Reinforcement Learning (IDRL)**, a new offline RL method. Here is what it does:
+
+- **Motivating observation:** The authors show that if you train a binary discriminator to distinguish between an offline dataset and an expert dataset, and then use the discriminator's output as weights for behavior cloning (imitation learning), you get surprisingly strong results across many dataset types.
+
+- **Connection to Dual-RL:** They observe that the optimal discriminator weight is mathematically very similar to the visitation distribution ratio learned in Dual-RL methods. However, they find that existing Dual-RL methods do **not** correctly estimate this ratio.
+
+- **The IDRL algorithm:** IDRL proposes an iterative correction procedure to approach the optimal visitation distribution ratio **without requiring an additional expert dataset**. In each iteration, IDRL:
+  1. Uses the visitation distribution ratio learned from the previous iteration to identify and **remove zero-weight (suboptimal) transitions** from the dataset.
+  2. Runs Dual-RL on the remaining (cleaned) subdataset.
+  3. This effectively replaces the behavior visitation distribution with the optimized one from the prior iteration, creating a **curriculum of progressively improved visitation distribution ratios** that converge toward the optimal discriminator weight.
+
+- **Results:** IDRL outperforms strong Primal-RL and Dual-RL baselines in both **performance and stability** across D4RL benchmark datasets and more realistic corrupted demonstration scenarios.
+
+---
+
+## Search for "IDRL discriminator weighted imitation ICLR 2025"
+
+This search confirmed the same paper across all three sources (arXiv, OpenReview, and ICLR proceedings). No ambiguity -- there is exactly one paper matching this description.
+
+---
+
+Sources:
+- [arXiv: 2504.13368](https://arxiv.org/abs/2504.13368)
+- [arXiv HTML version](https://arxiv.org/html/2504.13368)
+- [OpenReview forum](https://openreview.net/forum?id=9JtG4nN7ql)
+- [OpenReview PDF](https://openreview.net/pdf/599e783547a2ce1b35d5540a0162a0641b26f45b.pdf)
+- [ICLR 2025 Proceedings page](https://proceedings.iclr.cc/paper_files/paper/2025/hash/3ef61f7e4afacf9a2c5b71c726172b86-Abstract-Conference.html)
+
+agentId: ade6ff91ac9e1dd8d (use SendMessage with to: 'ade6ff91ac9e1dd8d' to continue this agent)
+&lt;usage>total_tokens: 17200
+tool_uses: 8
+duration_ms: 53671&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "99ba97b1-71b8-4e66-bdf2-ae1bbdf7d30f",
+  "isSidechain": false,
+  "promptId": "5b46ad89-389b-47f2-a018-96735126287a",
+  "type": "user",
+  "uuid": "40a09a1a-6e60-44b5-8a50-a3c55d2e97a0",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for the paper \"An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning\" with arXiv ID 2504.13368. I need to verify: (1) Does this paper actually exist? (2) Was it actually accepted at ICLR 2025? (3) What exactly does it do? Search on arxiv.org, openreview.net, and Google Scholar. Also search for \"IDRL discriminator weighted imitation ICLR 2025\". Report what you find with URLs.",
+    "agentId": "ade6ff91ac9e1dd8d",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are the findings from searching across all requested sources:\n\n---\n\n## (1) Does the paper exist? -- YES\n\nThe paper **\"An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning\"** with arXiv ID **2504.13368** is real and verified across multiple sources:\n\n- **arXiv:** [https://arxiv.org/abs/2504.13368](https://arxiv.org/abs/2504.13368) -- Submitted April 17, 2025. Categories: cs.LG, cs.AI.\n- **OpenReview:** [https://openreview.net/forum?id=9JtG4nN7ql](https://openreview.net/forum?id=9JtG4nN7ql)\n- **ICLR 2025 Proceedings:** [https://proceedings.iclr.cc/paper_files/paper/2025/hash/3ef61f7e4afacf9a2c5b71c726172b86-Abstract-Conference.html](https://proceedings.iclr.cc/paper_files/paper/2025/hash/3ef61f7e4afacf9a2c5b71c726172b86-Abstract-Conference.html)\n\n**Authors:** Haoran Xu, Shuozhe Li, Harshit Sikchi, Scott Niekum, Amy Zhang (affiliations include UT Austin, UMass Amherst, and Meta AI).\n\n---\n\n## (2) Was it accepted at ICLR 2025? -- YES\n\nThe paper was **accepted as a poster at ICLR 2025**. This is confirmed by:\n\n- The OpenReview page explicitly lists it under the ICLR 2025 Conference venue, with acceptance status as a poster paper (published January 22, 2025).\n- It appears in the official ICLR 2025 proceedings at `proceedings.iclr.cc`.\n- The arXiv page itself notes it as an ICLR 2025 paper.\n\n---\n\n## (3) What does it do?\n\nThe paper introduces **Iterative Dual Reinforcement Learning (IDRL)**, a new offline RL method. Here is what it does:\n\n- **Motivating observation:** The authors show that if you train a binary discriminator to distinguish between an offline dataset and an expert dataset, and then use the discriminator's output as weights for behavior cloning (imitation learning), you get surprisingly strong results across many dataset types.\n\n- **Connection to Dual-RL:** They observe that the optimal discriminator weight is mathematically very similar to the visitation distribution ratio learned in Dual-RL methods. However, they find that existing Dual-RL methods do **not** correctly estimate this ratio.\n\n- **The IDRL algorithm:** IDRL proposes an iterative correction procedure to approach the optimal visitation distribution ratio **without requiring an additional expert dataset**. In each iteration, IDRL:\n  1. Uses the visitation distribution ratio learned from the previous iteration to identify and **remove zero-weight (suboptimal) transitions** from the dataset.\n  2. Runs Dual-RL on the remaining (cleaned) subdataset.\n  3. This effectively replaces the behavior visitation distribution with the optimized one from the prior iteration, creating a **curriculum of progressively improved visitation distribution ratios** that converge toward the optimal discriminator weight.\n\n- **Results:** IDRL outperforms strong Primal-RL and Dual-RL baselines in both **performance and stability** across D4RL benchmark datasets and more realistic corrupted demonstration scenarios.\n\n---\n\n## Search for \"IDRL discriminator weighted imitation ICLR 2025\"\n\nThis search confirmed the same paper across all three sources (arXiv, OpenReview, and ICLR proceedings). No ambiguity -- there is exactly one paper matching this description.\n\n---\n\nSources:\n- [arXiv: 2504.13368](https://arxiv.org/abs/2504.13368)\n- [arXiv HTML version](https://arxiv.org/html/2504.13368)\n- [OpenReview forum](https://openreview.net/forum?id=9JtG4nN7ql)\n- [OpenReview PDF](https://openreview.net/pdf/599e783547a2ce1b35d5540a0162a0641b26f45b.pdf)\n- [ICLR 2025 Proceedings page](https://proceedings.iclr.cc/paper_files/paper/2025/hash/3ef61f7e4afacf9a2c5b71c726172b86-Abstract-Conference.html)"
+      }
+    ],
+    "totalDurationMs": 53671,
+    "totalTokens": 17200,
+    "totalToolUseCount": 8,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2288,
+      "cache_read_input_tokens": 13802,
+      "output_tokens": 1109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2288
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1109,
+          "cache_read_input_tokens": 13802,
+          "cache_creation_input_tokens": 2288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2288,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 8
+    }
+  },
+  "sourceToolAssistantUUID": "99ba97b1-71b8-4e66-bdf2-ae1bbdf7d30f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-13T19:42:08.423Z_
+
+<details><summary>↩ Tool result · `toolu_01Pwa4pw9h55esxmSq632SRz`</summary>
+
+```text
+Here is a comprehensive report of recent work (2025-2026) on data curation/filtering for Vision-Language-Action (VLA) models, organized by relevance to density-ratio weighted behavioral cloning for VLA training.
+
+---
+
+## HIGHLY RELEVANT: Direct Data Weighting/Filtering for Imitation Learning
+
+### 1. Quality over Quantity (QoQ) -- March 2026
+- **Title**: "Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning"
+- **Venue/Status**: arXiv preprint, March 2026 (arxiv:2603.09056)
+- **Authors**: Haeone Lee, Taywon Min, Junsu Kim, et al. (KAIST, UC Berkeley, NYU)
+- **What it does**: Defines data quality as the contribution of each training sample to reducing loss on validation demonstrations. Uses trajectory-wise curation that aggregates influence scores of state-action pairs within the same trajectory, then selects high-quality trajectories. This reduces noise in the influence signal while ensuring broad state coverage.
+- **Relation to density-ratio weighted BC**: This is a close alternative to density-ratio weighting. Instead of re-weighting by a density ratio, it uses influence functions to score each demonstration's contribution. Both approaches aim to up-weight good data and down-weight harmful data, but QoQ uses a loss-reduction criterion rather than a distributional one. Could be a strong baseline or complementary method.
+
+### 2. CUPID -- June 2025 (CoRL 2025)
+- **Title**: "CUPID: Curating Data your Robot Loves with Influence Functions"
+- **Venue/Status**: CoRL 2025 (accepted), arXiv:2506.19121
+- **What it does**: Estimates the influence of each training demonstration on the policy's expected return via influence functions. Curates data by (1) filtering out demonstrations that harm policy performance and (2) sub-selecting newly collected trajectories that will most improve the policy. Training with less than 33% of curated data can yield SOTA diffusion policies on RoboMimic.
+- **Relation to density-ratio weighted BC**: A predecessor/parallel approach to QoQ. Like density-ratio methods, it provides per-demonstration importance scores, but derived from influence functions on downstream returns rather than density ratios. The two approaches could be combined (density-ratio as a cheaper proxy for influence).
+
+### 3. IDRL (Iterative Dual RL) -- April 2025 (ICLR 2025)
+- **Title**: "An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning"
+- **Venue/Status**: ICLR 2025, arXiv:2504.13368
+- **What it does**: Shows that the optimal discriminator weight in discriminator-weighted BC is closely related to the visitation distribution ratio in Dual-RL. Proposes iteratively removing zero-weight suboptimal transitions and re-running Dual-RL on the remaining data, approaching the optimal visitation distribution ratio without an additional expert dataset.
+- **Relation to density-ratio weighted BC**: This is directly relevant -- it formally connects discriminator-weighted BC to density ratio estimation and proposes an iterative refinement of the ratio estimate. It provides theoretical grounding for why density-ratio weighting works and how to improve it iteratively.
+
+### 4. Discriminator-Weighted Offline IL for Robotic Tasks -- June 2025
+- **Title**: "Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks"
+- **Venue/Status**: Journal of the Chinese Institute of Engineers, Vol 48(6), pp. 718-731, June 2025
+- **What it does**: Extends DWBC (discriminator-weighted behavioral cloning) to robotic tasks with unlabeled demonstrations. Introduces a discriminator to analytically weigh all data to distinguish between optimal and suboptimal instances, without requiring manual labeling or environmental interaction.
+- **Relation to density-ratio weighted BC**: This is essentially an application of discriminator-weighted BC (which is a form of density-ratio weighting) to robotic tasks. Directly validates the approach in a robotics context with mixed-quality, unlabeled data.
+
+### 5. Data Retrieval with Importance Weights -- September 2025
+- **Title**: "Data Retrieval with Importance Weights for Few-Shot Imitation Learning"
+- **Venue/Status**: arXiv:2509.01657
+- **What it does**: Shows that the common retrieval metric (minimum distance in latent space) is equivalent to the limit of a Gaussian kernel density estimate. Proposes importance-weighted retrieval from large prior datasets to augment limited demonstration datasets.
+- **Relation to density-ratio weighted BC**: Directly connects data retrieval/selection to density estimation. The importance weights used for retrieval are conceptually related to density ratios -- both identify which data points from a large pool are most relevant for the target task distribution.
+
+---
+
+## HIGHLY RELEVANT: VLA-Specific Data Quality and RL Fine-Tuning
+
+### 6. Green-VLA with DataQA Pipeline -- February 2026
+- **Title**: "Green-VLA" (Staged VLA framework)
+- **Venue/Status**: arXiv:2602.00919, February/March 2026
+- **What it does**: Introduces the DataQA pipeline for robotic dataset curation and quality assessment. Filters and smooths heterogeneous demonstrations and aligns temporal dynamics via optical flow-based resampling. Combines large-scale open datasets (AgibotWorld, DROID, Galaxea) with internally collected data. Shows large gains after RL alignment, especially on long-horizon tasks.
+- **Relation to density-ratio weighted BC**: DataQA is a rule-based/heuristic curation pipeline, whereas density-ratio weighting is a learned, principled approach. Density-ratio methods could replace or augment the hand-designed filtering rules in DataQA with data-driven weighting.
+
+### 7. ReinboT -- May 2025 (ICML 2025)
+- **Title**: "ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning"
+- **Venue/Status**: ICML 2025, arXiv:2505.07395
+- **What it does**: Integrates RL into VLA training to handle variable data quality. Predicts dense returns that capture manipulation task nuances, enabling the model to understand the data quality distribution. Decomposes long-horizon trajectories into segments with single sub-goals with dense rewards.
+- **Relation to density-ratio weighted BC**: ReinboT addresses the same problem (variable training data quality) but through RL and dense return prediction rather than density-ratio weighting. The dense return prediction could potentially be combined with density-ratio methods -- using predicted returns to inform the "expert" distribution in the ratio.
+
+### 8. VLA-RFT -- October 2025
+- **Title**: "VLA-RFT: Vision-Language-Action Reinforcement Fine-tuning with Verified Rewards in World Simulators"
+- **Venue/Status**: arXiv:2510.00406
+- **What it does**: Uses a data-driven world model as a simulator for RL fine-tuning of VLAs. Achieves strong results with fewer than 400 fine-tuning steps. However, the reward signal is still constrained by expert demonstration quality.
+- **Relation to density-ratio weighted BC**: VLA-RFT's limitation (being constrained by expert data quality) is exactly where density-ratio weighting could help -- by pre-filtering the expert dataset used to define rewards, or by weighting the world model training data.
+
+### 9. VLA-OPD -- March 2026
+- **Title**: "VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation"
+- **Venue/Status**: arXiv:2603.26666, March 2026
+- **What it does**: Bridges SFT and RL via on-policy distillation from an expert teacher. Uses a bounded mode-seeking objective that filters out teacher epistemic uncertainty while maintaining action diversity. Addresses distribution shift and catastrophic forgetting.
+- **Relation to density-ratio weighted BC**: The mode-seeking objective that filters teacher uncertainty is conceptually related to density-ratio weighting -- both aim to selectively use training signal. Density-ratio methods could potentially be used to weight the distillation loss.
+
+### 10. SimpleVLA-RL -- ICLR 2026
+- **Title**: "SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning"
+- **Venue/Status**: ICLR 2026, arXiv:2509.09674
+- **What it does**: Efficient RL framework for VLAs. Achieves 99% SOTA on LIBERO and 80% relative improvement on RoboTwin. With only 1 trajectory per task for cold-start SFT, raises performance from 17.3 to 91.7. Discovers novel "pushcut" patterns beyond training data.
+- **Relation to density-ratio weighted BC**: Demonstrates that RL can compensate for limited/poor SFT data. Density-ratio weighted BC could serve as a better initialization for RL fine-tuning by producing a higher-quality SFT policy to start from.
+
+---
+
+## MODERATELY RELEVANT: Data Quality Metrics and Benchmarking
+
+### 11. Consistency Matters -- December 2024
+- **Title**: "Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration"
+- **Venue/Status**: ACM Transactions on Human-Robot Interaction, arXiv:2412.14309
+- **What it does**: Formalizes consistency metrics for demonstration quality. Predicts 70-89% of task success rates using consistency metrics alone. Provides an intuitive, pre-training way to assess demonstration quality without requiring expert data.
+- **Relation to density-ratio weighted BC**: These consistency metrics could serve as features for the density-ratio estimator, or as an independent pre-filtering step before applying density-ratio weighting.
+
+### 12. What Matters in Learning from Large-Scale Datasets -- June 2025 (ICLR 2025)
+- **Title**: "What Matters in Learning from Large-Scale Datasets for Robot Manipulation"
+- **Venue/Status**: ICLR 2025, arXiv:2506.13536
+- **What it does**: Systematic study of what data dimensions of variation matter (camera pose alignment/diversity, spatial arrangement, object texture). Finds camera pose and spatial arrangement alignment are critical; object texture is not.
+- **Relation to density-ratio weighted BC**: Identifies which data characteristics matter most. Density-ratio methods could implicitly learn these factors, but this work suggests that explicit alignment of camera poses and spatial arrangements may be at least as important as quality-based weighting.
+
+### 13. LingBot-VLA (A Pragmatic VLA Foundation Model) -- January 2026
+- **Title**: "A Pragmatic VLA Foundation Model"
+- **Venue/Status**: arXiv:2601.18692, January 2026
+- **What it does**: VLA foundation model trained on ~20,000 hours of real-world data from 9 dual-arm robot configurations. Emphasizes cost efficiency in data collection and GPU hours for adaptation. Achieves 261 samples/sec throughput with 8-GPU setup.
+- **Relation to density-ratio weighted BC**: At this scale of data (~20K hours), data curation becomes essential. Density-ratio weighting could help identify which portions of this massive dataset are most valuable for specific downstream tasks.
+
+---
+
+## KEY COMMUNITY EVENTS
+
+### ICRA 2026 Workshop: "From Data to Decisions: VLA Pipelines for Real Robots"
+- **Date**: June 1-5, 2026, Vienna, Austria
+- **Organizer**: AI Robotic Association (AIRoA)
+- **Significance**: Competition on VLA pipelines with 10,000+ hours of data. Explicitly focuses on the gap between data collection, curation, training, and evaluation. This is the premier venue for data-centric VLA work in 2026.
+
+---
+
+## SUMMARY OF GAPS AND OPPORTUNITIES
+
+The most directly relevant papers to density-ratio weighted BC for VLA training are:
+
+1. **IDRL (ICLR 2025)** -- provides the theoretical connection between discriminator-weighted BC and density ratio estimation
+2. **DWBC for robotic tasks (JCIE 2025)** -- validates discriminator-weighted BC in robotics
+3. **QoQ and CUPID (2026 and CoRL 2025)** -- demonstrate influence-function-based alternatives that achieve strong results with aggressive data filtering
+
+The key observation is that while influence-function methods (CUPID, QoQ) have gained traction, density-ratio estimation has been underexplored specifically for VLA models. The RL fine-tuning line (SimpleVLA-RL, VLA-RFT, VLA-OPD, ReinboT) addresses data quality indirectly through RL, but none of these directly apply density-ratio weighting to the SFT/BC stage. This represents a clear gap and opportunity.
+
+Sources:
+- [Quality over Quantity (QoQ)](https://arxiv.org/abs/2603.09056)
+- [CUPID](https://arxiv.org/abs/2506.19121)
+- [IDRL - Optimal Discriminator Weighted Imitation](https://arxiv.org/abs/2504.13368)
+- [DWBC for Robotic Tasks](https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354)
+- [Data Retrieval with Importance Weights](https://arxiv.org/abs/2509.01657)
+- [Green-VLA / DataQA](https://arxiv.org/html/2602.00919)
+- [ReinboT](https://arxiv.org/abs/2505.07395)
+- [VLA-RFT](https://arxiv.org/abs/2510.00406)
+- [VLA-OPD](https://arxiv.org/abs/2603.26666)
+- [SimpleVLA-RL](https://arxiv.org/abs/2509.09674)
+- [Consistency Matters](https://arxiv.org/abs/2412.14309)
+- [What Matters in Large-Scale Datasets](https://arxiv.org/abs/2506.13536)
+- [LingBot-VLA](https://arxiv.org/abs/2601.18692)
+- [ICRA 2026 VLA Workshop](https://icra2026vlapipeline.github.io/)
+- [VLA Datasets Survey](https://arxiv.org/html/2604.23001v1)
+
+agentId: af6755c1db562422f (use SendMessage with to: 'af6755c1db562422f' to continue this agent)
+&lt;usage>total_tokens: 33669
+tool_uses: 22
+duration_ms: 146444&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d4b7dc35-3bbe-4018-ba75-de0f327dce6c",
+  "isSidechain": false,
+  "promptId": "5b46ad89-389b-47f2-a018-96735126287a",
+  "type": "user",
+  "uuid": "283ad570-856e-47e0-922c-ba55d17faeee",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for recent work (2025-2026) on data curation/filtering for Vision-Language-Action (VLA) models. I need to find work the generator may have missed. Use these searches:\n\n1. \"VLA data curation 2026 site:arxiv.org\"\n2. \"vision language action noisy demonstrations filtering 2025 2026\"\n3. \"importance weighting robot imitation learning 2025 2026\"\n4. \"density ratio estimation robot learning 2025 2026\"\n5. \"discriminator weighted imitation learning VLA\"\n6. \"VLA fine-tuning data quality 2026\"\n7. \"demonstration quality scoring robot manipulation 2026\"\n\nFor each relevant paper found, report: title, venue/status, what it does, and how it relates to density-ratio weighted BC for VLA training. Focus especially on papers from the last 6 months (Dec 2025 - May 2026).",
+    "agentId": "af6755c1db562422f",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a comprehensive report of recent work (2025-2026) on data curation/filtering for Vision-Language-Action (VLA) models, organized by relevance to density-ratio weighted behavioral cloning for VLA training.\n\n---\n\n## HIGHLY RELEVANT: Direct Data Weighting/Filtering for Imitation Learning\n\n### 1. Quality over Quantity (QoQ) -- March 2026\n- **Title**: \"Quality over Quantity: Demonstration Curation via Influence Functions for Data-Centric Robot Learning\"\n- **Venue/Status**: arXiv preprint, March 2026 (arxiv:2603.09056)\n- **Authors**: Haeone Lee, Taywon Min, Junsu Kim, et al. (KAIST, UC Berkeley, NYU)\n- **What it does**: Defines data quality as the contribution of each training sample to reducing loss on validation demonstrations. Uses trajectory-wise curation that aggregates influence scores of state-action pairs within the same trajectory, then selects high-quality trajectories. This reduces noise in the influence signal while ensuring broad state coverage.\n- **Relation to density-ratio weighted BC**: This is a close alternative to density-ratio weighting. Instead of re-weighting by a density ratio, it uses influence functions to score each demonstration's contribution. Both approaches aim to up-weight good data and down-weight harmful data, but QoQ uses a loss-reduction criterion rather than a distributional one. Could be a strong baseline or complementary method.\n\n### 2. CUPID -- June 2025 (CoRL 2025)\n- **Title**: \"CUPID: Curating Data your Robot Loves with Influence Functions\"\n- **Venue/Status**: CoRL 2025 (accepted), arXiv:2506.19121\n- **What it does**: Estimates the influence of each training demonstration on the policy's expected return via influence functions. Curates data by (1) filtering out demonstrations that harm policy performance and (2) sub-selecting newly collected trajectories that will most improve the policy. Training with less than 33% of curated data can yield SOTA diffusion policies on RoboMimic.\n- **Relation to density-ratio weighted BC**: A predecessor/parallel approach to QoQ. Like density-ratio methods, it provides per-demonstration importance scores, but derived from influence functions on downstream returns rather than density ratios. The two approaches could be combined (density-ratio as a cheaper proxy for influence).\n\n### 3. IDRL (Iterative Dual RL) -- April 2025 (ICLR 2025)\n- **Title**: \"An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning\"\n- **Venue/Status**: ICLR 2025, arXiv:2504.13368\n- **What it does**: Shows that the optimal discriminator weight in discriminator-weighted BC is closely related to the visitation distribution ratio in Dual-RL. Proposes iteratively removing zero-weight suboptimal transitions and re-running Dual-RL on the remaining data, approaching the optimal visitation distribution ratio without an additional expert dataset.\n- **Relation to density-ratio weighted BC**: This is directly relevant -- it formally connects discriminator-weighted BC to density ratio estimation and proposes an iterative refinement of the ratio estimate. It provides theoretical grounding for why density-ratio weighting works and how to improve it iteratively.\n\n### 4. Discriminator-Weighted Offline IL for Robotic Tasks -- June 2025\n- **Title**: \"Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks\"\n- **Venue/Status**: Journal of the Chinese Institute of Engineers, Vol 48(6), pp. 718-731, June 2025\n- **What it does**: Extends DWBC (discriminator-weighted behavioral cloning) to robotic tasks with unlabeled demonstrations. Introduces a discriminator to analytically weigh all data to distinguish between optimal and suboptimal instances, without requiring manual labeling or environmental interaction.\n- **Relation to density-ratio weighted BC**: This is essentially an application of discriminator-weighted BC (which is a form of density-ratio weighting) to robotic tasks. Directly validates the approach in a robotics context with mixed-quality, unlabeled data.\n\n### 5. Data Retrieval with Importance Weights -- September 2025\n- **Title**: \"Data Retrieval with Importance Weights for Few-Shot Imitation Learning\"\n- **Venue/Status**: arXiv:2509.01657\n- **What it does**: Shows that the common retrieval metric (minimum distance in latent space) is equivalent to the limit of a Gaussian kernel density estimate. Proposes importance-weighted retrieval from large prior datasets to augment limited demonstration datasets.\n- **Relation to density-ratio weighted BC**: Directly connects data retrieval/selection to density estimation. The importance weights used for retrieval are conceptually related to density ratios -- both identify which data points from a large pool are most relevant for the target task distribution.\n\n---\n\n## HIGHLY RELEVANT: VLA-Specific Data Quality and RL Fine-Tuning\n\n### 6. Green-VLA with DataQA Pipeline -- February 2026\n- **Title**: \"Green-VLA\" (Staged VLA framework)\n- **Venue/Status**: arXiv:2602.00919, February/March 2026\n- **What it does**: Introduces the DataQA pipeline for robotic dataset curation and quality assessment. Filters and smooths heterogeneous demonstrations and aligns temporal dynamics via optical flow-based resampling. Combines large-scale open datasets (AgibotWorld, DROID, Galaxea) with internally collected data. Shows large gains after RL alignment, especially on long-horizon tasks.\n- **Relation to density-ratio weighted BC**: DataQA is a rule-based/heuristic curation pipeline, whereas density-ratio weighting is a learned, principled approach. Density-ratio methods could replace or augment the hand-designed filtering rules in DataQA with data-driven weighting.\n\n### 7. ReinboT -- May 2025 (ICML 2025)\n- **Title**: \"ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning\"\n- **Venue/Status**: ICML 2025, arXiv:2505.07395\n- **What it does**: Integrates RL into VLA training to handle variable data quality. Predicts dense returns that capture manipulation task nuances, enabling the model to understand the data quality distribution. Decomposes long-horizon trajectories into segments with single sub-goals with dense rewards.\n- **Relation to density-ratio weighted BC**: ReinboT addresses the same problem (variable training data quality) but through RL and dense return prediction rather than density-ratio weighting. The dense return prediction could potentially be combined with density-ratio methods -- using predicted returns to inform the \"expert\" distribution in the ratio.\n\n### 8. VLA-RFT -- October 2025\n- **Title**: \"VLA-RFT: Vision-Language-Action Reinforcement Fine-tuning with Verified Rewards in World Simulators\"\n- **Venue/Status**: arXiv:2510.00406\n- **What it does**: Uses a data-driven world model as a simulator for RL fine-tuning of VLAs. Achieves strong results with fewer than 400 fine-tuning steps. However, the reward signal is still constrained by expert demonstration quality.\n- **Relation to density-ratio weighted BC**: VLA-RFT's limitation (being constrained by expert data quality) is exactly where density-ratio weighting could help -- by pre-filtering the expert dataset used to define rewards, or by weighting the world model training data.\n\n### 9. VLA-OPD -- March 2026\n- **Title**: \"VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation\"\n- **Venue/Status**: arXiv:2603.26666, March 2026\n- **What it does**: Bridges SFT and RL via on-policy distillation from an expert teacher. Uses a bounded mode-seeking objective that filters out teacher epistemic uncertainty while maintaining action diversity. Addresses distribution shift and catastrophic forgetting.\n- **Relation to density-ratio weighted BC**: The mode-seeking objective that filters teacher uncertainty is conceptually related to density-ratio weighting -- both aim to selectively use training signal. Density-ratio methods could potentially be used to weight the distillation loss.\n\n### 10. SimpleVLA-RL -- ICLR 2026\n- **Title**: \"SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning\"\n- **Venue/Status**: ICLR 2026, arXiv:2509.09674\n- **What it does**: Efficient RL framework for VLAs. Achieves 99% SOTA on LIBERO and 80% relative improvement on RoboTwin. With only 1 trajectory per task for cold-start SFT, raises performance from 17.3 to 91.7. Discovers novel \"pushcut\" patterns beyond training data.\n- **Relation to density-ratio weighted BC**: Demonstrates that RL can compensate for limited/poor SFT data. Density-ratio weighted BC could serve as a better initialization for RL fine-tuning by producing a higher-quality SFT policy to start from.\n\n---\n\n## MODERATELY RELEVANT: Data Quality Metrics and Benchmarking\n\n### 11. Consistency Matters -- December 2024\n- **Title**: \"Consistency Matters: Defining Demonstration Data Quality Metrics in Robot Learning from Demonstration\"\n- **Venue/Status**: ACM Transactions on Human-Robot Interaction, arXiv:2412.14309\n- **What it does**: Formalizes consistency metrics for demonstration quality. Predicts 70-89% of task success rates using consistency metrics alone. Provides an intuitive, pre-training way to assess demonstration quality without requiring expert data.\n- **Relation to density-ratio weighted BC**: These consistency metrics could serve as features for the density-ratio estimator, or as an independent pre-filtering step before applying density-ratio weighting.\n\n### 12. What Matters in Learning from Large-Scale Datasets -- June 2025 (ICLR 2025)\n- **Title**: \"What Matters in Learning from Large-Scale Datasets for Robot Manipulation\"\n- **Venue/Status**: ICLR 2025, arXiv:2506.13536\n- **What it does**: Systematic study of what data dimensions of variation matter (camera pose alignment/diversity, spatial arrangement, object texture). Finds camera pose and spatial arrangement alignment are critical; object texture is not.\n- **Relation to density-ratio weighted BC**: Identifies which data characteristics matter most. Density-ratio methods could implicitly learn these factors, but this work suggests that explicit alignment of camera poses and spatial arrangements may be at least as important as quality-based weighting.\n\n### 13. LingBot-VLA (A Pragmatic VLA Foundation Model) -- January 2026\n- **Title**: \"A Pragmatic VLA Foundation Model\"\n- **Venue/Status**: arXiv:2601.18692, January 2026\n- **What it does**: VLA foundation model trained on ~20,000 hours of real-world data from 9 dual-arm robot configurations. Emphasizes cost efficiency in data collection and GPU hours for adaptation. Achieves 261 samples/sec throughput with 8-GPU setup.\n- **Relation to density-ratio weighted BC**: At this scale of data (~20K hours), data curation becomes essential. Density-ratio weighting could help identify which portions of this massive dataset are most valuable for specific downstream tasks.\n\n---\n\n## KEY COMMUNITY EVENTS\n\n### ICRA 2026 Workshop: \"From Data to Decisions: VLA Pipelines for Real Robots\"\n- **Date**: June 1-5, 2026, Vienna, Austria\n- **Organizer**: AI Robotic Association (AIRoA)\n- **Significance**: Competition on VLA pipelines with 10,000+ hours of data. Explicitly focuses on the gap between data collection, curation, training, and evaluation. This is the premier venue for data-centric VLA work in 2026.\n\n---\n\n## SUMMARY OF GAPS AND OPPORTUNITIES\n\nThe most directly relevant papers to density-ratio weighted BC for VLA training are:\n\n1. **IDRL (ICLR 2025)** -- provides the theoretical connection between discriminator-weighted BC and density ratio estimation\n2. **DWBC for robotic tasks (JCIE 2025)** -- validates discriminator-weighted BC in robotics\n3. **QoQ and CUPID (2026 and CoRL 2025)** -- demonstrate influence-function-based alternatives that achieve strong results with aggressive data filtering\n\nThe key observation is that while influence-function methods (CUPID, QoQ) have gained traction, density-ratio estimation has been underexplored specifically for VLA models. The RL fine-tuning line (SimpleVLA-RL, VLA-RFT, VLA-OPD, ReinboT) addresses data quality indirectly through RL, but none of these directly apply density-ratio weighting to the SFT/BC stage. This represents a clear gap and opportunity.\n\nSources:\n- [Quality over Quantity (QoQ)](https://arxiv.org/abs/2603.09056)\n- [CUPID](https://arxiv.org/abs/2506.19121)\n- [IDRL - Optimal Discriminator Weighted Imitation](https://arxiv.org/abs/2504.13368)\n- [DWBC for Robotic Tasks](https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354)\n- [Data Retrieval with Importance Weights](https://arxiv.org/abs/2509.01657)\n- [Green-VLA / DataQA](https://arxiv.org/html/2602.00919)\n- [ReinboT](https://arxiv.org/abs/2505.07395)\n- [VLA-RFT](https://arxiv.org/abs/2510.00406)\n- [VLA-OPD](https://arxiv.org/abs/2603.26666)\n- [SimpleVLA-RL](https://arxiv.org/abs/2509.09674)\n- [Consistency Matters](https://arxiv.org/abs/2412.14309)\n- [What Matters in Large-Scale Datasets](https://arxiv.org/abs/2506.13536)\n- [LingBot-VLA](https://arxiv.org/abs/2601.18692)\n- [ICRA 2026 VLA Workshop](https://icra2026vlapipeline.github.io/)\n- [VLA Datasets Survey](https://arxiv.org/html/2604.23001v1)"
+      }
+    ],
+    "totalDurationMs": 146444,
+    "totalTokens": 33669,
+    "totalToolUseCount": 22,
+    "usage": {
+      "input_tokens": 1831,
+      "cache_creation_input_tokens": 3754,
+      "cache_read_input_tokens": 24542,
+      "output_tokens": 3542,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3754
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1831,
+          "output_tokens": 3542,
+          "cache_read_input_tokens": 24542,
+          "cache_creation_input_tokens": 3754,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3754,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 22
+    }
+  },
+  "sourceToolAssistantUUID": "d4b7dc35-3bbe-4018-ba75-de0f327dce6c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "283ad570-856e-47e0-922c-ba55d17faeee",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrating importance-weighted VLA fine-tuning via frozen encoder density-ratio analysis",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T19:43:31.689Z_
+
+<details><summary>↩ Tool result · `toolu_01D9ou61kNtdT363NFvvkL7C`</summary>
+
+```text
+This is very informative. The Westlake MiLAB page lists Hongyin Zhang's publications but does NOT list RobustVLA as accepted at ICLR 2026. It does list two other papers from the same lab accepted at ICLR 2026 (papers 125 and 126), suggesting the list is current. RobustVLA was submitted to ICLR 2026 (per OpenReview) but there's no confirmation it was accepted.
+
+Here is my comprehensive report:
+
+---
+
+## Paper 1: "Density-Ratio Weighted Behavioral Cloning: Learning Control Policies from Corrupted Datasets"
+
+**Does it exist?** Yes. It is available on arXiv as [2510.01479](https://arxiv.org/abs/2510.01479), submitted October 1, 2025.
+
+**Institution:** Rochester Institute of Technology (RIT). The two authors are:
+- Shriram Karpoora Sundara Pandian (Department of Cybersecurity)
+- Ali Baheri (Mechanical Engineering Department)
+
+**What it does:** Proposes a robust imitation learning method that uses a small, verified clean reference dataset to estimate trajectory-level density ratios via a binary discriminator. These ratios are clipped and used as weights in the behavioral cloning objective, allowing the method to prioritize clean expert behavior and down-weight corrupted data -- without needing to know the contamination mechanism. Theoretical guarantees show convergence to the clean expert policy with finite-sample bounds independent of the contamination rate.
+
+**Tasks tested on:** Four continuous control benchmarks from D4RL:
+- HalfCheetah-Medium
+- Ant-Medium
+- Hopper-Medium
+- Walker2d-Medium
+
+Tested across five contamination levels (alpha in {0.2, 0.4, 0.6, 0.8, 1.0}) and four poisoning types (reward, state, transition, action). Baselines include standard BC, BCQ, and BRAC.
+
+**Accepted at any venue?** No evidence of acceptance at any peer-reviewed venue as of May 2026. No OpenReview submission was found. The paper appears to remain an arXiv preprint. The search for "DR-WBC accepted conference" and "density ratio weighted behavioral cloning peer review" returned no results indicating venue acceptance.
+
+---
+
+## Paper 2: "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models"
+
+**Does it exist?** Yes. It is available on arXiv as [2511.01331](https://arxiv.org/abs/2511.01331), initially submitted November 3, 2025, with v2 on December 1, 2025.
+
+**Institution:** Westlake University (all authors). Authors: Hongyin Zhang, Shuo Zhang, Junxi Jin, Qixin Zeng, Runze Li, Donglin Wang (corresponding author).
+
+**What it does:** RobustVLA is a lightweight online RL post-training method that enhances the robustness of Vision-Language-Action (VLA) models against environmental perturbations (observation noise, sensor errors, actuation perturbations). Through systematic robustness analysis, the authors identify two key regularizations:
+1. **Jacobian regularization** -- mitigates sensitivity to observation noise
+2. **Smoothness regularization** -- stabilizes policies under action perturbations
+
+These are combined with standard PPO-based policy optimization.
+
+**Tasks tested on:** Experiments use the LIBERO simulation platform with four task suites (Spatial, Objects, Goal, Long), plus specific transfer tasks like "open drawer" and "put bowl." Tested on two VLA backbones (pi0 and OpenVLA) across 17 perturbation types, reporting gains of 12.6% (pi0 backbone) and 10.4% (OpenVLA backbone).
+
+**Accepted at any venue?** The paper was submitted to ICLR 2026 via OpenReview ([link](https://openreview.net/forum?id=9g7UXLqD4B), submitted September 18, 2025, modified February 11, 2026). However, **I could not confirm acceptance**. The Westlake MiLAB publications page lists other lab papers accepted at ICLR 2026 (papers [125] and [126]) but does not list RobustVLA, which suggests it may not have been accepted. The OpenReview page did not display a decision. The arXiv HTML version had an ambiguous "ICLR 2026" header, but neither the PDF nor OpenReview confirmed acceptance.
+
+---
+
+Sources:
+- [arXiv 2510.01479 - Density-Ratio Weighted Behavioral Cloning](https://arxiv.org/abs/2510.01479)
+- [arXiv 2510.01479 HTML](https://arxiv.org/html/2510.01479)
+- [arXiv 2511.01331 - RobustVLA](https://arxiv.org/abs/2511.01331)
+- [arXiv 2511.01331 HTML](https://arxiv.org/html/2511.01331)
+- [RobustVLA on OpenReview (ICLR 2026 submission)](https://openreview.net/forum?id=9g7UXLqD4B)
+- [RobustVLA on ResearchGate](https://www.researchgate.net/publication/397231717_RobustVLA_Robustness-Aware_Reinforcement_Post-Training_for_Vision-Language-Action_Models)
+- [Westlake MiLAB Publications](https://milab.westlake.edu.cn/publications.html)
+- [ICLR 2026 Accepted Paper List (Paper Copilot)](https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/)
+- [arXiv 2510.00037 - "On Robustness of VLA..." (a different paper, confirmed ICLR 2026)](https://arxiv.org/abs/2510.00037)
+
+agentId: a1b4596f3eb3e1fba (use SendMessage with to: 'a1b4596f3eb3e1fba' to continue this agent)
+&lt;usage>total_tokens: 31510
+tool_uses: 31
+duration_ms: 235349&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9754edb7-4f69-4cea-aa9f-72e32507ea73",
+  "isSidechain": false,
+  "promptId": "5b46ad89-389b-47f2-a018-96735126287a",
+  "type": "user",
+  "uuid": "d3b4ccc6-eefc-4a12-abf4-eb2186a9f605",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for two papers:\n\n1. \"Density-Ratio Weighted Behavioral Cloning\" arXiv 2510.01479 - I need to know: Does it exist? Has it been accepted at any venue as of May 2026? What institution is it from? What tasks is it tested on?\n\n2. \"RobustVLA\" arXiv 2511.01331 - Search for \"RobustVLA robustness reinforcement post-training VLA\" and verify: Does it exist? What does it do exactly? Has it been accepted anywhere?\n\nAlso search for \"density ratio weighted behavioral cloning peer review\" and \"DR-WBC accepted conference 2025 2026\".\n\nReport findings with URLs.",
+    "agentId": "a1b4596f3eb3e1fba",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "This is very informative. The Westlake MiLAB page lists Hongyin Zhang's publications but does NOT list RobustVLA as accepted at ICLR 2026. It does list two other papers from the same lab accepted at ICLR 2026 (papers 125 and 126), suggesting the list is current. RobustVLA was submitted to ICLR 2026 (per OpenReview) but there's no confirmation it was accepted.\n\nHere is my comprehensive report:\n\n---\n\n## Paper 1: \"Density-Ratio Weighted Behavioral Cloning: Learning Control Policies from Corrupted Datasets\"\n\n**Does it exist?** Yes. It is available on arXiv as [2510.01479](https://arxiv.org/abs/2510.01479), submitted October 1, 2025.\n\n**Institution:** Rochester Institute of Technology (RIT). The two authors are:\n- Shriram Karpoora Sundara Pandian (Department of Cybersecurity)\n- Ali Baheri (Mechanical Engineering Department)\n\n**What it does:** Proposes a robust imitation learning method that uses a small, verified clean reference dataset to estimate trajectory-level density ratios via a binary discriminator. These ratios are clipped and used as weights in the behavioral cloning objective, allowing the method to prioritize clean expert behavior and down-weight corrupted data -- without needing to know the contamination mechanism. Theoretical guarantees show convergence to the clean expert policy with finite-sample bounds independent of the contamination rate.\n\n**Tasks tested on:** Four continuous control benchmarks from D4RL:\n- HalfCheetah-Medium\n- Ant-Medium\n- Hopper-Medium\n- Walker2d-Medium\n\nTested across five contamination levels (alpha in {0.2, 0.4, 0.6, 0.8, 1.0}) and four poisoning types (reward, state, transition, action). Baselines include standard BC, BCQ, and BRAC.\n\n**Accepted at any venue?** No evidence of acceptance at any peer-reviewed venue as of May 2026. No OpenReview submission was found. The paper appears to remain an arXiv preprint. The search for \"DR-WBC accepted conference\" and \"density ratio weighted behavioral cloning peer review\" returned no results indicating venue acceptance.\n\n---\n\n## Paper 2: \"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models\"\n\n**Does it exist?** Yes. It is available on arXiv as [2511.01331](https://arxiv.org/abs/2511.01331), initially submitted November 3, 2025, with v2 on December 1, 2025.\n\n**Institution:** Westlake University (all authors). Authors: Hongyin Zhang, Shuo Zhang, Junxi Jin, Qixin Zeng, Runze Li, Donglin Wang (corresponding author).\n\n**What it does:** RobustVLA is a lightweight online RL post-training method that enhances the robustness of Vision-Language-Action (VLA) models against environmental perturbations (observation noise, sensor errors, actuation perturbations). Through systematic robustness analysis, the authors identify two key regularizations:\n1. **Jacobian regularization** -- mitigates sensitivity to observation noise\n2. **Smoothness regularization** -- stabilizes policies under action perturbations\n\nThese are combined with standard PPO-based policy optimization.\n\n**Tasks tested on:** Experiments use the LIBERO simulation platform with four task suites (Spatial, Objects, Goal, Long), plus specific transfer tasks like \"open drawer\" and \"put bowl.\" Tested on two VLA backbones (pi0 and OpenVLA) across 17 perturbation types, reporting gains of 12.6% (pi0 backbone) and 10.4% (OpenVLA backbone).\n\n**Accepted at any venue?** The paper was submitted to ICLR 2026 via OpenReview ([link](https://openreview.net/forum?id=9g7UXLqD4B), submitted September 18, 2025, modified February 11, 2026). However, **I could not confirm acceptance**. The Westlake MiLAB publications page lists other lab papers accepted at ICLR 2026 (papers [125] and [126]) but does not list RobustVLA, which suggests it may not have been accepted. The OpenReview page did not display a decision. The arXiv HTML version had an ambiguous \"ICLR 2026\" header, but neither the PDF nor OpenReview confirmed acceptance.\n\n---\n\nSources:\n- [arXiv 2510.01479 - Density-Ratio Weighted Behavioral Cloning](https://arxiv.org/abs/2510.01479)\n- [arXiv 2510.01479 HTML](https://arxiv.org/html/2510.01479)\n- [arXiv 2511.01331 - RobustVLA](https://arxiv.org/abs/2511.01331)\n- [arXiv 2511.01331 HTML](https://arxiv.org/html/2511.01331)\n- [RobustVLA on OpenReview (ICLR 2026 submission)](https://openreview.net/forum?id=9g7UXLqD4B)\n- [RobustVLA on ResearchGate](https://www.researchgate.net/publication/397231717_RobustVLA_Robustness-Aware_Reinforcement_Post-Training_for_Vision-Language-Action_Models)\n- [Westlake MiLAB Publications](https://milab.westlake.edu.cn/publications.html)\n- [ICLR 2026 Accepted Paper List (Paper Copilot)](https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/)\n- [arXiv 2510.00037 - \"On Robustness of VLA...\" (a different paper, confirmed ICLR 2026)](https://arxiv.org/abs/2510.00037)"
+      }
+    ],
+    "totalDurationMs": 235349,
+    "totalTokens": 31510,
+    "totalToolUseCount": 31,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 509,
+      "cache_read_input_tokens": 29521,
+      "output_tokens": 1479,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 509
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1479,
+          "cache_read_input_tokens": 29521,
+          "cache_creation_input_tokens": 509,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 509,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 31
+    }
+  },
+  "sourceToolAssistantUUID": "9754edb7-4f69-4cea-aa9f-72e32507ea73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-13T19:43:35.170Z_
+
+Good, I've gathered initial findings. Let me now do deeper verification on the key issues from prior reviews and search for additional competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3b4ccc6-eefc-4a12-abf4-eb2186a9f605",
+  "isSidechain": false,
+  "requestId": "req_011Cb195boJYBBPtUCRfXeLR",
+  "type": "assistant",
+  "uuid": "56f1c1ed-5fe0-4bae-8d23-55c412c04c26",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XjSaXZxgfzbesbcctefzvW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3640,
+      "cache_creation_input_tokens": 4844,
+      "cache_read_input_tokens": 31075,
+      "output_tokens": 891,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4844,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3640,
+          "output_tokens": 891,
+          "cache_read_input_tokens": 31075,
+          "cache_creation_input_tokens": 4844,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4844
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-13T19:43:43.734Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_017vfjEMuftfpjDZ1hpMss6V`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify frozen encoder VLA performance",
+  "prompt": "Search the web for evidence about whether freezing the vision encoder in VLA models hurts performance. Specifically:\n\n1. Search \"OpenVLA frozen encoder performance\" and \"OpenVLA-OFT frozen vision encoder\"\n2. Search \"VLA fine-tuning frozen vs unfrozen encoder\"\n3. Search \"SigLIP DinoV2 frozen fine-tuning robot\"\n4. Search \"OpenVLA ablation vision encoder freezing\"\n\nI need to understand: Does the CDR-VLA proposal's two-stage approach (frozen encoder for quality assessment, unfrozen for training) make sense? The prior review raised that \"freezing the vision encoder leads to poor performance.\" I need to verify whether this is still a concern given the revised approach where the encoder is only frozen for computing quality weights, NOT for actual policy training.\n\nAlso search for \"frozen encoder feature extraction quality estimation\" and \"representation quality scoring frozen pretrained\" to see if there's precedent for using frozen encoder features for quality/scoring purposes even when the encoder is unfrozen during training.\n\nReport findings with specific numbers and citations."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56f1c1ed-5fe0-4bae-8d23-55c412c04c26",
+  "isSidechain": false,
+  "requestId": "req_011Cb195boJYBBPtUCRfXeLR",
+  "type": "assistant",
+  "uuid": "c4262c52-9c92-4365-b6f3-faa8b8c69a62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XjSaXZxgfzbesbcctefzvW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3640,
+      "cache_creation_input_tokens": 4844,
+      "cache_read_input_tokens": 31075,
+      "output_tokens": 891,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4844,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3640,
+          "output_tokens": 891,
+          "cache_read_input_tokens": 31075,
+          "cache_creation_input_tokens": 4844,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4844
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-13T19:43:48.836Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_0165VP7ctePzBgGVhTmi1SvU`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search LoRA stability theory",
+  "prompt": "Search the web for theoretical work on how LoRA fine-tuning affects learned representations and feature stability. Specifically:\n\n1. \"LoRA representation drift\" or \"LoRA feature stability\"\n2. \"LoRA Lipschitz bound\" or \"LoRA perturbation bound representation\"\n3. \"LoRA Subtraction drift-resistant\" arXiv 2503.18985 - verify this paper exists\n4. \"density ratio estimation high dimensional latent space\"\n5. \"CKA similarity LoRA fine-tuning\"\n\nI need to assess whether the proposed \"LoRA stability theorem\" (bounding |Δβ| under low-rank perturbations) is novel and feasible. Is there existing work that already bounds representation changes under LoRA? Would such a theorem be a genuine contribution?\n\nReport findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4262c52-9c92-4365-b6f3-faa8b8c69a62",
+  "isSidechain": false,
+  "requestId": "req_011Cb195boJYBBPtUCRfXeLR",
+  "type": "assistant",
+  "uuid": "6f4f346b-7cc9-4479-9002-0fe4b59119fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XjSaXZxgfzbesbcctefzvW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3640,
+      "cache_creation_input_tokens": 4844,
+      "cache_read_input_tokens": 31075,
+      "output_tokens": 891,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4844,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3640,
+          "output_tokens": 891,
+          "cache_read_input_tokens": 31075,
+          "cache_creation_input_tokens": 4844,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4844
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-13T19:43:53.522Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01KincRNfxGc5wa6W3Ygoerw`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Check LIBERO-Plus CVPR 2026",
+  "prompt": "Search the web for \"LIBERO-Plus\" benchmark and verify:\n\n1. \"LIBERO-Plus CVPR 2026\" - was it actually accepted at CVPR 2026?\n2. What exactly does LIBERO-Plus test? (perturbation dimensions, number of tasks, etc.)\n3. \"LIBERO-Plus robustness VLA benchmark\"\n4. Also search for \"LIBERO-PRO\" - arXiv 2510.03827 - verify it exists\n\nI need to confirm that LIBERO-Plus is a real benchmark accepted at CVPR 2026 and that it tests what the proposal claims (7 perturbation dimensions, VLAs drop from 95% to below 30%).\n\nReport with specific details and URLs."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f4f346b-7cc9-4479-9002-0fe4b59119fe",
+  "isSidechain": false,
+  "requestId": "req_011Cb195boJYBBPtUCRfXeLR",
+  "type": "assistant",
+  "uuid": "3bc1ba10-bc83-460c-a5d6-4888956c6b1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XjSaXZxgfzbesbcctefzvW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3640,
+      "cache_creation_input_tokens": 4844,
+      "cache_read_input_tokens": 31075,
+      "output_tokens": 891,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4844,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3640,
+          "output_tokens": 891,
+          "cache_read_input_tokens": 31075,
+          "cache_creation_input_tokens": 4844,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4844
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-13T19:44:42.575Z_
+
+<details><summary>↩ Tool result · `toolu_01KincRNfxGc5wa6W3Ygoerw`</summary>
+
+```text
+Here is a detailed verification report on both LIBERO-Plus and LIBERO-PRO:
+
+---
+
+## 1. LIBERO-Plus -- CVPR 2026 Acceptance: CONFIRMED
+
+LIBERO-Plus was indeed accepted at CVPR 2026 as a **poster presentation**. The official CVPR virtual conference page lists it with the title **"LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models"** at `cvpr.thecvf.com/virtual/2026/poster/38735`.
+
+- **arXiv ID:** 2510.13626
+- **Full title:** "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models"
+- **Authors:** Senyu Fei, Siyin Wang, Junhao Shi, Zihao Dai, Jikun Cai, Pengfang Qian, Li Ji, Xinzhe He, Shiduo Zhang, Zhaoye Fei, Jinlan Fu, Jingjing Gong, and Xipeng Qiu
+- **GitHub:** `github.com/sylvestf/LIBERO-plus`
+- **Project page:** `sylvestf.github.io/LIBERO-plus/`
+
+---
+
+## 2. What LIBERO-Plus Tests: VERIFIED
+
+The benchmark introduces controlled perturbations across **7 dimensions** with **21 sub-dimensions**:
+
+1. **Object layouts**
+2. **Camera viewpoints**
+3. **Robot initial states**
+4. **Language instructions**
+5. **Lighting conditions**
+6. **Background textures**
+7. **Sensor noise**
+
+Additional details:
+- **10,030 tasks** spanning those 7 perturbation dimensions
+- **Fine-grained difficulty scale** from L1 to L5
+- **20,000+ successful training trajectories** collected under systematically varied conditions
+- **10 state-of-the-art VLA models** evaluated
+
+---
+
+## 3. Performance Drop Claim: VERIFIED
+
+The claim that "VLAs drop from 95% to below 30%" is accurate. The paper states:
+
+> "Models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from **95% to below 30%** under modest perturbations."
+
+An additional surprising finding: models are largely **insensitive to language variations**, with experiments revealing that models tend to **ignore language instructions completely**.
+
+---
+
+## 4. LIBERO-PRO (arXiv 2510.03827): CONFIRMED TO EXIST
+
+LIBERO-PRO is a **separate, distinct benchmark** from LIBERO-Plus.
+
+- **arXiv ID:** 2510.03827 (confirmed)
+- **Full title:** "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization"
+- **Authors:** Xueyang Zhou, Yangming Xu, Guiyao Tie, Yongchao Chen, and others
+- **GitHub:** `github.com/Zxy-MLlab/LIBERO-PRO`
+- **Submitted:** October 4, 2025
+- **Focus:** Evaluates model performance under perturbations across **4 dimensions** (manipulated objects, initial states, task instructions, environments)
+- **Key finding:** Models achieve over 90% accuracy under standard LIBERO evaluation but collapse to **0.0%** under generalized settings, exposing reliance on rote memorization
+
+**Important distinction:** LIBERO-PRO and LIBERO-Plus are different papers by different author groups, tackling related but distinct aspects of VLA robustness evaluation. LIBERO-Plus has 7 perturbation dimensions; LIBERO-PRO has 4.
+
+---
+
+## Summary
+
+All claims check out:
+- LIBERO-Plus is real and accepted at CVPR 2026 (poster).
+- It tests 7 perturbation dimensions across 10,030 tasks with difficulty levels L1-L5.
+- The 95%-to-below-30% performance drop is an accurately quoted finding from the paper.
+- LIBERO-PRO (arXiv 2510.03827) is a separate, confirmed paper with its own benchmark.
+
+Sources:
+- [CVPR 2026 Poster - LIBERO-Plus](https://cvpr.thecvf.com/virtual/2026/poster/38735)
+- [arXiv 2510.13626 - LIBERO-Plus](https://arxiv.org/abs/2510.13626)
+- [LIBERO-Plus Project Page](https://sylvestf.github.io/LIBERO-plus/)
+- [LIBERO-Plus GitHub](https://github.com/sylvestf/LIBERO-plus)
+- [LIBERO-Plus on Hugging Face](https://huggingface.co/papers/2510.13626)
+- [arXiv 2510.03827 - LIBERO-PRO](https://arxiv.org/abs/2510.03827)
+- [LIBERO-PRO GitHub](https://github.com/Zxy-MLlab/LIBERO-PRO)
+- [LIBERO-PRO on Hugging Face](https://huggingface.co/papers/2510.03827)
+
+agentId: af0d1104a32db3e19 (use SendMessage with to: 'af0d1104a32db3e19' to continue this agent)
+&lt;usage>total_tokens: 17128
+tool_uses: 7
+duration_ms: 49050&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3bc1ba10-bc83-460c-a5d6-4888956c6b1d",
+  "isSidechain": false,
+  "promptId": "5b46ad89-389b-47f2-a018-96735126287a",
+  "type": "user",
+  "uuid": "a46f1c34-da1c-458a-ad2d-319347a7a399",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for \"LIBERO-Plus\" benchmark and verify:\n\n1. \"LIBERO-Plus CVPR 2026\" - was it actually accepted at CVPR 2026?\n2. What exactly does LIBERO-Plus test? (perturbation dimensions, number of tasks, etc.)\n3. \"LIBERO-Plus robustness VLA benchmark\"\n4. Also search for \"LIBERO-PRO\" - arXiv 2510.03827 - verify it exists\n\nI need to confirm that LIBERO-Plus is a real benchmark accepted at CVPR 2026 and that it tests what the proposal claims (7 perturbation dimensions, VLAs drop from 95% to below 30%).\n\nReport with specific details and URLs.",
+    "agentId": "af0d1104a32db3e19",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a detailed verification report on both LIBERO-Plus and LIBERO-PRO:\n\n---\n\n## 1. LIBERO-Plus -- CVPR 2026 Acceptance: CONFIRMED\n\nLIBERO-Plus was indeed accepted at CVPR 2026 as a **poster presentation**. The official CVPR virtual conference page lists it with the title **\"LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models\"** at `cvpr.thecvf.com/virtual/2026/poster/38735`.\n\n- **arXiv ID:** 2510.13626\n- **Full title:** \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\"\n- **Authors:** Senyu Fei, Siyin Wang, Junhao Shi, Zihao Dai, Jikun Cai, Pengfang Qian, Li Ji, Xinzhe He, Shiduo Zhang, Zhaoye Fei, Jinlan Fu, Jingjing Gong, and Xipeng Qiu\n- **GitHub:** `github.com/sylvestf/LIBERO-plus`\n- **Project page:** `sylvestf.github.io/LIBERO-plus/`\n\n---\n\n## 2. What LIBERO-Plus Tests: VERIFIED\n\nThe benchmark introduces controlled perturbations across **7 dimensions** with **21 sub-dimensions**:\n\n1. **Object layouts**\n2. **Camera viewpoints**\n3. **Robot initial states**\n4. **Language instructions**\n5. **Lighting conditions**\n6. **Background textures**\n7. **Sensor noise**\n\nAdditional details:\n- **10,030 tasks** spanning those 7 perturbation dimensions\n- **Fine-grained difficulty scale** from L1 to L5\n- **20,000+ successful training trajectories** collected under systematically varied conditions\n- **10 state-of-the-art VLA models** evaluated\n\n---\n\n## 3. Performance Drop Claim: VERIFIED\n\nThe claim that \"VLAs drop from 95% to below 30%\" is accurate. The paper states:\n\n> \"Models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from **95% to below 30%** under modest perturbations.\"\n\nAn additional surprising finding: models are largely **insensitive to language variations**, with experiments revealing that models tend to **ignore language instructions completely**.\n\n---\n\n## 4. LIBERO-PRO (arXiv 2510.03827): CONFIRMED TO EXIST\n\nLIBERO-PRO is a **separate, distinct benchmark** from LIBERO-Plus.\n\n- **arXiv ID:** 2510.03827 (confirmed)\n- **Full title:** \"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization\"\n- **Authors:** Xueyang Zhou, Yangming Xu, Guiyao Tie, Yongchao Chen, and others\n- **GitHub:** `github.com/Zxy-MLlab/LIBERO-PRO`\n- **Submitted:** October 4, 2025\n- **Focus:** Evaluates model performance under perturbations across **4 dimensions** (manipulated objects, initial states, task instructions, environments)\n- **Key finding:** Models achieve over 90% accuracy under standard LIBERO evaluation but collapse to **0.0%** under generalized settings, exposing reliance on rote memorization\n\n**Important distinction:** LIBERO-PRO and LIBERO-Plus are different papers by different author groups, tackling related but distinct aspects of VLA robustness evaluation. LIBERO-Plus has 7 perturbation dimensions; LIBERO-PRO has 4.\n\n---\n\n## Summary\n\nAll claims check out:\n- LIBERO-Plus is real and accepted at CVPR 2026 (poster).\n- It tests 7 perturbation dimensions across 10,030 tasks with difficulty levels L1-L5.\n- The 95%-to-below-30% performance drop is an accurately quoted finding from the paper.\n- LIBERO-PRO (arXiv 2510.03827) is a separate, confirmed paper with its own benchmark.\n\nSources:\n- [CVPR 2026 Poster - LIBERO-Plus](https://cvpr.thecvf.com/virtual/2026/poster/38735)\n- [arXiv 2510.13626 - LIBERO-Plus](https://arxiv.org/abs/2510.13626)\n- [LIBERO-Plus Project Page](https://sylvestf.github.io/LIBERO-plus/)\n- [LIBERO-Plus GitHub](https://github.com/sylvestf/LIBERO-plus)\n- [LIBERO-Plus on Hugging Face](https://huggingface.co/papers/2510.13626)\n- [arXiv 2510.03827 - LIBERO-PRO](https://arxiv.org/abs/2510.03827)\n- [LIBERO-PRO GitHub](https://github.com/Zxy-MLlab/LIBERO-PRO)\n- [LIBERO-PRO on Hugging Face](https://huggingface.co/papers/2510.03827)"
+      }
+    ],
+    "totalDurationMs": 49050,
+    "totalTokens": 17128,
+    "totalToolUseCount": 7,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2516,
+      "cache_read_input_tokens": 13338,
+      "output_tokens": 1273,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2516
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1273,
+          "cache_read_input_tokens": 13338,
+          "cache_creation_input_tokens": 2516,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2516,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 7
+    }
+  },
+  "sourceToolAssistantUUID": "3bc1ba10-bc83-460c-a5d6-4888956c6b1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-13T19:45:56.855Z_
+
+<details><summary>↩ Tool result · `toolu_017vfjEMuftfpjDZ1hpMss6V`</summary>
+
+```text
+Now I have comprehensive findings. Here is my synthesis:
+
+---
+
+## Findings: Frozen Vision Encoder in VLA Models and CDR-VLA's Two-Stage Approach
+
+### 1. The Core Evidence: Freezing the Vision Encoder During VLA Policy Training Hurts Performance
+
+The OpenVLA paper (Kim et al., arXiv:2406.09246) includes an explicit ablation study (Table 1) comparing fine-tuning strategies. The key findings:
+
+- **Frozen vision encoder** (freeze encoder, fine-tune everything else): leads to **poor performance**. The paper states: "only fine-tuning the network's last layer or freezing the vision encoder leads to poor performance, suggesting that further adaptation of the visual features to the target scene is crucial."
+- **Sandwich fine-tuning** (fine-tune vision encoder + LLM last layer only): achieves better performance than frozen vision while consuming less GPU memory than full fine-tuning.
+- **LoRA fine-tuning** (1.4% of parameters): matches full fine-tuning performance, representing the best performance-compute trade-off.
+- The paper explicitly notes this is **opposite** to standard VLM practice: "freezing vision encoders during VLM training typically leads to higher performance because a frozen vision encoder may better preserve the robust features learned from its Internet-scale pretraining" -- but this does **not** hold for robotics action prediction.
+
+The hypothesis is that pretrained vision backbones (SigLIP, DINOv2) do not capture sufficient fine-grained spatial details for precise robotic control without adaptation.
+
+### 2. Specific Numbers from Gen-VLA (arXiv:2509.11417)
+
+The paper "Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations" provides the most specific numbers:
+
+- **Baseline OpenVLA**: 35.03% success rate
+- **With partially-frozen dual encoder** (one frozen + one trainable): **55.55%** success rate (a +20.52 percentage point improvement)
+- **Full framework** (dual encoder + string tokenizer + co-training): **78.46%**
+
+This paper's architecture is directly relevant to CDR-VLA's design philosophy: it uses **two siamese encoders** -- a frozen one serving as an "anchor" to retain robust pretrained representations, and a finetuned one with full flexibility for robotic action prediction. This demonstrates that using frozen encoder features alongside trainable encoder features is a validated design pattern.
+
+### 3. Real-World Frozen vs. Unfrozen Comparison (arXiv:2512.11921)
+
+LoRA-based fine-tuning research on real robots found:
+- **Frozen vision encoder**: ~74% success rate (8.4M trainable parameters)
+- **Unfrozen vision encoder**: ~76% success rate (33M trainable parameters)
+- The difference is modest (2 percentage points) with sufficient training data, but the unfrozen approach is generally preferred.
+
+### 4. ExpReS-VLA: Precedent for Using Frozen Encoder Features for Scoring/Selection
+
+ExpReS-VLA (arXiv:2511.06202) provides a **direct precedent** for what CDR-VLA proposes. It uses OpenVLA's **frozen vision backbone** to:
+- Extract embeddings from RGB frames (fused SigLIP + DINOv2 features)
+- Store them in a compressed replay buffer (97% storage reduction vs. raw images)
+- Use **cosine similarity** on these frozen embeddings to retrieve the k most similar past experiences via RAG
+- Employ these for prioritized experience replay and retrieval-augmented training
+
+This is architecturally analogous to CDR-VLA's approach: frozen encoder features are used for **scoring/selection** (quality assessment in CDR-VLA, similarity retrieval in ExpReS-VLA), while the actual policy training can proceed with unfrozen parameters.
+
+### 5. Broader Precedent for Frozen Features in Quality/Scoring Roles
+
+Multiple research directions validate using frozen pretrained features for scoring and quality assessment:
+
+- **Curriculum Learning with Quality-Driven Data Selection** (arXiv:2407.00102): Uses CLIP scores (from frozen CLIP) and model loss as two-dimensional quality coordinates for data selection and curriculum staging.
+- **Parameter-Efficient Quality Estimation** (arXiv:2603.14593): Frozen XLM-R embeddings achieve Spearman correlation of 0.370 for quality estimation, matching fine-tuned variants while reducing trainable parameters by 37x.
+- **Frozen DINOv2 features**: Demonstrate "generalization across both natural and specialized downstream domains" for feature extraction, with strong linear-probe accuracy signaling that representations are already discriminative.
+- **Frozen CLIP for video learning**: The EVL framework shows frozen CLIP features enable direct training of high-quality recognition models, with the finding that "frozen backbone is more efficient when pretraining quality is higher."
+- **RepRA (Representation-Property Relationship Analysis)**: Proposes that "a frozen pretrained model will generate fixed representations, so that the quality of the representations on a specific target task should be a constant conclusion" -- making frozen features ideal for unbiased quality evaluation.
+
+### 6. Assessment of CDR-VLA's Two-Stage Approach
+
+The reviewer's concern that "freezing the vision encoder leads to poor performance" is **valid for policy training** but is a **misapplication** when applied to CDR-VLA's quality assessment stage. Here is the critical distinction:
+
+**What the evidence says is bad:**
+- Freezing the vision encoder **during policy training** (i.e., the encoder stays frozen while the model learns to predict actions). This is the OpenVLA ablation finding.
+
+**What CDR-VLA actually proposes (if I understand correctly):**
+- Stage 1: Use **frozen** encoder features to compute quality weights/scores for training data (analogous to using CLIP scores for data selection, or ExpReS-VLA using frozen embeddings for retrieval)
+- Stage 2: Train the policy with the encoder **unfrozen**, using the quality weights from Stage 1
+
+This two-stage design is well-supported by existing work:
+1. **Gen-VLA** explicitly uses a frozen encoder as an "anchor" alongside a trainable encoder
+2. **ExpReS-VLA** uses frozen encoder embeddings for retrieval/scoring while the policy adapts
+3. **Curriculum learning** literature routinely uses frozen model features (CLIP scores, perplexity) to score data quality before training
+4. The RepRA framework argues frozen features are actually **preferable** for quality evaluation because they provide consistent, unbiased representations
+
+**Bottom line:** The prior review's concern conflates two different uses of frozen encoders. Using frozen features for quality scoring is standard practice with strong precedent. The concern would only be valid if CDR-VLA froze the encoder during actual policy training, which (based on your description) it does not.
+
+---
+
+Sources:
+- [OpenVLA: An Open-Source Vision-Language-Action Model](https://arxiv.org/html/2406.09246v3)
+- [OpenVLA-OFT: Fine-Tuning Vision-Language-Action Models](https://openvla-oft.github.io/)
+- [Enhancing Generalization in VLA Models (Gen-VLA)](https://arxiv.org/html/2509.11417v1)
+- [ExpReS-VLA: Experience Replay and Retrieval for VLA](https://arxiv.org/html/2511.06202v2)
+- [LoRA-Based Fine-Tuning of VLA Models](https://arxiv.org/html/2512.11921v1)
+- [Curriculum Learning with Quality-Driven Data Selection](https://arxiv.org/html/2407.00102v1)
+- [Parameter-Efficient Quality Estimation via Frozen Recursive Models](https://arxiv.org/html/2603.14593)
+- [Frozen DINOv2 Encoder (Emergent Mind)](https://www.emergentmind.com/topics/frozen-dinov2-encoder)
+- [Frozen CLIP Models are Efficient Video Learners](https://arxiv.org/abs/2208.03550)
+- [VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA](https://arxiv.org/html/2605.06175v1)
+- [VLM4VLA: Revisiting Vision-Language-Models in VLA](https://arxiv.org/html/2601.03309v1)
+
+agentId: a8b29b3dd5b66853e (use SendMessage with to: 'a8b29b3dd5b66853e' to continue this agent)
+&lt;usage>total_tokens: 28737
+tool_uses: 18
+duration_ms: 133116&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4262c52-9c92-4365-b6f3-faa8b8c69a62",
+  "isSidechain": false,
+  "promptId": "5b46ad89-389b-47f2-a018-96735126287a",
+  "type": "user",
+  "uuid": "9911475d-5d78-4836-b381-cb001a9ef77e",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for evidence about whether freezing the vision encoder in VLA models hurts performance. Specifically:\n\n1. Search \"OpenVLA frozen encoder performance\" and \"OpenVLA-OFT frozen vision encoder\"\n2. Search \"VLA fine-tuning frozen vs unfrozen encoder\"\n3. Search \"SigLIP DinoV2 frozen fine-tuning robot\"\n4. Search \"OpenVLA ablation vision encoder freezing\"\n\nI need to understand: Does the CDR-VLA proposal's two-stage approach (frozen encoder for quality assessment, unfrozen for training) make sense? The prior review raised that \"freezing the vision encoder leads to poor performance.\" I need to verify whether this is still a concern given the revised approach where the encoder is only frozen for computing quality weights, NOT for actual policy training.\n\nAlso search for \"frozen encoder feature extraction quality estimation\" and \"representation quality scoring frozen pretrained\" to see if there's precedent for using frozen encoder features for quality/scoring purposes even when the encoder is unfrozen during training.\n\nReport findings with specific numbers and citations.",
+    "agentId": "a8b29b3dd5b66853e",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive findings. Here is my synthesis:\n\n---\n\n## Findings: Frozen Vision Encoder in VLA Models and CDR-VLA's Two-Stage Approach\n\n### 1. The Core Evidence: Freezing the Vision Encoder During VLA Policy Training Hurts Performance\n\nThe OpenVLA paper (Kim et al., arXiv:2406.09246) includes an explicit ablation study (Table 1) comparing fine-tuning strategies. The key findings:\n\n- **Frozen vision encoder** (freeze encoder, fine-tune everything else): leads to **poor performance**. The paper states: \"only fine-tuning the network's last layer or freezing the vision encoder leads to poor performance, suggesting that further adaptation of the visual features to the target scene is crucial.\"\n- **Sandwich fine-tuning** (fine-tune vision encoder + LLM last layer only): achieves better performance than frozen vision while consuming less GPU memory than full fine-tuning.\n- **LoRA fine-tuning** (1.4% of parameters): matches full fine-tuning performance, representing the best performance-compute trade-off.\n- The paper explicitly notes this is **opposite** to standard VLM practice: \"freezing vision encoders during VLM training typically leads to higher performance because a frozen vision encoder may better preserve the robust features learned from its Internet-scale pretraining\" -- but this does **not** hold for robotics action prediction.\n\nThe hypothesis is that pretrained vision backbones (SigLIP, DINOv2) do not capture sufficient fine-grained spatial details for precise robotic control without adaptation.\n\n### 2. Specific Numbers from Gen-VLA (arXiv:2509.11417)\n\nThe paper \"Enhancing Generalization in Vision-Language-Action Models by Preserving Pretrained Representations\" provides the most specific numbers:\n\n- **Baseline OpenVLA**: 35.03% success rate\n- **With partially-frozen dual encoder** (one frozen + one trainable): **55.55%** success rate (a +20.52 percentage point improvement)\n- **Full framework** (dual encoder + string tokenizer + co-training): **78.46%**\n\nThis paper's architecture is directly relevant to CDR-VLA's design philosophy: it uses **two siamese encoders** -- a frozen one serving as an \"anchor\" to retain robust pretrained representations, and a finetuned one with full flexibility for robotic action prediction. This demonstrates that using frozen encoder features alongside trainable encoder features is a validated design pattern.\n\n### 3. Real-World Frozen vs. Unfrozen Comparison (arXiv:2512.11921)\n\nLoRA-based fine-tuning research on real robots found:\n- **Frozen vision encoder**: ~74% success rate (8.4M trainable parameters)\n- **Unfrozen vision encoder**: ~76% success rate (33M trainable parameters)\n- The difference is modest (2 percentage points) with sufficient training data, but the unfrozen approach is generally preferred.\n\n### 4. ExpReS-VLA: Precedent for Using Frozen Encoder Features for Scoring/Selection\n\nExpReS-VLA (arXiv:2511.06202) provides a **direct precedent** for what CDR-VLA proposes. It uses OpenVLA's **frozen vision backbone** to:\n- Extract embeddings from RGB frames (fused SigLIP + DINOv2 features)\n- Store them in a compressed replay buffer (97% storage reduction vs. raw images)\n- Use **cosine similarity** on these frozen embeddings to retrieve the k most similar past experiences via RAG\n- Employ these for prioritized experience replay and retrieval-augmented training\n\nThis is architecturally analogous to CDR-VLA's approach: frozen encoder features are used for **scoring/selection** (quality assessment in CDR-VLA, similarity retrieval in ExpReS-VLA), while the actual policy training can proceed with unfrozen parameters.\n\n### 5. Broader Precedent for Frozen Features in Quality/Scoring Roles\n\nMultiple research directions validate using frozen pretrained features for scoring and quality assessment:\n\n- **Curriculum Learning with Quality-Driven Data Selection** (arXiv:2407.00102): Uses CLIP scores (from frozen CLIP) and model loss as two-dimensional quality coordinates for data selection and curriculum staging.\n- **Parameter-Efficient Quality Estimation** (arXiv:2603.14593): Frozen XLM-R embeddings achieve Spearman correlation of 0.370 for quality estimation, matching fine-tuned variants while reducing trainable parameters by 37x.\n- **Frozen DINOv2 features**: Demonstrate \"generalization across both natural and specialized downstream domains\" for feature extraction, with strong linear-probe accuracy signaling that representations are already discriminative.\n- **Frozen CLIP for video learning**: The EVL framework shows frozen CLIP features enable direct training of high-quality recognition models, with the finding that \"frozen backbone is more efficient when pretraining quality is higher.\"\n- **RepRA (Representation-Property Relationship Analysis)**: Proposes that \"a frozen pretrained model will generate fixed representations, so that the quality of the representations on a specific target task should be a constant conclusion\" -- making frozen features ideal for unbiased quality evaluation.\n\n### 6. Assessment of CDR-VLA's Two-Stage Approach\n\nThe reviewer's concern that \"freezing the vision encoder leads to poor performance\" is **valid for policy training** but is a **misapplication** when applied to CDR-VLA's quality assessment stage. Here is the critical distinction:\n\n**What the evidence says is bad:**\n- Freezing the vision encoder **during policy training** (i.e., the encoder stays frozen while the model learns to predict actions). This is the OpenVLA ablation finding.\n\n**What CDR-VLA actually proposes (if I understand correctly):**\n- Stage 1: Use **frozen** encoder features to compute quality weights/scores for training data (analogous to using CLIP scores for data selection, or ExpReS-VLA using frozen embeddings for retrieval)\n- Stage 2: Train the policy with the encoder **unfrozen**, using the quality weights from Stage 1\n\nThis two-stage design is well-supported by existing work:\n1. **Gen-VLA** explicitly uses a frozen encoder as an \"anchor\" alongside a trainable encoder\n2. **ExpReS-VLA** uses frozen encoder embeddings for retrieval/scoring while the policy adapts\n3. **Curriculum learning** literature routinely uses frozen model features (CLIP scores, perplexity) to score data quality before training\n4. The RepRA framework argues frozen features are actually **preferable** for quality evaluation because they provide consistent, unbiased representations\n\n**Bottom line:** The prior review's concern conflates two different uses of frozen encoders. Using frozen features for quality scoring is standard practice with strong precedent. The concern would only be valid if CDR-VLA froze the encoder during actual policy training, which (based on your description) it does not.\n\n---\n\nSources:\n- [OpenVLA: An Open-Source Vision-Language-Action Model](https://arxiv.org/html/2406.09246v3)\n- [OpenVLA-OFT: Fine-Tuning Vision-Language-Action Models](https://openvla-oft.github.io/)\n- [Enhancing Generalization in VLA Models (Gen-VLA)](https://arxiv.org/html/2509.11417v1)\n- [ExpReS-VLA: Experience Replay and Retrieval for VLA](https://arxiv.org/html/2511.06202v2)\n- [LoRA-Based Fine-Tuning of VLA Models](https://arxiv.org/html/2512.11921v1)\n- [Curriculum Learning with Quality-Driven Data Selection](https://arxiv.org/html/2407.00102v1)\n- [Parameter-Efficient Quality Estimation via Frozen Recursive Models](https://arxiv.org/html/2603.14593)\n- [Frozen DINOv2 Encoder (Emergent Mind)](https://www.emergentmind.com/topics/frozen-dinov2-encoder)\n- [Frozen CLIP Models are Efficient Video Learners](https://arxiv.org/abs/2208.03550)\n- [VLA-GSE: Boosting Parameter-Efficient Fine-Tuning in VLA](https://arxiv.org/html/2605.06175v1)\n- [VLM4VLA: Revisiting Vision-Language-Models in VLA](https://arxiv.org/html/2601.03309v1)"
+      }
+    ],
+    "totalDurationMs": 133116,
+    "totalTokens": 28737,
+    "totalToolUseCount": 18,
+    "usage": {
+      "input_tokens": 904,
+      "cache_creation_input_tokens": 1565,
+      "cache_read_input_tokens": 24252,
+      "output_tokens": 2016,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1565
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 904,
+          "output_tokens": 2016,
+          "cache_read_input_tokens": 24252,
+          "cache_creation_input_tokens": 1565,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1565,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 18
+    }
+  },
+  "sourceToolAssistantUUID": "c4262c52-9c92-4365-b6f3-faa8b8c69a62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "9911475d-5d78-4836-b381-cb001a9ef77e",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrating importance-weighted VLA fine-tuning via frozen encoder density-ratio analysis",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T19:47:03.587Z_
+
+<details><summary>↩ Tool result · `toolu_0165VP7ctePzBgGVhTmi1SvU`</summary>
+
+```text
+I now have a comprehensive picture. Here is my analysis:
+
+---
+
+## Report: Novelty and Feasibility of a "LoRA Stability Theorem" Bounding |Delta beta| Under Low-Rank Perturbations
+
+### 1. Verification of arXiv 2503.18985
+
+**Confirmed.** The paper "LoRA Subtraction for Drift-Resistant Space in Exemplar-Free Continual Learning" by Xuan Liu and Xiaobin Chang exists and was accepted to CVPR 2025. However, it is an **empirical/algorithmic** contribution, not a theoretical one. It introduces a method (LoRA-) that subtracts old-task LoRA weights from the pretrained weights before learning new tasks, creating a "Drift-Resistant Space." It does **not** provide formal bounds on representation drift -- its stability claims are empirical.
+
+### 2. Existing Theoretical Work on LoRA and Representation Changes
+
+I identified a rich and rapidly growing body of theoretical LoRA work. Here are the most relevant papers, organized by what they bound:
+
+**A. Bounds on output/logit changes (closest to bounding |Delta beta|):**
+
+- **"Formalising the Logit Shift Induced by LoRA" (arXiv 2604.20313, April 2025):** This is the most directly relevant paper. It provides a first-order Frechet approximation decomposing the logit shift as: `delta_y(x) = (alpha/r) * sum_{l in S} u_y^T J_{l+1->L}(x) B_l A_l z_l + R_y(Delta)`, where the remainder is `o(||Delta||)`. However, it derives a **decomposition**, not an explicit **upper bound** on the magnitude. No closed-form bound on |Delta beta| is given.
+
+**B. Bounds on feature learning stability (scaling behavior):**
+
+- **"Stable-LoRA: Stabilizing Feature Learning of Low-Rank Adaptation" (arXiv 2603.05204, March 2025):** Defines LoRA feature learning as "stable" if `Delta Y_t = Theta(1)` for all training steps t (i.e., output updates neither explode nor vanish with width n). Theorem 3.1 gives conditions on hyperparameters (s, eta) and initializations (A_0, B_0) under which LoRA is self-stable. This bounds scaling behavior with respect to width, not the absolute magnitude of representation change under a given rank-r perturbation.
+
+**C. Bounds on expressive power and approximation error:**
+
+- **"The Expressive Power of Low-Rank Adaptation" (ICLR 2024, arXiv 2310.17513):** Bounds the approximation error `E||f(x) - target(x)||^2` as a function of LoRA rank via singular value decay. Shows LoRA is nearly optimally expressive up to a constant factor of 2. Does not bound intermediate representation changes.
+
+**D. Convergence and optimization landscape bounds:**
+
+- **"On the Convergence Rate of LoRA Gradient Descent" (arXiv 2512.18248):** Shows O(1/sqrt(T)) convergence. Notes the Lipschitz non-smoothness of the LoRA reparameterization and develops a modified descent lemma.
+- **"LoRA Training Provably Converges to a Low-Rank Global Minimum" (arXiv 2502.09376):** Shows that spurious stationary points must have high rank and large magnitude, so they are detectable. Does not bound representation changes.
+
+**E. Noise robustness through rank constraints:**
+
+- **"Why LoRA Resists Label Noise" (arXiv 2602.00084):** Provides a memorization capacity bound (Theorem 3.3) showing rank-r LoRA cannot memorize all label assignments beyond O(r(d+k-r)) samples. Bounds are on fitting capacity, not on representation geometry.
+
+**F. Representation similarity (empirical, CKA-based):**
+
+- **"Layer-wise LoRA Fine-tuning: A Similarity Metric Approach" (arXiv 2602.05988):** Uses CKA to measure representational similarity between base and LoRA-adapted models to guide layer selection. Purely empirical -- no formal bounds on CKA change under LoRA.
+
+- **"LoRA vs Full Fine-tuning: An Illusion of Equivalence" (arXiv 2410.21228):** Shows LoRA introduces "intruder dimensions" -- new high-ranking singular vectors absent in full fine-tuning. These cause localized forgetting. Empirical spectral analysis, no formal bounds.
+
+### 3. On Density Ratio Estimation in High-Dimensional Latent Spaces
+
+This is an established field with mature methods (telescoping DRE, noise contrastive estimation, featurized DRE). The challenge of density ratio estimation in high-dimensional spaces is well-documented, with solutions involving latent-space projections and generative models. Combining density ratio estimation with LoRA-induced latent space changes appears to be an **unexplored intersection**.
+
+### 4. Assessment: Is the "LoRA Stability Theorem" (Bounding |Delta beta| Under Low-Rank Perturbations) Novel?
+
+**Yes, it would be novel.** Here is why:
+
+**What exists:**
+- Logit shift decomposition (first-order, no magnitude bound) -- arXiv 2604.20313
+- Width-scaling stability conditions (Theta(1) output updates) -- arXiv 2603.05204
+- Approximation error bounds as function of rank (model-to-model, not representation-level) -- ICLR 2024
+- Convergence rate bounds -- arXiv 2512.18248
+- Memorization capacity bounds -- arXiv 2602.00084
+
+**What does NOT exist (gap your theorem would fill):**
+- An explicit upper bound of the form `|Delta beta| <= f(r, sigma_i, ...)` that bounds the change in downstream regression/classification coefficients (or equivalently, representation-level feature changes) as a function of LoRA rank, singular values of the perturbation matrices, and properties of the pre-trained network (e.g., Lipschitz constants of downstream layers).
+- A Lipschitz-type bound connecting `||BA||` to `||phi_LoRA(x) - phi_base(x)||` across the representation space.
+
+### 5. Feasibility Assessment
+
+**Feasible, with caveats:**
+
+**In favor:**
+- The Frechet decomposition from arXiv 2604.20313 provides the scaffolding: `delta(x) = (alpha/r) * J * BA * z + o(||Delta||)`. Converting this to a bound requires bounding `||J||` (Jacobian of downstream layers) and `||z||` (intermediate activations), both of which are standard in perturbation theory.
+- Stable-LoRA's analysis (arXiv 2603.05204) shows that LoRA updates can be controlled via hyperparameter/initialization conditions, suggesting the perturbation is structurally well-behaved.
+- Standard matrix perturbation results (Weyl's inequality, Davis-Kahan) apply to `W + (alpha/r)BA` and give spectral bounds.
+
+**Challenges:**
+- The Lipschitz non-smoothness of the LoRA reparameterization (noted in arXiv 2512.18248) means naive application of standard smooth perturbation theory will not work. You need the modified Lipschitz-like condition they develop.
+- Bounding the Jacobian `J_{l+1->L}` for deep networks is nontrivial -- it involves products of weight matrices and activation derivatives. Without assumptions (e.g., bounded activations, spectral norm constraints), bounds can be vacuous.
+- Moving from logit-level bounds to feature-level bounds (|Delta beta| for a linear probe on representations) requires additional structure -- specifically, how the linear probe interacts with the perturbation subspace.
+
+### 6. Would It Be a Genuine Contribution?
+
+**Yes.** A clean theorem of the form:
+
+> If the pre-trained model has layer Jacobians bounded in spectral norm by L, and LoRA adapters satisfy `||B_l A_l||_2 <= epsilon`, then for any linear functional beta of the representation, `|Delta beta| <= C * (alpha/r) * L * epsilon * ||z||`
+
+...would be the first result to directly bound downstream coefficient changes under LoRA perturbations. It would unify and extend:
+- The decomposition from the logit shift paper (adding magnitude bounds)
+- The stability conditions from Stable-LoRA (making them quantitative at the representation level)
+- The expressive power results (complementing "what LoRA can do" with "how much LoRA changes things")
+
+The practical value would be in providing theoretically grounded guidance for rank selection, scaling factor choice, and continual learning stability guarantees.
+
+### Sources
+
+- [LoRA Subtraction for Drift-Resistant Space (arXiv 2503.18985)](https://arxiv.org/abs/2503.18985)
+- [Formalising the Logit Shift Induced by LoRA (arXiv 2604.20313)](https://arxiv.org/html/2604.20313)
+- [Stable-LoRA: Stabilizing Feature Learning (arXiv 2603.05204)](https://arxiv.org/abs/2603.05204)
+- [The Expressive Power of Low-Rank Adaptation (ICLR 2024)](https://arxiv.org/html/2310.17513v3)
+- [On the Convergence Rate of LoRA Gradient Descent (arXiv 2512.18248)](https://arxiv.org/pdf/2512.18248)
+- [Why LoRA Resists Label Noise (arXiv 2602.00084)](https://arxiv.org/html/2602.00084)
+- [LoRA vs Full Fine-tuning: An Illusion of Equivalence (arXiv 2410.21228)](https://arxiv.org/abs/2410.21228)
+- [LoRA Training Provably Converges (arXiv 2502.09376)](https://arxiv.org/html/2502.09376v3)
+- [Layer-wise LoRA with CKA (arXiv 2602.05988)](https://arxiv.org/pdf/2602.05988)
+- [Latent Space Factorization in LoRA (arXiv 2510.19640)](https://arxiv.org/abs/2510.19640)
+- [Density Estimation Using Deep Generative Neural Networks (PNAS)](https://www.pnas.org/doi/10.1073/pnas.2101344118)
+- [Telescoping Density-Ratio Estimation (NeurIPS 2020)](https://proceedings.neurips.cc/paper/2020/file/33d3b157ddc0896addfb22fa2a519097-Paper.pdf)
+- [Computational Limits of LoRA (arXiv 2406.03136)](https://arxiv.org/abs/2406.03136)
+
+agentId: ad487675142d937dd (use SendMessage with to: 'ad487675142d937dd' to continue this agent)
+&lt;usage>total_tokens: 32237
+tool_uses: 25
+duration_ms: 194748&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f4f346b-7cc9-4479-9002-0fe4b59119fe",
+  "isSidechain": false,
+  "promptId": "5b46ad89-389b-47f2-a018-96735126287a",
+  "type": "user",
+  "uuid": "b6ff38ee-132a-423e-95b4-be590441b40e",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for theoretical work on how LoRA fine-tuning affects learned representations and feature stability. Specifically:\n\n1. \"LoRA representation drift\" or \"LoRA feature stability\"\n2. \"LoRA Lipschitz bound\" or \"LoRA perturbation bound representation\"\n3. \"LoRA Subtraction drift-resistant\" arXiv 2503.18985 - verify this paper exists\n4. \"density ratio estimation high dimensional latent space\"\n5. \"CKA similarity LoRA fine-tuning\"\n\nI need to assess whether the proposed \"LoRA stability theorem\" (bounding |Δβ| under low-rank perturbations) is novel and feasible. Is there existing work that already bounds representation changes under LoRA? Would such a theorem be a genuine contribution?\n\nReport findings.",
+    "agentId": "ad487675142d937dd",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have a comprehensive picture. Here is my analysis:\n\n---\n\n## Report: Novelty and Feasibility of a \"LoRA Stability Theorem\" Bounding |Delta beta| Under Low-Rank Perturbations\n\n### 1. Verification of arXiv 2503.18985\n\n**Confirmed.** The paper \"LoRA Subtraction for Drift-Resistant Space in Exemplar-Free Continual Learning\" by Xuan Liu and Xiaobin Chang exists and was accepted to CVPR 2025. However, it is an **empirical/algorithmic** contribution, not a theoretical one. It introduces a method (LoRA-) that subtracts old-task LoRA weights from the pretrained weights before learning new tasks, creating a \"Drift-Resistant Space.\" It does **not** provide formal bounds on representation drift -- its stability claims are empirical.\n\n### 2. Existing Theoretical Work on LoRA and Representation Changes\n\nI identified a rich and rapidly growing body of theoretical LoRA work. Here are the most relevant papers, organized by what they bound:\n\n**A. Bounds on output/logit changes (closest to bounding |Delta beta|):**\n\n- **\"Formalising the Logit Shift Induced by LoRA\" (arXiv 2604.20313, April 2025):** This is the most directly relevant paper. It provides a first-order Frechet approximation decomposing the logit shift as: `delta_y(x) = (alpha/r) * sum_{l in S} u_y^T J_{l+1->L}(x) B_l A_l z_l + R_y(Delta)`, where the remainder is `o(||Delta||)`. However, it derives a **decomposition**, not an explicit **upper bound** on the magnitude. No closed-form bound on |Delta beta| is given.\n\n**B. Bounds on feature learning stability (scaling behavior):**\n\n- **\"Stable-LoRA: Stabilizing Feature Learning of Low-Rank Adaptation\" (arXiv 2603.05204, March 2025):** Defines LoRA feature learning as \"stable\" if `Delta Y_t = Theta(1)` for all training steps t (i.e., output updates neither explode nor vanish with width n). Theorem 3.1 gives conditions on hyperparameters (s, eta) and initializations (A_0, B_0) under which LoRA is self-stable. This bounds scaling behavior with respect to width, not the absolute magnitude of representation change under a given rank-r perturbation.\n\n**C. Bounds on expressive power and approximation error:**\n\n- **\"The Expressive Power of Low-Rank Adaptation\" (ICLR 2024, arXiv 2310.17513):** Bounds the approximation error `E||f(x) - target(x)||^2` as a function of LoRA rank via singular value decay. Shows LoRA is nearly optimally expressive up to a constant factor of 2. Does not bound intermediate representation changes.\n\n**D. Convergence and optimization landscape bounds:**\n\n- **\"On the Convergence Rate of LoRA Gradient Descent\" (arXiv 2512.18248):** Shows O(1/sqrt(T)) convergence. Notes the Lipschitz non-smoothness of the LoRA reparameterization and develops a modified descent lemma.\n- **\"LoRA Training Provably Converges to a Low-Rank Global Minimum\" (arXiv 2502.09376):** Shows that spurious stationary points must have high rank and large magnitude, so they are detectable. Does not bound representation changes.\n\n**E. Noise robustness through rank constraints:**\n\n- **\"Why LoRA Resists Label Noise\" (arXiv 2602.00084):** Provides a memorization capacity bound (Theorem 3.3) showing rank-r LoRA cannot memorize all label assignments beyond O(r(d+k-r)) samples. Bounds are on fitting capacity, not on representation geometry.\n\n**F. Representation similarity (empirical, CKA-based):**\n\n- **\"Layer-wise LoRA Fine-tuning: A Similarity Metric Approach\" (arXiv 2602.05988):** Uses CKA to measure representational similarity between base and LoRA-adapted models to guide layer selection. Purely empirical -- no formal bounds on CKA change under LoRA.\n\n- **\"LoRA vs Full Fine-tuning: An Illusion of Equivalence\" (arXiv 2410.21228):** Shows LoRA introduces \"intruder dimensions\" -- new high-ranking singular vectors absent in full fine-tuning. These cause localized forgetting. Empirical spectral analysis, no formal bounds.\n\n### 3. On Density Ratio Estimation in High-Dimensional Latent Spaces\n\nThis is an established field with mature methods (telescoping DRE, noise contrastive estimation, featurized DRE). The challenge of density ratio estimation in high-dimensional spaces is well-documented, with solutions involving latent-space projections and generative models. Combining density ratio estimation with LoRA-induced latent space changes appears to be an **unexplored intersection**.\n\n### 4. Assessment: Is the \"LoRA Stability Theorem\" (Bounding |Delta beta| Under Low-Rank Perturbations) Novel?\n\n**Yes, it would be novel.** Here is why:\n\n**What exists:**\n- Logit shift decomposition (first-order, no magnitude bound) -- arXiv 2604.20313\n- Width-scaling stability conditions (Theta(1) output updates) -- arXiv 2603.05204\n- Approximation error bounds as function of rank (model-to-model, not representation-level) -- ICLR 2024\n- Convergence rate bounds -- arXiv 2512.18248\n- Memorization capacity bounds -- arXiv 2602.00084\n\n**What does NOT exist (gap your theorem would fill):**\n- An explicit upper bound of the form `|Delta beta| <= f(r, sigma_i, ...)` that bounds the change in downstream regression/classification coefficients (or equivalently, representation-level feature changes) as a function of LoRA rank, singular values of the perturbation matrices, and properties of the pre-trained network (e.g., Lipschitz constants of downstream layers).\n- A Lipschitz-type bound connecting `||BA||` to `||phi_LoRA(x) - phi_base(x)||` across the representation space.\n\n### 5. Feasibility Assessment\n\n**Feasible, with caveats:**\n\n**In favor:**\n- The Frechet decomposition from arXiv 2604.20313 provides the scaffolding: `delta(x) = (alpha/r) * J * BA * z + o(||Delta||)`. Converting this to a bound requires bounding `||J||` (Jacobian of downstream layers) and `||z||` (intermediate activations), both of which are standard in perturbation theory.\n- Stable-LoRA's analysis (arXiv 2603.05204) shows that LoRA updates can be controlled via hyperparameter/initialization conditions, suggesting the perturbation is structurally well-behaved.\n- Standard matrix perturbation results (Weyl's inequality, Davis-Kahan) apply to `W + (alpha/r)BA` and give spectral bounds.\n\n**Challenges:**\n- The Lipschitz non-smoothness of the LoRA reparameterization (noted in arXiv 2512.18248) means naive application of standard smooth perturbation theory will not work. You need the modified Lipschitz-like condition they develop.\n- Bounding the Jacobian `J_{l+1->L}` for deep networks is nontrivial -- it involves products of weight matrices and activation derivatives. Without assumptions (e.g., bounded activations, spectral norm constraints), bounds can be vacuous.\n- Moving from logit-level bounds to feature-level bounds (|Delta beta| for a linear probe on representations) requires additional structure -- specifically, how the linear probe interacts with the perturbation subspace.\n\n### 6. Would It Be a Genuine Contribution?\n\n**Yes.** A clean theorem of the form:\n\n> If the pre-trained model has layer Jacobians bounded in spectral norm by L, and LoRA adapters satisfy `||B_l A_l||_2 <= epsilon`, then for any linear functional beta of the representation, `|Delta beta| <= C * (alpha/r) * L * epsilon * ||z||`\n\n...would be the first result to directly bound downstream coefficient changes under LoRA perturbations. It would unify and extend:\n- The decomposition from the logit shift paper (adding magnitude bounds)\n- The stability conditions from Stable-LoRA (making them quantitative at the representation level)\n- The expressive power results (complementing \"what LoRA can do\" with \"how much LoRA changes things\")\n\nThe practical value would be in providing theoretically grounded guidance for rank selection, scaling factor choice, and continual learning stability guarantees.\n\n### Sources\n\n- [LoRA Subtraction for Drift-Resistant Space (arXiv 2503.18985)](https://arxiv.org/abs/2503.18985)\n- [Formalising the Logit Shift Induced by LoRA (arXiv 2604.20313)](https://arxiv.org/html/2604.20313)\n- [Stable-LoRA: Stabilizing Feature Learning (arXiv 2603.05204)](https://arxiv.org/abs/2603.05204)\n- [The Expressive Power of Low-Rank Adaptation (ICLR 2024)](https://arxiv.org/html/2310.17513v3)\n- [On the Convergence Rate of LoRA Gradient Descent (arXiv 2512.18248)](https://arxiv.org/pdf/2512.18248)\n- [Why LoRA Resists Label Noise (arXiv 2602.00084)](https://arxiv.org/html/2602.00084)\n- [LoRA vs Full Fine-tuning: An Illusion of Equivalence (arXiv 2410.21228)](https://arxiv.org/abs/2410.21228)\n- [LoRA Training Provably Converges (arXiv 2502.09376)](https://arxiv.org/html/2502.09376v3)\n- [Layer-wise LoRA with CKA (arXiv 2602.05988)](https://arxiv.org/pdf/2602.05988)\n- [Latent Space Factorization in LoRA (arXiv 2510.19640)](https://arxiv.org/abs/2510.19640)\n- [Density Estimation Using Deep Generative Neural Networks (PNAS)](https://www.pnas.org/doi/10.1073/pnas.2101344118)\n- [Telescoping Density-Ratio Estimation (NeurIPS 2020)](https://proceedings.neurips.cc/paper/2020/file/33d3b157ddc0896addfb22fa2a519097-Paper.pdf)\n- [Computational Limits of LoRA (arXiv 2406.03136)](https://arxiv.org/abs/2406.03136)"
+      }
+    ],
+    "totalDurationMs": 194748,
+    "totalTokens": 32237,
+    "totalToolUseCount": 25,
+    "usage": {
+      "input_tokens": 912,
+      "cache_creation_input_tokens": 1197,
+      "cache_read_input_tokens": 27402,
+      "output_tokens": 2726,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1197
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 912,
+          "output_tokens": 2726,
+          "cache_read_input_tokens": 27402,
+          "cache_creation_input_tokens": 1197,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1197,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 25
+    }
+  },
+  "sourceToolAssistantUUID": "6f4f346b-7cc9-4479-9002-0fe4b59119fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-13T19:48:49.397Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me synthesize all findings and assess the idea. Let me do one more search to check for very recent concurrent work that might be directly competing.
+
+Key findings so far:
+
+1. **CoRL 2026 deadlines**: The proposal says "Abstract May 25 AoE, Paper May 28 AoE" but the actual deadlines are May 26 and May 29 at 11:59 UTC. The user originally stated May 26 and May 29, and the generator "corrected" to May 25/28 AoE. The actual dates are May 26/29 UTC, so the user was right and the generator was wrong. 
+
+From today (May 13), that gives me 13 days to abstract and 16 days to paper.
+
+2. **IDRL (ICLR 2025)**: Confirmed exists, accepted at ICLR 2025. The proposal now includes it and differentiates.
+
+3. **DR-WBC**: Still an unvetted preprint with NO conference acceptance as of May 2026. This is a risk.
+
+4. **RobustVLA**: arXiv preprint, submitted to ICLR 2026 but NOT confirmed accepted. The proposal mentions it.
+
+5. **Frozen encoder concern**: The two-stage approach (frozen for quality assessment, unfrozen for training) is well-motivated and addresses a real technical challenge.
+
+6. **LoRA stability theorem**: This is genuinely novel—no existing work provides an explicit bound on representation-level changes under LoRA perturbations, and connecting LoRA perturbations to density-ratio distortion changes would be a new contribution.
+
+7. **LIBERO-Plus**: Confirmed at CVPR 2026, claims verified.
+
+8. **Missing related work**: I found several papers I should incorporate—work extending discriminator-weighted offline imitation learning to robotic tasks, Green-VLA's DataQA pipeline, and SimpleVLA.
+
+Now I'm evaluating whether the timeline is actually feasible. The abstract is due in 13 days and the paper in 16 days, with a proposed 5-day go/no-go checkpoint. The scope is tight—calibration study, dynamic β tracking, LoRA stability theorem, and experiments on a single benchmark—but it's realistic if the person has GPU access, knows the VLA codebase well, and can commit fully.
+
+The novelty is compelling: measuring density-ratio preservation in VLA latent spaces hasn't been done before, dynamic β tracking during LoRA fine-tuning is new, the LoRA stability theorem connecting perturbations to density-ratio distortion adds theory, and the two-stage calibration-then-train pipeline is a practical contribution. The approach using a discriminator for weighting is starting to come together, though it's still being refined.
+
+For feasibility, the calibration phase is straightforward—just measuring discriminator accuracy and β in the frozen encoder over the first few days. Dynamic β tracking requires running LoRA fine-tuning with checkpointing, which is doable by day 7. The theory piece is the tightest constraint: proving the LoRA stability theorem rigorously in 5 days is ambitious, but the logit shift decomposition paper gives a solid foundation. The experiments need 90 GPU hours across 30 LoRA runs, which is manageable with parallel A100s.
+
+The main risks are still emerging—DR-WBC implementation details and whether the theoretical results will hold up under scrutiny.
+
+What's improved from earlier versions is resolving the frozen/unfrozen encoder tension through the two-stage pipeline, adding IDRL and RobustVLA to the related work, reframing this as a calibration study which feels more defensible, incorporating dynamic β tracking to address fine-tuning concerns, and building in a clear go/no-go checkpoint. The scope management between CoRL and ICLR versions also helps. But the deadline dates need fixing, and 16 days is genuinely tight for a complete paper if the theory proof gets complicated.
+
+On scoring: the calibration framing is novel and the LoRA stability theorem would be new, though weighted BC itself isn't—I'd estimate 3.5-4 for novelty. Feasibility sits around 3-3.5 given the tight timeline and ambitious theory work, though the experiments are straightforward once set up. The proposal is exceptionally well-structured and clear.
+
+For impact, either outcome of the calibration study—whether β is small or large—provides value to the community, so that's around 3.5. Overall this lands at roughly 3.5-3.75, which falls short of the 4.0 threshold.
+
+The timeline remains my biggest concern: 16 days for theory, experiments, and a paper is genuinely aggressive. DR-WBC being unvetted adds real risk for a top-tier venue, and proving the LoRA stability theorem rigorously in 5 days is a stretch. That said, this is iteration 4 of 10, and the proposal has evolved significantly—the earlier structural problems around the frozen encoder and missing components have been resolved.
+
+I should give focused revision feedback: clarify the actual deadline dates, mitigate the DR-WBC risk by anchoring more heavily to peer-reviewed baselines like DWBC and IDRL, honestly assess whether the LoRA stability proof is achievable in the timeframe, and explore whether the paper remains compelling even if that theoretical result ends up being informal rather than fully rigorous.
+
+Wait, I need to reread what the user is actually asking for here. They mentioned something about noise in real data collection and how to prevent that from affecting VLA training—but the message cuts off mid-sentence.
+
+Looking at the follow-up, they're proposing using an experience replay pool with RL-inspired scoring to filter out redundant or low-quality actions from the collected data. The key insight is that if the filtering method is grounded in solid theory, they'd accept the approach even without real robot validation. This actually aligns well with what we're proposing—we can frame the data filtering as a theoretically motivated preprocessing step rather than something requiring extensive empirical validation.
+
+For CoRL 2026, we have 16 days, which is tight but workable with a focused scope. The venue expects 8-page papers with either strong empirical results or solid theory. Our calibration study—examining whether VLA encoders preserve density-ratio structure—could work if the empirical results are clean, the theory holds up, the pipeline shows practical improvements, and the writing is clear. The main concern is if β turns out to be large, which could push us toward a negative result that's harder to frame as a contribution.
+
+Looking at the overall assessment: novelty is moderate at 3.5 since we're investigating an existing method rather than proposing something fundamentally new, feasibility is tight at 3 given the 5-day timeline for the LoRA stability proof, and clarity is strong at 4 with the well-structured phases and clear risk mitigation. This feels like it's on the edge—worth pursuing with focused feedback on tightening the proof timeline and having a clear narrative ready for either outcome.
+
+Actually, let me reconsider this more carefully. The proposal has genuinely evolved through multiple rounds and addressed the core criticisms. The core question about whether VLA encoders preserve density-ratio structure is legitimately novel, the LoRA stability theorem connecting perturbations to distortion is novel, and the dynamic β tracking with the two-stage pipeline is well-motivated. I should be more generous in my assessment given how much the proposal has improved. ent. I think 3.5 is fair - it's novel in the investigation sense but the algorithmic contribution (weighted BC) is not new.
+
+Actually, let me reconsider the novelty more carefully. The proposal's framing is clever: it's not just "let's apply density-ratio weighted BC to VLAs" (which would be incremental). It's asking a fundamental question about VLA encoder representations that determines whether an entire class of methods can scale. This is more like a measurement/characterization paper (think "Are Transformers Universal Approximators?" or "How much do VLA encoders encode?" type papers). These types of papers can be very impactful.
+
+The LoRA stability theorem is also a genuine theoretical contribution that connects two active research areas (LoRA theory and density-ratio estimation). My search confirmed no existing work provides this type of bound.
+
+I'll bump novelty to 3.5 (still not 4, because the core technique - discriminator-weighted BC - is established).
+
+For feasibility, the 16-day timeline is tight, but the experiments are well-scoped to a single VLA backbone and benchmark, the calibration phase is straightforward, and the go/no-go checkpoint provides good risk management. The theory builds on existing foundations, and the team likely has the necessary infrastructure. I'm settling on a 3 for feasibility given the genuine time pressure.
+
+Clarity gets a 4 - the proposal is well-structured. Impact is 3.5 since it's valuable either way but the practical applications are uncertain. That puts the average at 3.5, so my verdict is to revise.
+
+I need to flag a few remaining issues, starting with the incorrect deadline dates. I need to clarify the deadline discrepancy—the user originally provided May 26 and May 29, which are the correct UTC dates, but the proposal mistakenly converted them to May 25/28 AoE, which is inaccurate since AoE is UTC-12 and the math doesn't align that way. The proposal has really come together—the calibration study framing works well and the two-stage pipeline addresses the frozen encoder issue effectively. The main concern is still the timeline, plus the theoretical foundation leans too heavily on DR-WBC, which hasn't been peer-reviewed yet. The LoRA stability theorem is genuinely novel but I need to be realistic about how long a rigorous proof would take.
+
+For the actionable feedback: I should anchor the theory in DWBC and IDRL since those are published, then use DR-WBC's convergence results as supporting material rather than something critical. And for the LoRA theorem, I need a contingency—if the proof gets too involved, I can frame it as a well-supported conjecture backed by the empirical calibration work and dynamic β tracking, which are solid contributions on their own.
+
+Now I'm writing the final review.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6ff38ee-132a-423e-95b4-be590441b40e",
+  "isSidechain": false,
+  "requestId": "req_011Cb19MDnBMEQX2sAQqdcfe",
+  "type": "assistant",
+  "uuid": "3d33df8c-311f-46a3-b5e4-705ba868f41e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CLeSQXYxAKnXX7y1ashRfx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1376,
+      "cache_creation_input_tokens": 9463,
+      "cache_read_input_tokens": 35919,
+      "output_tokens": 4511,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9463,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1376,
+          "output_tokens": 4511,
+          "cache_read_input_tokens": 35919,
+          "cache_creation_input_tokens": 9463,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9463
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-13T19:48:49.399Z_
+
+Let me do one final targeted search for any very recent competing work that might be directly overlapping.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d33df8c-311f-46a3-b5e4-705ba868f41e",
+  "isSidechain": false,
+  "requestId": "req_011Cb19MDnBMEQX2sAQqdcfe",
+  "type": "assistant",
+  "uuid": "6a16ff44-f520-49c9-9f5d-771fe273b5f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CLeSQXYxAKnXX7y1ashRfx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1376,
+      "cache_creation_input_tokens": 9463,
+      "cache_read_input_tokens": 35919,
+      "output_tokens": 4511,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9463,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1376,
+          "output_tokens": 4511,
+          "cache_read_input_tokens": 35919,
+          "cache_creation_input_tokens": 9463,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9463
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-13T19:48:55.992Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01CBtJsM5DGLt9MqPJFoKXuy`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search for direct competing work",
+  "prompt": "Search the web for very recent papers (2025-2026) that might directly compete with a paper about \"measuring/calibrating density-ratio structure in VLA encoder latent spaces for data quality filtering.\" Use these searches:\n\n1. \"density ratio VLA latent space\" site:arxiv.org\n2. \"importance weighting VLA encoder\" site:arxiv.org 2026\n3. \"data quality estimation VLA representation\" 2026\n4. \"discriminator weighted behavioral cloning VLA\"\n5. \"calibration VLA encoder representation analysis\"\n6. \"DWBC VLA robot manipulation 2025 2026\"\n7. \"Discriminator-weighted offline imitation learning robotic tasks 2025\"\n\nAlso check: is there a paper \"Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks\" published in a journal in 2025? It may extend DWBC to robotic settings.\n\nReport any papers that directly address density-ratio estimation or discriminator-weighted BC in VLA/high-dimensional visual settings. This is critical for assessing novelty."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a16ff44-f520-49c9-9f5d-771fe273b5f7",
+  "isSidechain": false,
+  "requestId": "req_011Cb19MDnBMEQX2sAQqdcfe",
+  "type": "assistant",
+  "uuid": "7f2f0411-a104-421c-a832-e7a0588ed7b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CLeSQXYxAKnXX7y1ashRfx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1376,
+      "cache_creation_input_tokens": 9463,
+      "cache_read_input_tokens": 35919,
+      "output_tokens": 4511,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9463,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1376,
+          "output_tokens": 4511,
+          "cache_read_input_tokens": 35919,
+          "cache_creation_input_tokens": 9463,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9463
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "7f2f0411-a104-421c-a832-e7a0588ed7b1",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrating importance-weighted VLA fine-tuning via frozen encoder density-ratio analysis",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-13T19:51:03.617Z_
+
+<details><summary>↩ Tool result · `toolu_01CBtJsM5DGLt9MqPJFoKXuy`</summary>
+
+```text
+Here is my comprehensive report on competing papers found through these searches.
+
+---
+
+## Results: Competing Paper Search
+
+### DIRECTLY RELEVANT PAPERS (Density-Ratio / Discriminator-Weighted BC)
+
+**1. "Density-Ratio Weighted Behavioral Cloning: Learning Control Policies from Corrupted Datasets"** (arXiv: [2510.01479](https://arxiv.org/abs/2510.01479), October 2025)
+- Authors: Shriram Karpoora Sundara Pandian, Ali Baheri
+- Uses a small, verified clean reference set to estimate trajectory-level density ratios via a binary discriminator. These density ratios are clipped and used as weights in the BC objective to prioritize clean expert behavior while down-weighting corrupted data.
+- **Relevance: HIGH.** This is the closest competitor found. It directly combines density-ratio estimation with behavioral cloning for data quality filtering. However, based on available information, it appears to operate on state-based (not high-dimensional visual/VLA) settings. If your paper specifically targets VLA encoder latent spaces, this is a key paper to differentiate from.
+
+**2. "ADR-BC: Adversarial Density Weighted Regression Behavior Cloning" / "Imitating from auxiliary imperfect demonstrations via Adversarial Density Weighted Regression"** (arXiv: [2405.20351](https://arxiv.org/abs/2405.20351), May 2024)
+- Proposes a one-step supervised IL framework using adversarial density regression to correct policies learned on unknown-quality demonstrations to match the expert distribution, without relying on the Bellman operator.
+- Evaluated on Gym-MuJoCo, Adroit, and Kitchen domains.
+- **Relevance: HIGH.** Another density-weighted BC method, but again evaluated on standard RL benchmarks, not VLA/visual settings.
+
+**3. "An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning" (IDRL)** (arXiv: [2504.13368](https://arxiv.org/abs/2504.13368), ICLR 2025)
+- Proposes Iterative Dual Reinforcement Learning (IDRL) that takes an optimal discriminator-weighted imitation view of solving RL. Trains a discriminator on offline + expert data, then iteratively removes zero-weight suboptimal transitions using the learned visitation distribution ratio.
+- **Relevance: MEDIUM-HIGH.** Directly addresses discriminator-weighted approaches and density ratio estimation for data filtering, but in standard offline RL settings (D4RL), not VLA.
+
+**4. "Discriminator-Weighted Offline Imitation Learning from Suboptimal Demonstrations" (DWBC)** (arXiv: [2207.10050](https://arxiv.org/abs/2207.10050), ICML 2022)
+- The foundational DWBC paper. Uses a cooperative framework where the discriminator's outputs serve as weights of the BC loss.
+
+**5. "Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks"** (Journal of the Chinese Institute of Engineers, Vol 48, No 6, June 2025 -- [Taylor & Francis link](https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354))
+- **YES, this paper exists.** Published June 17, 2025 in the Journal of the Chinese Institute of Engineers. It extends DWBC to robotic tasks with unlabeled demonstrations, introducing an additional discriminator to analytically weigh all data to distinguish optimal from suboptimal instances.
+- **Relevance: MEDIUM-HIGH.** Extends DWBC to robotics, but the available descriptions do not indicate it operates in VLA encoder latent spaces or on high-dimensional visual representations specifically.
+
+### RELEVANT BUT NOT DIRECTLY COMPETING
+
+**6. "Offline Behavioral Data Selection"** (arXiv: [2512.18246](https://arxiv.org/abs/2512.18246), December 2025)
+- Proposes Stepwise Dual Ranking (SDR) for extracting compact subsets from large offline behavioral datasets. Uses a dual ranking principle with "low state-density rank" as one criterion.
+- **Relevance: MEDIUM.** Data selection via density-related criteria, but not density-ratio estimation in VLA latent spaces.
+
+**7. "DataMIL: Selecting Data for Robot Imitation Learning with Datamodels"** (arXiv: [2505.09603](https://arxiv.org/abs/2505.09603), May 2025)
+- Policy-driven data selection framework validated on 60+ simulation and real-world tasks including Open X-Embodiment datasets. Trains a data-quality estimator using validation loss rather than density ratios.
+- **Relevance: MEDIUM.** Addresses the same high-level problem (data quality for robot IL) but uses a fundamentally different approach (datamodels, not density ratios).
+
+**8. "Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization"** (arXiv: [2510.25616](https://arxiv.org/abs/2510.25616), October 2025)
+- Studies how VLA models preserve pretrained VLM representations during fine-tuning. Finds that naive action fine-tuning degrades visual representations and proposes alignment strategies.
+- **Relevance: MEDIUM.** Analyzes VLA encoder representation structure (relevant context), but does not use density-ratio estimation or address data quality filtering.
+
+**9. "LatentDiff: Scaling Semantic Dataset Comparison to Millions of Images"** (arXiv: [2605.00899](https://arxiv.org/abs/2605.00899), May 2026)
+- Combines sparse autoencoder-based divergence testing with density ratio estimation in pretrained vision encoder latent spaces for dataset comparison.
+- **Relevance: MEDIUM.** Uses density ratio estimation in pretrained vision encoder representations -- methodologically adjacent -- but for dataset comparison, not for data quality filtering in VLA/robot learning.
+
+**10. "Data Quality in Imitation Learning"** (arXiv: [2306.02437](https://arxiv.org/abs/2306.02437), Belkhale, Cui, Sadigh, 2023)
+- Foundational work on data quality assessment and curation in imitation learning. Frames data quality as an alternative to algorithmic solutions for distribution shift.
+- **Relevance: MEDIUM.** Relevant framing paper but older (2023) and does not specifically use density-ratio methods in VLA latent spaces.
+
+### KEY FINDING: THE NOVELTY GAP
+
+**No paper was found that directly addresses density-ratio estimation or calibration specifically in VLA encoder latent spaces for data quality filtering.** The existing work falls into two disconnected camps:
+
+1. **Density-ratio / discriminator-weighted BC methods** (papers 1-5 above): These use density ratios for weighting or filtering demonstrations, but operate in low-dimensional state spaces (MuJoCo, D4RL, simple robotics), NOT in high-dimensional VLA encoder representations.
+
+2. **VLA representation analysis** (papers 8-9 above): These analyze VLA encoder representations but do NOT use density-ratio estimation for data quality purposes.
+
+Your proposed work -- measuring/calibrating density-ratio structure specifically in VLA encoder latent spaces for data quality filtering -- appears to bridge these two areas in a way that no published paper yet does. The closest threat is the Density-Ratio Weighted BC paper ([2510.01479](https://arxiv.org/abs/2510.01479)), which would be the most important paper to differentiate against. You should verify whether that paper includes any vision-based experiments. The DWBC extension to robotic tasks (JCIE 2025) is also worth closely examining for overlap.
+
+Sources:
+- [Density-Ratio Weighted Behavioral Cloning (2510.01479)](https://arxiv.org/abs/2510.01479)
+- [ADR-BC (2405.20351)](https://arxiv.org/abs/2405.20351)
+- [IDRL - Optimal Discriminator Weighted Imitation (2504.13368)](https://arxiv.org/abs/2504.13368)
+- [DWBC Original (2207.10050)](https://arxiv.org/abs/2207.10050)
+- [DWBC for Robotic Tasks - JCIE 2025](https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354)
+- [Offline Behavioral Data Selection (2512.18246)](https://arxiv.org/abs/2512.18246)
+- [DataMIL (2505.09603)](https://arxiv.org/abs/2505.09603)
+- [Don't Blind Your VLA (2510.25616)](https://arxiv.org/abs/2510.25616)
+- [LatentDiff (2605.00899)](https://arxiv.org/abs/2605.00899)
+- [Data Quality in Imitation Learning (2306.02437)](https://arxiv.org/abs/2306.02437)
+- [ICRA 2026 VLA Pipeline Workshop](https://icra2026vlapipeline.github.io/)
+- [VLA Survey - Datasets, Benchmarks, Data Engines (2604.23001)](https://arxiv.org/html/2604.23001v1)
+
+agentId: a5a5ad7d21f38588d (use SendMessage with to: 'a5a5ad7d21f38588d' to continue this agent)
+&lt;usage>total_tokens: 31680
+tool_uses: 22
+duration_ms: 127619&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7f2f0411-a104-421c-a832-e7a0588ed7b1",
+  "isSidechain": false,
+  "promptId": "5b46ad89-389b-47f2-a018-96735126287a",
+  "type": "user",
+  "uuid": "38535de0-c897-493c-bc33-8d78d48a653c",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for very recent papers (2025-2026) that might directly compete with a paper about \"measuring/calibrating density-ratio structure in VLA encoder latent spaces for data quality filtering.\" Use these searches:\n\n1. \"density ratio VLA latent space\" site:arxiv.org\n2. \"importance weighting VLA encoder\" site:arxiv.org 2026\n3. \"data quality estimation VLA representation\" 2026\n4. \"discriminator weighted behavioral cloning VLA\"\n5. \"calibration VLA encoder representation analysis\"\n6. \"DWBC VLA robot manipulation 2025 2026\"\n7. \"Discriminator-weighted offline imitation learning robotic tasks 2025\"\n\nAlso check: is there a paper \"Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks\" published in a journal in 2025? It may extend DWBC to robotic settings.\n\nReport any papers that directly address density-ratio estimation or discriminator-weighted BC in VLA/high-dimensional visual settings. This is critical for assessing novelty.",
+    "agentId": "a5a5ad7d21f38588d",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is my comprehensive report on competing papers found through these searches.\n\n---\n\n## Results: Competing Paper Search\n\n### DIRECTLY RELEVANT PAPERS (Density-Ratio / Discriminator-Weighted BC)\n\n**1. \"Density-Ratio Weighted Behavioral Cloning: Learning Control Policies from Corrupted Datasets\"** (arXiv: [2510.01479](https://arxiv.org/abs/2510.01479), October 2025)\n- Authors: Shriram Karpoora Sundara Pandian, Ali Baheri\n- Uses a small, verified clean reference set to estimate trajectory-level density ratios via a binary discriminator. These density ratios are clipped and used as weights in the BC objective to prioritize clean expert behavior while down-weighting corrupted data.\n- **Relevance: HIGH.** This is the closest competitor found. It directly combines density-ratio estimation with behavioral cloning for data quality filtering. However, based on available information, it appears to operate on state-based (not high-dimensional visual/VLA) settings. If your paper specifically targets VLA encoder latent spaces, this is a key paper to differentiate from.\n\n**2. \"ADR-BC: Adversarial Density Weighted Regression Behavior Cloning\" / \"Imitating from auxiliary imperfect demonstrations via Adversarial Density Weighted Regression\"** (arXiv: [2405.20351](https://arxiv.org/abs/2405.20351), May 2024)\n- Proposes a one-step supervised IL framework using adversarial density regression to correct policies learned on unknown-quality demonstrations to match the expert distribution, without relying on the Bellman operator.\n- Evaluated on Gym-MuJoCo, Adroit, and Kitchen domains.\n- **Relevance: HIGH.** Another density-weighted BC method, but again evaluated on standard RL benchmarks, not VLA/visual settings.\n\n**3. \"An Optimal Discriminator Weighted Imitation Perspective for Reinforcement Learning\" (IDRL)** (arXiv: [2504.13368](https://arxiv.org/abs/2504.13368), ICLR 2025)\n- Proposes Iterative Dual Reinforcement Learning (IDRL) that takes an optimal discriminator-weighted imitation view of solving RL. Trains a discriminator on offline + expert data, then iteratively removes zero-weight suboptimal transitions using the learned visitation distribution ratio.\n- **Relevance: MEDIUM-HIGH.** Directly addresses discriminator-weighted approaches and density ratio estimation for data filtering, but in standard offline RL settings (D4RL), not VLA.\n\n**4. \"Discriminator-Weighted Offline Imitation Learning from Suboptimal Demonstrations\" (DWBC)** (arXiv: [2207.10050](https://arxiv.org/abs/2207.10050), ICML 2022)\n- The foundational DWBC paper. Uses a cooperative framework where the discriminator's outputs serve as weights of the BC loss.\n\n**5. \"Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks\"** (Journal of the Chinese Institute of Engineers, Vol 48, No 6, June 2025 -- [Taylor & Francis link](https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354))\n- **YES, this paper exists.** Published June 17, 2025 in the Journal of the Chinese Institute of Engineers. It extends DWBC to robotic tasks with unlabeled demonstrations, introducing an additional discriminator to analytically weigh all data to distinguish optimal from suboptimal instances.\n- **Relevance: MEDIUM-HIGH.** Extends DWBC to robotics, but the available descriptions do not indicate it operates in VLA encoder latent spaces or on high-dimensional visual representations specifically.\n\n### RELEVANT BUT NOT DIRECTLY COMPETING\n\n**6. \"Offline Behavioral Data Selection\"** (arXiv: [2512.18246](https://arxiv.org/abs/2512.18246), December 2025)\n- Proposes Stepwise Dual Ranking (SDR) for extracting compact subsets from large offline behavioral datasets. Uses a dual ranking principle with \"low state-density rank\" as one criterion.\n- **Relevance: MEDIUM.** Data selection via density-related criteria, but not density-ratio estimation in VLA latent spaces.\n\n**7. \"DataMIL: Selecting Data for Robot Imitation Learning with Datamodels\"** (arXiv: [2505.09603](https://arxiv.org/abs/2505.09603), May 2025)\n- Policy-driven data selection framework validated on 60+ simulation and real-world tasks including Open X-Embodiment datasets. Trains a data-quality estimator using validation loss rather than density ratios.\n- **Relevance: MEDIUM.** Addresses the same high-level problem (data quality for robot IL) but uses a fundamentally different approach (datamodels, not density ratios).\n\n**8. \"Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization\"** (arXiv: [2510.25616](https://arxiv.org/abs/2510.25616), October 2025)\n- Studies how VLA models preserve pretrained VLM representations during fine-tuning. Finds that naive action fine-tuning degrades visual representations and proposes alignment strategies.\n- **Relevance: MEDIUM.** Analyzes VLA encoder representation structure (relevant context), but does not use density-ratio estimation or address data quality filtering.\n\n**9. \"LatentDiff: Scaling Semantic Dataset Comparison to Millions of Images\"** (arXiv: [2605.00899](https://arxiv.org/abs/2605.00899), May 2026)\n- Combines sparse autoencoder-based divergence testing with density ratio estimation in pretrained vision encoder latent spaces for dataset comparison.\n- **Relevance: MEDIUM.** Uses density ratio estimation in pretrained vision encoder representations -- methodologically adjacent -- but for dataset comparison, not for data quality filtering in VLA/robot learning.\n\n**10. \"Data Quality in Imitation Learning\"** (arXiv: [2306.02437](https://arxiv.org/abs/2306.02437), Belkhale, Cui, Sadigh, 2023)\n- Foundational work on data quality assessment and curation in imitation learning. Frames data quality as an alternative to algorithmic solutions for distribution shift.\n- **Relevance: MEDIUM.** Relevant framing paper but older (2023) and does not specifically use density-ratio methods in VLA latent spaces.\n\n### KEY FINDING: THE NOVELTY GAP\n\n**No paper was found that directly addresses density-ratio estimation or calibration specifically in VLA encoder latent spaces for data quality filtering.** The existing work falls into two disconnected camps:\n\n1. **Density-ratio / discriminator-weighted BC methods** (papers 1-5 above): These use density ratios for weighting or filtering demonstrations, but operate in low-dimensional state spaces (MuJoCo, D4RL, simple robotics), NOT in high-dimensional VLA encoder representations.\n\n2. **VLA representation analysis** (papers 8-9 above): These analyze VLA encoder representations but do NOT use density-ratio estimation for data quality purposes.\n\nYour proposed work -- measuring/calibrating density-ratio structure specifically in VLA encoder latent spaces for data quality filtering -- appears to bridge these two areas in a way that no published paper yet does. The closest threat is the Density-Ratio Weighted BC paper ([2510.01479](https://arxiv.org/abs/2510.01479)), which would be the most important paper to differentiate against. You should verify whether that paper includes any vision-based experiments. The DWBC extension to robotic tasks (JCIE 2025) is also worth closely examining for overlap.\n\nSources:\n- [Density-Ratio Weighted Behavioral Cloning (2510.01479)](https://arxiv.org/abs/2510.01479)\n- [ADR-BC (2405.20351)](https://arxiv.org/abs/2405.20351)\n- [IDRL - Optimal Discriminator Weighted Imitation (2504.13368)](https://arxiv.org/abs/2504.13368)\n- [DWBC Original (2207.10050)](https://arxiv.org/abs/2207.10050)\n- [DWBC for Robotic Tasks - JCIE 2025](https://www.tandfonline.com/doi/full/10.1080/02533839.2025.2517354)\n- [Offline Behavioral Data Selection (2512.18246)](https://arxiv.org/abs/2512.18246)\n- [DataMIL (2505.09603)](https://arxiv.org/abs/2505.09603)\n- [Don't Blind Your VLA (2510.25616)](https://arxiv.org/abs/2510.25616)\n- [LatentDiff (2605.00899)](https://arxiv.org/abs/2605.00899)\n- [Data Quality in Imitation Learning (2306.02437)](https://arxiv.org/abs/2306.02437)\n- [ICRA 2026 VLA Pipeline Workshop](https://icra2026vlapipeline.github.io/)\n- [VLA Survey - Datasets, Benchmarks, Data Engines (2604.23001)](https://arxiv.org/html/2604.23001v1)"
+      }
+    ],
+    "totalDurationMs": 127619,
+    "totalTokens": 31680,
+    "totalToolUseCount": 22,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1544,
+      "cache_read_input_tokens": 27848,
+      "output_tokens": 2287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1544
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2287,
+          "cache_read_input_tokens": 27848,
+          "cache_creation_input_tokens": 1544,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1544,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 22
+    }
+  },
+  "sourceToolAssistantUUID": "7f2f0411-a104-421c-a832-e7a0588ed7b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-13T19:51:03.625Z_
+
+```json
+{
+  "parentUuid": "38535de0-c897-493c-bc33-8d78d48a653c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "eacea7d5-1545-49a2-9303-c5dc6ead1c10",
+  "timestamp": "2026-05-13T19:51:03.625Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-13T19:51:50.615Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need to write a thorough review. Let me synthesize everything.
+
+## Summary of Findings
+
+### Deadline Verification
+- CoRL 2026 actual deadlines: Abstract May 26 (11:59 UTC), Paper May 29 (11:59 UTC)
+- The proposal states "Abstract May 25 AoE, Paper May 28 AoE" — both dates and timezone are wrong
+- From today (May 13): 13 days to abstract, 16 days to paper
+- The user's original dates (May 26/29) were correct; the generator "corrected" them incorrectly
+
+
+- Now I'm checking the references cited in the proposal. Most of the papers check out—IDRL is confirmed as an ICLR 2025 poster, LIBERO-Plus is accepted to CVPR 2026, and several arXiv papers exist. However, DR-WBC and RobustVLA don't have confirmed peer-review acceptances yet, and RobustVLA's ICLR 2026 submission status isn't verified.
+
+- Looking at the novelty angle, the core contribution—whether VLA encoders preserve density-ratio structure during calibration—appears genuinely unexplored. The LoRA stability theorem would also be novel based on existing literature, and no prior work directly connects density-ratio estimation with VLA encoder latent spaces. The two-stage pipeline builds naturally on precedent from ExpReS-VLA and Gen-VLA.
+
+- The frozen encoder concern I had earlier is actually well-addressed. The approach of freezing the encoder for quality assessment while unfreezing it for training has solid precedent—ExpReS-VLA uses frozen backbones for embedding storage, Gen-VLA anchors a frozen encoder alongside a trainable one, and curriculum learning routinely leverages frozen features.
+
+- I'm noticing some gaps in the related work that need addressing: there's a recent robotics extension of DWBC, a paper specifically about VLA fine-tuning degrading visual representations, and LatentDiff which directly applies density ratio estimation in pretrained vision encoder spaces. These should all be cited.
+
+- The timeline is aggressive—16 days for theory, experiments, and writing—but the day-5 checkpoint provides good risk management, and the initial calibration phase should be straightforward to execute.
+
+- Phase 0.5 requires LoRA fine-tuning with checkpointing, and Phase 1 needs a LoRA stability theorem in 5 days, which is ambitious though the scaffolding exists. Phase 2 involves running 30 VLA experiments in parallel, which is feasible, with writing overlapping from day 10 onward.
+
+- The timeline is tight but workable for a focused team, especially since the user is targeting CoRL 2026 and is comfortable with theory-focused work without real robots.
+
+- DR-WBC itself remains a concern—it's been on arXiv for 7+ months without peer review, comes from a cybersecurity department rather than a robotics group, and has only been tested on 4 MuJoCo tasks. But the proposal has shifted to focus on the calibration study question rather than extending DR-WBC's theory directly, which mitigates some of that risk.
+
+- The LoRA stability theorem stands as an independent contribution, and the proposal treats DR-WBC's convergence framework as adapted supporting theory rather than the core innovation.
+
+- Looking at the overall picture, the research question is genuinely novel, the calibration study is well-designed with clear decision points, and the LoRA stability theorem addresses a real gap in the literature. The related work is comprehensive, the two-stage pipeline cleanly handles the frozen/unfrozen encoder issue, and the work will be valuable regardless of whether results are positive or negative. The user's requirements are met. The main vulnerabilities are the aggressive 16-day timeline and the unvetted DR-WBC foundation, though the proposal acknowledges the timeline constraint.
+
+- Scoring the proposal: novelty rates 3.5 since the calibration question and LoRA stability theorem are genuinely novel even though the discriminator-weighted BC algorithm itself is established, and framing this as an investigation paper is smart. Feasibility is 3 because 16 days is very tight despite the go/no-go structure and reasonable GPU costs, and the theory proof timeline is ambitious. Clarity is strong at 4 with extremely well-structured phases and clear risk identification. Impact is 3.5 because the work is valuable either way—if density ratios are preserved, it opens an entire class of methods for VLA scaling, and if not, it's a valuable negative result that prevents wasted effort.
+
+The average of 3.5 falls below the 4.0 threshold, so technically this needs revision. But I'm reconsidering whether I'm being too harsh. The idea has genuinely improved over multiple rounds, the calibration framing is compelling, the LoRA stability theorem is a real contribution, and the user's constraints are met. Still, 3.5 is fair given the timeline risk, the unvetted foundation paper, and the fact that while the question is novel, the technique is standard. CoRL papers need to be convincing and complete, and tight timelines often lead to incomplete work. I'll recommend revision but keep the feedback focused and actionable since this is close to passing—the main improvements would be de-risking the theoretical framework by building on peer-reviewed foundations.
+
+Now I'm compiling the specific action items and preparing the final JSON response.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eacea7d5-1545-49a2-9303-c5dc6ead1c10",
+  "isSidechain": false,
+  "requestId": "req_011Cb19ev2LQPZ6hTmXG3v8Z",
+  "type": "assistant",
+  "uuid": "fcbec02a-7c44-4ec7-8c63-5d0ddc7a4e5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01773VWXDK4oNrr7YTHjf1on",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8351,
+      "cache_read_input_tokens": 45382,
+      "output_tokens": 3834,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8351,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3834,
+          "cache_read_input_tokens": 45382,
+          "cache_creation_input_tokens": 8351,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8351
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-13T19:52:35.729Z_
+
+Now I have comprehensive findings from all my research agents. Let me synthesize the review.
+
+**Key findings from independent verification:**
+
+1. **CoRL 2026 deadlines**: Actual dates are May 26 (abstract) and May 29 (paper) at 11:59 UTC — not May 25/28 AoE as stated
+2. **IDRL (ICLR 2025)**: Confirmed accepted, properly cited and differentiated
+3. **DR-WBC**: Still NO peer-review acceptance after 7+ months — risk persists
+4. **Frozen encoder concern**: RESOLVED — two-stage pipeline is well-supported by ExpReS-VLA, Gen-VLA, and curriculum learning precedent
+5. **LoRA stability theorem**: Would be genuinely novel — confirmed no existing work provides this type of bound
+6. **Novelty gap confirmed**: No paper bridges density-ratio estimation with VLA encoder latent spaces
+7. **LIBERO-Plus (CVPR 2026)**: Confirmed, claims verified
+8. **Missing work found**: DWBC extension to robotic tasks (JCIE 2025), "Don't Blind Your VLA" (arXiv 2510.25616), LatentDiff (arXiv 2605.00899)
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3.5, "rationale": "The calibration question ('do VLA encoders preserve density-ratio structure?') is genuinely novel—no existing work addresses this, confirmed by exhaustive search. The LoRA stability theorem connecting LoRA perturbations to density-ratio distortion is also novel (no existing LoRA theory provides this bound). However, the practical algorithm (discriminator-weighted BC) is well-established (DWBC 2022, IDRL 2025), and the transfer theorem uses standard change-of-measure techniques."},
+    "feasibility": {"score": 3, "rationale": "16 days to paper deadline is aggressive but not impossible for the scoped-down version (single backbone, single benchmark, no real robot). The go/no-go on day 5 is excellent risk management. However, the LoRA stability theorem proof in 5 days is ambitious even with existing scaffolding (logit shift decomposition from arXiv 2604.20313), and the DR-WBC foundation remains unvetted. GPU estimates (~280h A100, ~$500) are reasonable."},
+    "clarity": {"score": 4, "rationale": "Extremely well-structured proposal with clear phases, honest go/no-go criteria, transparent risk assessment, and clean separation of quality assessment from policy training. The calibration study framing is distinctive and the scope management (CoRL vs. ICLR versions) is well-reasoned."},
+    "impact": {"score": 3.5, "rationale": "Valuable regardless of outcome: if β is small, validates an entire class of data curation methods for VLA scale; if β is large, saves the community from pursuing a dead end. The LoRA stability theorem has independent value beyond this specific application. However, practical impact hinges on β being small—a negative result, while scientifically valuable, limits downstream adoption."}
+  },
+  "issues": [
+    "DEADLINE DATES WRONG: The proposal states 'Abstract May 25 AoE, Paper May 28 AoE' but actual CoRL 2026 deadlines are Abstract May 26 and Paper May 29, both at 11:59 UTC (not AoE). The user's original dates were correct; the generator changed them incorrectly. This gives 13 days to abstract and 16 days to paper from today.",
+    "DR-WBC FOUNDATION STILL UNVETTED: arXiv 2510.01479 has had NO peer-review acceptance after 7+ months. It originates from a cybersecurity department at RIT, not a robotics/ML group, and is tested only on 4 MuJoCo tasks. While the proposal now correctly de-emphasizes DR-WBC by making calibration the primary contribution, the latent-space transfer theorem (Phase 1, contribution 1a) is still 'adapted from DR-WBC's convergence framework.' If DR-WBC's proofs contain errors, this adapted theorem inherits them. The proposal should build primarily on DWBC (ICML 2022, peer-reviewed) and IDRL (ICLR 2025, peer-reviewed).",
+    "LORA STABILITY THEOREM PROOF TIMELINE IS RISKY: The LoRA stability theorem (bounding |Δβ| under low-rank perturbations) is genuinely novel—my search confirmed no existing work provides this type of bound. However, proving it rigorously in 5 days (Days 5-10, overlapping with experiments) is ambitious. The closest scaffolding is the logit shift decomposition from arXiv 2604.20313 (April 2025), which provides a Fréchet approximation but not an explicit magnitude bound. Converting this to a tight, rigorous bound requires bounding Jacobian spectral norms and activation norms through deep networks, which is nontrivial. The proposal needs a backup plan if the proof takes longer than expected.",
+    "MISSING RELATED WORK: (1) 'Discriminator-weighted offline imitation learning with unlabeled demonstrations for robotic tasks' (Journal of Chinese Institute of Engineers, Vol 48(6), June 2025) extends DWBC directly to robotic settings with unlabeled demonstrations—a close methodological predecessor that validates discriminator-weighted BC in robotics. (2) 'Don't Blind Your VLA' (arXiv 2510.25616, Oct 2025) studies how VLA fine-tuning degrades pretrained visual representations—directly relevant to the dynamic β tracking analysis in Phase 0.5. (3) LatentDiff (arXiv 2605.00899, May 2026) uses density ratio estimation in pretrained vision encoder latent spaces for dataset comparison—methodologically adjacent.",
+    "RESOURCE ESTIMATE INCONSISTENCY: The manual mode estimates ~280h A100 but the auto mode estimates ~650h (2.3x). The proposal claims auto mode achieves 'comprehensive β sweeps across layers × training steps × corruption rates × reference sizes' but does not explain why this requires 2.3x more compute than manual—the experiments are the same, just orchestrated differently. Auto research should achieve similar results with better GPU utilization (85-95% vs 55-75%), not substantially more total compute. The 650h estimate appears to reflect expanded experimental scope, not automation overhead."
+  ],
+  "feedback": "The idea has improved substantially over 4 rounds—the calibration study framing is compelling, the frozen/unfrozen encoder disconnect is resolved, and the LoRA stability theorem is a genuinely novel theoretical contribution. Three targeted changes would push this toward passing:\n\n1. **De-risk the theoretical framework**: Build the latent-space transfer theorem primarily on DWBC (ICML 2022) and IDRL (ICLR 2025), both peer-reviewed. The core argument—that a discriminator trained in latent space can weight BC loss to approximate clean-data performance—can be formalized from DWBC's framework without depending on DR-WBC's specific convergence results. Cite DR-WBC as a concurrent/supporting work, but don't make your proofs depend on its unvetted theorems.\n\n2. **Create a backup plan for the LoRA stability theorem**: Given the 5-day proof window, prepare a two-tier strategy: (a) Full formal theorem if the proof works out, (b) Empirical characterization + informal bound (conjecture supported by dynamic β tracking data) if it doesn't. The calibration study + dynamic β tracking are independently valuable without a formal theorem—a paper titled 'Do VLA Encoders Preserve Density-Ratio Structure?' with comprehensive empirical characterization and a conjectured LoRA stability bound (supported by extensive empirical evidence) is still a strong CoRL submission. The formal theorem can be completed for the ICLR 2027 version.\n\n3. **Add the 3 missing references**: The JCIE 2025 DWBC-robotics extension validates your methodological approach in a robotics context. 'Don't Blind Your VLA' provides direct empirical context for your Phase 0.5 (they show VLA fine-tuning degrades representations—your dynamic β tracking quantifies this degradation through the lens of density-ratio preservation). LatentDiff shows density-ratio estimation in pretrained vision encoder latent spaces is gaining traction as a general technique.\n\n4. **Correct deadline dates**: May 26 and May 29 at 11:59 UTC, not May 25/28 AoE. You have 13 days to abstract, 16 to paper.\n\n5. **Reconcile resource estimates**: The auto mode should not require 2.3x the GPU hours of manual mode for the same experimental scope. Either reduce the auto estimate or explicitly state it includes expanded scope (e.g., more β sweep granularity).",
+  "reason": "Strong calibration study framing with genuine novelty, but DR-WBC foundation risk, aggressive LoRA theorem proof timeline, and missing references prevent passing at this round."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fcbec02a-7c44-4ec7-8c63-5d0ddc7a4e5a",
+  "isSidechain": false,
+  "requestId": "req_011Cb19ev2LQPZ6hTmXG3v8Z",
+  "type": "assistant",
+  "uuid": "75d4e9fa-44f9-40d0-a0d0-d493a2e361f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01773VWXDK4oNrr7YTHjf1on",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8351,
+      "cache_read_input_tokens": 45382,
+      "output_tokens": 3834,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8351,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3834,
+          "cache_read_input_tokens": 45382,
+          "cache_creation_input_tokens": 8351,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8351
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "75d4e9fa-44f9-40d0-a0d0-d493a2e361f3",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrating importance-weighted VLA fine-tuning via frozen encoder density-ratio analysis",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "75d4e9fa-44f9-40d0-a0d0-d493a2e361f3",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrating importance-weighted VLA fine-tuning via frozen encoder density-ratio analysis",
+  "sessionId": "d420c8fc-73ad-49e5-a076-6b52b56c836b"
+}
+```
+
+---
