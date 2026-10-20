@@ -1,0 +1,1055 @@
+{
+  "schema_version": "1.0",
+  "id": "8c2776a97a0c249eea8f",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the web for the paper \"Entropy-Reservoir Bregman Projection\" on arXiv (arXiv:2512.14879). I need to verify: 1. Do",
+  "task_key": "agent-a672228ae28c904c7",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a672228ae28c904c7.jsonl",
+    "occurrence": 1,
+    "bytes": 34518,
+    "sha256": "f3e278363b376a6de7d8ab9d3310425413d4c8fdf53b11d9b6694bb4dc921ca4"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T20:14:35.208Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the web for the paper \"Entropy-Reservoir Bregman Projection\" on arXiv (arXiv:2512.14879). I need to verify:\n1. Does this paper actually exist?\n2. Does it prove that entropy-reservoir coupling with coefficient λ ≥ L_F·κ / H(P_data) guarantees a non-trivial entropy floor?\n3. Does it claim L_F = 1 analytically for KL divergence?\n4. Is it described as an \"information-geometric unification of model collapse\"?\n\nUse WebSearch to find this paper. Try queries like:\n- \"arXiv 2512.14879\"\n- \"Entropy-Reservoir Bregman Projection model collapse\"\n- \"ERBP information-geometric model collapse\"\n\nReport what you find - whether the paper exists and what it actually claims."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "12201f4f-fbbf-46b5-a3ea-cfa4082ddef3",
+            "agentId": "a672228ae28c904c7",
+            "type": "user",
+            "uuid": "514e71a6-8b6b-40e5-8d43-6ddcc5cdcc33",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T20:14:35.211Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "514e71a6-8b6b-40e5-8d43-6ddcc5cdcc33",
+                "isSidechain": true,
+                "agentId": "a672228ae28c904c7",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "3faf5567-8a90-4a99-a90c-f0534c0fdc9a",
+                "timestamp": "2026-05-10T20:14:35.211Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T20:14:38.254Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for this paper using multiple queries. Let me first load the WebSearch tool schema."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3faf5567-8a90-4a99-a90c-f0534c0fdc9a",
+            "isSidechain": true,
+            "agentId": "a672228ae28c904c7",
+            "requestId": "req_011CauW2DkanrN5p7tkg4yyH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "182e9608-7aeb-4bfb-a515-fe442510520d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HvQN9v72TrkbqdBD42QDCt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8968,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8968,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T20:14:38.457Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WdiYmVpfBDDfqb2CsWMgPV",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "182e9608-7aeb-4bfb-a515-fe442510520d",
+            "isSidechain": true,
+            "agentId": "a672228ae28c904c7",
+            "requestId": "req_011CauW2DkanrN5p7tkg4yyH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "06e42b7a-9ab4-4721-ae95-eb53b9f5df38",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HvQN9v72TrkbqdBD42QDCt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8968,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 97,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8968
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 97,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 8968,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8968,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T20:14:38.465Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01WdiYmVpfBDDfqb2CsWMgPV",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06e42b7a-9ab4-4721-ae95-eb53b9f5df38",
+            "isSidechain": true,
+            "promptId": "12201f4f-fbbf-46b5-a3ea-cfa4082ddef3",
+            "agentId": "a672228ae28c904c7",
+            "type": "user",
+            "uuid": "66310345-8599-4a23-b6b7-c8ef38bedc77",
+            "sourceToolAssistantUUID": "06e42b7a-9ab4-4721-ae95-eb53b9f5df38",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T20:14:40.854Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run all three search queries in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66310345-8599-4a23-b6b7-c8ef38bedc77",
+            "isSidechain": true,
+            "agentId": "a672228ae28c904c7",
+            "requestId": "req_011CauW2TyqzMWEkgFUafbNr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d3351815-e888-4355-b28a-2eac108a42aa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012rqL8hmFt9qKMsuykVmQNB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1414,
+                "cache_read_input_tokens": 8968,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1414,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T20:14:41.387Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D1ZfRLdvX6cr9ymYef96G6",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2512.14879"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3351815-e888-4355-b28a-2eac108a42aa",
+            "isSidechain": true,
+            "agentId": "a672228ae28c904c7",
+            "requestId": "req_011CauW2TyqzMWEkgFUafbNr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "18539727-5ffa-46f6-abd5-b3854e638b9a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012rqL8hmFt9qKMsuykVmQNB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1414,
+                "cache_read_input_tokens": 8968,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1414,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T20:14:42.454Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WmofLg1bgWzpGMcLTTLuSg",
+              "name": "WebSearch",
+              "input": {
+                "query": "Entropy-Reservoir Bregman Projection model collapse arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18539727-5ffa-46f6-abd5-b3854e638b9a",
+            "isSidechain": true,
+            "agentId": "a672228ae28c904c7",
+            "requestId": "req_011CauW2TyqzMWEkgFUafbNr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e8dda5b6-9d92-4498-98d5-5d9937fcbe60",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012rqL8hmFt9qKMsuykVmQNB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1414,
+                "cache_read_input_tokens": 8968,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1414,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T20:14:42.671Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KoKufaCGaX2QuphJqxfCKF",
+              "name": "WebSearch",
+              "input": {
+                "query": "ERBP information-geometric model collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e8dda5b6-9d92-4498-98d5-5d9937fcbe60",
+            "isSidechain": true,
+            "agentId": "a672228ae28c904c7",
+            "requestId": "req_011CauW2TyqzMWEkgFUafbNr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "db0a2f1c-d7de-4d2f-995d-3bd0d437021a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012rqL8hmFt9qKMsuykVmQNB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1414,
+                "cache_read_input_tokens": 8968,
+                "output_tokens": 166,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1414
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 166,
+                    "cache_read_input_tokens": 8968,
+                    "cache_creation_input_tokens": 1414,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1414,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T20:14:46.796Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D1ZfRLdvX6cr9ymYef96G6",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2512.14879\"\n\nLinks: [{\"title\":\"[2512.14879] Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse\",\"url\":\"https://arxiv.org/abs/2512.14879\"},{\"title\":\"Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse\",\"url\":\"https://arxiv.org/html/2512.14879\"},{\"title\":\"Artificial Intelligence 2025\",\"url\":\"https://www.arxiv.org/list/cs.AI/2025?skip=43850&show=500\"},{\"title\":\"Artificial Intelligence Dec 2025\",\"url\":\"https://www.arxiv.org/list/cs.AI/2025-12?skip=2200&show=250\"},{\"title\":\"[2603.14879] Seismic full-waveform inversion based on a physics-driven generative adversarial network\",\"url\":\"https://arxiv.org/abs/2603.14879\"},{\"title\":\"[2411.14879] Random Permutation Codes: Lossless Source Coding of Non-Sequential Data\",\"url\":\"https://arxiv.org/abs/2411.14879\"},{\"title\":\"[2604.14879] SOLIS: Physics-Informed Learning of Interpretable Neural Surrogates for Nonlinear Systems\",\"url\":\"https://arxiv.org/abs/2604.14879\"},{\"title\":\"[2407.14879] Thompson Sampling Itself is Differentially Private\",\"url\":\"https://arxiv.org/abs/2407.14879\"},{\"title\":\"Arxiv\",\"url\":\"https://arxiv.org/pdf/2305.14879.pdf\"},{\"title\":\"Computer Vision and Pattern Recognition Dec 2025\",\"url\":\"https://arxiv.org/list/cs.CV/2025-12?skip=975&show=500\"}]\n\nBased on the search results, arXiv 2512.14879 is a paper titled \"Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse\" that presents an information-geometric framework. The work models a closed loop as a stochastic Bregman projection sequence in distribution space.\n\nThe paper is authored by Jingwei Chen and is categorized under Machine Learning (cs.LG) and Artificial Intelligence (cs.AI). The paper was posted to arXiv on December 16, 2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18539727-5ffa-46f6-abd5-b3854e638b9a",
+            "isSidechain": true,
+            "promptId": "12201f4f-fbbf-46b5-a3ea-cfa4082ddef3",
+            "agentId": "a672228ae28c904c7",
+            "type": "user",
+            "uuid": "517ef99a-bf5c-4db7-b7d9-8ba2228ab81d",
+            "sourceToolAssistantUUID": "18539727-5ffa-46f6-abd5-b3854e638b9a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T20:14:51.017Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KoKufaCGaX2QuphJqxfCKF",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ERBP information-geometric model collapse\"\n\nLinks: [{\"title\":\"ENTROPY-RESERVOIR BREGMAN PROJECTION: AN\",\"url\":\"https://arxiv.org/pdf/2512.14879\"},{\"title\":\"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019\",\"url\":\"https://openreview.net/pdf?id=NJ3OiroVDa\"},{\"title\":\"Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse\",\"url\":\"https://arxiv.org/html/2512.14879\"},{\"title\":\"Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse – Own Your AI\",\"url\":\"https://ownyourai.com/entropy-reservoir-bregman-projection-an-information-geometric-unification-of-model-collapse/\"},{\"title\":\"Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse | OpenReview\",\"url\":\"https://openreview.net/forum?id=NJ3OiroVDa\"},{\"title\":\"[2512.14879] Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse\",\"url\":\"https://arxiv.org/abs/2512.14879\"},{\"title\":\"Model collapse - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Model_collapse\"},{\"title\":\"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective\",\"url\":\"https://arxiv.org/html/2509.16499v2\"},{\"title\":\"Model Collapse Demystified: The Case of Regression\",\"url\":\"https://arxiv.org/html/2402.07712v1\"},{\"title\":\"Collapse Models: A Theoretical, Experimental and Philosophical Review\",\"url\":\"https://www.mdpi.com/1099-4300/25/4/645\"}]\n\nBased on the search results, here's what I found about ERBP (Entropy-Reservoir Bregman Projection) and its information-geometric framework for model collapse:\n\n## Overview\n\nERBP (Entropy-Reservoir Bregman Projection) is an information-geometric framework that unifies model collapse phenomena. Self-referential learning—training a model on data it generated itself—promises boundless scalability but chronically suffers from model collapse: language models degenerate into repetitive text, GANs drop modes, and reinforcement-learning policies over-exploit.\n\n## Mechanism\n\nThe framework models the closed loop as a stochastic Bregman projection sequence in distribution space. Without external coupling, finite-sample noise forces the system to project onto an ever-shrinking empirical support, causing exponential entropy decay and eventual collapse.\n\n## Solution: Entropy Reservoir\n\nIntroducing an Entropy Reservoir—a high-entropy distribution mixed into each projection—injects a controllable entropy flux that provably stabilises the dynamics.\n\n## Key Results\n\nThe theory yields (i) a necessary condition for collapse, (ii) a sufficient condition that guarantees a non-trivial entropy floor, and (iii) closed-form rates that depend only on sample size and the strong-convexity/Lipschitz constants of the Bregman generator.\n\n## Unification of Solutions\n\nAll empirical stabilisation heuristics—label smoothing, data mixing, RL entropy bonuses, RAG, RLHF—merely instantiate the parameter pair defined by the framework. ERBP thus transforms a collection of folk remedies into a single, quantitative design rule: monitor and budget your entropy flux.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db0a2f1c-d7de-4d2f-995d-3bd0d437021a",
+            "isSidechain": true,
+            "promptId": "12201f4f-fbbf-46b5-a3ea-cfa4082ddef3",
+            "agentId": "a672228ae28c904c7",
+            "type": "user",
+            "uuid": "37911f7e-6526-4769-9575-4174bd496a79",
+            "sourceToolAssistantUUID": "db0a2f1c-d7de-4d2f-995d-3bd0d437021a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T20:14:51.467Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WmofLg1bgWzpGMcLTTLuSg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Entropy-Reservoir Bregman Projection model collapse arXiv\"\n\nLinks: [{\"title\":\"[2512.14879] Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse\",\"url\":\"https://arxiv.org/abs/2512.14879\"},{\"title\":\"Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse\",\"url\":\"https://arxiv.org/html/2512.14879v1\"},{\"title\":\"ENTROPY-RESERVOIR BREGMAN PROJECTION: AN\",\"url\":\"https://arxiv.org/pdf/2512.14879\"},{\"title\":\"ENTROPY-RESERVOIR BREGMAN PROJECTION\",\"url\":\"https://openreview.net/pdf?id=NJ3OiroVDa\"},{\"title\":\"Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse | OpenReview\",\"url\":\"https://openreview.net/forum?id=NJ3OiroVDa\"},{\"title\":\"Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse – Own Your AI\",\"url\":\"https://ownyourai.com/entropy-reservoir-bregman-projection-an-information-geometric-unification-of-model-collapse/\"},{\"title\":\"Common stabilization techniques as instantiations of the Entropy Reservoir. | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Common-stabilization-techniques-as-instantiations-of-the-Entropy-Reservoir_tbl1_398805827\"},{\"title\":\"https://web.mit.edu/lizhong/Public/Entropy-Informa...\",\"url\":\"https://web.mit.edu/lizhong/Public/Entropy-Information%20Theory%20and%20Machine%20Learnin.pdf\"},{\"title\":\"Generative Adversarial Networks (GANs): Challenges, ...\",\"url\":\"https://dl.acm.org/doi/pdf/10.1145/3446374\"},{\"title\":\"Online Learning with Predictable Sequences Alexander Rakhlin\",\"url\":\"https://www.cs.cornell.edu/~sridharan/olpred.pdf\"}]\n\nI found detailed information about the Entropy-Reservoir Bregman Projection (ERBP) model on arXiv. Here's a summary:\n\n## Overview\n\nEntropy-Reservoir Bregman Projection (ERBP) is an information-geometric framework that models the closed loop as a stochastic Bregman projection sequence in distribution space.\n\n## The Problem\n\nSelf-referential learning—training a model on data it generated itself—promises boundless scalability but chronically suffers from model collapse: language models degenerate into repetitive text, GANs drop modes, and reinforcement-learning policies over-exploit. Although practitioners employ ad hoc fixes such as real-data mixing, entropy bonuses, knowledge distillation, or retrieval-augmented generation, a single principle that explains both the failure mode and the success of these fixes has remained elusive.\n\n## Key Mechanism\n\nWithout external coupling, finite-sample noise forces the system to project onto an ever-shrinking empirical support, causing exponential entropy decay and eventual collapse. Introducing an Entropy Reservoir—a high-entropy distribution mixed into each projection—injects a controllable entropy flux that provably stabilises the dynamics.\n\n## Theoretical Results\n\nThe theory yields (i) a necessary condition for collapse, (ii) a sufficient condition that guarantees a non-trivial entropy floor, and (iii) closed-form rates that depend only on sample size and the strong-convexity/Lipschitz constants of the Bregman generator.\n\n## Empirical Validation\n\nExperiments on large-language-model self-training, Soft Actor-Critic in reinforcement learning, and GAN optimisation validate the predictions and show that disparate stabilisation heuristics correspond to specific reservoir choices and coupling coefficients.\n\nThe paper was published on arXiv in December 2025 (arXiv:2512.14879).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e8dda5b6-9d92-4498-98d5-5d9937fcbe60",
+            "isSidechain": true,
+            "promptId": "12201f4f-fbbf-46b5-a3ea-cfa4082ddef3",
+            "agentId": "a672228ae28c904c7",
+            "type": "user",
+            "uuid": "b1b43203-012f-40da-93cc-1e6cbf3f9ffd",
+            "sourceToolAssistantUUID": "e8dda5b6-9d92-4498-98d5-5d9937fcbe60",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T20:14:54.929Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch the actual paper page and the HTML version to check the specific claims you asked about."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1b43203-012f-40da-93cc-1e6cbf3f9ffd",
+            "isSidechain": true,
+            "agentId": "a672228ae28c904c7",
+            "requestId": "req_011CauW3RHeJ4u3X48tb7dU1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ee3ec2fe-5e04-4f0b-8cad-f73420c9a9f6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012SJuYE5WAp2WiZpokXev1C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 918,
+                "cache_creation_input_tokens": 1809,
+                "cache_read_input_tokens": 10382,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1809,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T20:14:55.239Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011Q2nQh66wuE99qaLJU2cD4",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee3ec2fe-5e04-4f0b-8cad-f73420c9a9f6",
+            "isSidechain": true,
+            "agentId": "a672228ae28c904c7",
+            "requestId": "req_011CauW3RHeJ4u3X48tb7dU1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2907198d-1e97-497f-bf40-bf393d882265",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012SJuYE5WAp2WiZpokXev1C",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 918,
+                "cache_creation_input_tokens": 1809,
+                "cache_read_input_tokens": 10382,
+                "output_tokens": 98,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1809
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 918,
+                    "output_tokens": 98,
+                    "cache_read_input_tokens": 10382,
+                    "cache_creation_input_tokens": 1809,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1809,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T20:14:55.241Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_011Q2nQh66wuE99qaLJU2cD4",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2907198d-1e97-497f-bf40-bf393d882265",
+            "isSidechain": true,
+            "promptId": "12201f4f-fbbf-46b5-a3ea-cfa4082ddef3",
+            "agentId": "a672228ae28c904c7",
+            "type": "user",
+            "uuid": "d2ded047-6906-4423-a6e1-60680b65f9f4",
+            "sourceToolAssistantUUID": "2907198d-1e97-497f-bf40-bf393d882265",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T20:15:00.509Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nLet me fetch the actual paper pages to verify the specific claims you asked about."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2ded047-6906-4423-a6e1-60680b65f9f4",
+            "isSidechain": true,
+            "agentId": "a672228ae28c904c7",
+            "requestId": "req_011CauW3hsYEJbdxrTKyQ8N8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8772a295-292c-49c2-b804-376d0b22ae35",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ToHdRPz9MC2GhKgUtcGJjM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1534,
+                "cache_read_input_tokens": 12191,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1534,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T20:15:04.294Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RbKhEvEPd3Kw9Ec44jvuDR",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2512.14879",
+                "prompt": "Extract the full title, authors, abstract, and any key claims from this arXiv paper page. Specifically look for: 1) Any mention of entropy-reservoir coupling coefficient lambda >= L_F * kappa / H(P_data), 2) Any claim that L_F = 1 for KL divergence, 3) Whether it is described as an \"information-geometric unification of model collapse\", 4) Any mention of guaranteeing a non-trivial entropy floor."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8772a295-292c-49c2-b804-376d0b22ae35",
+            "isSidechain": true,
+            "agentId": "a672228ae28c904c7",
+            "requestId": "req_011CauW3hsYEJbdxrTKyQ8N8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ab7fefce-e99a-4dd9-8b3c-02b22da491f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ToHdRPz9MC2GhKgUtcGJjM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1534,
+                "cache_read_input_tokens": 12191,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1534,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T20:15:06.851Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F7M4gRT26Zu5zUc1LPTWok",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2512.14879",
+                "prompt": "Look through the full text of this paper for the following specific claims: 1) Does it prove that entropy-reservoir coupling with coefficient lambda >= L_F * kappa / H(P_data) guarantees a non-trivial entropy floor? Extract the exact theorem statement if found. 2) Does it claim L_F = 1 analytically for KL divergence? Extract the exact statement. 3) What are the main theorems and their statements? 4) What is the exact relationship between lambda, L_F, kappa, and H(P_data)?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab7fefce-e99a-4dd9-8b3c-02b22da491f3",
+            "isSidechain": true,
+            "agentId": "a672228ae28c904c7",
+            "requestId": "req_011CauW3hsYEJbdxrTKyQ8N8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c6d84819-5182-49f0-b804-eb443fb510f5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ToHdRPz9MC2GhKgUtcGJjM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1534,
+                "cache_read_input_tokens": 12191,
+                "output_tokens": 395,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1534
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 395,
+                    "cache_read_input_tokens": 12191,
+                    "cache_creation_input_tokens": 1534,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1534,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T20:15:09.609Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RbKhEvEPd3Kw9Ec44jvuDR",
+              "type": "tool_result",
+              "content": "# Analysis of arXiv:2512.14879\n\n**Full Title:**\n\"Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse\"\n\n**Author:**\nJingwei Chen\n\n**Abstract Summary:**\nThe paper addresses model collapse in self-referential learning systems. It proposes ERBP, a framework modeling \"the closed loop as a stochastic Bregman projection sequence in distribution space.\" Key findings include identifying conditions for collapse and demonstrating how \"an Entropy Reservoir...injects a controllable entropy flux that provably stabilises the dynamics.\"\n\n**Key Claims Identified:**\n\n1. **Information-Geometric Unification:** Confirmed—the title explicitly describes the work as \"an Information-Geometric Unification of Model Collapse\"\n\n2. **Non-trivial Entropy Floor:** Confirmed—the abstract states the theory provides \"(iii) closed-form rates that depend only on sample size and the strong-convexity/Lipschitz constants of the Bregman generator.\"\n\n3. **Specific Lambda Coupling Coefficient (λ ≥ L_F · κ / H(P_data)):** Not present in the provided content\n\n4. **L_F = 1 for KL Divergence:** Not present in the provided content\n\nThe specific mathematical conditions you referenced do not appear in this webpage excerpt."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab7fefce-e99a-4dd9-8b3c-02b22da491f3",
+            "isSidechain": true,
+            "promptId": "12201f4f-fbbf-46b5-a3ea-cfa4082ddef3",
+            "agentId": "a672228ae28c904c7",
+            "type": "user",
+            "uuid": "56315006-38c6-4edb-aa6f-12133d3d26cc",
+            "sourceToolAssistantUUID": "ab7fefce-e99a-4dd9-8b3c-02b22da491f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T20:15:14.281Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F7M4gRT26Zu5zUc1LPTWok",
+              "type": "tool_result",
+              "content": "# Analysis of Key Claims in the Paper\n\n## 1) Entropy Floor Guarantee\n\nThe paper's main stability result is **Theorem 2**, which states:\n\n> \"𝒮F(Pt+1) ≥ λt·smin - LF·κ ≥ λmin·smin - LF·κ\"\n\nThe condition for a non-trivial entropy floor is: **λmin·smin > LF·κ**\n\nHowever, this uses `smin` (reservoir entropy bound), not `H(P_data)` directly. The paper does not prove the specific condition you mentioned with `H(P_data)` in the denominator.\n\n## 2) Lipschitz Constant for KL Divergence\n\n**Yes, the paper explicitly states this.** In Section 4.4:\n\n> \"For the negative Shannon entropy potential F(p)=∑ipi log pi we have σF=LF=1\"\n\nThis confirms analytically that both strong convexity and Lipschitz constants equal 1 for KL divergence.\n\n## 3) Main Theorems\n\n**Theorem 1** (Entropy Contraction): Without reservoir coupling (λt≡0), entropy contracts geometrically with bound proportional to (1-α)·𝒮F(Pt) where α = σF/(σF+mLF).\n\n**Theorem 2** (Entropy Floor): With positive λmin > 0, the system maintains entropy floor λmin·smin - LF·κ.\n\n## 4) Relationship Between Parameters\n\nThe exact relationship is: **λmin·smin > LF·√(2εmax)**\n\nWhere κ = √(2εmax) measures projection error. The paper does not establish a direct formula involving H(P_data) as a divisor—it uses the reservoir's own entropy bound (smin) instead."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6d84819-5182-49f0-b804-eb443fb510f5",
+            "isSidechain": true,
+            "promptId": "12201f4f-fbbf-46b5-a3ea-cfa4082ddef3",
+            "agentId": "a672228ae28c904c7",
+            "type": "user",
+            "uuid": "03903fba-4f10-4135-a9e1-3c5806e867b8",
+            "sourceToolAssistantUUID": "c6d84819-5182-49f0-b804-eb443fb510f5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T20:15:28.554Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are my findings on each of your four questions:\n\n---\n\n**1. Does this paper actually exist?**\n\nYes. The paper \"Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse\" by Jingwei Chen exists at arXiv:2512.14879, posted December 16, 2025. It is also listed on OpenReview (ID: NJ3OiroVDa).\n\n---\n\n**2. Does it prove that entropy-reservoir coupling with coefficient lambda >= L_F * kappa / H(P_data) guarantees a non-trivial entropy floor?**\n\n**Not exactly in that form.** The paper's Theorem 2 does prove a non-trivial entropy floor, but the condition is stated differently. The actual condition is:\n\n> lambda_min * s_min > L_F * kappa\n\nwhere `s_min` is the reservoir's own entropy bound and `kappa = sqrt(2 * epsilon_max)` measures projection error. The paper does **not** use `H(P_data)` in the denominator of the coupling condition. So the general structure (lambda must exceed a threshold involving L_F and kappa to guarantee an entropy floor) is correct, but the specific formula involving `H(P_data)` does not match what the paper actually states.\n\n---\n\n**3. Does it claim L_F = 1 analytically for KL divergence?**\n\n**Yes, this is confirmed.** In Section 4.4, the paper explicitly states:\n\n> \"For the negative Shannon entropy potential F(p) = sum_i p_i log p_i we have sigma_F = L_F = 1\"\n\nSo both the strong convexity constant and the Lipschitz constant equal 1 for KL divergence.\n\n---\n\n**4. Is it described as an \"information-geometric unification of model collapse\"?**\n\n**Yes, exactly.** The full title is \"Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse\" -- that phrase appears verbatim in the title.\n\n---\n\n**Summary:** The paper is real and does make claims (3) and (4) as stated. However, claim (2) is partially inaccurate: the paper does prove an entropy floor guarantee involving lambda, L_F, and kappa, but the exact formula differs from what you described -- it uses `s_min` (reservoir entropy bound) rather than `H(P_data)` in the condition.\n\nSources:\n- [arXiv:2512.14879 Abstract](https://arxiv.org/abs/2512.14879)\n- [arXiv:2512.14879 HTML Full Text](https://arxiv.org/html/2512.14879)\n- [OpenReview Listing](https://openreview.net/forum?id=NJ3OiroVDa)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03903fba-4f10-4135-a9e1-3c5806e867b8",
+            "isSidechain": true,
+            "agentId": "a672228ae28c904c7",
+            "requestId": "req_011CauW56v9v7jTvh5k7W1cs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "861157ca-cdcd-471a-8ee5-085d7b110563",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e79087ea-3253-401c-8843-0b07768d35c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CYKYd1xVHJnnCxWB5aJTKa",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1204,
+                "cache_read_input_tokens": 13725,
+                "output_tokens": 674,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1204
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 674,
+                    "cache_read_input_tokens": 13725,
+                    "cache_creation_input_tokens": 1204,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1204,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-web-for-the-paper-entropy-reservoir-bregman-projection-on-arxiv-arx.md"
+}

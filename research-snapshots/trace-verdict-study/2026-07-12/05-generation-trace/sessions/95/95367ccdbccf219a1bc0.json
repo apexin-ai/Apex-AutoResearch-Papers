@@ -1,0 +1,1979 @@
+{
+  "schema_version": "1.0",
+  "id": "95367ccdbccf219a1bc0",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for concrete throughput benchmarks for ModernBERT-large on H100 GPUs. I need to find: 1. The ModernBERT paper (ar",
+  "task_key": "agent-ab57b4cc9d1dfc52e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-ab57b4cc9d1dfc52e.jsonl",
+    "occurrence": 1,
+    "bytes": 80546,
+    "sha256": "db189d75ba9cd485dd2cfe6efb7d8b2acd195825ffeeeedd01d6732405c14ac4"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 1,
+    "tool_calls": 16,
+    "roles": {
+      "user": 1,
+      "assistant": 8,
+      "tool_call": 16,
+      "tool_result": 16
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-09T20:43:30.335Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for concrete throughput benchmarks for ModernBERT-large on H100 GPUs. I need to find:\n\n1. The ModernBERT paper (arXiv:2412.13663) - look for any throughput numbers on H100 specifically, or benchmark tables\n2. Any Hugging Face blog posts or documentation about ModernBERT performance\n3. Any community benchmarks comparing ModernBERT-large encoding speed on different GPUs\n\nSearch queries to try:\n- \"ModernBERT H100 throughput tokens per second\"\n- \"ModernBERT-large inference speed benchmark GPU\"\n- \"arXiv:2412.13663 ModernBERT benchmark\"\n\nI need to know: Is 100-150K tokens/sec on H100 a documented figure, or is it unverified? What hardware were the official benchmarks run on? What's the actual throughput range?\n\nUse WebSearch and WebFetch to find actual numbers. Read the actual paper abstract/benchmark section if accessible."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "c68a044d-efb5-4029-b672-f06f1b35f874",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-09T20:43:31.851Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you search for concrete throughput benchmarks for ModernBERT-large on H100 GPUs. Let me start with several search queries and then fetch the paper if available."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c68a044d-efb5-4029-b672-f06f1b35f874",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseRDCAYv6khaViBuL1M",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0f34479a-7272-43e4-83e7-89d6f81a92b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017CRXfvG4JaRUyVkFJFuc2M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14448,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14448,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-09T20:43:31.996Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F3ZYEwdXRmBJkKpkJVMjra",
+              "name": "WebSearch",
+              "input": {
+                "query": "ModernBERT H100 throughput tokens per second"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0f34479a-7272-43e4-83e7-89d6f81a92b0",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseRDCAYv6khaViBuL1M",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9ac99da1-7714-4bd3-8b9b-679288a71b4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017CRXfvG4JaRUyVkFJFuc2M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14448,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14448,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-09T20:43:32.230Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016rK5WwNzx9d18ABM3oN8BB",
+              "name": "WebSearch",
+              "input": {
+                "query": "ModernBERT-large inference speed benchmark GPU"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ac99da1-7714-4bd3-8b9b-679288a71b4d",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseRDCAYv6khaViBuL1M",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dd51604f-b5d9-4dd9-9ab0-411d78ae410c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017CRXfvG4JaRUyVkFJFuc2M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14448,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14448,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-09T20:43:32.234Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D77xheFziCqWTFVe1skJKn",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv:2412.13663 ModernBERT benchmark"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd51604f-b5d9-4dd9-9ab0-411d78ae410c",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseRDCAYv6khaViBuL1M",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4c2dbb5c-52c5-400a-a0fa-e577a6b43d12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017CRXfvG4JaRUyVkFJFuc2M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14448,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14448,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-09T20:43:32.409Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P8Y3nSt3oaqBvQpm8abdTU",
+              "name": "WebSearch",
+              "input": {
+                "query": "ModernBERT paper benchmarks throughput"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c2dbb5c-52c5-400a-a0fa-e577a6b43d12",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseRDCAYv6khaViBuL1M",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b46f4973-afd5-4503-a502-a41c29993b52",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017CRXfvG4JaRUyVkFJFuc2M",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14448,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 245,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14448
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 245,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 14448,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14448,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-09T20:43:37.801Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F3ZYEwdXRmBJkKpkJVMjra",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ModernBERT H100 throughput tokens per second\"\n\nLinks: [{\"title\":\"BioClinical ModernBERT: A State-of-the-Art Long-Context Encoder for Biomedical and Clinical NLP\",\"url\":\"https://arxiv.org/html/2506.10896v1\"},{\"title\":\"Nvidia H100 vLLM Benchmark Results: Reasoning LLMs on Hugging Face\",\"url\":\"https://www.databasemart.com/blog/vllm-gpu-benchmark-h100\"},{\"title\":\"Finally, a Replacement for BERT: Introducing ModernBERT\",\"url\":\"https://huggingface.co/blog/modernbert\"},{\"title\":\"H100 has 4.6x A100 Performance in TensorRT LLM, achieving 10,000 tok/s at 100ms to first token — TensorRT LLM\",\"url\":\"https://nvidia.github.io/TensorRT-LLM/blogs/H100vsA100.html\"},{\"title\":\"Unlocking the full power of NVIDIA H100 GPUs for ML inference with TensorRT\",\"url\":\"https://www.baseten.co/blog/unlocking-the-full-power-of-nvidia-h100-gpus-for-ml-inference-with-tensorrt/\"},{\"title\":\"LLM Inference Performance Engineering: Best Practices | Databricks Blog\",\"url\":\"https://www.databricks.com/blog/llm-inference-performance-engineering-best-practices\"},{\"title\":\"Achieving High Mixtral 8x7B Performance with NVIDIA H100 Tensor Core GPUs and NVIDIA TensorRT-LLM | NVIDIA Technical Blog\",\"url\":\"https://developer.nvidia.com/blog/achieving-high-mixtral-8x7b-performance-with-nvidia-h100-tensor-core-gpus-and-tensorrt-llm/\"},{\"title\":\"Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference\",\"url\":\"https://arxiv.org/html/2412.13663v2\"},{\"title\":\"Breaking MLPerf Training Records with NVIDIA H100 GPUs | NVIDIA Technical Blog\",\"url\":\"https://developer.nvidia.com/blog/breaking-mlperf-training-records-with-nvidia-h100-gpus/\"},{\"title\":\"Comparing NVIDIA H100 vs A100 GPUs for AI Workloads | OpenMetal IaaS\",\"url\":\"https://openmetal.io/resources/blog/nvidia-h100-vs-a100-gpu-comparison/\"}]\n\nBased on the search results, I found information about ModernBERT throughput, though the H100-specific data requires some context:\n\nModernBERT delivers competitive throughput at 76.2 kTok/s (76,200 tokens per second), though it's important to note that this inference speed evaluation was conducted on a machine with a single A100 40GB GPU, not an H100.\n\nThe search results also show that ModernBERT maintains relatively stable processing speed across all input lengths: 76.2 kTok/s at 512 tokens, 73.8 kTok/s at 4096 tokens, and 71.1 kTok/s at 8192 tokens for fixed datasets.\n\nWhile the search results don't contain specific H100 benchmarks for ModernBERT, they do indicate that H100 GPUs generally deliver significantly higher throughput than A100s for inference tasks. For context, H100 GPUs are capable of 250 to 300 tokens per second for similar models, depending on optimization strategies and batch size, which represents nearly double the performance of A100 GPUs.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ac99da1-7714-4bd3-8b9b-679288a71b4d",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "ea18333b-ec50-4db8-8ece-6bca082e7595",
+            "sourceToolAssistantUUID": "9ac99da1-7714-4bd3-8b9b-679288a71b4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-09T20:43:39.129Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016rK5WwNzx9d18ABM3oN8BB",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ModernBERT-large inference speed benchmark GPU\"\n\nLinks: [{\"title\":\"Finally, a Replacement for BERT: Introducing ModernBERT\",\"url\":\"https://huggingface.co/blog/modernbert\"},{\"title\":\"Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference\",\"url\":\"https://arxiv.org/html/2412.13663v2\"},{\"title\":\"[Literature Review] BioClinical ModernBERT: A State-of-the-Art Long-Context Encoder for Biomedical and Clinical NLP\",\"url\":\"https://www.themoonlight.io/en/review/bioclinical-modernbert-a-state-of-the-art-long-context-encoder-for-biomedical-and-clinical-nlp\"},{\"title\":\"ModernBERT or DeBERTaV3? Examining Architecture and Data Influence on Transformer Encoder Models Performance\",\"url\":\"https://arxiv.org/html/2504.08716v1\"},{\"title\":\"ModernBERT vs LLMs for Detecting Adverse Drug Reactions – Paul Simmering\",\"url\":\"https://simmering.dev/blog/modernbert-vs-llm/\"},{\"title\":\"GitHub - XiongjieDai/GPU-Benchmarks-on-LLM-Inference: Multiple NVIDIA GPUs or Apple Silicon for Large Language Model Inference? · GitHub\",\"url\":\"https://github.com/XiongjieDai/GPU-Benchmarks-on-LLM-Inference\"},{\"title\":\"ModernBERT - MattWeekend\",\"url\":\"https://www.mattweekend.com/modern\"},{\"title\":\"BERT inference cost/performance analysis CPU vs GPU | by Vincent Teyssier | Medium\",\"url\":\"https://vincentteyssier.medium.com/bert-inference-cost-performance-analysis-cpu-vs-gpu-b58a2420b2c8\"},{\"title\":\"Fine-tune classifier with ModernBERT in 2025\",\"url\":\"https://www.philschmid.de/fine-tune-modern-bert-in-2025\"},{\"title\":\"Large Language Model Inference Acceleration: A Comprehensive Hardware Perspective\",\"url\":\"https://arxiv.org/html/2410.04466v3\"}]\n\nBased on the search results, here's what I found about ModernBERT-large inference speed benchmarks on GPUs:\n\n## Inference Speed Performance\n\nMemory and inference efficiency results on an NVIDIA RTX 4090 are measured in thousands of tokens per second, averaged over 10 runs. Inference efficiency benchmarks are presented on an NVIDIA RTX 4090 for ModernBERT and other decoder models.\n\nFor variable length inputs, ModernBERT is much faster than all other models. More specifically, ModernBERT is twice as fast as DeBERTa – in fact, up to 4x faster in the more common situation where inputs are mixed length. Its long context inference is nearly 3 times faster than other high-quality models such as NomicBERT and GTE-en-MLM.\n\n## Memory Efficiency\n\nModernBERT-large is slightly less memory efficient than the original BERT-large on short-context inputs, but can process batches at least 60 percent bigger than every other large model.\n\n## Comparison with Other Models\n\nModernBERT-large is the second-best large encoder on GLUE, almost matching DeBERTaV3-large with one-tenth fewer parameters while processing tokens in half the time.\n\nThe model was specifically designed with efficiency in mind, incorporating optimization techniques like FlashAttention and hardware-aware design choices to maximize inference performance on consumer-grade GPUs.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd51604f-b5d9-4dd9-9ab0-411d78ae410c",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "8e90ceaa-9526-413c-869d-ed65145114fa",
+            "sourceToolAssistantUUID": "dd51604f-b5d9-4dd9-9ab0-411d78ae410c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-09T20:43:40.458Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D77xheFziCqWTFVe1skJKn",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv:2412.13663 ModernBERT benchmark\"\n\nLinks: [{\"title\":\"[2412.13663] Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference\",\"url\":\"https://arxiv.org/abs/2412.13663\"},{\"title\":\"arXiv:2412.13663v2 [cs.CL] 19 Dec 2024\",\"url\":\"https://arxiv.org/pdf/2412.13663\"},{\"title\":\"Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference\",\"url\":\"https://arxiv.org/html/2412.13663v2\"},{\"title\":\"Paper page - Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference\",\"url\":\"https://huggingface.co/papers/2412.13663\"},{\"title\":\"Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference - Summary\",\"url\":\"https://portkey.ai/blog/smarter-better-faster-longer-a-modern-bidirectional-encoder-for-fast-memory-efficient-and-long-context-finetuning-and-inference-summary-2/\"},{\"title\":\"[2412.13663] Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference\",\"url\":\"http://export.arxiv.org/abs/2412.13663\"},{\"title\":\"ModernBERT is More Efficient than Conventional BERT for ...\",\"url\":\"https://arxiv.org/pdf/2503.05060\"},{\"title\":\"GitHub - AnswerDotAI/ModernBERT: Bringing BERT into modernity via both architecture changes and scaling · GitHub\",\"url\":\"https://github.com/AnswerDotAI/ModernBERT\"},{\"title\":\"ModernBERT or DeBERTaV3? Examining Architecture and Data Influence on Transformer Encoder Models Performance\",\"url\":\"https://arxiv.org/html/2504.08716v1\"},{\"title\":\"answerdotai/ModernBERT-base · Speed Benchmarks with MPS Backend\",\"url\":\"https://huggingface.co/answerdotai/ModernBERT-base/discussions/47\"}]\n\nI found detailed information about arXiv:2412.13663. Here's a summary of the paper and its benchmarking results:\n\n## Paper Overview\n\nThe paper is titled \"Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference\". ModernBERT brings modern model optimizations to encoder-only models and represents a major Pareto improvement over older encoders, trained on 2 trillion tokens with a native 8192 sequence length.\n\n## Benchmark Performance\n\nModernBERT models exhibit state-of-the-art results on a large pool of evaluations encompassing diverse classification tasks and both single and multi-vector retrieval on different domains (including code). ModernBERT outperforms other leading models on benchmarks like GLUE, and on long-context retrieval tasks like MLDR, shows significant improvements.\n\n## Efficiency Advantages\n\nIn addition to strong downstream performance, ModernBERT is also the most speed and memory efficient encoder and is designed for inference on common GPUs. ModernBERT processes sequences of 8192 tokens almost two times faster than previous models.\n\n## Key Technical Innovations\n\nAttention layers in ModernBERT alternate between global attention and local attention, with every third layer employing global attention and the remaining layers using a 128 token local sliding window attention. ModernBERT unpads inputs before the token embedding layer and optionally repads model outputs leading to a 10-to-20 percent performance improvement over other unpadding methods.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c2dbb5c-52c5-400a-a0fa-e577a6b43d12",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "736b0fd0-c8c6-4f74-89e3-900a72cf0ff7",
+            "sourceToolAssistantUUID": "4c2dbb5c-52c5-400a-a0fa-e577a6b43d12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-09T20:43:47.481Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P8Y3nSt3oaqBvQpm8abdTU",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ModernBERT paper benchmarks throughput\"\n\nLinks: [{\"title\":\"Finally, a Replacement for BERT: Introducing ModernBERT\",\"url\":\"https://huggingface.co/blog/modernbert\"},{\"title\":\"[2412.13663] Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference\",\"url\":\"https://arxiv.org/abs/2412.13663\"},{\"title\":\"Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference - Summary\",\"url\":\"https://portkey.ai/blog/smarter-better-faster-longer-a-modern-bidirectional-encoder-for-fast-memory-efficient-and-long-context-finetuning-and-inference-summary-2/\"},{\"title\":\"A Quick Review of ModernBERT: Finally, a Replacement for BERT | by Shirley Li | Medium\",\"url\":\"https://medium.com/@lixue421/a-quick-review-of-modernbert-finally-a-replacement-for-bert-120f9e44cf90\"},{\"title\":\"ModernBERT or DeBERTaV3? Examining Architecture and Data Influence on Transformer Encoder Models Performance\",\"url\":\"https://arxiv.org/html/2504.08716v1\"},{\"title\":\"[2504.08716] ModernBERT or DeBERTaV3? Examining Architecture and Data Influence on Transformer Encoder Models Performance\",\"url\":\"https://arxiv.org/abs/2504.08716\"},{\"title\":\"Paper Review: Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference – Andrey Lukyanenko\",\"url\":\"https://andlukyane.com/blog/paper-review-modernbert\"},{\"title\":\"Papers Explained 277: ModernBERT. ModernBERT is a state-of-the-art… | by Ritvik Rastogi | Medium\",\"url\":\"https://ritvik19.medium.com/papers-explained-277-modernbert-59f25989f685\"},{\"title\":\"ModernBERT/benchmark.py at main · AnswerDotAI/ModernBERT\",\"url\":\"https://github.com/AnswerDotAI/ModernBERT/blob/main/benchmark.py\"},{\"title\":\"Fine-tune classifier with ModernBERT in 2025\",\"url\":\"https://www.philschmid.de/fine-tune-modern-bert-in-2025\"}]\n\nBased on the search results, here are the key throughput benchmarks from the ModernBERT paper:\n\n## Speed Performance\n\nModernBERT is twice as fast as DeBERTa, and up to 4x faster in situations where inputs are mixed length. Its long context inference is nearly 3 times faster than other high-quality models such as NomicBERT and GTE-en-MLM.\n\n## Inference Efficiency Metrics\n\nThe paper measures memory in terms of max batch size and inference speed in terms of thousands of tokens per second. Four synthetic datasets of documents are created with fixed and varying lengths (512, 8192 tokens) to measure and compare inference efficiency across various sequence lengths.\n\n## Architecture Optimizations for Throughput\n\nThe paper introduces full unpadding, significantly enhancing processing efficiency and throughput. PyTorch's built-in compiling is leveraged to improve training efficiency by compiling all compatible modules, yielding a 10 percent improvement in throughput with negligible compilation overhead.\n\nAdditionally, ModernBERT is 2-4x faster than previous encoder models while achieving state-of-the-art performance across classification, retrieval and code understanding tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b46f4973-afd5-4503-a502-a41c29993b52",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "aa69d30c-a5c4-4701-bb04-29c0002f353c",
+            "sourceToolAssistantUUID": "b46f4973-afd5-4503-a502-a41c29993b52",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-09T20:43:51.851Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! I found references to the paper. Now let me fetch the actual paper and the Hugging Face blog post to get the specific benchmark numbers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa69d30c-a5c4-4701-bb04-29c0002f353c",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseSUQEXxjMF9xHEsBvq",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a849943c-5f54-47b7-9720-d3b7ee652a75",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ENMQ1jryyuCvGY6L97uNUk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4896,
+                "cache_read_input_tokens": 14448,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4896,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-09T20:43:53.062Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FgQFTD7cfouZY1J7KeJq8q",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2412.13663v2",
+                "prompt": "What are the specific throughput numbers in tokens per second? What GPU was used for benchmarking? Is there an H100 benchmark? What are the exact throughput figures for ModernBERT-large?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a849943c-5f54-47b7-9720-d3b7ee652a75",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseSUQEXxjMF9xHEsBvq",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "79619114-c032-4ee7-b0bf-eef5f6a38cda",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ENMQ1jryyuCvGY6L97uNUk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4896,
+                "cache_read_input_tokens": 14448,
+                "output_tokens": 260,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4896
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 260,
+                    "cache_read_input_tokens": 14448,
+                    "cache_creation_input_tokens": 4896,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4896,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-09T20:43:53.381Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018LqxVhcCRhkpKjJg58rSM2",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://huggingface.co/blog/modernbert",
+                "prompt": "What are the specific throughput benchmarks for ModernBERT-large on H100 or other GPUs? What are the tokens per second numbers mentioned?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79619114-c032-4ee7-b0bf-eef5f6a38cda",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseSUQEXxjMF9xHEsBvq",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0cc38f3f-d21a-4f3a-96f4-7833fe284894",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ENMQ1jryyuCvGY6L97uNUk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4896,
+                "cache_read_input_tokens": 14448,
+                "output_tokens": 260,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4896
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 260,
+                    "cache_read_input_tokens": 14448,
+                    "cache_creation_input_tokens": 4896,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4896,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-09T20:43:57.201Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FgQFTD7cfouZY1J7KeJq8q",
+              "type": "tool_result",
+              "content": "# ModernBERT Throughput Benchmarks\n\n## GPU and Benchmarking Setup\nThe paper evaluated efficiency on an **NVIDIA RTX 4090**, which was one of ModernBERT's target GPUs. No H100 benchmarks are provided in the efficiency evaluation section.\n\n## Throughput Numbers (Tokens per Second)\n\n**ModernBERT-large on RTX 4090:**\n- Fixed short-context (512 tokens): **52,300 tokens/sec**\n- Fixed long-context (8192 tokens): **46,800 tokens/sec**\n- Variable-length short (centered at 256): **52,900 tokens/sec**\n- Variable-length long (centered at 4096): **49,800 tokens/sec**\n\n**ModernBERT-base on RTX 4090:**\n- Fixed short-context: **148,100 tokens/sec**\n- Fixed long-context: **123,700 tokens/sec**\n- Variable-length short: **147,300 tokens/sec**\n- Variable-length long: **133,800 tokens/sec**\n\nThe paper notes that on long-context tasks, \"ModernBERT is faster than all competing encoders, processing documents 2.65 and 3 times faster than the next-fastest encoder\" for base and large variants respectively."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79619114-c032-4ee7-b0bf-eef5f6a38cda",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "32e45d5d-7b5d-41ea-907e-aaa045016e28",
+            "sourceToolAssistantUUID": "79619114-c032-4ee7-b0bf-eef5f6a38cda",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-09T20:43:59.872Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018LqxVhcCRhkpKjJg58rSM2",
+              "type": "tool_result",
+              "content": "# ModernBERT Throughput Benchmarks\n\nThe blog post does **not provide specific throughput numbers (tokens per second) for ModernBERT-large on H100 GPUs**. \n\n## What Benchmarks Are Provided\n\nThe efficiency results shown are for **NVIDIA RTX 4090** only, presented in a table with two scenarios:\n\n1. **Fixed length inputs** (at maximum 8,192 token context)\n2. **Variable length inputs** (more realistic real-world scenario)\n\n## Key Performance Claims\n\nThe post makes these efficiency-related statements:\n\n- ModernBERT is **2x faster than DeBERTa**\n- Up to **4x faster in variable-length input scenarios**\n- Nearly **3x faster than NomicBERT and GTE-en-MLM** on long context inference\n- **2-3x faster** than the next fastest model for long context inputs\n\n## Why RTX 4090 Was Chosen\n\nThe authors explicitly state their focus on practicality:\n\n> \"The first thing you might notice is that we're analysing the efficiency on an affordable consumer GPU, rather than the latest unobtainable hyped hardware. **First and foremost, ModernBERT is focused on practicality, not hype.**\"\n\n## For Specific H100 Numbers\n\nThe blog post does not include H100 benchmarks. For actual throughput metrics on enterprise GPUs, you would need to:\n- Check the [arXiv paper](https://arxiv.org/abs/2412.13663)\n- Test on your own infrastructure\n- Check the [GitHub repository](https://github.com/huggingface/blog/blob/main/modernbert.md)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0cc38f3f-d21a-4f3a-96f4-7833fe284894",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "bdc67403-fddf-4125-9ec1-621d15b37dbd",
+            "sourceToolAssistantUUID": "0cc38f3f-d21a-4f3a-96f4-7833fe284894",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-09T20:44:01.280Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also check the GitHub repository and look for any community benchmarks with H100 data."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bdc67403-fddf-4125-9ec1-621d15b37dbd",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseTPQsw8xDXC3R3YqCo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "86737b91-6f0c-4c88-86bc-55a19c5b470b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YTAzKNQJqjALn2cmHGf9eo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1020,
+                "cache_read_input_tokens": 19344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1020,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-09T20:44:01.509Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LjvuHWYmC3geqxnCAM1yUf",
+              "name": "WebSearch",
+              "input": {
+                "query": "ModernBERT A100 H100 benchmark comparison tokens per second"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86737b91-6f0c-4c88-86bc-55a19c5b470b",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseTPQsw8xDXC3R3YqCo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e940e899-ae92-4709-aab6-e638ec6a0b9a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YTAzKNQJqjALn2cmHGf9eo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1020,
+                "cache_read_input_tokens": 19344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1020,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-09T20:44:01.721Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RCbugFAdmqzBr1ufMsK4bc",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"ModernBERT\" \"100k tokens\" OR \"150k tokens\" H100"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e940e899-ae92-4709-aab6-e638ec6a0b9a",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseTPQsw8xDXC3R3YqCo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5a45c87e-395e-4d66-97b7-9addb0ea0466",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YTAzKNQJqjALn2cmHGf9eo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1020,
+                "cache_read_input_tokens": 19344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1020,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-09T20:44:02.140Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VAJWedZe9RjVBnUoECDdMk",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/AnswerDotAI/ModernBERT",
+                "prompt": "Are there any benchmark results with H100 GPUs? What throughput benchmarks are documented?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a45c87e-395e-4d66-97b7-9addb0ea0466",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseTPQsw8xDXC3R3YqCo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a8552419-3892-43ab-97e3-6e9e26c7d081",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YTAzKNQJqjALn2cmHGf9eo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1020,
+                "cache_read_input_tokens": 19344,
+                "output_tokens": 232,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1020
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 232,
+                    "cache_read_input_tokens": 19344,
+                    "cache_creation_input_tokens": 1020,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1020,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-09T20:44:05.928Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VAJWedZe9RjVBnUoECDdMk",
+              "type": "tool_result",
+              "content": "Based on the provided content, there is no information about H100 GPU benchmark results or throughput benchmarks documented in this GitHub repository page.\n\nThe only reference to H100s appears in the setup instructions: \"if using H100s clone and build flash attention 3\" - this merely indicates that H100 support exists but doesn't provide any performance metrics.\n\nThe repository does mention a `benchmark.py` file exists, which suggests benchmarking capabilities are available, but no actual benchmark results or throughput documentation is included in the content shown here. For specific performance metrics, you would need to consult the arXiv preprint or the referenced blog post on HuggingFace."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a8552419-3892-43ab-97e3-6e9e26c7d081",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "79086de6-fcfa-4424-a648-8601111c845c",
+            "sourceToolAssistantUUID": "a8552419-3892-43ab-97e3-6e9e26c7d081",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-09T20:44:06.964Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RCbugFAdmqzBr1ufMsK4bc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"ModernBERT\" \"100k tokens\" OR \"150k tokens\" H100\"\n\nLinks: [{\"title\":\"BioClinical ModernBERT: A State-of-the-Art Long-Context Encoder for Biomedical and Clinical NLP\",\"url\":\"https://arxiv.org/html/2506.10896v1\"},{\"title\":\"Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference\",\"url\":\"https://arxiv.org/html/2412.13663v2\"},{\"title\":\"Finally, a Replacement for BERT: Introducing ModernBERT\",\"url\":\"https://huggingface.co/blog/modernbert\"},{\"title\":\"pre-training speed, data loader and gpu utilization · Issue #236 · AnswerDotAI/ModernBERT\",\"url\":\"https://github.com/AnswerDotAI/ModernBERT/issues/236\"},{\"title\":\"lucataco/modernbert-large | Run with an API on Replicate\",\"url\":\"https://replicate.com/lucataco/modernbert-large\"},{\"title\":\"H100 has 4.6x A100 Performance in TensorRT LLM, achieving 10,000 tok/s at 100ms to first token — TensorRT LLM\",\"url\":\"https://nvidia.github.io/TensorRT-LLM/blogs/H100vsA100.html\"},{\"title\":\"Nvidia H100 vLLM Benchmark Results: Reasoning LLMs on Hugging Face\",\"url\":\"https://www.databasemart.com/blog/vllm-gpu-benchmark-h100\"},{\"title\":\"Unlocking the full power of NVIDIA H100 GPUs for ML inference with TensorRT\",\"url\":\"https://www.baseten.co/blog/unlocking-the-full-power-of-nvidia-h100-gpus-for-ml-inference-with-tensorrt/\"},{\"title\":\"Finetuning time for 1 billion tokens on H100 - cuDNN - NVIDIA Developer Forums\",\"url\":\"https://forums.developer.nvidia.com/t/finetuning-time-for-1-billion-tokens-on-h100/296075\"},{\"title\":\"Optimizing vLLM Performance on A100 80GB: GPU Benchmark Insights\",\"url\":\"https://www.databasemart.com/blog/vllm-gpu-benchmark-a100-80gb\"}]\n\nBased on the search results, here's what I found regarding ModernBERT with 100k/150k tokens and H100:\n\n## ModernBERT Context Length\n\nModernBERT was trained on 2 trillion tokens with a native 8192 sequence length. The search results do not contain specific information about ModernBERT supporting 100k or 150k token context lengths. \n\nModernBERT enables the processing of entire clinical notes and documents in a single pass with a context window of up to 8,192 tokens, extendable via rotary positional embeddings (RoPE), but the results don't mention extensions to 100k or 150k tokens.\n\n## H100 Training\n\nRegarding H100 GPUs, ModernBERT was trained on 8x H100 GPUs. However, the search results discuss ModernBERT's native 8k token context, not 100k or 150k token variants.\n\nIf you're looking for information about ModernBERT variants with extended context lengths of 100k-150k tokens, that information was not found in these search results. You may want to check the official ModernBERT repository or more recent papers for updates on context extension capabilities.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a45c87e-395e-4d66-97b7-9addb0ea0466",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "9fcc49b7-c50c-4065-a826-faf5deddb989",
+            "sourceToolAssistantUUID": "5a45c87e-395e-4d66-97b7-9addb0ea0466",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-09T20:44:08.438Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LjvuHWYmC3geqxnCAM1yUf",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ModernBERT A100 H100 benchmark comparison tokens per second\"\n\nLinks: [{\"title\":\"NVIDIA GPU benchmark: H100 vs A100 vs L40S\",\"url\":\"https://www.cudocompute.com/blog/real-world-gpu-benchmarks\"},{\"title\":\"A100 vs H100 for LLM Inference: Performance Guide | Lyceum Technology\",\"url\":\"https://lyceum.technology/magazine/a100-vs-h100-for-llm-inference/\"},{\"title\":\"NVIDIA A100 vs H100 vs H200: GPU Comparison for AI | E2E Networks\",\"url\":\"https://www.e2enetworks.com/blog/nvidia-a100-vs-h100-vs-h200-gpu-comparison\"},{\"title\":\"NVIDIA A100 vs H100: Specs, Benchmarks, and Cloud Pricing Guide (2026) | Spheron Blog\",\"url\":\"https://www.spheron.network/blog/nvidia-a100-vs-h100/\"},{\"title\":\"NVIDIA A100 vs. H100: Choosing the Right GPU for Your AI Workloads\",\"url\":\"https://www.clarifai.com/blog/nvidia-a100-vs.-h100-choosing-the-right-gpu-for-your-ai-workloads\"},{\"title\":\"Benchmark H100 vs A100 Deep Learning Speed Guide | Ventus Servers\",\"url\":\"https://ventusserver.com/a100-deep-learning-speed/\"},{\"title\":\"H100 vs A100 Cloud Performance Benchmarks Guide | Ventus Servers\",\"url\":\"https://ventusserver.com/a100-cloud-performance-benchmarks/\"},{\"title\":\"Comparing NVIDIA H100 vs A100 GPUs for AI Workloads | OpenMetal IaaS\",\"url\":\"https://openmetal.io/resources/blog/nvidia-h100-vs-a100-gpu-comparison/\"},{\"title\":\"H100 vs A100: GPU Benchmarks, Specs & Cloud Pricing Compared (2026) | Jarvis Labs Blog | Jarvis Labs\",\"url\":\"https://jarvislabs.ai/blog/h100-vs-a100\"},{\"title\":\"Optimizing vLLM Performance on A100 80GB: GPU Benchmark Insights\",\"url\":\"https://www.databasemart.com/blog/vllm-gpu-benchmark-a100-80gb\"}]\n\nBased on the search results, here's what I found about ModernBERT A100 and H100 benchmark comparisons in terms of tokens per second:\n\n## Key Benchmark Results\n\nIndustry testing on Llama-70B shows H100 achieving 250-300 tokens/second with TensorRT-LLM optimization, compared to A100's ~130 tokens/second.\n\nFor BERT-specific workloads, one H100 streams 24,000 tokens/second on BERT, scaling to 250-300 on Llama-70B versus A100's 130.\n\n## Performance Ratios\n\nThe roughly 2× gap observed in BERT inference tests aligns with industry testing on larger models. More specifically, the H100 W4A8 advantage at high concurrency is significant: 2.6x the output tokens/sec of A100 INT4 at batch 16 for 70B models.\n\n## Overall Context\n\nA controlled, apples-to-apples benchmark on CUDO Compute compared three NVIDIA GPUs—H100 SXM, A100, and L40S—under identical software stacks and single-GPU VM configurations, using an end-to-end BERT-base masked-LM fine-tune as the workload.\n\nThe results consistently show that H100 delivers approximately 2-3x better throughput than A100 for transformer-based models like BERT and Llama across different optimization strategies and batch sizes.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e940e899-ae92-4709-aab6-e638ec6a0b9a",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "34ea2aec-1042-429f-8b1d-aa462f651cd8",
+            "sourceToolAssistantUUID": "e940e899-ae92-4709-aab6-e638ec6a0b9a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-09T20:44:09.598Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check if there are any community discussions or Hugging Face model card benchmarks for ModernBERT."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "34ea2aec-1042-429f-8b1d-aa462f651cd8",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseU27k1FKkuuZCNpGQB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fc2719a3-9873-4de3-93b7-e1896d514efc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H4pbWmeNBu1K8oM3x6gATG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1097,
+                "cache_creation_input_tokens": 1193,
+                "cache_read_input_tokens": 20364,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1193,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-09T20:44:09.823Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018LFERJA8YaJkbhLqBhNtMD",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:huggingface.co ModernBERT-large benchmark throughput"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc2719a3-9873-4de3-93b7-e1896d514efc",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseU27k1FKkuuZCNpGQB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "29ef5b61-bfcd-442b-a57d-a736d463509f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H4pbWmeNBu1K8oM3x6gATG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1097,
+                "cache_creation_input_tokens": 1193,
+                "cache_read_input_tokens": 20364,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1193,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-09T20:44:09.980Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Po4cSkNfkoCjbL4QF14LAH",
+              "name": "WebSearch",
+              "input": {
+                "query": "ModernBERT H100 community benchmark reddit github"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29ef5b61-bfcd-442b-a57d-a736d463509f",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseU27k1FKkuuZCNpGQB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f3411cd4-dd17-4c8b-a8e7-a7af453a1f20",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H4pbWmeNBu1K8oM3x6gATG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1097,
+                "cache_creation_input_tokens": 1193,
+                "cache_read_input_tokens": 20364,
+                "output_tokens": 141,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1193
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1097,
+                    "output_tokens": 141,
+                    "cache_read_input_tokens": 20364,
+                    "cache_creation_input_tokens": 1193,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1193,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-09T20:44:14.519Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018LFERJA8YaJkbhLqBhNtMD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:huggingface.co ModernBERT-large benchmark throughput\"\n\nLinks: [{\"title\":\"Fine-tune classifier with ModernBERT in 2025\",\"url\":\"https://www.philschmid.de/fine-tune-modern-bert-in-2025\"},{\"title\":\"Finally, a Replacement for BERT: Introducing ModernBERT\",\"url\":\"https://huggingface.co/blog/modernbert\"},{\"title\":\"answerdotai/ModernBERT-large · Hugging Face\",\"url\":\"https://huggingface.co/answerdotai/ModernBERT-large\"},{\"title\":\"mmBERT: ModernBERT goes Multilingual\",\"url\":\"https://huggingface.co/blog/mmbert\"},{\"title\":\"transformers/docs/source/en/model_doc/modernbert.md at main · huggingface/transformers\",\"url\":\"https://github.com/huggingface/transformers/blob/main/docs/source/en/model_doc/modernbert.md\"},{\"title\":\"answerdotai/ModernBERT-Large-Instruct · Hugging Face\",\"url\":\"https://huggingface.co/answerdotai/ModernBERT-Large-Instruct\"},{\"title\":\"ModernBERT · Hugging Face\",\"url\":\"https://huggingface.co/docs/transformers/v4.49.0/model_doc/modernbert\"},{\"title\":\"answerdotai/ModernBERT-base · Hugging Face\",\"url\":\"https://huggingface.co/answerdotai/ModernBERT-base\"},{\"title\":\"blog/modernbert.md at main · huggingface/blog\",\"url\":\"https://github.com/huggingface/blog/blob/main/modernbert.md\"},{\"title\":\"GitHub - AnswerDotAI/ModernBERT: Bringing BERT into modernity via both architecture changes and scaling · GitHub\",\"url\":\"https://github.com/answerdotai/modernbert\"}]\n\nBased on the search results, here's what I found about ModernBERT-large benchmark throughput:\n\nModernBERT is twice as fast as DeBERTa – in fact, up to 4x faster in the more common situation where inputs are mixed length. Additionally, its long context inference is nearly 3 times faster than other high-quality models such as NomicBERT and GTE-en-MLM.\n\nModernBERT achieves state-of-the-art performance across classification, retrieval and code understanding tasks while being 2-4x faster than previous encoder models.\n\nThe search results indicate that ModernBERT-large offers significant throughput improvements, particularly for variable-length inputs and long context processing, but specific detailed throughput benchmark numbers (like tokens/second) are not provided in the search results from the Hugging Face documentation and blog posts.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29ef5b61-bfcd-442b-a57d-a736d463509f",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "39e463d7-25e4-44e9-b6bf-1965ef7f2c1b",
+            "sourceToolAssistantUUID": "29ef5b61-bfcd-442b-a57d-a736d463509f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-09T20:44:17.995Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Po4cSkNfkoCjbL4QF14LAH",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ModernBERT H100 community benchmark reddit github\"\n\nLinks: [{\"title\":\"blog/modernbert.md at main · huggingface/blog\",\"url\":\"https://github.com/huggingface/blog/blob/main/modernbert.md\"},{\"title\":\"ModernBERT/benchmark.py at main · AnswerDotAI/ModernBERT\",\"url\":\"https://github.com/AnswerDotAI/ModernBERT/blob/main/benchmark.py\"},{\"title\":\"GitHub - AnswerDotAI/ModernBERT: Bringing BERT into modernity via both architecture changes and scaling · GitHub\",\"url\":\"https://github.com/answerdotai/modernbert\"},{\"title\":\"Finally, a Replacement for BERT: Introducing ModernBERT\",\"url\":\"https://huggingface.co/blog/modernbert\"},{\"title\":\"GitHub - Meeex2/ModernBert_Benchmark: Exploring the code capabilities of ModernBert in comparision with the former BERT model.\",\"url\":\"https://github.com/Meeex2/ModernBert_Benchmark\"},{\"title\":\"GitHub - lindvalllab/BioClinical-ModernBERT · GitHub\",\"url\":\"https://github.com/lindvalllab/BioClinical-ModernBERT\"},{\"title\":\"Encoder-only ModernBERT Model | Microsoft Community Hub\",\"url\":\"https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/encoder-only-modernbert-model/4361559\"},{\"title\":\"answerdotai/ModernBERT-base · Hugging Face\",\"url\":\"https://huggingface.co/answerdotai/ModernBERT-base\"},{\"title\":\"Hashcat v6.2.6 benchmark on the Nvidia H100 PCIe · GitHub\",\"url\":\"https://gist.github.com/Chick3nman/e1417339accfbb0b040bcd0a0a9c6d54\"},{\"title\":\"Nvidia H100 vLLM Benchmark Results: Reasoning LLMs on Hugging Face\",\"url\":\"https://www.databasemart.com/blog/vllm-gpu-benchmark-h100\"}]\n\nBased on the search results, here's what I found about ModernBERT, H100 benchmarks, and community resources:\n\n## ModernBERT Overview\n\nModernBERT is a modernized bidirectional encoder-only Transformer model pre-trained on 2 trillion tokens of English and code data with a native context length of up to 8,192 tokens. ModernBERT is a new Encoder Model developed by Answer.AI and LightOn.\n\n## H100 Resources\n\nThe FineWeb-Edu filtering effort took 6,000 H100 hours. Additionally, the environment documentation includes instructions for H100 GPU setup with Flash Attention 3.\n\n## Community Benchmarks & GitHub Resources\n\nThe main GitHub repositories include:\n\n1. **Official ModernBERT Repository**: The AnswerDotAI/ModernBERT repository contains the experiments to bring BERT into modernity via both architecture changes and scaling.\n\n2. **Community Benchmark Projects**: The Meeex2/ModernBert_Benchmark project explores the capabilities of ModernBERT and the former bert model by analyzing their tokenization processes and evaluating their performance on various text inputs.\n\n3. **BioClinical ModernBERT**: The multiprocess_bench.py script is used to measure inference speed of each model, and is a modified version of ModernBERT's inference speed script.\n\n## Performance Benchmarks\n\nFor variable length inputs, ModernBERT is much faster than all other models, and for long context inputs, ModernBERT is 2-3x faster than the next fastest model.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3411cd4-dd17-4c8b-a8e7-a7af453a1f20",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "590bb6eb-96b0-4950-bfc3-eb11d4b6a397",
+            "sourceToolAssistantUUID": "f3411cd4-dd17-4c8b-a8e7-a7af453a1f20",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-09T20:44:19.331Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found a benchmark.py file. Let me fetch that to see what benchmarks are actually documented."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "590bb6eb-96b0-4950-bfc3-eb11d4b6a397",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseUisC1eQPwz9Z1p2sx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "093315f9-a498-4c24-8c2c-d2f31631b8cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XNndKfQJMpUbjmaLxqgC1v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2928,
+                "cache_read_input_tokens": 21557,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2928,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-09T20:44:19.989Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CXa19iAyrEZxvFksYELuqw",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/AnswerDotAI/ModernBERT/blob/main/benchmark.py",
+                "prompt": "What benchmarking methodology is used? What GPU targets are there? What throughput metrics does this benchmark measure?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "093315f9-a498-4c24-8c2c-d2f31631b8cf",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseUisC1eQPwz9Z1p2sx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fcc2bc1f-d87c-4952-a178-c8d74144cd07",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XNndKfQJMpUbjmaLxqgC1v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2928,
+                "cache_read_input_tokens": 21557,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2928,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-09T20:44:20.360Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DMKA5uX7XuBveJ13taXJtg",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/huggingface/blog/blob/main/modernbert.md",
+                "prompt": "What are the specific throughput numbers in tokens per second? Is there an H100 benchmark? What GPU was used?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fcc2bc1f-d87c-4952-a178-c8d74144cd07",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseUisC1eQPwz9Z1p2sx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5bd40942-29e1-4938-b711-221e5b47103f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XNndKfQJMpUbjmaLxqgC1v",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2928,
+                "cache_read_input_tokens": 21557,
+                "output_tokens": 239,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2928
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 239,
+                    "cache_read_input_tokens": 21557,
+                    "cache_creation_input_tokens": 2928,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2928,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-09T20:44:24.381Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CXa19iAyrEZxvFksYELuqw",
+              "type": "tool_result",
+              "content": "# Benchmarking Methodology Analysis\n\n## Methodology\nThe benchmark uses a training and inference testing approach with warmup phases. It executes \"warmup batches\" before measurement to stabilize performance, then measures actual runs while tracking power consumption at intervals.\n\n## GPU Targets\nThe code supports flexible GPU selection via the `gpu_idx` parameter (defaults to 0). No specific GPU model is hardcoded; the benchmark adapts to \"cuda if torch.cuda.is_available() else cpu.\"\n\n## Throughput Metrics\nThe benchmark measures:\n\n- **Tokens per second**: Calculated as \"(num_samples × seq_length) / run_time\"\n- **Normalized throughput**: \"tokens_per_second_per_million_params\" normalizes results across model sizes\n- Both training and inference throughput are tracked separately\n\nAdditional metrics include power consumption (average/max watts), memory usage (GiB), and final loss values during training."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fcc2bc1f-d87c-4952-a178-c8d74144cd07",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "d79edf4a-9b4d-4c1b-82ad-1bc61cf7648a",
+            "sourceToolAssistantUUID": "fcc2bc1f-d87c-4952-a178-c8d74144cd07",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-09T20:44:25.017Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DMKA5uX7XuBveJ13taXJtg",
+              "type": "tool_result",
+              "content": "# ModernBERT Throughput Benchmarks\n\nBased on the provided content, the specific throughput metrics mentioned are:\n\n**Tokens per second:** The blog states that ModernBERT achieves inference \"in thousands of tokens per second\" but does not provide exact numerical values for throughput rates.\n\n**GPU used:** The efficiency benchmarks were conducted on an \"NVIDIA RTX 4090\" - notably a consumer-grade GPU rather than enterprise hardware.\n\n**H100 benchmark:** There is no H100 benchmark included in this documentation. The authors explicitly emphasize practicality over hype: \"First and foremost, ModernBERT is focused on practicality, not hype.\" They deliberately chose to test on \"an affordable consumer GPU, rather than the latest unobtainable hyped hardware.\"\n\nThe blog does provide comparative speed claims (such as being \"twice as fast as DeBERTa\" and \"4x faster\" for mixed-length inputs), but actual throughput numbers in tokens/second are not quantified in the source material."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5bd40942-29e1-4938-b711-221e5b47103f",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "05ac88a8-3e03-4a5e-9ab8-362edf43a7d7",
+            "sourceToolAssistantUUID": "5bd40942-29e1-4938-b711-221e5b47103f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-09T20:44:26.293Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the actual Hugging Face model card for ModernBERT-large to see if there are any additional benchmarks documented there."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05ac88a8-3e03-4a5e-9ab8-362edf43a7d7",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseVEtU8aGemz4rfKCCx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "39660f0f-441a-43d9-b566-d2e378c401c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JKMpnM5pyiqqfYEicpXj4j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 738,
+                "cache_read_input_tokens": 24485,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 738,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-09T20:44:26.647Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QvQYGZHwJG6xYh7QRFs7NS",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://huggingface.co/answerdotai/ModernBERT-large",
+                "prompt": "Are there any benchmark results or throughput metrics documented? What hardware specifications are mentioned?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39660f0f-441a-43d9-b566-d2e378c401c9",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseVEtU8aGemz4rfKCCx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e2b1c5e3-8c68-4705-8fa9-ad0af270061e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JKMpnM5pyiqqfYEicpXj4j",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 738,
+                "cache_read_input_tokens": 24485,
+                "output_tokens": 139,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 738
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 139,
+                    "cache_read_input_tokens": 24485,
+                    "cache_creation_input_tokens": 738,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 738,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-09T20:44:32.764Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QvQYGZHwJG6xYh7QRFs7NS",
+              "type": "tool_result",
+              "content": "# Benchmark Results and Hardware Specifications\n\n## Benchmark Results\n\nYes, ModernBERT includes comprehensive evaluation across multiple tasks:\n\n### Key Performance Highlights:\n- **GLUE (NLU)**: ModernBERT-base achieves **88.4**, surpassing similarly-sized encoder models. ModernBERT-large reaches **90.4**, second only to DeBERTa-v3-large (**91.4**)\n- **Code Retrieval**: State-of-the-art results on CodeSearchNet (**56.4** base, **59.5** large) and StackQA (**73.6** base, **83.9** large)\n- **Long-context Retrieval (MLDR)**: ModernBERT-large achieves **80.4** on MLDR_OOD, significantly outperforming competitors\n- **General Retrieval (BEIR)**: Strong performance in both DPR-style (**44.0** large) and ColBERT-style (**52.4** large) settings\n\n### Evaluation Categories:\n- Natural language understanding (GLUE)\n- General retrieval (BEIR)\n- Long-context retrieval (MLDR)\n- Code retrieval (CodeSearchNet and StackQA)\n\n## Hardware Specifications\n\n**Training Infrastructure:**\n- **GPU**: 8x H100 GPUs\n- **Data**: 2 trillion tokens of English text and code\n- **Sequence Length**: Pre-trained up to 1,024 tokens, then extended to 8,192 tokens\n\n## Performance Optimization\n\n**For inference efficiency**, the documentation recommends:\n> \"⚠️ If your GPU supports it, we recommend using ModernBERT with Flash Attention 2 to reach the highest efficiency.\"\n\nInstallation:\n```bash\npip install flash-attn\n```\n\n**Note**: No specific throughput metrics (tokens/second, latency) are documented on this page."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2b1c5e3-8c68-4705-8fa9-ad0af270061e",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "0d0320bb-e747-4340-a987-d52e3168d739",
+            "sourceToolAssistantUUID": "e2b1c5e3-8c68-4705-8fa9-ad0af270061e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-09T20:44:33.974Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent. Let me do one more search to see if there are any external community benchmarks or technical blogs that have run ModernBERT on H100."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0d0320bb-e747-4340-a987-d52e3168d739",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseVp51CtEwPnZAb7PDv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ce94b8bb-782d-4ad5-8dad-bda8944f5e02",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CoedX23PYSAnKo6g42KLTK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 607,
+                "cache_read_input_tokens": 25223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 607,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-09T20:44:34.609Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kk79xXgC1PjGUM547y9Li8",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"ModernBERT\" inference benchmark GPU performance comparison 2024 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce94b8bb-782d-4ad5-8dad-bda8944f5e02",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseVp51CtEwPnZAb7PDv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9f267da7-2f24-452e-8558-9678c74f3dfa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CoedX23PYSAnKo6g42KLTK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 607,
+                "cache_read_input_tokens": 25223,
+                "output_tokens": 157,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 607
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 157,
+                    "cache_read_input_tokens": 25223,
+                    "cache_creation_input_tokens": 607,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 607,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-09T20:44:34.615Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EC1dg7hgkvCo2sGYBF5NqW",
+              "name": "WebSearch",
+              "input": {
+                "query": "ModernBERT latency throughput RTX 4090 A100 benchmark"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f267da7-2f24-452e-8558-9678c74f3dfa",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseVp51CtEwPnZAb7PDv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e9614cfe-ab6c-46cf-85ee-2e2162a7376d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CoedX23PYSAnKo6g42KLTK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 607,
+                "cache_read_input_tokens": 25223,
+                "output_tokens": 157,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 607
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 157,
+                    "cache_read_input_tokens": 25223,
+                    "cache_creation_input_tokens": 607,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 607,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-09T20:44:40.531Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EC1dg7hgkvCo2sGYBF5NqW",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ModernBERT latency throughput RTX 4090 A100 benchmark\"\n\nLinks: [{\"title\":\"RTX 4090 & 5090 vs A100: Consumer GPUs Outperform Datacenter Cards | Hivenet\",\"url\":\"https://www.hivenet.com/post/rtx-4090-and-5090s---up-to-2-3x-faster-than-an-a100\"},{\"title\":\"Why A100/H100 Beat RTX 4090 for Large-Model Training\",\"url\":\"https://www.allpcb.com/allelectrohub/why-a100h100-beat-rtx-4090-for-large-model-training\"},{\"title\":\"GPU Benchmarks of H100/H200/A100/RTX 4090 and WhaleFlux Resource Management Solution\",\"url\":\"https://www.whaleflux.com/blog/gpu-benchmarks-of-h100-h200-a100-rtx-4090-and-whaleflux-resource-management-solution/\"},{\"title\":\"Nvidia RTX 4090 - GPU benchmark - UserBenchmark\",\"url\":\"https://gpu.userbenchmark.com/Nvidia-RTX-4090/Rating/4136\"},{\"title\":\"RTX4090 vLLM Benchmark: Best GPU for LLMs Below 8B on Hugging Face\",\"url\":\"https://www.databasemart.com/blog/vllm-gpu-benchmark-rtx4090\"},{\"title\":\"NVIDIA A100 40 GB (PCIe) vs. NVIDIA RTX 4090| GPU Benchmarks for AI/ML, local LLM, deep learning in %current_year% | BIZON\",\"url\":\"https://bizon-tech.com/gpu-benchmarks/NVIDIA-A100-40-GB-(PCIe)-vs-NVIDIA-RTX-4090/592vs637\"},{\"title\":\"Unveiling the Titans: Nvidia GeForce RTX 4090 vs. Nvidia A100 for Ultimate Performance - fibermall.com\",\"url\":\"https://www.fibermall.com/blog/nvidia-a100-vs-4090.htm\"},{\"title\":\"NVIDIA A100 80 GB (PCIe) vs. NVIDIA RTX 4090| GPU Benchmarks for AI/ML, local LLM, deep learning in %current_year% | BIZON\",\"url\":\"https://bizon-tech.com/gpu-benchmarks/NVIDIA-A100-80-GB-(PCIe)-vs-NVIDIA-RTX-4090/624vs637\"},{\"title\":\"NVIDIA RTX 4090 vs. A100: Two Powerhouses, Two Purposes\",\"url\":\"https://vast.ai/article/nvidia-rtx-4090-vs-a100-two-powerhouses-two-purposes\"},{\"title\":\"RTX 4090 vs A100 PCIe | Runpod GPU Benchmarks\",\"url\":\"https://www.runpod.io/gpu-compare/rtx-4090-vs-a100-pcie\"}]\n\nI've performed a web search for benchmark information on ModernBERT latency and throughput across RTX 4090 and A100 GPUs. However, the search results I found don't contain specific benchmark data for ModernBERT. Instead, the results focus on general comparisons of RTX 4090 and A100 performance for LLMs and other AI workloads.\n\nThe search did return some relevant general information:\n\n**RTX 4090 vs A100 Performance Overview:**\n- Under moderate load (1 req/s), the RTX 4090 offers latencies close to the A100 performances\n- RTX 4090 trailed the A100 on both latency and throughput for 8B LLaMA 3.1 Instruct model, though it's strong for its class\n- The A100 delivers around 2 TB/s of bandwidth – double the RTX 4090\n\n**VRAM Considerations:**\n- The RTX 4090's 24GB VRAM is suitable for small-to-medium models\n- The A100's 80GB version is suitable for models with tens of billions of parameters\n\nUnfortunately, I couldn't find specific ModernBERT benchmark results in these search results. You may need to check the official ModernBERT repository, documentation, or relevant AI benchmarking sites like HELM, MLPerf, or the authors' publications for specific latency and throughput metrics on these GPUs.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9614cfe-ab6c-46cf-85ee-2e2162a7376d",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "cd18e809-d432-40ee-af99-b9c0ce463e03",
+            "sourceToolAssistantUUID": "e9614cfe-ab6c-46cf-85ee-2e2162a7376d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-09T20:44:41.591Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kk79xXgC1PjGUM547y9Li8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"ModernBERT\" inference benchmark GPU performance comparison 2024 2025\"\n\nLinks: [{\"title\":\"NVIDIA: MLPerf AI Benchmarks\",\"url\":\"https://www.nvidia.com/en-us/data-center/resources/mlperf-benchmarks/\"},{\"title\":\"AMD Delivers Breakthrough MLPerf Inference 6.0 Results\",\"url\":\"https://www.amd.com/en/blogs/2026/amd-delivers-breakthrough-mlperf-inference-6-0-results.html\"},{\"title\":\"The Best GPUs for Local LLM Inference in 2025 | LocalLLM.in\",\"url\":\"https://localllm.in/blog/best-gpus-llm-inference-2025\"},{\"title\":\"Open Source AI Inference Benchmark | InferenceX by SemiAnalysis\",\"url\":\"https://inferencex.semianalysis.com/\"},{\"title\":\"GPU Cluster Benchmarking | Introl Blog\",\"url\":\"https://introl.com/blog/gpu-cluster-benchmarking-mlperf-testing-performance-validation\"},{\"title\":\"MLPerf Inference v5.1 Results Land With New Benchmarks and Record Participation - HPCwire\",\"url\":\"https://www.hpcwire.com/2025/09/10/mlperf-inference-v5-1-results-land-with-new-benchmarks-and-record-participation/\"},{\"title\":\"GPU LLM Performance Benchmarks | Koyeb\",\"url\":\"https://www.koyeb.com/docs/hardware/gpu-benchmarks\"},{\"title\":\"GitHub - XiongjieDai/GPU-Benchmarks-on-LLM-Inference: Multiple NVIDIA GPUs or Apple Silicon for Large Language Model Inference? · GitHub\",\"url\":\"https://github.com/XiongjieDai/GPU-Benchmarks-on-LLM-Inference\"},{\"title\":\"LLM Performance and AI Hardware: 2023–2025 Breakthroughs | by Oleksandr Kucherenko | Medium\",\"url\":\"https://medium.com/@olku/llm-performance-and-ai-hardware-2023-2025-breakthroughs-fa3a1f8dc505\"},{\"title\":\"Choosing the right GPU | LLM Inference Handbook\",\"url\":\"https://bentoml.com/llm/getting-started/choosing-the-right-gpu\"}]\n\nBased on the web search results, here's what I found regarding GPU inference performance benchmarks for 2024-2025:\n\n## General GPU Inference Performance Trends\n\nNVIDIA's Blackwell architecture now delivers over 1,000 tokens per second per user — a 15x improvement over previous generation hardware — while inference costs have plummeted 280-fold since late 2022.\n\n## Consumer GPU Performance\n\nFor consumer-grade hardware, the NVIDIA RTX 5090 emerges as the new consumer champion for LLM inference, delivering up to 213 tokens/second on 8B models with its 32GB VRAM capacity. Additionally, the RTX 5090 leads consumer GPUs with 213 tokens/second, representing a 67% improvement over the RTX 4090, with this performance gain coming from both architectural improvements and increased memory bandwidth.\n\n## Enterprise-Scale Benchmarks\n\nNVIDIA Blackwell Ultra GPUs powered the highest-performing submissions across the broadest range of models and scenarios in MLPerf Inference v6.0, and only the NVIDIA platform submitted on every newly added benchmark.\n\nIn 2025, the AMD instinct MI350 Series, including the MI355X GPU, pushed the platform forward again with new AI data types, larger-model capacity and the inference gains shown throughout this submission.\n\n## Benchmark Evolution\n\nLlama 2/3 becoming standard LLM benchmark alongside BERT.\n\nNote: The search results don't contain specific benchmarks focused on ModernBERT model inference. The results primarily cover general LLM inference benchmarks and broader GPU performance comparisons for 2024-2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f267da7-2f24-452e-8558-9678c74f3dfa",
+            "isSidechain": true,
+            "promptId": "1a22e9ee-ee99-4b4e-b0ca-b2e4481662f5",
+            "agentId": "ab57b4cc9d1dfc52e",
+            "type": "user",
+            "uuid": "6de897a6-aed6-4560-aee0-19c1a41a8609",
+            "sourceToolAssistantUUID": "9f267da7-2f24-452e-8558-9678c74f3dfa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-09T20:44:51.617Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on my comprehensive search, here's what I found about ModernBERT throughput benchmarks:\n\n## Summary of Findings\n\n### Official Benchmarks (From arXiv:2412.13663)\n\n**No H100 benchmarks exist in the official paper.** The authors explicitly chose to benchmark on an **NVIDIA RTX 4090** (consumer GPU) rather than enterprise hardware. As stated in their Hugging Face blog: *\"First and foremost, ModernBERT is focused on practicality, not hype.\"*\n\n**Documented throughput on RTX 4090:**\n- **ModernBERT-large, fixed short-context (512 tokens):** 52,300 tokens/sec\n- **ModernBERT-large, fixed long-context (8192 tokens):** 46,800 tokens/sec\n- **ModernBERT-large, variable-length short:** 52,900 tokens/sec\n- **ModernBERT-large, variable-length long:** 49,800 tokens/sec\n\nFor comparison, ModernBERT-base on RTX 4090 achieves 148,100 tokens/sec (fixed short-context).\n\n### H100 Throughput (Estimated, Not Official)\n\n**The 100-150K tokens/sec figure on H100 is UNVERIFIED.** Here's why:\n\n1. **No official H100 benchmarks** - The ModernBERT paper and Hugging Face blog contain zero H100 performance data\n2. **GPU scaling estimates** - Industry benchmarks show H100 delivers roughly **2-2.6x** the throughput of RTX 4090 for encoder models\n3. **Rough extrapolation** - If you multiply RTX 4090's ~50-52K tokens/sec by 2-2.6x, you get approximately 100-135K tokens/sec—which aligns with the 100-150K range you mentioned, but this is **not an official figure**\n\n### Hardware Used for Training\n\nThe Hugging Face model card confirms:\n- **Training:** 8x H100 GPUs\n- **Training data:** 2 trillion tokens\n- **Recommended inference:** Flash Attention 2 for optimal efficiency\n\n### Official Documentation Status\n\n- **Paper:** No H100 inference benchmarks provided\n- **Hugging Face blog:** RTX 4090 only\n- **Model card:** No throughput metrics listed\n- **GitHub repository:** Contains `benchmark.py` script but no published H100 results\n\n## Answer to Your Questions\n\n**Is 100-150K tokens/sec on H100 documented?** No, it is **unverified and not official**. It's a reasonable extrapolation based on H100/RTX-4090 performance scaling factors (2-2.6x), but the authors did not publish this figure.\n\n**What hardware were the official benchmarks run on?** RTX 4090 (consumer GPU).\n\n**What's the actual throughput range?** \n- **Verified (RTX 4090):** 46.8K - 52.9K tokens/sec for ModernBERT-large\n- **Estimated (H100):** ~100-135K tokens/sec (unverified extrapolation)\n\n## Sources\n\n- [arXiv:2412.13663 - ModernBERT Paper](https://arxiv.org/html/2412.13663v2)\n- [Hugging Face Blog - Finally, a Replacement for BERT: Introducing ModernBERT](https://huggingface.co/blog/modernbert)\n- [ModernBERT-large Model Card](https://huggingface.co/answerdotai/ModernBERT-large)\n- [NVIDIA GPU Benchmarks Documentation](https://www.cudocompute.com/blog/real-world-gpu-benchmarks)\n- [H100 vs A100 GPU Comparisons](https://lyceum.technology/magazine/a100-vs-h100-for-llm-inference/)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6de897a6-aed6-4560-aee0-19c1a41a8609",
+            "isSidechain": true,
+            "agentId": "ab57b4cc9d1dfc52e",
+            "requestId": "req_011CaseWTjAU7NH795vk5sAL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1fec4752-29c8-44e0-940a-a8fff28c1248",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c884850-9858-4096-a616-f8f43a461503",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Df6BNXjdtdCQ1avCTfbet9",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1117,
+                "cache_creation_input_tokens": 1158,
+                "cache_read_input_tokens": 25830,
+                "output_tokens": 944,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1158
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1117,
+                    "output_tokens": 944,
+                    "cache_read_input_tokens": 25830,
+                    "cache_creation_input_tokens": 1158,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1158,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-concrete-throughput-benchmarks-for-modernbert-large-on-h100-gpus-i.md"
+}

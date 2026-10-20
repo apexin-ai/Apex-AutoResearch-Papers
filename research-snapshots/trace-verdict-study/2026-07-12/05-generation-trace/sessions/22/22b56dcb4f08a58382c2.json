@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "22b56dcb4f08a58382c2",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-11 (UTC).** Only recommend ve",
+  "task_key": "6d1b4105-418a-4afa-98c3-1d4311b55b20",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/6d1b4105-418a-4afa-98c3-1d4311b55b20.jsonl",
+    "occurrence": 1,
+    "bytes": 661435,
+    "sha256": "ce3ddc3cd6f783f2f26b249e9f6161114dd3f9769ae5e37dc53e84a51b0084b3"
+  },
+  "statistics": {
+    "messages": 114,
+    "user_turns": 2,
+    "tool_calls": 28,
+    "roles": {
+      "record": 39,
+      "user": 2,
+      "assistant": 17,
+      "tool_call": 28,
+      "tool_result": 28
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "22b56dcb4f08a58382c2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 105,
+      "chunks": [
+        {
+          "path": "22b56dcb4f08a58382c2-part-0001.json",
+          "message_count": 99
+        },
+        {
+          "path": "22b56dcb4f08a58382c2-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "22b56dcb4f08a58382c2-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-complete-the-research-direction-below-with-implementation-details-today-s-date-copy-6.md"
+}

@@ -1,0 +1,599 @@
+{
+  "schema_version": "1.0",
+  "id": "5d45a34a2fbc9418a600",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the web for competing work that might close the gap between model collapse diagnosis and adaptive intervention: 1",
+  "task_key": "agent-ae6956904de90ca52",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-ae6956904de90ca52.jsonl",
+    "occurrence": 1,
+    "bytes": 35821,
+    "sha256": "f25a841f403c5d927885e02f300426924afa2dc83c89f6d88ee0bbab5dc0e62e"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T00:24:13.051Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the web for competing work that might close the gap between model collapse diagnosis and adaptive intervention:\n\n1. Search: \"adaptive real synthetic data mixing recursive training 2025 2026\"\n2. Search: \"spectral monitoring adaptive training data selection LLM 2026\"\n3. Search: \"closed-loop model collapse prevention adaptive mixing\"\n4. Search: \"budget-constrained data mixing synthetic collapse prevention\"\n5. Search: \"model collapse prevention adaptive intervention feedback loop 2025 2026\"\n\nI'm looking for any paper that uses monitoring signals (spectral, calibration, or otherwise) to dynamically adjust real/synthetic data mixing ratios during recursive training. Report any papers found with titles, venues, dates, and key methods."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "3f6f0b30-f9ae-4a1f-98b0-4335b0f69cf8",
+            "agentId": "ae6956904de90ca52",
+            "type": "user",
+            "uuid": "121d8107-98d5-43f7-9ab4-fbe5e80ce317",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "df033289-e2d2-4935-bee8-9e14d276736c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T00:24:14.105Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for papers on adaptive data mixing and model collapse prevention using the queries you've specified."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "121d8107-98d5-43f7-9ab4-fbe5e80ce317",
+            "isSidechain": true,
+            "agentId": "ae6956904de90ca52",
+            "requestId": "req_011CawisDdASPkwRqB64kqWL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "65acf69e-a1e0-43e6-a4e5-b63a69acd78f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "df033289-e2d2-4935-bee8-9e14d276736c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ScqE35yS9Vimyg2gDv7jds",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 584,
+                "cache_read_input_tokens": 13789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 584,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T00:24:14.396Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QuJeEiKqKhxw3hES6Z2NYk",
+              "name": "WebSearch",
+              "input": {
+                "query": "adaptive real synthetic data mixing recursive training 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65acf69e-a1e0-43e6-a4e5-b63a69acd78f",
+            "isSidechain": true,
+            "agentId": "ae6956904de90ca52",
+            "requestId": "req_011CawisDdASPkwRqB64kqWL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0671454d-795d-44b7-999e-12fa1081a323",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "df033289-e2d2-4935-bee8-9e14d276736c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ScqE35yS9Vimyg2gDv7jds",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 584,
+                "cache_read_input_tokens": 13789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 584,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T00:24:14.563Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NvAH3Tm4s2MphUBGBqatYn",
+              "name": "WebSearch",
+              "input": {
+                "query": "spectral monitoring adaptive training data selection LLM 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0671454d-795d-44b7-999e-12fa1081a323",
+            "isSidechain": true,
+            "agentId": "ae6956904de90ca52",
+            "requestId": "req_011CawisDdASPkwRqB64kqWL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5db34f0a-03c3-402b-96f4-3674ef2bc7b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "df033289-e2d2-4935-bee8-9e14d276736c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ScqE35yS9Vimyg2gDv7jds",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 584,
+                "cache_read_input_tokens": 13789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 584,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T00:24:14.753Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R1RSjqLhvS7sTgXpkBmryF",
+              "name": "WebSearch",
+              "input": {
+                "query": "closed-loop model collapse prevention adaptive mixing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5db34f0a-03c3-402b-96f4-3674ef2bc7b3",
+            "isSidechain": true,
+            "agentId": "ae6956904de90ca52",
+            "requestId": "req_011CawisDdASPkwRqB64kqWL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "382e16df-100d-45c3-8466-0d382fd0c090",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "df033289-e2d2-4935-bee8-9e14d276736c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ScqE35yS9Vimyg2gDv7jds",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 584,
+                "cache_read_input_tokens": 13789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 584,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T00:24:14.758Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SHxhMwBPWjrTU6jkZK5PAV",
+              "name": "WebSearch",
+              "input": {
+                "query": "budget-constrained data mixing synthetic collapse prevention"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "382e16df-100d-45c3-8466-0d382fd0c090",
+            "isSidechain": true,
+            "agentId": "ae6956904de90ca52",
+            "requestId": "req_011CawisDdASPkwRqB64kqWL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9df05bae-ffb9-46ea-a1cb-711c57ac6c88",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "df033289-e2d2-4935-bee8-9e14d276736c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ScqE35yS9Vimyg2gDv7jds",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 584,
+                "cache_read_input_tokens": 13789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 584,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T00:24:14.904Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YVqvt73d8HxJgtdYhk1GFJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "model collapse prevention adaptive intervention feedback loop 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9df05bae-ffb9-46ea-a1cb-711c57ac6c88",
+            "isSidechain": true,
+            "agentId": "ae6956904de90ca52",
+            "requestId": "req_011CawisDdASPkwRqB64kqWL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7b7d6000-cc4c-4e34-ba4e-58589a4208ea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "df033289-e2d2-4935-bee8-9e14d276736c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ScqE35yS9Vimyg2gDv7jds",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 584,
+                "cache_read_input_tokens": 13789,
+                "output_tokens": 264,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 584
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 264,
+                    "cache_read_input_tokens": 13789,
+                    "cache_creation_input_tokens": 584,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 584,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T00:24:21.692Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R1RSjqLhvS7sTgXpkBmryF",
+              "type": "tool_result",
+              "content": "Web search results for query: \"closed-loop model collapse prevention adaptive mixing\"\n\nLinks: [{\"title\":\"(PDF) Closed-loop control of an experimental mixing layer using machine learning control\",\"url\":\"https://www.researchgate.net/publication/264790640_Closed-loop_control_of_an_experimental_mixing_layer_using_machine_learning_control\"},{\"title\":\"Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf\"},{\"title\":\"Understanding Model Collapse: A Hidden Threat in Generative AI | Generative AI Lab\",\"url\":\"https://generativeailab.org/l/trends/understanding-model-collapse/1080/\"},{\"title\":\"(PDF) Closed-loop separation control using machine learning\",\"url\":\"https://www.researchgate.net/publication/262071453_Closed-loop_separation_control_using_machine_learning\"},{\"title\":\"[1909.10036] Model Reference Adaptive Control Allocation for Constrained Systems with Guaranteed Closed Loop Stability\",\"url\":\"https://arxiv.org/abs/1909.10036\"},{\"title\":\"(PDF) A Loop Recovery Method for Adaptive Control\",\"url\":\"https://www.researchgate.net/publication/234060510_A_Loop_Recovery_Method_for_Adaptive_Control\"},{\"title\":\"Closed-loop Reference Model adaptive control : with application to very flexible aircraft\",\"url\":\"https://dspace.mit.edu/handle/1721.1/87974\"},{\"title\":\"Adaptive Systems with Closed–loop Reference Models: Composite control and observer feedback - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S1474667016329822\"},{\"title\":\"Robust Closed-loop Model Predictive Control via System ...\",\"url\":\"https://arxiv.org/pdf/1911.06842\"},{\"title\":\"(PDF) Closed-Loop Turbulence Control: Progress and Challenges\",\"url\":\"https://www.researchgate.net/publication/282462874_Closed-Loop_Turbulence_Control_Progress_and_Challenges\"}]\n\nBased on the search results, I found relevant information about both model collapse prevention and closed-loop control with adaptive mixing, though the results cover these topics somewhat separately:\n\n## Model Collapse and Prevention Strategies\n\nModel collapse is a phenomenon where AI models trained on recursively generated data gradually lose their ability to produce accurate and diverse outputs, occurring due to over-representation of common patterns and forgetting less-common elements.\n\nTo prevent model collapse, researchers suggest strategies like mixing real and synthetic data, using adaptive regularization, and accumulating data over time. However, naive real+surrogate data mixing may fail to solve model collapse, suggesting that simply combining data sources isn't sufficient.\n\n## Closed-Loop Control and Adaptive Mixing\n\nIn the context of fluid dynamics and control systems, a novel framework for closed-loop control of turbulent flows called Machine Learning Control (MLC) provides a model-free method of searching for the best function to be used as a control law in closed-loop flow control.\n\nClosed-loop turbulence control is a critical enabler of aerodynamic drag reduction, lift increase, mixing enhancement, and noise reduction. Additionally, recent advances in model identification and system reduction, coupled with advances in control theory (robust, adaptive, and nonlinear) are driving significant progress in adaptive and in-time closed-loop control of fluid turbulence.\n\nThe search results suggest these are distinct research areas: one focusing on preventing degradation in AI models trained on synthetic data, and the other addressing control of physical mixing processes through adaptive feedback mechanisms.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "382e16df-100d-45c3-8466-0d382fd0c090",
+            "isSidechain": true,
+            "promptId": "3f6f0b30-f9ae-4a1f-98b0-4335b0f69cf8",
+            "agentId": "ae6956904de90ca52",
+            "type": "user",
+            "uuid": "a8bb0ced-b465-4d41-b2f2-c2b7242704b5",
+            "sourceToolAssistantUUID": "382e16df-100d-45c3-8466-0d382fd0c090",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "df033289-e2d2-4935-bee8-9e14d276736c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T00:24:22.232Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NvAH3Tm4s2MphUBGBqatYn",
+              "type": "tool_result",
+              "content": "Web search results for query: \"spectral monitoring adaptive training data selection LLM 2026\"\n\nLinks: [{\"title\":\"[2603.14315] Enhancing LLM Training via Spectral Clipping\",\"url\":\"https://arxiv.org/abs/2603.14315\"},{\"title\":\"Spectral Lens: Activation and Gradient Spectra as Diagnostics of LLM Optimization\",\"url\":\"https://arxiv.org/html/2605.05683\"},{\"title\":\"LLM-enabled adaptive scheduling in IoT sensing for optimized network performance | Scientific Reports\",\"url\":\"https://www.nature.com/articles/s41598-025-32660-0\"},{\"title\":\"Controlled LLM Training on Spectral Sphere\",\"url\":\"https://arxiv.org/html/2601.08393\"},{\"title\":\"March 17, 2026 Towards Next-Generation LLM Training: From the\",\"url\":\"https://arxiv.org/pdf/2603.14712\"},{\"title\":\"SpectraLLM: Uncovering the Ability of LLMs for Molecular Structure Elucidation from Multi-Spectral Data | OpenReview\",\"url\":\"https://openreview.net/forum?id=J5XUzUW8o3\"},{\"title\":\"Top 5 Tools for Monitoring LLM Applications in 2026 - Confident AI\",\"url\":\"https://www.confident-ai.com/knowledge-base/top-5-llm-monitoring-tools-for-ai\"},{\"title\":\"[2601.08393] Controlled LLM Training on Spectral Sphere\",\"url\":\"https://arxiv.org/abs/2601.08393\"},{\"title\":\"LLM-led vision-spectral fusion: A zero-shot approach to temporal fruit image classification - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0893608025010354\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2602.06932v2\"}]\n\nBased on the search results, here are the key findings related to spectral monitoring, adaptive training data selection, and LLMs in 2026:\n\n## Spectral-Based LLM Training Optimization\n\nRecent research addresses spectral issues in LLM training, proposing SPECTRA, a framework that uses post-spectral clipping of updates to enforce spectral-norm constraints and optional pre-spectral clipping of gradients to suppress spectral noise spikes. Experiments on LLM pretraining show SPECTRA uniformly improves validation loss for various optimizers, including AdamW, Signum, and AdEMAMix.\n\n## Spectral Monitoring as Training Diagnostics\n\nSpectral measurements serve as practical and operational diagnostics for LLM training, with activation and gradient spectra used to examine hidden mechanics in language-model training. Research shows that batch size acts as a latent determinant of representation geometry, the activation covariance tail measured early in training reliably forecasts downstream token efficiency, and movement of the activation spectrum characterizes underlying learning-dynamics changes.\n\n## Adaptive Training Data Selection and Interaction\n\nA data–model interaction paradigm is being developed in which data selection, mixture, and reweighting are performed online and adaptively, conditioned on the model's training dynamics, treating training data as a dynamic resource rather than a static one. A Data–Model Interaction System provides unified management of computational resources and training workflows, enabling data adaptation and model optimization to be jointly scheduled, monitored, and adjusted.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5db34f0a-03c3-402b-96f4-3674ef2bc7b3",
+            "isSidechain": true,
+            "promptId": "3f6f0b30-f9ae-4a1f-98b0-4335b0f69cf8",
+            "agentId": "ae6956904de90ca52",
+            "type": "user",
+            "uuid": "4bdfcfbf-76ed-47a5-ade4-392a23d4df10",
+            "sourceToolAssistantUUID": "5db34f0a-03c3-402b-96f4-3674ef2bc7b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "df033289-e2d2-4935-bee8-9e14d276736c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T00:24:22.621Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QuJeEiKqKhxw3hES6Z2NYk",
+              "type": "tool_result",
+              "content": "Web search results for query: \"adaptive real synthetic data mixing recursive training 2025 2026\"\n\nLinks: [{\"title\":\"AI training in 2026: anchoring synthetic data in human truth\",\"url\":\"https://invisibletech.ai/blog/ai-training-in-2026-anchoring-synthetic-data-in-human-truth\"},{\"title\":\"[2506.24093] Development of Hybrid Artificial Intelligence Training on Real and Synthetic Data: Benchmark on Two Mixed Training Strategies\",\"url\":\"https://arxiv.org/abs/2506.24093\"},{\"title\":\"MAXIMIZING THE POTENTIAL OF SYNTHETIC DATA\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/7416573f05b50beac6d0aef3abc805c0-Paper-Conference.pdf\"},{\"title\":\"ICLR 2026 Workshop on AI with Recursive Self-Improvement 1 Workshop Summary\",\"url\":\"https://openreview.net/pdf?id=OsPQ6zTQXV\"},{\"title\":\"Development of Hybrid Artificial Intelligence Training on Real and Synthetic Data | Springer Nature Link\",\"url\":\"https://link.springer.com/chapter/10.1007/978-3-032-02813-6_13\"},{\"title\":\"[2502.18049] Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/abs/2502.18049\"},{\"title\":\"Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf\"},{\"title\":\"Synthetic Data Generation Using Large Language Models\",\"url\":\"https://arxiv.org/pdf/2503.14023\"},{\"title\":\"Demystifying Synthetic Data in LLM Pre-training:\",\"url\":\"https://arxiv.org/pdf/2510.01631\"},{\"title\":\"From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents\",\"url\":\"https://arxiv.org/html/2601.22607v1\"}]\n\nBased on the search results, here's what I found about adaptive real synthetic data mixing and recursive training in 2025-2026:\n\n## Key Research Areas\n\n**Model Collapse and Mixing Strategies**\n\nRecursive training on purely synthetic data inevitably leads to performance degradation, however, mixing real and synthetic data can attenuate model collapse, though the proportion of real data must remain high to maintain model performance.\n\nModel collapse generally persists even on a mixture of synthetic and real training data as long as the fraction of training data which is synthetic does not vanish, and cannot generally be mitigated by simple adjustments such as data weighting; however, sophisticated iterative mixing strategies can mitigate model collapse.\n\n**Optimal Weighting Approaches**\n\nResearch investigates iteratively training generative models on a combination of newly collected real data and synthetic data from the previous training step, finding that the optimal weighting scheme under different proportions of synthetic data asymptotically follows a unified expression, revealing a fundamental trade-off between leveraging synthetic data and model performance. In some cases, the optimal weight assigned to real data corresponds to the reciprocal of the golden ratio.\n\n**Practical Implementation in 2026**\n\nDeliberately generating synthetic data with generative AI and mixing it with curated human data is where synthetic data adds value, with synthetic data best used to automate large portions of the annotation pipeline and generate thousands of variations, but the underlying corpus must remain human to provide context and prevent model drift.\n\n**LLM Pre-training Evidence**\n\nMixing any synthetic data type with real data substantially improves performance, with rephrased data mixtures showing low sensitivity to ratio (33% vs. 67% synthetic).\n\nThe research consensus suggests that adaptive mixing strategies that maintain sufficient real data while strategically incorporating synthetic data are emerging as the most promising approach for 2025-2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0671454d-795d-44b7-999e-12fa1081a323",
+            "isSidechain": true,
+            "promptId": "3f6f0b30-f9ae-4a1f-98b0-4335b0f69cf8",
+            "agentId": "ae6956904de90ca52",
+            "type": "user",
+            "uuid": "51c2280e-97b0-4b14-95a8-d5d500fae8ec",
+            "sourceToolAssistantUUID": "0671454d-795d-44b7-999e-12fa1081a323",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "df033289-e2d2-4935-bee8-9e14d276736c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-12T00:24:23.093Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YVqvt73d8HxJgtdYhk1GFJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"model collapse prevention adaptive intervention feedback loop 2025 2026\"\n\nLinks: [{\"title\":\"Preventing Model Collapse in 2025 with Human-in-the-Loop Annotation | Humans in the Loop\",\"url\":\"https://humansintheloop.org/what-is-model-collapse-and-why-its-a-2025-concern/\"},{\"title\":\"The AI Model Collapse Risk is Not Solved in 2025\",\"url\":\"https://www.winssolutions.org/ai-model-collapse-2025-recursive-training/\"},{\"title\":\"Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf\"},{\"title\":\"Model Collapse Prevention in AI Content 2025 | Reduce Risks\",\"url\":\"https://www.influencers-time.com/preventing-model-collapse-mitigating-ai-content-risks-in-2025/\"},{\"title\":\"AI Model Collapse Prevention: Analyzing the Best Practices\",\"url\":\"https://appinventiv.com/blog/ai-model-collapse-prevention/\"},{\"title\":\"Model Collapse Risks in AI Training Data 2025 | Prevention Guide\",\"url\":\"https://www.influencers-time.com/mitigating-model-collapse-risks-in-ai-data-training-2025/\"},{\"title\":\"Preventing Model Collapse in the Synthetic-Data Era\",\"url\":\"https://cseweb.ucsd.edu/~yuxiangw/classes/AIsafety-2025Fall/Lectures/preventing_model_collapse_suraj.pdf\"},{\"title\":\"AI Model Collapse: Causes and Prevention - WitnessAI\",\"url\":\"https://witness.ai/blog/ai-model-collapse/\"},{\"title\":\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data | OpenReview\",\"url\":\"https://openreview.net/forum?id=5B2K4LRgmz\"},{\"title\":\"Model Collapse Risks in AI Content 2025 | Prevent & Safeguard\",\"url\":\"https://www.influencers-time.com/preventing-model-collapse-risks-in-ai-generated-content-2025/\"}]\n\nI've found comprehensive information about model collapse prevention, adaptive intervention, and feedback loops in 2025-2026. Here are the key findings:\n\n## Model Collapse Overview\n\nModel collapse describes a progressive failure mode where models trained on data that includes outputs from other models begin to lose information, diversity, and fidelity to real-world distributions, with the dataset becoming \"self-referential\" over successive training rounds.\n\n## Feedback Loop Mechanisms\n\nWhen an AI system uses negative feedback to retrain without human intervention, the model might overcorrect or misinterpret signals, creating a vicious cycle where incorrect outputs are fed back into training data without human correction, accelerating collapse. Uncorrected feedback loops occur when AI systems retrain on their own missteps without human oversight, causing errors to propagate and multiply.\n\n## Prevention Strategies in 2025-2026\n\n**Human-in-the-Loop Approaches:**\nHuman-in-the-loop annotation involves humans actively participating in the machine learning process and combines AI's speed and scale with human nuance, judgment, and adaptability, while also introducing crucial adaptability and context-awareness that automated processes alone cannot provide.\n\n**Data Curation:**\nIf you accumulate synthetic data with a non-shrinking real-data anchor, you avoid collapse, and adding more data (even synthetic data) might actually prevent collapse. Solutions include selecting synthetic data that fills gaps in the real-data distribution while avoiding data that duplicates real data, using metrics like maximum mean discrepancy to ensure synthetic data adds new information.\n\n**Monitoring and Intervention:**\nTypical signs of model collapse in production include more generic or repetitive outputs, worse performance on rare or edge-case queries, increased confident errors, and reduced robustness when users phrase requests differently.\n\nIn 2025, the safest path is to treat AI output as a draft, protect datasets with provenance and labeling, and build feedback loops for correction rather than repetition.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b7d6000-cc4c-4e34-ba4e-58589a4208ea",
+            "isSidechain": true,
+            "promptId": "3f6f0b30-f9ae-4a1f-98b0-4335b0f69cf8",
+            "agentId": "ae6956904de90ca52",
+            "type": "user",
+            "uuid": "02ff9598-ffbb-4162-a759-b8c827869f3b",
+            "sourceToolAssistantUUID": "7b7d6000-cc4c-4e34-ba4e-58589a4208ea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "df033289-e2d2-4935-bee8-9e14d276736c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-12T00:24:23.309Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SHxhMwBPWjrTU6jkZK5PAV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"budget-constrained data mixing synthetic collapse prevention\"\n\nLinks: [{\"title\":\"Preventing Model Collapse in the Synthetic-Data Era\",\"url\":\"https://cseweb.ucsd.edu/~yuxiangw/classes/AIsafety-2025Fall/Lectures/preventing_model_collapse_suraj.pdf\"},{\"title\":\"Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World\",\"url\":\"https://arxiv.org/html/2410.16713v2\"},{\"title\":\"AI model collapse: The synthetic data trap and how to avoid it\",\"url\":\"https://insights.manageengine.com/artificial-intelligence/ai-model-collapse-synthetic-data-trap/\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.\",\"url\":\"https://arxiv.org/html/2510.16657v1\"},{\"title\":\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\",\"url\":\"https://arxiv.org/html/2404.01413v2\"},{\"title\":\"Model Collapse Risks in AI Training Data 2025 | Prevention Guide\",\"url\":\"https://www.influencers-time.com/mitigating-model-collapse-risks-in-ai-data-training-2025/\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification:\",\"url\":\"https://arxiv.org/pdf/2510.16657\"},{\"title\":\"Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf\"},{\"title\":\"[2410.16713] Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World\",\"url\":\"https://arxiv.org/abs/2410.16713\"},{\"title\":\"How to Synthesize Text Data without Model Collapse?\",\"url\":\"https://openreview.net/pdf/246df417175bd03d15d19c279b491d8dcb9a4ba3.pdf\"}]\n\nBased on the search results, I found comprehensive information on this topic. Here's what research shows about budget-constrained data mixing and synthetic collapse prevention:\n\n## Key Findings\n\n**Budget-Constrained Data Mixing Strategy:**\n\nWhen data accumulate over time but each model is trained under a fixed compute budget, losses on real test data climb faster than without a compute budget but plateau to lower values than if data are deleted en masse after each model-fitting iteration.\n\n**Core Prevention Strategies:**\n\nActively managing the real:synthetic ratio in your training data is critical, as this ratio is a critical control parameter that affects model collapse risk. If you accumulate synthetic data with a non-shrinking real-data anchor, you avoid collapse.\n\n**Practical Approaches for Limited Budgets:**\n\nFor building with limited budget, prioritize (1) deduplication, (2) provenance tagging, and (3) tail-focused eval slices, as these three steps catch many collapse trajectories early.\n\n**Data Quality vs. Volume Trade-off:**\n\nWhen constructing datasets subject to cost constraints, removing synthetic or low-quality data can sometimes bring more value than collecting greater volumes of high-quality data.\n\n**Key Distinction:**\n\nModel collapse is caused by replacement and prevented by accumulation. The research indicates that accumulating real and synthetic data together is significantly more effective at preventing collapse than replacement-based approaches, even under budget constraints.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9df05bae-ffb9-46ea-a1cb-711c57ac6c88",
+            "isSidechain": true,
+            "promptId": "3f6f0b30-f9ae-4a1f-98b0-4335b0f69cf8",
+            "agentId": "ae6956904de90ca52",
+            "type": "user",
+            "uuid": "1a02a91c-8e04-40ac-8aca-32aeb61507ec",
+            "sourceToolAssistantUUID": "9df05bae-ffb9-46ea-a1cb-711c57ac6c88",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "df033289-e2d2-4935-bee8-9e14d276736c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-12T00:24:36.765Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Research Findings: Adaptive Intervention for Model Collapse\n\nI've completed the five targeted searches. Here are the key papers and findings relevant to **adaptive monitoring-driven data mixing during recursive training**:\n\n### Most Relevant Papers Found\n\n**1. Golden Ratio Weighting Prevents Model Collapse**\n- **arXiv**: [2502.18049](https://arxiv.org/abs/2502.18049)\n- **Key Method**: Derives optimal weighting schemes for real vs. synthetic data mixing; proposes the golden ratio approach as an asymptotically optimal weighting strategy\n- **Relevance**: Provides theoretical foundation for fixed weighting, but not yet adaptive/monitoring-based\n\n**2. STRONG MODEL COLLAPSE (ICLR 2025)**\n- **Venue**: ICLR 2025\n- **Paper**: [Published at ICLR 2025](https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf)\n- **Key Focus**: Analyzes conditions under which model collapse persists; identifies that sophisticated iterative mixing strategies can mitigate collapse\n- **Relevance**: Establishes that simple static mixing fails; iterative strategies are necessary\n\n**3. Spectral Lens: Activation and Gradient Spectra as Diagnostics of LLM Optimization**\n- **arXiv**: [2605.05683](https://arxiv.org/abs/2605.05683)\n- **Key Method**: Uses activation and gradient spectra as operational diagnostics; shows activation spectrum movement characterizes learning dynamics\n- **Relevance**: **Directly addresses monitoring signals** - proposes spectral measurements for diagnosing training state\n\n**4. Enhancing LLM Training via Spectral Clipping**\n- **arXiv**: [2603.14315](https://arxiv.org/abs/2603.14315)\n- **Key Method**: SPECTRA framework with post-spectral clipping of updates and pre-spectral clipping of gradients\n- **Relevance**: Spectral-based training adjustment mechanism\n\n**5. Escaping Model Collapse via Synthetic Data Verification**\n- **arXiv**: [2510.16657](https://arxiv.org/abs/2510.16657)\n- **Key Method**: Proposes synthetic data verification approach with near-term improvements and long-term convergence guarantees\n- **Relevance**: Addresses verification as mechanism to prevent collapse propagation\n\n**6. Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data**\n- **OpenReview**: [5B2K4LRgmz](https://openreview.net/forum?id=5B2K4LRgmz)\n- **Key Method**: Shows that accumulating (rather than replacing) real data prevents collapse; analyzes budget-constrained scenarios\n- **Relevance**: Establishes accumulation principle; includes budget constraints\n\n**7. Controlled LLM Training on Spectral Sphere**\n- **arXiv**: [2601.08393](https://arxiv.org/abs/2601.08393)\n- **Key Method**: Spectral sphere control during LLM training\n- **Relevance**: Another spectral monitoring approach\n\n### Gap Analysis\n\n**What EXISTS in the literature:**\n- Theoretical analysis of optimal static mixing ratios (golden ratio)\n- Spectral monitoring mechanisms for training diagnostics\n- Evidence that iterative/adaptive strategies help more than static mixing\n- Data verification approaches\n\n**What APPEARS MISSING:**\n- **Closed-loop feedback systems** that explicitly adjust real/synthetic mixing ratios *in response to* spectral or other monitoring signals *during training*\n- Papers implementing actual monitoring → intervention loops (most papers analyze or propose approaches, but don't implement dynamic closed-loop adjustment)\n- Budget-aware adaptive mixing that adjusts online based on observed spectral degradation\n\n### Key References by Category\n\n**Monitoring Signals:**\n- [Spectral Lens (2605.05683)](https://arxiv.org/abs/2605.05683)\n- [SPECTRA (2603.14315)](https://arxiv.org/abs/2603.14315)\n\n**Data Mixing Strategy:**\n- [Golden Ratio (2502.18049)](https://arxiv.org/abs/2502.18049)\n- [STRONG MODEL COLLAPSE (ICLR 2025)](https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf)\n\n**Accumulation Principle:**\n- [Is Model Collapse Inevitable? (OpenReview)](https://openreview.net/forum?id=5B2K4LRgmz)\n\n**Verification/Prevention:**\n- [Synthetic Data Verification (2510.16657)](https://arxiv.org/abs/2510.16657)\n\nSources:\n- [Golden Ratio Weighting Prevents Model Collapse](https://arxiv.org/abs/2502.18049)\n- [Spectral Lens: Activation and Gradient Spectra as Diagnostics of LLM Optimization](https://arxiv.org/abs/2605.05683)\n- [Enhancing LLM Training via Spectral Clipping](https://arxiv.org/abs/2603.14315)\n- [Escaping Model Collapse via Synthetic Data Verification](https://arxiv.org/abs/2510.16657)\n- [Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data](https://openreview.net/forum?id=5B2K4LRgmz)\n- [STRONG MODEL COLLAPSE (ICLR 2025)](https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf)\n- [Controlled LLM Training on Spectral Sphere](https://arxiv.org/abs/2601.08393)\n- [AI training in 2026: anchoring synthetic data in human truth](https://invisibletech.ai/blog/ai-training-in-2026-anchoring-synthetic-data-in-human-truth)\n- [Development of Hybrid Artificial Intelligence Training on Real and Synthetic Data: Benchmark on Two Mixed Training Strategies](https://arxiv.org/abs/2506.24093)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a02a91c-8e04-40ac-8aca-32aeb61507ec",
+            "isSidechain": true,
+            "agentId": "ae6956904de90ca52",
+            "requestId": "req_011CawisySAC2xTP7UWCGZHv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "15ef57ac-0850-49c5-9bb6-86ba59811a8d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "df033289-e2d2-4935-bee8-9e14d276736c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018j5QXdYeQi5CgqAPVrdyeh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1043,
+                "cache_creation_input_tokens": 4783,
+                "cache_read_input_tokens": 14373,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4783,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-web-for-competing-work-that-might-close-the-gap-between-model-colla.md"
+}

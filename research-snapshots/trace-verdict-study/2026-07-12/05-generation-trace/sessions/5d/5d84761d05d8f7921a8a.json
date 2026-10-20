@@ -1,0 +1,1040 @@
+{
+  "schema_version": "1.0",
+  "id": "5d84761d05d8f7921a8a",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are helping build a related work section for a paper about \"Embedding Alignment Gap\" — where submodular-based divers",
+  "task_key": "agent-af5811deecee9942b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-af5811deecee9942b.jsonl",
+    "occurrence": 1,
+    "bytes": 45060,
+    "sha256": "abb5219d6a0a5cd76264bee5eb45c33b37262a7db9016bffc215e8a86884a355"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T18:32:28.142Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are helping build a related work section for a paper about \"Embedding Alignment Gap\" — where submodular-based diversity selection on internal embeddings fails because the embedding space degrades during iterative self-training.\n\nYour task: Search and verify papers in \"Submodular Maximization for Data Selection\".\n\n**Seed papers to verify:**\n1. Iyer & Bilmes (2013) - submodular optimization for data subset selection (search: \"Iyer Bilmes 2013 submodular optimization\")\n2. Wei et al. (2015) - submodularity in data subset selection (search: \"Wei Bilmes 2015 submodularity data subset selection machine learning\")\n\nFor EACH, use WebSearch to find: exact title, all authors, year, venue.\n\nThen search for 1-2 ADDITIONAL papers on submodular optimization for data selection, facility location for coreset selection, or submodular functions in active learning/data pruning (preferably 2018+). Verify each.\n\n**Output format:**\nPAPER: [Author et al. (Year)] \"Exact Title\" — Venue\nVERIFIED: Yes/No\nRELEVANCE: One sentence connecting to diversity-based data selection using embedding geometry\n\nList all papers numbered."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "cb9d95fc-9c2d-4329-a2e0-19f7dffc3a15",
+            "agentId": "af5811deecee9942b",
+            "type": "user",
+            "uuid": "0a9f8f9a-6fef-401d-8a8e-7d94ebcceba8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T18:32:28.145Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "0a9f8f9a-6fef-401d-8a8e-7d94ebcceba8",
+                "isSidechain": true,
+                "agentId": "af5811deecee9942b",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "66d5afaa-6ba0-4db1-bb10-5f805c5f17eb",
+                "timestamp": "2026-05-13T18:32:28.145Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+                "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T18:32:30.790Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Nkpmd53Gy9enLuNjNCrRpE",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66d5afaa-6ba0-4db1-bb10-5f805c5f17eb",
+            "isSidechain": true,
+            "agentId": "af5811deecee9942b",
+            "requestId": "req_011Cb13fKMase9NNrNMKG7gB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9e278550-6f8b-46e6-8011-329d61cb1c26",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_016iU2FkrCamz28F7Xbqj2Gt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6087,
+                "cache_read_input_tokens": 8112,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6087
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 8112,
+                    "cache_creation_input_tokens": 6087,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6087,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T18:32:30.792Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Nkpmd53Gy9enLuNjNCrRpE",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e278550-6f8b-46e6-8011-329d61cb1c26",
+            "isSidechain": true,
+            "promptId": "cb9d95fc-9c2d-4329-a2e0-19f7dffc3a15",
+            "agentId": "af5811deecee9942b",
+            "type": "user",
+            "uuid": "f9f99055-7e19-4ab4-a059-5b28607e8957",
+            "sourceToolAssistantUUID": "9e278550-6f8b-46e6-8011-329d61cb1c26",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T18:32:32.740Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for all four papers in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f9f99055-7e19-4ab4-a059-5b28607e8957",
+            "isSidechain": true,
+            "agentId": "af5811deecee9942b",
+            "requestId": "req_011Cb13fWyayod8RRu4kgGFc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "66697385-7309-48c3-a341-589ee37f513f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01XnQteEywsJCtrNqBz2NHvV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1439,
+                "cache_read_input_tokens": 14199,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1439,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T18:32:33.190Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LAJmghjQTYwuifXft2dcdd",
+              "name": "WebSearch",
+              "input": {
+                "query": "Iyer Bilmes 2013 submodular optimization data subset selection"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66697385-7309-48c3-a341-589ee37f513f",
+            "isSidechain": true,
+            "agentId": "af5811deecee9942b",
+            "requestId": "req_011Cb13fWyayod8RRu4kgGFc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e3d03e71-3cd2-418c-b798-88b263578088",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01XnQteEywsJCtrNqBz2NHvV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1439,
+                "cache_read_input_tokens": 14199,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1439,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T18:32:34.051Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015Ft24VkvQfCu7fheLgLjpX",
+              "name": "WebSearch",
+              "input": {
+                "query": "Wei Bilmes 2015 submodularity data subset selection machine learning"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3d03e71-3cd2-418c-b798-88b263578088",
+            "isSidechain": true,
+            "agentId": "af5811deecee9942b",
+            "requestId": "req_011Cb13fWyayod8RRu4kgGFc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "306cd80a-7d8e-4170-a33a-25b39b7475da",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01XnQteEywsJCtrNqBz2NHvV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1439,
+                "cache_read_input_tokens": 14199,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1439,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T18:32:34.908Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QNE2PrtkooXqa59uJaxRPQ",
+              "name": "WebSearch",
+              "input": {
+                "query": "facility location coreset selection submodular 2018 2019 2020 data pruning"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "306cd80a-7d8e-4170-a33a-25b39b7475da",
+            "isSidechain": true,
+            "agentId": "af5811deecee9942b",
+            "requestId": "req_011Cb13fWyayod8RRu4kgGFc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9ac53370-2cc7-4b90-a3fe-93a154ec3278",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01XnQteEywsJCtrNqBz2NHvV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1439,
+                "cache_read_input_tokens": 14199,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1439,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T18:32:35.120Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S6NJnUdK2C3i6aj3uWvm88",
+              "name": "WebSearch",
+              "input": {
+                "query": "submodular active learning data selection embedding 2019 2020 2021 2022"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ac53370-2cc7-4b90-a3fe-93a154ec3278",
+            "isSidechain": true,
+            "agentId": "af5811deecee9942b",
+            "requestId": "req_011Cb13fWyayod8RRu4kgGFc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "294b00aa-97f5-4915-a2d9-0ba550459c44",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01XnQteEywsJCtrNqBz2NHvV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1439,
+                "cache_read_input_tokens": 14199,
+                "output_tokens": 239,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1439
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 239,
+                    "cache_read_input_tokens": 14199,
+                    "cache_creation_input_tokens": 1439,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1439,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T18:32:39.277Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LAJmghjQTYwuifXft2dcdd",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Iyer Bilmes 2013 submodular optimization data subset selection\"\n\nLinks: [{\"title\":\"Rishabh Iyer - Research\",\"url\":\"https://sites.google.com/view/rishabhiyer/research\"},{\"title\":\"Submodularity in data subset selection and active learning | Proceedings of the 32nd International Conference on Machine Learning - Volume 37\",\"url\":\"https://dl.acm.org/doi/10.5555/3045118.3045326\"},{\"title\":\"Submodularity in Data Subset Selection and Active Learning\",\"url\":\"https://proceedings.mlr.press/v37/wei15.html\"},{\"title\":\"[1311.2106] Submodular Optimization with Submodular Cover and Submodular Knapsack Constraints\",\"url\":\"https://arxiv.org/abs/1311.2106\"},{\"title\":\"[PDF] Submodularity in Data Subset Selection and Active Learning | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Submodularity-in-Data-Subset-Selection-and-Active-Wei-Iyer/afdb6b7a083e3b7304c354925a3f3528716cb44e\"},{\"title\":\"Bilmes and Iyer Win Best Paper at the 2013 Neural Information Processing Systems Conference | UW Department of Electrical & Computer Engineering\",\"url\":\"https://www.ece.uw.edu/spotlight/bilmes-and-iyer-win-best-paper-at-the-2013-neural-information-processing-systems-conference/\"},{\"title\":\"On Fine-Tuning Submodular Functions for Data Subset Selection\",\"url\":\"https://digital.lib.washington.edu/bitstreams/38c03838-ca8b-4ad2-a595-165fbe0155ee/download\"},{\"title\":\"Submodularity for Data Selection in Statistical Machine Translation\",\"url\":\"https://people.ece.uw.edu/bilmes/p/mypubs/kirchhoff2014-submodmt.pdf\"},{\"title\":\"Submodularity in Data Subset Selection and Active Learning Kai Wei\",\"url\":\"https://proceedings.mlr.press/v37/wei15.pdf\"},{\"title\":\"Submodular Optimization with Submodular Cover and Submodular Knapsack Constraints\",\"url\":\"https://papers.nips.cc/paper/4911-submodular-optimization-with-submodular-cover-and-submodular-knapsack-constraints\"}]\n\nI've found relevant research related to your query. Here are the key findings:\n\n## Iyer and Bilmes 2013 Work on Submodular Optimization\n\nRishabh Iyer and Jeff Bilmes published multiple papers in 2013 on submodular optimization topics including \"Submodular optimization with submodular cover and submodular knapsack constraints\" at NIPS 2013 (which won an Outstanding Paper Award).\n\nThis work investigated two optimization problems — minimizing a submodular function subject to a submodular lower bound constraint (submodular cover) and maximizing a submodular function subject to a submodular upper bound constraint (submodular knapsack), motivated by real-world applications including sensor placement and data subset selection.\n\n## Data Subset Selection Applications\n\nWhile the main 2013 papers focused on the optimization framework itself, subsequent work by Wei, Iyer, and Bilmes in 2015 addressed submodularity in data subset selection and active learning at ICML. This work showed the connection of submodularity to data likelihood functions for Naive Bayes and Nearest Neighbor classifiers, formulated data subset selection problems as constrained submodular maximization, and proposed a filtering active submodular selection (FASS) scheme combining uncertainty sampling with submodular data subset selection.\n\nThe research demonstrates how submodular optimization provides a principled framework for selecting representative data subsets while maintaining model performance.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3d03e71-3cd2-418c-b798-88b263578088",
+            "isSidechain": true,
+            "promptId": "cb9d95fc-9c2d-4329-a2e0-19f7dffc3a15",
+            "agentId": "af5811deecee9942b",
+            "type": "user",
+            "uuid": "3eb44862-2554-4d4f-bb8d-1a9a91708458",
+            "sourceToolAssistantUUID": "e3d03e71-3cd2-418c-b798-88b263578088",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T18:32:39.331Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015Ft24VkvQfCu7fheLgLjpX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Wei Bilmes 2015 submodularity data subset selection machine learning\"\n\nLinks: [{\"title\":\"Submodularity in Data Subset Selection and Active Learning\",\"url\":\"https://proceedings.mlr.press/v37/wei15.html\"},{\"title\":\"Submodularity in data subset selection and active learning | Proceedings of the 32nd International Conference on Machine Learning - Volume 37\",\"url\":\"https://dl.acm.org/doi/10.5555/3045118.3045326\"},{\"title\":\"Jeff A. Bilmes Homepage\",\"url\":\"https://people.ece.uw.edu/bilmes/p/pgs/b2hd-wei2015-submodular-data-active.html\"},{\"title\":\"dblp: Submodularity in Data Subset Selection and Active Learning.\",\"url\":\"https://dblp.org/rec/conf/icml/WeiIB15.html\"},{\"title\":\"[PDF] Submodularity in Data Subset Selection and Active Learning | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Submodularity-in-Data-Subset-Selection-and-Active-Wei-Iyer/afdb6b7a083e3b7304c354925a3f3528716cb44e\"},{\"title\":\"Submodularity in Data Subset Selection and Active Learning Kai Wei\",\"url\":\"https://proceedings.mlr.press/v37/wei15.pdf\"},{\"title\":\"Rishabh Iyer - Research\",\"url\":\"https://sites.google.com/view/rishabhiyer/research\"},{\"title\":\"Submodularity in Data Subset Selection and Active Learning\",\"url\":\"https://videolectures.net/videos/icml2015_wei_submodularity\"},{\"title\":\"CARAML Lab - Publications\",\"url\":\"https://www.caraml-lab.com/publications/\"},{\"title\":\"Rishabh Iyer's Webpage\",\"url\":\"https://rishabhk108.github.io/\"}]\n\nI found the paper you're looking for! Here's a summary of the search results:\n\nThe paper \"Submodularity in Data Subset Selection and Active Learning\" was authored by Kai Wei, Rishabh Iyer, and Jeff Bilmes and was published at the International Conference on Machine Learning (ICML) in Lille, France in 2015.\n\nThe paper shows the connection of submodularity to the data likelihood functions for Naive Bayes (NB) and Nearest Neighbor (NN) classifiers, and formulates the data subset selection problems for these classifiers as constrained submodular maximization.\n\nFurthermore, the authors apply this framework to active learning and propose a novel scheme called filtering active submodular selection (FASS), where they combine the uncertainty sampling method with a submodular data subset selection framework.\n\nThe paper extensively evaluates the proposed framework on text categorization and handwritten digit recognition tasks with four different classifiers, including Deep Neural Network (DNN) based classifiers, with empirical results indicating significant improvement over state-of-the-art algorithms.\n\nThe paper is available at the Proceedings of Machine Learning Research (PMLR) website and has been widely cited in subsequent research on submodular optimization for machine learning applications.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "306cd80a-7d8e-4170-a33a-25b39b7475da",
+            "isSidechain": true,
+            "promptId": "cb9d95fc-9c2d-4329-a2e0-19f7dffc3a15",
+            "agentId": "af5811deecee9942b",
+            "type": "user",
+            "uuid": "532d3c88-ba19-4883-9b3d-ac7b957fe79f",
+            "sourceToolAssistantUUID": "306cd80a-7d8e-4170-a33a-25b39b7475da",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T18:32:42.014Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QNE2PrtkooXqa59uJaxRPQ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"facility location coreset selection submodular 2018 2019 2020 data pruning\"\n\nLinks: [{\"title\":\"A Coreset Selection of Coreset Selection Literature: Introduction and Recent Advances\",\"url\":\"https://arxiv.org/html/2505.17799v1\"},{\"title\":\"SubZeroCore: A Submodular Approach with Zero Training for Coreset Selection\",\"url\":\"https://arxiv.org/html/2509.21748\"},{\"title\":\"(PDF) SubZeroCore: A Submodular Approach with Zero Training for Coreset Selection\",\"url\":\"https://www.researchgate.net/publication/395944227_SubZeroCore_A_Submodular_Approach_with_Zero_Training_for_Coreset_Selection\"},{\"title\":\"1 A Coreset Selection of Coreset Selection Literature:\",\"url\":\"https://arxiv.org/pdf/2505.17799\"},{\"title\":\"Active Learning is a Strong Baseline for Data Subset Selection\",\"url\":\"https://openreview.net/pdf?id=PAgpyQ5rGS\"},{\"title\":\"SubZeroCore: Unified Coreset Selection\",\"url\":\"https://www.emergentmind.com/topics/core-reference-set\"},{\"title\":\"GLISTER: Generalization based Data Subset Selection for Efﬁcient and Robust\",\"url\":\"https://www.cse.iitb.ac.in/~ganesh/papers/aaai2021.pdf\"},{\"title\":\"GitHub - PatrickZH/DeepCore: Code for coreset selection methods · GitHub\",\"url\":\"https://github.com/PatrickZH/DeepCore\"},{\"title\":\"Coresets for Data-efﬁcient Training of Machine Learning Models\",\"url\":\"https://cs.stanford.edu/people/jure/pubs/craig-icml20.pdf\"},{\"title\":\"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019\",\"url\":\"https://openreview.net/pdf/e791fa328e06b73e4668b27df0ca04c49e8b5cb4.pdf\"}]\n\nHere are the search results for your query on facility location, coreset selection, submodular functions, and data pruning from 2018-2020 and recent work:\n\n## Key Findings:\n\n**Core Concepts:**\nFacility Location is a common submodular function used in coreset selection that maximizes coverage, along with other functions like Graph Cut and Log Determinant which measure the diversity of information.\n\n**Notable Methods:**\n\n1. **CRAIG (2020):** Uses a submodular facility location function for coreset selection. This gradient-matching approach formulates the problem as a facility location optimization problem.\n\n2. **GLISTER:** Offers variants including F-GLISTER with Facility Location as a regularizer, and D-GLISTER with diversity regularization for active learning.\n\n3. **Submodular Optimization:** Submodular functions can be efficiently maximized using a greedy algorithm, which provides a (1-1/e) ≈ 63% approximation guarantee for cardinality-constrained maximization.\n\n**Recent Advances (2025):**\n\nSubZeroCore is a training-free coreset selection method that integrates submodular coverage and density into a unified objective, and despite no training, matches training-based baselines and significantly outperforms them at high pruning rates.\n\n**Data Pruning Context:**\nMany attempts have been devoted to prune the training dataset to enable efficient learning, with data subset selection aiming to reduce the size of training sets by finding a core subset that generalizes on par with the full training set.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ac53370-2cc7-4b90-a3fe-93a154ec3278",
+            "isSidechain": true,
+            "promptId": "cb9d95fc-9c2d-4329-a2e0-19f7dffc3a15",
+            "agentId": "af5811deecee9942b",
+            "type": "user",
+            "uuid": "0b7a763e-a53e-43f0-8e71-997b6fa1cd29",
+            "sourceToolAssistantUUID": "9ac53370-2cc7-4b90-a3fe-93a154ec3278",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T18:32:42.398Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S6NJnUdK2C3i6aj3uWvm88",
+              "type": "tool_result",
+              "content": "Web search results for query: \"submodular active learning data selection embedding 2019 2020 2021 2022\"\n\nLinks: [{\"title\":\"Data Source Selection in Federated Learning: A Submodular Optimization Approach | Springer Nature Link\",\"url\":\"https://link.springer.com/chapter/10.1007/978-3-031-00126-0_43\"},{\"title\":\"STENCIL: Submodular Mutual Information Based Weak Supervision for Cold-Start Active Learning\",\"url\":\"https://arxiv.org/html/2402.13468\"},{\"title\":\"Active Learning is a Strong Baseline for Data Subset Selection\",\"url\":\"https://openreview.net/pdf?id=PAgpyQ5rGS\"},{\"title\":\"Submodularity in Data Subset Selection and Active Learning Kai Wei\",\"url\":\"https://proceedings.mlr.press/v37/wei15.pdf\"},{\"title\":\"Submodular Information Measures Based Active Learning ...\",\"url\":\"https://arxiv.org/pdf/2107.00717\"},{\"title\":\"Learning From Less Data: A Unified Data Subset Selection and Active Learning Framework for Computer Vision | Request PDF\",\"url\":\"https://www.researchgate.net/publication/331591266_Learning_From_Less_Data_A_Unified_Data_Subset_Selection_and_Active_Learning_Framework_for_Computer_Vision\"},{\"title\":\"[PDF] Submodularity in Data Subset Selection and Active Learning | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Submodularity-in-Data-Subset-Selection-and-Active-Wei-Iyer/afdb6b7a083e3b7304c354925a3f3528716cb44e\"},{\"title\":\"(PDF) Submodularity-Inspired Data Selection for Goal-Oriented Chatbot Training Based on Sentence Embeddings\",\"url\":\"https://www.researchgate.net/publication/322929407_Submodularity-inspired_Data_Selection_for_Goal-oriented_Chatbot_Training_based_on_Sentence_Embeddings\"},{\"title\":\"Submodularity in data subset selection and active learning | Proceedings of the 32nd International Conference on Machine Learning - Volume 37\",\"url\":\"https://dl.acm.org/doi/10.5555/3045118.3045326\"},{\"title\":\"SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios | Request PDF\",\"url\":\"https://www.researchgate.net/publication/353054510_SIMILAR_Submodular_Information_Measures_Based_Active_Learning_In_Realistic_Scenarios\"}]\n\nI've successfully retrieved search results for your query on submodular active learning and data selection with embeddings from 2019-2022. Here are the key findings:\n\n## Recent Research Highlights\n\n**Submodular Information Measures in Active Learning**\n\nA notable 2019 work by Iyer & Bilmes presented a memoization framework for scaling submodular optimization to large scale problems at the 22nd International Conference on Artificial Intelligence and Statistics. Building on this foundation, Kothawade et al. (2021) introduced SIMILAR: Submodular Information Measures Based Active Learning in Realistic Scenarios.\n\n**Cold-Start Active Learning with Weak Supervision**\n\nSTENCIL (2024) presents a submodular mutual information-based weak supervision approach for cold-start active learning that effectively utilizes prior knowledge through exemplar sets.\n\n**Data Source Selection in Federated Learning**\n\nRecent work (2022) proves that data source selection in federated learning is a monotone submodular maximization problem and proposes FDSS, an efficient algorithm with constant approximate ratio.\n\n**General Framework Applications**\n\nSIMILAR uses submodular information measures as acquisition functions and extends to realistic settings like class imbalance and out-of-distribution data, functioning as a scalable solution for active learning on large real-world datasets.\n\n**Core Theory**\n\nSubmodular functions like facility location, log determinant, and graph cut are widely recognized for modeling diversity, with successful applications in summarization, curriculum learning, active learning, and subset selection.\n\nThe search results demonstrate significant progress in combining submodular optimization with active learning and embedding-based approaches between 2019-2022, particularly for handling realistic scenarios like class imbalance and noisy data.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "294b00aa-97f5-4915-a2d9-0ba550459c44",
+            "isSidechain": true,
+            "promptId": "cb9d95fc-9c2d-4329-a2e0-19f7dffc3a15",
+            "agentId": "af5811deecee9942b",
+            "type": "user",
+            "uuid": "5e848ec0-ce29-461c-ab10-c9ff4b8b9270",
+            "sourceToolAssistantUUID": "294b00aa-97f5-4915-a2d9-0ba550459c44",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T18:32:45.760Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get more details on the CRAIG paper and SIMILAR paper as strong additional candidates."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e848ec0-ce29-461c-ab10-c9ff4b8b9270",
+            "isSidechain": true,
+            "agentId": "af5811deecee9942b",
+            "requestId": "req_011Cb13gNYrRHeUPEaDyChAn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "db4d99b2-32d8-40b4-81ad-6c3ad0967551",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01KJ4HHjUujsEf141wzztQYR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4006,
+                "cache_read_input_tokens": 15638,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4006,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T18:32:46.640Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JosdeXZNHJmk8YVc6YywgG",
+              "name": "WebSearch",
+              "input": {
+                "query": "CRAIG coreset selection facility location submodular Mirzasoleiman 2020 ICML exact title authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db4d99b2-32d8-40b4-81ad-6c3ad0967551",
+            "isSidechain": true,
+            "agentId": "af5811deecee9942b",
+            "requestId": "req_011Cb13gNYrRHeUPEaDyChAn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cb742e5d-663f-417f-ade6-695a670ee7ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01KJ4HHjUujsEf141wzztQYR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4006,
+                "cache_read_input_tokens": 15638,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4006,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T18:32:48.035Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D4i2FfDCwfUwcsvNiHaBqc",
+              "name": "WebSearch",
+              "input": {
+                "query": "SIMILAR submodular information measures active learning Kothawade 2021 NeurIPS exact title venue authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb742e5d-663f-417f-ade6-695a670ee7ee",
+            "isSidechain": true,
+            "agentId": "af5811deecee9942b",
+            "requestId": "req_011Cb13gNYrRHeUPEaDyChAn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "370372e4-6e73-4e5c-b879-da6a2c1e74c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01KJ4HHjUujsEf141wzztQYR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4006,
+                "cache_read_input_tokens": 15638,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4006,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T18:32:48.203Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S4TCctfFsVG2vP43ZWjrFK",
+              "name": "WebSearch",
+              "input": {
+                "query": "Iyer Bilmes 2013 \"submodular optimization\" NeurIPS exact paper title best paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "370372e4-6e73-4e5c-b879-da6a2c1e74c6",
+            "isSidechain": true,
+            "agentId": "af5811deecee9942b",
+            "requestId": "req_011Cb13gNYrRHeUPEaDyChAn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1189457c-a497-4e00-98e4-be39543386c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01KJ4HHjUujsEf141wzztQYR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4006,
+                "cache_read_input_tokens": 15638,
+                "output_tokens": 217,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4006
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 217,
+                    "cache_read_input_tokens": 15638,
+                    "cache_creation_input_tokens": 4006,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4006,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T18:32:51.546Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S4TCctfFsVG2vP43ZWjrFK",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Iyer Bilmes 2013 \"submodular optimization\" NeurIPS exact paper title best paper\"\n\nLinks: [{\"title\":\"Submodular Optimization with Submodular Cover and ...\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2013/file/a1d50185e7426cbb0acad1e6ca74b9aa-Paper.pdf\"},{\"title\":\"Submodular Optimization with Submodular Cover and Submodular Knapsack Constraints\",\"url\":\"https://proceedings.neurips.cc/paper/2013/hash/a1d50185e7426cbb0acad1e6ca74b9aa-Abstract.html\"},{\"title\":\"Curvature and Optimal Algorithms for Learning and Minimizing Submodular Functions\",\"url\":\"https://proceedings.neurips.cc/paper/2013/hash/c1e39d912d21c91dce811d6da9929ae8-Abstract.html\"},{\"title\":\"Bilmes and Iyer Win Best Paper at the 2013 Neural Information Processing Systems Conference | UW Department of Electrical & Computer Engineering\",\"url\":\"https://www.ece.uw.edu/spotlight/bilmes-and-iyer-win-best-paper-at-the-2013-neural-information-processing-systems-conference/\"},{\"title\":\"Distributed Submodular Maximization:\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2013/file/84d2004bf28a2095230e8e14993d398d-Paper.pdf\"},{\"title\":\"Rishabh Iyer - Research\",\"url\":\"https://sites.google.com/view/rishabhiyer/research\"},{\"title\":\"A Generalization of Submodular Cover via the\",\"url\":\"https://proceedings.neurips.cc/paper/2015/file/7bcdf75ad237b8e02e301f4091fb6bc8-Paper.pdf\"},{\"title\":\"CARAML Lab - Publications\",\"url\":\"https://www.caraml-lab.com/publications/\"},{\"title\":\"Rishabh Iyer's Webpage\",\"url\":\"https://rishabhk108.github.io/\"},{\"title\":\"Rishabh Iyer - Publications\",\"url\":\"https://sites.google.com/view/rishabhiyer/publications\"}]\n\nBased on the search results, I found the paper you're looking for:\n\nThe exact paper title is \"Submodular Optimization with Submodular Cover and Submodular Knapsack Constraints\" by Rishabh Iyer and Jeff Bilmes, which was published at NeurIPS 2013.\n\nImportantly, this paper was one of three papers selected at the conference to receive the Outstanding Paper Award.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1189457c-a497-4e00-98e4-be39543386c1",
+            "isSidechain": true,
+            "promptId": "cb9d95fc-9c2d-4329-a2e0-19f7dffc3a15",
+            "agentId": "af5811deecee9942b",
+            "type": "user",
+            "uuid": "bd82a70d-f1ee-419d-af3a-d4819e191fe7",
+            "sourceToolAssistantUUID": "1189457c-a497-4e00-98e4-be39543386c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T18:32:51.652Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D4i2FfDCwfUwcsvNiHaBqc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SIMILAR submodular information measures active learning Kothawade 2021 NeurIPS exact title venue authors\"\n\nLinks: [{\"title\":\"SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios\",\"url\":\"https://proceedings.neurips.cc/paper/2021/hash/9af08cda54faea9adf40a201794183cf-Abstract.html\"},{\"title\":\"SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios\",\"url\":\"https://papers.nips.cc/paper/2021/hash/9af08cda54faea9adf40a201794183cf-Abstract.html\"},{\"title\":\"SIMILAR Submodular Information Measures Based\",\"url\":\"https://nips.cc/media/neurips-2021/Slides/26574.pdf\"},{\"title\":\"SIMILAR Submodular Information Measures Based Active ...\",\"url\":\"https://neurips.cc/media/neurips-2021/Slides/26574.pdf\"},{\"title\":\"SIMILAR: Submodular Information Measures Based Active ...\",\"url\":\"https://proceedings.neurips.cc/paper/2021/file/9af08cda54faea9adf40a201794183cf-Paper.pdf\"},{\"title\":\"SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios | by CARAML Lab | Medium\",\"url\":\"https://caraml-lab.medium.com/similar-submodular-information-measures-based-active-learning-in-realistic-scenarios-a9eb8c1d9047\"},{\"title\":\"SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios | OpenReview\",\"url\":\"https://openreview.net/forum?id=VGDFaLNFFk\"},{\"title\":\"CARAML Lab - Publications\",\"url\":\"https://www.caraml-lab.com/publications/\"},{\"title\":\"Google Scholar\",\"url\":\"https://scholar.google.com/scholar?q=SIMILAR:+Submodular+Information+Measures+Based+Active+Learning+In+Realistic+Scenarios.\"},{\"title\":\"[2107.00717] SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios\",\"url\":\"https://arxiv.org/abs/2107.00717\"}]\n\nBased on the search results, here is the information you requested:\n\n**Exact Title:** SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios\n\n**Venue:** Advances in Neural Information Processing Systems 34 (NeurIPS 2021)\n\n**Authors:** Suraj Kothawade, Nathan Beck, Krishnateja Killamsetty, Rishabh Iyer\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "370372e4-6e73-4e5c-b879-da6a2c1e74c6",
+            "isSidechain": true,
+            "promptId": "cb9d95fc-9c2d-4329-a2e0-19f7dffc3a15",
+            "agentId": "af5811deecee9942b",
+            "type": "user",
+            "uuid": "f2f877b3-daba-4c52-be65-9c5dab901dc2",
+            "sourceToolAssistantUUID": "370372e4-6e73-4e5c-b879-da6a2c1e74c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T18:32:51.686Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JosdeXZNHJmk8YVc6YywgG",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CRAIG coreset selection facility location submodular Mirzasoleiman 2020 ICML exact title authors\"\n\nLinks: [{\"title\":\"Coresets for Data-efﬁcient Training of Machine Learning Models\",\"url\":\"https://cs.stanford.edu/people/jure/pubs/craig-icml20.pdf\"},{\"title\":\"[1906.01827] Coresets for Data-efficient Training of Machine Learning Models\",\"url\":\"https://arxiv.org/abs/1906.01827\"},{\"title\":\"Coresets for Data-efficient Training of Machine Learning Models\",\"url\":\"https://proceedings.mlr.press/v119/mirzasoleiman20a.html\"},{\"title\":\"GitHub - PatrickZH/DeepCore: Code for coreset selection methods · GitHub\",\"url\":\"https://github.com/PatrickZH/DeepCore\"},{\"title\":\"[PDF] Coresets for Data-efficient Training of Machine Learning Models | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Coresets-for-Data-efficient-Training-of-Machine-Mirzasoleiman-Bilmes/790985a4bee821046992ff3d5322ff11dd1b4262\"},{\"title\":\"GLISTER: Generalization based Data Subset Selection for Efﬁcient and Robust\",\"url\":\"https://www.cse.iitb.ac.in/~ganesh/papers/aaai2021.pdf\"},{\"title\":\"Icml\",\"url\":\"https://icml.cc/media/icml-2020/Slides/6325.pdf\"},{\"title\":\"Adversarial Coreset Selection for Efficient Robust Training | International Journal of Computer Vision | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11263-023-01860-4\"},{\"title\":\"Published as a conference paper at ICLR 2022 DIVERSE CLIENT SELECTION FOR\",\"url\":\"https://openreview.net/pdf?id=nwKXyFvaUm\"},{\"title\":\"A Coreset Selection of Coreset Selection Literature: Introduction and Recent Advances\",\"url\":\"https://arxiv.org/html/2505.17799v1\"}]\n\nBased on the search results, I found information about the paper you're looking for:\n\n**Title:** \"Coresets for Data-efficient Training of Machine Learning Models\"\n\n**Authors:** Baharan Mirzasoleiman, Jeff Bilmes, and Jure Leskovec\n\n**Conference:** Proceedings of the 37th International Conference on Machine Learning (ICML)\n\n**Key Details:** The paper develops CRAIG, a method to select a weighted subset (or coreset) of training data that closely estimates the full gradient by maximizing a submodular function. The authors prove that applying IG (incremental gradient) to this subset is guaranteed to converge to the (near)optimal solution with the same convergence rate as that of IG for convex optimization, and CRAIG achieves a speedup that is inversely proportional to the size of the subset.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb742e5d-663f-417f-ade6-695a670ee7ee",
+            "isSidechain": true,
+            "promptId": "cb9d95fc-9c2d-4329-a2e0-19f7dffc3a15",
+            "agentId": "af5811deecee9942b",
+            "type": "user",
+            "uuid": "c0f16226-6d02-4020-a54b-2c85e33291fa",
+            "sourceToolAssistantUUID": "cb742e5d-663f-417f-ade6-695a670ee7ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T18:33:03.987Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All papers confirmed. Here are the verified results:\n\n---\n\n1. PAPER: [Iyer & Bilmes (2013)] \"Submodular Optimization with Submodular Cover and Submodular Knapsack Constraints\" — NeurIPS 2013 (Outstanding Paper Award)\nVERIFIED: Yes\nRELEVANCE: Establishes the constrained submodular maximization framework (budget constraints on subset size) that underpins diversity-based data selection methods operating over embedding spaces.\n\n2. PAPER: [Wei et al. (2015)] \"Submodularity in Data Subset Selection and Active Learning\" — ICML 2015\nAUTHORS: Kai Wei, Rishabh Iyer, Jeff Bilmes\nVERIFIED: Yes\nRELEVANCE: Directly formalizes data subset selection as submodular maximization using functions (facility location, graph cut) that measure coverage and diversity in feature/embedding space — the canonical framework attacked by the embedding alignment gap problem.\n\n3. PAPER: [Mirzasoleiman et al. (2020)] \"Coresets for Data-efficient Training of Machine Learning Models\" — ICML 2020\nAUTHORS: Baharan Mirzasoleiman, Jeff Bilmes, Jure Leskovec\nVERIFIED: Yes\nRELEVANCE: CRAIG uses facility location — a submodular function over gradient embeddings — to select coresets, making it directly susceptible to embedding space degradation when applied iteratively.\n\n4. PAPER: [Kothawade et al. (2021)] \"SIMILAR: Submodular Information Measures Based Active Learning In Realistic Scenarios\" — NeurIPS 2021\nAUTHORS: Suraj Kothawade, Nathan Beck, Krishnateja Killamsetty, Rishabh Iyer\nVERIFIED: Yes\nRELEVANCE: Applies submodular information measures (submodular mutual information, conditional gain) as acquisition functions over learned embeddings, making selection quality inherently tied to embedding representational fidelity.\n\nSources:\n- [Iyer & Bilmes NeurIPS 2013](https://proceedings.neurips.cc/paper/2013/hash/a1d50185e7426cbb0acad1e6ca74b9aa-Abstract.html)\n- [Wei et al. ICML 2015 – PMLR](https://proceedings.mlr.press/v37/wei15.html)\n- [Mirzasoleiman et al. ICML 2020 – PMLR](https://proceedings.mlr.press/v119/mirzasoleiman20a.html)\n- [Kothawade et al. NeurIPS 2021](https://proceedings.neurips.cc/paper/2021/hash/9af08cda54faea9adf40a201794183cf-Abstract.html)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0f16226-6d02-4020-a54b-2c85e33291fa",
+            "isSidechain": true,
+            "agentId": "af5811deecee9942b",
+            "requestId": "req_011Cb13h3whKmoYKPBKGqsM7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "378a5163-70b1-45cf-86a0-1e33f675304a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify",
+            "sessionId": "be21bc6f-69d7-408f-96f6-62cd88f8b58c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01LvcsTWaU1n8ZxKQRLrDrbD",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1402,
+                "cache_creation_input_tokens": 1095,
+                "cache_read_input_tokens": 19644,
+                "output_tokens": 673,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1095
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1402,
+                    "output_tokens": 673,
+                    "cache_read_input_tokens": 19644,
+                    "cache_creation_input_tokens": 1095,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1095,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-helping-build-a-related-work-section-for-a-paper-about-embedding-align-copy-8.md"
+}

@@ -1,0 +1,1803 @@
+{
+  "schema_version": "1.0",
+  "id": "5bed59b0d8fd8d1fba79",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are Reviewer R2 for an ARR (ACL Rolling Review) submission. Your focus is **novelty and related work**. ## Paper Sum",
+  "task_key": "agent-a7518aa08c174b9d0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a7518aa08c174b9d0.jsonl",
+    "occurrence": 1,
+    "bytes": 166986,
+    "sha256": "16b53299b3ec312addd19317f3520ab4f00d31c00451c047a304a3422c38eb83"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 1,
+    "tool_calls": 15,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 15,
+      "tool_result": 15
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T08:57:34.480Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are Reviewer R2 for an ARR (ACL Rolling Review) submission. Your focus is **novelty and related work**. \n\n## Paper Summary\n**Title:** \"The Embedding Alignment Gap: Internal Diversity Metrics Diverge from Content Diversity in Iterative Self-Training\"\n\nThe paper studies iterative self-training (a model trained on its own generations for 8 generations). It investigates whether using the model's own embeddings for diversity-based data selection (RGDS) prevents model collapse. The central finding is negative: internal-embedding selection accelerates collapse. The authors define a \"selection ratio\" r_sel. Over 8 generations of GPT-2 self-training, r_sel declines from ~1.03 to ~0.78 (p=0.003, 3 seeds), while frozen external embeddings (Contriever) maintain ~0.99. RGDS increases PPL by 13% vs uncurated (p=0.02).\n\nTwo \"measurement dissociation\" findings: (i) PPL and rare n-gram decouple — external selection improves PPL without improving lexical diversity; (ii) RankMe increases during early collapse while rare n-grams decline.\n\nThree contributions claimed:\n1. The embedding alignment gap — defining and measuring r_sel showing divergence between geometric and content diversity\n2. Measurement dissociation — PPL-rare decoupling and RankMe blind spot\n3. Cross-condition robustness — across scales (125M, 355M), datasets (WikiText-103, OpenWebText), seeds\n\n## Related Work Covered in Paper\n- **Model collapse:** Shumailov et al. (2024), Alemohammad et al. (2024), Dohmatob et al. (2024)\n- **Embedding-based data selection:** SemDeDup (Abbas et al., 2023), D4 (Tirumala et al., 2023), DSIR (Xie et al., 2023)\n- **Neural collapse:** Papyan et al. (2020)\n- **Representation metrics:** RankMe (Garrido et al., 2023)\n- **Other:** Contriever (Izacard et al., 2022), WikiText (Merity et al., 2016)\n\nTotal references: 9\n\n## Key Framing Choices\n- Paper is framed as a \"Findings\" paper — documenting a phenomenon rather than proposing a solution\n- Claims are deliberately weakened: \"overall declining trend with transient recovery\" rather than \"monotonic degradation\"\n- C3 weakened to \"fails to prevent and may worsen\" with confidence intervals\n- Re-anchoring is in appendix/future work, not the main contribution\n- The narrative focus is on \"measurement dissociation phenomenon\" rather than \"method failure mode\"\n\n## Your Task\nProvide a detailed R2 review focusing on:\n1. **Novelty:** Is the core observation (embedding alignment gap) genuinely novel? Does it advance understanding beyond what's known about model collapse?\n2. **Related work completeness:** Are there important missing references? Is the positioning accurate?\n3. **Significance and impact:** How impactful is this finding for the NLP/ML community?\n4. **Framing and claims:** Are the claims appropriately scoped? Is the Findings framing appropriate?\n5. **Conceptual clarity:** Is the \"alignment gap\" concept well-defined and useful?\n6. **Strengths and weaknesses** (3-5 each)\n\nConsider these potentially missing references/areas:\n- Representation drift / concept drift literature\n- Other model collapse mitigation strategies (mixing real data, replay buffers, curriculum)\n- Knowledge distillation iterative training\n- Guo et al. (2024) synthetic data curation\n- Seddik et al. (2024) model collapse theory\n- Self-BLEU, distinct-n, and other diversity metrics beyond rare n-grams\n- Feature collapse / dimensional collapse literature (Jing et al., 2022)\n\nUse the ARR scoring rubric:\n- **Excitement** (1-5, half-points): 5=highly exciting/recommend to others, 4=exciting/mention to colleagues, 3=interesting/discuss selectively, 2=potentially interesting, 1=not exciting\n- **Confidence** (1-5): 5=expert, 4=quite sure, 3=general familiarity\n\nOutput format:\n```\n## R2 Review: Novelty and Related Work\n\n### Summary of Assessment\n[2-3 sentences]\n\n### Strengths\n[numbered list]\n\n### Weaknesses\n[numbered list]\n\n### Missing Related Work\n[list with explanations of why each matters]\n\n### Questions for Authors\n[numbered list]\n\n### Excitement: X.X\n[justification]\n\n### Confidence: X\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "02c2938d-05bf-44b1-a901-3cb1fa0ca661",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T08:57:34.483Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "02c2938d-05bf-44b1-a901-3cb1fa0ca661",
+                "isSidechain": true,
+                "agentId": "a7518aa08c174b9d0",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "1f36ad98-5f0f-4c86-aabb-4e7f5521d849",
+                "timestamp": "2026-05-13T08:57:34.483Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+                "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T08:57:37.588Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by reading the paper and related project files to give a thorough review."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1f36ad98-5f0f-4c86-aabb-4e7f5521d849",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHpe6qdQx8njAckTuVB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cfb7d1bf-d48e-4f4e-a607-1a5ba2c25c97",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XUK8JWN27aaknSP9yCniMW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6952,
+                "cache_read_input_tokens": 8252,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6952,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T08:57:38.907Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AHuYMW7RQFJMnhGNqzXgbv",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfb7d1bf-d48e-4f4e-a607-1a5ba2c25c97",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHpe6qdQx8njAckTuVB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b79a589a-ad73-4703-a964-80a29a86e70c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XUK8JWN27aaknSP9yCniMW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6952,
+                "cache_read_input_tokens": 8252,
+                "output_tokens": 107,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6952
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 107,
+                    "cache_read_input_tokens": 8252,
+                    "cache_creation_input_tokens": 6952,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6952,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T08:57:38.909Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01AHuYMW7RQFJMnhGNqzXgbv",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b79a589a-ad73-4703-a964-80a29a86e70c",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "02274027-ab9d-44b3-acd8-c2e4e646afb1",
+            "sourceToolAssistantUUID": "b79a589a-ad73-4703-a964-80a29a86e70c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T08:57:42.215Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nLet me read the key project files to understand the paper in detail."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02274027-ab9d-44b3-acd8-c2e4e646afb1",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHpyGWR1be2CFxQ2jcE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e6e505fa-bd7d-4e22-a86b-325832c1c89c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MC3UcaeCgicJgJHM5TLuBP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1290,
+                "cache_read_input_tokens": 15204,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1290,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T08:57:43.229Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MYsrq5GDHeMmMpNz8FZ8tN",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "file": "report.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6e505fa-bd7d-4e22-a86b-325832c1c89c",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHpyGWR1be2CFxQ2jcE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "80d5d4a3-eec2-4186-a58c-8fcd785c3afe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MC3UcaeCgicJgJHM5TLuBP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1290,
+                "cache_read_input_tokens": 15204,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1290,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T08:57:43.240Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MYsrq5GDHeMmMpNz8FZ8tN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-13\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| phase2_3method_selfit | RGDS diversity selection 能减缓 self-iterate 模式下的多样性崩塌（rare n-gram 丢失），表现优于 uncurated baseline，至少与 external_only 持平 | — | — | — |\\\\n\\\\n## 待处理\\\\n- phase2_ext_seed123: external_only seed=123 复现实验，验证 Phase 2 external_only 结果的可重复性（N>1 统计检验准备）（已分配 ? GPU:?，等待提交）\\\\n\\\\n## 近期结论\\\\n- **phase1b_self_iterate** (success): 固定 generator 阻断 feedback loop 是前两次实验未崩塌的根因。Student-as-generator 自迭代模式（GPT2-125M 8 代）应能诱导可测量的 model collapse（RankMe >20% 下降，PPL 恶化） ← 基于 phase1_gpt2_collapse\\\\n- **phase1_gpt2_collapse** (negative): —\\\\n- **mvp_serial_v4** (negative): —\\\\n\\\\n## 趋势\\\\n成功 1 / 负向 2 / 失败 3 / 共 9\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-11235: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp_rgds_v1: 已被终止 — unknown\\\\n- mvp_ext_v1: 已被终止 — unknown\\\\n- mvp_rgds_v2: 训练失败 — unknown\\\\n- mvp_ext_v2: 训练失败 — unknown\\\\n- mvp_rgds_v3: 训练失败 — unknown\\\\n- mvp_serial_v3: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 981, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "80d5d4a3-eec2-4186-a58c-8fcd785c3afe",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "14bbd66e-8005-479f-8574-a7eda9f7dddc",
+            "sourceToolAssistantUUID": "80d5d4a3-eec2-4186-a58c-8fcd785c3afe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T08:57:44.225Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NzB7Zd4EHPvTYd6wHLVRVy",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "file": "literature_map.yaml",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14bbd66e-8005-479f-8574-a7eda9f7dddc",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHpyGWR1be2CFxQ2jcE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "934c6ed0-3570-4a0a-bbcf-ff0f076ce99e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MC3UcaeCgicJgJHM5TLuBP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1290,
+                "cache_read_input_tokens": 15204,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1290,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T08:57:44.235Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NzB7Zd4EHPvTYd6wHLVRVy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No literature_map.yaml found for 'phase-gated-compound-sparse'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "934c6ed0-3570-4a0a-bbcf-ff0f076ce99e",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "5c414e08-ad14-45f0-aed1-e7de69dab590",
+            "sourceToolAssistantUUID": "934c6ed0-3570-4a0a-bbcf-ff0f076ce99e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T08:57:44.517Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017qqnpBviVz4U7WPeaM4ETJ",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "file": "paper_framing.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5c414e08-ad14-45f0-aed1-e7de69dab590",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHpyGWR1be2CFxQ2jcE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2b361054-f48b-4827-b9ce-7e09476f24ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MC3UcaeCgicJgJHM5TLuBP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1290,
+                "cache_read_input_tokens": 15204,
+                "output_tokens": 314,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1290
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 314,
+                    "cache_read_input_tokens": 15204,
+                    "cache_creation_input_tokens": 1290,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1290,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T08:57:44.525Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017qqnpBviVz4U7WPeaM4ETJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — Embedding Alignment Gap\\\\n\\\\n## Target Venue\\\\nEMNLP 2026 ARR (deadline: May 25, 2026) — Findings full paper (8 pages)\\\\n\\\\n## Title (working)\\\\n\\\\\\\"The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Iterative Self-Training\\\\\\\"\\\\n\\\\n## Core Insight\\\\nIn iterative self-training (student-as-generator feedback loop), the geometric diversity of a model's internal embeddings becomes systematically misaligned with content diversity (measured by rare n-gram survival). This \\\\\\\"alignment gap\\\\\\\" worsens monotonically across generations, causing diversity-based data selection using internal representations to **accelerate** rather than prevent model collapse. Frozen external embeddings (e.g., Contriever) are immune to this misalignment.\\\\n\\\\n## Core Claims\\\\n\\\\n### C1: Alignment Gap Exists and Worsens Monotonically\\\\n- Internal embedding diversity selection ratio degrades from ~1.04 (Gen 0) to ~0.52 (Gen 7)\\\\n- The model increasingly selects vocabulary-poor samples when using its own representations for diversity scoring\\\\n- Evidence: Phase 2 RGDS selection diagnostics (GPT2-125M, WikiText-103, self-iterate)\\\\n\\\\n### C2-weak: Frozen External Embeddings Are Immune to the Gap\\\\n- Contriever-based selection maintains ratio >1.1 across all generations (1.14→1.28 through Gen 4)\\\\n- External embeddings improve model quality (PPL -6.5% vs uncurated) but do NOT improve rare n-gram survival\\\\n- This is a comparative claim: external embeddings \\\\\\\"don't make the mistake\\\\\\\" internal ones make, not a solution to vocabulary collapse\\\\n- The dissociation between PPL improvement and rare n-gram stagnation itself is an interesting finding\\\\n\\\\n### C3: The Gap Causes Accelerated Collapse\\\\n- RGDS (internal diversity selection) produces PPL 75.07 vs uncurated 50.28 (+49%) and rare n-gram 0.0051 vs 0.0090 (-43%)\\\\n- Complete causal chain: embedding space contracts → \\\\\\\"geometrically diverse\\\\\\\" = \\\\\\\"vocabulary-poor\\\\\\\" → selection amplifies homogeneity → accelerated collapse\\\\n\\\\n## Secondary Claims\\\\n\\\\n### S1: PPL and Rare N-gram Measure Different Collapse Dimensions\\\\n- External selection improves PPL (-6.5%) without improving rare n-gram survival\\\\n- Selection ratio >1.1 translates to PPL gains but not vocabulary diversity gains\\\\n- Implication: semantic diversity ≠ lexical diversity in the context of iterative distillation\\\\n\\\\n### S2: Representation Quality Metrics Don't Detect Diversity Collapse\\\\n- RankMe increases during collapse (280→303, +8%)\\\\n- k-NN probe accuracy stable (0.988 throughout)\\\\n- These metrics track representation structure, not content diversity — a cautionary finding for monitoring frameworks\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n### R1: \\\\\\\"GPT2-125M is too small — does this generalize?\\\\\\\"\\\\n- Response: GPT2-medium (355M) experiments planned; alignment gap mechanism (embedding space contraction under self-iterate) is architecture-general\\\\n- If GPT2-medium shows gap: \\\\\\\"scales beyond toy models\\\\\\\"\\\\n\\\\n### R2: \\\\\\\"Only one dataset (WikiText-103)\\\\\\\"\\\\n- Response: OpenWebText subset planned as P1\\\\n- The mechanism is data-agnostic (self-iterate collapse is well-documented across datasets)\\\\n\\\\n### R3: \\\\\\\"N=1 seed — is this noise?\\\\\\\"\\\\n- Response: 3 seeds per configuration planned; the monotonic trend over 8 generations (not a single-point measurement) reduces seed sensitivity concern\\\\n- seed=123 already running as replication\\\\n\\\\n### R4: \\\\\\\"You only found a problem, not a solution\\\\\\\"\\\\n- Response: (a) Embedding re-anchoring experiment planned as simple mitigation; (b) the finding itself has immediate practical value — practitioners should avoid internal-embedding-based curation during iterative training\\\\n- If re-anchoring works → upgrade to \\\\\\\"found + solved\\\\\\\"\\\\n\\\\n### R5: \\\\\\\"What's the theoretical explanation for the gap?\\\\\\\"\\\\n- Connect to neural collapse literature (Papyan et al. 2020): self-iterate reduces intra-class variability → embedding effective dimensionality drops → greedy submodular selection in low-dim space favors collapsed mode directions\\\\n- Not a formal proof, but a plausible mechanistic intuition with empirical support\\\\n\\\\n### R6: \\\\\\\"External embeddings don't improve rare n-gram — how is C2 useful?\\\\\\\"\\\\n- C2 is comparative: shows the gap is specific to internal embeddings under training feedback, not an inherent property of embedding-based selection\\\\n- PPL improvement shows external selection captures meaningful diversity (semantic level), even if not lexical level\\\\n- Opens future work: what selection signal DOES preserve lexical diversity?\\\\n\\\\n## Narrative Arc\\\\n1. **Setup**: Iterative self-training causes model collapse (established). Diversity-based data curation is a natural mitigation idea.\\\\n2. **Surprise**: Using the model's own representations for diversity selection makes collapse WORSE, not better.\\\\n3. **Explanation**: The Embedding Alignment Gap — internal representations' notion of \\\\\\\"diverse\\\\\\\" diverges from content diversity as training progresses.\\\\n4. **Contrast**: Frozen external embeddings don't suffer this misalignment (but also don't solve vocabulary collapse).\\\\n5. **Implication**: Embedding-based diversity selection is unreliable in iterative settings; the field needs vocabulary-aware alternatives.\\\\n\\\\n## Related Work Positioning\\\\n- Model collapse: Shumailov et al. (Nature 2024), Alemohammad et al. (2024), Dohmatob et al. (2024)\\\\n- Data selection/curation: SemDeDup (Abbas 2023), D4 (Tirumala 2023), DSIR (Xie 2023) — these use external embeddings for static (non-iterative) curation; we show iterative setting introduces new failure mode\\\\n- Neural collapse: Papyan et al. (2020) — theoretical grounding for why embeddings lose diversity signal\\\\n- Representation quality metrics: RankMe (Garrido et al. 2023) — we show RankMe doesn't detect diversity collapse\\\\n\\\", \\\"total_chars\\\": 5659, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b361054-f48b-4827-b9ce-7e09476f24ec",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "8e23728a-5e61-4dc0-8249-0cacdf52886f",
+            "sourceToolAssistantUUID": "2b361054-f48b-4827-b9ce-7e09476f24ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T08:57:49.125Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PFTUDfBf7FPo2w6RxELcEU",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "file": "ideas.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e23728a-5e61-4dc0-8249-0cacdf52886f",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHqPKckha39yaNx6qRf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "01708995-ba80-4b5c-81bd-13a19072b525",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015bqEYbE5iMkmtecBwJ4Zi9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2891,
+                "cache_read_input_tokens": 16494,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2891,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T08:57:49.134Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PFTUDfBf7FPo2w6RxELcEU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'phase-gated-compound-sparse'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "01708995-ba80-4b5c-81bd-13a19072b525",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "c09abfe9-c9df-47de-972b-74507cce010b",
+            "sourceToolAssistantUUID": "01708995-ba80-4b5c-81bd-13a19072b525",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T08:57:49.608Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HqRf8wNYgQfhu7yoR85cX2",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "file": "memory.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c09abfe9-c9df-47de-972b-74507cce010b",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHqPKckha39yaNx6qRf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1c33027d-5736-4780-856c-06e7c283cfee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015bqEYbE5iMkmtecBwJ4Zi9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2891,
+                "cache_read_input_tokens": 16494,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2891,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T08:57:49.616Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HqRf8wNYgQfhu7yoR85cX2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse/memory.md\\\", \\\"content\\\": \\\"# Memory — phase-gated-compound-sparse\\\\n\\\\n## 实验教训\\\\n\\\\n### [2026-05-13] Phase 1b self-iterate: 部分崩塌确认 ✓\\\\n- **关键发现**：固定 generator 阻断 feedback loop 是前两次实验未崩塌的根因（Director D005 判断正确）\\\\n- self-iterate 模式下崩塌主要表现为**多样性崩塌**而非全面质量崩塌：\\\\n  - Rare n-gram survival 单调下降 70%（0.029→0.0087）——最强崩塌信号\\\\n  - PPL 先恶化后自恢复（37.1→57.0→48.1），倒 U 型，非单调\\\\n  - RankMe/k-NN 几乎不变——表征质量未崩塌\\\\n- 这意味着 RGDS 的改进目标应聚焦于**保持词汇多样性**（rare n-gram），而非防止表征退化（RankMe）\\\\n- Phase 2 设计启示：需要用 self-iterate 模式（不是固定 generator），评价指标应以 rare n-gram 为主、PPL/RankMe 为辅\\\\n\\\\n### [2026-05-13] Phase 1 GPT2-125M 崩塌验证（固定 generator）: 未观测到崩塌\\\\n- GPT2-125M student + GPT2-355M generator, 1M tokens/gen, 5 epochs, lr=1e-4, 6 gens\\\\n- PPL 轻微下降（rgds 36.64→35.56, uncurated 36.20→34.75），RankMe 波动但无系统性下降\\\\n- 根因：固定 generator 阻断了 feedback loop，不是真正的 iterative collapse setup\\\\n- external_only 方法未运行（run_phase1.sh bug）\\\\n\\\\n### [2026-05-13] 代码修复记录\\\\n- run_mvp.py: 添加 `--self_iterate` flag（student-as-generator 模式）\\\\n- run_mvp.py: Contriever 改为所有方法加载（修复 uncurated KeyError 根因）\\\\n- run_mvp.py: metrics['rank_correlation'] → metrics.get(..., nan)（防御性 guard）\\\\n- run_mvp.py: gen_tokenizer.padding_side = 'left'（修复 batch generation 质量）\\\\n\\\", \\\"total_chars\\\": 1118, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c33027d-5736-4780-856c-06e7c283cfee",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "9f493605-e52b-43e0-b074-c0d54c2c860b",
+            "sourceToolAssistantUUID": "1c33027d-5736-4780-856c-06e7c283cfee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T08:57:50.081Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CsA5kGGku7AQnFusikwajm",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "file": "decisions.yaml",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f493605-e52b-43e0-b074-c0d54c2c860b",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHqPKckha39yaNx6qRf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b0ee6fbb-2d30-40d6-a78c-b49918322740",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015bqEYbE5iMkmtecBwJ4Zi9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2891,
+                "cache_read_input_tokens": 16494,
+                "output_tokens": 293,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2891
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 293,
+                    "cache_read_input_tokens": 16494,
+                    "cache_creation_input_tokens": 2891,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2891,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T08:57:50.090Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CsA5kGGku7AQnFusikwajm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 11\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-12 09:57 UTC\\\\n  summary: MVP 验证方案：3 方法 × 4 代 × WikiText-103，验证 window of advantage 假设\\\\n  rationale: 核心假设是模型内部表征在迭代训练早期提供优于外部嵌入的多样性信号。MVP 用最小规模（1 数据集、3 方法、4 代）验证此假设是否成立。EMNLP\\\\n    ARR DDL 仅 13 天，MVP 需在 2-3 天内完成以留出研究和写作时间。选择 WikiText-103 因为它是标准崩塌基准且内容异质性强，预期产生更快崩塌。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-12 09:59 UTC\\\\n  summary: 修正 MVP gate：删除 SOFT PASS，二元 PASS/FAIL，N=1 + ≥5% downstream perplexity 相对改善\\\\n  rationale: Reviewer 指出两个问题：(1) N=1 下 ≥2% 阈值不可靠，提高到 ≥5% 接受 false negative 风险换取速度；(2)\\\\n    SOFT PASS 与 Human Review Note 第 4 条（删除 dual-outcome hedge）矛盾，统一为二元 gate。如果 RGDS\\\\n    ≈ RGDS-external-only 则为 FAIL，考虑 pivot 或转 AAAI 2027。主指标明确为 held-out downstream\\\\n    perplexity 相对改善。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-12 14:41 UTC\\\\n  summary: 识别 MVP 训练强度不足风险：每代仅 ~250K tokens 对 1.7B 模型几乎无影响，可能导致 PASS(a) 不成立\\\\n  rationale: Gen 0-2 数据显示 RankMe 仅降 1.7%（983→966）且 gen 2 反弹，k-NN 完全不变（0.991）。每代训练\\\\n    488×512≈250K tokens 对 1.7B 模型是极轻 fine-tuning。决定：(1) 让当前 3 方法跑完用于对比（~6h）；(2) 如果\\\\n    3 方法对比均无显著崩塌，立即跑高强度变体（增大生成量到 5-10M tokens/代，多 epoch，或提高 LR）。负 rank correlation\\\\n    (-0.37~-0.38) 是非预期发现，需进一步分析。\\\\n  related_experiments:\\\\n  - exp_id: mvp_rgds_v3\\\\n    role: evidence\\\\n    result: 'gen 0-2: RankMe -1.7%, kNN stable 0.991, PPL 16.63→16.35'\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-12 20:04 UTC\\\\n  summary: MVP FAIL — 训练强度不足导致前提未触发，启动高强度验证（D003 contingency）\\\\n  rationale: MVP 结果：RGDS PPL 16.46 vs External-only 16.15，External 反而更优 1.9%，远未达 ≥5%\\\\n    改善门槛。RankMe 4 代仅降 1.5%（983→968），k-NN 不变（0.991）。根本原因：每代仅 ~250K tokens 对 1.7B 模型影响微乎其微（~0.01\\\\n    epoch），崩塌前提未被触发。D003 已预判此风险。决定：(1) 快速验证崩塌可诱导：GPT2-125M 极端设置（~2h）；(2) 高强度 Qwen3-1.7B/4B（5M\\\\n    tokens/gen, 3 epochs）；(3) 两步均确认崩塌发生但 RGDS 仍无优势 → 真正的假设失败，考虑 pivot。\\\\n  related_experiments:\\\\n  - exp_id: mvp_serial_v4\\\\n    role: evidence\\\\n    result: RGDS PPL 16.46 vs External 16.15, RankMe -1.5%, kNN 0.991 stable\\\\n  depends_on:\\\\n  - D003\\\\n  - D002\\\\n- id: D005\\\\n  date: 2026-05-13 01:01 UTC\\\\n  summary: Phase 1 FAIL + 根因诊断：固定 generator 阻断了崩塌所需的反馈环路，需改为 student-as-generator\\\\n  rationale: 两次实验（MVP Qwen3-1.7B + Phase 1 GPT2-125M）均未诱导崩塌。Phase 1 中 PPL 实际在改善（36.6→35.6），RankMe\\\\n    稳定/上升。根因：当前 setup 使用固定 generator（Qwen3-4B/GPT2-medium），每代数据质量不变，无 feedback loop。经典\\\\n    model collapse 需要 student→generator 反馈：退化的 student 产生更差数据 → 下一代 student 更差。Agent\\\\n    提的三个方案（放大规模/极端 Phase 1/复现文献）均未识别此根因。决定：Phase 1b 快速验证——GPT2-125M student-as-generator\\\\n    设置，若崩塌出现则确认根因，修改 Phase 2 设计。\\\\n  related_experiments:\\\\n  - exp_id: phase1_gpt2_collapse\\\\n    role: evidence\\\\n    result: PPL improved 36.6→35.6, RankMe stable 286→275, no collapse in 6 gens\\\\n  depends_on:\\\\n  - D004\\\\n- id: D006\\\\n  date: 2026-05-13 03:15 UTC\\\\n  summary: Phase 1b 确认选择性崩塌：多样性崩塌(rare n-gram -70%)而非表征崩塌(RankMe/k-NN稳定)。Phase 2 聚焦\\\\n    diversity selection 对抗多样性崩塌，三方法对比(uncurated/RGDS/external-only)均用 self-iterate\\\\n    模式。\\\\n  rationale: Phase 1b self-iterate 实验证实 D005 假设：固定 generator 确实是前两次未崩塌的根因。但崩塌维度出乎预期——RankMe\\\\n    和 k-NN 几乎不变（表征质量稳定），而 rare n-gram survival 单调下降 70%（词汇多样性严重崩塌）。PPL 呈倒U型(37→57→48)。这意味着：(1)\\\\n    原 failsafe 机制(基于 RankMe/k-NN 阈值)永远不会触发，需重新设计或去除；(2) RGDS 的 diversity selection\\\\n    组件天然对标多样性崩塌——如果能在表征空间中选择更多样的训练数据，应能减缓 rare n-gram 丢失；(3) 表征不崩塌反而是好消息——说明模型内部表征始终可靠，可持续用于\\\\n    diversity scoring，不需要 failsafe 切换到外部嵌入。Paper framing 应从\\\\\\\"防止表征崩塌\\\\\\\"调整为\\\\\\\"防止多样性/词汇崩塌\\\\\\\"。\\\\n  related_experiments:\\\\n  - exp_id: phase1b_self_iterate\\\\n    role: evidence\\\\n    result: 'success - confirmed selective collapse: rare n-gram -70%, RankMe stable,\\\\n      PPL +30%'\\\\n  depends_on:\\\\n  - D005\\\\n- id: D007\\\\n  date: 2026-05-13 03:17 UTC\\\\n  summary: 放弃 failsafe gate 机制（RankMe/k-NN 不检测多样性崩塌），保留 diversity selection 组件作为核心方法。Phase\\\\n    2 不变——直接测试 diversity selection 能否减缓 rare n-gram 丢失。\\\\n  rationale: Reviewer critical 指出 RankMe 在崩塌期间反而上升（280→303），k-NN 完全稳定（0.988）——failsafe\\\\n    gate（τ_rank=0.5, τ_knn=0.6）永远不会触发。\\\\\\\"Window of advantage\\\\\\\"概念在表征质量维度不存在。但 RGDS 有两个独立组件：(1)\\\\n    failsafe gate 控制用内部还是外部嵌入——废了；(2) diversity selection 在表征空间选多样化样本——不依赖 gate，且表征稳定意味着信号可靠。Phase\\\\n    2 直接测 component (2)：如果 RGDS rare n-gram survival > uncurated，说明表征空间几何多样性与词汇多样性相关，方法核心成立；如果\\\\n    ≈ uncurated，则表征空间不捕获相关多样性，需要 pivot。已提交 Reviewer 核实此逻辑。\\\\n  related_experiments:\\\\n  - exp_id: phase1b_self_iterate\\\\n    role: evidence\\\\n    result: RankMe/k-NN stable during collapse → gate useless, but representations\\\\n      reliable for selection\\\\n  depends_on:\\\\n  - D006\\\\n- id: D008\\\\n  date: 2026-05-13 06:20 UTC\\\\n  summary: RGDS 内部嵌入 diversity selection 假说被 falsify——系统性反向选择词汇多样性更低的样本（Gen 7 ratio=0.517）。PPL\\\\n    比 uncurated 差 49%，rare n-gram 差 43%。放弃内部嵌入路线。等 external_only (Contriever) 结果决定下一步。\\\\n  rationale: Phase 2 RGDS 结果：(1) rare n-gram Gen 7 = 0.0051 vs uncurated 0.0090（-43%），PPL\\\\n    75.07 vs 50.28（+49%）；(2) selection 诊断 ratio 从 Gen 0 的 1.037 单调下降到 Gen 7 的 0.517——内部嵌入空间的几何多样性与词汇多样性反相关，且随崩塌加剧；(3)\\\\n    机制：self-iterate 导致嵌入空间收缩，\\\\\\\"表征多样\\\\\\\"的样本恰好是词汇单调的。D007 中\\\\\\\"表征稳定 = 信号可靠\\\\\\\"的推断被否定——信号可靠但方向错误。External_only\\\\n    Gen 0 显示正向信号（ratio=1.137），Contriever 冻结嵌入不受崩塌影响，可能保持正确的多样性方向。\\\\n  related_experiments:\\\\n  - exp_id: phase2_3method_selfit\\\\n    role: evidence\\\\n    result: RGDS rare n-gram -43% vs uncurated, selection ratio 1.037→0.517 (systematic\\\\n      reverse selection)\\\\n  depends_on:\\\\n  - D007\\\\n- id: D009\\\\n  date: 2026-05-13 07:13 UTC\\\\n  summary: 采纳\\\\\\\"Embedding Alignment Gap\\\\\\\"叙事（Reviewer 情景 C）：核心贡献从\\\\\\\"提出 RGDS 方法\\\\\\\"转为\\\\\\\"发现迭代自训练中内部嵌入多样性与内容多样性的系统性失对齐现象\\\\\\\"。等\\\\n    external_only Gen 4-7 数据确认后最终定案。\\\\n  rationale: Reviewer 提出三种叙事。情景 A（external_only 方法论）新颖性不足，SemDeDup/D4/DSIR 已有先例。情景\\\\n    B（纯 negative）A 类不可行。情景 C（Alignment Gap 现象发现）优势：(1) selection ratio 1.04→0.52 的系统性衰减是文献中未记录的现象；(2)\\\\n    以现象而非方法为主线，不需要 external_only 大幅优于 uncurated；(3) EMNLP 偏好 empirical insights；(4)\\\\n    即使 external_only 效果有限，gap 存在+机制清晰+外部嵌入免疫仍成立。风险：如果 external_only ratio 在 Gen 5-7\\\\n    也跌破 1.0，情景 C 退化。待 external_only 全 8 代数据确认。EMNLP ARR DDL 5/25，12 天窗口，实验 5 天+写作\\\\n    5 天+buffer 2 天。\\\\n  related_experiments:\\\\n  - exp_id: phase2_3method_selfit\\\\n    role: evidence\\\\n    result: RGDS ratio 1.04→0.52 (alignment gap); external_only ratio >1.1 through\\\\n      Gen 3 (immunity hypothesis)\\\\n  depends_on:\\\\n  - D008\\\\n- id: D010\\\\n  date: 2026-05-13 08:07 UTC\\\\n  summary: MVP 标准重定义：从\\\\\\\"external rare > uncurated\\\\\\\"降为\\\\\\\"alignment gap 确认 + external ratio\\\\n    持续 >1.0 + external PPL 优于 uncurated\\\\\\\"。目标 EMNLP Findings full paper (8页)，加简单缓解实验（embedding\\\\n    re-anchoring）可尝试升 Main Track。\\\\n  rationale: 'External_only Gen 0-4 数据揭示关键矛盾：selection ratio 持续 >1.1（选择层免疫确认），PPL\\\\n    显著优于 uncurated（Gen 4 -6.5%），但 rare n-gram 与 uncurated 完全相同（Gen 4 均为 0.0102）。D009\\\\n    原标准\\\\\\\"external rare > uncurated\\\\\\\"不满足。但 alignment gap 现象（C1: ratio 1.04→0.52）和加速崩塌（C3:\\\\n    RGDS PPL +49%）是确凿的新发现。C2 降级为 C2-weak：\\\\\\\"外部嵌入 alignment 不退化\\\\\\\"（对比性，非解决方案）。Reviewer\\\\n    建议 Findings full paper 为安全目标，加 embedding re-anchoring 缓解实验可尝试升级。PPL 改善作为 secondary\\\\n    claim。实验优先级：多 seed(P0) → GPT2-medium(P0) → 缓解实验(P0.5) → 第二数据集(P1)。'\\\\n  related_experiments:\\\\n  - exp_id: phase2_3method_selfit\\\\n    role: evidence\\\\n    result: external_only ratio >1.1 but rare n-gram = uncurated; PPL -6.5% better\\\\n  depends_on:\\\\n  - D009\\\\n\\\", \\\"total_chars\\\": 6961, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0ee6fbb-2d30-40d6-a78c-b49918322740",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "8c59642e-8887-4181-995b-f5b037bbd2ee",
+            "sourceToolAssistantUUID": "b0ee6fbb-2d30-40d6-a78c-b49918322740",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T08:57:53.429Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me look at the actual paper draft and any artifacts."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c59642e-8887-4181-995b-f5b037bbd2ee",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHqo3Nv44vA5YRHWqcf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fe5fb9dc-54f0-4d68-9232-0d5188353d2a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Xr7hi9SPAJk5ASZyGw5XB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5648,
+                "cache_read_input_tokens": 19385,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5648,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T08:57:55.490Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01225odLLSj8ft19uM8vB3Ad",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe5fb9dc-54f0-4d68-9232-0d5188353d2a",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHqo3Nv44vA5YRHWqcf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f4852ca8-22ac-4ef4-819a-b83f8a633d5c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Xr7hi9SPAJk5ASZyGw5XB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5648,
+                "cache_read_input_tokens": 19385,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5648,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T08:57:55.500Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01225odLLSj8ft19uM8vB3Ad",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260513T081019/best/paper.tex\nartifacts/dream_reports/dream_20260513T081019/median/paper.tex\nartifacts/dream_reports/dream_20260513T081019/worst/paper.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4852ca8-22ac-4ef4-819a-b83f8a633d5c",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "281961f1-f2ef-4065-bbc7-7a2cb8144d49",
+            "sourceToolAssistantUUID": "f4852ca8-22ac-4ef4-819a-b83f8a633d5c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T08:57:55.867Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y8dNauH9XX4S5JRnQzoWv7",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.pdf",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "281961f1-f2ef-4065-bbc7-7a2cb8144d49",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHqo3Nv44vA5YRHWqcf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0186f709-3b5d-485d-a06f-d272357fee98",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Xr7hi9SPAJk5ASZyGw5XB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5648,
+                "cache_read_input_tokens": 19385,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5648,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T08:57:55.877Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y8dNauH9XX4S5JRnQzoWv7",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260513T081019/best/paper.pdf\nartifacts/dream_reports/dream_20260513T081019/median/paper.pdf\nartifacts/dream_reports/dream_20260513T081019/worst/paper.pdf"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0186f709-3b5d-485d-a06f-d272357fee98",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "e8db1a0d-8b39-4752-9d00-9f56345b5866",
+            "sourceToolAssistantUUID": "0186f709-3b5d-485d-a06f-d272357fee98",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T08:57:56.459Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UqD1tHszLfz5GsfwHqmnE8",
+              "name": "Glob",
+              "input": {
+                "pattern": "artifacts/**",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e8db1a0d-8b39-4752-9d00-9f56345b5866",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHqo3Nv44vA5YRHWqcf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ef54c8f6-7ebf-487c-a830-1a69dfb31b0d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Xr7hi9SPAJk5ASZyGw5XB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5648,
+                "cache_read_input_tokens": 19385,
+                "output_tokens": 279,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5648
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 279,
+                    "cache_read_input_tokens": 19385,
+                    "cache_creation_input_tokens": 5648,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5648,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T08:57:56.474Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UqD1tHszLfz5GsfwHqmnE8",
+              "type": "tool_result",
+              "content": "artifacts/code/generate.py\nartifacts/code/representation_monitor.py\nartifacts/code/train_student.py\nartifacts/code/evaluate.py\nartifacts/_project/intermediate/run_mvp.py\nartifacts/code/requirements.txt\nartifacts/code/data_prep.py\nartifacts/code/sanity_check.py\nartifacts/_project/intermediate/analyze_mvp.py\nartifacts/code/analyze_mvp.py\nartifacts/manifest.yaml\nartifacts/code/diversity_selection.py\nartifacts/code/run_mvp.py\nartifacts/dream_reports/dream_20260513T081019/logs/phase1_attempt0.log\nartifacts/dream_reports/dream_20260513T081019/logs/phase2_best_attempt0.log\nartifacts/dream_reports/dream_20260513T081019/logs/phase2_median_attempt0.log\nartifacts/dream_reports/dream_20260513T081019/logs/phase2_worst_attempt0.log\nartifacts/dream_reports/dream_20260513T081019/best/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260513T081019/best/experiment_data.json\nartifacts/dream_reports/dream_20260513T081019/best/paper_framing.md\nartifacts/dream_reports/dream_20260513T081019/best/custom.bib\nartifacts/dream_reports/dream_20260513T081019/best/paper.tex\nartifacts/dream_reports/dream_20260513T081019/best/paper.bbl\nartifacts/dream_reports/dream_20260513T081019/best/paper.blg\nartifacts/dream_reports/dream_20260513T081019/best/paper.aux\nartifacts/dream_reports/dream_20260513T081019/best/paper.out\nartifacts/dream_reports/dream_20260513T081019/best/paper.pdf\nartifacts/dream_reports/dream_20260513T081019/best/paper.log\nartifacts/dream_reports/dream_20260513T081019/logs/paper_agent_best.log\nartifacts/dream_reports/dream_20260513T081019/median/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260513T081019/median/experiment_data.json\nartifacts/dream_reports/dream_20260513T081019/median/paper_framing.md\nartifacts/dream_reports/dream_20260513T081019/median/paper.tex\nartifacts/dream_reports/dream_20260513T081019/median/paper.aux\nartifacts/dream_reports/dream_20260513T081019/median/paper.out\nartifacts/dream_reports/dream_20260513T081019/median/paper.pdf\nartifacts/dream_reports/dream_20260513T081019/median/paper.log\nartifacts/dream_reports/dream_20260513T081019/logs/paper_agent_median.log\nartifacts/dream_reports/dream_20260513T081019/worst/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260513T081019/worst/experiment_data.json\nartifacts/dream_reports/dream_20260513T081019/worst/paper_framing.md\nartifacts/dream_reports/dream_20260513T081019/worst/paper.tex\nartifacts/dream_reports/dream_20260513T081019/worst/paper.aux\nartifacts/dream_reports/dream_20260513T081019/worst/paper.out\nartifacts/dream_reports/dream_20260513T081019/worst/paper.pdf\nartifacts/dream_reports/dream_20260513T081019/worst/paper.log\nartifacts/dream_reports/dream_20260513T081019/logs/paper_agent_worst.log\nartifacts/dream_reports/dream_20260513T081019/best/review_context.yaml\nartifacts/dream_reports/dream_20260513T081019/logs/orchestrator.log\nartifacts/dream_reports/dream_20260513T081019/best/review_report.md\nartifacts/dream_reports/dream_20260513T081019/logs/review_best.log\nartifacts/dream_reports/dream_20260513T081019/median/review_context.yaml\nartifacts/dream_reports/dream_20260513T081019/logs/review_median.log"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef54c8f6-7ebf-487c-a830-1a69dfb31b0d",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "6d81e8f3-1e61-4b99-8a67-a0062f26cf11",
+            "sourceToolAssistantUUID": "ef54c8f6-7ebf-487c-a830-1a69dfb31b0d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T08:58:00.318Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016BLcxXxhwyG7sk6v172HCx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse/artifacts/dream_reports/dream_20260513T081019/best/paper.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d81e8f3-1e61-4b99-8a67-a0062f26cf11",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHrGUt8Lrhs4eGGZaWK",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "32a5daeb-452c-41fa-85d6-a00969466dc7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FWgBYgXpyBwQTgAyUANUto",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1528,
+                "cache_read_input_tokens": 25033,
+                "output_tokens": 103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1528
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 103,
+                    "cache_read_input_tokens": 25033,
+                    "cache_creation_input_tokens": 1528,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1528,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T08:58:00.334Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016BLcxXxhwyG7sk6v172HCx",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt,a4paper]{article}\n2\t\\usepackage[margin=1in]{geometry}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage{amsmath}\n6\t\\usepackage{amssymb}\n7\t\\usepackage{booktabs}\n8\t\\usepackage{graphicx}\n9\t\\usepackage{multirow}\n10\t\\usepackage{xcolor}\n11\t\\usepackage{subcaption}\n12\t\\usepackage{natbib}\n13\t\\usepackage[colorlinks,citecolor=blue,urlcolor=blue]{hyperref}\n14\t\n15\t\\title{The Embedding Alignment Gap: Why Diversity-Based Data Selection\\\\Accelerates Model Collapse in Iterative Self-Training}\n16\t\n17\t\\author{Anonymous}\n18\t\n19\t\\begin{document}\n20\t\\maketitle\n21\t\n22\t\\begin{abstract}\n23\tDiversity-based data curation is a natural strategy to mitigate model collapse in iterative self-training, yet we show it can \\emph{accelerate} collapse when using the model's own representations.\n24\tWe identify the \\textbf{Embedding Alignment Gap}: as a language model is iteratively trained on its own outputs, its internal embeddings' notion of ``diverse'' becomes systematically misaligned with content diversity.\n25\tConcretely, in an 8-generation self-training loop on GPT-2 (125M and 355M), an internal-embedding diversity selector's selection ratio drops monotonically from $1.04$ to $0.52$ ($95\\%$ CI $[0.46, 0.58]$, $n{=}3$ seeds), producing $+50\\%$ perplexity and $-47\\%$ rare $n$-gram survival relative to uncurated baselines.\n26\tA frozen external retriever (Contriever) is immune to this misalignment---its selection ratio \\emph{rises} to $1.28$ ($95\\%$ CI $[1.21, 1.35]$)---yet still fails to preserve lexical diversity, revealing that semantic diversity $\\neq$ lexical diversity.\n27\tA simple re-anchoring fix that uses pre-trained embeddings for selection recovers $30\\%$ of the perplexity gap and $33\\%$ of rare $n$-gram loss, localizing $\\sim$two-thirds of residual vocabulary collapse to the generation side.\n28\tOur results hold across two model scales, two datasets (WikiText-103, OpenWebText), and three random seeds.\n29\tThese findings carry a practical warning: embedding-based diversity selection is unreliable in iterative training and may actively harm model quality.\n30\t\\end{abstract}\n31\t\n32\t%=============================================\n33\t\\section{Introduction}\n34\t\\label{sec:intro}\n35\t\n36\tIterative self-training---in which a model generates data that is fed back into training---is increasingly common in language modeling pipelines involving synthetic data augmentation \\cite{shumailov2024nature}, knowledge distillation loops, and self-play.\n37\tA well-documented failure mode of such loops is \\emph{model collapse}: progressive loss of distributional diversity as rare modes are underrepresented in generated data \\cite{shumailov2024nature,alemohammad2024selfconsuming,dohmatob2024tale}.\n38\t\n39\tA natural countermeasure is diversity-based data curation: selecting a maximally diverse subset from the generated pool before training.\n40\tMethods such as SemDeDup \\cite{abbas2023semdedup}, D$^4$ \\cite{tirumala2023d4}, and facility-location submodular selection \\cite{kirchhoff2014submodular} measure diversity in embedding space and have proven effective for static dataset curation.\n41\tThe implicit assumption is that geometric diversity in representation space is a reliable proxy for content diversity.\n42\t\n43\tWe show this assumption breaks down catastrophically in the iterative setting.\n44\tAs the model trains on its own outputs across generations, its embedding space contracts in directions correlated with vocabulary diversity.\n45\tA greedy diversity selector operating in this shrinking space systematically favors vocabulary-poor samples---precisely the opposite of the intended effect.\n46\tWe call this progressive misalignment the \\textbf{Embedding Alignment Gap}.\n47\t\n48\tWe make the following contributions:\n49\t\\begin{enumerate}\n50\t\\item We identify and quantify the Embedding Alignment Gap: a monotonic degradation of the alignment between embedding-space diversity and content diversity across self-training generations (\\S\\ref{sec:main_results}).\n51\t\\item We show that diversity-based selection using internal embeddings \\emph{accelerates} model collapse, producing $+50\\%$ perplexity and $-47\\%$ rare $n$-gram loss relative to uncurated training (\\S\\ref{sec:main_results}).\n52\t\\item We demonstrate that frozen external embeddings (Contriever) are immune to the gap but do not preserve lexical diversity, establishing that semantic diversity $\\neq$ lexical diversity (\\S\\ref{sec:external}).\n53\t\\item We propose embedding re-anchoring as a simple partial mitigation, recovering $\\sim$33\\% of rare $n$-gram loss and localizing residual collapse to the generation side (\\S\\ref{sec:mitigation}).\n54\t\\item We validate all findings across two model scales (GPT-2 125M, 355M), two datasets (WikiText-103, OpenWebText), and three random seeds (\\S\\ref{sec:robustness}).\n55\t\\end{enumerate}\n56\t\n57\t%=============================================\n58\t\\section{Background and Related Work}\n59\t\\label{sec:related}\n60\t\n61\t\\paragraph{Model collapse.}\n62\t\\citet{shumailov2024nature} demonstrated that iteratively training on model-generated data leads to progressive loss of distributional tails.\n63\t\\citet{alemohammad2024selfconsuming} formalized this as ``self-consuming generative models'' and showed tail collapse scales with generation count.\n64\t\\citet{dohmatob2024tale} provided theoretical analysis connecting collapse to the spectral properties of the data distribution.\n65\tOur work complements this line by showing that a natural mitigation (diversity selection) can paradoxically worsen collapse.\n66\t\n67\t\\paragraph{Data curation and selection.}\n68\tEmbedding-based data selection has been effective for static corpus curation: SemDeDup \\cite{abbas2023semdedup} deduplicates near-neighbors in embedding space; D$^4$ \\cite{tirumala2023d4} uses prototypicality scoring; DSIR \\cite{xie2023dsir} importance-weights by distribution matching.\n69\tThese methods assume a fixed embedding space. We show that in iterative settings, the embedding space co-evolves with the data distribution, breaking this assumption.\n70\t\n71\t\\paragraph{Neural collapse.}\n72\t\\citet{papyan2020prevalence} showed that deep network representations converge to a simplex ETF structure during prolonged training.\n73\tIn the iterative self-training setting, this collapse-like contraction of the embedding space directly reduces the signal available for diversity-based selection---providing a mechanistic explanation for the alignment gap.\n74\t\n75\t\\paragraph{Representation quality metrics.}\n76\tRankMe \\cite{garrido2023rankme} measures effective dimensionality of representations; $k$-NN probes assess local structure quality.\n77\tWe show these metrics are \\emph{insensitive} to the alignment gap: RankMe increases during collapse, and $k$-NN accuracy remains stable, making them unreliable monitors for diversity degradation.\n78\t\n79\t%=============================================\n80\t\\section{Method}\n81\t\\label{sec:method}\n82\t\n83\t\\subsection{Iterative Self-Training Loop}\n84\t\n85\tWe define a generation-indexed training loop. Let $M_0$ be a pre-trained language model and $\\mathcal{D}_0$ the original training corpus.\n86\tAt each generation $t$:\n87\t\\begin{enumerate}\n88\t\\item \\textbf{Generate}: Sample $N$ sequences from $M_{t-1}$ to form candidate pool $\\mathcal{G}_t$.\n89\t\\item \\textbf{Select}: Apply a selection function $S(\\mathcal{G}_t) \\to \\mathcal{D}_t$ that selects a training subset.\n90\t\\item \\textbf{Train}: Fine-tune $M_{t-1}$ on $\\mathcal{D}_t$ to obtain $M_t$.\n91\t\\end{enumerate}\n92\tWe compare three selection strategies:\n93\t\\begin{itemize}\n94\t\\item \\textbf{Uncurated}: $S = \\text{identity}$ (no selection; standard self-training baseline).\n95\t\\item \\textbf{RGDS} (Representation-Guided Diversity Selection): Greedy submodular facility-location selection using $M_{t-1}$'s internal embeddings to maximize geometric diversity.\n96\t\\item \\textbf{External-only}: Same submodular objective but using frozen Contriever \\cite{izacard2022contriever} embeddings instead of $M_{t-1}$'s representations.\n97\t\\end{itemize}\n98\t\n99\t\\subsection{Selection Ratio: Quantifying the Alignment Gap}\n100\t\n101\tWe introduce the \\emph{selection ratio} as a diagnostic metric:\n102\t\\begin{equation}\n103\tr_t = \\frac{\\text{avg-rare}(S(\\mathcal{G}_t))}{\\text{avg-rare}(\\mathcal{G}_t)}\n104\t\\end{equation}\n105\twhere $\\text{avg-rare}(\\cdot)$ computes mean rare $n$-gram frequency over a set.\n106\tA well-calibrated diversity selector should satisfy $r_t \\geq 1$: the selected subset should be at least as lexically diverse as the full pool.\n107\tThe alignment gap manifests as $r_t < 1$, indicating the selector systematically favors vocabulary-poor samples.\n108\t\n109\t\\subsection{Evaluation Metrics}\n110\t\n111\t\\begin{itemize}\n112\t\\item \\textbf{Perplexity} (PPL): Evaluated on held-out test data from the original distribution.\n113\t\\item \\textbf{Rare $n$-gram survival}: Fraction of $n$-grams in generated text that appear $\\leq 5$ times in the original corpus, measuring lexical diversity.\n114\t\\item \\textbf{Rank correlation}: Spearman correlation between embedding-space diversity rank and rare $n$-gram rank across samples. Increasingly negative values indicate growing misalignment.\n115\t\\item \\textbf{RankMe} \\cite{garrido2023rankme}: Effective rank of the embedding covariance matrix.\n116\t\\item \\textbf{$k$-NN accuracy}: Leave-one-out $k$-NN classification accuracy in embedding space.\n117\t\\end{itemize}\n118\t\n119\t%=============================================\n120\t\\section{Main Results: The Alignment Gap}\n121\t\\label{sec:main_results}\n122\t\n123\t\\subsection{Experimental Setup}\n124\t\n125\tWe use GPT-2 125M as the base model, fine-tuned on WikiText-103.\n126\tThe self-training loop runs for 8 generations ($t = 0, \\ldots, 7$) with all three selection strategies.\n127\tResults are averaged over 3 random seeds (42, 123, 456) with 95\\% confidence intervals.\n128\t\n129\t\\subsection{Selection Ratio Degradation (C1)}\n130\t\n131\t\\begin{table}[t]\n132\t\\centering\n133\t\\small\n134\t\\begin{tabular}{lccc}\n135\t\\toprule\n136\t\\textbf{Gen} & \\textbf{RGDS} & \\textbf{External} & \\textbf{Uncurated} \\\\\n137\t\\midrule\n138\t0 & 1.04 & 1.08 & --- \\\\\n139\t1 & 0.96 & 1.12 & --- \\\\\n140\t2 & 0.87 & 1.15 & --- \\\\\n141\t3 & 0.79 & 1.18 & --- \\\\\n142\t4 & 0.71 & 1.21 & --- \\\\\n143\t5 & 0.64 & 1.24 & --- \\\\\n144\t6 & 0.57 & 1.26 & --- \\\\\n145\t7 & 0.52 & 1.28 & --- \\\\\n146\t\\bottomrule\n147\t\\end{tabular}\n148\t\\caption{Selection ratio across generations (seed=42). RGDS ratio drops monotonically below 1.0, indicating the selector increasingly favors vocabulary-poor samples. External embeddings maintain ratio $>1.0$ throughout.}\n149\t\\label{tab:sel_ratio}\n150\t\\end{table}\n151\t\n152\tTable~\\ref{tab:sel_ratio} shows the selection ratio across 8 generations.\n153\tRGDS begins near parity ($r_0 = 1.04$) but degrades monotonically to $r_7 = 0.52$---meaning the selected subset contains only half the rare $n$-gram density of the unselected pool.\n154\tAcross 3 seeds, the gen-7 RGDS ratio averages $0.517$ (95\\% CI $[0.455, 0.579]$), with the confidence interval entirely below 1.0.\n155\t\n156\tThe rank correlation between embedding diversity scores and rare $n$-gram frequency (Table~\\ref{tab:main_full}) becomes increasingly negative ($-0.058 \\to -0.155$), confirming that the embedding space's notion of ``geometrically distant'' progressively aligns with vocabulary poverty rather than vocabulary richness.\n157\t\n158\t\\subsection{Accelerated Collapse (C3)}\n159\t\n160\t\\begin{table}[t]\n161\t\\centering\n162\t\\small\n163\t\\begin{tabular}{lcccc}\n164\t\\toprule\n165\t\\textbf{Method} & \\textbf{PPL}$\\downarrow$ & \\textbf{Rare}$\\uparrow$ & \\textbf{Rank Corr.} & \\textbf{Sel. Ratio} \\\\\n166\t\\midrule\n167\t\\multicolumn{5}{l}{\\textit{Generation 0}} \\\\\n168\tUncurated & 37.1 & 0.0290 & $-$0.023 & --- \\\\\n169\tRGDS & 37.2 & 0.0288 & $-$0.058 & 1.04 \\\\\n170\tExternal & 36.8 & 0.0289 & $-$0.024 & 1.08 \\\\\n171\t\\midrule\n172\t\\multicolumn{5}{l}{\\textit{Generation 7 (3-seed mean $\\pm$ std)}} \\\\\n173\tUncurated & 48.3{\\scriptsize$\\pm$0.9} & .0088{\\scriptsize$\\pm$.0003} & $-$.087 & --- \\\\\n174\tRGDS & 72.5{\\scriptsize$\\pm$1.9} & .0046{\\scriptsize$\\pm$.0004} & $-$.155 & 0.52{\\scriptsize$\\pm$.03} \\\\\n175\tExternal & 45.7{\\scriptsize$\\pm$0.8} & .0088{\\scriptsize$\\pm$.0002} & $-$.037 & 1.28{\\scriptsize$\\pm$.03} \\\\\n176\t\\bottomrule\n177\t\\end{tabular}\n178\t\\caption{Core metrics at generations 0 and 7 (GPT-2 125M, WikiText-103). RGDS worsens both PPL (+50\\% vs uncurated) and rare $n$-gram survival ($-$47\\%). 3-seed 95\\% CIs for RGDS vs uncurated PPL do not overlap: $[67.9, 77.1]$ vs $[46.0, 50.6]$, $p < 0.01$.}\n179\t\\label{tab:main_full}\n180\t\\end{table}\n181\t\n182\tTable~\\ref{tab:main_full} summarizes the core finding.\n183\tAt generation 7, RGDS produces PPL 72.5 vs.\\ uncurated 48.3 ($+50.2\\%$) and rare $n$-gram 0.0046 vs.\\ 0.0088 ($-47.1\\%$).\n184\tThe 95\\% confidence intervals do not overlap (PPL: $[67.9, 77.1]$ vs.\\ $[46.0, 50.6]$; Cohen's $d > 3$).\n185\tRGDS was designed to \\emph{prevent} collapse, but the alignment gap causes it to amplify the very failure mode it targets.\n186\t\n187\tThe causal chain is: (1) self-training contracts the embedding space; (2) greedy diversity selection in the contracted space picks points that are ``far'' in the degenerate geometry, which happen to be vocabulary-poor; (3) training on these impoverished subsets further contracts the embedding space, closing a positive feedback loop.\n188\t\n189\t\\subsection{Representation Metrics Miss the Collapse (S2)}\n190\t\n191\t\\begin{table}[t]\n192\t\\centering\n193\t\\small\n194\t\\begin{tabular}{lccccc}\n195\t\\toprule\n196\t\\textbf{Gen} & \\textbf{PPL} & \\textbf{Rare} & \\textbf{RankMe} & \\textbf{$k$-NN} \\\\\n197\t\\midrule\n198\t0 & 37.2 & 0.0288 & 281.5 & 0.988 \\\\\n199\t3 & 56.3 & 0.0113 & 300.1 & 0.988 \\\\\n200\t7 & 72.8 & 0.0046 & 294.3 & 0.988 \\\\\n201\t\\midrule\n202\t$\\Delta$ & +96\\% & $-$84\\% & +5\\% & 0.0\\% \\\\\n203\t\\bottomrule\n204\t\\end{tabular}\n205\t\\caption{RankMe and $k$-NN under RGDS collapse (seed=42). Despite catastrophic PPL and rare $n$-gram degradation, RankMe \\emph{increases} and $k$-NN is stable. These metrics track geometric structure, not content diversity.}\n206\t\\label{tab:metrics_blind}\n207\t\\end{table}\n208\t\n209\tTable~\\ref{tab:metrics_blind} reveals a cautionary finding: RankMe increases from 281.5 to 294.3 ($+5\\%$) during RGDS collapse, and $k$-NN accuracy remains at 0.988.\n210\tThese metrics measure representation geometry---effective dimensionality and local neighborhood quality---but are blind to the misalignment between that geometry and downstream content diversity.\n211\tPractitioners relying on such metrics to monitor iterative training would detect no anomaly even as diversity collapses.\n212\t\n213\t%=============================================\n214\t\\section{External Embeddings and the PPL--Diversity Dissociation}\n215\t\\label{sec:external}\n216\t\n217\tExternal-only selection using frozen Contriever embeddings maintains $r_t > 1.0$ across all generations (Table~\\ref{tab:sel_ratio}), rising to $1.28$ at gen 7 (95\\% CI $[1.21, 1.35]$).\n218\tThis confirms the alignment gap is specific to embeddings under training feedback, not an inherent limitation of embedding-based selection.\n219\t\n220\tHowever, external selection reveals a striking dissociation (S1): it improves PPL relative to uncurated ($45.7$ vs.\\ $48.3$, $-5.4\\%$) while producing \\emph{identical} rare $n$-gram survival ($0.0088$ vs.\\ $0.0088$; CI fully overlapping: $[0.0083, 0.0093]$ vs.\\ $[0.0080, 0.0095]$).\n221\tContriever captures topic-level and semantic-level diversity, which helps the model maintain broader coverage of test-set phenomena (lower PPL), but this semantic diversity does not translate into preservation of rare lexical patterns.\n222\t\n223\tThis dissociation implies that model collapse operates on at least two independent axes: \\emph{semantic} collapse (loss of topical coverage, reflected in PPL) and \\emph{lexical} collapse (loss of rare vocabulary patterns, reflected in rare $n$-gram survival).\n224\tExternal embedding selection partially addresses the former but not the latter.\n225\t\n226\t%=============================================\n227\t\\section{Mitigation: Embedding Re-Anchoring}\n228\t\\label{sec:mitigation}\n229\t\n230\tThe alignment gap arises because the selector uses embeddings from $M_{t-1}$, which has been corrupted by prior self-training.\n231\tA minimal fix: at each generation, compute diversity scores using the \\emph{original} pre-trained model $M_0$'s embeddings instead of $M_{t-1}$'s, while still training $M_{t-1} \\to M_t$ as usual.\n232\t\n233\t\\begin{table}[t]\n234\t\\centering\n235\t\\small\n236\t\\begin{tabular}{lcccc}\n237\t\\toprule\n238\t\\textbf{Method} & \\textbf{PPL}$\\downarrow$ & \\textbf{Rare}$\\uparrow$ & \\textbf{Sel. Ratio} \\\\\n239\t\\midrule\n240\tRGDS & 72.8 & 0.0046 & 0.52 \\\\\n241\tRe-anchored RGDS & 51.2 & 0.0061 & 0.95 \\\\\n242\tUncurated & 48.1 & 0.0087 & --- \\\\\n243\tExternal-only & 45.8 & 0.0088 & 1.28 \\\\\n244\t\\midrule\n245\t\\multicolumn{4}{l}{\\textit{Re-anchored vs.\\ RGDS improvement}} \\\\\n246\t & $-$29.7\\% & +32.6\\% & +0.43 \\\\\n247\t\\bottomrule\n248\t\\end{tabular}\n249\t\\caption{Re-anchoring results (gen 7, GPT-2 125M, seed=42). Re-anchoring largely eliminates the selection ratio degradation ($0.52 \\to 0.95$) and recovers most of the PPL gap. Rare $n$-gram recovery is partial ($+33\\%$), localizing residual loss to the generation side.}\n250\t\\label{tab:reanchor}\n251\t\\end{table}\n252\t\n253\tTable~\\ref{tab:reanchor} shows that re-anchoring restores the selection ratio from 0.52 to 0.95 (near-parity), reduces PPL from 72.8 to 51.2 ($-29.7\\%$, close to uncurated's 48.1), and recovers rare $n$-gram survival from 0.0046 to 0.0061 ($+32.6\\%$).\n254\t\n255\tThe asymmetry between PPL recovery (near-complete) and rare $n$-gram recovery (partial) is informative.\n256\tIt decomposes vocabulary collapse into two sources:\n257\t\\begin{enumerate}\n258\t\\item \\textbf{Selection-side}: The model's corrupted embeddings select vocabulary-poor subsets. Re-anchoring eliminates this component, recovering most PPL and $\\sim$1/3 of rare $n$-gram loss.\n259\t\\item \\textbf{Generation-side}: The model itself progressively loses the ability to produce rare vocabulary, independent of what is selected. This accounts for the remaining $\\sim$2/3 of rare $n$-gram loss ($0.0061$ vs.\\ $0.0087$).\n260\t\\end{enumerate}\n261\t\n262\tThis decomposition provides actionable direction: addressing model collapse fully requires generation-side interventions (e.g., vocabulary regularization, constrained decoding, or mixing in real data) in addition to selection-side fixes.\n263\t\n264\t%=============================================\n265\t\\section{Robustness}\n266\t\\label{sec:robustness}\n267\t\n268\t\\subsection{Multiple Seeds}\n269\t\n270\t\\begin{table}[t]\n271\t\\centering\n272\t\\small\n273\t\\begin{tabular}{lccc}\n274\t\\toprule\n275\t\\textbf{Metric (Gen 7)} & \\textbf{Mean} & \\textbf{Std} & \\textbf{95\\% CI} \\\\\n276\t\\midrule\n277\t\\multicolumn{4}{l}{\\textit{RGDS}} \\\\\n278\tPPL & 72.5 & 1.85 & [67.9, 77.1] \\\\\n279\tSel.\\ ratio & 0.517 & 0.025 & [0.455, 0.579] \\\\\n280\tRare $n$-gram & 0.0046 & 0.0004 & [0.0038, 0.0055] \\\\\n281\tRank corr. & $-$0.155 & 0.007 & [$-$0.171, $-$0.139] \\\\\n282\t\\midrule\n283\t\\multicolumn{4}{l}{\\textit{Uncurated}} \\\\\n284\tPPL & 48.3 & 0.91 & [46.0, 50.6] \\\\\n285\tRare $n$-gram & 0.0088 & 0.0003 & [0.0080, 0.0095] \\\\\n286\t\\midrule\n287\t\\multicolumn{4}{l}{\\textit{External-only}} \\\\\n288\tPPL & 45.7 & 0.80 & [43.7, 47.7] \\\\\n289\tSel.\\ ratio & 1.280 & 0.030 & [1.210, 1.350] \\\\\n290\tRare $n$-gram & 0.0088 & 0.0002 & [0.0083, 0.0093] \\\\\n291\t\\bottomrule\n292\t\\end{tabular}\n293\t\\caption{Three-seed aggregated statistics (seeds 42, 123, 456; GPT-2 125M, WikiText-103). All key contrasts hold: RGDS ratio CI below 1.0; external ratio CI above 1.0; RGDS--uncurated PPL CIs non-overlapping.}\n294\t\\label{tab:three_seed}\n295\t\\end{table}\n296\t\n297\tTable~\\ref{tab:three_seed} reports 3-seed aggregated statistics.\n298\tMethod-level differences (RGDS PPL $72.5$ vs.\\ uncurated $48.3$, $\\Delta = 24.2$) are an order of magnitude larger than seed-level variance (std $= 1.85$), yielding Cohen's $d > 3$.\n299\tAll critical CIs are well-separated from threshold values.\n300\t\n301\t\\subsection{Model Scale: GPT-2 Medium (355M)}\n302\t\n303\t\\begin{table}[t]\n304\t\\centering\n305\t\\small\n306\t\\begin{tabular}{llccc}\n307\t\\toprule\n308\t\\textbf{Model} & \\textbf{Method} & \\textbf{PPL}$\\downarrow$ & \\textbf{Rare}$\\uparrow$ & \\textbf{Ratio} \\\\\n309\t\\midrule\n310\t\\multirow{3}{*}{125M} & Uncurated & 48.1 & 0.0087 & --- \\\\\n311\t & RGDS & 72.8 & 0.0046 & 0.52 \\\\\n312\t & External & 45.8 & 0.0088 & 1.28 \\\\\n313\t\\midrule\n314\t\\multirow{3}{*}{355M} & Uncurated & 41.8 & 0.0092 & --- \\\\\n315\t & RGDS & 63.5 & 0.0052 & 0.56 \\\\\n316\t & External & 38.8 & 0.0093 & 1.30 \\\\\n317\t\\midrule\n318\t\\multirow{3}{*}{355M$^\\dagger$} & Uncurated & 42.5 & 0.0089 & --- \\\\\n319\t & RGDS & 65.1 & 0.0049 & 0.53 \\\\\n320\t & External & 39.5 & 0.0091 & 1.27 \\\\\n321\t\\bottomrule\n322\t\\end{tabular}\n323\t\\caption{Cross-scale comparison at gen 7 (WikiText-103). 355M results from seed=42 and $^\\dagger$seed=123. Relative magnitudes are consistent: RGDS PPL excess $+52\\%$ (125M) vs.\\ $+52\\%$ (355M); selection ratio endpoints $0.52$ vs.\\ $0.56$.}\n324\t\\label{tab:scale}\n325\t\\end{table}\n326\t\n327\tTable~\\ref{tab:scale} shows the alignment gap replicates on GPT-2 Medium (355M parameters).\n328\tThe relative RGDS PPL excess over uncurated is $+51.9\\%$ (355M) vs.\\ $+51.4\\%$ (125M), and selection ratio endpoints are $0.56$ (355M) vs.\\ $0.52$ (125M).\n329\tA second seed (123) on 355M confirms the trend with PPL excess $+53.2\\%$ and ratio $0.53$.\n330\tThe mechanism's scale invariance is expected: the embedding alignment gap arises from training dynamics (embedding space contraction under self-iteration), not from model capacity per se.\n331\t\n332\t\\subsection{Dataset Generalization: OpenWebText}\n333\t\n334\t\\begin{table}[t]\n335\t\\centering\n336\t\\small\n337\t\\begin{tabular}{llccc}\n338\t\\toprule\n339\t\\textbf{Dataset} & \\textbf{Method} & \\textbf{PPL}$\\downarrow$ & \\textbf{Rare}$\\uparrow$ & \\textbf{Ratio} \\\\\n340\t\\midrule\n341\t\\multirow{3}{*}{Wiki} & Uncurated & 48.1 & 0.0087 & --- \\\\\n342\t & RGDS & 72.8 & 0.0046 & 0.52 \\\\\n343\t & External & 45.8 & 0.0088 & 1.28 \\\\\n344\t\\midrule\n345\t\\multirow{3}{*}{OWT} & Uncurated & 38.5 & 0.0095 & --- \\\\\n346\t & RGDS & 59.1 & 0.0054 & 0.53 \\\\\n347\t & External & 36.1 & 0.0096 & 1.29 \\\\\n348\t\\bottomrule\n349\t\\end{tabular}\n350\t\\caption{Cross-dataset comparison at gen 7 (GPT-2 125M, seed=42). OpenWebText shows lower absolute PPL (GPT-2's pre-training domain) but identical alignment gap magnitudes: RGDS PPL excess $+54\\%$, rare deficit $-43\\%$.}\n351\t\\label{tab:dataset}\n352\t\\end{table}\n353\t\n354\tTable~\\ref{tab:dataset} shows the alignment gap generalizes to OpenWebText.\n355\tDespite substantial differences in absolute baselines (OWT PPL 38.5 vs.\\ WikiText 48.1, owing to GPT-2's pre-training on WebText), relative alignment gap magnitudes are remarkably consistent: RGDS PPL excess $+53.5\\%$ (OWT) vs.\\ $+51.4\\%$ (WikiText); selection ratio $0.53$ (OWT) vs.\\ $0.52$ (WikiText).\n356\tThe alignment gap is a property of the self-training dynamics, not of the data domain.\n357\t\n358\t%=============================================\n359\t\\section{Discussion}\n360\t\\label{sec:discussion}\n361\t\n362\t\\paragraph{Why does the alignment gap arise?}\n363\tWe connect the mechanism to neural collapse \\cite{papyan2020prevalence}: iterative self-training reduces intra-distribution variability in the embedding space.\n364\tAs the model ``memorizes'' its own output distribution, embeddings cluster along fewer effective directions.\n365\tGreedy facility-location selection in this lower-dimensional space picks points that maximize geometric spread along the remaining directions---which, critically, are no longer aligned with lexical diversity.\n366\tThe rank correlation evidence (Table~\\ref{tab:main_full}: $-0.058 \\to -0.155$) directly confirms this progressive misalignment.\n367\t\n368\t\\paragraph{Practical implications.}\n369\tAny iterative training pipeline using the model's own representations for data selection is potentially vulnerable.\n370\tThis includes retrieval-augmented self-improvement, iterative distillation with embedding-based filtering, and active learning with representation-space acquisition functions.\n371\tOur results recommend either (a) using frozen external embeddings for selection, or (b) re-anchoring to pre-trained representations at each iteration.\n372\t\n373\t\\paragraph{Limitations.}\n374\tOur experiments use GPT-2 family models (125M, 355M).\n375\tWhile the alignment gap's relative magnitude is stable across these scales, verification on models $>1$B parameters remains future work.\n376\tThe re-anchoring mitigation is simple by design; more sophisticated generation-side interventions may recover the remaining $\\sim$2/3 of vocabulary loss.\n377\t\n378\t%=============================================\n379\t\\section{Conclusion}\n380\t\\label{sec:conclusion}\n381\t\n382\tWe identified the Embedding Alignment Gap: a systematic failure mode where diversity-based data selection using a model's own representations accelerates model collapse in iterative self-training.\n383\tThe gap manifests as a monotonic degradation of the selection ratio from $1.04$ to $0.52$ over 8 generations, causing $+50\\%$ perplexity and $-47\\%$ rare $n$-gram loss relative to uncurated baselines.\n384\tFrozen external embeddings are immune to the gap but reveal that semantic diversity does not ensure lexical diversity.\n385\tA simple re-anchoring fix recovers $\\sim$30\\% of the gap, localizing the majority of residual collapse to the generation side.\n386\tThese findings are robust across model scales, datasets, and random seeds.\n387\tThe practical takeaway is clear: in iterative training, never trust the model's own embeddings for diversity-based data curation.\n388\t\n389\t\\bibliographystyle{plainnat}\n390\t\\bibliography{custom}\n391\t\n392\t\\end{document}\n393\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32a5daeb-452c-41fa-85d6-a00969466dc7",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "8ffec745-9cfe-4c25-8078-c1115ff34776",
+            "sourceToolAssistantUUID": "32a5daeb-452c-41fa-85d6-a00969466dc7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T08:58:06.554Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0187vGiaEXkAXQaegGn7u1ZN",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse/artifacts/dream_reports/dream_20260513T081019/best/custom.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ffec745-9cfe-4c25-8078-c1115ff34776",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHrYdytWtFyuqvFjygx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "505a8c62-369e-4aba-9289-296839db344f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XZu6oG4H42HrGDBNfPuNwZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9010,
+                "cache_read_input_tokens": 26561,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9010,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T08:58:06.566Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0187vGiaEXkAXQaegGn7u1ZN",
+              "type": "tool_result",
+              "content": "1\t@article{shumailov2024nature,\n2\t  title={AI models collapse when trained on recursively generated data},\n3\t  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n4\t  journal={Nature},\n5\t  volume={631},\n6\t  pages={755--759},\n7\t  year={2024}\n8\t}\n9\t\n10\t@article{alemohammad2024selfconsuming,\n11\t  title={Self-consuming generative models go {MAD}},\n12\t  author={Alemohammad, Sina and Casco-Rodriguez, Josue and Luber, Lorenzo and Babaei, Ahmed and Letizia, Daniel and Bastani, Osbert and Calmon, Flavio},\n13\t  journal={arXiv preprint arXiv:2307.01850},\n14\t  year={2024}\n15\t}\n16\t\n17\t@article{dohmatob2024tale,\n18\t  title={A tale of tails: Model collapse as a change of scaling laws},\n19\t  author={Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n20\t  journal={arXiv preprint arXiv:2402.07043},\n21\t  year={2024}\n22\t}\n23\t\n24\t@inproceedings{abbas2023semdedup,\n25\t  title={{SemDeDup}: Data-efficient learning at web-scale through semantic deduplication},\n26\t  author={Abbas, Amro and Tirumala, Kushal and Simig, D{\\'a}niel and Ganguli, Surya and Morcos, Ari},\n27\t  booktitle={Proceedings of NeurIPS},\n28\t  year={2023}\n29\t}\n30\t\n31\t@article{tirumala2023d4,\n32\t  title={D4: Improving {LLM} pretraining via document de-duplication and diversification},\n33\t  author={Tirumala, Kushal and Markosyan, Aram and Zettlemoyer, Luke and Aghajanyan, Armen},\n34\t  journal={arXiv preprint arXiv:2308.12284},\n35\t  year={2023}\n36\t}\n37\t\n38\t@inproceedings{xie2023dsir,\n39\t  title={Data selection for language models via importance resampling},\n40\t  author={Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n41\t  booktitle={Proceedings of NeurIPS},\n42\t  year={2023}\n43\t}\n44\t\n45\t@inproceedings{kirchhoff2014submodular,\n46\t  title={Submodularity for data selection in machine translation},\n47\t  author={Kirchhoff, Katrin and Bilmes, Jeff},\n48\t  booktitle={Proceedings of EMNLP},\n49\t  year={2014}\n50\t}\n51\t\n52\t@inproceedings{papyan2020prevalence,\n53\t  title={Prevalence of neural collapse during the terminal phase of deep learning training},\n54\t  author={Papyan, Vardan and Han, X.Y. and Donoho, David L.},\n55\t  booktitle={Proceedings of the National Academy of Sciences},\n56\t  volume={117},\n57\t  pages={24652--24663},\n58\t  year={2020}\n59\t}\n60\t\n61\t@article{garrido2023rankme,\n62\t  title={{RankMe}: Assessing the downstream performance of pretrained self-supervised representations by their rank},\n63\t  author={Garrido, Quentin and Balestriero, Randall and Najman, Laurent and LeCun, Yann},\n64\t  journal={arXiv preprint arXiv:2210.02885},\n65\t  year={2023}\n66\t}\n67\t\n68\t@article{izacard2022contriever,\n69\t  title={Unsupervised dense information retrieval with contrastive learning},\n70\t  author={Izacard, Gautier and Caron, Mathilde and Hosseini, Lucas and Riedel, Sebastian and Bojanowski, Piotr and Joulin, Armand and Grave, Edouard},\n71\t  journal={Transactions on Machine Learning Research},\n72\t  year={2022}\n73\t}\n74\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "505a8c62-369e-4aba-9289-296839db344f",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "2917fde0-69b4-4f43-94dd-c6b5602fdf49",
+            "sourceToolAssistantUUID": "505a8c62-369e-4aba-9289-296839db344f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-13T08:58:07.554Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015kkoX27fssRY2s131esKwu",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse/artifacts/dream_reports/dream_20260513T081019/best/review_report.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2917fde0-69b4-4f43-94dd-c6b5602fdf49",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHrYdytWtFyuqvFjygx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8584924b-2a40-44c5-b505-7260ea736b1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XZu6oG4H42HrGDBNfPuNwZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9010,
+                "cache_read_input_tokens": 26561,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9010,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T08:58:07.560Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015kkoX27fssRY2s131esKwu",
+              "type": "tool_result",
+              "content": "1\t---\n2\tdream_id: dream_20260513T081019\n3\ttier: best\n4\toverall_score: Findings acceptance (3.0/5), conditional on revisions\n5\ttimestamp: 2026-05-13T08:54:16.649568+00:00\n6\t---\n7\t\n8\t# Dream Review Report: The Embedding Alignment Gap\n9\t\n10\t**Paper**: \"The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Iterative Self-Training\"\n11\t**Venue**: EMNLP 2026 ARR\n12\t**Review Mode**: Full (2 Reviewers + Roundtable)\n13\t**Date**: 2026-05-13\n14\t\n15\t---\n16\t\n17\t## Reviewer Assignments\n18\t- **R1**: Methods and Experiments\n19\t- **R2**: Novelty and Related Work\n20\t\n21\t---\n22\t\n23\t## Step 1: Independent Reviews\n24\t\n25\t### R1 Review (Methods + Experiments)\n26\t\n27\t**Paper Summary**: The paper identifies the \"Embedding Alignment Gap\" — in iterative self-training, a model's internal embeddings become misaligned with content diversity, causing diversity-based selection (RGDS) to accelerate model collapse. The authors quantify this via a \"selection ratio\" metric and validate across 2 model scales, 2 datasets, and 3 seeds.\n28\t\n29\t**Strengths**:\n30\t1. **Clean three-way experimental design**: Uncurated / RGDS / External-only comparison isolates the alignment gap from generic model collapse. The causal attribution is convincing — the same submodular objective with different embeddings produces opposite outcomes.\n31\t2. **Selection ratio is a well-conceived diagnostic**: Simple, interpretable, and directly measures the quantity of interest (alignment between embedding diversity and lexical diversity). The monotonic degradation across 8 generations is compelling.\n32\t3. **Statistical rigor is above average for this topic**: 3 seeds with 95% CIs, non-overlapping intervals, Cohen's d > 3. Effect sizes are large and consistent.\n33\t4. **Re-anchoring decomposition is analytically valuable**: The selection-side vs. generation-side decomposition (§6) provides actionable insight beyond merely identifying the problem.\n34\t5. **Cross-scale and cross-dataset consistency**: Relative magnitudes are remarkably stable (PPL excess ±3% across conditions), strengthening the \"mechanism is universal\" argument.\n35\t\n36\t**Weaknesses**:\n37\t1. **Scale range is narrow and within a single architecture family**: 125M and 355M are both GPT-2. The ~identical relative magnitudes (51.4% vs 51.9%) are suspiciously precise and may reflect architecture-specific dynamics rather than universal phenomena. Claims of \"scale invariance\" overreach the evidence — a 2.8× scale factor within one family is minimal.\n38\t2. **Re-anchoring experiment uses only seed=42**: This is the most actionable contribution (§6), yet the 1/3 vs 2/3 decomposition rests on a single seed. The other experiments use 3 seeds; this inconsistency weakens the strongest practical claim.\n39\t3. **Missing critical hyperparameters**: The paper does not specify: generation length, number of generated samples per generation, selection budget (what fraction is selected?), temperature/top-k/top-p for generation, learning rate/epochs for fine-tuning, or whether fine-tuning is from scratch each generation or continual. These are essential for reproducibility.\n40\t4. **Extreme self-training setup limits practical relevance**: Pure self-training with no real data mixing is the most aggressive collapse configuration. Most real pipelines mix synthetic and real data. The paper doesn't test any mixed-data regime, making practical applicability uncertain.\n41\t5. **N=3 seeds with t-distribution CIs**: With 2 degrees of freedom, the 95% CI coverage probability is unreliable. The large effect sizes compensate, but the paper should acknowledge this limitation rather than presenting CIs as fully rigorous.\n42\t6. **Representation metric analysis (S2) is shallow**: Claiming RankMe/k-NN \"miss\" collapse based on one experiment (Table 3) without analyzing *why* (e.g., are the metrics measuring orthogonal properties, or are they insensitive in a specific range?) is insufficient.\n43\t\n44\t**Questions for Authors**:\n45\t1. What is the selection budget (fraction of pool selected)? Does the alignment gap magnitude depend on this fraction?\n46\t2. Is fine-tuning continual (M_{t-1} → M_t) or from-scratch each generation? This fundamentally changes the collapse dynamics.\n47\t3. What happens at generation >8? Does the ratio plateau or continue declining?\n48\t4. Have you tested with any real-data mixing (e.g., 50% real + 50% synthetic)?\n49\t5. What is the computational overhead of re-anchoring (keeping M_0 for selection)?\n50\t\n51\t**Missing Experiments**:\n52\t1. Re-anchoring with multiple seeds (critical)\n53\t2. Mixed real/synthetic data regime\n54\t3. Sensitivity to selection budget fraction\n55\t4. Ablation on generation parameters (temperature, length)\n56\t5. A model outside GPT-2 family (e.g., Pythia, LLaMA)\n57\t\n58\t**Scores**:\n59\t- Soundness: 3.0/5\n60\t- Excitement: 3.5/5\n61\t- Overall: 3.0/5 (Findings acceptance)\n62\t- Confidence: 4/5\n63\t\n64\t**Justification**: The core phenomenon is real, clearly demonstrated, and the selection ratio metric is a genuine contribution. However, the narrow scale range (GPT-2 only), missing hyperparameters, single-seed re-anchoring, and extreme self-training setup prevent this from being a main conference paper. The effect sizes are large enough that the conclusions are likely robust, but the paper needs more detail and breadth to be fully convincing. Appropriate for Findings track.\n65\t\n66\t---\n67\t\n68\t### R2 Review (Novelty + Related Work)\n69\t\n70\t**Paper Summary**: The paper formalizes the observation that internal-embedding-based diversity selection degrades under iterative self-training, introducing the \"Embedding Alignment Gap\" concept and the selection ratio metric. The counterintuitive finding (diversity selection accelerates collapse) is the headline contribution.\n71\t\n72\t**Strengths**:\n73\t1. **Counterintuitive finding clearly articulated**: The framing — \"the cure accelerates the disease\" — is effective and likely to attract attention. The causal chain (embedding contraction → misaligned selection → vocabulary impoverishment → further contraction) is cleanly stated.\n74\t2. **Selection ratio is a reusable diagnostic**: This metric has utility beyond this specific study and could become a standard monitoring tool for iterative training pipelines.\n75\t3. **Semantic ≠ lexical diversity decomposition (S1)**: While not entirely novel conceptually, the specific quantification (external embeddings improve PPL by 5% but rare n-grams are identical) is cleanly demonstrated and under-discussed in the literature.\n76\t4. **Selection-side vs. generation-side decomposition**: Analytically valuable — distinguishes two failure modes that require different interventions.\n77\t\n78\t**Weaknesses**:\n79\t1. **Related work is severely underdeveloped**: Only 10 references for EMNLP is far below expectations. Critical gaps include:\n80\t   - **Concept drift / embedding drift literature**: The core phenomenon (representations becoming unreliable under distribution shift) is well-studied in continual learning and domain adaptation. The paper doesn't engage with this body of work at all.\n81\t   - **Active learning under distribution shift**: The observation that acquisition functions degrade when the model's representations shift is known in active learning (e.g., Ash et al. 2020 BADGE, Kirsch et al. 2019). The alignment gap is essentially an acquisition function failure mode.\n82\t   - **More model collapse papers**: Guo et al. 2024 (\"Curious Decline\"), Dohmatob et al. 2024 (scaling laws formalization — cited but not deeply engaged), Briesch et al. 2023. The field has grown substantially.\n83\t   - **Self-play / RLHF feedback loops**: Similar feedback loops occur in RLHF where the reward model co-evolves with the policy. The connection to reward hacking / Goodhart's law is natural but unmade.\n84\t   - **Data selection beyond SemDeDup/D4/DSIR**: LESS (Xia et al. 2024), SelectIT, QuRating, clustering-based methods. The landscape is much richer than presented.\n85\t   - **Representational collapse in contrastive learning**: Jing et al. 2022 on dimensional collapse, Hua et al. 2021 — directly relevant to the neural collapse mechanism invoked.\n86\t2. **Novelty is overstated**: That internal representations become unreliable under distributional shift is conceptually expected — it would be surprising if they *didn't*. The real contribution is the *quantification* (selection ratio, magnitude of acceleration, decomposition), but the paper frames it as a novel conceptual insight. The framing should be recalibrated.\n87\t3. **Neural collapse connection (§8) is speculative**: Neural collapse (Papyan et al. 2020) describes a phenomenon in supervised classification with fixed labels converging to simplex ETF geometry. Applying this to unsupervised LM self-training is a significant conceptual leap that isn't justified. The embedding contraction observed here may be mechanistically distinct from neural collapse.\n88\t4. **The S1 finding (semantic ≠ lexical diversity) is well-known in general**: The IR and NLP communities have long recognized that embedding similarity captures semantic/topical structure but not surface-level lexical properties. The contribution here is showing this in the specific context of model collapse, which is incremental.\n89\t5. **Practical warning scope is unclear**: The paper warns against using internal embeddings for data selection in iterative training, but most modern pipelines use different strategies (reward models, verifiers, human feedback). The set of practitioners who would use raw embedding diversity for iterative curation is narrow.\n90\t6. **No theoretical analysis**: The paper is purely empirical. Even a simple toy model showing *why* the selection ratio degrades monotonically (e.g., a Gaussian model where the covariance contracts along specific axes) would significantly strengthen the contribution.\n91\t\n92\t**Questions for Authors**:\n93\t1. How does this relate to the well-known problem of acquisition function degradation in active learning? \n94\t2. Can you formalize the connection to neural collapse more rigorously, or is it purely analogical?\n95\t3. Who is the target practitioner for the \"practical warning\"? Which real-world pipelines use internal-embedding diversity selection iteratively?\n96\t4. Would a simple lexical diversity filter (e.g., type-token ratio threshold) solve the problem entirely, making the embedding-based analysis less relevant?\n97\t\n98\t**Missing Related Work** (specific):\n99\t1. Ash et al. 2020 (BADGE) — active learning acquisition function design\n100\t2. Guo et al. 2024 — model collapse in LLMs\n101\t3. Jing et al. 2022 — dimensional collapse in contrastive learning\n102\t4. Xia et al. 2024 (LESS) — gradient-based data selection\n103\t5. Concept drift literature (Lu et al. 2019 survey)\n104\t6. RLHF/self-play feedback loop analysis\n105\t7. Continual learning and catastrophic forgetting literature\n106\t8. Facility-location submodular maximization theory (Iyer & Bilmes 2013, Wei et al. 2015)\n107\t\n108\t**Scores**:\n109\t- Soundness: 3.0/5\n110\t- Excitement: 2.5/5\n111\t- Overall: 2.5/5 (Borderline Findings)\n112\t- Confidence: 4/5\n113\t\n114\t**Justification**: The quantification of the alignment gap is a real contribution, and the selection ratio metric has utility. However, the related work is severely underdeveloped for EMNLP (10 references, missing entire relevant sub-fields), the novelty framing overstates conceptual novelty vs. empirical quantification, and the neural collapse connection is speculative. The paper needs substantial related work expansion, novelty recalibration, and ideally some theoretical grounding to reach Findings quality.\n115\t\n116\t---\n117\t\n118\t## Step 2: Cross-Sharing\n119\t\n120\t**R1 shares with R2**:\n121\t- The re-anchoring experiment (§6) — the most actionable contribution — uses only seed=42, undermining the decomposition claim\n122\t- Critical hyperparameters are missing (generation length, selection budget, temperature, training details)\n123\t- The extreme self-training setup (pure synthetic, no real data mixing) limits real-world relevance\n124\t- N=3 seeds with 2 df makes CI coverage unreliable, though large effect sizes compensate\n125\t\n126\t**R2 shares with R1**:\n127\t- Only 10 references is severely below EMNLP expectations; entire subfields (concept drift, active learning, contrastive collapse) are unengaged\n128\t- The novelty framing should be recalibrated: the *quantification* is the contribution, not the conceptual insight that representations shift under distribution drift\n129\t- Neural collapse connection is speculative and may mislead readers\n130\t- No theoretical analysis weakens the mechanistic claims\n131\t\n132\t---\n133\t\n134\t## Step 3: Convergence\n135\t\n136\t**Points of Agreement**:\n137\t1. The core empirical finding (selection ratio degradation, accelerated collapse) is **real and well-demonstrated**\n138\t2. The selection ratio metric is a **genuine, reusable contribution**\n139\t3. The three-way comparison design is **clean and effective**\n140\t4. **Scale range is too narrow** — GPT-2 125M/355M is insufficient for generalization claims\n141\t5. **Related work needs major expansion** — 10 references is inadequate\n142\t6. **Re-anchoring needs more seeds** — single seed for the most actionable claim is a gap\n143\t7. **Missing hyperparameters** hurt reproducibility\n144\t8. Paper is **below main conference threshold** but has merit for Findings\n145\t\n146\t**Points of Disagreement**:\n147\t- **Excitement**: R1 rates 3.5 (the counterintuitive finding is compelling for the community); R2 rates 2.5 (the conceptual insight is somewhat expected from concept drift perspective). After discussion, both agree on **3.0** — the quantification is valuable but not surprising enough for high excitement.\n148\t- **Overall**: R1 rates 3.0 (solid Findings); R2 rates 2.5 (borderline due to related work gaps). After discussion, both agree the core contribution merits Findings but the related work weakness is addressable in revision. Converge on **3.0** with strong revision requirements.\n149\t- **Neural collapse**: R1 did not flag this; R2's concern is valid. Agreed it should be softened to \"analogy\" rather than \"mechanism.\"\n150\t\n151\t**Converged Scores**:\n152\t- Soundness: **3.0/5** — Main claims supported but gaps in reproducibility details and single-seed re-anchoring\n153\t- Excitement: **3.0/5** — Interesting quantification with practical value, but conceptual novelty is moderate\n154\t- Overall: **3.0/5** (Findings acceptance, conditional on revisions)\n155\t- Confidence: **4/5**\n156\t\n157\t---\n158\t\n159\t## Step 4: Consolidated Assessment\n160\t\n161\t### Final Recommendation: **3.0/5 — Findings Acceptance** (conditional on revisions)\n162\t\n163\t### Summary\n164\tThe paper identifies and quantifies the Embedding Alignment Gap — a monotonic degradation of alignment between embedding-space diversity and content diversity in iterative self-training. Using a cleanly designed three-way comparison (uncurated / internal-embedding RGDS / frozen-external Contriever) across 8 generations, the authors demonstrate that internal-embedding diversity selection accelerates model collapse (+50% PPL, −47% rare n-grams vs. uncurated). The selection ratio metric is well-conceived and the re-anchoring decomposition provides actionable insight.\n165\t\n166\t### Key Strengths\n167\t1. **Clean causal design**: The three-way comparison with matched submodular objectives isolates the embedding alignment issue convincingly\n168\t2. **Selection ratio metric**: Simple, interpretable, directly measures the phenomenon, and has reuse potential\n169\t3. **Large, consistent effect sizes**: Cohen's d > 3, relative magnitudes stable across scales and datasets (±3%)\n170\t4. **Re-anchoring decomposition**: Separating selection-side (~1/3) from generation-side (~2/3) collapse is analytically valuable and suggests different intervention strategies\n171\t5. **Experiment coverage**: All planned experiments (7 configurations across scales, seeds, datasets, mitigation) are reflected in the paper — 100% coverage\n172\t\n173\t### Key Weaknesses Requiring Revision\n174\t1. **Related work severely underdeveloped** (10 references): Must add concept drift, active learning acquisition function degradation, contrastive/dimensional collapse, recent model collapse papers (Guo et al. 2024), data selection methods (LESS, SelectIT), and RLHF feedback loops. Target: ≥25 references.\n175\t2. **Novelty framing needs recalibration**: The conceptual insight (representations degrade under distribution shift) is expected; the contribution is the *quantification and decomposition*. Reframe accordingly.\n176\t3. **Re-anchoring needs multi-seed validation**: §6 uses only seed=42. The 1/3 vs 2/3 decomposition claim requires at least 3-seed CIs to match the rigor of §4-5.\n177\t4. **Missing hyperparameters**: Generation length, pool size, selection budget fraction, temperature, learning rate, epochs, whether training is continual or from-scratch — all essential for reproducibility.\n178\t5. **Neural collapse connection is speculative**: §8 should soften this to an analogy and note the mechanistic differences between supervised classification collapse and unsupervised LM self-training.\n179\t6. **Narrow scale range**: GPT-2 only (125M, 355M). Acknowledge as limitation; \"scale invariance\" claim should be weakened to \"consistent across tested scales.\"\n180\t\n181\t### Minor Issues\n182\t- Table 1 shows only seed=42 data; should reference Table 5 for multi-seed aggregation\n183\t- The selection ratio for uncurated is undefined (shows \"—\") — should be defined as 1.0 by construction or explained\n184\t- No error bars on Tables 3, 4, 7 (single-seed results)\n185\t\n186\t### Experiment Coverage Assessment\n187\t| Planned Experiment | Paper Coverage | Status |\n188\t|---|---|---|\n189\t| plan_001: Main 3-method (125M, Wiki, seed=42) | §4, Tables 1-3 | ✓ Complete |\n190\t| plan_004: seed=123 reproduction | §7.1, Table 5 | ✓ Complete |\n191\t| plan_005: seed=456 + 3-seed aggregation | §7.1, Table 5 | ✓ Complete |\n192\t| plan_006: GPT2-medium 355M (seed=42) | §7.2, Table 6 | ✓ Complete |\n193\t| plan_007: GPT2-medium 355M (seed=123) | §7.2, Table 6† | ✓ Complete |\n194\t| plan_008: Re-anchoring mitigation | §6, Table 4 | ⚠ Single seed only |\n195\t| plan_009: OpenWebText (seed=42) | §7.3, Table 7 | ✓ Complete |\n196\t\n197\tCoverage: 7/7 experiments present. 1 experiment (re-anchoring) under-validated (single seed).\n198\t\n199\t### Actionable Revision Checklist\n200\t- [ ] Expand related work to ≥25 references covering concept drift, active learning, contrastive collapse, recent model collapse, broader data selection\n201\t- [ ] Recalibrate novelty claims: quantification + decomposition is the contribution, not the conceptual observation\n202\t- [ ] Add 2 more seeds to re-anchoring experiment (§6)\n203\t- [ ] Add complete hyperparameter table (generation, selection, training details)\n204\t- [ ] Soften neural collapse connection to analogy\n205\t- [ ] Weaken \"scale invariance\" to \"consistent across tested scales\"\n206\t- [ ] Add sensitivity analysis for selection budget fraction\n207\t- [ ] Discuss mixed real/synthetic data regime (even if only in limitations)\n208\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8584924b-2a40-44c5-b505-7260ea736b1a",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "00cd61dd-a629-4415-82c1-be9ecf1288fb",
+            "sourceToolAssistantUUID": "8584924b-2a40-44c5-b505-7260ea736b1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T08:58:08.116Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WhBXDWKsT72t882jTSsgzf",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse/artifacts/dream_reports/dream_20260513T081019/best/imagined_experiments.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00cd61dd-a629-4415-82c1-be9ecf1288fb",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHrYdytWtFyuqvFjygx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6d6039bf-baef-4bb1-998a-024bfb8e643b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XZu6oG4H42HrGDBNfPuNwZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9010,
+                "cache_read_input_tokens": 26561,
+                "output_tokens": 281,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9010
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 281,
+                    "cache_read_input_tokens": 26561,
+                    "cache_creation_input_tokens": 9010,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9010,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T08:58:08.120Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WhBXDWKsT72t882jTSsgzf",
+              "type": "tool_result",
+              "content": "1\ttier: best\n2\tnarrative_guidance: '原始 framing 完全可用。标题保留 \"Alignment Gap\" + \"Accelerates Collapse\"。\n3\t\n4\t  plan_001 提供锚定数据：C1 用 selection ratio 单调下降曲线 (1.04→0.52) 做主图；\n5\t\n6\t  C3 用 RGDS vs uncurated 的 PPL/rare 分叉做第二主图；\n7\t\n8\t  C2-weak 通过 external_only 对照自然呈现 (ratio >1.2, PPL 优于 uncurated, rare ≈ uncurated)。\n9\t\n10\t  plan_004/005 提供 3-seed 统计，CI 不跨零，挡住 R3 (N=1) 攻击。\n11\t\n12\t  plan_006/007 提供 GPT2-medium 结果，挡住 R1 (scale) 攻击。\n13\t\n14\t  plan_008 re-anchoring 作为 §6 缓解实验，rare 改善 ~33%，升级为 \"found + partial fix\"。\n15\t\n16\t  plan_009 OpenWebText 挡住 R2 (dataset 单一性) 攻击。\n17\t\n18\t  可投 main conference 8 页，审稿人主攻面缩小到 scale（仍在 GPT2 家族内）和缓解方案的简单性。\n19\t\n20\t  '\n21\timagined_experiments:\n22\t- name: Phase 2 三方法对比 (GPT2-125M, WikiText-103, seed=42)\n23\t  plan_id: plan_001\n24\t  description: Self-iterate GPT2-125M × 8 gens × 3 methods (uncurated/RGDS/external_only)。锚定全部\n25\t    claims 的主实验。\n26\t  expected_results:\n27\t    rgds:\n28\t      gen0:\n29\t        ppl: 37.2\n30\t        sel_ratio: 1.04\n31\t        rare: 0.0288\n32\t        rank_corr: -0.058\n33\t        rankme: 281.5\n34\t        knn: 0.988\n35\t      gen1:\n36\t        ppl: 42.5\n37\t        sel_ratio: 0.96\n38\t        rare: 0.0208\n39\t        rank_corr: -0.074\n40\t        rankme: 290.2\n41\t        knn: 0.988\n42\t      gen2:\n43\t        ppl: 49.8\n44\t        sel_ratio: 0.87\n45\t        rare: 0.0152\n46\t        rank_corr: -0.089\n47\t        rankme: 296.4\n48\t        knn: 0.987\n49\t      gen3:\n50\t        ppl: 56.3\n51\t        sel_ratio: 0.79\n52\t        rare: 0.0113\n53\t        rank_corr: -0.103\n54\t        rankme: 300.1\n55\t        knn: 0.988\n56\t      gen4:\n57\t        ppl: 61.7\n58\t        sel_ratio: 0.71\n59\t        rare: 0.0086\n60\t        rank_corr: -0.118\n61\t        rankme: 303.2\n62\t        knn: 0.988\n63\t      gen5:\n64\t        ppl: 66.4\n65\t        sel_ratio: 0.64\n66\t        rare: 0.0068\n67\t        rank_corr: -0.131\n68\t        rankme: 301.8\n69\t        knn: 0.988\n70\t      gen6:\n71\t        ppl: 70.1\n72\t        sel_ratio: 0.57\n73\t        rare: 0.0055\n74\t        rank_corr: -0.143\n75\t        rankme: 298.5\n76\t        knn: 0.988\n77\t      gen7:\n78\t        ppl: 72.8\n79\t        sel_ratio: 0.52\n80\t        rare: 0.0046\n81\t        rank_corr: -0.155\n82\t        rankme: 294.3\n83\t        knn: 0.988\n84\t    uncurated:\n85\t      gen0:\n86\t        ppl: 37.1\n87\t        rare: 0.029\n88\t        rank_corr: -0.023\n89\t        rankme: 280.3\n90\t        knn: 0.988\n91\t      gen1:\n92\t        ppl: 44.9\n93\t        rare: 0.0192\n94\t        rank_corr: -0.055\n95\t        rankme: 297.8\n96\t        knn: 0.988\n97\t      gen2:\n98\t        ppl: 51.6\n99\t        rare: 0.0139\n100\t        rank_corr: -0.049\n101\t        rankme: 302.6\n102\t        knn: 0.987\n103\t      gen3:\n104\t        ppl: 57.0\n105\t        rare: 0.0116\n106\t        rank_corr: -0.044\n107\t        rankme: 303.3\n108\t        knn: 0.988\n109\t      gen4:\n110\t        ppl: 55.7\n111\t        rare: 0.0101\n112\t        rank_corr: -0.042\n113\t        rankme: 301.3\n114\t        knn: 0.988\n115\t      gen5:\n116\t        ppl: 51.7\n117\t        rare: 0.0098\n118\t        rank_corr: -0.048\n119\t        rankme: 297.4\n120\t        knn: 0.988\n121\t      gen6:\n122\t        ppl: 48.7\n123\t        rare: 0.0089\n124\t        rank_corr: -0.065\n125\t        rankme: 293.0\n126\t        knn: 0.988\n127\t      gen7:\n128\t        ppl: 48.1\n129\t        rare: 0.0087\n130\t        rank_corr: -0.087\n131\t        rankme: 289.8\n132\t        knn: 0.988\n133\t    external_only:\n134\t      gen0:\n135\t        ppl: 36.8\n136\t        sel_ratio: 1.08\n137\t        rare: 0.0289\n138\t        rank_corr: -0.024\n139\t        rankme: 280.8\n140\t        knn: 0.988\n141\t      gen1:\n142\t        ppl: 42.2\n143\t        sel_ratio: 1.12\n144\t        rare: 0.0194\n145\t        rank_corr: -0.032\n146\t        rankme: 296.5\n147\t        knn: 0.988\n148\t      gen2:\n149\t        ppl: 47.5\n150\t        sel_ratio: 1.15\n151\t        rare: 0.0141\n152\t        rank_corr: -0.036\n153\t        rankme: 302.0\n154\t        knn: 0.987\n155\t      gen3:\n156\t        ppl: 50.8\n157\t        sel_ratio: 1.18\n158\t        rare: 0.0118\n159\t        rank_corr: -0.039\n160\t        rankme: 303.0\n161\t        knn: 0.988\n162\t      gen4:\n163\t        ppl: 50.3\n164\t        sel_ratio: 1.21\n165\t        rare: 0.0103\n166\t        rank_corr: -0.041\n167\t        rankme: 300.5\n168\t        knn: 0.988\n169\t      gen5:\n170\t        ppl: 48.2\n171\t        sel_ratio: 1.24\n172\t        rare: 0.0097\n173\t        rank_corr: -0.04\n174\t        rankme: 296.8\n175\t        knn: 0.988\n176\t      gen6:\n177\t        ppl: 46.5\n178\t        sel_ratio: 1.26\n179\t        rare: 0.0091\n180\t        rank_corr: -0.038\n181\t        rankme: 292.5\n182\t        knn: 0.988\n183\t      gen7:\n184\t        ppl: 45.8\n185\t        sel_ratio: 1.28\n186\t        rare: 0.0088\n187\t        rank_corr: -0.037\n188\t        rankme: 289.4\n189\t        knn: 0.988\n190\t    derived:\n191\t      rgds_ppl_excess_vs_uncurated_pct: 51.4\n192\t      rgds_rare_deficit_vs_uncurated_pct: 47.1\n193\t      external_ppl_improvement_vs_uncurated_pct: -4.8\n194\t      external_rare_vs_uncurated_pct: 1.1\n195\t  result_rationale: 'RGDS: self-iterate 导致内部嵌入空间收缩（neural collapse 类机制）。\n196\t\n197\t    随代际推进，模型嵌入的\"几何多样性\"方向逐渐对齐到高频词汇模式上，\n198\t\n199\t    贪心子模选择在低维空间中选中的\"远点\"恰好是词汇贫乏的样本。\n200\t\n201\t    selection ratio 从 1.04 单调降至 0.52 反映了这种对齐错位的加剧。\n202\t\n203\t    训练在词汇贫乏子集上 → PPL 从 37.2 飙升到 72.8（+51%），\n204\t\n205\t    rare n-gram 从 0.029 降至 0.0046（-84%），远超 uncurated 的自然崩塌幅度。\n206\t\n207\t\n208\t    uncurated: 无选择偏差，PPL 先升后降（gen3 峰值 57.0 → gen7 回落 48.1），\n209\t\n210\t    rare n-gram 持续下降到 0.0087（-70%）。\n211\t\n212\t    PPL 回落是因为模型逐渐\"记住\"自身分布，但词汇多样性不可逆损失。\n213\t\n214\t\n215\t    external_only: Contriever 冻结不受训练反馈影响，diversity 信号始终校准到原始分布。\n216\t\n217\t    selection ratio 稳定上升（1.08→1.28），说明它确实在挑\"更不像已有训练集\"的样本。\n218\t\n219\t    PPL 略优于 uncurated（45.8 vs 48.1，-4.8%）因为语义多样性选择提供了更有信息量的训练数据。\n220\t\n221\t    但 rare n-gram（0.0088）≈ uncurated（0.0087），说明语义多样性 ≠ 词汇多样性——\n222\t\n223\t    Contriever 捕捉的是主题/语义距离而非低频词分布。\n224\t\n225\t    '\n226\t  tables:\n227\t  - 'Table 1: Gen 0-7 三方法全指标（PPL, rare, sel_ratio, rank_corr, RankMe, k-NN）'\n228\t  - 'Table 2: Gen 7 汇总 + 方法间相对差异百分比'\n229\t  figures_description:\n230\t  - 'Figure 1 (hero): Selection ratio × generation 折线图，RGDS 单调下降穿过 1.0 线，external\n231\t    稳步上升。灰色虚线标 1.0 阈值。C1 核心证据。'\n232\t  - 'Figure 2: 双 y 轴——左 PPL, 右 rare n-gram。三方法三条线。RGDS PPL 持续上升 + rare 加速下降形成''剪刀口''。external\n233\t    PPL 优于 uncurated 但 rare 几乎重合——视觉化 S1。'\n234\t  - 'Figure 3: RankMe × generation，说明表征质量指标未检出多样性崩塌（S2）。'\n235\t  analysis: 'C1 成立：selection ratio 单调下降 8 代，效应量大（1.04→0.52），不可归因于噪声。\n236\t\n237\t    C2-weak 成立：external ratio 始终 >1.0 且上升，与 internal 形成鲜明对照。\n238\t\n239\t    C3 成立：RGDS PPL +51%、rare -47% vs uncurated，完整因果链闭合。\n240\t\n241\t    S1 成立：external PPL -4.8% 但 rare +1.1%，PPL 与 rare 解耦。\n242\t\n243\t    S2 成立：RankMe 在崩塌过程中反而上升（280→303），k-NN 稳定，无法检测多样性衰退。\n244\t\n245\t    '\n246\t- name: External_only seed=123 复现\n247\t  plan_id: plan_003\n248\t  description: 验证 external_only selection ratio >1.0 在不同种子下的可复现性。plan_004 的子集先行实验。\n249\t  expected_results:\n250\t    external_only:\n251\t      gen0:\n252\t        ppl: 37.0\n253\t        sel_ratio: 1.07\n254\t        rare: 0.0291\n255\t      gen4:\n256\t        ppl: 50.8\n257\t        sel_ratio: 1.19\n258\t        rare: 0.0105\n259\t      gen7:\n260\t        ppl: 46.5\n261\t        sel_ratio: 1.25\n262\t        rare: 0.009\n263\t  result_rationale: 'Contriever 冻结模型的选择函数不受训练种子影响，\n264\t\n265\t    但下游训练轨迹因初始化/采样随种子变化导致 ±5% 波动。\n266\t\n267\t    sel_ratio 仍 >1.0 全程，确认 C2-weak 非种子偶然。\n268\t\n269\t    '\n270\t  tables: []\n271\t  figures_description: []\n272\t  analysis: 结果合并入 plan_004 的 3-seed 统计。单独作用是在 plan_001 完成前快速确认 C2-weak 方向。\n273\t- name: 三方法 seed=123 完整复现 (GPT2-125M, WikiText-103)\n274\t  plan_id: plan_004\n275\t  description: 3 methods × 8 gens, seed=123。第二个种子，与 plan_001 对比验证趋势可复现。\n276\t  expected_results:\n277\t    rgds:\n278\t      gen0:\n279\t        ppl: 37.5\n280\t        sel_ratio: 1.03\n281\t        rare: 0.0285\n282\t        rank_corr: -0.062\n283\t      gen3:\n284\t        ppl: 57.8\n285\t        sel_ratio: 0.77\n286\t        rare: 0.0108\n287\t        rank_corr: -0.108\n288\t      gen7:\n289\t        ppl: 70.5\n290\t        sel_ratio: 0.54\n291\t        rare: 0.005\n292\t        rank_corr: -0.148\n293\t    uncurated:\n294\t      gen0:\n295\t        ppl: 37.3\n296\t        rare: 0.0287\n297\t        rank_corr: -0.025\n298\t      gen3:\n299\t        ppl: 58.2\n300\t        rare: 0.0119\n301\t        rank_corr: -0.046\n302\t      gen7:\n303\t        ppl: 49.3\n304\t        rare: 0.0091\n305\t        rank_corr: -0.082\n306\t    external_only:\n307\t      gen0:\n308\t        ppl: 37.0\n309\t        sel_ratio: 1.07\n310\t        rare: 0.0291\n311\t        rank_corr: -0.026\n312\t      gen3:\n313\t        ppl: 51.5\n314\t        sel_ratio: 1.17\n315\t        rare: 0.0121\n316\t        rank_corr: -0.041\n317\t      gen7:\n318\t        ppl: 46.5\n319\t        sel_ratio: 1.25\n320\t        rare: 0.009\n321\t        rank_corr: -0.04\n322\t    derived:\n323\t      rgds_ppl_excess_vs_uncurated_pct: 43.0\n324\t      rgds_rare_deficit_vs_uncurated_pct: 45.1\n325\t  result_rationale: '所有方向性趋势与 seed=42 一致：RGDS ratio 单调下降、PPL 持续上升、external ratio 稳定\n326\t    >1.0。\n327\t\n328\t    点估计波动 ±5-8%——seed=123 的 RGDS gen7 PPL (70.5) 略低于 seed=42 (72.8)，\n329\t\n330\t    sel_ratio (0.54) 略高于 seed=42 (0.52)。这是正常的种子间方差，来源于\n331\t\n332\t    mini-batch 采样和初始化差异导致的训练轨迹分散。\n333\t\n334\t    关键判据：方法间差异 (RGDS 70.5 vs uncurated 49.3 = Δ21.2) 远大于种子间差异 (70.5 vs 72.8 = Δ2.3)。\n335\t\n336\t    '\n337\t  tables:\n338\t  - 'Table 3: seed=42 vs seed=123 gen7 核心指标对比'\n339\t  figures_description:\n340\t  - Figure 1 扩展：selection ratio 图增加 seed=123 虚线，两种子趋势重合。\n341\t  analysis: '趋势方向完全复现。RGDS ratio <1.0 by gen2, external ratio >1.0 全程,\n342\t\n343\t    RGDS PPL >> uncurated。种子间差异远小于方法间差异。\n344\t\n345\t    '\n346\t- name: 三方法 seed=456 完整复现 (GPT2-125M, WikiText-103)\n347\t  plan_id: plan_005\n348\t  description: 第三个种子。与 seed=42/123 构成 N=3 统计检验基础，计算 95% CI。\n349\t  expected_results:\n350\t    rgds:\n351\t      gen0:\n352\t        ppl: 36.9\n353\t        sel_ratio: 1.05\n354\t        rare: 0.0292\n355\t        rank_corr: -0.055\n356\t      gen3:\n357\t        ppl: 55.1\n358\t        sel_ratio: 0.81\n359\t        rare: 0.0117\n360\t        rank_corr: -0.099\n361\t      gen7:\n362\t        ppl: 74.2\n363\t        sel_ratio: 0.49\n364\t        rare: 0.0043\n365\t        rank_corr: -0.161\n366\t    uncurated:\n367\t      gen0:\n368\t        ppl: 36.8\n369\t        rare: 0.0291\n370\t        rank_corr: -0.021\n371\t      gen3:\n372\t        ppl: 55.8\n373\t        rare: 0.0113\n374\t        rank_corr: -0.041\n375\t      gen7:\n376\t        ppl: 47.5\n377\t        rare: 0.0085\n378\t        rank_corr: -0.091\n379\t    external_only:\n380\t      gen0:\n381\t        ppl: 36.5\n382\t        sel_ratio: 1.09\n383\t        rare: 0.0293\n384\t        rank_corr: -0.022\n385\t      gen3:\n386\t        ppl: 50.2\n387\t        sel_ratio: 1.2\n388\t        rare: 0.0122\n389\t        rank_corr: -0.037\n390\t      gen7:\n391\t        ppl: 44.9\n392\t        sel_ratio: 1.31\n393\t        rare: 0.0086\n394\t        rank_corr: -0.034\n395\t    derived:\n396\t      rgds_ppl_excess_vs_uncurated_pct: 56.2\n397\t      rgds_rare_deficit_vs_uncurated_pct: 49.4\n398\t    three_seed_aggregation:\n399\t      note: 聚合 seed=42 (plan_001) + seed=123 (plan_004) + seed=456 (plan_005)\n400\t      rgds_gen7_ppl:\n401\t        mean: 72.5\n402\t        std: 1.85\n403\t        ci95:\n404\t        - 67.9\n405\t        - 77.1\n406\t      rgds_gen7_sel_ratio:\n407\t        mean: 0.517\n408\t        std: 0.025\n409\t        ci95:\n410\t        - 0.455\n411\t        - 0.579\n412\t      rgds_gen7_rare:\n413\t        mean: 0.00463\n414\t        std: 0.00035\n415\t        ci95:\n416\t        - 0.00376\n417\t        - 0.0055\n418\t      rgds_gen7_rank_corr:\n419\t        mean: -0.155\n420\t        std: 0.007\n421\t        ci95:\n422\t        - -0.171\n423\t        - -0.139\n424\t      uncurated_gen7_ppl:\n425\t        mean: 48.3\n426\t        std: 0.91\n427\t        ci95:\n428\t        - 46.0\n429\t        - 50.6\n430\t      uncurated_gen7_rare:\n431\t        mean: 0.00877\n432\t        std: 0.0003\n433\t        ci95:\n434\t        - 0.00802\n435\t        - 0.00952\n436\t      external_gen7_ppl:\n437\t        mean: 45.7\n438\t        std: 0.8\n439\t        ci95:\n440\t        - 43.7\n441\t        - 47.7\n442\t      external_gen7_sel_ratio:\n443\t        mean: 1.28\n444\t        std: 0.03\n445\t        ci95:\n446\t        - 1.21\n447\t        - 1.35\n448\t      external_gen7_rare:\n449\t        mean: 0.0088\n450\t        std: 0.0002\n451\t        ci95:\n452\t        - 0.0083\n453\t        - 0.0093\n454\t      external_gen7_rank_corr:\n455\t        mean: -0.037\n456\t        std: 0.003\n457\t        ci95:\n458\t        - -0.044\n459\t        - -0.03\n460\t      key_tests:\n461\t        rgds_sel_ratio_below_1: CI [0.455, 0.579] 不跨 1.0 ✓\n462\t        external_sel_ratio_above_1: CI [1.21, 1.35] 不跨 1.0 ✓\n463\t        rgds_ppl_above_uncurated: CI 无重叠 (67.9-77.1 vs 46.0-50.6) ✓\n464\t        external_rare_eq_uncurated: CI 重叠 (0.00830-0.00930 vs 0.00802-0.00952) → 差异不显著\n465\t          ✓\n466\t        cohen_d_ppl: '>3 (极大效应量)'\n467\t  result_rationale: 'seed=456 的 RGDS gen7 PPL 最高 (74.2)、sel_ratio 最低 (0.49)——\n468\t\n469\t    代表种子间方差的上界。三种子聚合后所有 CI 不跨关键阈值：\n470\t\n471\t    - sel_ratio CI [0.455, 0.579] 远低于 1.0，C1 在统计上稳固\n472\t\n473\t    - RGDS PPL CI [67.9, 77.1] 与 uncurated CI [46.0, 50.6] 无重叠，C3 稳固\n474\t\n475\t    - external sel_ratio CI [1.21, 1.35] 远高于 1.0，C2-weak 稳固\n476\t\n477\t    - external rare ≈ uncurated rare（CI 完全重叠），S1 稳固\n478\t\n479\t\n480\t    N=3 虽少，但效应量极大（Cohen''s d >3），统计功效充足。\n481\t\n482\t    关键是 8 代的单调趋势不是单点测量——每个种子贡献 8 个相关但独立的观测点，\n483\t\n484\t    使得趋势的统计可靠性远超点估计。\n485\t\n486\t    '\n487\t  tables:\n488\t  - 'Table 4: 3-seed 聚合统计（mean ± std, 95% CI）全指标'\n489\t  figures_description:\n490\t  - Figure 1 最终版：三条 RGDS sel_ratio 曲线 (42/123/456) + 均值粗线 ± shading band。\n491\t  - 'Figure 补充: gen7 指标 bar chart with 95% CI error bars，三方法并排。'\n492\t  analysis: '三种子全部复现主趋势方向。CI 不跨零/不跨 1.0，满足 best 档复现要求。\n493\t\n494\t    方法间差异 (Δ=24.2 PPL) 远大于种子间差异 (std=1.9)，Cohen''s d >3。\n495\t\n496\t    审稿人 R3 (\"N=1 seed\") 完全被挡住。\n497\t\n498\t    '\n499\t- name: GPT2-medium 355M 三方法对比 (WikiText-103, seed=42)\n500\t  plan_id: plan_006\n501\t  description: 在 355M 参数模型上验证 alignment gap 存在。回应审稿人 R1 'GPT2-125M 太小'。\n502\t  expected_results:\n503\t    rgds:\n504\t      gen0:\n505\t        ppl: 31.2\n506\t        sel_ratio: 1.05\n507\t        rare: 0.0295\n508\t        rank_corr: -0.051\n509\t        rankme: 342.1\n510\t        knn: 0.989\n511\t      gen1:\n512\t        ppl: 35.8\n513\t        sel_ratio: 0.97\n514\t        rare: 0.0218\n515\t        rank_corr: -0.064\n516\t        rankme: 351.4\n517\t        knn: 0.989\n518\t      gen2:\n519\t        ppl: 41.5\n520\t        sel_ratio: 0.89\n521\t        rare: 0.0163\n522\t        rank_corr: -0.078\n523\t        rankme: 357.2\n524\t        knn: 0.989\n525\t      gen3:\n526\t        ppl: 47.2\n527\t        sel_ratio: 0.81\n528\t        rare: 0.0122\n529\t        rank_corr: -0.091\n530\t        rankme: 361.8\n531\t        knn: 0.989\n532\t      gen4:\n533\t        ppl: 52.7\n534\t        sel_ratio: 0.74\n535\t        rare: 0.0094\n536\t        rank_corr: -0.104\n537\t        rankme: 363.5\n538\t        knn: 0.989\n539\t      gen5:\n540\t        ppl: 57.1\n541\t        sel_ratio: 0.67\n542\t        rare: 0.0075\n543\t        rank_corr: -0.116\n544\t        rankme: 361.2\n545\t        knn: 0.989\n546\t      gen6:\n547\t        ppl: 60.8\n548\t        sel_ratio: 0.61\n549\t        rare: 0.0062\n550\t        rank_corr: -0.127\n551\t        rankme: 357.8\n552\t        knn: 0.989\n553\t      gen7:\n554\t        ppl: 63.5\n555\t        sel_ratio: 0.56\n556\t        rare: 0.0052\n557\t        rank_corr: -0.138\n558\t        rankme: 353.5\n559\t        knn: 0.989\n560\t    uncurated:\n561\t      gen0:\n562\t        ppl: 30.8\n563\t        rare: 0.0293\n564\t        rank_corr: -0.019\n565\t        rankme: 340.5\n566\t        knn: 0.989\n567\t      gen1:\n568\t        ppl: 37.2\n569\t        rare: 0.0198\n570\t        rank_corr: -0.047\n571\t        rankme: 355.8\n572\t        knn: 0.989\n573\t      gen2:\n574\t        ppl: 42.8\n575\t        rare: 0.0147\n576\t        rank_corr: -0.043\n577\t        rankme: 360.4\n578\t        knn: 0.989\n579\t      gen3:\n580\t        ppl: 47.5\n581\t        rare: 0.0123\n582\t        rank_corr: -0.039\n583\t        rankme: 362.1\n584\t        knn: 0.989\n585\t      gen4:\n586\t        ppl: 46.8\n587\t        rare: 0.0108\n588\t        rank_corr: -0.037\n589\t        rankme: 359.8\n590\t        knn: 0.989\n591\t      gen5:\n592\t        ppl: 44.2\n593\t        rare: 0.0102\n594\t        rank_corr: -0.042\n595\t        rankme: 355.2\n596\t        knn: 0.989\n597\t      gen6:\n598\t        ppl: 42.5\n599\t        rare: 0.0096\n600\t        rank_corr: -0.058\n601\t        rankme: 351.0\n602\t        knn: 0.989\n603\t      gen7:\n604\t        ppl: 41.8\n605\t        rare: 0.0092\n606\t        rank_corr: -0.075\n607\t        rankme: 347.5\n608\t        knn: 0.989\n609\t    external_only:\n610\t      gen0:\n611\t        ppl: 30.5\n612\t        sel_ratio: 1.1\n613\t        rare: 0.0294\n614\t        rank_corr: -0.02\n615\t        rankme: 341.2\n616\t        knn: 0.989\n617\t      gen1:\n618\t        ppl: 34.9\n619\t        sel_ratio: 1.14\n620\t        rare: 0.0199\n621\t        rank_corr: -0.028\n622\t        rankme: 354.5\n623\t        knn: 0.989\n624\t      gen2:\n625\t        ppl: 39.8\n626\t        sel_ratio: 1.17\n627\t        rare: 0.0148\n628\t        rank_corr: -0.032\n629\t        rankme: 359.8\n630\t        knn: 0.989\n631\t      gen3:\n632\t        ppl: 43.1\n633\t        sel_ratio: 1.2\n634\t        rare: 0.0124\n635\t        rank_corr: -0.035\n636\t        rankme: 361.5\n637\t        knn: 0.989\n638\t      gen4:\n639\t        ppl: 42.8\n640\t        sel_ratio: 1.23\n641\t        rare: 0.0109\n642\t        rank_corr: -0.037\n643\t        rankme: 358.8\n644\t        knn: 0.989\n645\t      gen5:\n646\t        ppl: 41.0\n647\t        sel_ratio: 1.26\n648\t        rare: 0.0103\n649\t        rank_corr: -0.036\n650\t        rankme: 354.5\n651\t        knn: 0.989\n652\t      gen6:\n653\t        ppl: 39.5\n654\t        sel_ratio: 1.28\n655\t        rare: 0.0097\n656\t        rank_corr: -0.035\n657\t        rankme: 350.2\n658\t        knn: 0.989\n659\t      gen7:\n660\t        ppl: 38.8\n661\t        sel_ratio: 1.3\n662\t        rare: 0.0093\n663\t        rank_corr: -0.033\n664\t        rankme: 346.8\n665\t        knn: 0.989\n666\t    derived:\n667\t      rgds_ppl_excess_vs_uncurated_pct: 51.9\n668\t      rgds_rare_deficit_vs_uncurated_pct: 43.5\n669\t      external_ppl_improvement_vs_uncurated_pct: -7.2\n670\t  result_rationale: 'GPT2-medium 基线 PPL 更低（31 vs 37），因 355M 参数提供更强的语言建模能力。\n671\t\n672\t    alignment gap 相对幅度与 125M 高度一致：RGDS PPL excess 51.9%（125M: 51.4%），\n673\t\n674\t    sel_ratio 终点 0.56（125M: 0.52），rare deficit 43.5%（125M: 47.1%）。\n675\t\n676\t\n677\t    机制不变性解释：alignment gap 源于嵌入空间在 self-iterate 下的几何收缩，\n678\t\n679\t    这是训练动力学的内禀性质，与模型容量正交。更大模型嵌入维度更高（1024 vs 768），\n680\t\n681\t    但 self-iterate 的收缩力度也相应更强（更多参数 → 更强的模式记忆 → 收缩更彻底）。\n682\t\n683\t    两效应大致抵消，使相对幅度在两个规模上相似。\n684\t\n685\t\n686\t    RankMe 绝对值更高（340-363 vs 280-303）因嵌入维度更大，\n687\t\n688\t    但同样在崩塌过程中上升，未检出多样性衰退——S2 在更大规模上仍然成立。\n689\t\n690\t    '\n691\t  tables:\n692\t  - 'Table 5: GPT2-125M vs GPT2-medium gen7 对比（绝对值 + 相对差异百分比）'\n693\t  figures_description:\n694\t  - 'Figure 4: 双面板——左 125M 右 355M，同比例 selection ratio 曲线。两模型趋势平行，视觉冲击力强。'\n695\t  analysis: 'C1/C2-weak/C3 在 GPT2-medium 上全部复现，相对幅度 ±5% 内一致。\n696\t\n697\t    确认 alignment gap 机制的规模不变性。\n698\t\n699\t    审稿人 R1 被有效回应：gap 在 2.8× 模型上同样清晰。\n700\t\n701\t    相对幅度的稳定性为\"更大模型上也可能存在\"提供了间接论据。\n702\t\n703\t    '\n704\t- name: GPT2-medium 355M seed=123 复现\n705\t  plan_id: plan_007\n706\t  description: GPT2-medium 第二种子，确认更大模型上的趋势可复现性。\n707\t  expected_results:\n708\t    rgds:\n709\t      gen0:\n710\t        ppl: 31.5\n711\t        sel_ratio: 1.04\n712\t        rare: 0.0292\n713\t        rank_corr: -0.054\n714\t      gen7:\n715\t        ppl: 65.1\n716\t        sel_ratio: 0.53\n717\t        rare: 0.0049\n718\t        rank_corr: -0.142\n719\t    uncurated:\n720\t      gen0:\n721\t        ppl: 31.1\n722\t        rare: 0.029\n723\t      gen7:\n724\t        ppl: 42.5\n725\t        rare: 0.0089\n726\t    external_only:\n727\t      gen0:\n728\t        ppl: 30.8\n729\t        sel_ratio: 1.09\n730\t        rare: 0.0293\n731\t      gen7:\n732\t        ppl: 39.5\n733\t        sel_ratio: 1.27\n734\t        rare: 0.0091\n735\t    derived:\n736\t      rgds_ppl_excess_vs_uncurated_pct: 53.2\n737\t      two_seed_aggregation:\n738\t        rgds_gen7_ppl:\n739\t          mean: 64.3\n740\t          range:\n741\t          - 63.5\n742\t          - 65.1\n743\t        rgds_gen7_sel_ratio:\n744\t          mean: 0.545\n745\t          range:\n746\t          - 0.53\n747\t          - 0.56\n748\t  result_rationale: 'seed=123 在 GPT2-medium 上复现相同趋势，点估计 ±3% 波动。\n749\t\n750\t    RGDS gen7 PPL 65.1 vs seed=42 的 63.5，sel_ratio 0.53 vs 0.56——方向完全一致。\n751\t\n752\t    GPT2-medium 两种子足以证明趋势可复现性（配合 125M 三种子提供交叉验证）。\n753\t\n754\t    '\n755\t  tables:\n756\t  - Table 5 扩展为 2-seed mean ± range\n757\t  figures_description:\n758\t  - Figure 4 GPT2-medium 面板增加 seed=123 虚线。\n759\t  analysis: 'combined 证据：125M × 3 seeds + 355M × 2 seeds = 5 个独立验证，全部方向一致。\n760\t\n761\t    这是极强的鲁棒性证据。\n762\t\n763\t    '\n764\t- name: Embedding re-anchoring 缓解实验 (GPT2-125M, seed=42)\n765\t  plan_id: plan_008\n766\t  description: '每一代用预训练模型嵌入替代当前模型嵌入做多样性选择（不改训练过程，只改 selection 用的嵌入）。\n767\t\n768\t    验证 alignment gap 可修复性。成功→\"found + partial fix\"。\n769\t\n770\t    '\n771\t  expected_results:\n772\t    reanchored_rgds:\n773\t      gen0:\n774\t        ppl: 37.2\n775\t        sel_ratio: 1.04\n776\t        rare: 0.0288\n777\t        rank_corr: -0.058\n778\t      gen1:\n779\t        ppl: 42.0\n780\t        sel_ratio: 1.02\n781\t        rare: 0.021\n782\t        rank_corr: -0.061\n783\t      gen2:\n784\t        ppl: 48.2\n785\t        sel_ratio: 1.01\n786\t        rare: 0.0156\n787\t        rank_corr: -0.064\n788\t      gen3:\n789\t        ppl: 53.5\n790\t        sel_ratio: 0.99\n791\t        rare: 0.0124\n792\t        rank_corr: -0.067\n793\t      gen4:\n794\t        ppl: 54.1\n795\t        sel_ratio: 0.98\n796\t        rare: 0.0103\n797\t        rank_corr: -0.069\n798\t      gen5:\n799\t        ppl: 52.8\n800\t        sel_ratio: 0.97\n801\t        rare: 0.0089\n802\t        rank_corr: -0.071\n803\t      gen6:\n804\t        ppl: 51.5\n805\t        sel_ratio: 0.96\n806\t        rare: 0.0077\n807\t        rank_corr: -0.073\n808\t      gen7:\n809\t        ppl: 51.2\n810\t        sel_ratio: 0.95\n811\t        rare: 0.0061\n812\t        rank_corr: -0.075\n813\t    comparison_at_gen7:\n814\t      vs_rgds:\n815\t        ppl_reduction_pct: 29.7\n816\t        rare_improvement_pct: 32.6\n817\t        sel_ratio_change: 0.52 → 0.95（从严重失调恢复到接近 1.0）\n818\t      vs_uncurated:\n819\t        ppl_excess_pct: 6.4\n820\t        rare_deficit_pct: 29.9\n821\t      vs_external:\n822\t        ppl_excess_pct: 11.8\n823\t        rare_deficit_pct: 30.7\n824\t  result_rationale: 're-anchoring 用预训练嵌入做选择，切断\"模型退化→嵌入退化→选择退化→模型更退化\"的反馈环。\n825\t\n826\t\n827\t    selection ratio 稳定在 ~1.0（1.04→0.95 轻微下降），而非 RGDS 的 1.04→0.52 断崖式下降。\n828\t\n829\t    轻微下降原因：即使嵌入质量好，生成数据本身在退化，候选池绝对多样性下降，\n830\t\n831\t    使得预训练嵌入虽能正确排序但最优子集的 ratio 也略有缩水。\n832\t\n833\t\n834\t    PPL 大幅恢复：72.8 → 51.2（-29.7%），接近 uncurated 的 48.1（仅高 6.4%）。\n835\t\n836\t    说明 RGDS 的 PPL 灾难主要来自选择偏差，而非生成退化本身。\n837\t\n838\t    Re-anchoring 消除了选择偏差 → PPL 近乎完全恢复。\n839\t\n840\t\n841\t    rare n-gram 部分恢复：0.0046 → 0.0061（+32.6%），但仍低于 uncurated 0.0087（-29.9%）。\n842\t\n843\t    rare n-gram 损失有两个来源：\n844\t\n845\t    (1) 选择偏差——词汇贫乏样本被优先选中→被 re-anchoring 修复，贡献 ~1/3 恢复\n846\t\n847\t    (2) 生成端词汇萎缩——模型逐渐丢失低频词能力→re-anchoring 无法修复\n848\t\n849\t    这个解耦本身就是一个有价值的发现。\n850\t\n851\t    '\n852\t  tables:\n853\t  - 'Table 6: RGDS vs Re-anchored RGDS vs Uncurated vs External gen7 四方对比'\n854\t  figures_description:\n855\t  - 'Figure 5 (§6): 双面板——(a) sel_ratio 对比: RGDS 陡降 vs re-anchored 平稳；(b) rare n-gram:\n856\t    re-anchored 介于 RGDS 和 uncurated 之间，标注 +32.6% 改善箭头。'\n857\t  analysis: 're-anchoring 验证了 alignment gap 的因果性：消除嵌入退化 → 选择恢复 → PPL 近乎完全恢复。\n858\t\n859\t    rare n-gram +32.6% 满足 best 档 [10, 40%] 要求。\n860\t\n861\t    论文从\"发现问题\"升级为\"发现问题 + 简单修复部分有效 + 定位残余问题在生成端\"。\n862\t\n863\t    为 §7 future work 自然引出\"生成端干预\"方向。\n864\t\n865\t    '\n866\t- name: OpenWebText 子集 三方法对比 (GPT2-125M, seed=42)\n867\t  plan_id: plan_009\n868\t  description: 在 OpenWebText 上验证 alignment gap 跨数据集泛化性。回应审稿人 R2。\n869\t  expected_results:\n870\t    rgds:\n871\t      gen0:\n872\t        ppl: 27.5\n873\t        sel_ratio: 1.05\n874\t        rare: 0.0312\n875\t        rank_corr: -0.053\n876\t      gen1:\n877\t        ppl: 31.8\n878\t        sel_ratio: 0.97\n879\t        rare: 0.023\n880\t        rank_corr: -0.068\n881\t      gen2:\n882\t        ppl: 37.4\n883\t        sel_ratio: 0.89\n884\t        rare: 0.0172\n885\t        rank_corr: -0.082\n886\t      gen3:\n887\t        ppl: 42.8\n888\t        sel_ratio: 0.81\n889\t        rare: 0.0129\n890\t        rank_corr: -0.096\n891\t      gen4:\n892\t        ppl: 48.1\n893\t        sel_ratio: 0.73\n894\t        rare: 0.0098\n895\t        rank_corr: -0.11\n896\t      gen5:\n897\t        ppl: 52.5\n898\t        sel_ratio: 0.66\n899\t        rare: 0.0079\n900\t        rank_corr: -0.122\n901\t      gen6:\n902\t        ppl: 56.2\n903\t        sel_ratio: 0.59\n904\t        rare: 0.0065\n905\t        rank_corr: -0.133\n906\t      gen7:\n907\t        ppl: 59.1\n908\t        sel_ratio: 0.53\n909\t        rare: 0.0054\n910\t        rank_corr: -0.144\n911\t    uncurated:\n912\t      gen0:\n913\t        ppl: 27.2\n914\t        rare: 0.031\n915\t        rank_corr: -0.02\n916\t      gen1:\n917\t        ppl: 33.5\n918\t        rare: 0.0212\n919\t        rank_corr: -0.048\n920\t      gen2:\n921\t        ppl: 39.2\n922\t        rare: 0.0158\n923\t        rank_corr: -0.044\n924\t      gen3:\n925\t        ppl: 43.8\n926\t        rare: 0.0131\n927\t        rank_corr: -0.04\n928\t      gen4:\n929\t        ppl: 43.2\n930\t        rare: 0.0115\n931\t        rank_corr: -0.038\n932\t      gen5:\n933\t        ppl: 40.8\n934\t        rare: 0.0108\n935\t        rank_corr: -0.044\n936\t      gen6:\n937\t        ppl: 39.1\n938\t        rare: 0.01\n939\t        rank_corr: -0.06\n940\t      gen7:\n941\t        ppl: 38.5\n942\t        rare: 0.0095\n943\t        rank_corr: -0.08\n944\t    external_only:\n945\t      gen0:\n946\t        ppl: 27.0\n947\t        sel_ratio: 1.09\n948\t        rare: 0.0311\n949\t        rank_corr: -0.021\n950\t      gen1:\n951\t        ppl: 31.2\n952\t        sel_ratio: 1.13\n953\t        rare: 0.0215\n954\t        rank_corr: -0.03\n955\t      gen2:\n956\t        ppl: 36.5\n957\t        sel_ratio: 1.16\n958\t        rare: 0.016\n959\t        rank_corr: -0.034\n960\t      gen3:\n961\t        ppl: 40.2\n962\t        sel_ratio: 1.19\n963\t        rare: 0.0132\n964\t        rank_corr: -0.037\n965\t      gen4:\n966\t        ppl: 40.0\n967\t        sel_ratio: 1.22\n968\t        rare: 0.0116\n969\t        rank_corr: -0.039\n970\t      gen5:\n971\t        ppl: 38.2\n972\t        sel_ratio: 1.25\n973\t        rare: 0.0109\n974\t        rank_corr: -0.038\n975\t      gen6:\n976\t        ppl: 36.8\n977\t        sel_ratio: 1.27\n978\t        rare: 0.0101\n979\t        rank_corr: -0.036\n980\t      gen7:\n981\t        ppl: 36.1\n982\t        sel_ratio: 1.29\n983\t        rare: 0.0096\n984\t        rank_corr: -0.035\n985\t    derived:\n986\t      rgds_ppl_excess_vs_uncurated_pct: 53.5\n987\t      rgds_rare_deficit_vs_uncurated_pct: 43.2\n988\t      external_ppl_improvement_vs_uncurated_pct: -6.2\n989\t  result_rationale: 'OWT 基线 PPL 更低（27 vs 37），因为 GPT2 预训练语料 WebText 与 OWT 同分布。\n990\t\n991\t    OWT 基线 rare n-gram 略高（0.031 vs 0.029），因 web 文本词汇更多样化。\n992\t\n993\t\n994\t    alignment gap 相对幅度与 WikiText 高度一致：\n995\t\n996\t    - sel_ratio: 1.05→0.53（WikiText: 1.04→0.52）\n997\t\n998\t    - PPL excess: +53.5%（WikiText: +51.4%）\n999\t\n1000\t    - rare deficit: -43.2%（WikiText: -47.1%）\n1001\t\n1002\t    - external ratio: 1.09→1.29（WikiText: 1.08→1.28）\n1003\t\n1004\t\n1005\t    一致性的机制解释：alignment gap 是模型内部嵌入空间收缩的产物，\n1006\t\n1007\t    与训练数据领域无关。self-iterate 反馈环的收缩动力学是训练过程的内禀性质，\n1008\t\n1009\t    不依赖数据分布的具体形态。数据集只影响绝对 PPL 水平（通过基线语言建模难度），\n1010\t\n1011\t    不影响 gap 的相对大小。\n1012\t\n1013\t    '\n1014\t  tables:\n1015\t  - 'Table 7: WikiText-103 vs OpenWebText gen7 指标对比（绝对值 + 相对差异）'\n1016\t  figures_description:\n1017\t  - 'Figure 6: 双面板——左 WikiText 右 OWT，同比例 selection ratio + PPL 曲线。两数据集趋势平行。'\n1018\t  analysis: \"alignment gap 跨数据集完全泛化。相对幅度在 WikiText 和 OWT 上一致（±3%），\\n强化\\\"机制是通用的\\\"论点。审稿人\\\n1019\t    \\ R2 被有效回应。\\ncombined 全部证据：2 datasets × 2 model sizes × 3 seeds + 1 mitigation\\\n1020\t    \\ = \\n极强的现象鲁棒性 + 因果验证。投 8 页 Findings 绰绰有余。\"\n1021\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d6039bf-baef-4bb1-998a-024bfb8e643b",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "137aa222-b585-4d2b-9a5f-889b5b0afb99",
+            "sourceToolAssistantUUID": "6d6039bf-baef-4bb1-998a-024bfb8e643b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-13T08:58:11.505Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check the median paper version for comparison."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "137aa222-b585-4d2b-9a5f-889b5b0afb99",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHs8D5VzFSGu9AKxGDT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2226eb0c-4546-45fc-be54-316a06d86fae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018FvYHageJwHNaiXUPPZMA8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 20886,
+                "cache_read_input_tokens": 35571,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 20886,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-13T08:58:14.354Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AmujN2nH26rX2JTi9GDUhr",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse/artifacts/dream_reports/dream_20260513T081019/best/experiment_data.json",
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2226eb0c-4546-45fc-be54-316a06d86fae",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHs8D5VzFSGu9AKxGDT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d8759788-ffee-4c65-9416-a5ee9815966b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018FvYHageJwHNaiXUPPZMA8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 20886,
+                "cache_read_input_tokens": 35571,
+                "output_tokens": 135,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20886
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 135,
+                    "cache_read_input_tokens": 35571,
+                    "cache_creation_input_tokens": 20886,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 20886,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-13T08:58:14.360Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AmujN2nH26rX2JTi9GDUhr",
+              "type": "tool_result",
+              "content": "1\t[\n2\t  {\n3\t    \"name\": \"Phase 2 三方法对比 (GPT2-125M, WikiText-103, seed=42)\",\n4\t    \"description\": \"Self-iterate GPT2-125M × 8 gens × 3 methods (uncurated/RGDS/external_only)。锚定全部 claims 的主实验。\",\n5\t    \"results\": {\n6\t      \"rgds\": {\n7\t        \"gen0\": {\n8\t          \"ppl\": 37.2,\n9\t          \"sel_ratio\": 1.04,\n10\t          \"rare\": 0.0288,\n11\t          \"rank_corr\": -0.058,\n12\t          \"rankme\": 281.5,\n13\t          \"knn\": 0.988\n14\t        },\n15\t        \"gen1\": {\n16\t          \"ppl\": 42.5,\n17\t          \"sel_ratio\": 0.96,\n18\t          \"rare\": 0.0208,\n19\t          \"rank_corr\": -0.074,\n20\t          \"rankme\": 290.2,\n21\t          \"knn\": 0.988\n22\t        },\n23\t        \"gen2\": {\n24\t          \"ppl\": 49.8,\n25\t          \"sel_ratio\": 0.87,\n26\t          \"rare\": 0.0152,\n27\t          \"rank_corr\": -0.089,\n28\t          \"rankme\": 296.4,\n29\t          \"knn\": 0.987\n30\t        },\n31\t        \"gen3\": {\n32\t          \"ppl\": 56.3,\n33\t          \"sel_ratio\": 0.79,\n34\t          \"rare\": 0.0113,\n35\t          \"rank_corr\": -0.103,\n36\t          \"rankme\": 300.1,\n37\t          \"knn\": 0.988\n38\t        },\n39\t        \"gen4\": {\n40\t          \"ppl\": 61.7,\n41\t          \"sel_ratio\": 0.71,\n42\t          \"rare\": 0.0086,\n43\t          \"rank_corr\": -0.118,\n44\t          \"rankme\": 303.2,\n45\t          \"knn\": 0.988\n46\t        },\n47\t        \"gen5\": {\n48\t          \"ppl\": 66.4,\n49\t          \"sel_ratio\": 0.64,\n50\t          \"rare\": 0.0068,"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8759788-ffee-4c65-9416-a5ee9815966b",
+            "isSidechain": true,
+            "promptId": "86856cbe-3306-462f-94c8-0efcd8c1f3b1",
+            "agentId": "a7518aa08c174b9d0",
+            "type": "user",
+            "uuid": "b87e3d13-03d0-423e-ae4e-e3de5cb6dcd4",
+            "sourceToolAssistantUUID": "d8759788-ffee-4c65-9416-a5ee9815966b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-13T08:59:42.927Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have a thorough understanding of the paper, its claims, its experimental setup, the decision history, and the existing R1 review. Let me produce the R2 review.\n\n## R2 Review: Novelty and Related Work\n\n### Summary of Assessment\nThe paper documents a real and well-quantified phenomenon -- that internal-embedding diversity selection degrades under iterative self-training -- and introduces a useful diagnostic metric (selection ratio). However, the conceptual novelty is moderate: that a model's own representations become unreliable under distribution shift is a well-established insight across multiple subfields (concept drift, continual learning, active learning). The related work is severely underdeveloped (10 references), missing engagement with several directly relevant lines of research. The contribution is best understood as careful empirical quantification and decomposition, not as a new conceptual insight, and the paper's framing should reflect this recalibration.\n\n### Strengths\n\n1. **Counterintuitive headline finding, well-demonstrated.** The result that diversity-based selection *accelerates* collapse rather than mitigating it is attention-grabbing and practically important. The three-way comparison (uncurated / RGDS / external) with matched submodular objectives cleanly isolates the embedding alignment issue as the causal factor, which is the strongest methodological choice in the paper.\n\n2. **Selection ratio is a reusable, well-defined diagnostic.** The metric r_t = avg-rare(S(G_t)) / avg-rare(G_t) is simple, interpretable, and directly measures the quantity of theoretical interest. Its monotonic degradation across 8 generations is visually and statistically compelling (CI [0.455, 0.579] entirely below 1.0). This metric has immediate utility beyond this study for monitoring any iterative curation pipeline.\n\n3. **Two-axis decomposition (semantic vs. lexical collapse) is a genuine empirical contribution.** The finding that external embeddings improve PPL (-5.4%) while producing identical rare n-gram survival (0.0088 vs 0.0088) directly demonstrates that \"semantic diversity != lexical diversity\" in the context of iterative training. While the general principle is known in IR/NLP, the specific quantification in the model collapse context is novel and under-discussed.\n\n4. **Selection-side vs. generation-side decomposition (Section 6) provides actionable insight.** Re-anchoring recovers ~30% of PPL gap and ~33% of rare n-gram loss, localizing ~2/3 of residual vocabulary collapse to the generation side. This factorization tells practitioners where different interventions are needed, which is more useful than merely identifying the problem.\n\n5. **Cross-condition consistency is remarkable.** Relative magnitudes are stable to within +-3% across scales (125M vs 355M), datasets (WikiText-103 vs OpenWebText), and seeds. This suggests the mechanism is indeed intrinsic to self-training dynamics rather than an artifact of a specific configuration.\n\n### Weaknesses\n\n1. **Related work is severely underdeveloped for an EMNLP submission.** The paper cites only 10 references. For a paper whose primary contribution is an empirical phenomenon situated at the intersection of model collapse, data curation, and representation learning, this is far below the expected standard. Multiple directly relevant subfields receive no engagement whatsoever (see Missing Related Work section below). The Background and Related Work section reads more like a brief technical note than a full conference paper's literature review.\n\n2. **The conceptual novelty is overstated.** The core observation -- that a model's own representations become unreliable proxies for downstream objectives when the model is trained iteratively on its own outputs -- is conceptually predictable from first principles. Representations are learned functions of the training data; when the training data degrades, the representations degrade. This is the foundational insight of concept drift, domain adaptation, and continual learning. The paper frames the \"Embedding Alignment Gap\" as a novel conceptual contribution, but the novelty lies in the *quantification* (selection ratio, magnitude, decomposition) rather than the *concept*. The framing should be recalibrated accordingly -- \"we quantify and decompose a failure mode that theory predicts but has not been measured\" is more honest and still compelling.\n\n3. **The neural collapse connection (Section 8 / Discussion) is speculative and potentially misleading.** Neural collapse (Papyan et al. 2020) describes a specific geometric phenomenon in the terminal phase of supervised classification with fixed labels -- features converging to a simplex ETF structure. Applying this to unsupervised language model self-training represents a major conceptual leap. The embedding contraction observed here (diversity scores becoming misaligned with content diversity) may share surface-level similarity with neural collapse but is likely mechanistically distinct. Self-training does not have the fixed-class structure that drives neural collapse. The authors should either (a) provide rigorous evidence connecting these phenomena or (b) soften the claim to a loose analogy and cite more appropriate literature (e.g., dimensional collapse in self-supervised learning, Jing et al. 2022).\n\n4. **No theoretical analysis.** The paper is purely empirical, yet makes mechanistic claims (\"embedding space contracts in directions correlated with vocabulary diversity\"). Even a simple toy model (e.g., Gaussian mixture where the covariance matrix contracts asymmetrically under self-training) showing *why* the selection ratio degrades monotonically would substantially strengthen the contribution. Without this, the \"causal chain\" in Section 4.3 is a plausible narrative, not a demonstrated mechanism.\n\n5. **The practical warning scope is narrow and somewhat overstated.** The paper warns against \"embedding-based diversity selection in iterative training,\" but most modern iterative training pipelines (RLHF, RLAIF, self-play) use reward models, verifiers, or human feedback for data curation -- not raw embedding-space diversity. The set of practitioners who would apply facility-location submodular selection using internal embeddings in an iterative loop is small. The paper should more precisely delineate which real-world systems are vulnerable and acknowledge that many iterative pipelines already avoid this failure mode by design.\n\n6. **The S1 finding (semantic != lexical diversity) is well-established conceptually.** The information retrieval and computational linguistics communities have long recognized that embedding similarity captures semantic/topical structure but not surface-level lexical properties. While the specific quantification in the model collapse setting is useful, presenting this as a \"striking dissociation\" overstates its novelty. The contribution is the context-specific measurement, not the general insight.\n\n### Missing Related Work\n\nThe following areas are directly relevant and their absence significantly weakens the paper's positioning:\n\n1. **Concept drift and embedding drift (Lu et al. 2019 survey; Gama et al. 2014).** The alignment gap is fundamentally a form of concept drift where the model's internal representations shift as the data distribution evolves. This is one of the most-studied phenomena in machine learning. The paper's failure to engage with this body of work makes the \"alignment gap\" appear more novel than it is and misses opportunities to connect to established theoretical frameworks.\n\n2. **Active learning under distribution shift (Ash et al. 2020, BADGE; Kirsch et al. 2019).** The degradation of acquisition functions when the model's representations shift is a known challenge in active learning. The alignment gap is essentially an acquisition function (diversity selector) failing because the underlying representation has shifted. This connection would contextualize the contribution and make it immediately relevant to a broader audience.\n\n3. **Dimensional collapse in self-supervised learning (Jing et al. 2022; Hua et al. 2021).** These works study how representation spaces can lose effective dimensionality during training -- directly relevant to the \"embedding space contraction\" mechanism invoked in the paper. They are more appropriate references than neural collapse for the observed phenomenon, since they study unsupervised/self-supervised settings rather than supervised classification.\n\n4. **Broader model collapse literature (Guo et al. 2024 \"Curious Decline\"; Seddik et al. 2024 theoretical analysis; Briesch et al. 2023; Hataya et al. 2023).** The model collapse literature has expanded significantly beyond the three papers cited. In particular, Seddik et al. provide theoretical framework that could help formalize the alignment gap, and Guo et al. study collapse in larger LLMs which would help position the scale limitation.\n\n5. **Broader data selection literature (Xia et al. 2024 LESS; Engstrom et al. 2024; Maharana et al. 2023 D2 Pruning; Marion et al. 2023).** The data curation landscape is much richer than SemDeDup/D4/DSIR. Gradient-based methods like LESS, influence-function approaches, and curriculum learning strategies provide important contrast points. The paper should discuss whether non-embedding-based selection methods (e.g., gradient-based) would also suffer from the alignment gap or would be immune.\n\n6. **RLHF and reward hacking / Goodhart's law in iterative training (Gao et al. 2023; Skalse et al. 2022).** The alignment gap is an instance of Goodhart's law: the embedding diversity metric \"ceases to be a good metric when it becomes a target\" in the iterative setting. The connection to reward model degradation in RLHF feedback loops is natural and would broaden the paper's audience significantly.\n\n7. **Self-BLEU, distinct-n, and other diversity metrics (Li et al. 2016; Zhu et al. 2018).** The paper uses only rare n-gram survival as the lexical diversity metric. Established metrics like Self-BLEU, distinct-1/2/3, and type-token ratio should at least be discussed to contextualize the metric choice. Using only one diversity metric raises the question of whether the findings are metric-specific.\n\n8. **Facility-location submodular maximization theory (Iyer & Bilmes 2013; Wei et al. 2015).** The RGDS method uses facility-location submodular selection but cites only Kirchhoff & Bilmes 2014. The theoretical properties of facility-location maximization (approximation guarantees, sensitivity to metric space geometry) are directly relevant to understanding *why* the selector fails when the metric space contracts.\n\n9. **Continual learning and catastrophic forgetting (Kirkpatrick et al. 2017; McCloskey & Cohen 1989).** The iterative self-training loop is a form of continual learning, and the representation shift observed is related to catastrophic forgetting of tail distributions. The re-anchoring solution (using frozen M_0 embeddings) is conceptually related to elastic weight consolidation and other continual learning regularizers.\n\n### Questions for Authors\n\n1. How does the alignment gap relate to the well-studied problem of acquisition function degradation in active learning (Ash et al. 2020)? The paper would benefit from positioning the contribution within this established framework.\n\n2. Can you formalize the neural collapse connection more rigorously? Specifically, does the embedding covariance matrix exhibit the specific simplex ETF convergence pattern predicted by neural collapse theory, or is the contraction more generic? If the latter, dimensional collapse (Jing et al. 2022) may be a more appropriate reference.\n\n3. Would non-embedding-based selection methods (e.g., gradient-based like LESS, or simple lexical heuristics like type-token ratio filtering) also suffer from the alignment gap, or is this specific to embedding-based approaches? A simple TTR-filter baseline would help isolate whether the problem is embedding-specific or selection-in-general.\n\n4. Who is the target practitioner for the \"practical warning\"? Can you name specific real-world training pipelines that use internal-embedding diversity selection iteratively? If the main affected systems are hypothetical, the practical framing should be adjusted.\n\n5. Why is rare n-gram survival the only lexical diversity metric? Have you measured Self-BLEU, distinct-n, or type-token ratio? If these metrics tell a different story, the conclusions may need qualification.\n\n6. The selection ratio degradation appears suspiciously smooth and monotonic across all conditions. Can you comment on whether there are any non-monotonic perturbations at individual generation steps across seeds, or is the monotonicity truly universal?\n\n7. What happens beyond generation 8? Does the ratio plateau near 0.5 or continue declining toward 0? The answer has implications for whether the alignment gap saturates or is unbounded.\n\n### Excitement: 2.5\n\nThe quantification of the alignment gap and the selection ratio metric are real contributions, and the counterintuitive headline finding has practical value. However, the conceptual insight is moderate -- that internal representations become unreliable under distribution shift is well-established across multiple subfields -- and the related work gaps significantly undermine the novelty framing. The paper is best understood as careful empirical measurement of a known class of phenomenon in a new (model collapse) context, which is useful but not highly exciting. The re-anchoring mitigation is incremental and single-seed. With substantial related work expansion and novelty recalibration, this could reach a solid 3.0, but as submitted it reads as an incomplete engagement with the broader literature.\n\n### Confidence: 4\n\nI have strong familiarity with the model collapse, data selection, representation learning, and concept drift literatures. I am less confident in the facility-location submodular optimization specifics but comfortable with the experimental methodology and claims assessment."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b87e3d13-03d0-423e-ae4e-e3de5cb6dcd4",
+            "isSidechain": true,
+            "agentId": "a7518aa08c174b9d0",
+            "requestId": "req_011CazHsah3Edx4o3bdjZsrD",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c10b184a-239f-4e40-a3e8-9eda84b6742b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/phase-gated-compound-sparse",
+            "sessionId": "c9d03048-500b-46c5-8a1d-0e97b262c580",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U1Twri2hyZkdj16cCrZaYX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 782,
+                "cache_read_input_tokens": 56457,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 782,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-reviewer-r2-for-an-arr-acl-rolling-review-submission-your-focus-is-nov.md"
+}

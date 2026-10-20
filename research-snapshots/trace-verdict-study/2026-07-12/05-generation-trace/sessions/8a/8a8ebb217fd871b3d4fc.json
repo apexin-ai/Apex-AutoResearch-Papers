@@ -1,0 +1,688 @@
+{
+  "schema_version": "1.0",
+  "id": "8a8ebb217fd871b3d4fc",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for the paper \"Lost in the Middle: How Language Models Use Long Contexts\" by Nelson F. Liu et al. I need the exac",
+  "task_key": "agent-a86613bb053f30582",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a86613bb053f30582.jsonl",
+    "occurrence": 1,
+    "bytes": 45598,
+    "sha256": "80a48838f4ed5a17fac2461a4e0898333be944ce5522bd64c0f58e6207e6e3c2"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 1,
+    "tool_calls": 4,
+    "roles": {
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 4,
+      "tool_result": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T04:50:11.047Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for the paper \"Lost in the Middle: How Language Models Use Long Contexts\" by Nelson F. Liu et al. I need the exact BibTeX citation info: authors, title, venue (TACL 2024?), year, pages if available, DOI. Also check if there's already an entry for it in /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/references.bib by grepping for \"Lost in the Middle\" or \"liu2024lost\". Report the BibTeX key and full entry needed."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "7fba7dac-61db-4f10-8983-3fc9f3cb182e",
+            "agentId": "a86613bb053f30582",
+            "type": "user",
+            "uuid": "065ef308-a7af-438f-acdb-3bd6c296b98b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/paper_agent_59e8a27f",
+            "sessionId": "9df72ca2-add1-44ab-b096-b90d8c3e45d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purrfect-petting-puddle"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T04:50:12.175Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for this paper and check if it already exists in the references.bib file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "065ef308-a7af-438f-acdb-3bd6c296b98b",
+            "isSidechain": true,
+            "agentId": "a86613bb053f30582",
+            "requestId": "req_011CbNgfTVsCCMDe7FKtu654",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4273ff56-94c4-4d3f-b610-518c0c7bae8a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/paper_agent_59e8a27f",
+            "sessionId": "9df72ca2-add1-44ab-b096-b90d8c3e45d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purrfect-petting-puddle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BCg6UA4Y4K4xarsHz6nqMU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 24453,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 24453,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T04:50:12.628Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WeQezC9tFsGaxKa4btt8FW",
+              "name": "Grep",
+              "input": {
+                "pattern": "Lost in the Middle|liu2024lost",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4273ff56-94c4-4d3f-b610-518c0c7bae8a",
+            "isSidechain": true,
+            "agentId": "a86613bb053f30582",
+            "requestId": "req_011CbNgfTVsCCMDe7FKtu654",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c11c6db6-d3c6-425c-8552-99afec179f80",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/paper_agent_59e8a27f",
+            "sessionId": "9df72ca2-add1-44ab-b096-b90d8c3e45d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purrfect-petting-puddle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BCg6UA4Y4K4xarsHz6nqMU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 24453,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 24453,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T04:50:12.648Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WeQezC9tFsGaxKa4btt8FW",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c11c6db6-d3c6-425c-8552-99afec179f80",
+            "isSidechain": true,
+            "promptId": "7fba7dac-61db-4f10-8983-3fc9f3cb182e",
+            "agentId": "a86613bb053f30582",
+            "type": "user",
+            "uuid": "30b92068-de90-42b7-9f57-0f6e1076a976",
+            "sourceToolAssistantUUID": "c11c6db6-d3c6-425c-8552-99afec179f80",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/paper_agent_59e8a27f",
+            "sessionId": "9df72ca2-add1-44ab-b096-b90d8c3e45d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purrfect-petting-puddle"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T04:50:12.792Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UayBKjoMS42kadSrzMZaJU",
+              "name": "WebSearch",
+              "input": {
+                "query": "Lost in the Middle How Language Models Use Long Contexts Nelson F. Liu"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30b92068-de90-42b7-9f57-0f6e1076a976",
+            "isSidechain": true,
+            "agentId": "a86613bb053f30582",
+            "requestId": "req_011CbNgfTVsCCMDe7FKtu654",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0ac26167-46de-4257-9b65-c251e64d753a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/paper_agent_59e8a27f",
+            "sessionId": "9df72ca2-add1-44ab-b096-b90d8c3e45d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purrfect-petting-puddle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BCg6UA4Y4K4xarsHz6nqMU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 24453,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 177,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 24453
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 177,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 24453,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 24453,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T04:50:18.897Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UayBKjoMS42kadSrzMZaJU",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Lost in the Middle How Language Models Use Long Contexts Nelson F. Liu\"\n\nLinks: [{\"title\":\"Lost in the Middle: How Language Models Use Long Contexts - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.tacl-1.9/\"},{\"title\":\"[2307.03172] Lost in the Middle: How Language Models Use Long Contexts\",\"url\":\"https://arxiv.org/abs/2307.03172\"},{\"title\":\"Lost in the Middle: How Language Models Use Long Contexts | Transactions of the Association for Computational Linguistics | MIT Press\",\"url\":\"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00638/119630/Lost-in-the-Middle-How-Language-Models-Use-Long\"},{\"title\":\"(PDF) Lost in the Middle: How Language Models Use Long Contexts\",\"url\":\"https://www.researchgate.net/publication/378284067_Lost_in_the_Middle_How_Language_Models_Use_Long_Contexts\"},{\"title\":\"Lost in the Middle: How Language Models Use Long Contexts\",\"url\":\"https://arxiv.org/pdf/2307.03172\"},{\"title\":\"Paper page - Lost in the Middle: How Language Models Use Long Contexts\",\"url\":\"https://huggingface.co/papers/2307.03172\"},{\"title\":\"Lost in the Middle: How Language Models Use Long Contexts\",\"url\":\"https://teapot123.github.io/files/CSE_5610_Fall25/Lecture_12_Long_Context.pdf\"},{\"title\":\"[PDF] Lost in the Middle: How Language Models Use Long Contexts | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Lost-in-the-Middle:-How-Language-Models-Use-Long-Liu-Lin/1733eb7792f7a43dd21f51f4d1017a1bffd217b5\"},{\"title\":\"Lost in the Middle: How Language Models Use Long Contexts\",\"url\":\"https://www.researchgate.net/publication/372162904_Lost_in_the_Middle_How_Language_Models_Use_Long_Contexts\"},{\"title\":\"Lost in the Middle: How Language Models Use Long Contexts Nelson F. Liu1∗\",\"url\":\"https://cs.stanford.edu/~nfliu/papers/lost-in-the-middle.arxiv2023.pdf\"}]\n\nBased on the search results, I can provide you with information about this research paper:\n\n## \"Lost in the Middle: How Language Models Use Long Contexts\"\n\nThe paper is authored by Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua, Fabio Petroni, and Percy Liang. It was published in Transactions of the Association for Computational Linguistics, volume 12, pages 157–173 in 2024.\n\n### Main Findings\n\nThe paper analyzes the performance of language models on two tasks that require identifying relevant information in their input contexts: multi-document question answering and key-value retrieval.\n\nThe key discovery is that performance is often highest when relevant information occurs at the beginning or end of the input context, and significantly degrades when models must access relevant information in the middle. This effect was observed even for explicitly long-context models.\n\n### Significance\n\nThe research found that performance can degrade significantly when changing the position of relevant information, indicating that current language models do not robustly make use of information in long input contexts. The analysis provides a better understanding of how language models use their input context and provides new evaluation protocols for future long-context language models.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0ac26167-46de-4257-9b65-c251e64d753a",
+            "isSidechain": true,
+            "promptId": "7fba7dac-61db-4f10-8983-3fc9f3cb182e",
+            "agentId": "a86613bb053f30582",
+            "type": "user",
+            "uuid": "c094778c-9ed9-4b7e-9b4d-dd4af35cc65a",
+            "sourceToolAssistantUUID": "0ac26167-46de-4257-9b65-c251e64d753a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/paper_agent_59e8a27f",
+            "sessionId": "9df72ca2-add1-44ab-b096-b90d8c3e45d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purrfect-petting-puddle"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T04:50:20.207Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the references.bib file directly to verify if it already contains an entry for this paper:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c094778c-9ed9-4b7e-9b4d-dd4af35cc65a",
+            "isSidechain": true,
+            "agentId": "a86613bb053f30582",
+            "requestId": "req_011CbNgg2tZEcc3LFPBsnyYL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4d201512-cc45-4dc3-a76d-9d92457b0dd6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/paper_agent_59e8a27f",
+            "sessionId": "9df72ca2-add1-44ab-b096-b90d8c3e45d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purrfect-petting-puddle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SwyD8w1WH72vQFG2CkX3bg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1936,
+                "cache_read_input_tokens": 24453,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1936,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T04:50:20.877Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015dhrQBLujfdYB8hVhQC6qV",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d201512-cc45-4dc3-a76d-9d92457b0dd6",
+            "isSidechain": true,
+            "agentId": "a86613bb053f30582",
+            "requestId": "req_011CbNgg2tZEcc3LFPBsnyYL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "69a486e3-8f73-4daf-9858-98cd0b1b2d9c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/paper_agent_59e8a27f",
+            "sessionId": "9df72ca2-add1-44ab-b096-b90d8c3e45d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purrfect-petting-puddle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SwyD8w1WH72vQFG2CkX3bg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1936,
+                "cache_read_input_tokens": 24453,
+                "output_tokens": 112,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1936
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 112,
+                    "cache_read_input_tokens": 24453,
+                    "cache_creation_input_tokens": 1936,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1936,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T04:50:20.885Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015dhrQBLujfdYB8hVhQC6qV",
+              "type": "tool_result",
+              "content": "1\t@inproceedings{chen2025tracepile,\n2\t  title={Chain of Execution Supervision Promotes General Reasoning in Large Language Models},\n3\t  author={Nuo Chen and Zehua Li and Keqin Bao and Junyang Lin and Dayiheng Liu},\n4\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n5\t  year={2025},\n6\t  url={https://arxiv.org/abs/2510.23629},\n7\t  note={Introduces the TracePile dataset},\n8\t}\n9\t\n10\t@inproceedings{ding2024traced,\n11\t  title={TRACED: Execution-aware Pre-training for Source Code},\n12\t  author={Yangruibo Ding and Ben Steenhoek and Kexin Pei and Gail Kaiser and Wei Le and Baishakhi Ray},\n13\t  booktitle={Proceedings of the 46th IEEE/ACM International Conference on Software Engineering (ICSE)},\n14\t  year={2024},\n15\t  doi={10.1145/3597503.3608140},\n16\t  url={https://arxiv.org/abs/2306.07487},\n17\t}\n18\t\n19\t@article{chen2021evaluating,\n20\t  title={Evaluating Large Language Models Trained on Code},\n21\t  author={Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henrique Ponde de Oliveira and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and others},\n22\t  journal={arXiv preprint arXiv:2107.03374},\n23\t  year={2021},\n24\t  url={https://arxiv.org/abs/2107.03374},\n25\t}\n26\t\n27\t@article{austin2021program,\n28\t  title={Program Synthesis with Large Language Models},\n29\t  author={Austin, Jacob and Odena, Augustus and Nye, Maxwell and Bosma, Maarten and Michalewski, Henryk and Dohan, David and Jiang, Ellen and Cai, Carrie and Terry, Michael and Le, Quoc and Sutton, Charles},\n30\t  journal={arXiv preprint arXiv:2108.07732},\n31\t  year={2021},\n32\t  url={https://arxiv.org/abs/2108.07732},\n33\t}\n34\t\n35\t@inproceedings{gu2024cruxeval,\n36\t  title={CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution},\n37\t  author={Alex Gu and Baptiste Rozi{\\`e}re and Hugh Leather and Armando Solar-Lezama and Gabriel Synnaeve and Sida I. Wang},\n38\t  booktitle={Proceedings of the 41st International Conference on Machine Learning (ICML)},\n39\t  year={2024},\n40\t  url={https://arxiv.org/abs/2401.03065},\n41\t}\n42\t\n43\t@inproceedings{hu2022lora,\n44\t  title={LoRA: Low-Rank Adaptation of Large Language Models},\n45\t  author={Edward J. Hu and Yelong Shen and Phillip Wallis and Zeyuan Allen-Zhu and Yuanzhi Li and Shean Wang and Lu Wang and Weizhu Chen},\n46\t  booktitle={Proceedings of the 10th International Conference on Learning Representations (ICLR)},\n47\t  year={2022},\n48\t  url={https://arxiv.org/abs/2106.09685},\n49\t}\n50\t\n51\t@article{qwen2024coder,\n52\t  title={Qwen2.5-Coder Technical Report},\n53\t  author={Qwen Team},\n54\t  journal={arXiv preprint arXiv:2409.12186},\n55\t  year={2024},\n56\t  url={https://arxiv.org/abs/2409.12186},\n57\t}\n58\t\n59\t@article{deepseek2024coder,\n60\t  title={DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence},\n61\t  author={Daya Guo and Qihao Zhu and Dejian Yang and Zhenda Xie and Kai Dong and Wentao Zhang and Guanting Chen and Xiao Bi and Y. Wu and Y.K. Li and Fuli Luo and Yingfei Xiong and Wenfeng Liang},\n62\t  journal={arXiv preprint arXiv:2401.14196},\n63\t  year={2024},\n64\t  url={https://arxiv.org/abs/2401.14196},\n65\t}\n66\t\n67\t@inproceedings{wang2025dcsh,\n68\t  title={Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models},\n69\t  author={Jian Wang and Xiaofei Xie and Qiang Hu and Shangqing Liu and Yi Li},\n70\t  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2025},\n71\t  year={2025},\n72\t  url={https://arxiv.org/abs/2509.11686},\n73\t}\n74\t\n75\t@inproceedings{ni2024next,\n76\t  title={NExT: Teaching Large Language Models to Reason about Code Execution},\n77\t  author={Ansong Ni and Miltiadis Allamanis and Arman Cohan and Yinlin Deng and Kensen Shi and Charles Sutton and Pengcheng Yin},\n78\t  booktitle={Proceedings of the 41st International Conference on Machine Learning (ICML)},\n79\t  year={2024},\n80\t  url={https://arxiv.org/abs/2404.14662},\n81\t}\n82\t\n83\t@inproceedings{eguchi2025etcot,\n84\t  title={Making LLMs Program Interpreters via Execution Trace Chain of Thought},\n85\t  author={Koshi Eguchi and Takuya Akiba},\n86\t  booktitle={ICML 2025 Workshop on Programmatic Representations for Agent Learning (PRAL)},\n87\t  year={2025},\n88\t}\n89\t\n90\t@article{ferrando2025execute,\n91\t  title={What I Cannot Execute, I Do Not Understand: Training and Evaluating {LLMs} on Program Execution Traces},\n92\t  author={Jordi Armengol-Estape and Quentin Carbonneaux and Tianjun Zhang and Aram H. Markosyan and Volker Seeker and Chris Cummins and Melanie Kambadur and Michael F.P. O'Boyle and Sida Wang and Gabriel Synnaeve and Hugh Leather},\n93\t  journal={arXiv preprint arXiv:2503.05703},\n94\t  year={2025},\n95\t  url={https://arxiv.org/abs/2503.05703},\n96\t}\n97\t\n98\t@inproceedings{xu2025cruxevalx,\n99\t  title={{CRUXEval-X}: A Benchmark for Multilingual Code Reasoning, Understanding and Execution},\n100\t  author={Ruiyang Xu and others},\n101\t  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n102\t  year={2025},\n103\t  url={https://arxiv.org/abs/2408.13001},\n104\t}\n105\t\n106\t@article{appt2024,\n107\t  title={{APPT}: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models},\n108\t  author={Quanjun Zhang and Chunrong Fang and Weisong Sun and Yan Liu and Tieke He and Xiaodong Hao and Zhenyu Chen},\n109\t  journal={IEEE Transactions on Software Engineering},\n110\t  year={2024},\n111\t  volume={50},\n112\t  number={3},\n113\t}\n114\t\n115\t@article{zhou2024llm4patch,\n116\t  title={Leveraging Large Language Model for Automatic Patch Correctness Assessment},\n117\t  author={Xin Zhou and Bowen Xu and Kisub Kim and DongGyun Han and Hung Huu Nguyen and Thanh Le-Cong and Junda He and Bach Le and David Lo},\n118\t  journal={IEEE Transactions on Software Engineering},\n119\t  year={2024},\n120\t  volume={50},\n121\t  number={11},\n122\t}\n123\t\n124\t@inproceedings{spiess2025calibration,\n125\t  title={Calibration and Correctness of Language Models for Code},\n126\t  author={Claudio Spiess and David Gros and others},\n127\t  booktitle={Proceedings of the 47th IEEE/ACM International Conference on Software Engineering (ICSE)},\n128\t  year={2025},\n129\t  url={https://arxiv.org/abs/2402.02047},\n130\t}\n131\t\n132\t\n133\t@inproceedings{huang2026tracecoder,\n134\t  title={{TraceCoder}: A Trace-Driven Multi-Agent Framework for Automated Debugging of {LLM}-Generated Code},\n135\t  author={Jiangping Huang and Wenguang Ye and Weisong Sun and Jian Zhang and Mingyue Zhang and Yang Liu},\n136\t  booktitle={Proceedings of the 48th IEEE/ACM International Conference on Software Engineering (ICSE)},\n137\t  year={2026},\n138\t  url={https://arxiv.org/abs/2602.06875},\n139\t}\n140\t\n141\t@article{wang2025inspectcoder,\n142\t  title={{InspectCoder}: Dynamic Analysis-Enabled Self Repair through Interactive {LLM}-Debugger Collaboration},\n143\t  author={Yunkun Wang and Yue Zhang and Guochang Li and Chen Zhi and Binhua Li and Fei Huang and Yongbin Li and Shuiguang Deng},\n144\t  journal={arXiv preprint arXiv:2510.18327},\n145\t  year={2025},\n146\t  url={https://arxiv.org/abs/2510.18327},\n147\t}\n148\t\n149\t\n150\t\n151\t@inproceedings{tian2024debugbench,\n152\t  title={{DebugBench}: Evaluating Debugging Capability of Large Language Models},\n153\t  author={Runchu Tian and Yining Ye and Yujia Qin and Xin Cong and Yankai Lin and Yinxu Pan and Yesai Wu and Haotian Hui and Weichuan Liu and Zhiyuan Liu and Maosong Sun},\n154\t  booktitle={Findings of the Association for Computational Linguistics: ACL 2024},\n155\t  year={2024},\n156\t  url={https://arxiv.org/abs/2401.04621},\n157\t}\n158\t\n159\t@article{abreu2007accuracy,\n160\t  title={On the Accuracy of Spectrum-based Fault Localization},\n161\t  author={Rui Abreu and Peter Zoeteweij and Arjan J.C. van Gemund},\n162\t  journal={Testing: Academic and Industrial Conference Practice and Research Techniques (MUTATION)},\n163\t  year={2007},\n164\t  doi={10.1109/TAIC.PART.2007.13},\n165\t}\n166\t\n167\t@inproceedings{jones2002visualization,\n168\t  title={Visualization of Test Information to Assist Fault Localization},\n169\t  author={James A. Jones and Mary Jean Harrold and John Stasko},\n170\t  booktitle={Proceedings of the 24th International Conference on Software Engineering (ICSE)},\n171\t  year={2002},\n172\t  doi={10.1145/581339.581397},\n173\t}\n174\t\n175\t@article{wong2014dstar,\n176\t  title={The {DStar} Method for Effective Software Fault Localization},\n177\t  author={W. Eric Wong and Vidroha Debroy and Ruizhi Gao and Yihao Li},\n178\t  journal={IEEE Transactions on Reliability},\n179\t  volume={63},\n180\t  pages={290--308},\n181\t  year={2014},\n182\t  doi={10.1109/TR.2013.2285319},\n183\t}\n184\t\n185\t@article{kang2024autofl,\n186\t  title={A Quantitative and Qualitative Evaluation of {LLM}-Based Explainable Fault Localization},\n187\t  author={Sungmin Kang and Gabin An and Shin Yoo},\n188\t  journal={Proceedings of the ACM on Software Engineering},\n189\t  volume={1},\n190\t  number={FSE},\n191\t  pages={1424--1446},\n192\t  year={2024},\n193\t  doi={10.1145/3660771},\n194\t  url={https://arxiv.org/abs/2308.05487},\n195\t}\n196\t\n197\t@inproceedings{qin2024agentfl,\n198\t  title={{AgentFL}: Scaling LLM-based Fault Localization to Project-Level Context},\n199\t  author={Yihao Qin and Shangwen Wang and Yiling Lou and Jinhao Dong and Kaixin Wang and Xiaoling Li and Xiaoguang Mao},\n200\t  booktitle={Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering (ASE)},\n201\t  year={2024},\n202\t  url={https://arxiv.org/abs/2403.16362},\n203\t}\n204\t\n205\t\n206\t@article{roziere2024code,\n207\t  title={Code Llama: Open Foundation Models for Code},\n208\t  author={Baptiste Rozi{\\`e}re and Jonas Gehring and Fabian Gloeckle and Sten Sootla and Itai Gat and Xiaoqing Ellen Tan and Yossi Adi and Jingyu Liu and R{\\'e}mi Lacroix and Tal Remez and J{\\'e}r{\\'e}my Rapin and Artyom Kozhevnikov and Ivan Evtimov and Joanna Bitton and Manish Bhatt and Cristian Canton Ferrer and Aaron Grattafiori and Wenhan Xiong and Alexandre D{\\'e}fossez and Jade Copet and Faisal Azhar and Hugo Touvron and Louis Martin and Nicolas Usunier and Thomas Scialom and Gabriel Synnaeve},\n209\t  journal={arXiv preprint arXiv:2308.12950},\n210\t  year={2024},\n211\t}\n212\t\n213\t\n214\t@inproceedings{jimenez2024swebench,\n215\t  title={{SWE}-bench: Can Language Models Resolve Real-World {GitHub} Issues?},\n216\t  author={Carlos E. Jimenez and John Yang and Alexander Wettig and Shunyu Yao and Kexin Pei and Ofir Press and Karthik R. Narasimhan},\n217\t  booktitle={Proceedings of the 12th International Conference on Learning Representations (ICLR)},\n218\t  year={2024},\n219\t  url={https://openreview.net/forum?id=VTF8yNQM66},\n220\t}\n221\t\n222\t@article{kadavath2022language,\n223\t  title={Language Models (Mostly) Know What They Know},\n224\t  author={Saurav Kadavath and Tom Conerly and Amanda Askell and Tom Henighan and Dawn Drain and Ethan Perez and Nicholas Schiefer and Zac Hatfield-Dodds and Nova DasSarma and Eli Tran-Johnson and Scott Johnston and Sheer El-Showk and Andy Jones and Nelson Elhage and Tristan Hume and Anna Chen and Yuntao Bai and Sam Bowman and Stanislav Fort and Deep Ganguli and Danny Hernandez and Josh Jacobson and Jackson Kernion and Shauna Kravec and Liane Lovitt and Kamal Ndousse and Catherine Olsson and Sam Ringer and Dario Amodei and Tom Brown and Jack Clark and Nicholas Joseph and Ben Mann and Sam McCandlish and Chris Olah and Jared Kaplan},\n225\t  journal={arXiv preprint arXiv:2207.05221},\n226\t  year={2022},\n227\t}\n228\t\n229\t@article{kamei2013large,\n230\t  title={A Large-Scale Empirical Study of Just-in-Time Quality Assurance},\n231\t  author={Yasutaka Kamei and Emad Shihab and Bram Adams and Ahmed E. Hassan and Audris Mockus and Anand Sinha and Naoyasu Ubayashi},\n232\t  journal={IEEE Transactions on Software Engineering},\n233\t  volume={39},\n234\t  number={6},\n235\t  pages={757--773},\n236\t  year={2013},\n237\t  doi={10.1109/TSE.2012.70},\n238\t}\n239\t\n240\t@inproceedings{bouzenia2025repairagent,\n241\t  title={{RepairAgent}: An Autonomous, {LLM}-Based Agent for Program Repair},\n242\t  author={Islem Bouzenia and Premkumar Devanbu and Michael Pradel},\n243\t  booktitle={Proceedings of the 47th IEEE/ACM International Conference on Software Engineering (ICSE)},\n244\t  year={2025},\n245\t  doi={10.1109/ICSE55347.2025.00157},\n246\t}\n247\t\n248\t@inproceedings{liu2023codeexecution,\n249\t  title={Code Execution with Pre-trained Language Models},\n250\t  author={Chenxiao Liu and Shuai Lu and Weizhu Chen and Daxin Jiang and Alexey Svyatkovskiy and Shengyu Fu and Neel Sundaresan and Nan Duan},\n251\t  booktitle={Findings of the Association for Computational Linguistics: ACL 2023},\n252\t  pages={4984--4999},\n253\t  year={2023},\n254\t  doi={10.18653/v1/2023.findings-acl.308},\n255\t}\n256\t\n257\t\n258\t\n259\t@article{xia2024agentless,\n260\t  title={Agentless: Demystifying {LLM}-based Software Engineering Agents},\n261\t  author={Chunqiu Steven Xia and Yinlin Deng and Soren Dunn and Lingming Zhang},\n262\t  journal={arXiv preprint arXiv:2407.01489},\n263\t  year={2024},\n264\t  url={https://arxiv.org/abs/2407.01489},\n265\t}\n266\t\n267\t@inproceedings{guo2017calibration,\n268\t  title={On Calibration of Modern Neural Networks},\n269\t  author={Chuan Guo and Geoff Pleiss and Yu Sun and Kilian Q. Weinberger},\n270\t  booktitle={Proceedings of the 34th International Conference on Machine Learning (ICML)},\n271\t  pages={1321--1330},\n272\t  year={2017},\n273\t}\n274\t\n275\t@inproceedings{geng2024calibration,\n276\t  title={A Survey of Confidence Estimation and Calibration in Large Language Models},\n277\t  author={Jiahui Geng and Fengyu Cai and Yuxia Wang and Heinz Koeppl and Preslav Nakov and Iryna Gurevych},\n278\t  booktitle={Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n279\t  year={2024},\n280\t  url={https://aclanthology.org/2024.naacl-long.366},\n281\t}\n282\t\n283\t@inproceedings{hoang2020cc2vec,\n284\t  title={{CC2Vec}: Distributed Representations of Code Changes},\n285\t  author={Thong Hoang and Hong Jin Kang and Julia Lawall and David Lo},\n286\t  booktitle={Proceedings of the ACM/IEEE 42nd International Conference on Software Engineering (ICSE)},\n287\t  pages={518--529},\n288\t  year={2020},\n289\t  doi={10.1145/3377811.3380361},\n290\t}\n291\t\n292\t@inproceedings{bengio2009curriculum,\n293\t  title={Curriculum Learning},\n294\t  author={Yoshua Bengio and J{\\'e}r{\\^o}me Louradour and Ronan Collobert and Jason Weston},\n295\t  booktitle={Proceedings of the 26th Annual International Conference on Machine Learning (ICML)},\n296\t  pages={41--48},\n297\t  year={2009},\n298\t  doi={10.1145/1553374.1553380},\n299\t}\n300\t\n301\t\n302\t@inproceedings{yang2024sweagent,\n303\t  title={{SWE}-agent: Agent-Computer Interfaces Enable Automated Software Engineering},\n304\t  author={John Yang and Carlos E. Jimenez and Alexander Wettig and Kilian Lieret and Shunyu Yao and Karthik Narasimhan and Ofir Press},\n305\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n306\t  year={2024},\n307\t  url={https://arxiv.org/abs/2405.15793},\n308\t}\n309\t\n310\t@inproceedings{paul2021deep,\n311\t  title={Deep Learning on a Data Diet: Finding Important Examples Early in Training},\n312\t  author={Mansheej Paul and Surya Ganguli and Gintare Karolina Dziugaite},\n313\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n314\t  year={2021},\n315\t  url={https://arxiv.org/abs/2107.07075},\n316\t}\n317\t\n318\t@inproceedings{sorscher2022beyond,\n319\t  title={Beyond Neural Scaling Laws: Beating Power Law Scaling via Data Pruning},\n320\t  author={Ben Sorscher and Robert Geirhos and Shobha Vasu and Boris Hanin and Ari S. Morcos},\n321\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n322\t  year={2022},\n323\t  url={https://arxiv.org/abs/2206.14486},\n324\t}\n325\t\n326\t@article{tishby2000information,\n327\t  title={The Information Bottleneck Method},\n328\t  author={Naftali Tishby and Fernando C. Pereira and William Bialek},\n329\t  journal={arXiv preprint physics/0004057},\n330\t  year={2000},\n331\t  url={https://arxiv.org/abs/physics/0004057},\n332\t}\n333\t\n334\t@article{guyon2003introduction,\n335\t  title={An Introduction to Variable and Feature Selection},\n336\t  author={Isabelle Guyon and Andr{\\'e} Elisseeff},\n337\t  journal={Journal of Machine Learning Research},\n338\t  volume={3},\n339\t  pages={1157--1182},\n340\t  year={2003},\n341\t}\n342\t\n343\t@inproceedings{zhou2023lima,\n344\t  title={{LIMA}: Less Is More for Alignment},\n345\t  author={Chunting Zhou and Pengfei Liu and Puxin Xu and Srinivasan Iyer and Jiao Sun and Yuning Mao and Xuezhe Ma and Avi Efrat and Ping Yu and Lili Yu and Susan Zhang and Gargi Ghosh and Mike Lewis and Luke Zettlemoyer and Omer Levy},\n346\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n347\t  volume={36},\n348\t  year={2023},\n349\t  url={https://arxiv.org/abs/2305.11206},\n350\t}\n351\t\n352\t@inproceedings{yang2024generalization,\n353\t  title={Unveiling the Generalization Power of Fine-Tuned Large Language Models},\n354\t  author={Haoran Yang and Yumeng Zhang and Jiaqi Xu and Hongyuan Lu and Pheng Ann Heng and Wai Lam},\n355\t  booktitle={Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n356\t  year={2024},\n357\t  url={https://arxiv.org/abs/2403.09162},\n358\t}\n359\t\n360\t@inproceedings{wang2025openhands,\n361\t  title={{OpenHands}: An Open Platform for {AI} Software Developers as Generalist Agents},\n362\t  author={Xingyao Wang and Boxuan Li and Yufan Song and Frank F. Xu and Xiangru Tang and Mingchen Zhuge and Jiayi Pan and Yueqi Song and Bowen Li and Jaskirat Singh and Hoang Tran and Fuqiang Li and Ren Ma and Mingzhang Zheng and Bill Qian and Daniel Shao and Niklas Muennighoff and Yizhe Zhang and Binyuan Hui and Junyang Lin and Robert Brennan and Hao Peng and Heng Ji and Graham Neubig},\n363\t  booktitle={Proceedings of the 13th International Conference on Learning Representations (ICLR)},\n364\t  year={2025},\n365\t  url={https://arxiv.org/abs/2407.16741},\n366\t}\n367\t\n368\t@inproceedings{jiang2023llmlingua,\n369\t  title={{LLMLingua}: Compressing Prompts for Accelerated Inference of Large Language Models},\n370\t  author={Huiqiang Jiang and Qianhui Wu and Chin-Yew Lin and Yuqing Yang and Lili Qiu},\n371\t  booktitle={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n372\t  pages={13358--13376},\n373\t  year={2023},\n374\t  url={https://aclanthology.org/2023.emnlp-main.825},\n375\t}\n376\t\n377\t@inproceedings{li2023selectivecontext,\n378\t  title={Compressing Context to Enhance Inference Efficiency of Large Language Models},\n379\t  author={Yucheng Li and Bo Dong and Frank Guerin and Chenghua Lin},\n380\t  booktitle={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n381\t  year={2023},\n382\t  url={https://aclanthology.org/2023.emnlp-main.391},\n383\t}\n384\t\n385\t@article{barr2015oracle,\n386\t  title={The Oracle Problem in Software Testing: A Survey},\n387\t  author={Earl T. Barr and Mark Harman and Phil McMinn and Muzammil Shahbaz and Shin Yoo},\n388\t  journal={IEEE Transactions on Software Engineering},\n389\t  volume={41},\n390\t  number={5},\n391\t  pages={507--525},\n392\t  year={2015},\n393\t  doi={10.1109/TSE.2014.2372785},\n394\t}\n395\t\n396\t@article{jain2024livecodebench,\n397\t  title={LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code},\n398\t  author={Naman Jain and King Han and Alex Gu and Wen-Ding Li and Fanjia Yan and Tianjun Zhang and Sida Wang and Armando Solar-Lezama and Koushik Sen and Ion Stoica},\n399\t  journal={arXiv preprint arXiv:2403.07974},\n400\t  year={2024},\n401\t}\n402\t\n403\t@article{haque2025traces,\n404\t  title={Towards Effectively Leveraging Execution Traces for Program Repair with Code {LLMs}},\n405\t  author={Mirazul Haque and Petr Babkin and Farima Farmahinifarahani and Manuela Veloso},\n406\t  journal={arXiv preprint arXiv:2505.04441},\n407\t  year={2025},\n408\t  url={https://arxiv.org/abs/2505.04441},\n409\t}\n410\t\n411\t@inproceedings{dimenna2025execution,\n412\t  title={Investigating Execution-Aware Language Models for Code Optimization},\n413\t  author={Federico Di Menna and Luca Traini and Gabriele Bavota and Vittorio Cortellessa},\n414\t  booktitle={Proceedings of the 33rd IEEE/ACM International Conference on Program Comprehension (ICPC)},\n415\t  year={2025},\n416\t  url={https://arxiv.org/abs/2503.08228},\n417\t}\n418\t\n419\t@inproceedings{ding2024semcoder,\n420\t  title={{SemCoder}: Training Code Language Models with Comprehensive Semantics Reasoning},\n421\t  author={Yangruibo Ding and Jinjun Peng and Marcus J. Min and Gail Kaiser and Junfeng Yang and Baishakhi Ray},\n422\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n423\t  year={2024},\n424\t  url={https://arxiv.org/abs/2406.01006},\n425\t}\n426\t\n427\t@inproceedings{lv2025dataefficient,\n428\t  title={Data-efficient {LLM} Fine-tuning for Code Generation},\n429\t  author={Weijie Lv and Xuan Xia and Sheng-Jun Huang},\n430\t  booktitle={Proceedings of the International Joint Conference on Neural Networks (IJCNN)},\n431\t  year={2025},\n432\t  url={https://arxiv.org/abs/2504.12687},\n433\t}\n434\t\n435\t@article{shang2025thtb,\n436\t  title={The Harder The Better: Maintaining Supervised Fine-tuning Generalization with Less but Harder Data},\n437\t  author={Zhaoyang Shang and Sibo Wei and Jianbin Guo and Rui Zhou and Lifeng Dong and Yin Luo},\n438\t  journal={arXiv preprint arXiv:2510.13892},\n439\t  year={2025},\n440\t  url={https://arxiv.org/abs/2510.13892},\n441\t}\n442\t\n443\t@inproceedings{liu2025uqsurvey,\n444\t  title={Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey},\n445\t  author={Xiaoou Liu and Tiejin Chen and Longchao Da and Chacha Chen and Zhen Lin and Hua Wei},\n446\t  booktitle={Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining},\n447\t  year={2025},\n448\t  url={https://arxiv.org/abs/2503.15850},\n449\t}\n450\t\n451\t@inproceedings{bodicoat2026oracle,\n452\t  title={Understanding {LLM}-Driven Test Oracle Generation},\n453\t  author={Adam Bodicoat and Gunel Jahangirova and Valerio Terragni},\n454\t  booktitle={Proceedings of the 2nd ACM International Conference on AI-powered Software (AIware)},\n455\t  year={2025},\n456\t  url={https://arxiv.org/abs/2601.05542},\n457\t}\n458\t\n459\t@inproceedings{haroon2026faultlocalizability,\n460\t  title={Assessing the Impact of Code Changes on the Fault Localizability of Large Language Models},\n461\t  author={Sabaat Haroon and Ahmad Faraz Khan and Ahmad Humayun and Waris Gill and Abdul Haddi Amjad and Ali R. Butt and Mohammad Taha Khan and Muhammad Ali Gulzar},\n462\t  booktitle={Proceedings of the 2026 IEEE International Conference on Software Testing, Verification and Validation (ICST)},\n463\t  year={2026},\n464\t  url={https://arxiv.org/abs/2504.04372},\n465\t}\n466\t\n467\t@article{shi2025farloc,\n468\t  title={Enhancing {LLM}-based Fault Localization with a Functionality-Aware Retrieval-Augmented Generation Framework},\n469\t  author={Xinyu Shi and Zhenhao Li and An Ran Chen},\n470\t  journal={arXiv preprint arXiv:2509.20552},\n471\t  year={2025},\n472\t  url={https://arxiv.org/abs/2509.20552},\n473\t}\n474\t\n475\t@article{wang2025ibft,\n476\t  title={Breaking Memorization Barriers in {LLM} Code Fine-Tuning via Information Bottleneck for Improved Generalization},\n477\t  author={Changsheng Wang and Xin Chen and Sijia Liu and Ke Ding},\n478\t  journal={arXiv preprint arXiv:2510.16022},\n479\t  year={2025},\n480\t  url={https://arxiv.org/abs/2510.16022},\n481\t}\n482\t\n483\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "69a486e3-8f73-4daf-9858-98cd0b1b2d9c",
+            "isSidechain": true,
+            "promptId": "7fba7dac-61db-4f10-8983-3fc9f3cb182e",
+            "agentId": "a86613bb053f30582",
+            "type": "user",
+            "uuid": "acf3e079-fd83-4dfa-9d41-936d2ba9358f",
+            "sourceToolAssistantUUID": "69a486e3-8f73-4daf-9858-98cd0b1b2d9c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/paper_agent_59e8a27f",
+            "sessionId": "9df72ca2-add1-44ab-b096-b90d8c3e45d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purrfect-petting-puddle"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T04:50:23.735Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The grep search found no existing entry for \"Lost in the Middle\" in the references.bib file. Now let me fetch the specific publication details to construct the proper BibTeX entry."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "acf3e079-fd83-4dfa-9d41-936d2ba9358f",
+            "isSidechain": true,
+            "agentId": "a86613bb053f30582",
+            "requestId": "req_011CbNggBnbHPG5tydmWeLDK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1bd311fd-37b8-4a8e-a5e7-d319282744b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/paper_agent_59e8a27f",
+            "sessionId": "9df72ca2-add1-44ab-b096-b90d8c3e45d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purrfect-petting-puddle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018tAdkeApYFK7N1fGFCa3Bh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 8888,
+                "cache_read_input_tokens": 26389,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8888,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T04:50:23.944Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WSw5iKprha2uY8UoFTCNE8",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://aclanthology.org/2024.tacl-1.9/",
+                "prompt": "Extract BibTeX citation information including authors, full title, venue, volume, number, pages, DOI, year"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1bd311fd-37b8-4a8e-a5e7-d319282744b3",
+            "isSidechain": true,
+            "agentId": "a86613bb053f30582",
+            "requestId": "req_011CbNggBnbHPG5tydmWeLDK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7e3cf212-b1e3-4bcf-b4c0-608441586c9a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/paper_agent_59e8a27f",
+            "sessionId": "9df72ca2-add1-44ab-b096-b90d8c3e45d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purrfect-petting-puddle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018tAdkeApYFK7N1fGFCa3Bh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 8888,
+                "cache_read_input_tokens": 26389,
+                "output_tokens": 151,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8888
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 151,
+                    "cache_read_input_tokens": 26389,
+                    "cache_creation_input_tokens": 8888,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8888,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T04:50:27.328Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WSw5iKprha2uY8UoFTCNE8",
+              "type": "tool_result",
+              "content": "# BibTeX Citation Information\n\n**Authors:** Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua, Fabio Petroni, Percy Liang\n\n**Full Title:** \"Lost in the Middle: How Language Models Use Long Contexts\"\n\n**Venue:** Transactions of the Association for Computational Linguistics (TACL)\n\n**Volume:** 12\n\n**Number:** Not specified (article number: 1.9)\n\n**Pages:** 157–173\n\n**DOI:** 10.1162/tacl_a_00638\n\n**Year:** 2024\n\n**Publisher:** MIT Press\n\n**Address:** Cambridge, MA\n\n---\n\n## Complete BibTeX Entry\n\n```bibtex\n@article{liu-etal-2024-lost,\n    title = \"Lost in the Middle: How Language Models Use Long Contexts\",\n    author = \"Liu, Nelson F. and Lin, Kevin and Hewitt, John and \n              Paranjape, Ashwin and Bevilacqua, Michele and \n              Petroni, Fabio and Liang, Percy\",\n    journal = \"Transactions of the Association for Computational Linguistics\",\n    volume = \"12\",\n    year = \"2024\",\n    address = \"Cambridge, MA\",\n    publisher = \"MIT Press\",\n    pages = \"157--173\",\n    doi = \"10.1162/tacl_a_00638\",\n    url = \"https://aclanthology.org/2024.tacl-1.9/\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7e3cf212-b1e3-4bcf-b4c0-608441586c9a",
+            "isSidechain": true,
+            "promptId": "7fba7dac-61db-4f10-8983-3fc9f3cb182e",
+            "agentId": "a86613bb053f30582",
+            "type": "user",
+            "uuid": "d5e07a21-5679-4287-8918-862254127e7f",
+            "sourceToolAssistantUUID": "7e3cf212-b1e3-4bcf-b4c0-608441586c9a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/paper_agent_59e8a27f",
+            "sessionId": "9df72ca2-add1-44ab-b096-b90d8c3e45d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purrfect-petting-puddle"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T04:50:31.922Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Here is the complete information for the paper \"Lost in the Middle: How Language Models Use Long Contexts\":\n\n## Summary\n\n**Status in references.bib:** NOT found - there is no existing entry for this paper.\n\n## Complete BibTeX Citation Information\n\n**BibTeX Key:** `liu2024lost` (or `liu-etal-2024-lost`)\n\n**Full Entry:**\n\n```bibtex\n@article{liu2024lost,\n  title={Lost in the Middle: How Language Models Use Long Contexts},\n  author={Liu, Nelson F. and Lin, Kevin and Hewitt, John and Paranjape, Ashwin and Bevilacqua, Michele and Petroni, Fabio and Liang, Percy},\n  journal={Transactions of the Association for Computational Linguistics},\n  volume={12},\n  pages={157--173},\n  year={2024},\n  doi={10.1162/tacl_a_00638},\n  url={https://aclanthology.org/2024.tacl-1.9/}\n}\n```\n\n## Key Details\n\n- **Authors:** Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua, Fabio Petroni, Percy Liang\n- **Title:** Lost in the Middle: How Language Models Use Long Contexts\n- **Venue:** Transactions of the Association for Computational Linguistics (TACL) — MIT Press\n- **Year:** 2024\n- **Volume:** 12\n- **Pages:** 157–173\n- **DOI:** 10.1162/tacl_a_00638\n- **arXiv:** 2307.03172 (preprint version)\n\nThis is indeed a TACL 2024 publication as you suspected. The paper analyzes how language models perform on tasks requiring information extraction from long contexts, finding that performance degrades significantly when relevant information is in the middle of the input context.\n\nSources:\n- [ACL Anthology](https://aclanthology.org/2024.tacl-1.9/)\n- [arXiv preprint](https://arxiv.org/abs/2307.03172)\n- [MIT Press Direct](https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00638/119630/Lost-in-the-Middle-How-Language-Models-Use-Long)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5e07a21-5679-4287-8918-862254127e7f",
+            "isSidechain": true,
+            "agentId": "a86613bb053f30582",
+            "requestId": "req_011CbNggexUEGXbfr4Lib5i7",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "49c1fc9c-6e3f-4acb-8ba5-9e652f120edf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/paper_agent_59e8a27f",
+            "sessionId": "9df72ca2-add1-44ab-b096-b90d8c3e45d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purrfect-petting-puddle",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0155hxBpLq12MXn9kXK75TFQ",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 526,
+                "cache_read_input_tokens": 35277,
+                "output_tokens": 568,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 526
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 568,
+                    "cache_read_input_tokens": 35277,
+                    "cache_creation_input_tokens": 526,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 526,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-the-paper-lost-in-the-middle-how-language-models-use-long-contexts.md"
+}

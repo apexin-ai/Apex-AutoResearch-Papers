@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "id": "46a4bcbc163b69df43dd",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: trace-verdict-study ## 运行环境 - 服务器名: westd-11235 - SSH 账户: root（调用 ssh_execute / submit_training_",
+  "task_key": "7d315723-7d1d-42fd-ac09-13278fd06933",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/7d315723-7d1d-42fd-ac09-13278fd06933.jsonl",
+    "occurrence": 1,
+    "bytes": 1554338,
+    "sha256": "55bda4100dee06d4bce469d2493d03cc58dc8a11d7e4eaa5146198765567849b"
+  },
+  "statistics": {
+    "messages": 1096,
+    "user_turns": 1,
+    "tool_calls": 439,
+    "roles": {
+      "record": 143,
+      "user": 1,
+      "assistant": 74,
+      "tool_call": 439,
+      "tool_result": 439
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "46a4bcbc163b69df43dd-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1094,
+      "chunks": [
+        {
+          "path": "46a4bcbc163b69df43dd-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "46a4bcbc163b69df43dd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "46a4bcbc163b69df43dd-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "46a4bcbc163b69df43dd-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "46a4bcbc163b69df43dd-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "46a4bcbc163b69df43dd-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "46a4bcbc163b69df43dd-part-0007.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-trace-verdict-study-westd-11235-ssh-root-ssh-execute-submit-tr-copy-630.md"
+}

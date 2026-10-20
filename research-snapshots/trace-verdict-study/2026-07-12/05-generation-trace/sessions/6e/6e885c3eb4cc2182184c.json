@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "6e885c3eb4cc2182184c",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: trace-verdict-study ## 运行环境 - 服务器名: westd-11235 - SSH 账户: root（调用 ssh_execute / submit_training_",
+  "task_key": "76eb19c7-05eb-45e1-a9ec-9e475455fe03",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/76eb19c7-05eb-45e1-a9ec-9e475455fe03.jsonl",
+    "occurrence": 1,
+    "bytes": 1378829,
+    "sha256": "0e1466607aed8a10c0b895d6972fe94b246659d77b546f281e75c7f860d63717"
+  },
+  "statistics": {
+    "messages": 837,
+    "user_turns": 1,
+    "tool_calls": 307,
+    "roles": {
+      "record": 118,
+      "user": 1,
+      "assistant": 104,
+      "tool_call": 307,
+      "tool_result": 307
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6e885c3eb4cc2182184c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 835,
+      "chunks": [
+        {
+          "path": "6e885c3eb4cc2182184c-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "6e885c3eb4cc2182184c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6e885c3eb4cc2182184c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6e885c3eb4cc2182184c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "6e885c3eb4cc2182184c-part-0005.json",
+          "message_count": 117
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-trace-verdict-study-westd-11235-ssh-root-ssh-execute-submit-tr-copy-138.md"
+}
