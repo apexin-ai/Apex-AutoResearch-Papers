@@ -22,6 +22,8 @@ class ReleaseAssetTests(unittest.TestCase):
         for path in ['/absolute/file','project/../../escape']:
             with self.assertRaises(ValueError):a.safe_rel(path)
         self.assertEqual(a.safe_rel('scripts/run.py'),Path('scripts/run.py'))
+        self.assertTrue(a.excluded('artifacts/v1_irt_refit_pilot/.hf_cache/dataset.arrow'))
+        self.assertFalse(a.excluded('artifacts/v1_irt_refit_pilot/results/dataset.arrow'))
     def test_nested_archives_are_sanitized(self):
         with tempfile.TemporaryDirectory() as td:
             root=Path(td);path=root/'bundle.zip'

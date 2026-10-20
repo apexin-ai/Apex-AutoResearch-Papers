@@ -238,7 +238,7 @@ from types import SimpleNamespace
 
 PART_SIZE = 80 * 1024**2
 EXCLUDE_NAMES = {'.env', '.env.local', '.env.production', 'credentials', 'credentials.json', 'accounts.json', 'auth.json', '.netrc', '.npmrc', '.pypirc'}
-SKIP_PARTS.update({'.cache', '.npm', '.mypy_cache', '.pytest_cache', '.ruff_cache', '.tox', '.conda', '.ssh', '.aws', '.claude', '.codex', '.idea', '.vscode', '.ipynb_checkpoints', 'wandb'})
+SKIP_PARTS.update({'.cache', '.hf_cache', '.npm', '.mypy_cache', '.pytest_cache', '.ruff_cache', '.tox', '.conda', '.ssh', '.aws', '.claude', '.codex', '.idea', '.vscode', '.ipynb_checkpoints', 'wandb'})
 REDACT_PATTERNS.extend([
     (re.compile(r'\bASIA[A-Z0-9]{16}\b'), '[REDACTED_AWS_KEY]'),
     (re.compile(r'\bgithub_pat_[A-Za-z0-9_]{30,}\b'), '[REDACTED_GITHUB_TOKEN]'),
